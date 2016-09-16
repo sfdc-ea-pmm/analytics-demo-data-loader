@@ -1,0 +1,32 @@
+<apex:page showHeader="true" sidebar="false" controller="DataflowEditorController">
+	<apex:form >
+        <apex:pageBlock mode="edit">
+            <apex:pageMessages />
+            <apex:pageBlockSection >
+                <apex:panelGrid columns="1">
+                    
+                    <apex:outputLabel for="waveapp" value="Select Wave App:" />
+                    <apex:selectList multiselect="false" value="{!waveApp}" size="1" id="waveapp">
+                        <apex:selectOptions value="{!waveApplications}" />
+                    </apex:selectList>
+                    
+                    <apex:outputLabel for="dataflow" value="Select source dataflow from which the new one will be generated:" />
+                    <apex:selectList multiselect="false" value="{!dataflowId}" size="1" id="dataflow">
+                        <apex:selectOptions value="{!dataflows}" />
+                    </apex:selectList>
+                    
+                    <apex:outputLabel for="newDataflowName" value="Dataflow Name to generate:" />
+                    <apex:inputText value="{!newDataflowName}" label="New Dataflow Name" id="newDataflowName" />
+
+                    <apex:outputLabel for="newDataflowLabel" value="Dataflow Label to generate:" />
+                    <apex:inputText value="{!newDataflowLabel}" label="Dataflow Label to generate" id="newDataflowLabel" />                    
+                    
+                </apex:panelGrid>
+
+            </apex:pageBlockSection>
+            <apex:pageBlockButtons location="bottom">
+                <apex:commandButton value="Accept" action="{!save}"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

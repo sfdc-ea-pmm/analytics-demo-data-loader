@@ -1,0 +1,72 @@
+<apex:page showHeader="true" sidebar="false" controller="WaveDataGeneratorController">
+	<style type="text/css">
+		.helpPanel {
+			border: 1px solid #000;
+		}
+		.helpStep {
+			font-weight: bold;
+		}
+		.helpCell {
+			padding-top: 3px;
+			padding-bottom: 3px;
+		}
+		.validText {
+			font-weight: bold;
+			color: green;
+		}
+		.invalidText {
+			font-weight: bold;
+			color: red;
+		}
+	</style>
+	<apex:form >
+        <apex:pageBlock mode="edit">
+            <apex:pageMessages />
+            <apex:pageBlockSection >
+                <apex:panelGrid columns="1">
+
+                	<apex:outputLabel for="waveapp" value="Select Wave App:" />
+                    <apex:selectList multiselect="false" value="{!waveApp}" size="1" id="waveapp">
+                        <apex:selectOptions value="{!waveApplications}" />
+                    </apex:selectList>
+                    
+                    <apex:outputLabel for="selectObj" value="Select Object:" />
+                    <apex:selectList multiselect="false" value="{!selectedObject}" size="1" id="selectObj">
+                        <apex:selectOptions value="{!orgObjects}" />
+                    </apex:selectList>
+
+                    <apex:panelGroup >
+                        <apex:outputLabel for="dataUrlTxt" value="Mockaroo data URL:   " />
+                        <apex:commandLink action="{!help}" value="{!helpText}" reRender="helpPanel,helpLink" id="helpLink" />
+                    </apex:panelGroup>
+                    
+                    <apex:outputPanel id="helpPanel">
+                        <apex:panelGrid columns="1" columnClasses="helpCell" rendered="{!showHelp}" styleClass="helpPanel">
+	                        <apex:outputText value="1) At the bottom of the Mockaroo schema page for your data, copy the URL as showed in the following image: " styleClass="helpStep" />
+	                        <apex:image alt="Help image not available" url="{!URLFOR($Resource.WaveDataGenerator, 'mockaroo-download-url.png')}" />
+	                        <apex:outputText value="2) Make sure to select the right # Rows. " styleClass="helpStep" />
+	                        <apex:outputText value="3) Make sure that the schema fields match the selected object above. " styleClass="helpStep" />
+	                        <apex:outputText value="4) Paste URL in the text area below. " styleClass="helpStep" />
+                        </apex:panelGrid>
+                    </apex:outputPanel>
+
+                    <apex:inputTextarea id="dataUrlTxt" value="{!dataUrl}" rows="3" cols="100">
+                    	<apex:actionSupport event="onchange" action="{!validateSchema}" reRender="btnAccept,validationPanel" status="validatingSchemaStatus" />
+                    </apex:inputTextarea>
+
+                    <apex:actionStatus startText="Validating schema..." id="validatingSchemaStatus" startStyleClass="helpStep"/>
+
+                    <apex:outputPanel id="validationPanel">
+                    	<apex:outputText value="{!validationMessage}" rendered="{!validationMessage <> '' && validSchema}" styleClass="validText" />
+                    	<apex:outputText value="{!validationMessage}" rendered="{!validationMessage <> '' && !validSchema}" styleClass="invalidText" />
+                    </apex:outputPanel>
+                    
+                </apex:panelGrid>
+
+            </apex:pageBlockSection>
+            <apex:pageBlockButtons location="bottom">
+                <apex:commandButton value="Accept" action="{!save}" disabled="{!!validSchema}" id="btnAccept" />
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>
