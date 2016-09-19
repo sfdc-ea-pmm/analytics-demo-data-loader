@@ -26,6 +26,8 @@
 		<members>MockarooHelper</members>
 		<members>MockarooHelperFactory</members>
 		<members>CsvDataImportBatch</members>
+		<members>RoleUtils</members>
+		<members>ProfileUtils</members>
 		<name>ApexClass</name>
 	</types>
 	<types>
