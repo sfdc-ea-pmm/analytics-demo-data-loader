@@ -28,13 +28,12 @@
                 	<apex:outputLabel for="waveapp" value="Select Wave App:" />
                     <apex:selectList multiselect="false" value="{!waveApp}" size="1" id="waveapp">
                         <apex:selectOptions value="{!waveApplications}" />
-                        <apex:actionSupport reRender="selectObj,UserCharacteristics" event="onchange" action="{!updateWaveApp}" />
+                        <apex:actionSupport reRender="selectObj" event="onchange" action="{!updateWaveApp}" />
                     </apex:selectList>
                     
                     <apex:outputLabel for="selectObj" value="Select Object:" />
                     <apex:selectList multiselect="false" value="{!selectedObject}" size="1" id="selectObj">
                         <apex:selectOptions value="{!orgObjects}" />
-                        <apex:actionSupport reRender="UserCharacteristics" event="onchange"/>
                     </apex:selectList>
 
                     <apex:panelGroup >
@@ -61,26 +60,6 @@
                     <apex:outputPanel id="validationPanel">
                     	<apex:outputText value="{!validationMessage}" rendered="{!validationMessage <> '' && validSchema}" styleClass="validText" />
                     	<apex:outputText value="{!validationMessage}" rendered="{!validationMessage <> '' && !validSchema}" styleClass="invalidText" />
-                    </apex:outputPanel>
-
-                    <apex:outputPanel id="UserCharacteristics">
-                    	<apex:panelGrid columns="1" rendered="{!waveApp <> '' && selectedObject <> '' && selectedObject <> 'User'}">
-	                    	<apex:outputLabel value="The selected object is related to User. Please select the users characteristics below. Users with that characteristics will be randomly picked." style="font-weight: bold;text-decoration: underline;" /><br />
-	                    	<apex:outputLabel for="role" value="Select Role:" />
-		                    <apex:selectList multiselect="false" value="{!selectedRoleId}" size="1" label="Select Role:" id="role">
-		                        <apex:selectOptions value="{!roles}" />
-		                    </apex:selectList>
-
-		                    <apex:panelGroup >
-		                        <apex:outputLabel for="alsoSub" value="Also Role subordinates " />
-		                        <apex:inputCheckbox value="{!alsoRoleSubordinates}" id="alsoSub"/>
-		                    </apex:panelGroup>
-
-		                    <apex:outputLabel for="profiles" value="and/or Profiles:" />
-		                    <apex:selectList multiselect="true" value="{!selectedProfilesIds}" size="10" id="profiles">
-		                        <apex:selectOptions value="{!profiles}" />
-		                    </apex:selectList>
-		                </apex:panelGrid>
                     </apex:outputPanel>
                     
                 </apex:panelGrid>

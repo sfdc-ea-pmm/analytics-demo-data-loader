@@ -8,85 +8,12 @@ public with sharing class WaveDataGeneratorController {
 	public String helpText { get; set; }
 	public Boolean validSchema { get; set; }
 	public String validationMessage { get; set; }
-	public Id selectedRoleId { get; set; }
-	public List<Id> selectedProfilesIds { get;set; }
-	public Boolean alsoRoleSubordinates { get; set; }
-
+	
 	public WaveDataGeneratorController() {
 		this.showHelp = false;
 		this.helpText = 'Click for help';
 		this.validSchema = false;
 	}
-
-	public List<SelectOption> getRoles() {
-
-        List<SelectOption> options = new List<SelectOption>();
-        List<UserRole> roles = new List<UserRole>();
-
-        if(!String.isBlank(this.waveApp)) {
-        
-        	List<String> roleNames = new List<String>();
-
-			if (this.waveApp == 'SalesWave') {
-				roleNames.addAll(new String[] {
-					'Central Sales',
-					'Director of Channel Sales',
-					'East Sales',
-					'RVP International Sales',
-					'VP of Sales',
-					'West Sales'
-				});	
-			} 
-			else if (this.waveApp == 'ServicesWave') {
-				roleNames.addAll(new String[] {
-					'Customer Service Agent',
-					'Customer Service Manager',
-					'VP of Customer Service'
-				});	
-			}
-
-			roles.addAll(RoleUtils.getUserRolesByName(roleNames));
-        }
-
-        options.add(new SelectOption('', 'None'));
-        for(UserRole role: roles) {
-        	options.add(new SelectOption(role.Id, role.Name));
-        }
-
-        return options;
-    }
-
-    public List<SelectOption> getProfiles() {
-
-        List<SelectOption> options = new List<SelectOption>();
-        List<Profile> profiles = new List<Profile>();
-
-        if(!String.isBlank(this.waveApp)) {
-        
-        	List<String> profileNames = new List<String>();
-
-			if (this.waveApp == 'SalesWave') {
-				profileNames.addAll(new String[] {
-					'Sales User',
-					'Sales Admin User'
-				});	
-			} 
-			else if (this.waveApp == 'ServicesWave') {
-				profileNames.addAll(new String[] {
-					'Service Cloud User',
-					'Service Cloud'
-				});	
-			}
-
-			profiles.addAll(ProfileUtils.getProfilesByName(profileNames));
-        }
-
-        for(Profile prof: profiles) {
-        	options.add(new SelectOption(prof.Id, prof.Name));
-        }
-
-        return options;
-    }
 
 	public List<SelectOption> getWaveApplications() {
 
@@ -161,7 +88,7 @@ public with sharing class WaveDataGeneratorController {
     				for (String s: objectFields.keySet()) {
 						
 						Schema.DescribeFieldResult dfr = objectFields.get(s).getDescribe();
-						if(!dfr.isNillable() && !dfr.isDefaultedOnCreate()){
+						if(!dfr.isNillable() && !dfr.isDefaultedOnCreate() && dfr.getName() != 'ProfileId' && dfr.getName() != 'OwnerId' && dfr.getName() != 'CaseId'){
 							// It is required
 							requiredFields.add(dfr.getName());
 						}
@@ -172,6 +99,30 @@ public with sharing class WaveDataGeneratorController {
 					for(String mockarooField: dataFields) {
 						fieldTable.put(mockarooField, mockarooField);
 					}
+
+					// Now we have the fields that salesforce requires. We have to remove those that 
+					// will be managed as external ids and smart lookups			 
+					if(this.selectedObject == 'User'){
+    					// Add the mockaroo ones
+    					requiredFields.add('Profile.Name');
+    					requiredFields.add('External_Id__c');
+    				}
+    				else if (this.selectedObject == 'Account') {
+    					// Add the mockaroo ones
+    					requiredFields.add('External_Id__c');
+    					requiredFields.add('Owner.External_Id__c.Lookup');
+    				}
+    				else if (this.selectedObject == 'Case') {
+    					requiredFields.add('External_Id__c');
+    					requiredFields.add('Owner.External_Id__c.Lookup');	
+    				}
+    				else if (this.selectedObject == 'CaseHistory') {
+    					// Add the mockaroo ones
+    					requiredFields.add('Case.External_Id__c.Lookup');
+    				}
+    				else if (this.selectedObject == 'Opportunity' || this.selectedObject == 'Task' || this.selectedObject == 'Event') {
+    					requiredFields.add('Owner.External_Id__c.Lookup');	
+    				}
 
 					// All required fields must be present in mockaroo schema
 					List<String> missingFields = new List<String>();
