@@ -77,6 +77,7 @@ public with sharing class WaveDataGeneratorController {
     			
     			// Now validate data schema against sObject's schema
     			List<String> dataFields = iMockHelper.getSchemaFieldNames(this.dataUrl);
+
     			if(dataFields.size() > 0){
 
     				// Retrieve sObject's schema
@@ -128,6 +129,7 @@ public with sharing class WaveDataGeneratorController {
 					List<String> missingFields = new List<String>();
 					for(String reqField: requiredFields) {
 						if(!fieldTable.containsKey(reqField)){
+							System.debug(reqField);
 							missingFields.add(reqField);
 						}
 					}

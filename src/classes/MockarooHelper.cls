@@ -114,7 +114,7 @@ public with sharing virtual class MockarooHelper implements IMockarooHelper {
 
 				String headers = this.mockarooCallout(urlHeadersOnly);
 				if(!String.isBlank(headers)){
-					lstFields = headers.split(',');
+					lstFields = headers.trim().split(',');
 				}
 			}
 		}
