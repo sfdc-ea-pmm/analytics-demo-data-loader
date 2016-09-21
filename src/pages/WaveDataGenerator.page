@@ -28,12 +28,13 @@
                 	<apex:outputLabel for="waveapp" value="Select Wave App:" />
                     <apex:selectList multiselect="false" value="{!waveApp}" size="1" id="waveapp">
                         <apex:selectOptions value="{!waveApplications}" />
-                        <apex:actionSupport reRender="selectObj" event="onchange" action="{!updateWaveApp}" />
+                        <apex:actionSupport reRender="selectObj,dataUrlTxt,validationPanel,jobStatusPanel" event="onchange" action="{!updateWaveApp}" />
                     </apex:selectList>
                     
                     <apex:outputLabel for="selectObj" value="Select Object:" />
                     <apex:selectList multiselect="false" value="{!selectedObject}" size="1" id="selectObj">
                         <apex:selectOptions value="{!orgObjects}" />
+                        <apex:actionSupport reRender="dataUrlTxt,validationPanel,jobStatusPanel" event="onchange" action="{!updateSelectedObj}" />
                     </apex:selectList>
 
                     <apex:panelGroup >
@@ -51,8 +52,8 @@
                         </apex:panelGrid>
                     </apex:outputPanel>
 
-                    <apex:inputTextarea id="dataUrlTxt" value="{!dataUrl}" rows="3" cols="100">
-                    	<apex:actionSupport event="onchange" action="{!validateSchema}" reRender="btnAccept,validationPanel" status="validatingSchemaStatus" />
+                    <apex:inputTextarea id="dataUrlTxt" value="{!dataUrl}" rows="3" cols="100" disabled="{!waveApp == '' || selectedObject == ''}">
+                    	<apex:actionSupport event="onchange" action="{!validateSchema}" reRender="btnAccept,validationPanel,jobStatusPanel" status="validatingSchemaStatus" />
                     </apex:inputTextarea>
 
                     <apex:actionStatus startText="Validating schema..." id="validatingSchemaStatus" startStyleClass="helpStep"/>
@@ -61,12 +62,27 @@
                     	<apex:outputText value="{!validationMessage}" rendered="{!validationMessage <> '' && validSchema}" styleClass="validText" />
                     	<apex:outputText value="{!validationMessage}" rendered="{!validationMessage <> '' && !validSchema}" styleClass="invalidText" />
                     </apex:outputPanel>
+
+                    <apex:outputPanel id="monitoringPanel">
+                    	<apex:actionPoller action="{!monitor}" interval="5" reRender="jobStatusPanel" rendered="{!monitorJobExecution}" />
+                    </apex:outputPanel>
+
+                    <apex:outputPanel id="jobStatusPanel">
+                    	<apex:panelGrid columns="2" rendered="{!showJobStatistics}">
+                			<apex:outputText value="Total batches: "/>
+                			<apex:outputText value="{!totalBatches}" styleClass="helpStep" />
+	                        <apex:outputText value="Batches processed: "/>
+                			<apex:outputText value="{!batchesProcessed}" styleClass="helpStep" />
+                			<apex:outputText value="Status:"/>
+                			<apex:outputText value="{!jobStatusDsc}" styleClass="helpStep" />
+                        </apex:panelGrid>
+                    </apex:outputPanel>
                     
                 </apex:panelGrid>
 
             </apex:pageBlockSection>
             <apex:pageBlockButtons location="bottom">
-                <apex:commandButton value="Accept" action="{!save}" disabled="{!!validSchema}" id="btnAccept" />
+                <apex:commandButton value="Accept" action="{!save}" disabled="{!!validSchema}" id="btnAccept" reRender="monitoringPanel" />
             </apex:pageBlockButtons>
         </apex:pageBlock>
     </apex:form>

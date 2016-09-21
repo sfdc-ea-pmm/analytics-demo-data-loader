@@ -8,11 +8,22 @@ public with sharing class WaveDataGeneratorController {
 	public String helpText { get; set; }
 	public Boolean validSchema { get; set; }
 	public String validationMessage { get; set; }
+	public Id batchProcessId { get; set; }
+	public Boolean monitorJobExecution { get; set; }
+	public Boolean showJobStatistics { get; set; }
+	public Integer batchesProcessed { get; set; }
+	public Integer totalBatches { get; set; }
+	public String jobStatusDsc { get; set; }
 	
 	public WaveDataGeneratorController() {
 		this.showHelp = false;
 		this.helpText = 'Click for help';
 		this.validSchema = false;
+		this.monitorJobExecution = false;
+		this.batchProcessId = null;
+		this.totalBatches = 0;
+		this.batchesProcessed = 0;
+		this.showJobStatistics = false;
 	}
 
 	public List<SelectOption> getWaveApplications() {
@@ -61,6 +72,15 @@ public with sharing class WaveDataGeneratorController {
 
     public void updateWaveApp(){
     	this.selectedObject = '';
+    	this.dataUrl = '';
+    	this.validationMessage = '';
+    	this.showJobStatistics = false;
+    }
+
+    public void updateSelectedObj(){
+    	this.dataUrl = '';
+    	this.validationMessage = '';
+    	this.showJobStatistics = false;
     }
 
     public void validateSchema(){
@@ -89,7 +109,7 @@ public with sharing class WaveDataGeneratorController {
     				for (String s: objectFields.keySet()) {
 						
 						Schema.DescribeFieldResult dfr = objectFields.get(s).getDescribe();
-						if(!dfr.isNillable() && !dfr.isDefaultedOnCreate() && dfr.getName() != 'ProfileId' && dfr.getName() != 'OwnerId' && dfr.getName() != 'CaseId'){
+						if(!dfr.isNillable() && !dfr.isDefaultedOnCreate() && dfr.getName() != 'ProfileId' && dfr.getName() != 'OwnerId' && dfr.getName() != 'CaseId' && dfr.getName() != 'BusinessHoursId'){
 							// It is required
 							requiredFields.add(dfr.getName());
 						}
@@ -111,18 +131,19 @@ public with sharing class WaveDataGeneratorController {
     				else if (this.selectedObject == 'Account') {
     					// Add the mockaroo ones
     					requiredFields.add('External_Id__c');
-    					requiredFields.add('Owner.External_Id__c.Lookup');
+    					requiredFields.add('Owner.External_Id__c');
     				}
     				else if (this.selectedObject == 'Case') {
     					requiredFields.add('External_Id__c');
-    					requiredFields.add('Owner.External_Id__c.Lookup');	
+    					requiredFields.add('Owner.External_Id__c');
+    					requiredFields.add('BusinessHours.Name');
     				}
     				else if (this.selectedObject == 'CaseHistory') {
     					// Add the mockaroo ones
-    					requiredFields.add('Case.External_Id__c.Lookup');
+    					requiredFields.add('Case.External_Id__c');
     				}
     				else if (this.selectedObject == 'Opportunity' || this.selectedObject == 'Task' || this.selectedObject == 'Event') {
-    					requiredFields.add('Owner.External_Id__c.Lookup');	
+    					requiredFields.add('Owner.External_Id__c');	
     				}
 
 					// All required fields must be present in mockaroo schema
@@ -156,6 +177,7 @@ public with sharing class WaveDataGeneratorController {
     
     public void save() {
         try {
+        	this.showJobStatistics = false;
     		List<ApexPages.Message> messages = new List<ApexPages.Message>();
 
     		if(Test.isRunningTest() && this.testExceptionCatchBlock){
@@ -185,8 +207,14 @@ public with sharing class WaveDataGeneratorController {
 
     				// Start the batch process
     				CsvDataImportBatch batchProcess = new CsvDataImportBatch(Schema.getGlobalDescribe().get(this.selectedObject), csvData, fieldPositions);
-    				Id batchProcessId = Database.executeBatch(batchProcess);
-    				//messages.add(new ApexPages.Message(ApexPages.Severity.CONFIRM, 'The data was generated successfully.'));
+    				this.batchProcessId = Database.executeBatch(batchProcess);
+
+    				// Now monitor job execution
+    				this.monitorJobExecution = true;
+    				AsyncApexJob asyncJob = [SELECT CompletedDate, JobItemsProcessed, NumberOfErrors, Status, TotalJobItems FROM AsyncApexJob WHERE Id = :this.batchProcessId];
+    				this.totalBatches = asyncJob.TotalJobItems;
+					this.batchesProcessed = asyncJob.JobItemsProcessed;
+					this.showJobStatistics = true;
     			}
     			else {
 					messages.add(new ApexPages.Message(ApexPages.Severity.WARNING, 'No data to process.'));
@@ -201,6 +229,22 @@ public with sharing class WaveDataGeneratorController {
     		ApexPages.addMessages(e);
     		System.debug(e.getMessage());
     		System.debug(e.getStackTraceString());
+    	}
+    }
+
+    public void monitor(){
+    	if(this.monitorJobExecution && this.batchProcessId != null){
+    		
+    		AsyncApexJob asyncJob = [SELECT CompletedDate, JobItemsProcessed, NumberOfErrors, Status, TotalJobItems FROM AsyncApexJob WHERE Id = :this.batchProcessId];
+    		this.jobStatusDsc = 'Processing';
+    		if(asyncJob.Status == 'Aborted' || asyncJob.Status == 'Completed' || asyncJob.Status == 'Failed'){
+    			this.monitorJobExecution = false;
+    			this.batchProcessId = null;
+    			this.jobStatusDsc = asyncJob.Status;
+    		}
+
+    		this.totalBatches = asyncJob.TotalJobItems;
+			this.batchesProcessed = asyncJob.JobItemsProcessed;
     	}
     }
 }

@@ -28,6 +28,7 @@
 		<members>CsvDataImportBatch</members>
 		<members>RoleUtils</members>
 		<members>ProfileUtils</members>
+		<members>SmartLookup</members>
 		<name>ApexClass</name>
 	</types>
 	<types>
