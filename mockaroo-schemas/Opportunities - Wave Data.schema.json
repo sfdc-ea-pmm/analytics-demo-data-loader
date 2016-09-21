@@ -1,0 +1,204 @@
+{
+  "id": 7349,
+  "num_rows": 2201,
+  "file_format": "csv",
+  "name": "Opportunities - Wave Data",
+  "include_header": true,
+  "columns": [
+    {
+      "name": "__IDHelper",
+      "type": "Row Number",
+      "formula": ""
+    },
+    {
+      "name": "__IDPadder",
+      "type": "Formula",
+      "value": "pad(field('__IDHelper'),5,\"00000\", \"left\")",
+      "formula": ""
+    },
+    {
+      "name": "External_Id__c",
+      "type": "Template",
+      "value": "W_Opportunity.{__IDPadder}",
+      "formula": ""
+    },
+    {
+      "name": "Account.External_Id__c",
+      "type": "Dataset Column",
+      "dataset": "Account Dataset",
+      "column": "External_Id__c",
+      "selectionStyle": "random",
+      "formula": ""
+    },
+    {
+      "name": "User.External_Id__c",
+      "type": "Dataset Column",
+      "dataset": "Account Dataset",
+      "column": "Owner.External_Id__c",
+      "selectionStyle": null,
+      "formula": ""
+    },
+    {
+      "name": "Account_Name_DNI",
+      "type": "Dataset Column",
+      "dataset": "Account Dataset",
+      "column": "Name",
+      "selectionStyle": null,
+      "formula": ""
+    },
+    {
+      "name": "CreatedDate",
+      "type": "Date",
+      "min": "01/01/2015",
+      "max": "8/29/2016",
+      "format": "%Y-%m-%dT%H:%M:%SZ",
+      "formula": ""
+    },
+    {
+      "name": "CloseDate",
+      "type": "Formula",
+      "value": "field('CreatedDate') + days(random(60,210))",
+      "formula": ""
+    },
+    {
+      "name": "Name",
+      "type": "Template",
+      "value": "Opportunity for {Account_Name_DNI} [{CreatedDate}]",
+      "formula": ""
+    },
+    {
+      "name": "Products__c",
+      "type": "Custom List",
+      "values": [
+        "GC1000 series",
+        "GC5000 series",
+        "GC10001",
+        "GC20002",
+        "GC50000"
+      ],
+      "selectionStyle": "random",
+      "distribution": [
+        {
+          "frequencies": {
+            "Electronic Health Records": "10",
+            "Practice Management": "6",
+            "Revenue Cycle Management": "4",
+            "Patient Engagement": "3",
+            "Population Health Services": "5",
+            "Order Transmission": "6",
+            "Patient Access and Care Coordination": "4",
+            "Epocrates": "2"
+          }
+        }
+      ],
+      "formula": ""
+    },
+    {
+      "name": "StageName",
+      "type": "Custom List",
+      "values": [
+        "Qualification",
+        "Needs Analysis",
+        "Proposal/Quote",
+        "Negotiation",
+        "Closed Won",
+        "Closed Lost"
+      ],
+      "selectionStyle": "custom",
+      "distribution": [
+        {
+          "rule": "field(\"Products__c\") == \"GC1000 series\"",
+          "frequencies": {
+            "Qualification": "5",
+            "Needs Analysis": "4",
+            "Proposal/Quote": "3",
+            "Negotiation": "2",
+            "Closed Won": "3",
+            "Closed Lost": "3"
+          }
+        },
+        {
+          "rule": "field(\"Products__c\") == \"GC5000 series\"",
+          "frequencies": {
+            "Qualification": "5",
+            "Needs Analysis": "4",
+            "Proposal/Quote": "3",
+            "Negotiation": "2",
+            "Closed Won": "3",
+            "Closed Lost": "3"
+          }
+        },
+        {
+          "rule": "field(\"Products__c\") == \"GC10001\"",
+          "frequencies": {
+            "Qualification": "5",
+            "Needs Analysis": "4",
+            "Proposal/Quote": "3",
+            "Negotiation": "2",
+            "Closed Won": "3",
+            "Closed Lost": "3"
+          }
+        },
+        {
+          "rule": "field(\"Products__c\") == \"GC20002\"",
+          "frequencies": {
+            "Qualification": "5",
+            "Needs Analysis": "4",
+            "Proposal/Quote": "3",
+            "Negotiation": "2",
+            "Closed Won": "3",
+            "Closed Lost": "3"
+          }
+        },
+        {
+          "rule": "field(\"Products__c\") == \"GC50000\"",
+          "frequencies": {
+            "Qualification": "5",
+            "Needs Analysis": "4",
+            "Proposal/Quote": "3",
+            "Negotiation": "2",
+            "Closed Won": "3",
+            "Closed Lost": "3"
+          }
+        }
+      ],
+      "formula": ""
+    },
+    {
+      "name": "__Amount_Continuous_DNI",
+      "type": "Normal Distribution",
+      "mean": "1400",
+      "sd": "350",
+      "decimals": 0,
+      "formula": ""
+    },
+    {
+      "name": "Amount",
+      "type": "Formula",
+      "value": "field('__Amount_Continuous_DNI')*100",
+      "formula": ""
+    },
+    {
+      "name": "Type",
+      "type": "Custom List",
+      "values": [
+        "New Business",
+        "Add-On Business",
+        "Services",
+        "Renewal"
+      ],
+      "selectionStyle": "custom",
+      "distribution": [
+        {
+          "frequencies": {
+            "New Business": "5",
+            "Add-On Business": "3",
+            "Services": "2",
+            "Renewal": 1
+          }
+        }
+      ],
+      "formula": ""
+    }
+  ]
+}

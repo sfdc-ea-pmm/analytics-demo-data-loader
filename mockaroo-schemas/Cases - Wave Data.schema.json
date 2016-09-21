@@ -1,0 +1,412 @@
+{
+  "id": 7351,
+  "num_rows": 500,
+  "file_format": "csv",
+  "name": "Cases - Wave Data",
+  "include_header": true,
+  "columns": [
+    {
+      "name": "__IDHelper",
+      "type": "Row Number",
+      "formula": ""
+    },
+    {
+      "name": "__IDPadder",
+      "type": "Formula",
+      "value": "pad(field('__IDHelper'),5,\"00000\", \"left\")",
+      "formula": ""
+    },
+    {
+      "name": "External_Id__c",
+      "type": "Template",
+      "value": "W_Case.{__IDPadder}",
+      "formula": ""
+    },
+    {
+      "name": "__OwnerIdHelper",
+      "type": "Number",
+      "min": 1,
+      "max": 20,
+      "decimals": 0,
+      "formula": ""
+    },
+    {
+      "name": "__OwnerIdPadder",
+      "type": "Formula",
+      "value": "pad(field('__OwnerIdHelper'),5,\"00000\",\"left\")",
+      "formula": ""
+    },
+    {
+      "name": "Owner.External_Id__c",
+      "type": "Template",
+      "value": "W_User.{__OwnerIdPadder}",
+      "formula": ""
+    },
+    {
+      "name": "__AccountIdHelper",
+      "type": "Number",
+      "min": 1,
+      "max": 100,
+      "decimals": 0,
+      "formula": ""
+    },
+    {
+      "name": "__AccountIdPadder",
+      "type": "Formula",
+      "value": "pad(field('__AccountIdHelper'),5,\"00000\",\"left\")",
+      "formula": ""
+    },
+    {
+      "name": "Account.External_Id__c",
+      "type": "Template",
+      "value": "W_Account.{__AccountIdPadder}",
+      "formula": ""
+    },
+    {
+      "name": "Subject",
+      "type": "Dataset Column",
+      "dataset": "Case Subject and Description",
+      "column": "Subject",
+      "selectionStyle": "random",
+      "formula": ""
+    },
+    {
+      "name": "Description",
+      "type": "Formula",
+      "value": "from_dataset(\"Case Subject and Description\", \"Description\", Subject:field('Subject'))",
+      "formula": ""
+    },
+    {
+      "name": "Status_Options",
+      "type": "Custom List",
+      "values": [
+        "New",
+        "Working",
+        "Waiting on Customer",
+        "Response Received",
+        "Escalated",
+        "Warning",
+        "Attention",
+        "On Hold",
+        "Closed in Community",
+        "Closed"
+      ],
+      "selectionStyle": "custom",
+      "distribution": [
+        {
+          "frequencies": {
+            "New": "5",
+            "Working": "8",
+            "Waiting on Customer": "2",
+            "Response Received": 1,
+            "Escalated": "2",
+            "Warning": 1,
+            "Attention": 1,
+            "On Hold": "2",
+            "Closed in Community": 1,
+            "Closed": "5"
+          }
+        }
+      ],
+      "formula": ""
+    },
+    {
+      "name": "First_Contact_Close__c",
+      "type": "Custom List",
+      "values": [
+        "true",
+        "false"
+      ],
+      "selectionStyle": "custom",
+      "distribution": [
+        {
+          "frequencies": {
+            "true": "16",
+            "false": "84"
+          }
+        }
+      ],
+      "formula": ""
+    },
+    {
+      "name": "DateTime_Opened_c__c",
+      "type": "Date",
+      "min": "1/1/2015",
+      "max": "8/18/2016",
+      "format": "%Y-%m-%d %H:%M:%S",
+      "formula": ""
+    },
+    {
+      "name": "DateTime_Closed_c__c",
+      "type": "Formula",
+      "value": "if field('First_Contact_Close__c') == true then field('DateTime_Opened_c__c') else field('DateTime_Opened_c__c') + days(random(0,3)*random(1,7)) end",
+      "formula": ""
+    },
+    {
+      "name": "ClosedDate",
+      "type": "Formula",
+      "value": "now() + days(random(0,3)*random(1,7))",
+      "formula": ""
+    },
+    {
+      "name": "Status",
+      "type": "Formula",
+      "value": "if field('First_Contact_Close__c') == true then 'Closed' else field('Status_Options') end",
+      "formula": ""
+    },
+    {
+      "name": "Product_Family_KB__c",
+      "type": "Custom List",
+      "values": [
+        "Conferencing",
+        "Headphones",
+        "Home Theatre",
+        "Hotspot Services",
+        "Projectors",
+        "Speakers",
+        "Consumer",
+        "Enterprise"
+      ],
+      "selectionStyle": "custom",
+      "distribution": [
+        {
+          "frequencies": {
+            "Product A": "5",
+            "Product B": "3",
+            "Product C": "4",
+            "Product D": "2",
+            "Product E": 1,
+            "Conferencing": 1,
+            "Headphones": 1,
+            "Home Theatre": 1,
+            "Hotspot Services": 1,
+            "Projectors": 1,
+            "Speakers": 1,
+            "Consumer": 1,
+            "Enterprise": 1
+          }
+        }
+      ],
+      "formula": ""
+    },
+    {
+      "name": "CSAT__c",
+      "type": "Formula",
+      "value": "if field('First_Contact_Close__c') == true then random(85,100) elsif field('Status_Options') == 'Closed' then random(50,100) elsif field('Status_Options') == 'Closed in Community' then random(60,100) else 0 end",
+      "formula": ""
+    },
+    {
+      "name": "Origin",
+      "type": "Custom List",
+      "values": [
+        "Email",
+        "Phone",
+        "Website",
+        "Community",
+        "Q&A",
+        "Facebook",
+        "Twitter",
+        "Chat",
+        "Google",
+        "Mobile Device",
+        "Instagram",
+        "LinkedIn"
+      ],
+      "selectionStyle": "custom",
+      "distribution": [
+        {
+          "frequencies": {
+            "Email": "10",
+            "Phone": "8",
+            "Website": "9",
+            "Community": "3",
+            "Q&A": "2",
+            "Facebook": "2",
+            "Twitter": "3",
+            "Chat": "2",
+            "Google": 1,
+            "Mobile Device": "4",
+            "Instagram": 1,
+            "LinkedIn": 1
+          }
+        }
+      ],
+      "formula": ""
+    },
+    {
+      "name": "Priority",
+      "type": "Custom List",
+      "values": [
+        "Low",
+        "Medium",
+        "High",
+        "Critical"
+      ],
+      "selectionStyle": "custom",
+      "distribution": [
+        {
+          "frequencies": {
+            "Low": "10",
+            "Medium": "4",
+            "High": "2",
+            "Critical": 1
+          }
+        }
+      ],
+      "formula": ""
+    },
+    {
+      "name": "Reason",
+      "type": "Custom List",
+      "values": [
+        "Problem Resolved",
+        "Documentation Issue",
+        "Existing problem",
+        "Mail delivery issue",
+        "New problem",
+        "Hardware Issue",
+        "Software Issue",
+        "Feature Request"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "Type_of_Support__c",
+      "type": "Custom List",
+      "values": [
+        "Standard",
+        "Premium"
+      ],
+      "selectionStyle": "custom",
+      "distribution": [
+        {
+          "frequencies": {
+            "Standard": "8",
+            "Premium": "2"
+          }
+        }
+      ],
+      "formula": ""
+    },
+    {
+      "name": "Milestone_Status__c",
+      "type": "Custom List",
+      "values": [
+        "Open - Compliant",
+        "Open - Violation",
+        "Closed - Violation",
+        "Closed - Compliant"
+      ],
+      "selectionStyle": "custom",
+      "distribution": [
+        {
+          "rule": "field(\"Status_Options\") == \"New\"",
+          "frequencies": {
+            "Open - Compliant": "9",
+            "Open - Violation": "1",
+            "Closed - Violation": "0",
+            "Closed - Compliant": ""
+          }
+        },
+        {
+          "rule": "field(\"Status_Options\") == \"Working\"",
+          "frequencies": {
+            "Open - Compliant": "9",
+            "Open - Violation": "1",
+            "Closed - Violation": "0",
+            "Closed - Compliant": ""
+          }
+        },
+        {
+          "rule": "field(\"Status_Options\") == \"Waiting on Customer\"",
+          "frequencies": {
+            "Open - Compliant": "9",
+            "Open - Violation": "1",
+            "Closed - Violation": "0",
+            "Closed - Compliant": ""
+          }
+        },
+        {
+          "rule": "field(\"Status_Options\") == \"Response Received\"",
+          "frequencies": {
+            "Open - Compliant": "9",
+            "Open - Violation": "1",
+            "Closed - Violation": "0",
+            "Closed - Compliant": ""
+          }
+        },
+        {
+          "rule": "field(\"Status_Options\") == \"Escalated\"",
+          "frequencies": {
+            "Open - Compliant": "9",
+            "Open - Violation": "1",
+            "Closed - Violation": "0",
+            "Closed - Compliant": ""
+          }
+        },
+        {
+          "rule": "field(\"Status_Options\") == \"Warning\"",
+          "frequencies": {
+            "Open - Compliant": "9",
+            "Open - Violation": "1",
+            "Closed - Violation": "0",
+            "Closed - Compliant": ""
+          }
+        },
+        {
+          "rule": "field(\"Status_Options\") == \"Attention\"",
+          "frequencies": {
+            "Open - Compliant": "9",
+            "Open - Violation": "1",
+            "Closed - Violation": "0",
+            "Closed - Compliant": ""
+          }
+        },
+        {
+          "rule": "field(\"Status_Options\") == \"On Hold\"",
+          "frequencies": {
+            "Open - Compliant": "9",
+            "Open - Violation": "1",
+            "Closed - Violation": "0",
+            "Closed - Compliant": ""
+          }
+        },
+        {
+          "rule": "field(\"Status_Options\") == \"Closed in Community\"",
+          "frequencies": {
+            "Open - Compliant": "0",
+            "Open - Violation": "0",
+            "Closed - Violation": 1,
+            "Closed - Compliant": "19"
+          }
+        },
+        {
+          "rule": "field(\"Status_Options\") == \"Closed\"",
+          "frequencies": {
+            "Open - Compliant": "0",
+            "Open - Violation": "0",
+            "Closed - Violation": "1",
+            "Closed - Compliant": "19"
+          }
+        }
+      ],
+      "formula": ""
+    },
+    {
+      "name": "BusinessHours.Name",
+      "type": "Custom List",
+      "values": [
+        "24/7 Follow-The-Sun Service",
+        "Asia",
+        "Australia and New Zealand",
+        "Europe and the Middle East",
+        "North America"
+      ],
+      "selectionStyle": "custom",
+      "distribution": null,
+      "formula": ""
+    }
+  ]
+}

@@ -1,0 +1,987 @@
+{
+  "id": 7337,
+  "num_rows": 20,
+  "file_format": "csv",
+  "name": "Users - Wave Data",
+  "include_header": true,
+  "columns": [
+    {
+      "name": "__IDHelper",
+      "type": "Row Number",
+      "formula": ""
+    },
+    {
+      "name": "__IDPadder",
+      "type": "Formula",
+      "value": "pad(field('__IDHelper'), 5, \"00000\", \"left\")",
+      "formula": ""
+    },
+    {
+      "name": "External_Id__c",
+      "type": "Template",
+      "value": "W_User.{__IDPadder}",
+      "formula": ""
+    },
+    {
+      "name": "CompanyName",
+      "type": "Company Name",
+      "formula": ""
+    },
+    {
+      "name": "FirstName",
+      "type": "First Name",
+      "formula": ""
+    },
+    {
+      "name": "LastName",
+      "type": "Last Name",
+      "formula": ""
+    },
+    {
+      "name": "Name",
+      "type": "Formula",
+      "value": "concat(field('FirstName'), \" \", field('LastName'))",
+      "formula": ""
+    },
+    {
+      "name": "__AliasHelper",
+      "type": "Username",
+      "formula": ""
+    },
+    {
+      "name": "Alias",
+      "type": "Formula",
+      "value": "field('__AliasHelper')[0..7]",
+      "formula": ""
+    },
+    {
+      "name": "__UsernameHelper",
+      "type": "Formula",
+      "value": "concat(field('Alias'), epoch(now()))",
+      "formula": ""
+    },
+    {
+      "name": "Username",
+      "type": "Template",
+      "value": "{__UsernameHelper}@demo.user",
+      "formula": ""
+    },
+    {
+      "name": "CommunityNickname",
+      "type": "Formula",
+      "value": "field('__UsernameHelper')",
+      "formula": ""
+    },
+    {
+      "name": "Email",
+      "type": "Template",
+      "value": "{Alias}@webmail.com",
+      "formula": ""
+    },
+    {
+      "name": "Phone",
+      "type": "Phone",
+      "formula": ""
+    },
+    {
+      "name": "UserRole.Name",
+      "type": "Custom List",
+      "values": [
+        "West Sales",
+        "Central Sales",
+        "East Sales"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "Profile.Name",
+      "type": "Custom List",
+      "values": [
+        "Sales User"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "Title",
+      "type": "Custom List",
+      "values": [
+        "Account Executive",
+        "Strategic Account Executive"
+      ],
+      "selectionStyle": "custom",
+      "distribution": [
+        {
+          "frequencies": {
+            "Account Executive": "5",
+            "Strategic Account Executive": 1
+          }
+        }
+      ],
+      "formula": ""
+    },
+    {
+      "name": "TimeZoneSidKey",
+      "type": "Custom List",
+      "values": [
+        "America/Los_Angeles"
+      ],
+      "selectionStyle": "custom",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "LocaleSidKey",
+      "type": "Custom List",
+      "values": [
+        "en_US"
+      ],
+      "selectionStyle": "custom",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "EmailEncodingKey",
+      "type": "Custom List",
+      "values": [
+        "ISO-8859-1"
+      ],
+      "selectionStyle": "custom",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "LanguageLocaleKey",
+      "type": "Custom List",
+      "values": [
+        "en_US"
+      ],
+      "selectionStyle": "custom",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPermissionsAvantgoUser",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPermissionsCallCenterAutoLogin",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPermissionsChatterAnswersUser",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPermissionsInteractionUser",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPermissionsJigsawProspectingUser",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPermissionsKnowledgeUser",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPermissionsLiveAgentUser",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPermissionsMarketingUser",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPermissionsMobileUser",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPermissionsOfflineUser",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPermissionsSFContentUser",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPermissionsSiteforceContributorUser",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPermissionsSiteforcePublisherUser",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPermissionsSupportUser",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPermissionsWorkDotComUserFeature",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesActivityRemindersPopup",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesApexPagesDeveloperMode",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesCacheDiagnostics",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesContentEmailAsAndWhen",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesContentNoEmail",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesDisableAllFeedsEmail",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesDisableBookmarkEmail",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesDisableChangeCommentEmail",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesDisableEndorsementEmail",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesDisableFeedbackEmail",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesDisableFileShareNotificationsForApi",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesDisableFollowersEmail",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesDisableLaterCommentEmail",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesDisableLikeEmail",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesDisableMentionsPostEmail",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesDisableMessageEmail",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesDisableProfilePostEmail",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesDisableRewardEmail",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesDisableSharePostEmail",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesDisableWorkEmail",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesDisCommentAfterLikeEmail",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesDisMentionsCommentEmail",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesDisProfPostCommentEmail",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesEnableAutoSubForFeeds",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesEventRemindersCheckboxDefault",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesHideBiggerPhotoCallout",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesHideChatterOnboardingSplash",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesHideCSNDesktopTask",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesHideCSNGetChatterMobileTask",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesHideEndUserOnboardingAssistantModal",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesHideLightningMigrationModal",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesHideS1BrowserUI",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesHideSecondChatterOnboardingSplash",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesHideSfxWelcomeMat",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesJigsawListUser",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesLightningExperiencePreferred",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesPathAssistantCollapsed",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesPreviewLightning",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesReminderSoundOff",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesShowCityToExternalUsers",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesShowCityToGuestUsers",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesShowCountryToExternalUsers",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesShowCountryToGuestUsers",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesShowEmailToExternalUsers",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesShowEmailToGuestUsers",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesShowFaxToExternalUsers",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesShowFaxToGuestUsers",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesShowManagerToExternalUsers",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesShowManagerToGuestUsers",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesShowMobilePhoneToExternalUsers",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesShowMobilePhoneToGuestUsers",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesShowPostalCodeToExternalUsers",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesShowPostalCodeToGuestUsers",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesShowProfilePicToGuestUsers",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesShowStateToExternalUsers",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesShowStateToGuestUsers",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesShowStreetAddressToExternalUsers",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesShowStreetAddressToGuestUsers",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesShowTitleToExternalUsers",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesShowTitleToGuestUsers",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesShowWorkPhoneToExternalUsers",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesShowWorkPhoneToGuestUsers",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesSortFeedByComment",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesTaskRemindersCheckboxDefault",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "EmailPreferencesAutoBcc",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "EmailPreferencesAutoBccStayInTouch",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "EmailPreferencesStayInTouchReminder",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    }
+  ]
+}
