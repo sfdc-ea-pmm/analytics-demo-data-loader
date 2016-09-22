@@ -24,6 +24,7 @@ public with sharing class WaveDataGeneratorController {
 		this.totalBatches = 0;
 		this.batchesProcessed = 0;
 		this.showJobStatistics = false;
+		this.jobStatusDsc = '';
 	}
 
 	public List<SelectOption> getWaveApplications() {
@@ -212,6 +213,7 @@ public with sharing class WaveDataGeneratorController {
 					this.showJobStatistics = true;
     			}
     			else {
+    				// No data rows retrieved
 					messages.add(new ApexPages.Message(ApexPages.Severity.WARNING, 'No data to process.'));
     			}    			
     		}

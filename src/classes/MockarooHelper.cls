@@ -12,16 +12,8 @@ public with sharing virtual class MockarooHelper implements IMockarooHelper {
 		String contents = this.mockarooCallout(dataUrl);
 		contents = contents.replaceAll(',"""',',"DBLQT').replaceall('""",','DBLQT",');
         contents = contents.replaceAll('""','DBLQT');
-		List<String> lines = new List<String>();
-
-        try {
-            lines = contents.split('\n');
-        } 
-        catch (System.ListException e) {
-            System.debug('MockarooHelper - getData - Limits exceeded: ' + e.getMessage());
-        }
-
-        Integer num = 0;
+		List<String> lines = contents.split('\n');
+		Integer num = 0;
 
         for(String line : lines) {
             

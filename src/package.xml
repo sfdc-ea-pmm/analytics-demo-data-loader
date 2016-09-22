@@ -29,6 +29,8 @@
 		<members>RoleUtils</members>
 		<members>ProfileUtils</members>
 		<members>SmartLookup</members>
+		<members>WaveDataGenerator_test</members>
+		<members>MockarooHttpCalloutMock</members>
 		<name>ApexClass</name>
 	</types>
 	<types>
