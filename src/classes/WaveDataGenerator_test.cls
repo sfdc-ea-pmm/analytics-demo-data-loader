@@ -86,5 +86,6 @@ private class WaveDataGenerator_test {
 		Test.setMock(HttpCalloutMock.class, new MockarooHttpCalloutMock(false, false, false));
 		cnt.save();
 		cnt.monitor();
+		cnt.save();
 	}
 }
