@@ -143,12 +143,6 @@
       "formula": ""
     },
     {
-      "name": "ClosedDate",
-      "type": "Formula",
-      "value": "now() + days(random(0,3)*random(1,7))",
-      "formula": ""
-    },
-    {
       "name": "Status",
       "type": "Formula",
       "value": "if field('First_Contact_Close__c') == true then 'Closed' else field('Status_Options') end",
