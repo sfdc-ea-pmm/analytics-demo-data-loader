@@ -120,18 +120,6 @@
       "formula": ""
     },
     {
-      "name": "Task Subtype",
-      "type": "Custom List",
-      "values": [
-        "Task",
-        "Email",
-        "Call"
-      ],
-      "selectionStyle": "random",
-      "distribution": null,
-      "formula": ""
-    },
-    {
       "name": "DurationInMinutes",
       "type": "Formula",
       "value": "random(0,1)*random(1, 60)",
@@ -206,6 +194,12 @@
           }
         }
       ],
+      "formula": ""
+    },
+    {
+      "name": "ActivityDateTime",
+      "type": "Formula",
+      "value": "now()",
       "formula": ""
     }
   ]

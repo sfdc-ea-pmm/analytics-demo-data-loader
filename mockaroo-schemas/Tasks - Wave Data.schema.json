@@ -120,7 +120,7 @@
       "formula": ""
     },
     {
-      "name": "Task Subtype",
+      "name": "TaskSubtype",
       "type": "Custom List",
       "values": [
         "Task",
