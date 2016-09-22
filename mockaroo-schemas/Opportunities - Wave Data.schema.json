@@ -1,6 +1,6 @@
 {
   "id": 7349,
-  "num_rows": 2201,
+  "num_rows": 100,
   "file_format": "csv",
   "name": "Opportunities - Wave Data",
   "include_header": true,
@@ -23,27 +23,43 @@
       "formula": ""
     },
     {
+      "name": "__OwnerIdHelper",
+      "type": "Number",
+      "min": 1,
+      "max": 20,
+      "decimals": 0,
+      "formula": ""
+    },
+    {
+      "name": "__OwnerIdPadder",
+      "type": "Formula",
+      "value": "pad(field('__OwnerIdHelper'),5,\"00000\",\"left\")",
+      "formula": ""
+    },
+    {
+      "name": "Owner.External_Id__c",
+      "type": "Template",
+      "value": "W_User.{__OwnerIdPadder}",
+      "formula": ""
+    },
+    {
+      "name": "__AccountIdHelper",
+      "type": "Number",
+      "min": 1,
+      "max": 100,
+      "decimals": 0,
+      "formula": ""
+    },
+    {
+      "name": "__AccountIdPadder",
+      "type": "Formula",
+      "value": "pad(field('__AccountIdHelper'),5,\"00000\",\"left\")",
+      "formula": ""
+    },
+    {
       "name": "Account.External_Id__c",
-      "type": "Dataset Column",
-      "dataset": "Account Dataset",
-      "column": "External_Id__c",
-      "selectionStyle": "random",
-      "formula": ""
-    },
-    {
-      "name": "User.External_Id__c",
-      "type": "Dataset Column",
-      "dataset": "Account Dataset",
-      "column": "Owner.External_Id__c",
-      "selectionStyle": null,
-      "formula": ""
-    },
-    {
-      "name": "Account_Name_DNI",
-      "type": "Dataset Column",
-      "dataset": "Account Dataset",
-      "column": "Name",
-      "selectionStyle": null,
+      "type": "Template",
+      "value": "W_Account.{__AccountIdPadder}",
       "formula": ""
     },
     {
@@ -51,7 +67,7 @@
       "type": "Date",
       "min": "01/01/2015",
       "max": "8/29/2016",
-      "format": "%Y-%m-%dT%H:%M:%SZ",
+      "format": "%Y-%m-%d %H:%M:%S",
       "formula": ""
     },
     {
@@ -198,6 +214,11 @@
           }
         }
       ],
+      "formula": ""
+    },
+    {
+      "name": "ForecastCategory",
+      "type": "Blank",
       "formula": ""
     }
   ]

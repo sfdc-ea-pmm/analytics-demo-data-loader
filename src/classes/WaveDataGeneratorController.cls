@@ -50,7 +50,6 @@ public with sharing class WaveDataGeneratorController {
 				options.add(new SelectOption('Opportunity', 'Opportunity'));
 			} else if (this.waveApp == 'ServicesWave') {
 				options.add(new SelectOption('Case', 'Case'));
-				options.add(new SelectOption('CaseHistory', 'CaseHistory'));
 			}
 
 			options.add(new SelectOption('Task', 'Task'));
@@ -137,10 +136,6 @@ public with sharing class WaveDataGeneratorController {
     					requiredFields.add('External_Id__c');
     					requiredFields.add('Owner.External_Id__c');
     					requiredFields.add('BusinessHours.Name');
-    				}
-    				else if (this.selectedObject == 'CaseHistory') {
-    					// Add the mockaroo ones
-    					requiredFields.add('Case.External_Id__c');
     				}
     				else if (this.selectedObject == 'Opportunity' || this.selectedObject == 'Task' || this.selectedObject == 'Event') {
     					requiredFields.add('Owner.External_Id__c');	
