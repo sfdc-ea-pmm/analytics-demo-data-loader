@@ -19,7 +19,7 @@
 			color: red;
 		}
 	</style>
-	<apex:form >
+	<apex:form id="mainForm">
         <apex:pageBlock mode="edit">
             <apex:pageMessages />
             <apex:pageBlockSection >
@@ -82,7 +82,7 @@
 
             </apex:pageBlockSection>
             <apex:pageBlockButtons location="bottom">
-                <apex:commandButton value="Accept" action="{!save}" disabled="{!!validSchema}" id="btnAccept" reRender="monitoringPanel" />
+                <apex:commandButton value="Accept" action="{!save}" disabled="{!!validSchema}" id="btnAccept" reRender="mainForm" />
             </apex:pageBlockButtons>
         </apex:pageBlock>
     </apex:form>
