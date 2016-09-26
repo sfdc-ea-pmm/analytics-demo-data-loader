@@ -32,6 +32,7 @@
 		<members>WaveDataGeneratorController</members>
 		<members>WaveDataGenerator_test</members>
 		<members>CopyCustomHistoryController</members>
+		<members>CopyCustomHistory_test</members>
 		<name>ApexClass</name>
 	</types>
 	<types>
