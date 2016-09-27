@@ -39,7 +39,7 @@ public class SalesWaveScripted_test {
     static testmethod void testUpdateQuotasDataset() {
         Test.startTest();
         User u = [SELECT Id FROM User WHERE UserName = 'guybrush@example.com'];
-        SalesWaveQuotas.updateQuotaDataset(new Id[]{ u.Id }, 2016, 1, 2, 10000, 'Vandelay_Sales', 'plain_quota2');
+        SalesWaveQuotas.updateQuotaDataset(new Id[]{ u.Id }, 2016, 1, 2, 10000, 'Sales_Wave_Spring_16', 'plain_quota');
         Test.stopTest();
     }
 
@@ -72,10 +72,12 @@ public class SalesWaveScripted_test {
     private static void testManageQuotaDatasetsController() {
         Dataflow df = [SELECT Id FROM Dataflow WHERE DeveloperName = 'SalesWaveLuc'];
         ManageQuotaDatasetsController controller = new ManageQuotaDatasetsController();
+        controller.salesApp = 'SalesWaveLuc';
         controller.dataflowId = df.Id;
         controller.affectedCount = 0;
         controller.save();
         controller.getDataflows();
+        controller.getSalesApplications();
         controller.getRoles();
         controller.getProfiles();
         controller.handleAffected();
