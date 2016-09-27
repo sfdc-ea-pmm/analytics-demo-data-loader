@@ -7,9 +7,9 @@
             <apex:pageBlockSection >
                 <apex:panelGrid columns="1">
                     
-                    <apex:outputLabel for="dataflow" value="Select Dataflow:" />
-                    <apex:selectList multiselect="false" value="{!dataflowId}" size="1" id="dataflow">
-                        <apex:selectOptions value="{!dataflows}" />
+                    <apex:outputLabel for="salesApp" value="Select Sales Wave Application:" />
+                    <apex:selectList multiselect="false" value="{!salesApp}" size="1" id="salesApp">
+                        <apex:selectOptions value="{!salesApplications}" />
                     </apex:selectList>
                     
                     <apex:panelGroup >

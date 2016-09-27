@@ -1,5 +1,6 @@
 public class ManageQuotaDatasetsController {
 	
+    public String salesApp { get; set; }
 	public Id dataflowId { get; set; }
 	public Id selectedRoleId { get; set; }
 	public List<Id> selectedProfilesIds { get;set; }
@@ -13,7 +14,17 @@ public class ManageQuotaDatasetsController {
 		this.quotaAmount = 0;
         this.useOpportunityOwners = true;
         this.affectedCount = SalesWaveQuotas.getOpportunitiesUserIds().size();
-	}	
+	}
+
+    public List<SelectOption> getSalesApplications(){
+        List<SelectOption> options = new List<SelectOption>();       
+        List<InsightsApplication> waveApps = [SELECT DeveloperName,MasterLabel FROM InsightsApplication WHERE AppStatus = 'Completed' AND TemplateOrigin = 'sfdc_internal__Sales_Analytics' ORDER BY MasterLabel];
+        for(InsightsApplication app: waveApps) {
+            options.add(new SelectOption(app.DeveloperName, app.MasterLabel));
+        }
+
+        return options;
+    }
 
 	public List<SelectOption> getDataflows() {
 
@@ -112,11 +123,11 @@ public class ManageQuotaDatasetsController {
                 userIds.addAll(setIds);    
             }
 
-            Dataflow dfSel = [SELECT DeveloperName FROM Dataflow WHERE Id = :dataflowId];
-            DataflowVersion dfVer = [SELECT Id FROM DataflowVersion WHERE DataflowId = :this.dataflowId ORDER BY CreatedDate DESC LIMIT 1];
+            Dataflow dfSel = [SELECT Id FROM Dataflow WHERE DeveloperName = :this.salesApp];
+            DataflowVersion dfVer = [SELECT Id FROM DataflowVersion WHERE DataflowId = :dfSel.Id ORDER BY CreatedDate DESC LIMIT 1];
             DatasetAccess dsAcc = [SELECT DatasetName FROM DatasetAccess WHERE DataflowVersionId = :dfVer.Id AND AccessType = 'Write' AND DatasetName LIKE '%plain_quota%' LIMIT 1];
 
-            SalesWaveQuotas.updateQuotaDataset(userIds, Date.today().year(), 1, 12, quotaAmount, dfSel.DeveloperName, dsAcc.DatasetName);
+            SalesWaveQuotas.updateQuotaDataset(userIds, Date.today().year(), 1, 12, quotaAmount, this.salesApp, dsAcc.DatasetName);
             messages.add(new ApexPages.Message(ApexPages.Severity.CONFIRM, 'The Quota Dataset was successfully updated.'));
         }
         
