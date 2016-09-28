@@ -5,6 +5,7 @@ global class CsvDataImportBatch implements Database.Batchable<List<String>>, Dat
 	private SObjectType objectType;
 	private List<SmartLookup> nameSmartLookups;
 	private List<SmartLookup> externalIdSmartLookups;
+	private List<String> debugMessages;
 	
 	global CsvDataImportBatch(SObjectType objectType, List<List<String>> csvData, Map<Integer, String> fieldPositions) {
 		this.objectType = objectType;
@@ -12,6 +13,7 @@ global class CsvDataImportBatch implements Database.Batchable<List<String>>, Dat
 		this.fieldPositions = fieldPositions;
 		this.nameSmartLookups = new List<SmartLookup>();
 		this.externalIdSmartLookups = new List<SmartLookup>();
+		this.debugMessages = new List<String>();
 	}
 	
 	global Iterable<List<String>> start(Database.BatchableContext BC) {
@@ -23,6 +25,8 @@ global class CsvDataImportBatch implements Database.Batchable<List<String>>, Dat
 	}
 
    	global void execute(Database.BatchableContext BC, List<List<String>> scope) {
+
+   		System.debug('About to process ' + scope.size() + ' records of type ' + this.objectType.getDescribe().getName());
 		
    		// First handle smart lookups
    		this.smartLookupNameToId(scope);
@@ -101,6 +105,9 @@ global class CsvDataImportBatch implements Database.Batchable<List<String>>, Dat
 	        	}
 	        }
 
+	        System.debug(lstToInsert.size() + ' objects to insert.');
+	        System.debug(lstToUpdate.size() + ' objects to update.');
+
 	        // DML
 	        update lstToUpdate;
 			insert lstToInsert;
@@ -149,6 +156,8 @@ global class CsvDataImportBatch implements Database.Batchable<List<String>>, Dat
 
 	        // Get mapping of id to name, and add to lookup object
 	        for (SmartLookup s : this.nameSmartLookups) {
+
+	        	System.debug('Handling smart lookups Name To Id for objects of type: ' + s.SObjectType + '.');
 	            
 	            List<String> relevantValues = new List<String>(s.plainTextValues);
 				String generatedQuery = 'SELECT Id, Name FROM ' + s.SObjectType + ' WHERE Name IN :relevantValues';
@@ -157,6 +166,17 @@ global class CsvDataImportBatch implements Database.Batchable<List<String>>, Dat
 	            for (SObject t: temp) {
 	                s.replaceValues.put(String.valueOf(t.get('Name')), String.valueOf(t.get('Id')));
 	            }
+
+	            // Search whether there are names with not found id
+	            for(String relVal: relevantValues) {
+	            	if(!s.replaceValues.containsKey(relVal)){
+	            		// Log Ids that weren't found for the name
+	            		System.debug(String.format('Id not found for name {0}, SObject: {1}. This may cause an exception.', new String[]{ relVal, s.SObjectType }));
+	            	}
+	            	else {
+						System.debug('Id for ' + relVal + ': ' + s.replaceValues.get(relVal));
+	            	}
+	            }	            
 	        }
 	        
 	        // Replace name values with Id equivalent
@@ -203,18 +223,32 @@ global class CsvDataImportBatch implements Database.Batchable<List<String>>, Dat
 	        }
 
 	        // Get mapping of id to name, and add to lookup object
-	        for (SmartLookup s : this.externalIdSmartLookups) {
+	        for (SmartLookup s : this.externalIdSmartLookups) {	        	
 	            
 	            List<String> relevantValues = new List<String>(s.plainTextValues);
 	            String sObjToQuery = s.SObjectType;
 	            if(sObjToQuery == 'Owner'){
 	            	sObjToQuery = 'User';
 	            }
+
+	            System.debug('Handling smart lookups External_Id__c To Id for objects of type: ' + sObjToQuery + '.');
+
 				String generatedQuery = 'SELECT Id, External_Id__c FROM ' + sObjToQuery + ' WHERE External_Id__c IN :relevantValues';
 	            List<SObject> temp = Database.query(generatedQuery);
 	            
 	            for (SObject t: temp) {
 	                s.replaceValues.put(String.valueOf(t.get('External_Id__c')), String.valueOf(t.get('Id')));
+	            }
+
+	            // Search whether there are Extenal_Id__c with not found id
+	            for(String relVal: relevantValues) {
+	            	if(!s.replaceValues.containsKey(relVal)){
+	            		// Log Ids that weren't found for the name
+	            		System.debug(String.format('Id not found for External_Id__c {0}, SObject: {1}. This may cause an exception.', new String[]{ relVal, sObjToQuery }));
+	            	}
+	            	else {
+	            		System.debug('Id for ' + relVal + ': ' + s.replaceValues.get(relVal));
+	            	}
 	            }
 	        }
 	        
