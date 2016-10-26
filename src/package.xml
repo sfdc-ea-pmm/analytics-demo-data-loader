@@ -5,9 +5,6 @@
         <members>CopyCustomHistory_test</members>
         <members>CreateDataflowHttpCalloutMock</members>
         <members>CsvDataImportBatch</members>
-        <members>DFJSON</members>
-        <members>DFJSON_Frontend</members>
-        <members>DFJSON_old</members>
         <members>DataflowDefinitionEditor</members>
         <members>DataflowEditorController</members>
         <members>DataflowEditor_test</members>
@@ -29,7 +26,6 @@
         <members>WW_CopyCaseHistory</members>
         <members>WW_CopyCaseHistory_test</members>
         <members>WW_CopyHistory</members>
-        <members>WW_CopyHistoryOld</members>
         <members>WW_CopyOpportunityFieldHistory</members>
         <members>WW_CopyOpportunityFieldHistory_test</members>
         <members>WW_CopyOpportunityHistory</members>
@@ -45,5 +41,5 @@
         <members>WaveDataGenerator</members>
         <name>ApexPage</name>
     </types>
-    <version>34.0</version>
+    <version>38.0</version>
 </Package>
