@@ -367,6 +367,25 @@
 	},
 	"buffers":
 	[
+		{
+			"contents": "Package Control Messages\n========================\n\nMavensMate\n----------\n\n  MavensMate Salesforce IDE for Sublime Text\n  \n  Welcome to MavensMate for Sublime Text! Our mission at MavensMate is to make building Salesforce applications easy and fun regardless of platform or text editor.\n  \n  SUPPORTED OPERATING SYSTEMS:\n  \t- OSX 10.11.x+\n  \t- Windows 7, 8, Server 2008\n  \t- Linux Ubuntu 14\n  \n  PREREQUISITES:\n  \t- MavensMate Desktop (https://github.com/joeferraro/MavensMate-Desktop) MUST BE INSTALLED AND RUNNING in order for MavensMate for Sublime Text to function properly\n  \n  HOMEPAGE: http://mavensmate.com\n  GITHUB: https://github.com/joeferraro/MavensMate-SublimeText\n  SUPPORT: https://github.com/joeferraro/MavensMate/issues (SEARCH BEFORE CREATING ISSUES!)\n  \n  Follow us: https://twitter.com/mavensmate\n  \n  Star our GitHub repos:\n  \t- https://github.com/joeferraro/MavensMate\n  \t- https://github.com/joeferraro/MavensMate-Desktop\n  \t- https://github.com/joeferraro/MavensMate-SublimeText\n  \t- https://github.com/joeferraro/MavensMate-Atom\n  \t- https://github.com/joeferraro/MavensMate-VisualStudioCode\n  \t- https://github.com/joeferraro/MavensMate-Templates\n  \n  Happy coding!\n",
+			"settings":
+			{
+				"buffer_size": 1191,
+				"line_ending": "Windows",
+				"name": "Package Control Messages",
+				"read_only": true,
+				"scratch": true
+			}
+		},
+		{
+			"file": "/C/Users/Rodrigo/AppData/Roaming/Sublime Text 3/Packages/User/mavensmate.sublime-settings",
+			"settings":
+			{
+				"buffer_size": 3742,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -375,16 +394,20 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 311.0,
-		"last_filter": "",
+		"height": 104.0,
+		"last_filter": "install",
 		"selected_items":
 		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
 			[
 				"Snippet: ",
 				"Snippet: <?php foreach (…) … <?php endforeach ?>"
 			]
 		],
-		"width": 512.0
+		"width": 432.0
 	},
 	"console":
 	{
@@ -404,7 +427,9 @@
 	},
 	"expanded_folders":
 	[
-		"/D/desarrollo/Salesforce/Workspace/Wave Tooling"
+		"/D/desarrollo/Salesforce/Workspace/Wave Tooling",
+		"/D/desarrollo/Salesforce/Workspace/Wave Tooling/src",
+		"/D/desarrollo/Salesforce/Workspace/Wave Tooling/src/classes"
 	],
 	"file_history":
 	[
@@ -539,7 +564,7 @@
 	],
 	"find":
 	{
-		"height": 26.0
+		"height": 34.0
 	},
 	"find_in_files":
 	{
@@ -845,8 +870,68 @@
 	"groups":
 	[
 		{
+			"selected": 1,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1191,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								72,
+								72
+							]
+						],
+						"settings":
+						{
+							"auto_indent": false,
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_width": 2,
+							"word_wrap": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/C/Users/Rodrigo/AppData/Roaming/Sublime Text 3/Packages/User/mavensmate.sublime-settings",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3742,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1404,
+								1408
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/MavensMate/sublime/lang/JSON.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 540.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -881,6 +966,10 @@
 		]
 	},
 	"menu_visible": true,
+	"output.MavensMate-OutputPanel":
+	{
+		"height": 118.0
+	},
 	"output.find_results":
 	{
 		"height": 0.0
@@ -931,7 +1020,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 250.0,
+	"side_bar_width": 417.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
