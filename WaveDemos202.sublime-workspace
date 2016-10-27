@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"look",
+				"lookups"
+			],
+			[
 				"get",
 				"PUBLIC getWaveApplications() \tLIST"
 			],
@@ -347,42 +351,7 @@
 			"file": "/Users/mac-36/Documents/Development/WaveDemos/Data/notes.txt",
 			"settings":
 			{
-				"buffer_size": 5842,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "src/pages/CopyCustomHistory.page",
-			"settings":
-			{
-				"buffer_size": 2681,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "src/classes/Randomizer.cls",
-			"settings":
-			{
-				"buffer_size": 4041,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "src/classes/CopyCustomHistory_test.cls",
-			"settings":
-			{
-				"buffer_size": 946,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "src/pages/WaveDataGenerator.page",
-			"settings":
-			{
-				"buffer_size": 4925,
+				"buffer_size": 5896,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -396,35 +365,19 @@
 			}
 		},
 		{
-			"file": "src/classes/WW_CopyCaseHistory.cls",
+			"file": "src/classes/CsvDataImportBatch.cls",
 			"settings":
 			{
-				"buffer_size": 1614,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "src/classes/WW_CopyCaseHistory_test.cls",
-			"settings":
-			{
-				"buffer_size": 1550,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "src/classes/WW_CopyOpportunityHistory.cls",
-			"settings":
-			{
-				"buffer_size": 1748,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "src/classes/WW_CopyOpportunityHistory_test.cls",
-			"settings":
-			{
-				"buffer_size": 1999,
+				"buffer_size": 10173,
 				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/classes/SmartLookup.cls",
+			"settings":
+			{
+				"buffer_size": 472,
 				"line_ending": "Unix"
 			}
 		}
@@ -483,9 +436,21 @@
 	],
 	"file_history":
 	[
+		"/Users/mac-36/Documents/Development/WaveDemos/Data/plain_quota2.json",
+		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202/src/classes/SalesWaveScripted_test.cls",
+		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202/src/classes/SalesWaveQuotas.cls",
+		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202/src/classes/ManageQuotaDatasetsController.cls",
+		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202/src/pages/ManageQuotaDatasets.page",
 		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202/src/classes/WW_CopyOpportunityHistory_test.cls",
-		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202/src/classes/WaveDataGenerator_test.cls",
+		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202/src/classes/WW_CopyOpportunityHistory.cls",
+		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202/src/classes/WW_CopyCaseHistory_test.cls",
+		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202/src/classes/WW_CopyCaseHistory.cls",
+		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202/src/classes/WaveDataGeneratorController.cls",
 		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202/src/pages/WaveDataGenerator.page",
+		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202/src/classes/Randomizer.cls",
+		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202/src/classes/CopyCustomHistory_test.cls",
+		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202/src/pages/CopyCustomHistory.page",
+		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202/src/classes/WaveDataGenerator_test.cls",
 		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202/src/classes/CsvDataImportBatch.cls",
 		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202/src/classes/MockarooHttpCalloutMock.cls",
 		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202/src/classes/CreateDataflowHttpCalloutMock.cls",
@@ -528,12 +493,8 @@
 		"/Users/mac-36/Library/Application Support/Sublime Text 3/Packages/SublimeAStyleFormatter/SublimeAStyleFormatter.sublime-settings",
 		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202/src/classes/DFJSON_Frontend.cls",
 		"/Users/mac-36/Library/Application Support/Sublime Text 3/Packages/User/SublimeAStyleFormatter.sublime-settings",
-		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202/src/classes/Randomizer.cls",
 		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202/src/classes/WW_CopyOpportunityFieldHistory_test.cls",
 		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202/src/classes/WW_CopyOpportunityFieldHistory.cls",
-		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202/src/classes/WW_CopyCaseHistory.cls",
-		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202/src/classes/WW_CopyCaseHistory_test.cls",
-		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202/src/classes/WW_CopyOpportunityHistory.cls",
 		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202/src/classes/Randomizer_test.cls",
 		"/Users/mac-36/Documents/Development/WaveDemos/ServiceWave_ManipulateDataflow_Exec.cls",
 		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202/src/classes/WW_CopyHistoryOld.cls",
@@ -586,6 +547,11 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"this.debugMessages.add",
+			"Anydatatype_msg",
+			"smartLookupNameToId",
+			"dataflowId",
+			"plain_quota4",
 			"\\n",
 			"validateSchema",
 			"Account",
@@ -708,12 +674,7 @@
 			"Extract_CaseHistory_Owner",
 			"schema",
 			"update",
-			"\"action\": \"update\",",
-			"\"filter\":",
-			"\"filter\"",
-			"filter",
-			"edgemart",
-			"augment"
+			"\"action\": \"update\","
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -721,6 +682,8 @@
 		"regex": false,
 		"replace_history":
 		[
+			"System.debug",
+			"plain_quota2",
 			"RestApiResponseBody",
 			"plain_quota4",
 			",",
@@ -738,7 +701,7 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 3,
 			"sheets":
 			[
 				{
@@ -747,145 +710,31 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5842,
+						"buffer_size": 5896,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5746,
-								5746
+								3565,
+								3565
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 2266.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 9,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "src/pages/CopyCustomHistory.page",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2681,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1729,
-								1729
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/MavensMate/sublime/lang/Visualforce.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 708.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "src/classes/Randomizer.cls",
-					"semi_transient": true,
-					"settings":
-					{
-						"buffer_size": 4041,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								355,
-								355
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/MavensMate/sublime/lang/Apex.sublime-syntax",
+							"syntax": "Packages/Text/Plain text.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "src/classes/CopyCustomHistory_test.cls",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 946,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								860,
-								860
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/MavensMate/sublime/lang/Apex.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "src/pages/WaveDataGenerator.page",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4925,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								4828,
-								4828
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/MavensMate/sublime/lang/Visualforce.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1177.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 3,
 					"type": "text"
 				},
 				{
-					"buffer": 5,
+					"buffer": 1,
 					"file": "src/classes/WaveDataGeneratorController.cls",
 					"semi_transient": false,
 					"settings":
@@ -897,7 +746,7 @@
 						"selection":
 						[
 							[
-								975,
+								709,
 								975
 							]
 						],
@@ -908,27 +757,27 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 3749.0,
+						"translation.y": 3523.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 6,
-					"file": "src/classes/WW_CopyCaseHistory.cls",
+					"buffer": 2,
+					"file": "src/classes/CsvDataImportBatch.cls",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1614,
+						"buffer_size": 10173,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								143,
-								161
+								8404,
+								8404
 							]
 						],
 						"settings":
@@ -936,20 +785,20 @@
 							"syntax": "Packages/MavensMate/sublime/lang/Apex.sublime-syntax",
 							"translate_tabs_to_spaces": false
 						},
-						"translation.x": 6.0,
-						"translation.y": 0.0,
+						"translation.x": 0.0,
+						"translation.y": 3588.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 7,
-					"file": "src/classes/WW_CopyCaseHistory_test.cls",
+					"buffer": 3,
+					"file": "src/classes/SmartLookup.cls",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1550,
+						"buffer_size": 472,
 						"regions":
 						{
 						},
@@ -962,63 +811,6 @@
 						],
 						"settings":
 						{
-							"syntax": "Packages/MavensMate/sublime/lang/Apex.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 234.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "src/classes/WW_CopyOpportunityHistory.cls",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1748,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								948,
-								1004
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/MavensMate/sublime/lang/Apex.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 1.0,
-						"translation.y": 3.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 8,
-					"type": "text"
-				},
-				{
-					"buffer": 9,
-					"file": "src/classes/WW_CopyOpportunityHistory_test.cls",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1999,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								666,
-								668
-							]
-						],
-						"settings":
-						{
 							"syntax": "Packages/MavensMate/sublime/lang/Apex.sublime-syntax",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
@@ -1027,7 +819,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 0,
 					"type": "text"
 				}
 			]
@@ -1118,7 +910,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 449.0,
+	"side_bar_width": 306.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
