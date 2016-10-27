@@ -1,0 +1,1028 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"logo",
+				"url_logo"
+			],
+			[
+				"categ",
+				"categorias_productos_model"
+			],
+			[
+				"documento_e",
+				"documento_eng"
+			],
+			[
+				"docu",
+				"documento_esp"
+			],
+			[
+				"nombre",
+				"nombreDocEsp"
+			],
+			[
+				"desc",
+				"descripcion_eng"
+			],
+			[
+				"id_",
+				"id_documento_imasd"
+			],
+			[
+				"descr",
+				"descripcion_esp"
+			],
+			[
+				"documento",
+				"documento_esp"
+			],
+			[
+				"nombre_",
+				"nombre_esp"
+			],
+			[
+				"base",
+				"base_url"
+			],
+			[
+				"asse",
+				"assets"
+			],
+			[
+				"proa",
+				"proarea_jornada_1"
+			],
+			[
+				"id",
+				"id_cultivo"
+			],
+			[
+				"produc",
+				"productos_model"
+			],
+			[
+				"instr",
+				"instrucciones"
+			],
+			[
+				"cultivo",
+				"cultivoCtrl"
+			],
+			[
+				"inst",
+				"instruccion"
+			],
+			[
+				"prod",
+				"producto"
+			],
+			[
+				"cul",
+				"cultivos_model"
+			],
+			[
+				"after",
+				"afterclose"
+			],
+			[
+				"popup-bus",
+				"popup-busqueda-atributos"
+			],
+			[
+				"popup-b",
+				"popup-busqueda-atributos"
+			],
+			[
+				"minimizar_b",
+				"minimizar_busqueda_atributos"
+			],
+			[
+				"div",
+				"divNM"
+			],
+			[
+				"sear",
+				"search_string_selected"
+			],
+			[
+				"strre",
+				"str_replace"
+			],
+			[
+				"pro",
+				"producto"
+			],
+			[
+				"error",
+				"error_reporting"
+			],
+			[
+				"ini",
+				"ini_set"
+			],
+			[
+				"order",
+				"order_by"
+			],
+			[
+				"comp",
+				"comp_fito_"
+			],
+			[
+				"cate",
+				"categoria"
+			],
+			[
+				"nove",
+				"novedad"
+			],
+			[
+				"nov",
+				"novedades"
+			],
+			[
+				"int",
+				"intval"
+			],
+			[
+				"text",
+				"textarea"
+			],
+			[
+				"op",
+				"option\tTag"
+			],
+			[
+				"the",
+				"theName"
+			],
+			[
+				"contr",
+				"control_name"
+			],
+			[
+				"btn",
+				"btnGenerate"
+			],
+			[
+				"option",
+				"optionsCategorias"
+			],
+			[
+				"cat",
+				"categoria"
+			],
+			[
+				"all",
+				"allowed_types"
+			],
+			[
+				"flas",
+				"flash_message"
+			],
+			[
+				"catE",
+				"catEng"
+			],
+			[
+				"serv",
+				"servicios_model"
+			],
+			[
+				"obras",
+				"obras_model"
+			],
+			[
+				"nomr",
+				"nombre_artista"
+			],
+			[
+				"ca",
+				"categoria"
+			],
+			[
+				"strto",
+				"strtolower"
+			],
+			[
+				"date",
+				"date_format"
+			],
+			[
+				"print",
+				"print_r"
+			],
+			[
+				"up",
+				"upload_data"
+			],
+			[
+				"diana",
+				"diana-saravia"
+			],
+			[
+				"str_re",
+				"str_replace"
+			],
+			[
+				"bac",
+				"background-color"
+			],
+			[
+				"id_p",
+				"id_presentacion"
+			],
+			[
+				"prese",
+				"presentación"
+			],
+			[
+				"id_pr",
+				"id_producto"
+			],
+			[
+				"items",
+				"items_pedido"
+			],
+			[
+				"idP",
+				"idPresentacion"
+			],
+			[
+				"nom",
+				"nombre_presentacion"
+			],
+			[
+				"presenta",
+				"presentaciones"
+			],
+			[
+				"presentaci",
+				"presentación"
+			],
+			[
+				"pre",
+				"presentacion"
+			],
+			[
+				"is_nu",
+				"is_numeric"
+			],
+			[
+				"no",
+				"nombre_presentacion"
+			],
+			[
+				"ut",
+				"utf8_decode"
+			],
+			[
+				"ped",
+				"pedido"
+			],
+			[
+				"de",
+				"departamento"
+			],
+			[
+				"ajax",
+				"ajaxUrl"
+			],
+			[
+				"pedi",
+				"pedidos"
+			],
+			[
+				"for",
+				"foreach\tforeach …"
+			],
+			[
+				"dat",
+				"datosProductos"
+			],
+			[
+				"ht",
+				"htmlExito"
+			],
+			[
+				"json",
+				"json_encode"
+			],
+			[
+				"produ",
+				"productos_model"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"res",
+				"resultados"
+			],
+			[
+				"al",
+				"alert"
+			],
+			[
+				"nomb",
+				"nombre_producto"
+			],
+			[
+				"chec",
+				"checked"
+			],
+			[
+				"exec",
+				"execute"
+			],
+			[
+				"arra",
+				"array"
+			],
+			[
+				"tota",
+				"totalValidacion"
+			],
+			[
+				"Error",
+				"ErrorMsg"
+			],
+			[
+				"idC",
+				"idComprador"
+			],
+			[
+				"msg",
+				"msg-monto-pesos"
+			],
+			[
+				"idCol",
+				"idColor"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"contents": "Package Control Messages\n========================\n\nMavensMate\n----------\n\n  MavensMate Salesforce IDE for Sublime Text\n  \n  Welcome to MavensMate for Sublime Text! Our mission at MavensMate is to make building Salesforce applications easy and fun regardless of platform or text editor.\n  \n  SUPPORTED OPERATING SYSTEMS:\n  \t- OSX 10.11.x+\n  \t- Windows 7, 8, Server 2008\n  \t- Linux Ubuntu 14\n  \n  PREREQUISITES:\n  \t- MavensMate Desktop (https://github.com/joeferraro/MavensMate-Desktop) MUST BE INSTALLED AND RUNNING in order for MavensMate for Sublime Text to function properly\n  \n  HOMEPAGE: http://mavensmate.com\n  GITHUB: https://github.com/joeferraro/MavensMate-SublimeText\n  SUPPORT: https://github.com/joeferraro/MavensMate/issues (SEARCH BEFORE CREATING ISSUES!)\n  \n  Follow us: https://twitter.com/mavensmate\n  \n  Star our GitHub repos:\n  \t- https://github.com/joeferraro/MavensMate\n  \t- https://github.com/joeferraro/MavensMate-Desktop\n  \t- https://github.com/joeferraro/MavensMate-SublimeText\n  \t- https://github.com/joeferraro/MavensMate-Atom\n  \t- https://github.com/joeferraro/MavensMate-VisualStudioCode\n  \t- https://github.com/joeferraro/MavensMate-Templates\n  \n  Happy coding!\n",
+			"settings":
+			{
+				"buffer_size": 1191,
+				"line_ending": "Windows",
+				"name": "Package Control Messages",
+				"read_only": true,
+				"scratch": true
+			}
+		},
+		{
+			"file": "/C/Users/Rodrigo/AppData/Roaming/Sublime Text 3/Packages/User/mavensmate.sublime-settings",
+			"settings":
+			{
+				"buffer_size": 3742,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 104.0,
+		"last_filter": "install",
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"Snippet: ",
+				"Snippet: <?php foreach (…) … <?php endforeach ?>"
+			]
+		],
+		"width": 432.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/D/desarrollo/Salesforce/Workspace/Wave Tooling",
+		"/D/desarrollo/Salesforce/Workspace/Wave Tooling/src",
+		"/D/desarrollo/Salesforce/Workspace/Wave Tooling/src/classes"
+	],
+	"file_history":
+	[
+		"/D/desarrollo/Proquimur/www/application/views/publico/detalle_producto.php",
+		"/D/desarrollo/Proquimur/www/application/controllers/productos.php",
+		"/D/desarrollo/Proquimur/www/application/views/publico/index.php",
+		"/D/desarrollo/Proquimur/www/application/language/eng/label_lang.php",
+		"/D/desarrollo/Proquimur/www/application/language/esp/label_lang.php",
+		"/D/desarrollo/Proquimur/www/application/controllers/admin_productos.php",
+		"/D/desarrollo/Proquimur/NF/Cambios Agosto 2016/cotizacion.txt",
+		"/D/desarrollo/Proquimur/www/application/views/admin/productos/edit.php",
+		"/D/desarrollo/Proquimur/www/application/views/admin/productos/add.php",
+		"/D/desarrollo/Proquimur/www/css/style-proquimur.css",
+		"/D/desarrollo/Proquimur/www/application/config/routes.php",
+		"/D/desarrollo/Proquimur/www/application/controllers/public_controller.php",
+		"/D/desarrollo/Proquimur/www/application/config/constants.php",
+		"/D/desarrollo/Proquimur/www/application/config/database.php",
+		"/D/desarrollo/Proquimur/www/application/logs/log-2016-09-06.php",
+		"/D/desarrollo/Proquimur/www/application/language/esp/menu_lang.php",
+		"/D/desarrollo/Proquimur/www/application/views/publico/quienes_somos_esp.php",
+		"/D/desarrollo/Proquimur/www/application/views/publico/quienes_somos_eng.php",
+		"/D/desarrollo/Proquimur/www/application/models/categorias_productos_model.php",
+		"/D/desarrollo/Proquimur/www/application/language/eng/uri_lang.php",
+		"/D/desarrollo/Proquimur/www/application/language/esp/uri_lang.php",
+		"/D/desarrollo/Proquimur/NF/Cambios Agosto 2016/requerimientos.txt",
+		"/D/desarrollo/Proquimur/www/application/views/publico/header.php",
+		"/D/desarrollo/Proquimur/www/application/controllers/sitio.php",
+		"/D/desarrollo/Proquimur/www/application/controllers/novedades.php",
+		"/D/desarrollo/Proquimur/www/application/models/novedades_model.php",
+		"/D/desarrollo/Proquimur/www/application/views/publico/historial_novedades.php",
+		"/D/desarrollo/Proquimur/www/application/views/publico/detalle_novedad.php",
+		"/D/desarrollo/Proquimur/www/application/views/admin/productos/list.php",
+		"/D/desarrollo/Proquimur/www/application/views/admin/novedades/list.php",
+		"/D/desarrollo/Proquimur/www/application/views/admin/links/list.php",
+		"/D/desarrollo/Proquimur/www/application/views/admin/categorias_imasd/list.php",
+		"/D/desarrollo/Proquimur/www/application/views/includes/header.php",
+		"/D/desarrollo/Proquimur/www/application/views/admin/categorias_productos/list.php",
+		"/D/desarrollo/Proquimur/www/application/language/eng/menu_lang.php",
+		"/D/desarrollo/Proquimur/www/application/views/includes/template.php",
+		"/D/desarrollo/Proquimur/www/application/views/admin/categorias_productos/add.php",
+		"/D/desarrollo/Proquimur/www/application/views/publico/proarea_jornada_3.php",
+		"/D/desarrollo/Proquimur/www/application/views/publico/proarea.php",
+		"/D/desarrollo/Proquimur/www/assets/js/proarea.js",
+		"/D/desarrollo/Proquimur/www/application/config/config.php",
+		"/D/desarrollo/Proquimur/www/system/core/Common.php",
+		"/D/desarrollo/IgnacioPintos/MenuMovil/www/system/core/Common.php",
+		"/D/desarrollo/Proquimur/www/application/views/publico/template.php",
+		"/D/desarrollo/Proquimur/www/application/views/publico/imasd.php",
+		"/D/desarrollo/Proquimur/www/application/controllers/admin_documentos_imasd.php",
+		"/D/desarrollo/Proquimur/www/application/models/documentos_imasd_model.php",
+		"/D/desarrollo/Proquimur/www/application/models/categorias_imasd_model.php",
+		"/D/desarrollo/Proquimur/NF/I+D/cambios-base.sql",
+		"/D/desarrollo/Proquimur/NF/I+D/pasos-solucion.txt",
+		"/D/desarrollo/Proquimur/www/application/views/publico/documentos_imasd.php",
+		"/D/desarrollo/Proquimur/www/application/controllers/imasd.php",
+		"/D/desarrollo/Proquimur/www/application/models/productos_model.php",
+		"/D/desarrollo/Proquimur/www/application/views/admin/documentos_imasd/edit.php",
+		"/D/desarrollo/Proquimur/www/application/controllers/admin_categorias_imasd.php",
+		"/D/desarrollo/Proquimur/www/application/views/admin/documentos_imasd/list.php",
+		"/D/desarrollo/Proquimur/www/application/views/admin/categorias_imasd/edit.php",
+		"/D/desarrollo/Proquimur/NF/I+D/como seguir.txt",
+		"/D/desarrollo/Proquimur/NF/I+D/Análisis.txt",
+		"/D/desarrollo/Proquimur/www/application/views/admin/categorias_imasd/add.php",
+		"/D/desarrollo/Proquimur/www/application/views/admin/imasd/list.php",
+		"/D/desarrollo/Proquimur/www/application/views/admin/imasd/edit.php",
+		"/D/desarrollo/Proquimur/www/application/views/admin/imasd/add.php",
+		"/C/Users/Rodrigo/Dropbox/PROYECTO PARA MOVILES/Bocetos prueba/form-email.html",
+		"/D/desarrollo/Proquimur/www/uploads/novedades/readme.txt",
+		"/D/desarrollo/Proquimur/www/uploads/links/readme.txt",
+		"/C/Users/Rodrigo/Dropbox/PROYECTO PARA MOVILES/Bocetos/menu.html",
+		"/C/inetpub/wwwroot/fucrea/Web.config",
+		"/C/Users/Rodrigo/Dropbox/PROYECTO PARA MOVILES/Bocetos/form-item-seleccionado.html",
+		"/D/desarrollo/Proquimur/www/application/views/publico/proarea_jornada_2.php",
+		"/D/desarrollo/Base de código/buckwilson-Lightbox_me-352d67e/README.markdown",
+		"/D/desarrollo/Proquimur/www/application/views/publico/proarea_jornada_1.php",
+		"/D/desarrollo/Proquimur/www/application/views/publico/proarea_inicio.php",
+		"/D/desarrollo/Proquimur/www/assets/js/jquery.easyModal.js",
+		"/D/desarrollo/Proquimur/www/application/views/publico/links_interes.php",
+		"/D/desarrollo/Proquimur/www/application/views/publico/mas_novedades.php",
+		"/D/desarrollo/Proquimur/www/application/views/publico/politica_calidad_eng.php",
+		"/D/desarrollo/Proquimur/www/application/views/publico/politica_seguridad_esp.php",
+		"/D/desarrollo/Proquimur/www/application/views/publico/politica_calidad_esp.php",
+		"/D/desarrollo/Proquimur/www/application/views/publico/footer.php",
+		"/D/desarrollo/Proquimur/www/application/models/instrucciones_producto_model.php",
+		"/D/desarrollo/Base de código/YoxView/yoxview/install.htm",
+		"/D/desarrollo/Base de código/YoxView/index.html",
+		"/D/desarrollo/Proquimur/www/application/views/admin/productos/instrucciones.php",
+		"/D/desarrollo/Proquimur/www/assets/js/instrucciones-productos.js",
+		"/D/desarrollo/Proquimur/www/application/views/tabla_instrucciones_producto.php",
+		"/D/desarrollo/Proquimur/www/assets/js/admin.js",
+		"/D/desarrollo/Proquimur/Documentos/tabla-instrucciones-1.html",
+		"/D/desarrollo/Proquimur/www/assets/js/bootstrap-tooltips.js",
+		"/D/desarrollo/Proquimur/www/application/views/admin/cultivos/add.php",
+		"/D/desarrollo/Proquimur/www/assets/js/jquery.blockUI.js",
+		"/D/desarrollo/Proquimur/vs_instrucciones_producto.sql",
+		"/D/desarrollo/Proquimur/www/assets/js/productos.js",
+		"/D/desarrollo/Proquimur/www/application/models/instrucciones_producto.php",
+		"/D/desarrollo/Proquimur/NF/Destacados y Config. Instrucciones de uso/comandos.txt",
+		"/D/desarrollo/Proquimur/www/application/models/cultivos_model.php",
+		"/D/desarrollo/Proquimur/www/application/models/plagas_model.php",
+		"/D/desarrollo/Proquimur/www/application/controllers/admin_cultivos.php",
+		"/D/desarrollo/Proquimur/www/application/views/admin/cultivos/list.php",
+		"/D/desarrollo/Proquimur/www/application/views/admin/plagas/list.php",
+		"/D/desarrollo/Proquimur/www/application/views/admin/cultivos/edit.php",
+		"/D/desarrollo/Proquimur/www/application/controllers/admin_novedades.php",
+		"/D/desarrollo/Proquimur/www/application/views/admin/novedades/ordenar_visibles.php",
+		"/D/desarrollo/Proquimur/www/application/views/admin/plagas/add.php",
+		"/D/desarrollo/Proquimur/www/application/views/admin/plagas/edit.php",
+		"/D/Unipersonal/Envio_Formulario1102_2013_30415657_3172727.dgi",
+		"/C/Users/Rodrigo/AppData/Local/Temp/Envio_Formulario1102_2013_217193100018_203432.dgi",
+		"/D/desarrollo/Proquimur/www/application/views/publico/productos_destacados.php",
+		"/D/desarrollo/Proquimur/www/application/views/admin/novedades/add.php",
+		"/D/desarrollo/Proquimur/www/application/views/admin/novedades/edit.php",
+		"/D/desarrollo/Proquimur/www/application/logs/log-2014-09-04.php",
+		"/D/desarrollo/Proquimur/www/application/views/publico/categoria_productos.php",
+		"/D/desarrollo/Maldonado/www/agsjs/dijit/css/TOC.css",
+		"/D/desarrollo/Maldonado/www/agsjs/dijit/templates/tocNode.html",
+		"/D/desarrollo/Maldonado/www/agsjs/dijit/TOC.js",
+		"/D/desarrollo/Maldonado/www/agsjs/css/agsjs.css",
+		"/D/desarrollo/Proquimur/NF/Destacados y Config. Instrucciones de uso/requerimientos.txt",
+		"/D/desarrollo/Maldonado/www/index.php",
+		"/D/desarrollo/Maldonado/www/scripts/visor.js",
+		"/D/desarrollo/Proquimur/www/css/style-proquimur4.css",
+		"/D/desarrollo/Proquimur/www/application/views/includes/footer.php",
+		"/D/desarrollo/Proquimur/www/.htaccess",
+		"/D/desarrollo/Proquimur/www/application/logs/log-2014-07-28.php",
+		"/D/desarrollo/Proquimur/www/css/style-proquimur3.css",
+		"/D/desarrollo/Proquimur/www/application/models/semillas_model.php",
+		"/D/desarrollo/Proquimur/www/application/language/esp/static_lang.php",
+		"/D/desarrollo/Proquimur/www/application/language/eng/static_lang.php",
+		"/D/desarrollo/Proquimur/www/application/models/mensajes_model.php"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			"D:\\desarrollo\\Proquimur\\www\\application\\views",
+			"D:\\desarrollo\\Proquimur\\www\\application\\controllers",
+			"D:\\desarrollo\\Proquimur\\www\\application\\views",
+			"D:\\desarrollo\\Proquimur\\www",
+			"D:\\desarrollo\\Proquimur\\www\\application",
+			"D:\\desarrollo\\Proquimur\\www",
+			"D:\\desarrollo\\Diana Saravia\\Galeria\\fuentes\\www\\application",
+			"D:\\desarrollo\\Diana Saravia\\Marqueria\\fuentes\\panel-administracion",
+			"D:\\desarrollo\\Diana Saravia\\Galeria\\fuentes\\panel-administracion",
+			"D:\\desarrollo\\Balz Bioenergetic\\www",
+			"D:\\desarrollo\\Balz Bioenergetic\\www\\application",
+			"D:\\desarrollo\\Balz Bioenergetic\\panel-administracion",
+			"D:\\desarrollo\\Balz Bioenergetic\\www\\js",
+			"D:\\desarrollo\\Balz Bioenergetic\\panel-administracion",
+			"D:\\desarrollo\\Balz Bioenergetic\\www\\system",
+			"D:\\desarrollo\\Balz Bioenergetic\\www",
+			"D:\\desarrollo\\Balz Bioenergetic\\www\\panel-administracion",
+			"D:\\desarrollo\\Prili\\Fuentes\\sitio\\js",
+			"D:\\desarrollo\\Prili\\Fuentes\\sitio"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"eti-prod",
+			".rec-detser",
+			".eti-prod",
+			"texto",
+			"ficha_seguridad_eng",
+			"sigano",
+			"orDi",
+			"PRODUCTO_LOGO_MARKER",
+			"Upload Class Initialized",
+			"imagen",
+			"rec-prod",
+			"CANTIDAD_NOVEDADES_HOME",
+			"ico-face",
+			"modalProArea",
+			"mensajeInicial",
+			"aviso",
+			"lateral",
+			"bot-preciosemillas",
+			"=\"540",
+			"select",
+			"rodrigomercader@gmail.com",
+			"bot-preciosemillas button2",
+			"Mercado de granos",
+			".bot_empresa_activo",
+			"function cargarClassesMenuHorizontal",
+			"cargarClassesMenuHorizontal",
+			"producto",
+			"manejarUploads",
+			"nombre",
+			"pdf",
+			"categoria",
+			"Categoria",
+			"nombre_",
+			"categoria",
+			"producto",
+			"productos",
+			"PRODUCTO",
+			"productos",
+			"producto",
+			"productos",
+			"producto",
+			"productos",
+			"producto",
+			"PRODUCTO",
+			"producto",
+			"productos",
+			"producto",
+			"$G$",
+			"vigilia.ica.com.uy",
+			"modalProArea",
+			"bootstrap",
+			"novedadesMenu",
+			"destinadar ",
+			"bot_links_class",
+			"html_tabla_instrucciones",
+			"obtener_instrucciones_producto",
+			"manejar",
+			"`",
+			"insrucciones",
+			"plaga",
+			"Semilla",
+			"plaga",
+			"Plagas",
+			"plaga",
+			"Plagas",
+			"plaga",
+			"Semillas",
+			"semilla",
+			"Cotización",
+			"semilla",
+			"Cotización",
+			"Semillas",
+			"semilla",
+			"cot_usd",
+			"cot_pnombre_cientificoesos",
+			"nombre_cientifico",
+			"semilla",
+			"semillas",
+			"highlights",
+			"Highlights",
+			"get_data_to_store",
+			"abm_set_rules",
+			"cerrar_info",
+			"cerrar",
+			"popup_informacion_after_close",
+			"minimizar_info",
+			"btn-restaurar-info",
+			"restaurar",
+			"minimizar",
+			"btn-minimizar-info",
+			"FindParameters",
+			"{}",
+			"checkbox",
+			"ui-checkbox",
+			"checkContainerNode",
+			"video-institucional",
+			"td {",
+			"annuus",
+			"CebaCEBOLLAda",
+			"servicio",
+			"servicios",
+			"bot_serv",
+			"texto_esp",
+			"novedad",
+			"novedades",
+			"Novedad",
+			"Novedades",
+			"texto_esp",
+			"novedad",
+			"novedades",
+			"Novedades",
+			"novedad",
+			"novedades",
+			"Novedades",
+			"novedad",
+			"novedades",
+			"Novedades",
+			"Novedad",
+			"NOVEDAD",
+			"novedad",
+			"novedades",
+			"servicios",
+			"table",
+			"first_link",
+			"QUERY",
+			"$search_string",
+			"LAST Q",
+			"if post is not null, we store it in session data array"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"documento_imasd",
+			"documento",
+			"titulo",
+			"documento",
+			"DocumentoImasD",
+			"titulo_",
+			"documento",
+			"imasd",
+			"IMASD",
+			"imasd",
+			"IMASD",
+			"imasd",
+			"$K$",
+			"localhost",
+			"",
+			"cultivo",
+			"Cultivos",
+			"cultivo",
+			"Cultivos",
+			"cultivo",
+			"Plagas",
+			"plaga",
+			"Gestión",
+			"plaga",
+			"Gestión",
+			"Plagas",
+			"plaga",
+			"plagas",
+			"semilla",
+			"semillas",
+			"url",
+			"link",
+			"links",
+			"Link",
+			"Links",
+			"url",
+			"link",
+			"links",
+			"Links",
+			"link",
+			"links",
+			"Links",
+			"link",
+			"links",
+			"Links",
+			"Link",
+			"LINK",
+			"link",
+			"links",
+			"",
+			"eng",
+			"esp",
+			">",
+			"<",
+			"",
+			"{$idioma}",
+			"",
+			")?",
+			"lang(",
+			"",
+			"menu",
+			"']; ?>",
+			"$producto[0][",
+			"El producto",
+			"producto",
+			"",
+			"Productos",
+			"producto",
+			"productos",
+			"idProducto",
+			"genEng",
+			"generalidades_eng",
+			"genEsp",
+			"generalidades_esp",
+			"nomEng",
+			"nombre_esp",
+			"nomEsp",
+			"nombre_esp",
+			"producto",
+			"PRODUCTO",
+			"productos",
+			"proquimu",
+			"servicio",
+			"servicios",
+			"nombre_esp",
+			"servicio",
+			"Servicios",
+			"servicio",
+			"nomEng",
+			"Descripcion",
+			"Servicio",
+			"servicio",
+			"descEng",
+			"descEsp",
+			"titEsp",
+			"nomEsp",
+			"titEng",
+			"descripcion",
+			"Nombre",
+			"nombre",
+			"servicios",
+			"servicio",
+			"servicios",
+			"nombre_esp",
+			"CATEGORIA_PRODUCTO",
+			"categorias_productos",
+			"idCategoria",
+			"categoria_producto",
+			"nombre_esp",
+			"productos",
+			"Productos",
+			"nombre_esp",
+			"categorias_productos",
+			"Productos",
+			"producto",
+			"nombre_esp",
+			"Productos",
+			"nombre_esp",
+			"producto",
+			"productos",
+			"preview",
+			"mensaje",
+			"class",
+			"obra",
+			"",
+			"src=\"<?php echo base_url(); ?>assets/images/",
+			"src=\"<?php echo base_url(); ?>assets/images",
+			"<?php echo base_url(); ?>assets/images"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1191,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								72,
+								72
+							]
+						],
+						"settings":
+						{
+							"auto_indent": false,
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_width": 2,
+							"word_wrap": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/C/Users/Rodrigo/AppData/Roaming/Sublime Text 3/Packages/User/mavensmate.sublime-settings",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3742,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1404,
+								1408
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/MavensMate/sublime/lang/JSON.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 540.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 26.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.MavensMate-OutputPanel":
+	{
+		"height": 118.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "Wave Tooling.sublime-project",
+	"replace":
+	{
+		"height": 48.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"/D/desarrollo/Prili/Sitio2012/PRILI.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 417.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

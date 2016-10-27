@@ -8,19 +8,52 @@ public class ManageQuotaDatasetsController {
     public Integer affectedCount { get; set; }
     public Boolean alsoRoleSubordinates { get; set; }
     public Boolean useOpportunityOwners { get; set; }
+    public Boolean firstLoad { get; set; }
+    public List<WaveFolder> salesWaveFolders { get; set; }
 
 	public ManageQuotaDatasetsController() {
         this.alsoRoleSubordinates = false;
 		this.quotaAmount = 0;
         this.useOpportunityOwners = true;
         this.affectedCount = SalesWaveQuotas.getOpportunitiesUserIds().size();
+        this.firstLoad = true;
+        this.salesWaveFolders = new List<WaveFolder>();
 	}
 
+    // HTTP Callout to retrieve Sales Apps
+    public String getWaveFoldersJSON(){
+        HttpRequest req = new HttpRequest();
+        String salesforceHost = System.Url.getSalesforceBaseURL().toExternalForm();
+        String url =  salesforceHost + '/services/data/v38.0/wave/folders';
+        req.setEndpoint(url);
+        req.setHeader('Authorization', 'OAuth ' + UserInfo.getSessionId());
+        req.setMethod('GET');
+
+        Http httpMgr = new Http();
+        HTTPResponse res = httpMgr.send(req);
+
+        return res.getBody();
+    }
+
     public List<SelectOption> getSalesApplications(){
-        List<SelectOption> options = new List<SelectOption>();       
-        List<InsightsApplication> waveApps = [SELECT DeveloperName,MasterLabel FROM InsightsApplication WHERE AppStatus = 'Completed' AND TemplateOrigin = 'sfdc_internal__Sales_Analytics' ORDER BY MasterLabel];
-        for(InsightsApplication app: waveApps) {
-            options.add(new SelectOption(app.DeveloperName, app.MasterLabel));
+        List<SelectOption> options = new List<SelectOption>();
+        
+        if(this.firstLoad){
+            
+            String jsonFolders = this.getWaveFoldersJSON();
+            WaveFoldersResponse foldersResponse = (WaveFoldersResponse)JSON.deserialize(jsonFolders, WaveFoldersResponse.class);
+            
+            for(WaveFolder folder : foldersResponse.folders){
+                if(folder.applicationStatus.toLowerCase() == 'completedstatus' && folder.templateSourceId == 'sfdc_internal__Sales_Analytics'){
+                    this.salesWaveFolders.add(folder);
+                }
+            }
+
+            this.firstLoad = false;
+        }
+                
+        for(WaveFolder folder : this.salesWaveFolders){
+            options.add(new SelectOption(folder.name, folder.label.unescapeHtml4()));
         }
 
         return options;
