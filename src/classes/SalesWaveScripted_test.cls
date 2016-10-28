@@ -88,14 +88,13 @@ public class SalesWaveScripted_test {
     private static void testManageQuotaDatasetsController() {
 
         ManageQuotaDatasetsController controller = new ManageQuotaDatasetsController();
-        Dataflow df = [SELECT Id FROM Dataflow WHERE DeveloperName = 'SalesWaveLuc'];
-
-        controller.salesApp = 'SalesWaveLuc';
-        controller.dataflowId = df.Id;
+        Dataflow dfServices = [SELECT Id, DeveloperName FROM Dataflow WHERE DeveloperName LIKE 'Service_Wave%' LIMIT 1];
+        Dataflow dfSales = [SELECT Id, DeveloperName FROM Dataflow WHERE DeveloperName LIKE 'Sales_Wave%' LIMIT 1];
+        controller.salesApp = dfSales.DeveloperName;
+        controller.dataflowId = dfSales.Id;
         controller.affectedCount = 0;
         controller.save();
-        controller.getDataflows();        
-
+        controller.getDataflows();
         controller.getRoles();
         controller.getProfiles();
         controller.handleAffected();
@@ -116,6 +115,10 @@ public class SalesWaveScripted_test {
         controller.useOpportunityOwners = false;
         controller.save();
         controller.alsoRoleSubordinates = true;
+        controller.save();
+
+        controller.salesApp = dfServices.DeveloperName;
+        controller.dataflowId = dfServices.Id;
         controller.save();
     }
 }

@@ -4,316 +4,16 @@
 		"selected_items":
 		[
 			[
-				"look",
-				"lookups"
-			],
-			[
-				"get",
-				"PUBLIC getWaveApplications() \tLIST"
-			],
-			[
-				"Opp",
-				"OpportunityFieldHistory"
-			],
-			[
-				"batc",
-				"batchProcess"
-			],
-			[
-				"retur",
-				"returnEmptyResponse"
-			],
-			[
-				"val",
-				"PUBLIC validateSchema() \tvoid"
-			],
-			[
-				"Moca",
-				"MockarooHttpCalloutMock\t[Custom Apex Class]"
-			],
-			[
-				"Mocar",
-				"MockarooHttpCalloutMock\t[Custom Apex Class]"
-			],
-			[
-				"s",
-				"styleClass\t(String)"
-			],
-			[
-				"ou",
-				"apex:outputPanel"
-			],
-			[
-				"out",
-				"apex:outputText"
-			],
-			[
-				"async",
-				"asyncJob"
-			],
-			[
-				"asyn",
-				"AsyncApexJob"
-			],
-			[
-				"remove",
-				"PUBLIC removeEnd(String toRemove) \tString"
-			],
-			[
-				"sO",
-				"sObjToQuery"
-			],
-			[
-				"lstT",
-				"lstToUpdate"
-			],
-			[
-				"eq",
-				"PUBLIC equalsIgnoreCase(String other) \tBoolean"
-			],
-			[
-				"prepare",
-				"prepareNameSmartLookups"
-			],
-			[
-				"smart",
-				"smartLookupNameToId"
-			],
-			[
-				"field",
-				"fieldName"
-			],
-			[
-				"head",
-				"headerValue"
-			],
-			[
-				"col",
-				"columnNumber"
-			],
-			[
-				"for",
-				"foreBlock\tIter FOR loop around selection"
-			],
-			[
-				"data",
-				"dataFields"
-			],
-			[
-				"Owner",
-				"OwnerId"
-			],
-			[
-				"P",
-				"ProfileId"
-			],
-			[
-				"mar",
-				"margin-bottom"
-			],
-			[
-				"text",
-				"text-decoration"
-			],
-			[
-				"role",
-				"roleNames"
-			],
-			[
-				"ro",
-				"roleNames"
-			],
-			[
-				"Serv",
-				"ServicesWave"
-			],
-			[
-				"else",
-				"elseif\tElse If clause"
-			],
-			[
-				"put",
-				"PUBLIC put(Schema.SObjectField field, Object value) \tObject"
-			],
-			[
-				"fie",
-				"fieldType"
-			],
-			[
-				"obje",
-				"objectsBatch"
-			],
-			[
-				"obj",
-				"objToCreate"
-			],
-			[
-				"IMo",
-				"IMockarooHelper\t[Custom Apex Class]"
-			],
-			[
-				"ITera",
-				"Iterable\t[Standard Apex Class]"
-			],
-			[
-				"req",
-				"reqField"
-			],
-			[
-				"moc",
-				"mockarooField"
-			],
-			[
-				"fiel",
-				"fieldTable"
-			],
-			[
-				"query",
-				"queryString"
-			],
-			[
-				"key",
-				"keyParamValue"
-			],
-			[
-				"valida",
-				"PUBLIC validationMessage\tString"
-			],
-			[
-				"count",
-				"countMatcher"
-			],
-			[
-				"amper",
-				"ampersandMatcher"
-			],
-			[
-				"uri",
-				"uriPart"
-			],
-			[
-				"Moc",
-				"MockarooHelperFactory\t[Custom Apex Class]"
-			],
-			[
-				"action",
-				"apex:actionSupport"
-			],
-			[
-				"panel",
-				"apex:panelGrid"
-			],
-			[
-				"font",
-				"font-weight"
-			],
-			[
-				"re",
-				"reRender\t(Object)"
-			],
-			[
-				"ac",
-				"action\t(ApexPages.Action)"
-			],
-			[
-				"comm",
-				"apex:commandLink"
-			],
-			[
-				"com",
-				"apex:commandLink"
-			],
-			[
-				"lin",
-				"apex:outputLink"
-			],
-			[
-				"in",
-				"apex:inputTextarea"
-			],
-			[
-				"n",
-				"PUBLIC newDataflowLabel\tString"
-			],
-			[
-				"Date",
-				"Datetime\t[Standard Apex Class]"
-			],
-			[
-				"srOpp",
-				"srOppHistTrendingFields"
-			],
-			[
-				"source",
-				"sourceNode"
-			],
-			[
-				"new",
-				"PUBLIC newDataflowLabel\tString"
-			],
-			[
-				"add",
-				"PUBLIC addAll(LIST elements) \tvoid"
-			],
-			[
-				"json",
-				"jsonToPost"
-			],
-			[
-				"dataf",
-				"dataflowObj"
-			],
-			[
-				"newData",
-				"newDataflowDefinition"
-			],
-			[
-				"de",
-				"PUBLIC deserialize(String jsonString, system.Type apexType) \tObject"
-			],
-			[
-				"righ",
-				"righSelectField"
-			],
-			[
-				"Services",
-				"ServicesWaveDataflowDefinitionEditor\t[Custom Apex Class]"
-			],
-			[
-				"Datafl",
-				"DataflowEditorController\t[Custom Apex Class]"
-			],
-			[
-				"asser",
-				"assertEquals()"
-			],
-			[
-				"si",
-				"PUBLIC size() \tInteger"
-			],
-			[
-				"ass",
-				"assertEquals()"
-			],
-			[
-				"Oppr",
-				"Opportunity"
-			],
-			[
-				"Oppor",
-				"OpportunityId"
-			],
-			[
-				"WW_C",
-				"WW_CopyCaseHistory\t[Custom Apex Class]"
-			],
-			[
 				"inpt",
 				"apex:inputField"
 			],
 			[
 				"c",
 				"controller\t(String)"
+			],
+			[
+				"for",
+				"fore\tIterator-based FOR loop"
 			],
 			[
 				"sele",
@@ -347,40 +47,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "/Users/mac-36/Documents/Development/WaveDemos/Data/notes.txt",
-			"settings":
-			{
-				"buffer_size": 5896,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "src/classes/WaveDataGeneratorController.cls",
-			"settings":
-			{
-				"buffer_size": 8751,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "src/classes/CsvDataImportBatch.cls",
-			"settings":
-			{
-				"buffer_size": 10173,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "src/classes/SmartLookup.cls",
-			"settings":
-			{
-				"buffer_size": 472,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -406,7 +72,7 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 485.0
+		"width": 494.0
 	},
 	"console":
 	{
@@ -427,78 +93,14 @@
 		"side_bar_visible": false,
 		"status_bar_visible": false
 	},
-	"expanded_folders":
-	[
-		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202",
-		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202/src",
-		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202/src/classes",
-		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202/src/pages"
-	],
 	"file_history":
 	[
-		"/Users/mac-36/Documents/Development/WaveDemos/Data/plain_quota2.json",
-		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202/src/classes/SalesWaveScripted_test.cls",
-		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202/src/classes/SalesWaveQuotas.cls",
-		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202/src/classes/ManageQuotaDatasetsController.cls",
-		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202/src/pages/ManageQuotaDatasets.page",
-		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202/src/classes/WW_CopyOpportunityHistory_test.cls",
-		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202/src/classes/WW_CopyOpportunityHistory.cls",
-		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202/src/classes/WW_CopyCaseHistory_test.cls",
-		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202/src/classes/WW_CopyCaseHistory.cls",
-		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202/src/classes/WaveDataGeneratorController.cls",
-		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202/src/pages/WaveDataGenerator.page",
-		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202/src/classes/Randomizer.cls",
-		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202/src/classes/CopyCustomHistory_test.cls",
-		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202/src/pages/CopyCustomHistory.page",
-		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202/src/classes/WaveDataGenerator_test.cls",
-		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202/src/classes/CsvDataImportBatch.cls",
-		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202/src/classes/MockarooHttpCalloutMock.cls",
-		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202/src/classes/CreateDataflowHttpCalloutMock.cls",
-		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202/src/classes/SalesWaveDataflowDefinitionEditor.cls",
-		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos/src/pages/ManageQuotaDatasets.page",
-		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos/src/classes/SalesWaveScripted_test.cls",
 		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos/src/classes/SalesWaveQuotas.cls",
+		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos/src/classes/SalesWaveScripted_test.cls",
 		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos/src/classes/ManageQuotaDatasetsController.cls",
-		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202/src/classes/IMockarooHelper.cls",
-		"/Users/mac-36/Documents/Development/WaveDemos/chatter_answers.apxt",
-		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202/src/pages/DataflowEditor.page",
-		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202/src/classes/MockarooHelperFactory.cls",
-		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202/src/classes/DataflowEditorController.cls",
-		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202/src/classes/RoleUtils.cls",
-		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202/src/classes/ProfileUtils.cls",
-		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202/src/classes/SmartLookup.cls",
-		"/Users/mac-36/Documents/Development/WaveDemos/Data/Sales Users - Wave Data.csv",
-		"/Users/mac-36/.ssh/id_rsa.pub",
-		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202/src/classes/ServicesWaveDataflowDefinitionEditor.cls",
-		"/Users/mac-36/Documents/Development/WaveDemos/Data/SalesWaveLuc_Custom.json",
-		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202/src/classes/DataflowDefinitionEditor.cls",
-		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202/src/classes/DataflowEditor_test.cls",
-		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202/src/classes/DFJSON_old.cls",
-		"/Users/mac-36/Downloads/SalesWave_Test1-4.json",
-		"/Users/mac-36/Downloads/SalesWave_Test1-3.json",
-		"/Users/mac-36/Documents/Development/WaveDemos/Data/SalesWaveLuc.json",
-		"/Users/mac-36/Documents/Development/WaveDemos/Data/WW_OppHistoryTrendingComputedFieldsDefinition.json",
-		"/Users/mac-36/Documents/Development/WaveDemos/Data/WW_OppHistoryFlagForDaysInCurrentStageComputedFieldsDefinition.json",
-		"/Users/mac-36/Documents/Development/WaveDemos/Data/WW_OppHistoryRelabelDefinition.json",
-		"/Users/mac-36/Downloads/SalesWave_Test1-2.json",
-		"/Users/mac-36/Downloads/SalesWave_Test1-1.json",
-		"/Users/mac-36/Documents/Development/WaveDemos/Data/WW_OppHistoryFieldsDefinition.json",
-		"/Users/mac-36/Documents/Development/WaveDemos/Data/WW_OppHistorySchemaDefinition.json",
-		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202/src/classes/ResponseBody.cls",
-		"/Users/mac-36/Documents/Development/WaveDemos/ServiceWave_Custom1.json",
-		"/Users/mac-36/Documents/Development/WaveDemos/ServiceWaveLuc.json",
-		"/Users/mac-36/Documents/Development/WaveDemos/Data/WW_CaseHistoryComputedFieldsDefinition.json",
-		"/Users/mac-36/Documents/Development/WaveDemos/Data/WW_CaseHistoryRelabelDefinition.json",
-		"/Users/mac-36/Library/Application Support/Sublime Text 3/Packages/Pretty JSON/Pretty JSON.sublime-settings",
-		"/Users/mac-36/Library/Application Support/Sublime Text 3/Packages/SublimeAStyleFormatter/SublimeAStyleFormatter.sublime-settings",
-		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202/src/classes/DFJSON_Frontend.cls",
-		"/Users/mac-36/Library/Application Support/Sublime Text 3/Packages/User/SublimeAStyleFormatter.sublime-settings",
-		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202/src/classes/WW_CopyOpportunityFieldHistory_test.cls",
-		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202/src/classes/WW_CopyOpportunityFieldHistory.cls",
-		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202/src/classes/Randomizer_test.cls",
-		"/Users/mac-36/Documents/Development/WaveDemos/ServiceWave_ManipulateDataflow_Exec.cls",
-		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202/src/classes/WW_CopyHistoryOld.cls",
-		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos202/src/classes/WW_CopyHistory.cls",
+		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos/src/pages/ManageQuotaDatasets.page",
+		"/Users/mac-36/Documents/Development/WaveDemos/Data/notes.txt",
+		"/Users/mac-36/Documents/Development/WaveDemos/Data/apps/quota-csv-generator/index.js",
 		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos/debug/logs/2016-09-01 17-50-20.log",
 		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos/debug/logs/2016-09-01 17-50-00.log",
 		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos/debug/logs/2016-08-29 19-30-07.log",
@@ -509,6 +111,7 @@
 		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos/src/classes/GatoTest.cls",
 		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos/src/classes/GatoTest.cls-meta.xml",
 		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos/src/classes/Prueba.cls",
+		"/Users/mac-36/Documents/Development/WaveDemos/ServiceWave_ManipulateDataflow_Exec.cls",
 		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos/src/classes/ServiceWave_ManipulateDataflow_Exec.cls",
 		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos/src/classes/ServiceWave_ManipulateDataflow_Exec.cls-meta.xml",
 		"/Users/mac-36/Documents/Development/WaveDemos/workspace/WaveDemos/src/classes/ManageQuotaDatasetsControler.cls",
@@ -547,134 +150,32 @@
 		"case_sensitive": false,
 		"find_history":
 		[
-			"this.debugMessages.add",
 			"Anydatatype_msg",
-			"smartLookupNameToId",
-			"dataflowId",
-			"plain_quota4",
+			"selectedRolesIds",
+			"How",
+			"Anydatatype_msg",
+			"Roles",
+			"startTest",
+			"plain_quota",
+			"Quota",
+			"Anydatatype_msg",
+			"mm_start_mavensmate_app",
+			"auth",
+			"Join_OpportunityRecordT",
+			"RecordT",
+			"\\t",
+			"(\\d){1,2}\\t",
+			"wwest",
 			"\\n",
-			"validateSchema",
+			"Extract_Opportunity",
+			"_Account",
 			"Account",
-			"json",
-			"jobStatusDsc",
-			"Case",
-			"CaseHistory",
-			"false",
-			"Profile",
-			"Name",
-			"relevantValues",
-			"nameSmartLookups",
-			"fieldName",
-			"Anydatatype_msg",
-			"Opportunity",
-			"Account",
-			"SmartLookupExternalId",
-			"SmartLookup",
-			"Admin",
-			"getUserRoles",
-			"User",
-			"true",
-			"User",
-			"Event",
-			"User",
-			"Account",
-			"sObjName",
-			"StaticResource",
-			"fieldType",
-			"Anydatatype_msg",
-			"fieldValue",
-			"SObjectType",
-			"sObjList",
-			"Anydatatype_msg",
-			"sObjectList",
-			"getSchemaFieldNames",
-			"true",
-			"generatedURL",
-			"tedURL",
-			"Condition",
-			"found",
-			"uriMatcher",
-			"const",
-			"true",
-			"green",
-			"bold",
-			"sObjName",
-			"margin",
-			"padding",
-			"margin",
-			"true",
-			"Anydatatype_msg",
-			"ObjectType",
-			"Schema",
-			"sObjT",
-			"ServWave_Test1 ",
-			"ResponseBody",
-			"getSObjectType",
-			"true",
-			"apps",
-			"computeTrending",
-			"Relabel_CustomOppHistory",
-			"Flag_For_Days_in_Current_Stage",
-			"Relabel_CustomOppHistory",
-			"true",
-			"WW_OppHistoryTrendingComputedFieldsDefinition",
-			"Flag_For_Days_in_Current_Stage",
-			"srJson",
-			"Relabel_CustomOppHistory",
-			"Extract_OpportunityHistory",
-			"Pipeline_Trending_Custom_Filter_Flag",
-			"Filter_Pipeline_Trending",
-			"sfdcRegister",
-			"true",
-			"Extract_OpportunityHistory",
-			"computeTrending",
-			"Join_OpportunityStage",
-			"Join_OpportunityStage_Previous_with_Opp_Amount",
-			"Join_OpportunityStage_Previous_with_Opp",
-			"Join_OpportunityStage_Previous",
-			"Join_OpportunityStage",
-			"Relabel_CustomOppHistory",
-			"Flag_For_Days_in_Current_Stage",
-			"Extract_OpportunityHistory",
-			"Extract_OpportunityStage",
-			"Join_OpportunityStage",
-			"computeTrending",
-			"Flag_For_Days_in_Current_Stage",
-			"Extract_OpportunityHistory",
-			"OpportunityHistory",
-			"Join_CaseHistory_Case",
-			"CaseHistory",
-			"Join_CaseHistory_",
-			"Join_CaseHistory_NewOwner",
-			"Join_CaseHistory_OldOwner",
-			"compute_CaseHistory_OldNewStatus",
-			"compute_CaseHistory_CurrentDate",
-			"Join_CaseHistory_Case",
-			"Relabel_CustomCaseHistory",
-			"Append_CaseHistory",
-			"sfdcRegister",
-			"Anydatatype_msg",
-			"postFlow",
-			"postFlowinsertDataFlow",
-			"putFlow",
-			"toDate",
-			"Relabel_CustomCaseHistory",
-			"Join_CaseHistory_Case",
-			"definition",
-			"Append_CaseHistory",
-			"Relabel_CustomCaseHistory",
-			"appendComputeExpression",
-			"computeRelative",
-			"dataflowDefinitionObject",
-			"Sales",
-			"affectedPanel",
-			"compute_CaseHistory_DatePrevious_Status",
-			"Append_CaseHistory",
-			"compute_CaseHistory_DatePrevious_Owner",
-			"Extract_CaseHistory_Owner",
-			"schema",
-			"update",
-			"\"action\": \"update\","
+			"\\n",
+			"012B0000000IzxtIAC",
+			"\\n",
+			"012B0000000Izxt",
+			"\\n",
+			"\\r\\n"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -682,9 +183,6 @@
 		"regex": false,
 		"replace_history":
 		[
-			"System.debug",
-			"plain_quota2",
-			"RestApiResponseBody",
 			"plain_quota4",
 			",",
 			"",
@@ -701,133 +199,14 @@
 	"groups":
 	[
 		{
-			"selected": 3,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "/Users/mac-36/Documents/Development/WaveDemos/Data/notes.txt",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 5896,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3565,
-								3565
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 1177.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "src/classes/WaveDataGeneratorController.cls",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 8751,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								709,
-								975
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/MavensMate/sublime/lang/Apex.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 3523.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "src/classes/CsvDataImportBatch.cls",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 10173,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								8404,
-								8404
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/MavensMate/sublime/lang/Apex.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 3588.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "src/classes/SmartLookup.cls",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 472,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/MavensMate/sublime/lang/Apex.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				}
 			]
 		}
 	],
 	"incremental_find":
 	{
-		"height": 27.0
+		"height": 26.0
 	},
 	"input":
 	{
@@ -858,11 +237,7 @@
 	"menu_visible": true,
 	"output.MavensMate-OutputPanel":
 	{
-		"height": 360.0
-	},
-	"output.astyle_error_message":
-	{
-		"height": 0.0
+		"height": 261.0
 	},
 	"output.find_results":
 	{
@@ -886,12 +261,16 @@
 	},
 	"select_project":
 	{
-		"height": 0.0,
+		"height": 500.0,
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"",
+				"~/Documents/Development/WaveDemos/workspace/WaveDemos202/WaveDemos202.sublime-workspace"
+			]
 		],
-		"width": 0.0
+		"width": 380.0
 	},
 	"select_symbol":
 	{

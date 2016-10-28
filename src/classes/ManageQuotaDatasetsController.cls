@@ -20,6 +20,7 @@ public class ManageQuotaDatasetsController {
         this.salesWaveFolders = new List<WaveFolder>();
 	}
 
+    /*
     // HTTP Callout to retrieve Sales Apps
     public String getWaveFoldersJSON(){
         HttpRequest req = new HttpRequest();
@@ -49,6 +50,30 @@ public class ManageQuotaDatasetsController {
                 }
             }
 
+            this.firstLoad = false;
+        }
+                
+        for(WaveFolder folder : this.salesWaveFolders){
+            options.add(new SelectOption(folder.name, folder.label.unescapeHtml4()));
+        }
+
+        return options;
+    }*/
+
+    public List<SelectOption> getSalesApplications(){
+        List<SelectOption> options = new List<SelectOption>();
+        
+        if(this.firstLoad){
+
+            for(List<Folder> folders: [SELECT DeveloperName, Name FROM Folder WHERE Type = 'Insights' AND DeveloperName NOT IN('SharedApp', 'WAVE_PUBLIC_DATAFLOWS')]) {
+                for(Folder f: folders) {
+                    WaveFolder wf = new WaveFolder();
+                    wf.name = f.DeveloperName;
+                    wf.label = f.Name;
+                    this.salesWaveFolders.add(wf);
+                }
+            }
+            
             this.firstLoad = false;
         }
                 
@@ -158,10 +183,18 @@ public class ManageQuotaDatasetsController {
 
             Dataflow dfSel = [SELECT Id FROM Dataflow WHERE DeveloperName = :this.salesApp];
             DataflowVersion dfVer = [SELECT Id FROM DataflowVersion WHERE DataflowId = :dfSel.Id ORDER BY CreatedDate DESC LIMIT 1];
-            DatasetAccess dsAcc = [SELECT DatasetName FROM DatasetAccess WHERE DataflowVersionId = :dfVer.Id AND AccessType = 'Write' AND DatasetName LIKE '%plain_quota%' LIMIT 1];
+            
+            List<DatasetAccess> datasetAccesses = [SELECT DatasetName FROM DatasetAccess WHERE DataflowVersionId = :dfVer.Id AND AccessType = 'Write' AND DatasetName LIKE '%plain_quota%' LIMIT 1];
+            if(datasetAccesses.size() > 0) {
+                
+                DatasetAccess dsAcc = datasetAccesses.get(0);
 
-            SalesWaveQuotas.updateQuotaDataset(userIds, Date.today().year(), 1, 12, quotaAmount, this.salesApp, dsAcc.DatasetName);
-            messages.add(new ApexPages.Message(ApexPages.Severity.CONFIRM, 'The Quota Dataset was successfully updated.'));
+                SalesWaveQuotas.updateQuotaDataset(userIds, Date.today().year(), 1, 12, quotaAmount, this.salesApp, dsAcc.DatasetName);
+                messages.add(new ApexPages.Message(ApexPages.Severity.CONFIRM, 'The Quota Dataset was successfully updated.'));
+            }
+            else {
+                messages.add(new ApexPages.Message(ApexPages.Severity.ERROR, 'The application you selected is not a Sales Wave application.'));
+            }
         }
         
         for(ApexPages.Message msg: messages) {
