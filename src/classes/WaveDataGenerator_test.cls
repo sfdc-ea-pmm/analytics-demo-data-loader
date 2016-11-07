@@ -88,4 +88,32 @@ private class WaveDataGenerator_test {
 		cnt.monitor();
 		cnt.save();
 	}
+
+	@isTest static void defaultUrlsTest() {
+		
+		WaveDataGeneratorController cnt = new WaveDataGeneratorController(); // Constructor
+		cnt.selectedObject = 'User';
+		cnt.updateSelectedObj();
+		System.assertEquals('https://sfdc-mockaroo.herokuapp.com/283bc870/download?count=20&key=ad4356a0', cnt.dataUrl);
+
+		cnt.selectedObject = 'Account';
+		cnt.updateSelectedObj();
+		System.assertEquals('https://sfdc-mockaroo.herokuapp.com/e7369170/download?count=100&key=ad4356a0', cnt.dataUrl);
+		
+		cnt.selectedObject = 'Opportunity';
+		cnt.updateSelectedObj();
+		System.assertEquals('https://sfdc-mockaroo.herokuapp.com/1f197d90/download?count=100&key=ad4356a0', cnt.dataUrl);
+
+		cnt.selectedObject = 'Case';
+		cnt.updateSelectedObj();
+		System.assertEquals('https://sfdc-mockaroo.herokuapp.com/faf959e0/download?count=500&key=ad4356a0', cnt.dataUrl);
+
+		cnt.selectedObject = 'Task';
+		cnt.updateSelectedObj();
+		System.assertEquals('https://sfdc-mockaroo.herokuapp.com/08b5e490/download?count=100&key=ad4356a0', cnt.dataUrl);
+
+		cnt.selectedObject = 'Event';
+		cnt.updateSelectedObj();
+		System.assertEquals('https://sfdc-mockaroo.herokuapp.com/d73ca970/download?count=100&key=ad4356a0', cnt.dataUrl);		
+	}
 }

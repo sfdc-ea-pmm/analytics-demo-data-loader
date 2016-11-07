@@ -78,9 +78,42 @@ public with sharing class WaveDataGeneratorController {
     }
 
     public void updateSelectedObj(){
+
     	this.dataUrl = '';
     	this.validationMessage = '';
     	this.showJobStatistics = false;
+
+        Boolean changed = false;
+
+        // Default URLs
+        if(this.selectedObject == 'User'){
+            this.dataUrl = 'https://sfdc-mockaroo.herokuapp.com/283bc870/download?count=20&key=ad4356a0';
+            changed = true;
+        }
+        else if (this.selectedObject == 'Account') {
+            this.dataUrl = 'https://sfdc-mockaroo.herokuapp.com/e7369170/download?count=100&key=ad4356a0';
+            changed = true;
+        }
+        else if (this.selectedObject == 'Opportunity') {
+            this.dataUrl = 'https://sfdc-mockaroo.herokuapp.com/1f197d90/download?count=100&key=ad4356a0';
+            changed = true;
+        }
+        else if (this.selectedObject == 'Case') {
+            this.dataUrl = 'https://sfdc-mockaroo.herokuapp.com/faf959e0/download?count=500&key=ad4356a0';
+            changed = true;
+        }
+        else if (this.selectedObject == 'Task') {
+            this.dataUrl = 'https://sfdc-mockaroo.herokuapp.com/08b5e490/download?count=100&key=ad4356a0';
+            changed = true;
+        }
+        else if (this.selectedObject == 'Event') {
+            this.dataUrl = 'https://sfdc-mockaroo.herokuapp.com/d73ca970/download?count=100&key=ad4356a0';            
+            changed = true;
+        }
+
+        if(changed && !Test.isRunningTest()){
+            this.validateSchema();
+        }
     }
 
     public void validateSchema(){
