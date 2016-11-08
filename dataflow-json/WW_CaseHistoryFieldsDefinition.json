@@ -1,0 +1,1 @@
+[{"name":"CaseId__c"},{"name":"CreatedById"},{"fiscalMonthOffset":0,"firstDayOfWeek":"0","name":"CreatedDate__c","isYearEndFiscalYear":false},{"name":"Field__c"},{"name":"Id"},{"name":"NewValue__c"},{"name":"OldValue__c"}]

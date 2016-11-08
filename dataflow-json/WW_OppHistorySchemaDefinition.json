@@ -1,0 +1,1 @@
+{"objects":[{"label":"OpportunityHistory","fields":[{"format":"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'","name":"CreatedDate__c","description":"Opportunity Created Date","label":"CreatedDate"},{"name":"Amount__c","description":"Amount","label":"Amount"}]}]}
