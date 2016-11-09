@@ -99,7 +99,7 @@
       "name": "Profile.Name",
       "type": "Custom List",
       "values": [
-        "Sales User"
+        "Standard User"
       ],
       "selectionStyle": "random",
       "distribution": null,
@@ -975,6 +975,36 @@
     },
     {
       "name": "EmailPreferencesStayInTouchReminder",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesGlobalNavBarWTShown",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesGlobalNavGridMenuWTShown",
+      "type": "Custom List",
+      "values": [
+        "false"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "UserPreferencesCreateLEXAppsWTShown",
       "type": "Custom List",
       "values": [
         "false"

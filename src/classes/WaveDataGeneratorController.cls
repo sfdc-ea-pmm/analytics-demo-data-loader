@@ -119,6 +119,7 @@ public with sharing class WaveDataGeneratorController {
     public void validateSchema(){
     	
     	this.validationMessage = '';
+        this.dataUrl = this.dataUrl.trim();
 
     	if(String.isBlank(this.dataUrl)){
             this.validSchema = false;   		

@@ -19,7 +19,7 @@
 			color: red;
 		}
 	</style>
-	<apex:form id="mainForm">
+    <apex:form id="mainForm">
         <apex:pageBlock mode="edit">
             <apex:pageMessages />
             <apex:pageBlockSection >
@@ -53,7 +53,7 @@
                     </apex:outputPanel>
 
                     <apex:inputTextarea id="dataUrlTxt" value="{!dataUrl}" rows="3" cols="100" disabled="{!waveApp == '' || selectedObject == ''}">
-                    	<apex:actionSupport event="onchange" action="{!validateSchema}" reRender="btnAccept,validationPanel,jobStatusPanel" status="validatingSchemaStatus" />
+                    	<apex:actionSupport event="onchange" action="{!validateSchema}" reRender="dataUrlTxt,btnAccept,validationPanel,jobStatusPanel" status="validatingSchemaStatus" />
                     </apex:inputTextarea>
 
                     <apex:actionStatus startText="Validating schema..." id="validatingSchemaStatus" startStyleClass="helpStep"/>
