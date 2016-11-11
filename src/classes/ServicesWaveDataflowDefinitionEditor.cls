@@ -90,6 +90,13 @@ public class ServicesWaveDataflowDefinitionEditor extends DataflowDefinitionEdit
 			validationMessages.add('Join_CaseHistory_Case node not found in the Dataflow Definition File.');
 		}
 
+		if(validationMessages.size() == 0){
+			Integer caseHistCount = [SELECT count() FROM WW_CaseHistory__c];
+			if(caseHistCount == 0){
+				validationMessages.add('There are no Case History records in the database. Please go to Copy History page to create them.');
+			}
+		}
+
 		return validationMessages;
 	}
 }

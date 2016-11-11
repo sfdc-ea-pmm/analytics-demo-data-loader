@@ -64,6 +64,13 @@ public class SalesWaveDataflowDefinitionEditor extends DataflowDefinitionEditor 
 			validationMessages.add('computeTrending node not found in the Dataflow Definition File.');
 		}
 
+		if(validationMessages.size() == 0){
+			Integer oppHistCount = [SELECT count() FROM WW_OppHistory__c];
+			if(oppHistCount == 0){
+				validationMessages.add('There are no Opportunity History records in the database. Please go to Copy History page to create them.');
+			}
+		}
+
 		return validationMessages;
 	}
 }
