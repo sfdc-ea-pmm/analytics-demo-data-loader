@@ -4,6 +4,26 @@
 		"selected_items":
 		[
 			[
+				"waveD",
+				"waveDatasets"
+			],
+			[
+				"wave",
+				"waveFolders"
+			],
+			[
+				"fo",
+				"foldersResponse"
+			],
+			[
+				"req",
+				"requestUrl"
+			],
+			[
+				"Date",
+				"Datetime\t[Standard Apex Class]"
+			],
+			[
 				"in",
 				"apex:includeScript"
 			],
@@ -376,20 +396,60 @@
 	"buffers":
 	[
 		{
-			"file": "src/classes/WaveDataGeneratorController.cls",
+			"file": "src/classes/WaveAssetsUtility.cls",
 			"settings":
 			{
-				"buffer_size": 10132,
+				"buffer_size": 3733,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "src/pages/WaveDataGenerator.page",
+			"file": "src/classes/WaveDashboardsResponse.cls",
 			"settings":
 			{
-				"buffer_size": 4972,
+				"buffer_size": 163,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/classes/WaveRestApiUtils.cls",
+			"settings":
+			{
+				"buffer_size": 902,
 				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/classes/ManageQuotaDatasetsController.cls",
+			"settings":
+			{
+				"buffer_size": 7572,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/classes/SalesWaveQuotas.cls",
+			"settings":
+			{
+				"buffer_size": 3652,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/classes/WaveDatasetsResponse.cls",
+			"settings":
+			{
+				"buffer_size": 157,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/classes/WaveLensesResponse.cls",
+			"settings":
+			{
+				"buffer_size": 150,
 				"line_ending": "Unix"
 			}
 		}
@@ -434,14 +494,17 @@
 	},
 	"expanded_folders":
 	[
-		"/D/desarrollo/Salesforce/Workspace/Wave Tooling",
-		"/D/desarrollo/Salesforce/Workspace/Wave Tooling/src",
-		"/D/desarrollo/Salesforce/Workspace/Wave Tooling/src/classes",
-		"/D/desarrollo/Salesforce/Workspace/Wave Tooling/src/pages"
+		"/D/desarrollo/Salesforce/Workspace/Wave Tooling"
 	],
 	"file_history":
 	[
+		"/D/desarrollo/Salesforce/Workspace/Wave Tooling/src/classes/WaveFolder.cls",
+		"/D/desarrollo/Salesforce/Workspace/Wave Tooling/src/classes/WaveDashboard.cls",
+		"/D/desarrollo/Salesforce/Workspace/Wave Tooling/src/classes/WaveLens.cls",
+		"/D/desarrollo/Salesforce/Workspace/Wave Tooling/src/classes/WaveFoldersResponse.cls",
+		"/D/desarrollo/Salesforce/Workspace/Wave Tooling/src/classes/WaveDataset.cls",
 		"/D/desarrollo/Salesforce/Workspace/Wave Tooling/src/classes/WaveDataGeneratorController.cls",
+		"/D/desarrollo/Salesforce/Workspace/Wave Tooling/src/pages/WaveDataGenerator.page",
 		"/C/Users/Rodrigo/AppData/Roaming/Sublime Text 3/Packages/User/mavensmate.sublime-settings",
 		"/D/desarrollo/Proquimur/www/application/views/publico/detalle_producto.php",
 		"/D/desarrollo/Proquimur/www/application/controllers/productos.php",
@@ -562,13 +625,7 @@
 		"/D/desarrollo/Proquimur/NF/Destacados y Config. Instrucciones de uso/requerimientos.txt",
 		"/D/desarrollo/Maldonado/www/index.php",
 		"/D/desarrollo/Maldonado/www/scripts/visor.js",
-		"/D/desarrollo/Proquimur/www/css/style-proquimur4.css",
-		"/D/desarrollo/Proquimur/www/application/views/includes/footer.php",
-		"/D/desarrollo/Proquimur/www/.htaccess",
-		"/D/desarrollo/Proquimur/www/application/logs/log-2014-07-28.php",
-		"/D/desarrollo/Proquimur/www/css/style-proquimur3.css",
-		"/D/desarrollo/Proquimur/www/application/models/semillas_model.php",
-		"/D/desarrollo/Proquimur/www/application/language/esp/static_lang.php"
+		"/D/desarrollo/Proquimur/www/css/style-proquimur4.css"
 	],
 	"find":
 	{
@@ -576,9 +633,10 @@
 	},
 	"find_in_files":
 	{
-		"height": 0.0,
+		"height": 90.0,
 		"where_history":
 		[
+			"D:\\desarrollo\\Salesforce\\Workspace\\Wave Tooling\\src\\classes",
 			"D:\\desarrollo\\Proquimur\\www\\application\\views",
 			"D:\\desarrollo\\Proquimur\\www\\application\\controllers",
 			"D:\\desarrollo\\Proquimur\\www\\application\\views",
@@ -605,6 +663,14 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"lens",
+			"lenses",
+			"Lenses",
+			"datasets",
+			"Dataset",
+			"Datasets",
+			"with",
+			"WaveFolder",
 			"eti-prod",
 			".rec-detser",
 			".eti-prod",
@@ -724,22 +790,20 @@
 			"Novedades",
 			"Novedad",
 			"NOVEDAD",
-			"novedad",
-			"novedades",
-			"servicios",
-			"table",
-			"first_link",
-			"QUERY",
-			"$search_string",
-			"LAST Q",
-			"if post is not null, we store it in session data array"
+			"novedad"
 		],
 		"highlight": true,
-		"in_selection": false,
+		"in_selection": true,
 		"preserve_case": false,
 		"regex": false,
 		"replace_history":
 		[
+			"dashboard",
+			"dashboards",
+			"Dashboards",
+			"lenses",
+			"Lens",
+			"Lenses",
 			"documento_imasd",
 			"documento",
 			"titulo",
@@ -861,13 +925,7 @@
 			"producto",
 			"productos",
 			"preview",
-			"mensaje",
-			"class",
-			"obra",
-			"",
-			"src=\"<?php echo base_url(); ?>assets/images/",
-			"src=\"<?php echo base_url(); ?>assets/images",
-			"<?php echo base_url(); ?>assets/images"
+			"mensaje"
 		],
 		"reverse": false,
 		"show_context": true,
@@ -878,24 +936,108 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "src/classes/WaveDataGeneratorController.cls",
+					"file": "src/classes/WaveAssetsUtility.cls",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 10132,
+						"buffer_size": 3733,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								10132
+								3725,
+								3725
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/MavensMate/sublime/lang/Apex.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 1134.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "src/classes/WaveDashboardsResponse.cls",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 163,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								161,
+								161
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/MavensMate/sublime/lang/Apex.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "src/classes/WaveRestApiUtils.cls",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 902,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								902,
+								902
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/MavensMate/sublime/lang/Apex.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 26.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "src/classes/ManageQuotaDatasetsController.cls",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7572,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1860,
+								1860
 							]
 						],
 						"settings":
@@ -905,40 +1047,96 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1836.0,
+						"translation.y": 3176.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 1,
-					"file": "src/pages/WaveDataGenerator.page",
+					"buffer": 4,
+					"file": "src/classes/SalesWaveQuotas.cls",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4972,
+						"buffer_size": 3652,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								4972
+								1718,
+								3642
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/MavensMate/sublime/lang/Visualforce.sublime-syntax",
+							"syntax": "Packages/MavensMate/sublime/lang/Apex.sublime-syntax",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 864.0,
+						"translation.y": 1134.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "src/classes/WaveDatasetsResponse.cls",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 157,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								50,
+								155
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/MavensMate/sublime/lang/Apex.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "src/classes/WaveLensesResponse.cls",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 150,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								66,
+								72
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/MavensMate/sublime/lang/Apex.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
 					"type": "text"
 				}
 			]
@@ -987,7 +1185,7 @@
 	"project": "Wave Tooling.sublime-project",
 	"replace":
 	{
-		"height": 48.0
+		"height": 62.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -1029,7 +1227,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 417.0,
+	"side_bar_width": 322.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
