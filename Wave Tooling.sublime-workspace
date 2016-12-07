@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"in",
+				"apex:includeScript"
+			],
+			[
+				"data",
+				"dataUrl"
+			],
+			[
 				"logo",
 				"url_logo"
 			],
@@ -368,21 +376,20 @@
 	"buffers":
 	[
 		{
-			"contents": "Package Control Messages\n========================\n\nMavensMate\n----------\n\n  MavensMate Salesforce IDE for Sublime Text\n  \n  Welcome to MavensMate for Sublime Text! Our mission at MavensMate is to make building Salesforce applications easy and fun regardless of platform or text editor.\n  \n  SUPPORTED OPERATING SYSTEMS:\n  \t- OSX 10.11.x+\n  \t- Windows 7, 8, Server 2008\n  \t- Linux Ubuntu 14\n  \n  PREREQUISITES:\n  \t- MavensMate Desktop (https://github.com/joeferraro/MavensMate-Desktop) MUST BE INSTALLED AND RUNNING in order for MavensMate for Sublime Text to function properly\n  \n  HOMEPAGE: http://mavensmate.com\n  GITHUB: https://github.com/joeferraro/MavensMate-SublimeText\n  SUPPORT: https://github.com/joeferraro/MavensMate/issues (SEARCH BEFORE CREATING ISSUES!)\n  \n  Follow us: https://twitter.com/mavensmate\n  \n  Star our GitHub repos:\n  \t- https://github.com/joeferraro/MavensMate\n  \t- https://github.com/joeferraro/MavensMate-Desktop\n  \t- https://github.com/joeferraro/MavensMate-SublimeText\n  \t- https://github.com/joeferraro/MavensMate-Atom\n  \t- https://github.com/joeferraro/MavensMate-VisualStudioCode\n  \t- https://github.com/joeferraro/MavensMate-Templates\n  \n  Happy coding!\n",
+			"file": "src/classes/WaveDataGeneratorController.cls",
 			"settings":
 			{
-				"buffer_size": 1191,
-				"line_ending": "Windows",
-				"name": "Package Control Messages",
-				"read_only": true,
-				"scratch": true
+				"buffer_size": 10132,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/C/Users/Rodrigo/AppData/Roaming/Sublime Text 3/Packages/User/mavensmate.sublime-settings",
+			"file": "src/pages/WaveDataGenerator.page",
 			"settings":
 			{
-				"buffer_size": 3742,
+				"buffer_size": 4972,
+				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		}
@@ -429,10 +436,13 @@
 	[
 		"/D/desarrollo/Salesforce/Workspace/Wave Tooling",
 		"/D/desarrollo/Salesforce/Workspace/Wave Tooling/src",
-		"/D/desarrollo/Salesforce/Workspace/Wave Tooling/src/classes"
+		"/D/desarrollo/Salesforce/Workspace/Wave Tooling/src/classes",
+		"/D/desarrollo/Salesforce/Workspace/Wave Tooling/src/pages"
 	],
 	"file_history":
 	[
+		"/D/desarrollo/Salesforce/Workspace/Wave Tooling/src/classes/WaveDataGeneratorController.cls",
+		"/C/Users/Rodrigo/AppData/Roaming/Sublime Text 3/Packages/User/mavensmate.sublime-settings",
 		"/D/desarrollo/Proquimur/www/application/views/publico/detalle_producto.php",
 		"/D/desarrollo/Proquimur/www/application/controllers/productos.php",
 		"/D/desarrollo/Proquimur/www/application/views/publico/index.php",
@@ -558,9 +568,7 @@
 		"/D/desarrollo/Proquimur/www/application/logs/log-2014-07-28.php",
 		"/D/desarrollo/Proquimur/www/css/style-proquimur3.css",
 		"/D/desarrollo/Proquimur/www/application/models/semillas_model.php",
-		"/D/desarrollo/Proquimur/www/application/language/esp/static_lang.php",
-		"/D/desarrollo/Proquimur/www/application/language/eng/static_lang.php",
-		"/D/desarrollo/Proquimur/www/application/models/mensajes_model.php"
+		"/D/desarrollo/Proquimur/www/application/language/esp/static_lang.php"
 	],
 	"find":
 	{
@@ -875,29 +883,29 @@
 			[
 				{
 					"buffer": 0,
+					"file": "src/classes/WaveDataGeneratorController.cls",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1191,
+						"buffer_size": 10132,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								72,
-								72
+								0,
+								10132
 							]
 						],
 						"settings":
 						{
-							"auto_indent": false,
-							"syntax": "Packages/Text/Plain text.tmLanguage",
-							"tab_width": 2,
-							"word_wrap": true
+							"syntax": "Packages/MavensMate/sublime/lang/Apex.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1836.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
@@ -905,28 +913,29 @@
 				},
 				{
 					"buffer": 1,
-					"file": "/C/Users/Rodrigo/AppData/Roaming/Sublime Text 3/Packages/User/mavensmate.sublime-settings",
+					"file": "src/pages/WaveDataGenerator.page",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3742,
+						"buffer_size": 4972,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1404,
-								1408
+								0,
+								4972
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/MavensMate/sublime/lang/JSON.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/MavensMate/sublime/lang/Visualforce.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 540.0,
+						"translation.y": 864.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -968,7 +977,7 @@
 	"menu_visible": true,
 	"output.MavensMate-OutputPanel":
 	{
-		"height": 118.0
+		"height": 180.0
 	},
 	"output.find_results":
 	{
