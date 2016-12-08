@@ -45,6 +45,8 @@
 		<members>WaveRestApiUtils</members>
 		<members>WaveAsset</members>
 		<members>WaveAssetsUtility_Test</members>
+		<members>WaveFolderAsset</members>
+		<members>WaveFoldersAssetsResponse</members>
 		<name>ApexClass</name>
 	</types>
 	<types>

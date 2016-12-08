@@ -42,17 +42,17 @@ public with sharing class WaveAssetsUtility {
                     // Extract assets data from REST API - JSON format
                     // Folders
                     String jsonFolders = WaveRestApiUtils.getWaveAssetsJSON('folders', null);
-                    WaveFoldersResponse foldersResponse = (WaveFoldersResponse)JSON.deserialize(jsonFolders, WaveFoldersResponse.class);
+                    WaveFoldersAssetsResponse foldersResponse = (WaveFoldersAssetsResponse)JSON.deserialize(jsonFolders, WaveFoldersAssetsResponse.class);
                     
                     while(foldersResponse != null && foldersResponse.folders != null){
                         
-                        for(WaveFolder folder : foldersResponse.folders){
+                        for(WaveFolderAsset folder : foldersResponse.folders){
                             waveAssets.add(folder);
                         }
 
                         if(foldersResponse.nextPageUrl != null){
                             jsonFolders = WaveRestApiUtils.getWaveAssetsJSON('folders', foldersResponse.nextPageUrl);
-                            foldersResponse = (WaveFoldersResponse)JSON.deserialize(jsonFolders, WaveFoldersResponse.class);
+                            foldersResponse = (WaveFoldersAssetsResponse)JSON.deserialize(jsonFolders, WaveFoldersAssetsResponse.class);
                         }
                         else {
                             foldersResponse = null;
