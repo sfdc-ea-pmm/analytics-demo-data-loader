@@ -1,8 +1,5 @@
-public with sharing class WaveLens {
-	public Datetime createdDate;
-	public String id;
-	public String label;
-	public Datetime lastModifiedDate;
-	public String name;
-	public String url;
+public virtual class WaveLens extends WaveAsset {
+	public override String getAssetType(){
+		return 'Lens';
+	}
 }

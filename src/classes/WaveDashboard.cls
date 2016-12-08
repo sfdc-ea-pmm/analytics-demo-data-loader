@@ -1,8 +1,5 @@
-public with sharing class WaveDashboard {
-	public Datetime createdDate;
-	public String id;
-	public String label;
-	public Datetime lastModifiedDate;
-	public String name;
-	public String url;
+public virtual class WaveDashboard extends WaveAsset {
+	public override String getAssetType(){
+		return 'Dashboard';
+	}
 }

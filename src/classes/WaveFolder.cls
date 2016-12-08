@@ -1,10 +1,8 @@
-public class WaveFolder {
+public virtual class WaveFolder extends WaveAsset {
 	public String applicationStatus;
-	public Datetime createdDate;
-	public String id;
-	public String label;
-	public Datetime lastModifiedDate;
-	public String name;
 	public String templateSourceId;
-	public String url;
+
+	public override String getAssetType(){
+		return 'Folder';
+	}
 }
