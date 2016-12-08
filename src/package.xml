@@ -45,6 +45,7 @@
 		<members>WaveRestApiUtils</members>
 		<members>WaveAsset</members>
 		<members>WaveAssetsUtility_Test</members>
+		<members>WaveRestAPI_HttpCalloutMock</members>
 		<name>ApexClass</name>
 	</types>
 	<types>
