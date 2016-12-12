@@ -119,10 +119,10 @@ public with sharing class WaveDataGeneratorController {
     public void validateSchema(){
     	
     	this.validationMessage = '';
-        this.dataUrl = this.dataUrl.trim();
+        this.dataUrl = (this.dataUrl == null ? '' : this.dataUrl.trim());
 
     	if(String.isBlank(this.dataUrl)){
-            this.validSchema = false;   		
+            this.validSchema = false;
         }
     	else {
     		IMockarooHelper iMockHelper = MockarooHelperFactory.getIMockarooHelper();

@@ -37,10 +37,10 @@ public class SalesWaveDataflowDefinitionEditor extends DataflowDefinitionEditor 
 		);
 
 
-		// We override the computeTrending node
+		// We override the Compute_Historical_Trending_Fields node
 		StaticResource srOppHistTrendingFields = [SELECT Body FROM StaticResource WHERE Name = 'WW_OppHistoryTrendingComputedFieldsDefinition'];
 		this.editComputeRelativeNode(
-			'computeTrending',
+			'Compute_Historical_Trending_Fields',
 			'',
 			'OpportunityId__c',
 			'CreatedDate__c',
@@ -60,8 +60,8 @@ public class SalesWaveDataflowDefinitionEditor extends DataflowDefinitionEditor 
 			validationMessages.add('Flag_For_Days_in_Current_Stage node not found in the Dataflow Definition File.');
 		}
 
-		if(!this.dataflowDefinitionObject.containsKey('computeTrending')){
-			validationMessages.add('computeTrending node not found in the Dataflow Definition File.');
+		if(!this.dataflowDefinitionObject.containsKey('Compute_Historical_Trending_Fields')){
+			validationMessages.add('Compute_Historical_Trending_Fields node not found in the Dataflow Definition File.');
 		}
 
 		if(validationMessages.size() == 0){
