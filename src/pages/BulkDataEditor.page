@@ -12,7 +12,7 @@
                 </apex:panelGrid>
             </apex:pageBlockSection>
             <apex:pageBlockButtons location="bottom">
-                <apex:commandButton value="Accept" action="{!save}" id="btnAccept" reRender="mainForm" />
+                <apex:commandButton value="Retrieve results" action="{!retrieveSaqlResults}" id="btnAccept" reRender="mainForm" />
             </apex:pageBlockButtons>
         </apex:pageBlock>
     </apex:form>
