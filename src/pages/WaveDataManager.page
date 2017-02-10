@@ -1,0 +1,18 @@
+<apex:page sidebar="false" controller="WaveDataManagerController">
+	<vs:importVisualStrap theme="paper" />
+	<vs:visualstrapblock >	   		   	
+	   	<!--All the  Visualstrap content and Visualforce content here -->
+	   	<apex:form>
+	   		<apex:commandButton value="Run Data Generation" styleClass="btn-primary" action="{!run}"/>
+	   		<br /><br />
+	   		<vs:panel type="default" title="Results">
+	   			<vs:alert type="success" rendered="{!successMessage != ''}">
+	    			<apex:outputText value="{!successMessage}" />
+				</vs:alert>
+				<vs:alert type="danger" rendered="{!errorMessage != ''}">
+	    			<apex:outputText value="{!errorMessage}" />
+				</vs:alert>
+			</vs:panel>
+	   	</apex:form>
+	</vs:visualstrapblock>
+</apex:page>

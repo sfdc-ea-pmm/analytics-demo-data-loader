@@ -50,7 +50,7 @@ private class WW_CopyOpportunityHistory_test {
 		WW_CopyOpportunityHistory batchObj = new WW_CopyOpportunityHistory();
         Id batchId = Database.executeBatch(batchObj);
     	Test.stopTest();
-    	Integer cant1 = [SELECT count() FROM OpportunityHistory LIMIT 200];
+    	Integer cant1 = [SELECT count() FROM OpportunityHistory];
     	Integer cant2 = [SELECT count() FROM WW_OppHistory__c];
     	System.assertEquals(cant1, cant2);
 

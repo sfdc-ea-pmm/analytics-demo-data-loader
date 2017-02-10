@@ -49,6 +49,11 @@
 		<members>WaveLensesResponse</members>
 		<members>WaveRestApiUtils</members>
 		<members>WaveCsvDataRetriever</members>
+		<members>WaveDataManagerController</members>
+		<members>WaveMetadata</members>
+		<members>WaveMetadataApplication</members>
+		<members>WaveMetadataApplicationForSales</members>
+		<members>WaveMetadataApplicationObject</members>
 		<name>ApexClass</name>
 	</types>
 	<types>
@@ -57,6 +62,7 @@
 		<members>DataflowEditor</members>
 		<members>ManageQuotaDatasets</members>
 		<members>WaveDataGenerator</members>
+		<members>WaveDataManager</members>
 		<name>ApexPage</name>
 	</types>
 	<version>38.0</version>
