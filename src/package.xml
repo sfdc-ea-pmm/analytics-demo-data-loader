@@ -54,6 +54,7 @@
 		<members>WaveMetadataApplication</members>
 		<members>WaveMetadataApplicationForSales</members>
 		<members>WaveMetadataApplicationObject</members>
+		<members>WaveDataUtils</members>
 		<name>ApexClass</name>
 	</types>
 	<types>
