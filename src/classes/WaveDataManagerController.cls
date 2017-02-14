@@ -9,15 +9,13 @@ public with sharing class WaveDataManagerController {
 	public Integer totalBatches { get; set; }
 	public String jobStatusDsc { get; set; }
 
-	// This will hold, for each object type, all the CSV data generated for it.
-	// The main reason for this structure, is to avoid the 
-	// "System.CalloutException: You have uncommitted work pending. Please commit or 
-	// rollback before calling out." exception.
-	// This was designed to be filled with CSV data in subsequent callouts, before sending all to database.
-	private Map<String, List<List<String>>> objectsDataTableInCsv;
+	// TODO: Comment this
+	private List<SObject> lstToInsert;
+	private List<SObject> lstToUpdate;
 
 	public WaveDataManagerController() {
-		this.objectsDataTableInCsv = new Map<String, List<List<String>>>();
+		this.lstToInsert = new List<SObject>();
+		this.lstToUpdate = new List<SObject>();
 	}
 
 	private void resetMessages(){
@@ -39,22 +37,37 @@ public with sharing class WaveDataManagerController {
 			String jsonMetadata = res.getBody();
 			WaveMetadata metadata = (WaveMetadata)JSON.deserialize(jsonMetadata, WaveMetadata.class);
 
-			for(WaveMetadataApplicationObject wmaObj: metadata.salesWave.objects) {
-				this.createDataForObject(wmaObj);
+			SObjectTransference processedObjs = new SObjectTransference();
+
+			if(metadata.salesWave != null && metadata.salesWave.objects != null) {
+				for(WaveMetadataApplicationObject wmaObj: metadata.salesWave.objects) {
+					SObjectTransference currentObjs = this.handleDataForObject(wmaObj);
+					processedObjs.sObjectsToInsert.addAll(currentObjs.sObjectsToInsert);
+					processedObjs.sObjectsToUpdate.addAll(currentObjs.sObjectsToUpdate);
+				}
 			}
+
+			// DML
+			update processedObjs.sObjectsToUpdate;
+			insert processedObjs.sObjectsToInsert;
+
+			//System.debug('Will insert ' + processedObjs.sObjectsToInsert.size());
+			//System.debug('Will update ' + processedObjs.sObjectsToUpdate.size());
 
 			this.successMessage = 'Data Generation finished successfully.';
 		} 
 		catch(Exception e) {
 			System.debug(e.getMessage());
+			System.debug(e.getStackTraceString());
 			this.errorMessage = e.getMessage();
 		}
 	}
 
-	public void createDataForObject(WaveMetadataApplicationObject wmaObj){
+	public SObjectTransference handleDataForObject(WaveMetadataApplicationObject wmaObj){
 		
-		System.debug('Creating data for ' + wmaObj.name);
+		System.debug('Handling data for ' + wmaObj.name);
 		System.debug('Data URL: ' + wmaObj.url);
+		SObjectTransference processedObjs = new SObjectTransference();
 
 		IMockarooHelper iMockHelper = MockarooHelperFactory.getIMockarooHelper();
     	List<List<String>> csvData = iMockHelper.getData(wmaObj.url, false);
@@ -69,16 +82,24 @@ public with sharing class WaveDataManagerController {
 
 			// Start the process
 			WaveDataUtils dataUtils = new WaveDataUtils(Schema.getGlobalDescribe().get(wmaObj.name), csvData, fieldPositions);
-			dataUtils.processData();
+			SObjectTransference currentObjs = dataUtils.processData();
+			processedObjs.sObjectsToInsert.addAll(currentObjs.sObjectsToInsert);
+			processedObjs.sObjectsToUpdate.addAll(currentObjs.sObjectsToUpdate);
 
-			// Now the children objects
-			for(WaveMetadataApplicationObject chObj: wmaObj.children) {
-				createDataForObject(chObj);
+			if(wmaObj.children != null) {
+				// Now the children objects
+				for(WaveMetadataApplicationObject chObj: wmaObj.children) {
+					SObjectTransference childrenObjs = handleDataForObject(chObj);
+					processedObjs.sObjectsToInsert.addAll(childrenObjs.sObjectsToInsert);
+					processedObjs.sObjectsToUpdate.addAll(childrenObjs.sObjectsToUpdate);
+				}
 			}
 		}
 		else {
 			// No data rows retrieved
 			this.successMessage = 'No data to process.';
 		}
+
+		return processedObjs;
 	}
 }

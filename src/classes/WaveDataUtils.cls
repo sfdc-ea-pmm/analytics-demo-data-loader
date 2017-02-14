@@ -19,9 +19,11 @@ public with sharing class WaveDataUtils {
 		this.prepareExternalIdSmartLookups();
 	}
 
-	public void processData(){
+	public SObjectTransference processData(){
 		System.debug('About to process ' + this.csvData.size() + ' records of type ' + this.objectType.getDescribe().getName());
 		
+		SObjectTransference processedObjs = new SObjectTransference();
+
    		// First handle smart lookups
    		this.smartLookupNameToId(this.csvData);
    		this.smartLookupExternalId(this.csvData);
@@ -48,7 +50,6 @@ public with sharing class WaveDataUtils {
 						objToCreate.put(fieldName, Boolean.valueOf(fieldValue));
 					}
 					else if (fieldType == Schema.DisplayType.Currency || fieldType == Schema.DisplayType.Double || fieldType == Schema.DisplayType.Percent) {
-						System.debug(fieldName);
 						objToCreate.put(fieldName, Double.valueOf(fieldValue));
 					}
 					else if (fieldType == Schema.DisplayType.Integer) {
@@ -102,10 +103,12 @@ public with sharing class WaveDataUtils {
 	        System.debug(lstToInsert.size() + ' objects to insert.');
 	        System.debug(lstToUpdate.size() + ' objects to update.');
 
-	        // DML
-	        update lstToUpdate;
-			insert lstToInsert;
+	        // Fill SObjects holder
+	        processedObjs.sObjectsToUpdate = lstToUpdate;
+			processedObjs.sObjectsToInsert = lstToInsert;
 		}
+
+		return processedObjs;
 	}
 
 	// Prepares fields like UserRole.Name and Profile.Name
@@ -121,7 +124,7 @@ public with sharing class WaveDataUtils {
     	}
 
     	for(Integer columnNumber: this.fieldPositions.keySet()) {
-    		//System.debug(this.fieldPositions.get(columnNumber));
+    		
     		String headerValue = this.fieldPositions.get(columnNumber);
     		if (headerValue.endsWith('.Name')) {
             	// Replace column headers with .Id
@@ -147,9 +150,7 @@ public with sharing class WaveDataUtils {
 	        // Get mapping of id to name, and add to lookup object
 	        for (SmartLookup s : this.nameSmartLookups) {
 
-	        	System.debug('Handling smart lookups Name To Id for objects of type: ' + s.SObjectType + '.');
-	            
-	            List<String> relevantValues = new List<String>(s.plainTextValues);
+	        	List<String> relevantValues = new List<String>(s.plainTextValues);
 				String generatedQuery = 'SELECT Id, Name FROM ' + s.SObjectType + ' WHERE Name IN :relevantValues';
 	            List<SObject> temp = Database.query(generatedQuery);
 	            
@@ -162,9 +163,6 @@ public with sharing class WaveDataUtils {
 	            	if(!s.replaceValues.containsKey(relVal)){
 	            		// Log Ids that weren't found for the name
 	            		System.debug(String.format('Id not found for name {0}, SObject: {1}. This may cause an exception.', new String[]{ relVal, s.SObjectType }));
-	            	}
-	            	else {
-						System.debug('Id for ' + relVal + ': ' + s.replaceValues.get(relVal));
 	            	}
 	            }	            
 	        }
@@ -191,7 +189,7 @@ public with sharing class WaveDataUtils {
     	}
 
     	for(Integer columnNumber: this.fieldPositions.keySet()) {
-    		//System.debug(this.fieldPositions.get(columnNumber));
+    		
     		String headerValue = this.fieldPositions.get(columnNumber);
     		if (headerValue.endsWithIgnoreCase('.External_Id__c')) {
             	// Replace column headers with .Id
@@ -221,9 +219,7 @@ public with sharing class WaveDataUtils {
 	            	sObjToQuery = 'User';
 	            }
 
-	            System.debug('Handling smart lookups External_Id__c To Id for objects of type: ' + sObjToQuery + '.');
-
-				String generatedQuery = 'SELECT Id, External_Id__c FROM ' + sObjToQuery + ' WHERE External_Id__c IN :relevantValues';
+	            String generatedQuery = 'SELECT Id, External_Id__c FROM ' + sObjToQuery + ' WHERE External_Id__c IN :relevantValues';
 	            List<SObject> temp = Database.query(generatedQuery);
 	            
 	            for (SObject t: temp) {
@@ -235,9 +231,6 @@ public with sharing class WaveDataUtils {
 	            	if(!s.replaceValues.containsKey(relVal)){
 	            		// Log Ids that weren't found for the name
 	            		System.debug(String.format('Id not found for External_Id__c {0}, SObject: {1}. This may cause an exception.', new String[]{ relVal, sObjToQuery }));
-	            	}
-	            	else {
-	            		System.debug('Id for ' + relVal + ': ' + s.replaceValues.get(relVal));
 	            	}
 	            }
 	        }

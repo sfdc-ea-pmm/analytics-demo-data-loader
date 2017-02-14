@@ -55,6 +55,8 @@
 		<members>WaveMetadataApplicationForSales</members>
 		<members>WaveMetadataApplicationObject</members>
 		<members>WaveDataUtils</members>
+		<members>SObjectTransference</members>
+		<members>WaveDataCleaner</members>
 		<name>ApexClass</name>
 	</types>
 	<types>
