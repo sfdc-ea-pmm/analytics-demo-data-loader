@@ -100,9 +100,6 @@ public with sharing class WaveDataUtils {
 	        	}
 	        }
 
-	        System.debug(lstToInsert.size() + ' objects to insert.');
-	        System.debug(lstToUpdate.size() + ' objects to update.');
-
 	        // Fill SObjects holder
 	        processedObjs.sObjectsToUpdate = lstToUpdate;
 			processedObjs.sObjectsToInsert = lstToInsert;

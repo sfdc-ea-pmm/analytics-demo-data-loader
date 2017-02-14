@@ -53,11 +53,11 @@ public with sharing class WaveDataManagerController {
 			}
 
 			// DML
-			//update processedObjs.sObjectsToUpdate;
-			//insert processedObjs.sObjectsToInsert;
+			update processedObjs.sObjectsToUpdate;
+			insert processedObjs.sObjectsToInsert;
 
-			System.debug('Will insert ' + processedObjs.sObjectsToInsert.size());
-			System.debug('Will update ' + processedObjs.sObjectsToUpdate.size());
+			//System.debug('Will insert ' + processedObjs.sObjectsToInsert.size());
+			//System.debug('Will update ' + processedObjs.sObjectsToUpdate.size());
 
 			this.successMessage = 'Data Generation finished successfully.';
 		} 
