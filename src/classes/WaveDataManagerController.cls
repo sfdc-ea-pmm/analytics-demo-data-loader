@@ -35,25 +35,20 @@ public with sharing class WaveDataManagerController {
 	        HTTPResponse res = http.send(req);
 
 			String jsonMetadata = res.getBody();
-			WaveMetadata metadata = (WaveMetadata)JSON.deserialize(jsonMetadata, WaveMetadata.class);
+			List<WaveMetadataApplication> appsMetadata = (List<WaveMetadataApplication>)JSON.deserialize(jsonMetadata, List<WaveMetadataApplication>.class);
 
 			SObjectTransference processedObjs = new SObjectTransference();
 
 			// First we process the sales wave part
-			if(metadata.salesWave != null && metadata.salesWave.objects != null) {
-				for(WaveMetadataApplicationObject wmaObj: metadata.salesWave.objects) {
-					SObjectTransference currentObjs = this.handleDataForObject(wmaObj);
-					processedObjs.sObjectsToInsert.addAll(currentObjs.sObjectsToInsert);
-					processedObjs.sObjectsToUpdate.addAll(currentObjs.sObjectsToUpdate);
-				}
-			}
-
-			// Now we process the services wave part
-			if(metadata.servicesWave != null && metadata.servicesWave.objects != null) {
-				for(WaveMetadataApplicationObject wmaObj: metadata.servicesWave.objects) {
-					SObjectTransference currentObjs = this.handleDataForObject(wmaObj);
-					processedObjs.sObjectsToInsert.addAll(currentObjs.sObjectsToInsert);
-					processedObjs.sObjectsToUpdate.addAll(currentObjs.sObjectsToUpdate);
+			if(appsMetadata != null){
+				for(WaveMetadataApplication genericApp: appsMetadata) {
+					if(genericApp.objects != null){
+						for(WaveMetadataApplicationObject wmaObj: genericApp.objects) {
+							SObjectTransference currentObjs = this.handleDataForObject(wmaObj);
+							processedObjs.sObjectsToInsert.addAll(currentObjs.sObjectsToInsert);
+							processedObjs.sObjectsToUpdate.addAll(currentObjs.sObjectsToUpdate);
+						}
+					}
 				}
 			}
 
