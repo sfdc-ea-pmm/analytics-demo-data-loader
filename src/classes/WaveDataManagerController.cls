@@ -39,6 +39,7 @@ public with sharing class WaveDataManagerController {
 
 			SObjectTransference processedObjs = new SObjectTransference();
 
+			// First we process the sales wave part
 			if(metadata.salesWave != null && metadata.salesWave.objects != null) {
 				for(WaveMetadataApplicationObject wmaObj: metadata.salesWave.objects) {
 					SObjectTransference currentObjs = this.handleDataForObject(wmaObj);
@@ -47,12 +48,21 @@ public with sharing class WaveDataManagerController {
 				}
 			}
 
-			// DML
-			update processedObjs.sObjectsToUpdate;
-			insert processedObjs.sObjectsToInsert;
+			// Now we process the services wave part
+			if(metadata.servicesWave != null && metadata.servicesWave.objects != null) {
+				for(WaveMetadataApplicationObject wmaObj: metadata.servicesWave.objects) {
+					SObjectTransference currentObjs = this.handleDataForObject(wmaObj);
+					processedObjs.sObjectsToInsert.addAll(currentObjs.sObjectsToInsert);
+					processedObjs.sObjectsToUpdate.addAll(currentObjs.sObjectsToUpdate);
+				}
+			}
 
-			//System.debug('Will insert ' + processedObjs.sObjectsToInsert.size());
-			//System.debug('Will update ' + processedObjs.sObjectsToUpdate.size());
+			// DML
+			//update processedObjs.sObjectsToUpdate;
+			//insert processedObjs.sObjectsToInsert;
+
+			System.debug('Will insert ' + processedObjs.sObjectsToInsert.size());
+			System.debug('Will update ' + processedObjs.sObjectsToUpdate.size());
 
 			this.successMessage = 'Data Generation finished successfully.';
 		} 
@@ -81,6 +91,7 @@ public with sharing class WaveDataManagerController {
 			}
 
 			// Start the process
+			// TODO: Also pass the relationships as parameters, to handle the lookups
 			WaveDataUtils dataUtils = new WaveDataUtils(Schema.getGlobalDescribe().get(wmaObj.name), csvData, fieldPositions);
 			SObjectTransference currentObjs = dataUtils.processData();
 			processedObjs.sObjectsToInsert.addAll(currentObjs.sObjectsToInsert);

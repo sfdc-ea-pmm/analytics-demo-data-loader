@@ -1,4 +1,4 @@
 public class WaveMetadata {
-	public WaveMetadataApplication serviceWave;
+	public WaveMetadataApplication servicesWave;
 	public WaveMetadataApplicationForSales salesWave;
 }
