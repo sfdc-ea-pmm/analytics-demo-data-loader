@@ -109,7 +109,7 @@ global class CsvDataImportBatch implements Database.Batchable<List<String>>, Dat
 	        System.debug(lstToUpdate.size() + ' objects to update.');
 
 	        // DML
-	        update lstToUpdate;
+	        //update lstToUpdate; // For now, only inserts
 			insert lstToInsert;
 		}
 	}

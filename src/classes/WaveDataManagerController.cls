@@ -2,18 +2,21 @@ public with sharing class WaveDataManagerController {
 	
 	public String errorMessage { get; set; }
 	public String successMessage  { get; set; }
+	public String warningMessage  { get; set; }	
 	public Id batchProcessId { get; set; }
 	public Boolean monitorJobExecution { get; set; }
 	public Boolean showJobStatistics { get; set; }
 	public Integer batchesProcessed { get; set; }
 	public Integer totalBatches { get; set; }
 	public String jobStatusDsc { get; set; }
+	public Integer currentNodeIndex { get; set; }
+	public List<WaveApplicationObject> objectsNodes { get; set; }
 
-	// TODO: Comment this
 	private List<SObject> lstToInsert;
 	private List<SObject> lstToUpdate;
 
 	public WaveDataManagerController() {
+		this.objectsNodes = new List<WaveApplicationObject>();
 		this.lstToInsert = new List<SObject>();
 		this.lstToUpdate = new List<SObject>();
 	}
@@ -21,6 +24,8 @@ public with sharing class WaveDataManagerController {
 	private void resetMessages(){
 		this.errorMessage = '';
 		this.successMessage = '';
+		this.warningMessage = '';
+		this.jobStatusDsc = '';
 	}
 
 	public void run(){
@@ -35,31 +40,37 @@ public with sharing class WaveDataManagerController {
 	        HTTPResponse res = http.send(req);
 
 			String jsonMetadata = res.getBody();
-			List<WaveMetadataApplication> appsMetadata = (List<WaveMetadataApplication>)JSON.deserialize(jsonMetadata, List<WaveMetadataApplication>.class);
+			WaveMetadata metadata = (WaveMetadata)JSON.deserialize(jsonMetadata, WaveMetadata.class);
 
-			SObjectTransference processedObjs = new SObjectTransference();
+			// We build the node array
+			this.objectsNodes.clear();
 
-			// First we process the sales wave part
-			if(appsMetadata != null){
-				for(WaveMetadataApplication genericApp: appsMetadata) {
+			// We start collecting the common object to add to the node array
+			if(metadata.commonObjects != null) {
+				for(WaveMetadataApplicationObject wmaObj: metadata.commonObjects) {
+					List<WaveApplicationObject> objs = this.getObjectsToProcess(wmaObj);
+					this.objectsNodes.addAll(objs);
+				}
+			}
+
+			if(metadata.waveApplications != null){
+				for(WaveMetadataApplication genericApp: metadata.waveApplications) {
 					if(genericApp.objects != null){
-						for(WaveMetadataApplicationObject wmaObj: genericApp.objects) {
-							SObjectTransference currentObjs = this.handleDataForObject(wmaObj);
-							processedObjs.sObjectsToInsert.addAll(currentObjs.sObjectsToInsert);
-							processedObjs.sObjectsToUpdate.addAll(currentObjs.sObjectsToUpdate);
+						for(WaveMetadataApplicationObject wmaObj: genericApp.objects) {							
+							List<WaveApplicationObject> objs = this.getObjectsToProcess(wmaObj);
+							this.objectsNodes.addAll(objs);
 						}
 					}
 				}
 			}
 
-			// DML
-			update processedObjs.sObjectsToUpdate;
-			insert processedObjs.sObjectsToInsert;
-
-			//System.debug('Will insert ' + processedObjs.sObjectsToInsert.size());
-			//System.debug('Will update ' + processedObjs.sObjectsToUpdate.size());
-
-			this.successMessage = 'Data Generation finished successfully.';
+			if(this.objectsNodes.size() > 0){
+				this.currentNodeIndex = 0;
+				this.processNode();
+			}
+			else {
+				this.warningMessage = 'No data to process.';
+			}
 		} 
 		catch(Exception e) {
 			System.debug(e.getMessage());
@@ -68,14 +79,30 @@ public with sharing class WaveDataManagerController {
 		}
 	}
 
-	public SObjectTransference handleDataForObject(WaveMetadataApplicationObject wmaObj){
-		
-		System.debug('Handling data for ' + wmaObj.name);
-		System.debug('Data URL: ' + wmaObj.url);
-		SObjectTransference processedObjs = new SObjectTransference();
+	public List<WaveApplicationObject> getObjectsToProcess(WaveMetadataApplicationObject wmaObj){
+		List<WaveApplicationObject> listToProcess = new List<WaveApplicationObject>();
+		WaveApplicationObject rootObj = new WaveApplicationObject();
+		rootObj.name = wmaObj.name;
+		rootObj.url = wmaObj.url;
+		listToProcess.add(rootObj);
 
+		if(wmaObj.children != null) {
+			// Now the children objects
+			for(WaveMetadataApplicationObject chObj: wmaObj.children) {
+				List<WaveApplicationObject> childrenObjs = getObjectsToProcess(chObj);
+				listToProcess.addAll(childrenObjs);
+			}
+		}
+
+		return listToProcess;
+	}
+
+	private void processNode(){
+		WaveApplicationObject currentNode = this.objectsNodes.get(this.currentNodeIndex);
+		this.jobStatusDsc = 'Processing data for ' + currentNode.name + ' object...';
 		IMockarooHelper iMockHelper = MockarooHelperFactory.getIMockarooHelper();
-    	List<List<String>> csvData = iMockHelper.getData(wmaObj.url, false);
+    	List<List<String>> csvData = iMockHelper.getData(currentNode.url, false);
+    	
     	if(csvData.size() > 0){
 			// Will extract headers
 			List<String> headers = csvData.remove(0);
@@ -87,25 +114,54 @@ public with sharing class WaveDataManagerController {
 
 			// Start the process
 			// TODO: Also pass the relationships as parameters, to handle the lookups
-			WaveDataUtils dataUtils = new WaveDataUtils(Schema.getGlobalDescribe().get(wmaObj.name), csvData, fieldPositions);
-			SObjectTransference currentObjs = dataUtils.processData();
-			processedObjs.sObjectsToInsert.addAll(currentObjs.sObjectsToInsert);
-			processedObjs.sObjectsToUpdate.addAll(currentObjs.sObjectsToUpdate);
+			// Start the batch process
+			CsvDataImportBatch batchProcess = new CsvDataImportBatch(Schema.getGlobalDescribe().get(currentNode.name), csvData, fieldPositions);
+			this.batchProcessId = Database.executeBatch(batchProcess);
 
-			if(wmaObj.children != null) {
-				// Now the children objects
-				for(WaveMetadataApplicationObject chObj: wmaObj.children) {
-					SObjectTransference childrenObjs = handleDataForObject(chObj);
-					processedObjs.sObjectsToInsert.addAll(childrenObjs.sObjectsToInsert);
-					processedObjs.sObjectsToUpdate.addAll(childrenObjs.sObjectsToUpdate);
-				}
-			}
+			// Now monitor job execution
+			this.monitorJobExecution = true;
+			AsyncApexJob asyncJob = [SELECT CompletedDate, JobItemsProcessed, NumberOfErrors, Status, TotalJobItems FROM AsyncApexJob WHERE Id = :this.batchProcessId];			
+			this.totalBatches = asyncJob.TotalJobItems;
+			this.batchesProcessed = asyncJob.JobItemsProcessed;
+			this.showJobStatistics = true;
 		}
 		else {
 			// No data rows retrieved
-			this.successMessage = 'No data to process.';
+			this.warningMessage = 'No data to process for the ' + currentNode.name + ' object.';
+		}
+	}
+
+	public PageReference checkProcessingStatus(){
+		
+		AsyncApexJob asyncJob = [SELECT CompletedDate, JobItemsProcessed, NumberOfErrors, Status, TotalJobItems FROM AsyncApexJob WHERE Id = :this.batchProcessId];
+		
+		System.debug(asyncJob);
+
+		if(asyncJob.Status == 'Completed'){
+			if(this.currentNodeIndex == this.objectsNodes.size() - 1){
+				this.successMessage = 'The entire process finished successfully.';
+				this.currentNodeIndex = 0;
+				this.objectsNodes.clear();
+				this.jobStatusDsc = '';
+			}
+			else {
+				this.currentNodeIndex = this.currentNodeIndex + 1;
+				this.processNode();
+			}
+		}
+		else if(asyncJob.Status == 'Aborted'){
+			this.errorMessage = 'The process was aborted while generating data for the ' + this.objectsNodes.get(this.currentNodeIndex).name + ' object.';
+			this.currentNodeIndex = 0;
+			this.objectsNodes.clear();
+			this.jobStatusDsc = '';
+		}
+		else if(asyncJob.Status == 'Failed'){
+			this.errorMessage = 'The process failed while generating data for the ' + this.objectsNodes.get(this.currentNodeIndex).name + ' object.';
+			this.currentNodeIndex = 0;
+			this.objectsNodes.clear();
+			this.jobStatusDsc = '';
 		}
 
-		return processedObjs;
+		return null;
 	}
 }
