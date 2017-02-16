@@ -57,6 +57,7 @@
 		<members>SObjectTransference</members>
 		<members>WaveDataCleaner</members>
 		<members>WaveApplicationObject</members>
+		<members>WaveObjectRelation</members>
 		<name>ApexClass</name>
 	</types>
 	<types>
