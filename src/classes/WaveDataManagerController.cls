@@ -133,34 +133,38 @@ public with sharing class WaveDataManagerController {
 
 	public PageReference checkProcessingStatus(){
 		
-		AsyncApexJob asyncJob = [SELECT CompletedDate, JobItemsProcessed, NumberOfErrors, Status, TotalJobItems FROM AsyncApexJob WHERE Id = :this.batchProcessId];
-		
-		System.debug(asyncJob);
+		if(!String.isBlank(this.batchProcessId)){
+			List<AsyncApexJob> lstJobs = [SELECT CompletedDate, JobItemsProcessed, NumberOfErrors, Status, TotalJobItems FROM AsyncApexJob WHERE Id = :this.batchProcessId];
+			if(lstJobs.size() > 0){
+				
+				AsyncApexJob asyncJob = lstJobs.get(0);
 
-		if(asyncJob.Status == 'Completed'){
-			if(this.currentNodeIndex == this.objectsNodes.size() - 1){
-				this.successMessage = 'The entire process finished successfully.';
-				this.currentNodeIndex = 0;
-				this.objectsNodes.clear();
-				this.jobStatusDsc = '';
+				if(asyncJob.Status == 'Completed'){
+					if(this.currentNodeIndex == this.objectsNodes.size() - 1){
+						this.successMessage = 'The entire process finished successfully.';
+						this.currentNodeIndex = 0;
+						this.objectsNodes.clear();
+						this.jobStatusDsc = '';
+					}
+					else {
+						this.currentNodeIndex = this.currentNodeIndex + 1;
+						this.processNode();
+					}
+				}
+				else if(asyncJob.Status == 'Aborted'){
+					this.errorMessage = 'The process was aborted while generating data for the ' + this.objectsNodes.get(this.currentNodeIndex).name + ' object.';
+					this.currentNodeIndex = 0;
+					this.objectsNodes.clear();
+					this.jobStatusDsc = '';
+				}
+				else if(asyncJob.Status == 'Failed'){
+					this.errorMessage = 'The process failed while generating data for the ' + this.objectsNodes.get(this.currentNodeIndex).name + ' object.';
+					this.currentNodeIndex = 0;
+					this.objectsNodes.clear();
+					this.jobStatusDsc = '';
+				}
 			}
-			else {
-				this.currentNodeIndex = this.currentNodeIndex + 1;
-				this.processNode();
-			}
-		}
-		else if(asyncJob.Status == 'Aborted'){
-			this.errorMessage = 'The process was aborted while generating data for the ' + this.objectsNodes.get(this.currentNodeIndex).name + ' object.';
-			this.currentNodeIndex = 0;
-			this.objectsNodes.clear();
-			this.jobStatusDsc = '';
-		}
-		else if(asyncJob.Status == 'Failed'){
-			this.errorMessage = 'The process failed while generating data for the ' + this.objectsNodes.get(this.currentNodeIndex).name + ' object.';
-			this.currentNodeIndex = 0;
-			this.objectsNodes.clear();
-			this.jobStatusDsc = '';
-		}
+		}		
 
 		return null;
 	}
