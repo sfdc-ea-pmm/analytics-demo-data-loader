@@ -52,7 +52,7 @@ public with sharing class WaveDataManagerController {
 					this.objectsNodes.addAll(objs);
 				}
 			}
-			/*
+			
 			if(metadata.waveApplications != null){
 				for(WaveMetadataApplication genericApp: metadata.waveApplications) {
 					if(genericApp.objects != null){
@@ -62,7 +62,7 @@ public with sharing class WaveDataManagerController {
 						}
 					}
 				}
-			}*/
+			}
 
 			if(this.objectsNodes.size() > 0){
 				this.currentNodeIndex = 0;
@@ -153,16 +153,24 @@ public with sharing class WaveDataManagerController {
 				AsyncApexJob asyncJob = lstJobs.get(0);
 
 				if(asyncJob.Status == 'Completed'){
-					if(this.currentNodeIndex == this.objectsNodes.size() - 1){
-						this.successMessage = 'The entire process finished successfully.';
+					if(asyncJob.NumberOfErrors > 0) {
+						this.errorMessage = 'The process failed while generating data for the ' + this.objectsNodes.get(this.currentNodeIndex).name + ' object.';
 						this.currentNodeIndex = 0;
 						this.objectsNodes.clear();
 						this.jobStatusDsc = '';
 					}
 					else {
-						this.currentNodeIndex = this.currentNodeIndex + 1;
-						this.processNode();
-					}
+						if(this.currentNodeIndex == this.objectsNodes.size() - 1){
+							this.successMessage = 'The entire process finished successfully.';
+							this.currentNodeIndex = 0;
+							this.objectsNodes.clear();
+							this.jobStatusDsc = '';
+						}
+						else {
+							this.currentNodeIndex = this.currentNodeIndex + 1;
+							this.processNode();
+						}
+					}					
 				}
 				else if(asyncJob.Status == 'Aborted'){
 					this.errorMessage = 'The process was aborted while generating data for the ' + this.objectsNodes.get(this.currentNodeIndex).name + ' object.';
