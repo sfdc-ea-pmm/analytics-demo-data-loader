@@ -1,4 +1,4 @@
-public class WaveObjectRelation {
+public class WaveMetadataApplicationObjectRelation {
 	public String csvColumnName;
 	public String targetSObject;
 	public String targetSObjectLookupField;

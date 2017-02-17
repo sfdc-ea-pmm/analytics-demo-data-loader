@@ -58,6 +58,8 @@
 		<members>WaveDataCleaner</members>
 		<members>WaveApplicationObject</members>
 		<members>WaveObjectRelation</members>
+		<members>WaveApplicationObjectRelation</members>
+		<members>WaveMetadataApplicationObjectRelation</members>
 		<name>ApexClass</name>
 	</types>
 	<types>

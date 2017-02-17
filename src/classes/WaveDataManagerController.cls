@@ -52,7 +52,7 @@ public with sharing class WaveDataManagerController {
 					this.objectsNodes.addAll(objs);
 				}
 			}
-
+			/*
 			if(metadata.waveApplications != null){
 				for(WaveMetadataApplication genericApp: metadata.waveApplications) {
 					if(genericApp.objects != null){
@@ -62,7 +62,7 @@ public with sharing class WaveDataManagerController {
 						}
 					}
 				}
-			}
+			}*/
 
 			if(this.objectsNodes.size() > 0){
 				this.currentNodeIndex = 0;
@@ -86,11 +86,26 @@ public with sharing class WaveDataManagerController {
 		rootObj.url = wmaObj.url;
 		listToProcess.add(rootObj);
 
+		// We process the children
 		if(wmaObj.children != null) {
 			// Now the children objects
 			for(WaveMetadataApplicationObject chObj: wmaObj.children) {
 				List<WaveApplicationObject> childrenObjs = getObjectsToProcess(chObj);
 				listToProcess.addAll(childrenObjs);
+			}
+		}
+
+		// We process the relations
+		rootObj.relations = new List<WaveApplicationObjectRelation>();
+		if(wmaObj.relations != null){			
+			for(WaveMetadataApplicationObjectRelation relObj: wmaObj.relations) {
+				WaveApplicationObjectRelation rel = new WaveApplicationObjectRelation();
+				rel.csvColumnName = relObj.csvColumnName;
+				rel.targetSObject = relObj.targetSObject;
+				rel.targetSObjectLookupField = relObj.targetSObjectLookupField;
+				rel.foreignKeyField = relObj.foreignKeyField;
+
+				rootObj.relations.add(rel);
 			}
 		}
 
@@ -112,10 +127,8 @@ public with sharing class WaveDataManagerController {
 				fieldPositions.put(i, headers[i]);
 			}
 
-			// Start the process
-			// TODO: Also pass the relationships as parameters, to handle the lookups
 			// Start the batch process
-			CsvDataImportBatch batchProcess = new CsvDataImportBatch(Schema.getGlobalDescribe().get(currentNode.name), csvData, fieldPositions);
+			CsvDataImportBatch batchProcess = new CsvDataImportBatch(Schema.getGlobalDescribe().get(currentNode.name), csvData, fieldPositions, currentNode.relations);
 			this.batchProcessId = Database.executeBatch(batchProcess);
 
 			// Now monitor job execution
