@@ -64,7 +64,7 @@ public with sharing class WaveDataManagerController {
 
 				// Objects and fields Setup ()
 
-				this.processNode();
+				//this.processNode();
 			}
 			else {
 				this.warningMessage = 'No data to process.';
@@ -133,7 +133,9 @@ public with sharing class WaveDataManagerController {
 				fieldMetadata.Precision = Integer.valueOf(metadataRow[fieldPositions.get('Precision')]);
 				fieldMetadata.Scale = Integer.valueOf(metadataRow[fieldPositions.get('Scale')]);
 				fieldMetadata.IsExternalId = Boolean.valueOf(metadataRow[fieldPositions.get('IsExternalId')]);
-				fieldMetadata.IsRequired = Boolean.valueOf(metadataRow[fieldPositions.get('IsRequired')]);
+				Integer j = fieldPositions.get('IsRequired');
+				System.debug(j);
+				fieldMetadata.IsRequired = Boolean.valueOf(metadataRow[j]);
 
 				rootObj.fields.add(fieldMetadata);
 			}
