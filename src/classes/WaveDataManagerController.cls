@@ -12,13 +12,8 @@ public with sharing class WaveDataManagerController {
 	public Integer currentNodeIndex { get; set; }
 	public List<WaveApplicationObject> objectsNodes { get; set; }
 
-	private List<SObject> lstToInsert;
-	private List<SObject> lstToUpdate;
-
 	public WaveDataManagerController() {
 		this.objectsNodes = new List<WaveApplicationObject>();
-		this.lstToInsert = new List<SObject>();
-		this.lstToUpdate = new List<SObject>();
 	}
 
 	private void resetMessages(){
@@ -66,6 +61,9 @@ public with sharing class WaveDataManagerController {
 
 			if(this.objectsNodes.size() > 0){
 				this.currentNodeIndex = 0;
+
+				// Objects and fields Setup ()
+
 				this.processNode();
 			}
 			else {
@@ -107,6 +105,41 @@ public with sharing class WaveDataManagerController {
 
 				rootObj.relations.add(rel);
 			}
+		}
+
+		// We process the fields metadata
+		IMockarooHelper iMockHelper = MockarooHelperFactory.getIMockarooHelper();
+    	List<List<String>> csvMetadata = iMockHelper.getData(wmaObj.metadataUrl, false);
+    	
+    	if(csvMetadata.size() > 0){
+			// Will extract headers
+			List<String> headers = csvMetadata.remove(0);
+			Map<String, Integer> fieldPositions = new Map<String, Integer>();
+			
+			for(Integer i = 0; i < headers.size(); i++) {
+				fieldPositions.put(headers[i], i);
+			}
+
+			// For each row of data in the CSV
+			rootObj.fields = new List<WaveApplicationObjectField>();
+			
+			for(List<String> metadataRow: csvMetadata) {
+				WaveApplicationObjectField fieldMetadata = new WaveApplicationObjectField();
+				fieldMetadata.Label = metadataRow[fieldPositions.get('Label')];
+				fieldMetadata.Name = metadataRow[fieldPositions.get('Name')];
+				fieldMetadata.Type = metadataRow[fieldPositions.get('Type')];
+				fieldMetadata.ReferenceTo = metadataRow[fieldPositions.get('ReferenceTo')];
+				fieldMetadata.Length = Integer.valueOf(metadataRow[fieldPositions.get('Length')]);
+				fieldMetadata.Precision = Integer.valueOf(metadataRow[fieldPositions.get('Precision')]);
+				fieldMetadata.Scale = Integer.valueOf(metadataRow[fieldPositions.get('Scale')]);
+				fieldMetadata.IsExternalId = Boolean.valueOf(metadataRow[fieldPositions.get('IsExternalId')]);
+				fieldMetadata.IsRequired = Boolean.valueOf(metadataRow[fieldPositions.get('IsRequired')]);
+
+				rootObj.fields.add(fieldMetadata);
+			}
+
+			System.debug('Fields for: ' + wmaObj.name);
+			System.debug(rootObj.fields);
 		}
 
 		return listToProcess;

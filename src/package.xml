@@ -60,6 +60,7 @@
 		<members>WaveObjectRelation</members>
 		<members>WaveApplicationObjectRelation</members>
 		<members>WaveMetadataApplicationObjectRelation</members>
+		<members>WaveApplicationObjectField</members>
 		<name>ApexClass</name>
 	</types>
 	<types>
