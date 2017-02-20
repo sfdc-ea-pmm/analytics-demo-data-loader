@@ -62,9 +62,22 @@ public with sharing class WaveDataManagerController {
 			if(this.objectsNodes.size() > 0){
 				this.currentNodeIndex = 0;
 
-				// Objects and fields Setup ()
+				// Objects and fields Setup
+				for(WaveApplicationObject waObj: this.objectsNodes) {
+					// Check object existence using waObj.name property
+					// If object doesn't exist, create it
 
-				//this.processNode();
+					// Check fields existence using waObj.fields property
+					for(WaveApplicationObjectField field: waObj.fields) {
+						// If field doesn't exist, create it using field properties
+					}
+
+				}
+
+				// Print some message at the UI to inform that setup has succeeded
+
+				// We start loading data for each object
+				this.processNode();
 			}
 			else {
 				this.warningMessage = 'No data to process.';
@@ -83,6 +96,38 @@ public with sharing class WaveDataManagerController {
 		rootObj.name = wmaObj.name;
 		rootObj.url = wmaObj.url;
 		listToProcess.add(rootObj);
+
+		// We process the fields metadata
+		IMockarooHelper iMockHelper = MockarooHelperFactory.getIMockarooHelper();
+    	List<List<String>> csvMetadata = iMockHelper.getData(wmaObj.metadataUrl, false);
+    	
+    	if(csvMetadata.size() > 0){
+			// Will extract headers
+			List<String> headers = csvMetadata.remove(0);
+			Map<String, Integer> fieldPositions = new Map<String, Integer>();
+			
+			for(Integer i = 0; i < headers.size(); i++) {
+				fieldPositions.put(headers.get(i), i);
+			}
+
+			// For each row of data in the CSV
+			rootObj.fields = new List<WaveApplicationObjectField>();
+			
+			for(List<String> metadataRow: csvMetadata) {
+				WaveApplicationObjectField fieldMetadata = new WaveApplicationObjectField();
+				fieldMetadata.Label = metadataRow.get(fieldPositions.get('Label'));
+				fieldMetadata.Name = metadataRow.get(fieldPositions.get('Name'));
+				fieldMetadata.Type = metadataRow.get(fieldPositions.get('Type'));
+				fieldMetadata.ReferenceTo = metadataRow.get(fieldPositions.get('ReferenceTo'));
+				fieldMetadata.Length = Integer.valueOf(metadataRow.get(fieldPositions.get('Length')));
+				fieldMetadata.Precision = Integer.valueOf(metadataRow.get(fieldPositions.get('Precision')));
+				fieldMetadata.Scale = Integer.valueOf(metadataRow.get(fieldPositions.get('Scale')));
+				fieldMetadata.IsExternalId = Boolean.valueOf(metadataRow.get(fieldPositions.get('IsExternalId')));
+				fieldMetadata.IsRequired = Boolean.valueOf(metadataRow.get(fieldPositions.get('IsRequired')));
+
+				rootObj.fields.add(fieldMetadata);
+			}
+		}
 
 		// We process the children
 		if(wmaObj.children != null) {
@@ -105,44 +150,7 @@ public with sharing class WaveDataManagerController {
 
 				rootObj.relations.add(rel);
 			}
-		}
-
-		// We process the fields metadata
-		IMockarooHelper iMockHelper = MockarooHelperFactory.getIMockarooHelper();
-    	List<List<String>> csvMetadata = iMockHelper.getData(wmaObj.metadataUrl, false);
-    	
-    	if(csvMetadata.size() > 0){
-			// Will extract headers
-			List<String> headers = csvMetadata.remove(0);
-			Map<String, Integer> fieldPositions = new Map<String, Integer>();
-			
-			for(Integer i = 0; i < headers.size(); i++) {
-				fieldPositions.put(headers[i], i);
-			}
-
-			// For each row of data in the CSV
-			rootObj.fields = new List<WaveApplicationObjectField>();
-			
-			for(List<String> metadataRow: csvMetadata) {
-				WaveApplicationObjectField fieldMetadata = new WaveApplicationObjectField();
-				fieldMetadata.Label = metadataRow[fieldPositions.get('Label')];
-				fieldMetadata.Name = metadataRow[fieldPositions.get('Name')];
-				fieldMetadata.Type = metadataRow[fieldPositions.get('Type')];
-				fieldMetadata.ReferenceTo = metadataRow[fieldPositions.get('ReferenceTo')];
-				fieldMetadata.Length = Integer.valueOf(metadataRow[fieldPositions.get('Length')]);
-				fieldMetadata.Precision = Integer.valueOf(metadataRow[fieldPositions.get('Precision')]);
-				fieldMetadata.Scale = Integer.valueOf(metadataRow[fieldPositions.get('Scale')]);
-				fieldMetadata.IsExternalId = Boolean.valueOf(metadataRow[fieldPositions.get('IsExternalId')]);
-				Integer j = fieldPositions.get('IsRequired');
-				System.debug(j);
-				fieldMetadata.IsRequired = Boolean.valueOf(metadataRow[j]);
-
-				rootObj.fields.add(fieldMetadata);
-			}
-
-			System.debug('Fields for: ' + wmaObj.name);
-			System.debug(rootObj.fields);
-		}
+		}		
 
 		return listToProcess;
 	}
