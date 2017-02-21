@@ -11,6 +11,8 @@
 		<members>DataflowEditor_test</members>
 		<members>IMockarooHelper</members>
 		<members>ManageQuotaDatasetsController</members>
+		<members>MetadataService</members>
+		<members>MetadataServiceTest</members>
 		<members>MockarooHelper</members>
 		<members>MockarooHelperFactory</members>
 		<members>MockarooHttpCalloutMock</members>
@@ -31,13 +33,20 @@
 		<members>WW_CopyOpportunityFieldHistory_test</members>
 		<members>WW_CopyOpportunityHistory</members>
 		<members>WW_CopyOpportunityHistory_test</members>
+		<members>WaveApplicationObject</members>
+		<members>WaveApplicationObjectField</members>
+		<members>WaveApplicationObjectRelation</members>
 		<members>WaveAsset</members>
 		<members>WaveAssetsUtility</members>
 		<members>WaveAssetsUtility_Test</members>
+		<members>WaveCsvDataRetriever</members>
 		<members>WaveDashboard</members>
 		<members>WaveDashboardsResponse</members>
+		<members>WaveDataCleaner</members>
 		<members>WaveDataGeneratorController</members>
 		<members>WaveDataGenerator_test</members>
+		<members>WaveDataManagerController</members>
+		<members>WaveDataUtils</members>
 		<members>WaveDataset</members>
 		<members>WaveDatasetsResponse</members>
 		<members>WaveFolder</members>
@@ -47,20 +56,13 @@
 		<members>WaveFoldersResponse</members>
 		<members>WaveLens</members>
 		<members>WaveLensesResponse</members>
-		<members>WaveRestApiUtils</members>
-		<members>WaveCsvDataRetriever</members>
-		<members>WaveDataManagerController</members>
 		<members>WaveMetadata</members>
 		<members>WaveMetadataApplication</members>
 		<members>WaveMetadataApplicationObject</members>
-		<members>WaveDataUtils</members>
-		<members>SObjectTransference</members>
-		<members>WaveDataCleaner</members>
-		<members>WaveApplicationObject</members>
-		<members>WaveObjectRelation</members>
-		<members>WaveApplicationObjectRelation</members>
 		<members>WaveMetadataApplicationObjectRelation</members>
-		<members>WaveApplicationObjectField</members>
+		<members>WaveObjectRelation</members>
+		<members>WaveRestApiUtils</members>
+		<members>SF_MetadataUtils</members>
 		<name>ApexClass</name>
 	</types>
 	<types>

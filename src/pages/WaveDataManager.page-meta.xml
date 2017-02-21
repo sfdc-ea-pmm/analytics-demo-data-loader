@@ -4,4 +4,9 @@
     <availableInTouch>false</availableInTouch>
     <confirmationTokenRequired>false</confirmationTokenRequired>
     <label>WaveDataManager</label>
+    <packageVersions>
+        <majorNumber>1</majorNumber>
+        <minorNumber>634</minorNumber>
+        <namespace>vs</namespace>
+    </packageVersions>
 </ApexPage>

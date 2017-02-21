@@ -1,8 +1,8 @@
 <apex:page sidebar="false" controller="WaveDataManagerController">
-	<vs:importVisualStrap theme="paper" />
+	<vs:importvisualstrap theme="paper" />
 	<vs:visualstrapblock >	   		   	
 	   	<!--All the  Visualstrap content and Visualforce content here -->
-	   	<apex:form>
+	   	<apex:form >
 	   		<apex:commandButton value="Run Data Generation" styleClass="btn-primary" action="{!run}"/>
 	   		<br /><br />
 	   		<vs:panel type="default" title="Results" id="messages">
@@ -18,7 +18,7 @@
 			</vs:panel>
 	   	</apex:form>
 	</vs:visualstrapblock>
-	<apex:form>
+	<apex:form >
 		<apex:actionPoller action="{!checkProcessingStatus}" reRender="processingStatus,checkFunction,messages" interval="5" enabled="{!objectsNodes.size > 0}" id="checkFunction"/>
 		<apex:outputText value="{!jobStatusDsc}" id="processingStatus"/>
 	</apex:form>

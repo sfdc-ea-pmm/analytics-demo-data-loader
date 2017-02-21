@@ -62,16 +62,21 @@ public with sharing class WaveDataManagerController {
 			if(this.objectsNodes.size() > 0){
 				this.currentNodeIndex = 0;
 
+				SF_MetadataUtils mdUtils = new SF_MetadataUtils();
+
 				// Objects and fields Setup
 				for(WaveApplicationObject waObj: this.objectsNodes) {
-					// Check object existence using waObj.name property
-					// If object doesn't exist, create it
+					// Check object existence using waObj.name property					
+					if(!mdUtils.objectExists(waObj.name)){
+						// If object doesn't exist, create it
+						mdUtils.createObject(waObj.name);
+					}
 
 					// Check fields existence using waObj.fields property
 					for(WaveApplicationObjectField field: waObj.fields) {
 						// If field doesn't exist, create it using field properties
 					}
-
+					
 				}
 
 				// Print some message at the UI to inform that setup has succeeded
