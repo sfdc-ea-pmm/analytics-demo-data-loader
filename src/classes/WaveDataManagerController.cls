@@ -61,7 +61,7 @@ public with sharing class WaveDataManagerController {
 
 			if(this.objectsNodes.size() > 0){
 				this.currentNodeIndex = 0;
-
+				
 				SF_MetadataUtils mdUtils = new SF_MetadataUtils();
 
 				// Objects and fields Setup
@@ -69,20 +69,38 @@ public with sharing class WaveDataManagerController {
 					// Check object existence using waObj.name property					
 					if(!mdUtils.objectExists(waObj.name)){
 						// If object doesn't exist, create it
+						jobStatusDsc += waObj.name + ' doesn\'t exists. Attempting to create it...\n';
 						mdUtils.createObject(waObj.name);
+						jobStatusDsc += waObj.name + ' object created successfully.\n';
 					}
 
 					// Check fields existence using waObj.fields property
 					for(WaveApplicationObjectField field: waObj.fields) {
 						// If field doesn't exist, create it using field properties
+						if(!mdUtils.fieldExists(waObj.name, field.Name)){
+							jobStatusDsc += waObj.name + '.' + field.Name + ' field doesn\'t exists. Attempting to create it...\n';
+							SF_MetadataUtils.CustomFieldSpecification fieldSpec = new SF_MetadataUtils.CustomFieldSpecification();
+							fieldSpec.ObjectName = waObj.name;
+							fieldSpec.Name = field.Name;
+					    	fieldSpec.Label = field.Label;
+					    	fieldSpec.Type = field.Type;
+							fieldSpec.ReferenceTo = field.ReferenceTo;
+							fieldSpec.Length = field.Length;
+							fieldSpec.Precision = field.Precision;
+							fieldSpec.Scale = field.Scale;
+							fieldSpec.IsExternalId = field.IsExternalId;
+							fieldSpec.IsRequired = field.IsRequired;
+
+							mdUtils.createField(fieldSpec);
+							jobStatusDsc += waObj.name + '.' + field.Name + ' field created successfully.\n';
+						}
 					}
-					
 				}
 
 				// Print some message at the UI to inform that setup has succeeded
 
 				// We start loading data for each object
-				this.processNode();
+				//this.processNode();
 			}
 			else {
 				this.warningMessage = 'No data to process.';
@@ -117,7 +135,7 @@ public with sharing class WaveDataManagerController {
 
 			// For each row of data in the CSV
 			rootObj.fields = new List<WaveApplicationObjectField>();
-			
+
 			for(List<String> metadataRow: csvMetadata) {
 				WaveApplicationObjectField fieldMetadata = new WaveApplicationObjectField();
 				fieldMetadata.Label = metadataRow.get(fieldPositions.get('Label'));

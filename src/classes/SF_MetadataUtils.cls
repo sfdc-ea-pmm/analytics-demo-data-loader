@@ -22,9 +22,9 @@ public with sharing class SF_MetadataUtils {
             	this.existingObjectsMap.put(fileProperty.fullName, true);
             }
             else if(fileProperty.type_x == 'CustomField') {
-            	String[] fullNameParts = fileProperty.fullName.split('.');
+            	String[] fullNameParts = fileProperty.fullName.split('\\.');
             	String objName = fullNameParts[0];
-            	String fieldName = fullNameParts[1];
+            	String fieldName = fullNameParts[1];            	
 
             	Map<String, Boolean> fieldsMap;
             	if(!this.existingFieldsMap.containsKey(objName)){
@@ -53,7 +53,7 @@ public with sharing class SF_MetadataUtils {
 		List<MetadataService.SaveResult> results;
 		MetadataService.MetadataPort service = createService();
 		MetadataService.CustomObject cObj = new MetadataService.CustomObject();
-        cObj.fullName = objName + '__c';
+        cObj.fullName = objName.endsWith('__c') ? objName : objName + '__c';
         cObj.label = objName;
         cObj.pluralLabel = objName;
         cObj.nameField = new MetadataService.CustomField();

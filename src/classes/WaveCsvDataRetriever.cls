@@ -10,6 +10,7 @@ public with sharing virtual class WaveCsvDataRetriever implements IMockarooHelpe
 		String contents = this.mockarooCallout(dataUrl);
 		contents = contents.replaceAll(',"""',',"DBLQT').replaceall('""",','DBLQT",');
         contents = contents.replaceAll('""','DBLQT');
+        contents = contents.replaceAll('\r', '');
 		List<String> lines = contents.split('\n');
 		Integer num = 0;
 
@@ -43,7 +44,7 @@ public with sharing virtual class WaveCsvDataRetriever implements IMockarooHelpe
 	                    cleanFields.add(field.replaceAll('DBLQT','"'));
 	                }
 	            }
-	            
+
 	            allFields.add(cleanFields);
             }
         }
