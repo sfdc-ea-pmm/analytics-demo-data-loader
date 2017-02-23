@@ -2,18 +2,20 @@ public with sharing class WaveDataManagerController {
 	
 	public String errorMessage { get; set; }
 	public String successMessage  { get; set; }
-	public String warningMessage  { get; set; }	
+	public String warningMessage  { get; set; }
 	public Id batchProcessId { get; set; }
 	public Boolean monitorJobExecution { get; set; }
 	public Boolean showJobStatistics { get; set; }
 	public Integer batchesProcessed { get; set; }
 	public Integer totalBatches { get; set; }
 	public String jobStatusDsc { get; set; }
+	public List<String> processingLog { get; set; }
 	public Integer currentNodeIndex { get; set; }
 	public List<WaveApplicationObject> objectsNodes { get; set; }
 
 	public WaveDataManagerController() {
 		this.objectsNodes = new List<WaveApplicationObject>();
+		this.processingLog = new List<String>();
 	}
 
 	private void resetMessages(){
@@ -21,6 +23,7 @@ public with sharing class WaveDataManagerController {
 		this.successMessage = '';
 		this.warningMessage = '';
 		this.jobStatusDsc = '';
+		this.processingLog.clear();
 	}
 
 	public void run(){
@@ -66,19 +69,27 @@ public with sharing class WaveDataManagerController {
 
 				// Objects and fields Setup
 				for(WaveApplicationObject waObj: this.objectsNodes) {
+					
+					this.processingLog.add('Processing ' + waObj.name + ' object...');
+
 					// Check object existence using waObj.name property					
 					if(!mdUtils.objectExists(waObj.name)){
 						// If object doesn't exist, create it
-						jobStatusDsc += waObj.name + ' doesn\'t exists. Attempting to create it...\n';
-						mdUtils.createObject(waObj.name);
-						jobStatusDsc += waObj.name + ' object created successfully.\n';
+						this.processingLog.add(waObj.name + ' doesn\'t exists. Attempting to create it...');
+						List<String> errors = mdUtils.createObject(waObj.name);
+						if(errors.size() == 0){
+							this.processingLog.add(waObj.name + ' object created successfully.');
+						}
+						else {
+							this.processingLog.addAll(errors);
+						}						
 					}
 
 					// Check fields existence using waObj.fields property
 					for(WaveApplicationObjectField field: waObj.fields) {
 						// If field doesn't exist, create it using field properties
 						if(!mdUtils.fieldExists(waObj.name, field.Name)){
-							jobStatusDsc += waObj.name + '.' + field.Name + ' field doesn\'t exists. Attempting to create it...\n';
+							this.processingLog.add(waObj.name + '.' + field.Name + ' field doesn\'t exists. Attempting to create it...');
 							SF_MetadataUtils.CustomFieldSpecification fieldSpec = new SF_MetadataUtils.CustomFieldSpecification();
 							fieldSpec.ObjectName = waObj.name;
 							fieldSpec.Name = field.Name;
@@ -91,8 +102,14 @@ public with sharing class WaveDataManagerController {
 							fieldSpec.IsExternalId = field.IsExternalId;
 							fieldSpec.IsRequired = field.IsRequired;
 
-							mdUtils.createField(fieldSpec);
-							jobStatusDsc += waObj.name + '.' + field.Name + ' field created successfully.\n';
+							List<String> errors = mdUtils.createField(fieldSpec);
+							if(errors.size() == 0){
+								this.processingLog.add(waObj.name + '.' + field.Name + ' field created successfully.');
+							}
+							else {
+								this.processingLog.add(waObj.name + '.' + field.Name + ' field couldn\'t be created. Reasons: ');
+								this.processingLog.addAll(errors);
+							}
 						}
 					}
 				}
@@ -180,7 +197,7 @@ public with sharing class WaveDataManagerController {
 
 	private void processNode(){
 		WaveApplicationObject currentNode = this.objectsNodes.get(this.currentNodeIndex);
-		this.jobStatusDsc = 'Processing data for ' + currentNode.name + ' object...';
+		this.processingLog.add('Processing data for ' + currentNode.name + ' object...');
 		IMockarooHelper iMockHelper = MockarooHelperFactory.getIMockarooHelper();
     	List<List<String>> csvData = iMockHelper.getData(currentNode.url, false);
     	
@@ -224,6 +241,7 @@ public with sharing class WaveDataManagerController {
 						this.currentNodeIndex = 0;
 						this.objectsNodes.clear();
 						this.jobStatusDsc = '';
+						this.processingLog.clear();
 					}
 					else {
 						if(this.currentNodeIndex == this.objectsNodes.size() - 1){
@@ -231,6 +249,7 @@ public with sharing class WaveDataManagerController {
 							this.currentNodeIndex = 0;
 							this.objectsNodes.clear();
 							this.jobStatusDsc = '';
+							this.processingLog.clear();
 						}
 						else {
 							this.currentNodeIndex = this.currentNodeIndex + 1;
@@ -243,12 +262,14 @@ public with sharing class WaveDataManagerController {
 					this.currentNodeIndex = 0;
 					this.objectsNodes.clear();
 					this.jobStatusDsc = '';
+					this.processingLog.clear();
 				}
 				else if(asyncJob.Status == 'Failed'){
 					this.errorMessage = 'The process failed while generating data for the ' + this.objectsNodes.get(this.currentNodeIndex).name + ' object.';
 					this.currentNodeIndex = 0;
 					this.objectsNodes.clear();
 					this.jobStatusDsc = '';
+					this.processingLog.clear();
 				}
 			}
 		}		

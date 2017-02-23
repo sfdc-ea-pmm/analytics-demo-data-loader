@@ -19,7 +19,10 @@
 	   	</apex:form>
 	</vs:visualstrapblock>
 	<apex:form >
-		<apex:actionPoller action="{!checkProcessingStatus}" reRender="processingStatus,checkFunction,messages" interval="5" enabled="{!objectsNodes.size > 0}" id="checkFunction"/>
+		<apex:actionPoller action="{!checkProcessingStatus}" reRender="processingStatus,processingLogConsole,checkFunction,messages" interval="5" enabled="{!objectsNodes.size > 0}" id="checkFunction"/>
 		<apex:outputText value="{!jobStatusDsc}" id="processingStatus"/>
+		<apex:repeat value="{!processingLog}" var="logEntry" id="processingLogConsole">
+			<apex:outputText value="{!logEntry}" /><br />
+		</apex:repeat>
 	</apex:form>
 </apex:page>

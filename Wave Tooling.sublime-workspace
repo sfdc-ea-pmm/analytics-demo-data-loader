@@ -396,20 +396,11 @@
 	"buffers":
 	[
 		{
-			"file": "src/classes/WaveDataGenerator_test.cls",
+			"file": "src/classes/WaveDataManagerController.cls",
 			"settings":
 			{
-				"buffer_size": 4224,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "src/classes/WaveDataGeneratorController.cls",
-			"settings":
-			{
-				"buffer_size": 10157,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
+				"buffer_size": 9708,
+				"line_ending": "Windows"
 			}
 		}
 	],
@@ -459,6 +450,8 @@
 	],
 	"file_history":
 	[
+		"/D/desarrollo/Salesforce/Workspace/Wave Tooling/src/classes/WaveDataGeneratorController.cls",
+		"/D/desarrollo/Salesforce/Workspace/Wave Tooling/src/classes/WaveDataGenerator_test.cls",
 		"/D/desarrollo/Salesforce/Workspace/Wave Tooling/src/classes/WaveAssetsUtility.cls",
 		"/D/desarrollo/Salesforce/Workspace/Wave Tooling/src/classes/SalesWaveDataflowDefinitionEditor.cls",
 		"/D/desarrollo/Salesforce/Workspace/Wave Tooling/src/classes/WW_CopyOpportunityHistory_test.cls",
@@ -475,7 +468,6 @@
 		"/D/desarrollo/Salesforce/Workspace/Wave Tooling/src/classes/WaveLens.cls",
 		"/D/desarrollo/Salesforce/Workspace/Wave Tooling/src/classes/WaveFoldersResponse.cls",
 		"/D/desarrollo/Salesforce/Workspace/Wave Tooling/src/classes/WaveDataset.cls",
-		"/D/desarrollo/Salesforce/Workspace/Wave Tooling/src/classes/WaveDataGeneratorController.cls",
 		"/D/desarrollo/Salesforce/Workspace/Wave Tooling/src/pages/WaveDataGenerator.page",
 		"/C/Users/Rodrigo/AppData/Roaming/Sublime Text 3/Packages/User/mavensmate.sublime-settings",
 		"/D/desarrollo/Proquimur/www/application/views/publico/detalle_producto.php",
@@ -585,8 +577,7 @@
 		"/D/desarrollo/Proquimur/www/application/views/admin/plagas/edit.php",
 		"/D/Unipersonal/Envio_Formulario1102_2013_30415657_3172727.dgi",
 		"/C/Users/Rodrigo/AppData/Local/Temp/Envio_Formulario1102_2013_217193100018_203432.dgi",
-		"/D/desarrollo/Proquimur/www/application/views/publico/productos_destacados.php",
-		"/D/desarrollo/Proquimur/www/application/views/admin/novedades/add.php"
+		"/D/desarrollo/Proquimur/www/application/views/publico/productos_destacados.php"
 	],
 	"find":
 	{
@@ -902,19 +893,19 @@
 			[
 				{
 					"buffer": 0,
-					"file": "src/classes/WaveDataGenerator_test.cls",
+					"file": "src/classes/WaveDataManagerController.cls",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4224,
+						"buffer_size": 9708,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1663,
-								1663
+								699,
+								699
 							]
 						],
 						"settings":
@@ -923,40 +914,10 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 540.0,
+						"translation.y": 228.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "src/classes/WaveDataGeneratorController.cls",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 10157,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								4084,
-								4084
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/MavensMate/sublime/lang/Apex.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1836.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
 					"type": "text"
 				}
 			]

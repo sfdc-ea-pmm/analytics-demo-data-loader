@@ -5,6 +5,10 @@
                 "config/.symbols"
             ],
             "path": "."
+        },
+	{
+            "path": ".",
+            "file_exclude_patterns": ["*-meta.xml"]
         }
     ],
     "settings": {
