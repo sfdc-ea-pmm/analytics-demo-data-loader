@@ -88,7 +88,7 @@ public with sharing class WaveDataManagerController {
 					// Check fields existence using waObj.fields property
 					for(WaveApplicationObjectField field: waObj.fields) {
 						// If field doesn't exist, create it using field properties
-						if(!mdUtils.fieldExists(waObj.name, field.Name)){
+						if(field.Name.endsWithIgnoreCase('__c') && !mdUtils.fieldExists(waObj.name, field.Name)){
 							this.processingLog.add(waObj.name + '.' + field.Name + ' field doesn\'t exists. Attempting to create it...');
 							SF_MetadataUtils.CustomFieldSpecification fieldSpec = new SF_MetadataUtils.CustomFieldSpecification();
 							fieldSpec.ObjectName = waObj.name;
