@@ -1,5 +1,12 @@
 public with sharing class WaveDataManagerController {
 	
+	public String Host {get;set;}
+
+	public String RemoteSiteName { get { return 'WaveDataManager_mdapi'; } }
+	public String MetadataResponse {get;set;}
+	public Boolean MetadataConnectionWarning {get;set;}
+	public String MetadataApiException {get;set;}
+
 	public String errorMessage { get; set; }
 	public String successMessage  { get; set; }
 	public String warningMessage  { get; set; }
@@ -115,9 +122,10 @@ public with sharing class WaveDataManagerController {
 				}
 
 				// Print some message at the UI to inform that setup has succeeded
+				this.processingLog.add('All needed metadata was created successfully.');
 
 				// We start loading data for each object
-				//this.processNode();
+				this.processNode();
 			}
 			else {
 				this.warningMessage = 'No data to process.';
@@ -135,6 +143,7 @@ public with sharing class WaveDataManagerController {
 		WaveApplicationObject rootObj = new WaveApplicationObject();
 		rootObj.name = wmaObj.name;
 		rootObj.url = wmaObj.url;
+		rootObj.additionalDataFiles = wmaObj.additionalDataFiles;
 		listToProcess.add(rootObj);
 
 		// We process the fields metadata
@@ -198,8 +207,20 @@ public with sharing class WaveDataManagerController {
 	private void processNode(){
 		WaveApplicationObject currentNode = this.objectsNodes.get(this.currentNodeIndex);
 		this.processingLog.add('Processing data for ' + currentNode.name + ' object...');
+		//System.debug('Processing data for ' + currentNode.name + ' object...');
+		
+		// We start downloading all the chunks of data
 		IMockarooHelper iMockHelper = MockarooHelperFactory.getIMockarooHelper();
     	List<List<String>> csvData = iMockHelper.getData(currentNode.url, false);
+
+    	// Cambiar esto para que lo procese cuando se forman los nodos
+    	// Anotar nombre de nodo para no repetir el mensaje:
+    	// this.processingLog.add('Processing data for ' + currentNode.name + ' object...');
+    	for(Integer fileIndex = 1; fileIndex <= currentNode.additionalDataFiles; fileIndex++){
+    		String newUrl = currentNode.url.substringBeforeLast('.csv') + fileIndex + '.csv';
+    		List<List<String>> csvMidData = iMockHelper.getData(newUrl, false);
+    		csvData.addAll(csvMidData);
+    	}
     	
     	if(csvData.size() > 0){
 			// Will extract headers
@@ -238,6 +259,7 @@ public with sharing class WaveDataManagerController {
 				if(asyncJob.Status == 'Completed'){
 					if(asyncJob.NumberOfErrors > 0) {
 						this.errorMessage = 'The process failed while generating data for the ' + this.objectsNodes.get(this.currentNodeIndex).name + ' object.';
+						System.debug(this.errorMessage);
 						this.currentNodeIndex = 0;
 						this.objectsNodes.clear();
 						this.jobStatusDsc = '';
@@ -246,6 +268,7 @@ public with sharing class WaveDataManagerController {
 					else {
 						if(this.currentNodeIndex == this.objectsNodes.size() - 1){
 							this.successMessage = 'The entire process finished successfully.';
+							System.debug(this.successMessage);
 							this.currentNodeIndex = 0;
 							this.objectsNodes.clear();
 							this.jobStatusDsc = '';
@@ -259,6 +282,7 @@ public with sharing class WaveDataManagerController {
 				}
 				else if(asyncJob.Status == 'Aborted'){
 					this.errorMessage = 'The process was aborted while generating data for the ' + this.objectsNodes.get(this.currentNodeIndex).name + ' object.';
+					System.debug(this.errorMessage);
 					this.currentNodeIndex = 0;
 					this.objectsNodes.clear();
 					this.jobStatusDsc = '';
@@ -266,6 +290,7 @@ public with sharing class WaveDataManagerController {
 				}
 				else if(asyncJob.Status == 'Failed'){
 					this.errorMessage = 'The process failed while generating data for the ' + this.objectsNodes.get(this.currentNodeIndex).name + ' object.';
+					System.debug(this.errorMessage);
 					this.currentNodeIndex = 0;
 					this.objectsNodes.clear();
 					this.jobStatusDsc = '';
@@ -274,6 +299,43 @@ public with sharing class WaveDataManagerController {
 			}
 		}		
 
+		return null;
+	}
+
+	public PageReference checkMetadataAPIConnection()
+	{
+		// Get Host Domain
+		Host = ApexPages.currentPage().getHeaders().get('Host');
+				
+		// Attempt to connect to the Metadata API
+		MetadataConnectionWarning = false;
+		if(!SF_MetadataUtils.checkMetadataAPIConnection())
+		{
+			ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.Warning, 'Unable to connect to the Salesforce Metadata API.'));
+			ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.Warning, 'A Remote Site Setting must be created in your org before you can use this tool.'));
+			ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.Warning, 'Press the Create Remote Site Setting button to perform this step or refer to the post install step below to perform this manually.'));
+			MetadataConnectionWarning = true;
+			MetadataApiException = '';
+			/*if(RollupService.LastMetadataAPIConnectionException!=null)
+				MetadataApiException = RollupService.LastMetadataAPIConnectionException.getMessage();*/
+		}
+		
+		return null;				
+	}
+	
+	public PageReference displayMetadataResponse()
+	{
+		// Display the response from the client side Metadata API callout
+		if(metadataResponse.length()==0)
+		{
+			ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.Info, 'Remote Site Setting ' + RemoteSiteName + ' has been created. Now you can press the Run Data Generation button.' ));
+			MetadataConnectionWarning = false;
+		}
+		else
+		{
+			ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.Error, metadataResponse));
+			MetadataConnectionWarning = true;
+		}
 		return null;
 	}
 }

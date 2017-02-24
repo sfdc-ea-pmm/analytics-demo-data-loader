@@ -150,6 +150,23 @@ public with sharing class SF_MetadataUtils {
         return service;
     }
 
+    public static Boolean checkMetadataAPIConnection()
+    {
+        try {
+            MetadataService.MetadataPort service = createService();
+            List<MetadataService.ListMetadataQuery> queries = new List<MetadataService.ListMetadataQuery>();
+            MetadataService.ListMetadataQuery remoteSites = new MetadataService.ListMetadataQuery();
+            remoteSites.type_x = 'RemoteSiteSetting';
+            queries.add(remoteSites);
+            service.listMetadata(queries, 28);
+        } 
+        catch (System.CalloutException e) {
+            return false;
+        }
+
+        return true;
+    }
+
     public class CustomFieldSpecification {
     	public String ObjectName;
     	public String Name;
