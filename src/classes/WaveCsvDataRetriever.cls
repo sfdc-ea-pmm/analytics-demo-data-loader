@@ -8,11 +8,7 @@ public with sharing virtual class WaveCsvDataRetriever implements IMockarooHelpe
 		
 		List<List<String>> allFields = new List<List<String>>();
 		String contents = this.mockarooCallout(dataUrl);
-		//contents = contents.replaceAll(',"""',',"DBLQT').replaceall('""",','DBLQT",');
-        //contents = contents.replaceAll('""','DBLQT');
-        //contents = contents.replaceAll('\r', '');
-        Utility_RowIterator r = New Utility_RowIterator(contents,'\n');
-		//List<String> lines = contents.split('\n');
+		Utility_RowIterator r = New Utility_RowIterator(contents,'\n');
 		Integer num = 0;
 		List<String> lines = new List<String>();
 

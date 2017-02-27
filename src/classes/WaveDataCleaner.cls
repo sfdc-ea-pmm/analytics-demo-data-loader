@@ -6,6 +6,7 @@ public with sharing class WaveDataCleaner {
 
 	public static void clearData(){
 		
+		/*
 		List<Event> eventstodel = [SELECT Id FROM Event WHERE External_ID__c LIKE '%W_Event%'];
 		eventstodel.addAll([SELECT Id FROM Event WHERE External_ID__c LIKE '%W_Services_Event%']);
 		List<Task> taskstodel = [SELECT Id FROM Task WHERE External_ID__c LIKE '%W_Task%'];
@@ -18,6 +19,9 @@ public with sharing class WaveDataCleaner {
 		delete taskstodel;
 		delete opptstodel;
 		delete casestodel;
-		delete accstodel;
+		delete accstodel;*/
+
+		WaveAccountsMassDeleteBatch massDeleteAccountsBatch = new WaveAccountsMassDeleteBatch();
+		Database.executeBatch(massDeleteAccountsBatch);
 	}
 }

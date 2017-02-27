@@ -18,6 +18,7 @@ public with sharing class WaveDataManagerController {
 	public String jobStatusDsc { get; set; }
 	public List<String> processingLog { get; set; }
 	public Integer currentNodeIndex { get; set; }
+	public String currentObjectProcessing { get; set; }
 	public List<WaveApplicationObject> objectsNodes { get; set; }
 
 	public WaveDataManagerController() {
@@ -77,7 +78,7 @@ public with sharing class WaveDataManagerController {
 				// Objects and fields Setup
 				for(WaveApplicationObject waObj: this.objectsNodes) {
 					
-					this.processingLog.add('Processing ' + waObj.name + ' object...');
+					this.processingLog.add('Processing ' + waObj.name + ' object metadata...');
 
 					// Check object existence using waObj.name property					
 					if(!mdUtils.objectExists(waObj.name)){
@@ -178,15 +179,6 @@ public with sharing class WaveDataManagerController {
 			}
 		}
 
-		// We process the children
-		if(wmaObj.children != null) {
-			// Now the children objects
-			for(WaveMetadataApplicationObject chObj: wmaObj.children) {
-				List<WaveApplicationObject> childrenObjs = getObjectsToProcess(chObj);
-				listToProcess.addAll(childrenObjs);
-			}
-		}
-
 		// We process the relations
 		rootObj.relations = new List<WaveApplicationObjectRelation>();
 		if(wmaObj.relations != null){			
@@ -199,53 +191,66 @@ public with sharing class WaveDataManagerController {
 
 				rootObj.relations.add(rel);
 			}
-		}		
+		}
+
+		// Replicate for each adittional data CSV file
+
+		// We process the children
+		if(wmaObj.children != null) {
+			// Now the children objects
+			for(WaveMetadataApplicationObject chObj: wmaObj.children) {
+				List<WaveApplicationObject> childrenObjs = getObjectsToProcess(chObj);
+				listToProcess.addAll(childrenObjs);
+			}
+		}
 
 		return listToProcess;
 	}
 
 	private void processNode(){
-		WaveApplicationObject currentNode = this.objectsNodes.get(this.currentNodeIndex);
-		this.processingLog.add('Processing data for ' + currentNode.name + ' object...');
-		//System.debug('Processing data for ' + currentNode.name + ' object...');
 		
-		// We start downloading all the chunks of data
+		WaveApplicationObject currentNode = this.objectsNodes.get(this.currentNodeIndex);
 		IMockarooHelper iMockHelper = MockarooHelperFactory.getIMockarooHelper();
-    	List<List<String>> csvData = iMockHelper.getData(currentNode.url, false);
-
-    	// Cambiar esto para que lo procese cuando se forman los nodos
-    	// Anotar nombre de nodo para no repetir el mensaje:
-    	// this.processingLog.add('Processing data for ' + currentNode.name + ' object...');
-    	for(Integer fileIndex = 1; fileIndex <= currentNode.additionalDataFiles; fileIndex++){
-    		String newUrl = currentNode.url.substringBeforeLast('.csv') + fileIndex + '.csv';
-    		List<List<String>> csvMidData = iMockHelper.getData(newUrl, false);
-    		csvData.addAll(csvMidData);
-    	}
-    	
-    	if(csvData.size() > 0){
-			// Will extract headers
-			List<String> headers = csvData.remove(0);
-			Map<Integer, String> fieldPositions = new Map<Integer, String>();
+		List<List<String>> csvData;
+		
+		if(currentNode.currentDataIndex == 0){
 			
-			for(Integer i = 0; i < headers.size(); i++) {
-				fieldPositions.put(i, headers[i]);
+			// We start processing the initial chunk of data
+			csvData = iMockHelper.getData(currentNode.url, false);
+
+    		if(csvData.size() > 0){
+				// Will extract headers
+				List<String> headers = csvData.remove(0);
+				currentNode.fieldPositions = new Map<Integer, String>();
+				
+				for(Integer i = 0; i < headers.size(); i++) {
+					currentNode.fieldPositions.put(i, headers[i]);
+				}				
 			}
 
-			// Start the batch process
-			CsvDataImportBatch batchProcess = new CsvDataImportBatch(Schema.getGlobalDescribe().get(currentNode.name), csvData, fieldPositions, currentNode.relations);
-			this.batchProcessId = Database.executeBatch(batchProcess);
+			if(currentNode.currentDataIndex < currentNode.additionalDataFiles){
+				currentNode.currentDataIndex = currentNode.currentDataIndex + 1;
+			}
 
-			// Now monitor job execution
-			this.monitorJobExecution = true;
-			AsyncApexJob asyncJob = [SELECT CompletedDate, JobItemsProcessed, NumberOfErrors, Status, TotalJobItems FROM AsyncApexJob WHERE Id = :this.batchProcessId];			
-			this.totalBatches = asyncJob.TotalJobItems;
-			this.batchesProcessed = asyncJob.JobItemsProcessed;
-			this.showJobStatistics = true;
+			currentObjectProcessing = currentNode.name;
+			this.processingLog.add('Processing data for ' + currentNode.name + ' object...');
+			//System.debug('Processing data for ' + currentNode.name + ' object...');
 		}
 		else {
-			// No data rows retrieved
-			this.warningMessage = 'No data to process for the ' + currentNode.name + ' object.';
+			String newUrl = currentNode.url.substringBeforeLast('.csv') + currentNode.currentDataIndex + '.csv';
+			csvData = iMockHelper.getData(newUrl, false);
 		}
+
+		// Start the batch process
+		CsvDataImportBatch batchProcess = new CsvDataImportBatch(Schema.getGlobalDescribe().get(currentNode.name), csvData, currentNode.fieldPositions, currentNode.relations);
+		this.batchProcessId = Database.executeBatch(batchProcess);
+
+		// Now monitor job execution
+		this.monitorJobExecution = true;
+		AsyncApexJob asyncJob = [SELECT CompletedDate, JobItemsProcessed, NumberOfErrors, Status, TotalJobItems FROM AsyncApexJob WHERE Id = :this.batchProcessId];			
+		this.totalBatches = asyncJob.TotalJobItems;
+		this.batchesProcessed = asyncJob.JobItemsProcessed;
+		this.showJobStatistics = true;
 	}
 
 	public PageReference checkProcessingStatus(){
@@ -263,7 +268,6 @@ public with sharing class WaveDataManagerController {
 						this.currentNodeIndex = 0;
 						this.objectsNodes.clear();
 						this.jobStatusDsc = '';
-						this.processingLog.clear();
 					}
 					else {
 						if(this.currentNodeIndex == this.objectsNodes.size() - 1){
@@ -272,7 +276,6 @@ public with sharing class WaveDataManagerController {
 							this.currentNodeIndex = 0;
 							this.objectsNodes.clear();
 							this.jobStatusDsc = '';
-							this.processingLog.clear();
 						}
 						else {
 							this.currentNodeIndex = this.currentNodeIndex + 1;
@@ -286,7 +289,6 @@ public with sharing class WaveDataManagerController {
 					this.currentNodeIndex = 0;
 					this.objectsNodes.clear();
 					this.jobStatusDsc = '';
-					this.processingLog.clear();
 				}
 				else if(asyncJob.Status == 'Failed'){
 					this.errorMessage = 'The process failed while generating data for the ' + this.objectsNodes.get(this.currentNodeIndex).name + ' object.';
@@ -294,7 +296,6 @@ public with sharing class WaveDataManagerController {
 					this.currentNodeIndex = 0;
 					this.objectsNodes.clear();
 					this.jobStatusDsc = '';
-					this.processingLog.clear();
 				}
 			}
 		}		

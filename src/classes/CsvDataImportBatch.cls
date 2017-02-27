@@ -36,7 +36,7 @@ global class CsvDataImportBatch implements Database.Batchable<List<String>>, Dat
 
    	global void execute(Database.BatchableContext BC, List<List<String>> scope) {
 
-   		//System.debug('About to process ' + scope.size() + ' records of type ' + this.objectType.getDescribe().getName());
+   		System.debug('About to process ' + scope.size() + ' records of type ' + this.objectType.getDescribe().getName());
 		
    		// First handle smart lookups
    		this.processSmartLookupForBatch(scope);
@@ -123,8 +123,8 @@ global class CsvDataImportBatch implements Database.Batchable<List<String>>, Dat
 	        	}
 	        }
 
-	        //System.debug(lstToInsert.size() + ' objects to insert.');
-	        //System.debug(lstToUpdate.size() + ' objects to update.');
+	        System.debug(lstToInsert.size() + ' objects to insert.');
+	        System.debug(lstToUpdate.size() + ' objects to update.');
 
 	        // DML
 	        update lstToUpdate; // For now, only inserts
@@ -186,7 +186,9 @@ global class CsvDataImportBatch implements Database.Batchable<List<String>>, Dat
 	            for(String relVal: relevantValues) {
 	            	if(!s.replaceValues.containsKey(relVal)){
 	            		// Log Ids that weren't found for the name
-	            		System.debug(String.format('Id not found for {0} = \'{1}\' in SObject: {2}. This may cause an exception.', new String[]{ sFieldToQuery, relVal, sObjToQuery }));
+	            		//System.debug(String.format('Id not found for {0} = "{1}" in SObject: {2}. This may cause an exception.', new String[]{ sFieldToQuery, relVal, sObjToQuery }));
+	            		// This time: Throw exception
+	            		throw new CsvDataImportException(String.format('Id not found for {0} = "{1}" in SObject: {2}. This may cause an exception.', new String[]{ sFieldToQuery, relVal, sObjToQuery }));
 	            	}
 	            	else {
 	            		//System.debug('Successful lookup in ' + sObjToQuery + ' object. Id for ' + sFieldToQuery + ' = ' + relVal + ': ' + s.replaceValues.get(relVal));
@@ -201,5 +203,9 @@ global class CsvDataImportBatch implements Database.Batchable<List<String>>, Dat
 	            }
 	        }
 		}
+	}
+
+	global class CsvDataImportException extends Exception {
+		
 	}
 }

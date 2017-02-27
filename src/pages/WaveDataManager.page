@@ -76,11 +76,14 @@
 			<p> Click the <b>Create Remote Site Setting</b> button to have the tool perform this step for you.</p>
 			<input id="createremotesitebtn" type="button" onclick="createRemoteSite();" value="Create Remote Site Setting"/>
 		</apex:outputPanel>
-		
-		<apex:actionPoller action="{!checkProcessingStatus}" reRender="processingStatus,processingLogConsole,checkFunction,messages" interval="5" enabled="{!objectsNodes.size > 0}" id="checkFunction"/>
+	</apex:form>
+	<apex:form id="form3">
+		<apex:actionPoller action="{!checkProcessingStatus}" reRender="processingStatus,processingLogConsole,messages,form1,form3" interval="5" enabled="{!objectsNodes.size > 0}" id="checkFunction"/>
 		<apex:outputText value="{!jobStatusDsc}" id="processingStatus"/>
-		<apex:repeat value="{!processingLog}" var="logEntry" id="processingLogConsole">
-			<apex:outputText value="{!logEntry}" /><br />
-		</apex:repeat>
+		<apex:outputPanel>
+			<apex:repeat value="{!processingLog}" var="logEntry" id="processingLogConsole">
+				<apex:outputText value="{!logEntry}" /><br />
+			</apex:repeat>
+		</apex:outputPanel>
 	</apex:form>
 </apex:page>

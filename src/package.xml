@@ -64,6 +64,9 @@
 		<members>WaveRestApiUtils</members>
 		<members>SF_MetadataUtils</members>
 		<members>Utility_RowIterator</members>
+		<members>WaveAccountsMassDeleteBatch</members>
+		<members>WaveCasesMassDeleteBatch</members>
+		<members>WaveOpptyMassDeleteBatch</members>
 		<name>ApexClass</name>
 	</types>
 	<types>
