@@ -213,6 +213,7 @@ public with sharing class WaveDataManagerController {
 		IMockarooHelper iMockHelper = MockarooHelperFactory.getIMockarooHelper();
 		List<List<String>> csvData;
 		
+		// Check whether we are in the initial chunk of CSV data or not
 		if(currentNode.currentDataIndex == 0){
 			
 			// We start processing the initial chunk of data
@@ -225,21 +226,17 @@ public with sharing class WaveDataManagerController {
 				
 				for(Integer i = 0; i < headers.size(); i++) {
 					currentNode.fieldPositions.put(i, headers[i]);
-				}				
-			}
-
-			if(currentNode.currentDataIndex < currentNode.additionalDataFiles){
-				currentNode.currentDataIndex = currentNode.currentDataIndex + 1;
+				}
 			}
 
 			currentObjectProcessing = currentNode.name;
-			this.processingLog.add('Processing data for ' + currentNode.name + ' object...');
-			//System.debug('Processing data for ' + currentNode.name + ' object...');
 		}
 		else {
 			String newUrl = currentNode.url.substringBeforeLast('.csv') + currentNode.currentDataIndex + '.csv';
 			csvData = iMockHelper.getData(newUrl, false);
 		}
+
+		this.processingLog.add('Processing ' + csvData.size() + ' records for ' + currentNode.name + ' object...');
 
 		// Start the batch process
 		CsvDataImportBatch batchProcess = new CsvDataImportBatch(Schema.getGlobalDescribe().get(currentNode.name), csvData, currentNode.fieldPositions, currentNode.relations);
@@ -256,7 +253,10 @@ public with sharing class WaveDataManagerController {
 	public PageReference checkProcessingStatus(){
 		
 		if(!String.isBlank(this.batchProcessId)){
+
+			WaveApplicationObject currentNode = this.objectsNodes.get(this.currentNodeIndex);
 			List<AsyncApexJob> lstJobs = [SELECT CompletedDate, JobItemsProcessed, NumberOfErrors, Status, TotalJobItems FROM AsyncApexJob WHERE Id = :this.batchProcessId];
+			
 			if(lstJobs.size() > 0){
 				
 				AsyncApexJob asyncJob = lstJobs.get(0);
@@ -264,35 +264,46 @@ public with sharing class WaveDataManagerController {
 				if(asyncJob.Status == 'Completed'){
 					if(asyncJob.NumberOfErrors > 0) {
 						this.errorMessage = 'The process failed while generating data for the ' + this.objectsNodes.get(this.currentNodeIndex).name + ' object.';
-						System.debug(this.errorMessage);
 						this.currentNodeIndex = 0;
+						currentNode.currentDataIndex = 0;
 						this.objectsNodes.clear();
 						this.jobStatusDsc = '';
 					}
 					else {
-						if(this.currentNodeIndex == this.objectsNodes.size() - 1){
-							this.successMessage = 'The entire process finished successfully.';
-							System.debug(this.successMessage);
-							this.currentNodeIndex = 0;
-							this.objectsNodes.clear();
-							this.jobStatusDsc = '';
-						}
-						else {
-							this.currentNodeIndex = this.currentNodeIndex + 1;
+						// Completed entire job, inspect if there are more data files 
+						// within the current node
+						if(currentNode.currentDataIndex < currentNode.additionalDataFiles){
+							currentNode.currentDataIndex = currentNode.currentDataIndex + 1;
 							this.processNode();
+						}
+						else{
+							// Entire node finished, reset currentNode.currentDataIndex
+							currentNode.currentDataIndex = 0;
+							
+							// now check whether it was the last one
+							if(this.currentNodeIndex == this.objectsNodes.size() - 1){
+								this.successMessage = 'The entire process finished successfully.';
+								this.currentNodeIndex = 0;
+								this.objectsNodes.clear();
+								this.jobStatusDsc = '';
+							}
+							else {
+								// There are more nodes to process, increment index and reset 
+								// currentNode.currentDataIndex
+								this.currentNodeIndex = this.currentNodeIndex + 1;
+								this.processNode();
+							}
 						}
 					}					
 				}
 				else if(asyncJob.Status == 'Aborted'){
 					this.errorMessage = 'The process was aborted while generating data for the ' + this.objectsNodes.get(this.currentNodeIndex).name + ' object.';
-					System.debug(this.errorMessage);
 					this.currentNodeIndex = 0;
 					this.objectsNodes.clear();
 					this.jobStatusDsc = '';
 				}
 				else if(asyncJob.Status == 'Failed'){
 					this.errorMessage = 'The process failed while generating data for the ' + this.objectsNodes.get(this.currentNodeIndex).name + ' object.';
-					System.debug(this.errorMessage);
 					this.currentNodeIndex = 0;
 					this.objectsNodes.clear();
 					this.jobStatusDsc = '';
