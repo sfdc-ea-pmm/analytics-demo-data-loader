@@ -263,7 +263,7 @@ public with sharing class WaveDataManagerController {
 
 				if(asyncJob.Status == 'Completed'){
 					if(asyncJob.NumberOfErrors > 0) {
-						this.errorMessage = 'The process failed while generating data for the ' + this.objectsNodes.get(this.currentNodeIndex).name + ' object.';
+						this.errorMessage = 'The process was interrupted due to errors while generating data for the ' + this.objectsNodes.get(this.currentNodeIndex).name + ' object. See logs for details.';
 						this.currentNodeIndex = 0;
 						currentNode.currentDataIndex = 0;
 						this.objectsNodes.clear();
