@@ -258,7 +258,7 @@ public with sharing class WaveDataManagerController {
 			List<AsyncApexJob> lstJobs = [SELECT CompletedDate, JobItemsProcessed, NumberOfErrors, Status, TotalJobItems FROM AsyncApexJob WHERE Id = :this.batchProcessId];
 			
 			if(lstJobs.size() > 0){
-				
+
 				AsyncApexJob asyncJob = lstJobs.get(0);
 
 				if(asyncJob.Status == 'Completed'){

@@ -4,6 +4,42 @@
 		"selected_items":
 		[
 			[
+				"form",
+				"form2"
+			],
+			[
+				"out",
+				"apex:outputPanel"
+			],
+			[
+				"add",
+				"PUBLIC addAll(LIST elements) \tvoid"
+			],
+			[
+				"succe",
+				"successfully"
+			],
+			[
+				"end",
+				"endsWithIgnoreCase"
+			],
+			[
+				"obje",
+				"objectName"
+			],
+			[
+				"proce",
+				"processingLog"
+			],
+			[
+				"outp",
+				"apex:outputText"
+			],
+			[
+				"objName",
+				"objNamesArray"
+			],
+			[
 				"waveD",
 				"waveDatasets"
 			],
@@ -399,8 +435,92 @@
 			"file": "src/classes/WaveDataManagerController.cls",
 			"settings":
 			{
-				"buffer_size": 9708,
+				"buffer_size": 13482,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/D/desarrollo/Salesforce/WaveTooling/WaveData/Services/Cases_History.csv",
+			"settings":
+			{
+				"buffer_size": 77085,
 				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/D/desarrollo/Salesforce/WaveTooling/WaveData/Services/Cases.csv",
+			"settings":
+			{
+				"buffer_size": 1058509,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/D/desarrollo/Salesforce/WaveTooling/WaveData/WaveMetadata.json",
+			"settings":
+			{
+				"buffer_size": 2743,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/D/desarrollo/Salesforce/WaveTooling/WaveData/Services/Cases1.csv",
+			"settings":
+			{
+				"buffer_size": 1140192,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/D/desarrollo/Salesforce/WaveTooling/WaveData/Services/Cases2.csv",
+			"settings":
+			{
+				"buffer_size": 1143309,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/D/desarrollo/Salesforce/WaveTooling/WaveData/Services/Cases3.csv",
+			"settings":
+			{
+				"buffer_size": 1162827,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/D/desarrollo/Salesforce/WaveTooling/WaveData/Services/Cases4.csv",
+			"settings":
+			{
+				"buffer_size": 1156656,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/D/desarrollo/Salesforce/WaveTooling/WaveData/Services/Cases5.csv",
+			"settings":
+			{
+				"buffer_size": 1163141,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/classes/CsvDataImportBatch.cls",
+			"settings":
+			{
+				"buffer_size": 7761,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/pages/WaveDataManager.page",
+			"settings":
+			{
+				"buffer_size": 4937,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
 			}
 		}
 	],
@@ -445,12 +565,60 @@
 	"expanded_folders":
 	[
 		"/D/desarrollo/Salesforce/Workspace/Wave Tooling",
-		"/D/desarrollo/Salesforce/Workspace/Wave Tooling/src",
-		"/D/desarrollo/Salesforce/Workspace/Wave Tooling/src/classes"
+		"/D/desarrollo/Salesforce/Workspace/Wave Tooling/src"
 	],
 	"file_history":
 	[
+		"/D/desarrollo/Salesforce/WaveTooling/WaveData/Services/Cases_History1.csv",
+		"/D/desarrollo/Salesforce/WaveTooling/WaveData/Services/Cases.csv",
+		"/D/desarrollo/Salesforce/WaveTooling/WaveData/Services/Cases_History.csv",
+		"/D/desarrollo/Salesforce/WaveTooling/WaveData/Services/Cases_History2.csv",
+		"/D/desarrollo/Salesforce/WaveTooling/WaveData/Services/Cases_History3.csv",
+		"/D/desarrollo/Salesforce/WaveTooling/WaveData/Services/Cases_History4.csv",
+		"/D/desarrollo/Salesforce/WaveTooling/WaveData/Services/Cases_History5.csv",
+		"/D/desarrollo/Salesforce/WaveTooling/WaveData/Services/Cases_History6.csv",
+		"/D/desarrollo/Salesforce/WaveTooling/WaveData/Services/Cases_History7.csv",
+		"/D/desarrollo/Salesforce/WaveTooling/WaveData/Services/Cases_History8.csv",
+		"/D/desarrollo/Salesforce/WaveTooling/WaveData/Services/Cases_History9.csv",
+		"/D/desarrollo/Salesforce/WaveTooling/WaveData/Services/Cases_History10.csv",
+		"/D/desarrollo/Salesforce/WaveTooling/WaveData/Services/Cases_History11.csv",
+		"/D/desarrollo/Salesforce/WaveTooling/WaveData/Services/Cases_History12.csv",
+		"/D/desarrollo/Salesforce/WaveTooling/WaveData/Services/Cases_History13.csv",
+		"/D/desarrollo/Salesforce/WaveTooling/WaveData/Services/Cases_History14.csv",
+		"/D/desarrollo/Salesforce/WaveTooling/WaveData/WaveMetadata.json",
+		"/D/desarrollo/Salesforce/Workspace/Wave Tooling/src/classes/WaveDataCleaner.cls",
+		"/D/desarrollo/Salesforce/WaveTooling/WaveData/Accounts.csv",
+		"/D/desarrollo/Salesforce/WaveTooling/WaveData/Services/Cases_metadata.csv",
+		"/D/desarrollo/Salesforce/Workspace/Wave Tooling/src/classes/WaveCsvDataRetriever.cls",
+		"/D/desarrollo/Salesforce/Workspace/Wave Tooling/src/classes/WaveOpptyMassDeleteBatch.cls",
+		"/D/desarrollo/Salesforce/Workspace/Wave Tooling/src/classes/WaveCasesMassDeleteBatch.cls",
+		"/D/desarrollo/Salesforce/Workspace/Wave Tooling/src/classes/WaveAccountsMassDeleteBatch.cls",
+		"/D/desarrollo/Salesforce/WaveTooling/WaveData/Services/Cases3.csv",
+		"/D/desarrollo/Salesforce/WaveTooling/WaveData/Services/Cases2.csv",
+		"/D/desarrollo/Salesforce/WaveTooling/WaveData/Services/Cases1.csv",
+		"/D/desarrollo/Salesforce/WaveTooling/WaveData/Services/Cases4.csv",
+		"/D/desarrollo/Salesforce/WaveTooling/WaveData/Services/Cases5.csv",
+		"/D/desarrollo/Salesforce/WaveTooling/WaveData/Accounts1.csv",
+		"/D/desarrollo/Salesforce/WaveTooling/WaveData/Accounts2.csv",
+		"/D/desarrollo/Salesforce/WaveTooling/WaveData/Accounts3.csv",
+		"/D/desarrollo/Salesforce/Workspace/Wave Tooling/src/classes/WaveApplicationObject.cls",
+		"/D/desarrollo/Salesforce/Workspace/Wave Tooling/src/classes/Utility_RowIterator.cls",
+		"/D/desarrollo/Salesforce/Workspace/Wave Tooling/src/classes/SF_MetadataUtils.cls",
+		"/D/desarrollo/Salesforce/Workspace/Wave Tooling/src/classes/MetadataService.cls",
+		"/D/desarrollo/Salesforce/Workspace/Wave Tooling/src/classes/MetadataServiceTest.cls",
+		"/D/desarrollo/Salesforce/WaveTooling/WaveData/Users_metadata.csv",
+		"/D/desarrollo/Salesforce/WaveTooling/WaveData/Users.csv",
+		"/D/desarrollo/Salesforce/WaveTooling/WaveData/Case_History_metadata.csv",
+		"/D/desarrollo/Salesforce/Workspace/Wave Tooling/src/classes/WaveMetadataApplicationObject.cls",
 		"/D/desarrollo/Salesforce/Workspace/Wave Tooling/src/classes/WaveDataGeneratorController.cls",
+		"/D/desarrollo/Salesforce/WaveTooling/WaveData/Services/Cases_History15.csv",
+		"/D/desarrollo/Salesforce/WaveTooling/WaveData/Accounts4.csv",
+		"/D/desarrollo/Salesforce/WaveTooling/WaveData/Services/Cases6.csv",
+		"/D/desarrollo/Salesforce/WaveTooling/WaveData/Services/CasesHistory_metadata.csv",
+		"/D/desarrollo/Salesforce/WaveTooling/WaveData/Accounts_metadata.csv",
+		"/D/desarrollo/Salesforce/WaveTooling/WaveData/Events_metadata.csv",
+		"/D/desarrollo/Salesforce/WaveTooling/WaveData/Tasks_metadata.csv",
+		"/D/desarrollo/Salesforce/Workspace/Logs/apex-07L3600000GKAFKEA5.log",
 		"/D/desarrollo/Salesforce/Workspace/Wave Tooling/src/classes/WaveDataGenerator_test.cls",
 		"/D/desarrollo/Salesforce/Workspace/Wave Tooling/src/classes/WaveAssetsUtility.cls",
 		"/D/desarrollo/Salesforce/Workspace/Wave Tooling/src/classes/SalesWaveDataflowDefinitionEditor.cls",
@@ -528,66 +696,18 @@
 		"/D/desarrollo/Proquimur/www/application/views/admin/documentos_imasd/list.php",
 		"/D/desarrollo/Proquimur/www/application/views/admin/categorias_imasd/edit.php",
 		"/D/desarrollo/Proquimur/NF/I+D/como seguir.txt",
-		"/D/desarrollo/Proquimur/NF/I+D/Análisis.txt",
-		"/D/desarrollo/Proquimur/www/application/views/admin/categorias_imasd/add.php",
-		"/D/desarrollo/Proquimur/www/application/views/admin/imasd/list.php",
-		"/D/desarrollo/Proquimur/www/application/views/admin/imasd/edit.php",
-		"/D/desarrollo/Proquimur/www/application/views/admin/imasd/add.php",
-		"/C/Users/Rodrigo/Dropbox/PROYECTO PARA MOVILES/Bocetos prueba/form-email.html",
-		"/D/desarrollo/Proquimur/www/uploads/novedades/readme.txt",
-		"/D/desarrollo/Proquimur/www/uploads/links/readme.txt",
-		"/C/Users/Rodrigo/Dropbox/PROYECTO PARA MOVILES/Bocetos/menu.html",
-		"/C/inetpub/wwwroot/fucrea/Web.config",
-		"/C/Users/Rodrigo/Dropbox/PROYECTO PARA MOVILES/Bocetos/form-item-seleccionado.html",
-		"/D/desarrollo/Proquimur/www/application/views/publico/proarea_jornada_2.php",
-		"/D/desarrollo/Base de código/buckwilson-Lightbox_me-352d67e/README.markdown",
-		"/D/desarrollo/Proquimur/www/application/views/publico/proarea_jornada_1.php",
-		"/D/desarrollo/Proquimur/www/application/views/publico/proarea_inicio.php",
-		"/D/desarrollo/Proquimur/www/assets/js/jquery.easyModal.js",
-		"/D/desarrollo/Proquimur/www/application/views/publico/links_interes.php",
-		"/D/desarrollo/Proquimur/www/application/views/publico/mas_novedades.php",
-		"/D/desarrollo/Proquimur/www/application/views/publico/politica_calidad_eng.php",
-		"/D/desarrollo/Proquimur/www/application/views/publico/politica_seguridad_esp.php",
-		"/D/desarrollo/Proquimur/www/application/views/publico/politica_calidad_esp.php",
-		"/D/desarrollo/Proquimur/www/application/views/publico/footer.php",
-		"/D/desarrollo/Proquimur/www/application/models/instrucciones_producto_model.php",
-		"/D/desarrollo/Base de código/YoxView/yoxview/install.htm",
-		"/D/desarrollo/Base de código/YoxView/index.html",
-		"/D/desarrollo/Proquimur/www/application/views/admin/productos/instrucciones.php",
-		"/D/desarrollo/Proquimur/www/assets/js/instrucciones-productos.js",
-		"/D/desarrollo/Proquimur/www/application/views/tabla_instrucciones_producto.php",
-		"/D/desarrollo/Proquimur/www/assets/js/admin.js",
-		"/D/desarrollo/Proquimur/Documentos/tabla-instrucciones-1.html",
-		"/D/desarrollo/Proquimur/www/assets/js/bootstrap-tooltips.js",
-		"/D/desarrollo/Proquimur/www/application/views/admin/cultivos/add.php",
-		"/D/desarrollo/Proquimur/www/assets/js/jquery.blockUI.js",
-		"/D/desarrollo/Proquimur/vs_instrucciones_producto.sql",
-		"/D/desarrollo/Proquimur/www/assets/js/productos.js",
-		"/D/desarrollo/Proquimur/www/application/models/instrucciones_producto.php",
-		"/D/desarrollo/Proquimur/NF/Destacados y Config. Instrucciones de uso/comandos.txt",
-		"/D/desarrollo/Proquimur/www/application/models/cultivos_model.php",
-		"/D/desarrollo/Proquimur/www/application/models/plagas_model.php",
-		"/D/desarrollo/Proquimur/www/application/controllers/admin_cultivos.php",
-		"/D/desarrollo/Proquimur/www/application/views/admin/cultivos/list.php",
-		"/D/desarrollo/Proquimur/www/application/views/admin/plagas/list.php",
-		"/D/desarrollo/Proquimur/www/application/views/admin/cultivos/edit.php",
-		"/D/desarrollo/Proquimur/www/application/controllers/admin_novedades.php",
-		"/D/desarrollo/Proquimur/www/application/views/admin/novedades/ordenar_visibles.php",
-		"/D/desarrollo/Proquimur/www/application/views/admin/plagas/add.php",
-		"/D/desarrollo/Proquimur/www/application/views/admin/plagas/edit.php",
-		"/D/Unipersonal/Envio_Formulario1102_2013_30415657_3172727.dgi",
-		"/C/Users/Rodrigo/AppData/Local/Temp/Envio_Formulario1102_2013_217193100018_203432.dgi",
-		"/D/desarrollo/Proquimur/www/application/views/publico/productos_destacados.php"
+		"/D/desarrollo/Proquimur/NF/I+D/Análisis.txt"
 	],
 	"find":
 	{
-		"height": 34.0
+		"height": 35.0
 	},
 	"find_in_files":
 	{
 		"height": 90.0,
 		"where_history":
 		[
+			"D:\\desarrollo\\Salesforce\\WaveTooling\\WaveData\\Services",
 			"D:\\desarrollo\\Salesforce\\Workspace\\Wave Tooling\\src\\classes",
 			"D:\\desarrollo\\Proquimur\\www\\application\\views",
 			"D:\\desarrollo\\Proquimur\\www\\application\\controllers",
@@ -612,9 +732,73 @@
 	},
 	"find_state":
 	{
-		"case_sensitive": true,
+		"case_sensitive": false,
 		"find_history":
 		[
+			"Case_29202",
+			"Case_29494",
+			"Case_29412",
+			"Case_29457",
+			"Case_29330",
+			"Case_29372",
+			"Case_29288",
+			"Case_29201",
+			"Case_29247",
+			"Case_29201",
+			"createRemoteSite",
+			"checkFunction",
+			"currentObjectProcessing",
+			"Case_",
+			"W_User",
+			"batchProcess",
+			"additionalDataFiles",
+			"\\b1,",
+			"1,",
+			"System.de",
+			",",
+			"prepareSmartLookups",
+			"processingLogConsole",
+			"Processing ",
+			"Case_0,W_User.8,2016-11-29,created,,\nCase_0,W_User.8,2016-11-29,Status,,New\nCase_0,W_User.8,2017-02-21,Status,New,Closed\n",
+			"W_Service_User",
+			"jobStatusDsc",
+			"processingStatus",
+			"checkProcessingStatus",
+			"processNode",
+			"processNode()",
+			"displayMetadataResponse",
+			"createRemoteSite",
+			"Pre",
+			"checkMetadataAPIConnection",
+			"MetadataConnectionWarning",
+			"createRemoteSite",
+			"pageDescription",
+			"MetadataApiException",
+			"listMetadata",
+			"createService",
+			"RemoteSiteSetting",
+			"remote",
+			"Lookup",
+			"MasterDetail",
+			"Extern",
+			"TRUE",
+			"MasterDetail",
+			"Text",
+			"External_Id__c",
+			"jobStatusDsc",
+			"processingStatus",
+			"String",
+			"successfully",
+			"External_Id__c",
+			"int",
+			"Boolean",
+			";",
+			"ileProperties",
+			"User.",
+			"Metadata object: User",
+			"Metadata object: User ",
+			"Metadata object: User",
+			"Anydatatype_msg",
 			"computeTrending",
 			"lens",
 			"lenses",
@@ -678,78 +862,19 @@
 			"novedadesMenu",
 			"destinadar ",
 			"bot_links_class",
-			"html_tabla_instrucciones",
-			"obtener_instrucciones_producto",
-			"manejar",
-			"`",
-			"insrucciones",
-			"plaga",
-			"Semilla",
-			"plaga",
-			"Plagas",
-			"plaga",
-			"Plagas",
-			"plaga",
-			"Semillas",
-			"semilla",
-			"Cotización",
-			"semilla",
-			"Cotización",
-			"Semillas",
-			"semilla",
-			"cot_usd",
-			"cot_pnombre_cientificoesos",
-			"nombre_cientifico",
-			"semilla",
-			"semillas",
-			"highlights",
-			"Highlights",
-			"get_data_to_store",
-			"abm_set_rules",
-			"cerrar_info",
-			"cerrar",
-			"popup_informacion_after_close",
-			"minimizar_info",
-			"btn-restaurar-info",
-			"restaurar",
-			"minimizar",
-			"btn-minimizar-info",
-			"FindParameters",
-			"{}",
-			"checkbox",
-			"ui-checkbox",
-			"checkContainerNode",
-			"video-institucional",
-			"td {",
-			"annuus",
-			"CebaCEBOLLAda",
-			"servicio",
-			"servicios",
-			"bot_serv",
-			"texto_esp",
-			"novedad",
-			"novedades",
-			"Novedad",
-			"Novedades",
-			"texto_esp",
-			"novedad",
-			"novedades",
-			"Novedades",
-			"novedad",
-			"novedades",
-			"Novedades",
-			"novedad",
-			"novedades",
-			"Novedades",
-			"Novedad",
-			"NOVEDAD"
+			"html_tabla_instrucciones"
 		],
 		"highlight": true,
 		"in_selection": false,
 		"preserve_case": false,
-		"regex": false,
+		"regex": true,
 		"replace_history":
 		[
+			"\\n",
+			"W_User",
+			"Number",
+			"Checkbox",
+			"\\n",
 			"Compute_Historical_Trending_Fields",
 			"dashboard",
 			"dashboards",
@@ -872,12 +997,7 @@
 			"categorias_productos",
 			"Productos",
 			"producto",
-			"nombre_esp",
-			"Productos",
-			"nombre_esp",
-			"producto",
-			"productos",
-			"preview"
+			"nombre_esp"
 		],
 		"reverse": false,
 		"show_context": true,
@@ -888,7 +1008,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 3,
 			"sheets":
 			[
 				{
@@ -897,15 +1017,269 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 9708,
+						"buffer_size": 13482,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								699,
-								699
+								10001,
+								10001
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/MavensMate/sublime/lang/Apex.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 55.0,
+						"translation.y": 4902.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/D/desarrollo/Salesforce/WaveTooling/WaveData/Services/Cases_History.csv",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 77085,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								273,
+								273
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/D/desarrollo/Salesforce/WaveTooling/WaveData/Services/Cases.csv",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1058509,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								982769,
+								982769
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 239340.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/D/desarrollo/Salesforce/WaveTooling/WaveData/WaveMetadata.json",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2743,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2004,
+								2729
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/MavensMate/sublime/lang/JSON.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1083.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/D/desarrollo/Salesforce/WaveTooling/WaveData/Services/Cases1.csv",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1140192,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "/D/desarrollo/Salesforce/WaveTooling/WaveData/Services/Cases2.csv",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1143309,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "/D/desarrollo/Salesforce/WaveTooling/WaveData/Services/Cases3.csv",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1162827,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "/D/desarrollo/Salesforce/WaveTooling/WaveData/Services/Cases4.csv",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1156656,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "/D/desarrollo/Salesforce/WaveTooling/WaveData/Services/Cases5.csv",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1163141,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "src/classes/CsvDataImportBatch.cls",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7761,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								7019,
+								7041
 							]
 						],
 						"settings":
@@ -914,10 +1288,39 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 228.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "src/pages/WaveDataManager.page",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4937,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2695,
+								2695
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/MavensMate/sublime/lang/Visualforce.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 456.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
 					"type": "text"
 				}
 			]
@@ -966,7 +1369,7 @@
 	"project": "Wave Tooling.sublime-project",
 	"replace":
 	{
-		"height": 62.0
+		"height": 64.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -1008,7 +1411,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 322.0,
+	"side_bar_width": 316.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
