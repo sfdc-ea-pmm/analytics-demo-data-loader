@@ -16,8 +16,8 @@ public with sharing virtual class WaveCsvDataRetriever implements IMockarooHelpe
           	
           	String rawLine = r.next();
         	String line = rawLine.replaceAll('\r', '');
-        	//line = line.replaceAll(',"""',',"DBLQT').replaceall('""",','DBLQT",');
-        	//line = line.replaceAll('""','DBLQT');
+        	line = line.replaceAll(',"""',',"DBLQT').replaceall('""",','DBLQT",');
+        	line = line.replaceAll('""','DBLQT');
 
             // check for blank CSV lines (only commas)
             if (!String.isBlank(line.replaceAll(',',''))){
@@ -32,7 +32,7 @@ public with sharing virtual class WaveCsvDataRetriever implements IMockarooHelpe
             Boolean makeCompositeField = false;
 
             for(String field : fields) {
-                /*if (field.startsWith('"') && field.endsWith('"')) {
+                if (field.startsWith('"') && field.endsWith('"')) {
                     cleanFields.add(field.replaceAll('DBLQT','"'));
                 } 
                 else if (field.startsWith('"')) {
@@ -49,7 +49,7 @@ public with sharing virtual class WaveCsvDataRetriever implements IMockarooHelpe
                 } 
                 else {
                     cleanFields.add(field.replaceAll('DBLQT','"'));
-                }*/
+                }
                 cleanFields.add(field);
             }
 

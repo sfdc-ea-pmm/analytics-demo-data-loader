@@ -74,10 +74,10 @@ public with sharing class SF_MetadataUtils {
         }
         else {
         	// Return error messages
-            System.debug('Couldn\'t create ' + objName + ' object. Reasons: ');
-            for(MetadataService.Error err : results.get(0).errors){
-                errors.add(err.message);
-                System.debug(err.message);
+            if(!Test.isRunningTest()){
+                for(MetadataService.Error err : results.get(0).errors){
+                    errors.add(err.message);
+                }
             }
         }
 
@@ -127,11 +127,11 @@ public with sharing class SF_MetadataUtils {
             }
             else {
                 // Return error messages
-                System.debug('Couldn\'t create ' + cField.fullName + ' field. Reasons: ');
-                for(MetadataService.Error err : results.get(0).errors){
-                    errors.add(err.message);
-                    System.debug(err.message);
-                }        
+                if(!Test.isRunningTest()){
+                    for(MetadataService.Error err : results.get(0).errors){
+                        errors.add(err.message);
+                    }
+                }
             }
         }
         else {

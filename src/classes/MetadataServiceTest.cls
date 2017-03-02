@@ -28,12 +28,12 @@
  * This is a dummy test class to obtain 100% coverage for the generated WSDL2Apex code, it is not a funcitonal test class
  **/ 
 @isTest  
-private class MetadataServiceTest
+public class MetadataServiceTest
 {    
     /**
      * Dummy Metadata API web service mock class (see MetadataCreateJobTest.cls for a better example)
      **/
-	private class WebServiceMockImpl implements WebServiceMock 
+	public class WebServiceMockImpl implements WebServiceMock 
 	{
 		public void doInvoke(
 			Object stub, Object request, Map<String, Object> response,

@@ -1,4 +1,4 @@
-<apex:page sidebar="false" controller="WaveDataManagerController" action="{!checkMetadataAPIConnection}">
+<apex:page sidebar="false" controller="WaveDataManagerController" action="{!pageLoad}">
 	<script>
 	function createRemoteSite()
 	{
@@ -31,8 +31,7 @@
 	    binding.setRequestHeader('Content-Type', 'text/xml');
 	    binding.onreadystatechange =
 	        function() {
-	        	debugger;
-	            if(this.readyState==4) {
+	        	if(this.readyState==4) {
 	                var parser = new DOMParser();
 	                var doc  = parser.parseFromString(this.response, 'application/xml');
 	                var errors = doc.getElementsByTagName('errors');
@@ -45,26 +44,37 @@
 	    binding.send(request);
 	}
 	</script>
-	<apex:sectionHeader title="Wave Data Manager" subtitle="Configuration and Data Loading"/>
+	<style type="text/css">
+		.valignTop {
+			vertical-align: top;
+		}
+		.standardText {
+			font-size: 13px;
+			line-height: 25px;
+		}
+	</style>
+
 	<vs:importvisualstrap theme="paper" />
-	<vs:visualstrapblock id="form1">	   		   	
-	   	<!--All the  Visualstrap content and Visualforce content here -->
-	   	<apex:form rendered="{!!MetadataConnectionWarning}">
-	   		<apex:commandButton value="Run Data Generation" styleClass="btn-primary" action="{!run}"/>
-	   		<br /><br />
-	   		<vs:panel type="default" title="Results" id="messages" rendered="{!successMessage != '' || errorMessage != '' || warningMessage != ''}">
-	   			<vs:alert type="success" rendered="{!successMessage != ''}">
-	    			<apex:outputText value="{!successMessage}" />
-				</vs:alert>
-				<vs:alert type="danger" rendered="{!errorMessage != ''}">
-	    			<apex:outputText value="{!errorMessage}" />
-				</vs:alert>
-				<vs:alert type="warning" rendered="{!warningMessage != ''}">
-	    			<apex:outputText value="{!warningMessage}" />
-				</vs:alert>
-			</vs:panel>
-	   	</apex:form>
-	</vs:visualstrapblock>
+
+	<apex:sectionHeader title="Wave Data Manager" subtitle="Configuration and Data Loading"/>
+	<apex:form style="margin-top: 50px;" styleClass="standardText">
+		<apex:panelGrid columns="2" columnClasses="valignTop">
+			<apex:panelGrid columns="1">
+				<apex:outputLabel>Please select an App to Load</apex:outputLabel>
+		        <apex:selectList value="{!selectedWaveApp}" multiselect="false" size="10" style="width:200px">
+		   			<apex:selectOptions value="{!waveApps}"/>
+		   			<apex:actionSupport reRender="appDescription,vsbButton" event="onchange" />
+		   		</apex:selectList>
+			</apex:panelGrid>   		
+	   		<apex:panelGrid columns="1" width="200px">
+	   			<apex:outputText value="Description" style="font-weight: bold" />
+	   			<apex:outputText value="{!appDesciption}" id="appDescription" />
+	   		</apex:panelGrid>
+	   		<vs:visualstrapblock id="vsbButton" style="padding-top: 20px;">
+	   			<apex:commandButton value="Install App" styleClass="btn-primary btn-lg" action="{!installApp}" rendered="{!selectedWaveApp != ''}" id="btnInstallApp" style="text-transform: none;" />
+	   		</vs:visualstrapblock>
+		</apex:panelGrid>
+	</apex:form>	
 	<apex:form id="form2">
 		<apex:actionFunction name="displayMetadataResponse" action="{!displayMetadataResponse}" rerender="form1,form2">
 			<apex:param name="metadataResponse" assignTo="{!metadataResponse}" value="{!metadataResponse}"/>
@@ -77,13 +87,29 @@
 			<input id="createremotesitebtn" type="button" onclick="createRemoteSite();" value="Create Remote Site Setting"/>
 		</apex:outputPanel>
 	</apex:form>
-	<apex:form id="form3">
+	<apex:form id="form3" styleClass="standardText">
 		<apex:actionPoller action="{!checkProcessingStatus}" reRender="processingStatus,processingLogConsole,messages,form1,form3" interval="5" enabled="{!objectsNodes.size > 0}" id="checkFunction"/>
-		<apex:outputText value="{!jobStatusDsc}" id="processingStatus"/>
-		<apex:outputPanel>
-			<apex:repeat value="{!processingLog}" var="logEntry" id="processingLogConsole">
-				<apex:outputText value="{!logEntry}" /><br />
-			</apex:repeat>
-		</apex:outputPanel>
+		<apex:outputPanel rendered="{!processingLog.size > 0}">
+			<apex:outputText value="Status" id="processingStatus" style="font-weight: bold" />
+			<apex:panelGrid columns="1" width="600px" style="border: 1px solid #000;">
+				<apex:repeat value="{!processingLog}" var="logEntry" id="processingLogConsole">
+					<apex:outputText value="{!logEntry}" /><br />
+				</apex:repeat>
+			</apex:panelGrid>
+		</apex:outputPanel>		
 	</apex:form>
+	<vs:visualstrapblock id="form1">	   		   	
+	   	<!--All the  Visualstrap content and Visualforce content here -->
+	   	<apex:form rendered="{!!MetadataConnectionWarning}" style="margin-top: 20px;">
+	   		<vs:alert type="success" rendered="{!successMessage != ''}">
+    			<apex:outputText value="{!successMessage}" />
+			</vs:alert>
+			<vs:alert type="danger" rendered="{!errorMessage != ''}">
+    			<apex:outputText value="{!errorMessage}" />
+			</vs:alert>
+			<vs:alert type="warning" rendered="{!warningMessage != ''}">
+    			<apex:outputText value="{!warningMessage}" />
+			</vs:alert>
+	   	</apex:form>
+	</vs:visualstrapblock>
 </apex:page>

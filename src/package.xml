@@ -67,6 +67,7 @@
 		<members>WaveAccountsMassDeleteBatch</members>
 		<members>WaveCasesMassDeleteBatch</members>
 		<members>WaveOpptyMassDeleteBatch</members>
+		<members>WaveDataManager_test</members>
 		<name>ApexClass</name>
 	</types>
 	<types>

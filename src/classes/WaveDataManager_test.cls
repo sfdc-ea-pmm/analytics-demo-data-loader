@@ -1,0 +1,108 @@
+@isTest
+private class WaveDataManager_test {
+	
+	@isTest static void basicControllerTest() {
+
+		SmartLookup sm = new SmartLookup(0, 'User');
+
+		WaveDataManagerController cnt = new WaveDataManagerController(); // Constructor
+		cnt.resetMessages();
+
+		System.assertEquals(0, cnt.processingLog.size());
+	}
+
+	@isTest static void metadataUtilsTest() {
+
+		SF_MetadataUtils mUtils = new SF_MetadataUtils();
+
+		// Null Web Service mock implementation
+        Test.setMock(WebServiceMock.class, new MetadataServiceTest.WebServiceMockImpl());
+		
+		List<String> errs = mUtils.createObject('TestObj__c');		
+
+		SF_MetadataUtils.CustomFieldSpecification fieldSpec = new SF_MetadataUtils.CustomFieldSpecification();
+		fieldSpec.ObjectName = 'TestObj__c';
+		fieldSpec.Name = 'TestField__c';
+    	fieldSpec.Label = 'Test field';
+    	fieldSpec.Type = 'Text';
+		fieldSpec.ReferenceTo = '';
+		fieldSpec.Length = 50;
+		fieldSpec.Precision = 0;
+		fieldSpec.Scale = 0;
+		fieldSpec.IsExternalId = false;
+		fieldSpec.IsRequired = false;
+
+		Test.setMock(WebServiceMock.class, new MetadataServiceTest.WebServiceMockImpl());
+		errs = mUtils.createField(fieldSpec);
+
+		Test.setMock(WebServiceMock.class, new MetadataServiceTest.WebServiceMockImpl());
+		SF_MetadataUtils.checkMetadataAPIConnection();
+
+		fieldSpec = new SF_MetadataUtils.CustomFieldSpecification();
+		fieldSpec.ObjectName = 'TestObj__c';
+		fieldSpec.Name = 'TestField2__c';
+    	fieldSpec.Label = 'Test field 2';
+    	fieldSpec.Type = 'Lookup';
+		fieldSpec.ReferenceTo = 'User';
+		fieldSpec.Length = 0;
+		fieldSpec.Precision = 0;
+		fieldSpec.Scale = 0;
+		fieldSpec.IsExternalId = false;
+		fieldSpec.IsRequired = false;
+
+		Test.setMock(WebServiceMock.class, new MetadataServiceTest.WebServiceMockImpl());
+		errs = mUtils.createField(fieldSpec);
+	}
+
+	@isTest static void intermediateControllerTest(){
+
+		MultiStaticResourceCalloutMock multimock = new MultiStaticResourceCalloutMock();
+		
+		String jsonMetadataUrl = 'https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/WaveMetadata.json';
+		String usersMetadataUrl = 'https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/Users_metadata.csv';
+		String usersDataUrl = 'https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/Users.csv';
+		String accountsMetadataUrl = 'https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/Accounts_metadata.csv';
+		String accountsDataUrl = 'https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/AccountsForSales.csv';
+		String oppMetadataUrl = 'https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/Sales/Opportunity_metadata.csv';
+		String oppDataUrl = 'https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/Sales/Opportunities.csv';
+		String usersDataWithDblqUrl = 'http://www.example.com/usersCsvWithDBLQ';
+
+		multimock.setStaticResource(jsonMetadataUrl, 'WaveMetadataJSON');
+		multimock.setStaticResource(usersMetadataUrl, 'UserMetadataCSV');
+		multimock.setStaticResource(usersDataUrl, 'UsersDataCSV');
+		multimock.setStaticResource(usersDataWithDblqUrl, 'UsersDataCsvWithDBLQ');
+		multimock.setStaticResource(accountsMetadataUrl, 'AccountMetadataCSV');
+		multimock.setStaticResource(accountsDataUrl, 'AccountsDataCSV');
+		multimock.setStaticResource(oppMetadataUrl, 'OpportunityMetadataCSV');
+		multimock.setStaticResource(oppDataUrl, 'OpportunitiesDataCSV');
+		
+		multimock.setStatusCode(200);
+		multimock.setHeader('Content-Type', 'text/plain');
+		
+		WaveDataManagerController cnt = new WaveDataManagerController();
+		Test.setMock(HttpCalloutMock.class, multimock);
+		cnt.pageLoad();
+
+		List<SelectOption> options = cnt.getWaveApps();
+
+		System.assertNotEquals(0, options.size());
+
+		cnt.selectedWaveApp = 'Wave for Sales';
+		String appDsc = cnt.getAppDesciption();
+
+		System.assertNotEquals('No description available.', appDsc);
+
+		cnt.displayMetadataResponse();
+		cnt.MetadataResponse = 'TEST';
+		cnt.displayMetadataResponse();
+
+		WaveCsvDataRetriever wcdr = new WaveCsvDataRetriever();
+		wcdr.validateDataURL('');
+		wcdr.getSchemaFieldNames(usersDataUrl);
+		wcdr.getData(usersDataWithDblqUrl, true);
+
+		cnt.installApp();
+		cnt.checkProcessingStatus();		
+	}
+	
+}

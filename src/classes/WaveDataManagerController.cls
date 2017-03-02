@@ -1,12 +1,12 @@
 public with sharing class WaveDataManagerController {
 	
 	public String Host {get;set;}
-
 	public String RemoteSiteName { get { return 'WaveDataManager_mdapi'; } }
 	public String MetadataResponse {get;set;}
 	public Boolean MetadataConnectionWarning {get;set;}
 	public String MetadataApiException {get;set;}
 
+	public String selectedWaveApp { get; set; }
 	public String errorMessage { get; set; }
 	public String successMessage  { get; set; }
 	public String warningMessage  { get; set; }
@@ -21,12 +21,84 @@ public with sharing class WaveDataManagerController {
 	public String currentObjectProcessing { get; set; }
 	public List<WaveApplicationObject> objectsNodes { get; set; }
 
+	private WaveMetadata metadata;
+	private Map<String, String> appDescriptions; // <appName, appDesc>
+	private Map<String, Integer> appIndexes; // <appName, appIndex in this.metadata.waveApplications>
+
 	public WaveDataManagerController() {
 		this.objectsNodes = new List<WaveApplicationObject>();
 		this.processingLog = new List<String>();
+		this.appDescriptions = new Map<String, String>();
+		this.appIndexes = new Map<String, Integer>();
+		this.MetadataResponse = '';
 	}
 
-	private void resetMessages(){
+	public PageReference pageLoad()
+	{
+		// Get Host Domain
+		Host = ApexPages.currentPage().getHeaders().get('Host');
+				
+		// Attempt to connect to the Metadata API
+		MetadataConnectionWarning = false;
+		if(!Test.isRunningTest() && !SF_MetadataUtils.checkMetadataAPIConnection())
+		{
+			ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.Warning, 'Unable to connect to the Salesforce Metadata API.'));
+			ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.Warning, 'A Remote Site Setting must be created in your org before you can use this tool.'));
+			ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.Warning, 'Press the Create Remote Site Setting button to perform this step or refer to the post install step below to perform this manually.'));
+			MetadataConnectionWarning = true;
+			MetadataApiException = '';
+			/*if(RollupService.LastMetadataAPIConnectionException!=null)
+				MetadataApiException = RollupService.LastMetadataAPIConnectionException.getMessage();*/
+		}
+
+		// Retrieve and parse metadata
+		HttpRequest req = new HttpRequest();
+		req.setEndpoint('https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/WaveMetadata.json');
+        req.setMethod('GET');
+
+		Http http = new Http();
+        HTTPResponse res = http.send(req);
+
+		String jsonMetadata = res.getBody();
+		this.metadata = (WaveMetadata)JSON.deserialize(jsonMetadata, WaveMetadata.class);
+
+		if(this.metadata != null && this.metadata.waveApplications != null){
+        	for(WaveMetadataApplication genericApp: this.metadata.waveApplications) {
+				appDescriptions.put(genericApp.appName, genericApp.appDescription);
+			}
+        }
+		
+		return null;
+	}
+
+	public List<SelectOption> getWaveApps() {
+        
+        List<SelectOption> options = new List<SelectOption>();
+
+        Integer index = 0;
+        if(this.metadata != null && this.metadata.waveApplications != null){
+        	for(WaveMetadataApplication genericApp: this.metadata.waveApplications) {
+				options.add(new SelectOption(genericApp.appName, genericApp.appName));
+				this.appIndexes.put(genericApp.appName, index);
+				index++;
+			}
+        }
+
+        return options;
+    }
+
+    public String getAppDesciption(){
+    	
+    	String dsc = 'No description available.';
+
+    	if(!String.isBlank(this.selectedWaveApp) && this.appDescriptions.containsKey(this.selectedWaveApp)){
+    		dsc =  this.appDescriptions.get(this.selectedWaveApp);
+    	}
+    	
+    	return dsc;
+    }
+
+	public void resetMessages(){
 		this.errorMessage = '';
 		this.successMessage = '';
 		this.warningMessage = '';
@@ -34,38 +106,28 @@ public with sharing class WaveDataManagerController {
 		this.processingLog.clear();
 	}
 
-	public void run(){
+	public void installApp(){
 		this.resetMessages();
 
-		try {
-			HttpRequest req = new HttpRequest();
-			req.setEndpoint('https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/WaveMetadata.json');
-	        req.setMethod('GET');
-
-			Http http = new Http();
-	        HTTPResponse res = http.send(req);
-
-			String jsonMetadata = res.getBody();
-			WaveMetadata metadata = (WaveMetadata)JSON.deserialize(jsonMetadata, WaveMetadata.class);
-
+		try {			
 			// We build the node array
 			this.objectsNodes.clear();
 
 			// We start collecting the common object to add to the node array
-			if(metadata.commonObjects != null) {
-				for(WaveMetadataApplicationObject wmaObj: metadata.commonObjects) {
+			if(this.metadata.commonObjects != null) {
+				for(WaveMetadataApplicationObject wmaObj: this.metadata.commonObjects) {
 					List<WaveApplicationObject> objs = this.getObjectsToProcess(wmaObj);
 					this.objectsNodes.addAll(objs);
 				}
 			}
 			
-			if(metadata.waveApplications != null){
-				for(WaveMetadataApplication genericApp: metadata.waveApplications) {
-					if(genericApp.objects != null){
-						for(WaveMetadataApplicationObject wmaObj: genericApp.objects) {							
-							List<WaveApplicationObject> objs = this.getObjectsToProcess(wmaObj);
-							this.objectsNodes.addAll(objs);
-						}
+			if(this.metadata.waveApplications != null && this.appIndexes.containsKey(this.selectedWaveApp)){
+				// Based on the selection
+				WaveMetadataApplication selectedApp = this.metadata.waveApplications.get(this.appIndexes.get(this.selectedWaveApp));
+				if(selectedApp.objects != null){
+					for(WaveMetadataApplicationObject wmaObj: selectedApp.objects) {
+						List<WaveApplicationObject> objs = this.getObjectsToProcess(wmaObj);
+						this.objectsNodes.addAll(objs);
 					}
 				}
 			}
@@ -236,7 +298,7 @@ public with sharing class WaveDataManagerController {
 			csvData = iMockHelper.getData(newUrl, false);
 		}
 
-		this.processingLog.add('Processing ' + csvData.size() + ' records for ' + currentNode.name + ' object...');
+		this.processingLog.add('Loading ' + csvData.size() + ' records for ' + currentNode.name + ' object...');
 
 		// Start the batch process
 		CsvDataImportBatch batchProcess = new CsvDataImportBatch(Schema.getGlobalDescribe().get(currentNode.name), csvData, currentNode.fieldPositions, currentNode.relations);
@@ -263,7 +325,7 @@ public with sharing class WaveDataManagerController {
 
 				if(asyncJob.Status == 'Completed'){
 					if(asyncJob.NumberOfErrors > 0) {
-						this.errorMessage = 'The process was interrupted due to errors while generating data for the ' + this.objectsNodes.get(this.currentNodeIndex).name + ' object. See logs for details.';
+						this.errorMessage = 'The process was interrupted due to errors while loading data for the ' + this.objectsNodes.get(this.currentNodeIndex).name + ' object. See logs for details.';
 						this.currentNodeIndex = 0;
 						currentNode.currentDataIndex = 0;
 						this.objectsNodes.clear();
@@ -286,6 +348,7 @@ public with sharing class WaveDataManagerController {
 								this.currentNodeIndex = 0;
 								this.objectsNodes.clear();
 								this.jobStatusDsc = '';
+								this.processingLog.add('Done.');
 							}
 							else {
 								// There are more nodes to process, increment index and reset 
@@ -297,13 +360,13 @@ public with sharing class WaveDataManagerController {
 					}					
 				}
 				else if(asyncJob.Status == 'Aborted'){
-					this.errorMessage = 'The process was aborted while generating data for the ' + this.objectsNodes.get(this.currentNodeIndex).name + ' object.';
+					this.errorMessage = 'The process was aborted while loading data for the ' + this.objectsNodes.get(this.currentNodeIndex).name + ' object.';
 					this.currentNodeIndex = 0;
 					this.objectsNodes.clear();
 					this.jobStatusDsc = '';
 				}
 				else if(asyncJob.Status == 'Failed'){
-					this.errorMessage = 'The process failed while generating data for the ' + this.objectsNodes.get(this.currentNodeIndex).name + ' object.';
+					this.errorMessage = 'The process failed while loading data for the ' + this.objectsNodes.get(this.currentNodeIndex).name + ' object.';
 					this.currentNodeIndex = 0;
 					this.objectsNodes.clear();
 					this.jobStatusDsc = '';
@@ -314,38 +377,17 @@ public with sharing class WaveDataManagerController {
 		return null;
 	}
 
-	public PageReference checkMetadataAPIConnection()
-	{
-		// Get Host Domain
-		Host = ApexPages.currentPage().getHeaders().get('Host');
-				
-		// Attempt to connect to the Metadata API
-		MetadataConnectionWarning = false;
-		if(!SF_MetadataUtils.checkMetadataAPIConnection())
-		{
-			ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.Warning, 'Unable to connect to the Salesforce Metadata API.'));
-			ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.Warning, 'A Remote Site Setting must be created in your org before you can use this tool.'));
-			ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.Warning, 'Press the Create Remote Site Setting button to perform this step or refer to the post install step below to perform this manually.'));
-			MetadataConnectionWarning = true;
-			MetadataApiException = '';
-			/*if(RollupService.LastMetadataAPIConnectionException!=null)
-				MetadataApiException = RollupService.LastMetadataAPIConnectionException.getMessage();*/
-		}
-		
-		return null;				
-	}
-	
 	public PageReference displayMetadataResponse()
 	{
 		// Display the response from the client side Metadata API callout
-		if(metadataResponse.length()==0)
+		if(this.MetadataResponse.length()==0)
 		{
-			ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.Info, 'Remote Site Setting ' + RemoteSiteName + ' has been created. Now you can press the Run Data Generation button.' ));
+			ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.Info, 'Remote Site Setting ' + RemoteSiteName + ' has been created. Now you can continue with Wave Apps instalation.' ));
 			MetadataConnectionWarning = false;
 		}
 		else
 		{
-			ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.Error, metadataResponse));
+			ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.Error, this.MetadataResponse));
 			MetadataConnectionWarning = true;
 		}
 		return null;
