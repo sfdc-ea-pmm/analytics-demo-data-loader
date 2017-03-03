@@ -68,6 +68,7 @@
 		<members>WaveCasesMassDeleteBatch</members>
 		<members>WaveOpptyMassDeleteBatch</members>
 		<members>WaveDataManager_test</members>
+		<members>CSVReader</members>
 		<name>ApexClass</name>
 	</types>
 	<types>
