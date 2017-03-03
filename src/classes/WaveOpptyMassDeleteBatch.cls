@@ -7,7 +7,7 @@ global class WaveOpptyMassDeleteBatch implements Database.Batchable<sObject> {
 	}
 	
 	global Database.QueryLocator start(Database.BatchableContext BC) {
-		return Database.getQueryLocator(query);
+		return Database.getQueryLocator([SELECT Id FROM Opportunity WHERE External_Id__c LIKE 'W_Opportunity.%']);
 	}
 
    	global void execute(Database.BatchableContext BC, List<sObject> scope) {
