@@ -6,9 +6,24 @@ public with sharing virtual class WaveCsvDataRetriever implements IMockarooHelpe
 
 	public List<List<String>> getData(String dataUrl, Boolean skipHeaders){
 		
-		List<List<String>> allFields = new List<List<String>>();
 		String contents = this.mockarooCallout(dataUrl);
-		Utility_RowIterator r = New Utility_RowIterator(contents,'\n');
+        Utility_RowIterator r = New Utility_RowIterator(contents, '\n');
+        List<String> lines = new List<String>();
+
+        while(r.hasNext()) {
+            
+            // We quit the '\r' character
+            String rawLine = r.next();
+            String line = rawLine.replaceAll('\r', '');
+            
+            // check for blank CSV lines (only commas)
+            if (!String.isBlank(line.replaceAll(',',''))){
+                lines.add(line);            
+            }
+        }
+
+        List<List<String>> allFields = CSVReader.Parse(String.join(lines, '\n'));
+		/*Utility_RowIterator r = New Utility_RowIterator(contents,'\n');
 		Integer num = 0;
 		List<String> lines = new List<String>();
 
@@ -54,7 +69,7 @@ public with sharing virtual class WaveCsvDataRetriever implements IMockarooHelpe
             }
 
             allFields.add(cleanFields);
-        }
+        }*/
 
         if(skipHeaders){
         	allFields.remove(0);

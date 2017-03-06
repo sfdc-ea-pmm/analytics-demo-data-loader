@@ -225,6 +225,8 @@ public with sharing class WaveDataManagerController {
 			// For each row of data in the CSV
 			rootObj.fields = new List<WaveApplicationObjectField>();
 
+			System.debug('BEFORE FORE');
+
 			for(List<String> metadataRow: csvMetadata) {
 				WaveApplicationObjectField fieldMetadata = new WaveApplicationObjectField();
 				fieldMetadata.Label = metadataRow.get(fieldPositions.get('Label'));
