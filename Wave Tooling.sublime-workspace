@@ -444,7 +444,7 @@
 			"file": "/D/desarrollo/Salesforce/WaveTooling/WaveData/Services/Cases_History.csv",
 			"settings":
 			{
-				"buffer_size": 77085,
+				"buffer_size": 90594,
 				"line_ending": "Windows"
 			}
 		},
@@ -452,8 +452,9 @@
 			"file": "/D/desarrollo/Salesforce/WaveTooling/WaveData/Services/Cases.csv",
 			"settings":
 			{
-				"buffer_size": 1058509,
-				"line_ending": "Windows"
+				"buffer_size": 161208,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
 			}
 		},
 		{
@@ -468,7 +469,7 @@
 			"file": "/D/desarrollo/Salesforce/WaveTooling/WaveData/WaveMetadata.json",
 			"settings":
 			{
-				"buffer_size": 2743,
+				"buffer_size": 5209,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -1022,15 +1023,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 77085,
+						"buffer_size": 90594,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								273,
-								273
+								0,
+								0
 							]
 						],
 						"settings":
@@ -1050,15 +1051,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1058509,
+						"buffer_size": 161208,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1058494,
-								1058504
+								0,
+								0
 							]
 						],
 						"settings":
@@ -1105,15 +1106,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2743,
+						"buffer_size": 5209,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2005,
-								2005
+								0,
+								0
 							]
 						],
 						"settings":
