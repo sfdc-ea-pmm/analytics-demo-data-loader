@@ -110,7 +110,7 @@ public with sharing class WaveDataManagerController {
 	public void installApp(){
 		this.resetMessages();
 
-		if(!String.isEmpty(folderName)){
+		if(!String.isBlank(folderName)){
 			try {			
 				// We build the node array
 				this.objectsNodes.clear();
