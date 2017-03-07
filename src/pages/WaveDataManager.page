@@ -4,6 +4,7 @@
 	{
 	    // Disable button
 	    document.getElementById('createremotesitebtn').disabled = true;
+	    
 	    // Calls the Metdata API from JavaScript to create the Remote Site Setting to permit Apex callouts
 	    var binding = new XMLHttpRequest();
 	    var request =
@@ -60,7 +61,7 @@
 	<apex:form style="margin-top: 50px;" styleClass="standardText">
 		<apex:panelGrid columns="2" columnClasses="valignTop">
 			<apex:panelGrid columns="1">
-				<apex:outputLabel>Please select an App to Load</apex:outputLabel>
+				<apex:outputLabel >Please select an App to Load</apex:outputLabel>
 		        <apex:selectList value="{!selectedWaveApp}" multiselect="false" size="10" style="width:200px">
 		   			<apex:selectOptions value="{!waveApps}"/>
 		   			<apex:actionSupport reRender="appDescription,vsbButton" event="onchange" />
