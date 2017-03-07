@@ -23,53 +23,6 @@ public with sharing virtual class WaveCsvDataRetriever implements IMockarooHelpe
         }
 
         List<List<String>> allFields = CSVReader.Parse(String.join(lines, '\n'));
-		/*Utility_RowIterator r = New Utility_RowIterator(contents,'\n');
-		Integer num = 0;
-		List<String> lines = new List<String>();
-
-        while(r.hasNext()) {
-          	
-          	String rawLine = r.next();
-        	String line = rawLine.replaceAll('\r', '');
-        	line = line.replaceAll(',"""',',"DBLQT').replaceall('""",','DBLQT",');
-        	line = line.replaceAll('""','DBLQT');
-
-            // check for blank CSV lines (only commas)
-            if (!String.isBlank(line.replaceAll(',',''))){
-            	lines.add(line);           	
-            }
-        }
-
-        for(String line : lines){
-        	List<String> fields = line.split(',');	
-            List<String> cleanFields = new List<String>();
-            String compositeField;
-            Boolean makeCompositeField = false;
-
-            for(String field : fields) {
-                if (field.startsWith('"') && field.endsWith('"')) {
-                    cleanFields.add(field.replaceAll('DBLQT','"'));
-                } 
-                else if (field.startsWith('"')) {
-                    makeCompositeField = true;
-                    compositeField = field;
-                } 
-                else if (field.endsWith('"')) {
-                    compositeField += ',' + field;
-                    cleanFields.add(compositeField.replaceAll('DBLQT','"'));
-                    makeCompositeField = false;
-                } 
-                else if (makeCompositeField) {
-                    compositeField +=  ',' + field;
-                } 
-                else {
-                    cleanFields.add(field.replaceAll('DBLQT','"'));
-                }
-                cleanFields.add(field);
-            }
-
-            allFields.add(cleanFields);
-        }*/
 
         if(skipHeaders){
         	allFields.remove(0);
