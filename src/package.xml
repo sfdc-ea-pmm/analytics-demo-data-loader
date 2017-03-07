@@ -24,6 +24,9 @@
         <members>RoleUtils</members>
         <members>SF_MetadataUtils</members>
         <members>SalesWaveDataflowDefinitionEditor</members>
+        <members>SalesWaveQuotas</members>
+        <members>SalesWaveScripted_test</members>
+        <members>ServicesWaveDataflowDefinitionEditor</members>
         <members>SmartLookup</members>
         <members>Utility_RowIterator</members>
         <members>WW_CopyCaseHistory</members>
