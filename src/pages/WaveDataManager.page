@@ -71,6 +71,10 @@
 	   			<apex:outputText value="Description" style="font-weight: bold" />
 	   			<apex:outputText value="{!appDesciption}" id="appDescription" />
 	   		</apex:panelGrid>
+	   		<apex:panelGrid columns="1" width="200px">
+	   			<apex:outputLabel >Specify a new folder/app:</apex:outputLabel>
+	   			<apex:inputText value="{!folderName}" id="folderName" />
+	   		</apex:panelGrid><br />
 	   		<vs:visualstrapblock id="vsbButton" style="padding-top: 20px;">
 	   			<apex:commandButton value="Install App" styleClass="btn-primary btn-lg" action="{!installApp}" rendered="{!selectedWaveApp != ''}" id="btnInstallApp" style="text-transform: none;" />
 	   		</vs:visualstrapblock>
