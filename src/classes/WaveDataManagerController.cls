@@ -425,7 +425,7 @@ public with sharing class WaveDataManagerController {
 	}
 
 	private boolean checkFolderExistance(){
-		Folder[] lstFolders = [SELECT Name FROM Folder WHERE Name = :this.folderName AND Type = 'Insights'];
+		Folder[] lstFolders = [SELECT Id FROM Folder WHERE DeveloperName = :this.folderName AND Type = 'Insights'];
 		return lstFolders.size() > 0;
 	}
 
