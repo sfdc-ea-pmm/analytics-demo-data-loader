@@ -20,6 +20,7 @@
         <members>ProfileUtils</members>
         <members>Randomizer</members>
         <members>Randomizer_test</members>
+        <members>RestApiFolderErrorResponse</members>
         <members>RestApiResponseBody</members>
         <members>RoleUtils</members>
         <members>SF_MetadataUtils</members>
