@@ -1,18 +1,17 @@
 {
-    "projectName": "WaveDemos202",
+    "projectName": "Wave Demos",
     "username": "dthom@servicewavesdo.za",
-    "id": "b6e74600-7365-11e6-8a45-db125c242f4d",
+    "id": "c91de470-033c-11e7-995e-cd941fea7344",
     "namespace": "",
-    "environment": "production",
+    "orgType": "developer",
     "loginUrl": "https://login.salesforce.com/",
-    "workspace": "/Users/mac-36/Documents/Development/WaveDemos/workspace",
+    "instanceUrl": "https://na30.salesforce.com",
+    "workspace": "/Users/mac-11/Documents",
     "subscription": [
         "ApexClass",
         "ApexComponent",
         "ApexPage",
         "ApexTrigger",
         "StaticResource"
-    ],
-    "orgType": "production",
-    "instanceUrl": "https://na30.salesforce.com"
+    ]
 }

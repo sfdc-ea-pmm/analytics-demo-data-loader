@@ -80,13 +80,6 @@
             "xmlName": "NamedCredential"
         },
         {
-            "directoryName": "externalServiceRegistrations",
-            "inFolder": false,
-            "metaFile": false,
-            "suffix": "externalServiceRegistration",
-            "xmlName": "ExternalServiceRegistration"
-        },
-        {
             "directoryName": "roles",
             "inFolder": false,
             "metaFile": false,
@@ -101,18 +94,11 @@
             "xmlName": "Group"
         },
         {
-            "directoryName": "globalValueSets",
+            "directoryName": "globalPicklists",
             "inFolder": false,
             "metaFile": false,
-            "suffix": "globalValueSet",
-            "xmlName": "GlobalValueSet"
-        },
-        {
-            "directoryName": "standardValueSets",
-            "inFolder": false,
-            "metaFile": false,
-            "suffix": "standardValueSet",
-            "xmlName": "StandardValueSet"
+            "suffix": "globalPicklist",
+            "xmlName": "GlobalPicklist"
         },
         {
             "directoryName": "customPermissions",
@@ -258,20 +244,6 @@
             "xmlName": "Portal"
         },
         {
-            "directoryName": "EmbeddedServiceConfig",
-            "inFolder": false,
-            "metaFile": false,
-            "suffix": "EmbeddedServiceConfig",
-            "xmlName": "EmbeddedServiceConfig"
-        },
-        {
-            "directoryName": "EmbeddedServiceLiveAgent",
-            "inFolder": false,
-            "metaFile": false,
-            "suffix": "EmbeddedServiceLiveAgent",
-            "xmlName": "EmbeddedServiceLiveAgent"
-        },
-        {
             "directoryName": "flows",
             "inFolder": false,
             "metaFile": false,
@@ -375,20 +347,6 @@
             "xmlName": "Translations"
         },
         {
-            "directoryName": "globalValueSetTranslations",
-            "inFolder": false,
-            "metaFile": false,
-            "suffix": "globalValueSetTranslation",
-            "xmlName": "GlobalValueSetTranslation"
-        },
-        {
-            "directoryName": "standardValueSetTranslations",
-            "inFolder": false,
-            "metaFile": false,
-            "suffix": "standardValueSetTranslation",
-            "xmlName": "StandardValueSetTranslation"
-        },
-        {
             "directoryName": "classes",
             "inFolder": false,
             "metaFile": true,
@@ -401,13 +359,6 @@
             "metaFile": true,
             "suffix": "trigger",
             "xmlName": "ApexTrigger"
-        },
-        {
-            "directoryName": "testSuites",
-            "inFolder": false,
-            "metaFile": false,
-            "suffix": "testSuite",
-            "xmlName": "ApexTestSuite"
         },
         {
             "directoryName": "profiles",
@@ -455,20 +406,6 @@
             "xmlName": "MatchingRules"
         },
         {
-            "directoryName": "duplicateRules",
-            "inFolder": false,
-            "metaFile": false,
-            "suffix": "duplicateRule",
-            "xmlName": "DuplicateRule"
-        },
-        {
-            "directoryName": "cleanDataServices",
-            "inFolder": false,
-            "metaFile": false,
-            "suffix": "cleanDataService",
-            "xmlName": "CleanDataService"
-        },
-        {
             "directoryName": "authproviders",
             "inFolder": false,
             "metaFile": false,
@@ -490,27 +427,6 @@
             "xmlName": "WaveDataset"
         },
         {
-            "directoryName": "wave",
-            "inFolder": false,
-            "metaFile": true,
-            "suffix": "wlens",
-            "xmlName": "WaveLens"
-        },
-        {
-            "directoryName": "wave",
-            "inFolder": false,
-            "metaFile": true,
-            "suffix": "wdash",
-            "xmlName": "WaveDashboard"
-        },
-        {
-            "directoryName": "wave",
-            "inFolder": false,
-            "metaFile": true,
-            "suffix": "wdf",
-            "xmlName": "WaveDataflow"
-        },
-        {
             "directoryName": "sites",
             "inFolder": false,
             "metaFile": false,
@@ -523,13 +439,6 @@
             "metaFile": false,
             "suffix": "channelLayout",
             "xmlName": "ChannelLayout"
-        },
-        {
-            "directoryName": "contentassets",
-            "inFolder": false,
-            "metaFile": true,
-            "suffix": "asset",
-            "xmlName": "ContentAsset"
         },
         {
             "childXmlNames": [
@@ -618,20 +527,6 @@
             "metaFile": false,
             "suffix": "network",
             "xmlName": "Network"
-        },
-        {
-            "directoryName": "communityThemeDefinitions",
-            "inFolder": false,
-            "metaFile": false,
-            "suffix": "communityThemeDefinition",
-            "xmlName": "CommunityThemeDefinition"
-        },
-        {
-            "directoryName": "communityTemplateDefinitions",
-            "inFolder": false,
-            "metaFile": false,
-            "suffix": "communityTemplateDefinition",
-            "xmlName": "CommunityTemplateDefinition"
         },
         {
             "childXmlNames": [
