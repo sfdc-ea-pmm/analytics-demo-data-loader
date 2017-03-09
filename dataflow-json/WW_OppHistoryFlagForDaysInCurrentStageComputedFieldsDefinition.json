@@ -1,0 +1,1 @@
+[{"defaultValue":"\"1\"","name":"Stage_isUpdated","saqlExpression":"case when 'StageName' == 'StageNamePrev' then \"0\" else \"1\" end","type":"Text"},{"defaultValue":"\"1\"","name":"CloseDate_isUpdated","saqlExpression":"case when 'CloseDatePrev' == 'CloseDate' then \"0\" else \"1\" end","type":"Text"}]

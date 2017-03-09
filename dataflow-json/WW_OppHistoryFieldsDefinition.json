@@ -1,0 +1,1 @@
+[{"name":"Amount__c"},{"fiscalMonthOffset":0,"name":"CloseDate__c"},{"name":"CreatedById"},{"fiscalMonthOffset":0,"name":"CreatedDate__c"},{"name":"ForecastCategory__c"},{"name":"Id"},{"name":"IsDeleted"},{"name":"OpportunityId__c"},{"name":"StageName__c"}]

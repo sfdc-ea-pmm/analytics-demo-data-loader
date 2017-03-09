@@ -1,0 +1,63 @@
+<apex:page showHeader="true" sidebar="false" controller="CopyCustomHistoryController">
+	<style type="text/css">
+		.helpPanel {
+			border: 1px solid #000;
+		}
+		.helpStep {
+			font-weight: bold;
+		}
+		.helpCell {
+			padding-top: 3px;
+			padding-bottom: 3px;
+		}
+		.validText {
+			font-weight: bold;
+			color: green;
+		}
+		.invalidText {
+			font-weight: bold;
+			color: red;
+		}
+	</style>
+	<apex:form id="mainForm">
+        <apex:pageBlock mode="edit">
+            <apex:pageMessages />
+            <apex:pageBlockSection >
+                <apex:panelGrid columns="1">
+
+                	<apex:outputLabel for="waveapp" value="Select Wave App:" />
+                    <apex:selectList multiselect="false" value="{!waveApp}" size="1" id="waveapp">
+                        <apex:selectOptions value="{!waveApplications}" />
+                        <apex:actionSupport reRender="selectObj,jobStatusPanel" event="onchange" action="{!updateWaveApp}" />
+                    </apex:selectList>
+                    
+                    <apex:outputLabel for="selectObj" value="Select Object:" />
+                    <apex:selectList multiselect="false" value="{!selectedObject}" size="1" id="selectObj">
+                        <apex:selectOptions value="{!historyObjects}" />
+                        <apex:actionSupport reRender="jobStatusPanel" event="onchange" action="{!updateSelectedObj}" />
+                    </apex:selectList>
+
+                    <apex:outputPanel id="monitoringPanel">
+                    	<apex:actionPoller action="{!monitor}" interval="5" reRender="jobStatusPanel" rendered="{!monitorJobExecution}" />
+                    </apex:outputPanel>
+
+                    <apex:outputPanel id="jobStatusPanel">
+                    	<apex:panelGrid columns="2" rendered="{!showJobStatistics}">
+                			<apex:outputText value="Total batches: "/>
+                			<apex:outputText value="{!totalBatches}" styleClass="helpStep" />
+	                        <apex:outputText value="Batches processed: "/>
+                			<apex:outputText value="{!batchesProcessed}" styleClass="helpStep" />
+                			<apex:outputText value="Status:"/>
+                			<apex:outputText value="{!jobStatusDsc}" styleClass="helpStep" />
+                        </apex:panelGrid>
+                    </apex:outputPanel>
+                    
+                </apex:panelGrid>
+
+            </apex:pageBlockSection>
+            <apex:pageBlockButtons location="bottom">
+                <apex:commandButton value="Accept" action="{!process}" id="btnAccept" reRender="mainForm" />
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

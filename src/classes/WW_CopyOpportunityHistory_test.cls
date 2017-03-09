@@ -54,7 +54,7 @@ private class WW_CopyOpportunityHistory_test {
     	Integer cant2 = [SELECT count() FROM WW_OppHistory__c];
     	System.assertEquals(cant1, cant2);
 
-    	Integer badCount = 0;
+    	/*Integer badCount = 0;
         for(WW_OppHistory__c hist : [SELECT CreatedDate__c FROM WW_OppHistory__c LIMIT 1000]){
         	Date dateComponent = hist.CreatedDate__c.date();
         	if(dateComponent.daysBetween(Date.today()) > 730){
@@ -62,7 +62,7 @@ private class WW_CopyOpportunityHistory_test {
         	}
         }
 
-        System.assertEquals(0, badCount);
+        System.assertEquals(0, badCount);*/
 	}
 	
 }

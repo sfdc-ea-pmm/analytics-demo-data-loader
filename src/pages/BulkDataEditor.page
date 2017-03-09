@@ -1,0 +1,19 @@
+<apex:page controller="BulkDataEditorController" showHeader="true" sidebar="false">
+	<apex:form id="mainForm">
+        <apex:pageBlock mode="edit">
+            <apex:pageMessages />
+            <apex:pageBlockSection >
+                <apex:panelGrid columns="1">
+                	<apex:panelGroup >
+                        <apex:outputLabel for="saqlQuery" value="Enter SAQL query here:" />
+                    </apex:panelGroup>                   
+                    <apex:inputTextarea id="saqlQuery" value="{!saqlQuery}" rows="6" cols="100">
+                    </apex:inputTextarea>
+                </apex:panelGrid>
+            </apex:pageBlockSection>
+            <apex:pageBlockButtons location="bottom">
+                <apex:commandButton value="Retrieve results" action="{!retrieveSaqlResults}" id="btnAccept" reRender="mainForm" />
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

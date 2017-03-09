@@ -1,0 +1,72 @@
+<apex:page showHeader="true" sidebar="true" controller="ManageQuotaDatasetsController">
+    <apex:includeScript value="{!URLFOR($Resource.jQueryPlugins, 'jquery-3.1.0.min.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.jQueryPlugins, 'jquery.numeric.min.js')}" />
+    <apex:form >
+        <apex:pageBlock mode="edit">
+            <apex:pageMessages />
+            <apex:pageBlockSection >
+                <apex:panelGrid columns="1">
+                    
+                    <apex:outputLabel for="salesApp" value="Select Sales Wave Application:" />
+                    <apex:selectList multiselect="false" value="{!salesApp}" size="1" id="salesApp">
+                        <apex:selectOptions value="{!salesApplications}" />
+                    </apex:selectList>
+                    
+                    <apex:panelGroup >
+                        <apex:outputLabel for="defaultMode" value="Apply to Opportunity owners " />
+                        <apex:inputCheckbox value="{!useOpportunityOwners}" id="defaultMode">
+                            <apex:actionSupport action="{!handleAffected}" event="onclick" reRender="affectedPanel,role,alsoSub,profiles" />
+                        </apex:inputCheckbox>
+                    </apex:panelGroup>
+                    
+                    <apex:outputLabel for="role" value="Select Role:" />
+                    <apex:selectList multiselect="false" value="{!selectedRoleId}" size="1" label="Select Role:" id="role" disabled="{!useOpportunityOwners}">
+                        <apex:selectOptions value="{!roles}" />
+                        <apex:actionSupport action="{!handleAffected}" event="onchange" reRender="affectedPanel" />
+                    </apex:selectList>
+
+                    <apex:panelGroup >
+                        <apex:outputLabel for="alsoSub" value="Also Role subordinates " />
+                        <apex:inputCheckbox value="{!alsoRoleSubordinates}" id="alsoSub" disabled="{!useOpportunityOwners}">
+                            <apex:actionSupport action="{!handleAffected}" event="onclick" reRender="affectedPanel" />
+                        </apex:inputCheckbox>
+                    </apex:panelGroup>
+
+                    <apex:outputLabel for="profiles" value="and/or Profiles:" />
+                    <apex:selectList multiselect="true" value="{!selectedProfilesIds}" size="10" id="profiles" disabled="{!useOpportunityOwners}">
+                        <apex:selectOptions value="{!profiles}" />
+                        <apex:actionSupport action="{!handleAffected}" event="onchange" reRender="affectedPanel" />
+                    </apex:selectList>
+
+                    <apex:outputLabel for="quota" value="Quota Amount:" />
+                    <apex:inputText value="{!quotaAmount}" label="Quota Amount" styleClass="numeric" id="quota" />
+
+                    <apex:outputPanel id="affectedPanel">
+                        <apex:panelGroup >
+                            <apex:outputLabel for="affectedCount" value="Affected users: " />
+                            <apex:outputText id="affectedCount" value="{!affectedCount}" style="font-weight: bold;" />
+                        </apex:panelGroup>
+                    </apex:outputPanel>
+                    
+                </apex:panelGrid>
+
+            </apex:pageBlockSection>
+            <apex:pageBlockButtons location="bottom">
+                <apex:commandButton value="Accept" action="{!save}"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+    <script type="text/javascript">
+        $(".numeric").numeric(
+            { 
+                decimal: false, 
+                negative: false 
+            }, 
+            function() { 
+                alert("Positive integers only"); 
+                this.value = ""; 
+                this.focus();
+            }
+        );
+    </script>
+</apex:page>

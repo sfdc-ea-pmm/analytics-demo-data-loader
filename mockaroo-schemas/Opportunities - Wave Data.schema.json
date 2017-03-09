@@ -1,0 +1,225 @@
+{
+  "id": 7349,
+  "num_rows": 100,
+  "file_format": "csv",
+  "name": "Opportunities - Wave Data",
+  "include_header": true,
+  "columns": [
+    {
+      "name": "__IDHelper",
+      "type": "Row Number",
+      "formula": ""
+    },
+    {
+      "name": "__IDPadder",
+      "type": "Formula",
+      "value": "pad(field('__IDHelper'),5,\"00000\", \"left\")",
+      "formula": ""
+    },
+    {
+      "name": "External_Id__c",
+      "type": "Template",
+      "value": "W_Opportunity.{__IDPadder}",
+      "formula": ""
+    },
+    {
+      "name": "__OwnerIdHelper",
+      "type": "Number",
+      "min": 1,
+      "max": 20,
+      "decimals": 0,
+      "formula": ""
+    },
+    {
+      "name": "__OwnerIdPadder",
+      "type": "Formula",
+      "value": "pad(field('__OwnerIdHelper'),5,\"00000\",\"left\")",
+      "formula": ""
+    },
+    {
+      "name": "Owner.External_Id__c",
+      "type": "Template",
+      "value": "W_User.{__OwnerIdPadder}",
+      "formula": ""
+    },
+    {
+      "name": "__AccountIdHelper",
+      "type": "Number",
+      "min": 1,
+      "max": 100,
+      "decimals": 0,
+      "formula": ""
+    },
+    {
+      "name": "__AccountIdPadder",
+      "type": "Formula",
+      "value": "pad(field('__AccountIdHelper'),5,\"00000\",\"left\")",
+      "formula": ""
+    },
+    {
+      "name": "Account.External_Id__c",
+      "type": "Template",
+      "value": "W_Account.{__AccountIdPadder}",
+      "formula": ""
+    },
+    {
+      "name": "CreatedDate",
+      "type": "Date",
+      "min": "01/01/2015",
+      "max": "8/29/2016",
+      "format": "%Y-%m-%d %H:%M:%S",
+      "formula": ""
+    },
+    {
+      "name": "CloseDate",
+      "type": "Formula",
+      "value": "field('CreatedDate') + days(random(60,210))",
+      "formula": ""
+    },
+    {
+      "name": "Name",
+      "type": "Template",
+      "value": "Opportunity for {Account_Name_DNI} [{CreatedDate}]",
+      "formula": ""
+    },
+    {
+      "name": "Products__c",
+      "type": "Custom List",
+      "values": [
+        "GC1000 series",
+        "GC5000 series",
+        "GC10001",
+        "GC20002",
+        "GC50000"
+      ],
+      "selectionStyle": "random",
+      "distribution": [
+        {
+          "frequencies": {
+            "Electronic Health Records": "10",
+            "Practice Management": "6",
+            "Revenue Cycle Management": "4",
+            "Patient Engagement": "3",
+            "Population Health Services": "5",
+            "Order Transmission": "6",
+            "Patient Access and Care Coordination": "4",
+            "Epocrates": "2"
+          }
+        }
+      ],
+      "formula": ""
+    },
+    {
+      "name": "StageName",
+      "type": "Custom List",
+      "values": [
+        "Qualification",
+        "Needs Analysis",
+        "Proposal/Quote",
+        "Negotiation",
+        "Closed Won",
+        "Closed Lost"
+      ],
+      "selectionStyle": "custom",
+      "distribution": [
+        {
+          "rule": "field(\"Products__c\") == \"GC1000 series\"",
+          "frequencies": {
+            "Qualification": "5",
+            "Needs Analysis": "4",
+            "Proposal/Quote": "3",
+            "Negotiation": "2",
+            "Closed Won": "3",
+            "Closed Lost": "3"
+          }
+        },
+        {
+          "rule": "field(\"Products__c\") == \"GC5000 series\"",
+          "frequencies": {
+            "Qualification": "5",
+            "Needs Analysis": "4",
+            "Proposal/Quote": "3",
+            "Negotiation": "2",
+            "Closed Won": "3",
+            "Closed Lost": "3"
+          }
+        },
+        {
+          "rule": "field(\"Products__c\") == \"GC10001\"",
+          "frequencies": {
+            "Qualification": "5",
+            "Needs Analysis": "4",
+            "Proposal/Quote": "3",
+            "Negotiation": "2",
+            "Closed Won": "3",
+            "Closed Lost": "3"
+          }
+        },
+        {
+          "rule": "field(\"Products__c\") == \"GC20002\"",
+          "frequencies": {
+            "Qualification": "5",
+            "Needs Analysis": "4",
+            "Proposal/Quote": "3",
+            "Negotiation": "2",
+            "Closed Won": "3",
+            "Closed Lost": "3"
+          }
+        },
+        {
+          "rule": "field(\"Products__c\") == \"GC50000\"",
+          "frequencies": {
+            "Qualification": "5",
+            "Needs Analysis": "4",
+            "Proposal/Quote": "3",
+            "Negotiation": "2",
+            "Closed Won": "3",
+            "Closed Lost": "3"
+          }
+        }
+      ],
+      "formula": ""
+    },
+    {
+      "name": "__Amount_Continuous_DNI",
+      "type": "Normal Distribution",
+      "mean": "1400",
+      "sd": "350",
+      "decimals": 0,
+      "formula": ""
+    },
+    {
+      "name": "Amount",
+      "type": "Formula",
+      "value": "field('__Amount_Continuous_DNI')*100",
+      "formula": ""
+    },
+    {
+      "name": "Type",
+      "type": "Custom List",
+      "values": [
+        "New Business",
+        "Add-On Business",
+        "Services",
+        "Renewal"
+      ],
+      "selectionStyle": "custom",
+      "distribution": [
+        {
+          "frequencies": {
+            "New Business": "5",
+            "Add-On Business": "3",
+            "Services": "2",
+            "Renewal": 1
+          }
+        }
+      ],
+      "formula": ""
+    },
+    {
+      "name": "ForecastCategory",
+      "type": "Blank",
+      "formula": ""
+    }
+  ]
+}
