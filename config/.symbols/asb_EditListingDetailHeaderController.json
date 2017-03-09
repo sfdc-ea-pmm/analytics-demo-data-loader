@@ -1,0 +1,141 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRXBAA3",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRXBAA3",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 14
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "asb_EditListingDetailHeaderController",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 17
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "setSelectedListing",
+            "parameters": [
+                {
+                    "name": "listingToAssign",
+                    "type": "asb_ListingDO"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 20
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "deleteListing",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 35
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "toggleStatus",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        }
+    ],
+    "name": "asb_EditListingDetailHeaderController",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 12
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "selectedListing",
+            "references": [],
+            "type": "asb_ListingDO"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 10
+        },
+        "modifiers": [
+            "public"
+        ],
+        "name": "asb_EditListingDetailHeaderController",
+        "references": [],
+        "type": "asb_EditListingDetailHeaderController"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 51,
+                "line": 17
+            },
+            "modifiers": [],
+            "name": "listingToAssign",
+            "references": [],
+            "type": "asb_ListingDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 29
+            },
+            "modifiers": [],
+            "name": "pageref",
+            "references": [],
+            "type": "PageReference"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 43
+            },
+            "modifiers": [],
+            "name": "pageref",
+            "references": [],
+            "type": "PageReference"
+        }
+    ]
+}

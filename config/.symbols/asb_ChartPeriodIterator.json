@@ -1,0 +1,681 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 15
+            },
+            "modifiers": [
+                "protected"
+            ],
+            "name": "asb_ChartPeriodIterator",
+            "parameters": [],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000GcRXoAAN",
+    "innerClasses": [
+        {
+            "constructors": [],
+            "externalReferences": [],
+            "id": null,
+            "innerClasses": [],
+            "interfaces": [],
+            "key": null,
+            "methods": [],
+            "name": "DATA_POINT_TYPE",
+            "namespace": null,
+            "parentClass": "",
+            "properties": [],
+            "tableDeclaration": {
+                "annotations": [],
+                "location": {
+                    "column": 14,
+                    "line": 13
+                },
+                "modifiers": [
+                    "public"
+                ],
+                "name": "DATA_POINT_TYPE",
+                "references": [],
+                "type": "DATA_POINT_TYPE"
+            },
+            "variables": []
+        },
+        {
+            "constructors": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 10,
+                        "line": 90
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "ChartWeekPeriodIterator",
+                    "parameters": [],
+                    "references": [],
+                    "type": null
+                }
+            ],
+            "externalReferences": [],
+            "id": null,
+            "innerClasses": [],
+            "interfaces": [],
+            "key": null,
+            "methods": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 25,
+                        "line": 98
+                    },
+                    "modifiers": [
+                        "private",
+                        "override"
+                    ],
+                    "name": "refreshStartDate",
+                    "parameters": [],
+                    "references": [],
+                    "returnType": "void",
+                    "type": null
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 25,
+                        "line": 105
+                    },
+                    "modifiers": [
+                        "private",
+                        "override"
+                    ],
+                    "name": "computeStartEndDateClause",
+                    "parameters": [],
+                    "references": [],
+                    "returnType": "void",
+                    "type": null
+                }
+            ],
+            "name": "ChartWeekPeriodIterator",
+            "namespace": null,
+            "parentClass": "asb_ChartPeriodIterator",
+            "properties": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 24,
+                        "line": 88
+                    },
+                    "modifiers": [
+                        "public",
+                        "final"
+                    ],
+                    "name": "WEEK_DATA_POINTS",
+                    "references": [],
+                    "type": "Integer"
+                }
+            ],
+            "tableDeclaration": {
+                "annotations": [],
+                "location": {
+                    "column": 15,
+                    "line": 87
+                },
+                "modifiers": [
+                    "public"
+                ],
+                "name": "ChartWeekPeriodIterator",
+                "references": [],
+                "type": "ChartWeekPeriodIterator"
+            },
+            "variables": []
+        },
+        {
+            "constructors": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 10,
+                        "line": 117
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "ChartMonthPeriodIterator",
+                    "parameters": [],
+                    "references": [],
+                    "type": null
+                }
+            ],
+            "externalReferences": [],
+            "id": null,
+            "innerClasses": [],
+            "interfaces": [],
+            "key": null,
+            "methods": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 25,
+                        "line": 125
+                    },
+                    "modifiers": [
+                        "private",
+                        "override"
+                    ],
+                    "name": "refreshStartDate",
+                    "parameters": [],
+                    "references": [],
+                    "returnType": "void",
+                    "type": null
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 25,
+                        "line": 132
+                    },
+                    "modifiers": [
+                        "private",
+                        "override"
+                    ],
+                    "name": "computeStartEndDateClause",
+                    "parameters": [],
+                    "references": [],
+                    "returnType": "void",
+                    "type": null
+                }
+            ],
+            "name": "ChartMonthPeriodIterator",
+            "namespace": null,
+            "parentClass": "asb_ChartPeriodIterator",
+            "properties": [],
+            "tableDeclaration": {
+                "annotations": [],
+                "location": {
+                    "column": 15,
+                    "line": 116
+                },
+                "modifiers": [
+                    "public"
+                ],
+                "name": "ChartMonthPeriodIterator",
+                "references": [],
+                "type": "ChartMonthPeriodIterator"
+            },
+            "variables": []
+        },
+        {
+            "constructors": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 10,
+                        "line": 146
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "ChartYearPeriodIterator",
+                    "parameters": [],
+                    "references": [],
+                    "type": null
+                }
+            ],
+            "externalReferences": [],
+            "id": null,
+            "innerClasses": [],
+            "interfaces": [],
+            "key": null,
+            "methods": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 25,
+                        "line": 154
+                    },
+                    "modifiers": [
+                        "private",
+                        "override"
+                    ],
+                    "name": "refreshStartDate",
+                    "parameters": [],
+                    "references": [],
+                    "returnType": "void",
+                    "type": null
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 25,
+                        "line": 161
+                    },
+                    "modifiers": [
+                        "private",
+                        "override"
+                    ],
+                    "name": "computeStartEndDateClause",
+                    "parameters": [],
+                    "references": [],
+                    "returnType": "void",
+                    "type": null
+                }
+            ],
+            "name": "ChartYearPeriodIterator",
+            "namespace": null,
+            "parentClass": "asb_ChartPeriodIterator",
+            "properties": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 24,
+                        "line": 144
+                    },
+                    "modifiers": [
+                        "public",
+                        "final"
+                    ],
+                    "name": "YEAR_DATA_POINTS",
+                    "references": [],
+                    "type": "Integer"
+                }
+            ],
+            "tableDeclaration": {
+                "annotations": [],
+                "location": {
+                    "column": 15,
+                    "line": 143
+                },
+                "modifiers": [
+                    "public"
+                ],
+                "name": "ChartYearPeriodIterator",
+                "references": [],
+                "type": "ChartYearPeriodIterator"
+            },
+            "variables": []
+        }
+    ],
+    "interfaces": [],
+    "key": "01p3600000GcRXoAAN",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 20
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "prev",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 25
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "next",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 30
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getHasNext",
+            "parameters": [],
+            "references": [],
+            "returnType": "Boolean",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 34
+            },
+            "modifiers": [
+                "virtual",
+                "public"
+            ],
+            "name": "getGroupByClause",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 38
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getStartDate",
+            "parameters": [],
+            "references": [],
+            "returnType": "Date",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 42
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getStartDateClause",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 50
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getEndDateClause",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 58
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getDataPointType",
+            "parameters": [],
+            "references": [],
+            "returnType": "DATA_POINT_TYPE",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 62
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getPeriodType",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 66
+            },
+            "modifiers": [
+                "private",
+                "abstract"
+            ],
+            "name": "refreshStartDate",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 67
+            },
+            "modifiers": [
+                "private",
+                "abstract"
+            ],
+            "name": "computeStartEndDateClause",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 34,
+                "line": 69
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getDataPoints",
+            "parameters": [],
+            "references": [],
+            "returnType": "Map",
+            "type": null
+        }
+    ],
+    "name": "asb_ChartPeriodIterator",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 6
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "offset",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 7
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "fullResultSet",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 15,
+                "line": 8
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "startDate",
+            "references": [],
+            "type": "Date"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 9
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "startDateClause",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 10
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "endDateClause",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 11
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "periodType",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 12
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "dataPointType",
+            "references": [],
+            "type": "DATA_POINT_TYPE"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 2
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "final"
+            ],
+            "name": "TIME_SPAN_YEAR",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 3
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "final"
+            ],
+            "name": "TIME_SPAN_MONTH",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 4
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "final"
+            ],
+            "name": "TIME_SPAN_WEEK",
+            "references": [],
+            "type": "String"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 23,
+            "line": 1
+        },
+        "modifiers": [
+            "public",
+            "abstract"
+        ],
+        "name": "asb_ChartPeriodIterator",
+        "references": [],
+        "type": "asb_ChartPeriodIterator"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 70
+            },
+            "modifiers": [],
+            "name": "allDataPoints",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 8,
+                "line": 71
+            },
+            "modifiers": [],
+            "name": "targetDate",
+            "references": [],
+            "type": "Date"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 73
+            },
+            "modifiers": [],
+            "name": "dataPoint",
+            "references": [],
+            "type": "Integer"
+        }
+    ]
+}

@@ -1,0 +1,254 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRZoAAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRZoAAN",
+    "methods": [
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 32,
+                "line": 10
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "testMethod"
+            ],
+            "name": "testSearch",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 56
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "doSearch",
+            "parameters": [
+                {
+                    "name": "store",
+                    "type": "asb_StoreDO"
+                },
+                {
+                    "name": "expectedResultCount",
+                    "type": "Integer"
+                },
+                {
+                    "name": "expectedTotalCount",
+                    "type": "Integer"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "asb_TestAppSearchEngine",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 8
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "final"
+            ],
+            "name": "TOTAL_TEST_LISTINGS",
+            "references": [],
+            "type": "Integer"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [
+            {
+                "name": "IsTest"
+            }
+        ],
+        "location": {
+            "column": 15,
+            "line": 6
+        },
+        "modifiers": [
+            "private",
+            "testMethod"
+        ],
+        "name": "asb_TestAppSearchEngine",
+        "references": [],
+        "type": "asb_TestAppSearchEngine"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 11
+            },
+            "modifiers": [],
+            "name": "languageForSearch",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 16
+            },
+            "modifiers": [],
+            "name": "values",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 15,
+                "line": 19
+            },
+            "modifiers": [],
+            "name": "a",
+            "references": [],
+            "type": "asb_App__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 20
+            },
+            "modifiers": [],
+            "name": "l",
+            "references": [],
+            "type": "asb_Listing__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 30
+            },
+            "modifiers": [],
+            "name": "store",
+            "references": [],
+            "type": "asb_StoreDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 42
+            },
+            "modifiers": [],
+            "name": "values",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 43,
+                "line": 56
+            },
+            "modifiers": [],
+            "name": "store",
+            "references": [],
+            "type": "asb_StoreDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 58,
+                "line": 56
+            },
+            "modifiers": [],
+            "name": "expectedResultCount",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 87,
+                "line": 56
+            },
+            "modifiers": [],
+            "name": "expectedTotalCount",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 58
+            },
+            "modifiers": [],
+            "name": "searchParams",
+            "references": [],
+            "type": "SearchParams"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 60
+            },
+            "modifiers": [],
+            "name": "filterRoot",
+            "references": [],
+            "type": "RootFilterNode"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 63
+            },
+            "modifiers": [],
+            "name": "searchEngine",
+            "references": [],
+            "type": "asb_AppSearchEngine"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 66
+            },
+            "modifiers": [],
+            "name": "appsList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 67
+            },
+            "modifiers": [],
+            "name": "appListingMap",
+            "references": [],
+            "type": "Map"
+        }
+    ]
+}

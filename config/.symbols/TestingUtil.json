@@ -1,0 +1,241 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 8
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "TestingUtil",
+            "parameters": [],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000GcRW7AAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRW7AAN",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 17
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "makeTestableOp",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 26
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "makeSalesCoachStage",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 35
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "makeSalesCoachSections",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 45
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "makeSecItem",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 57
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "makeActivities",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        }
+    ],
+    "name": "TestingUtil",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 2
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "opId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 3
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "scsId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 4
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "scsecId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 5
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "scsecItemId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 6
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "actId",
+            "references": [],
+            "type": "String"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 27,
+            "line": 1
+        },
+        "modifiers": [
+            "public",
+            "with sharing"
+        ],
+        "name": "TestingUtil",
+        "references": [],
+        "type": "TestingUtil"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 18
+            },
+            "modifiers": [],
+            "name": "op",
+            "references": [],
+            "type": "Opportunity"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 27
+            },
+            "modifiers": [],
+            "name": "scs",
+            "references": [],
+            "type": "Sales_Coach_Stage__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 36
+            },
+            "modifiers": [],
+            "name": "scsec",
+            "references": [],
+            "type": "Sales_Coach_Section__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 46
+            },
+            "modifiers": [],
+            "name": "secItem",
+            "references": [],
+            "type": "Sales_Coach_Section_Item__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 58
+            },
+            "modifiers": [],
+            "name": "sca",
+            "references": [],
+            "type": "Sales_Coach_Activity__c"
+        }
+    ]
+}

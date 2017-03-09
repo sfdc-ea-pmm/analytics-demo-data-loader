@@ -1,0 +1,450 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 9,
+                "line": 17
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "asb_AppListingController",
+            "parameters": [],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000GcRY6AAN",
+    "innerClasses": [
+        {
+            "constructors": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 10,
+                        "line": 77
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "AppDetails",
+                    "parameters": [
+                        {
+                            "name": "app",
+                            "type": "asb_AppDO"
+                        },
+                        {
+                            "name": "listings",
+                            "type": "LIST"
+                        }
+                    ],
+                    "references": [],
+                    "type": null
+                }
+            ],
+            "externalReferences": [],
+            "id": null,
+            "innerClasses": [],
+            "interfaces": [],
+            "key": null,
+            "methods": [],
+            "name": "AppDetails",
+            "namespace": null,
+            "parentClass": "",
+            "properties": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 20,
+                        "line": 74
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "app",
+                    "references": [],
+                    "type": "asb_AppDO"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 30,
+                        "line": 75
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "listings",
+                    "references": [],
+                    "type": "LIST"
+                }
+            ],
+            "tableDeclaration": {
+                "annotations": [],
+                "location": {
+                    "column": 15,
+                    "line": 73
+                },
+                "modifiers": [
+                    "public"
+                ],
+                "name": "AppDetails",
+                "references": [],
+                "type": "AppDetails"
+            },
+            "variables": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 31,
+                        "line": 77
+                    },
+                    "modifiers": [],
+                    "name": "app",
+                    "references": [],
+                    "type": "asb_AppDO"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 56,
+                        "line": 77
+                    },
+                    "modifiers": [],
+                    "name": "listings",
+                    "references": [],
+                    "type": "LIST"
+                }
+            ]
+        }
+    ],
+    "interfaces": [],
+    "key": "01p3600000GcRY6AAN",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 20
+            },
+            "modifiers": [
+                "public",
+                "override"
+            ],
+            "name": "init",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 45
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "searchListings",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 69
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getHasResults",
+            "parameters": [],
+            "references": [],
+            "returnType": "Boolean",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 83
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "deactivateApp",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 34,
+                "line": 121
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getController",
+            "parameters": [],
+            "references": [],
+            "returnType": "asb_AppListingController",
+            "type": null
+        }
+    ],
+    "name": "asb_AppListingController",
+    "namespace": null,
+    "parentClass": "asb_StoreAdminPageController",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 42,
+                "line": 10
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "searchParams",
+            "references": [],
+            "type": "AdminSearchParams"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 55,
+                "line": 11
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "columnSortOptions",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 12
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "appDetailsList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 13
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "reports",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 15
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "pagination",
+            "references": [],
+            "type": "asb_PaginationUtil"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 7
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "final"
+            ],
+            "name": "MAX_PER_PAGE",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 8
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "final"
+            ],
+            "name": "DEACTIVE_APP_PARAM",
+            "references": [],
+            "type": "String"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 5
+        },
+        "modifiers": [
+            "public"
+        ],
+        "name": "asb_AppListingController",
+        "references": [],
+        "type": "asb_AppListingController"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 22
+            },
+            "modifiers": [],
+            "name": "p",
+            "references": [],
+            "type": "PageReference"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 46
+            },
+            "modifiers": [],
+            "name": "searchEngine",
+            "references": [],
+            "type": "asb_AppSearchEngine"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 51
+            },
+            "modifiers": [],
+            "name": "apps",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 38,
+                "line": 52
+            },
+            "modifiers": [],
+            "name": "appListingMap",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 58
+            },
+            "modifiers": [],
+            "name": "app",
+            "references": [],
+            "type": "asb_AppDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 59
+            },
+            "modifiers": [],
+            "name": "listings",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 84
+            },
+            "modifiers": [],
+            "name": "appId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 90
+            },
+            "modifiers": [],
+            "name": "ad",
+            "references": [],
+            "type": "AppDetails"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 11,
+                "line": 91
+            },
+            "modifiers": [],
+            "name": "idx",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 101
+            },
+            "modifiers": [],
+            "name": "updatedListings",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 102
+            },
+            "modifiers": [],
+            "name": "l",
+            "references": [],
+            "type": "asb_ListingDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 11,
+                "line": 108
+            },
+            "modifiers": [],
+            "name": "result",
+            "references": [],
+            "type": "String"
+        }
+    ]
+}

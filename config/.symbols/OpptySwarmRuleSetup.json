@@ -1,0 +1,710 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRUzAAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRUzAAN",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 42
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getStep1",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 46
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "setStep1",
+            "parameters": [
+                {
+                    "name": "step1",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 50
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getAmount",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 54
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "setAmount",
+            "parameters": [
+                {
+                    "name": "amount",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 58
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getWithStage",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 62
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "setWithStage",
+            "parameters": [
+                {
+                    "name": "withStage",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 66
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getStageOptions",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 75
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getWithType",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 79
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "setWithType",
+            "parameters": [
+                {
+                    "name": "withType",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 83
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getTypeOptions",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 95
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getUserOptions",
+            "parameters": [],
+            "references": [],
+            "returnType": "PaginatedSelectList",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 106
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getUsersSelected",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 110
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "setUsersSelected",
+            "parameters": [
+                {
+                    "name": "usersSelected",
+                    "type": "LIST"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 114
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getNotify",
+            "parameters": [],
+            "references": [],
+            "returnType": "Boolean",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 118
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "setNotify",
+            "parameters": [
+                {
+                    "name": "notify",
+                    "type": "Boolean"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 122
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "saveOpptySwarmRule",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "Future"
+                }
+            ],
+            "location": {
+                "column": 24,
+                "line": 143
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "addRules",
+            "parameters": [
+                {
+                    "name": "usersSelected",
+                    "type": "LIST"
+                },
+                {
+                    "name": "step1",
+                    "type": "String"
+                },
+                {
+                    "name": "amount",
+                    "type": "String"
+                },
+                {
+                    "name": "withStage",
+                    "type": "String"
+                },
+                {
+                    "name": "withType",
+                    "type": "String"
+                },
+                {
+                    "name": "notify",
+                    "type": "Boolean"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "OpptySwarmRuleSetup",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 35
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "step1",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 36
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "amount",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 37
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "withStage",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 38
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "withType",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 39
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "usersSelected",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 13,
+                "line": 40
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "notify",
+            "references": [],
+            "type": "Boolean"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 27,
+            "line": 33
+        },
+        "modifiers": [
+            "public",
+            "with sharing"
+        ],
+        "name": "OpptySwarmRuleSetup",
+        "references": [],
+        "type": "OpptySwarmRuleSetup"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 46
+            },
+            "modifiers": [],
+            "name": "step1",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 34,
+                "line": 54
+            },
+            "modifiers": [],
+            "name": "amount",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 37,
+                "line": 62
+            },
+            "modifiers": [],
+            "name": "withStage",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 67
+            },
+            "modifiers": [],
+            "name": "options",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 69
+            },
+            "modifiers": [],
+            "name": "stage",
+            "references": [],
+            "type": "OpportunityStage"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 36,
+                "line": 79
+            },
+            "modifiers": [],
+            "name": "withType",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 84
+            },
+            "modifiers": [],
+            "name": "options",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 36,
+                "line": 86
+            },
+            "modifiers": [],
+            "name": "fieldResult",
+            "references": [],
+            "type": "DescribeFieldResult"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 36,
+                "line": 87
+            },
+            "modifiers": [],
+            "name": "ple",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 35,
+                "line": 89
+            },
+            "modifiers": [],
+            "name": "f",
+            "references": [],
+            "type": "PicklistEntry"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 96
+            },
+            "modifiers": [],
+            "name": "options",
+            "references": [],
+            "type": "PaginatedSelectList"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 98
+            },
+            "modifiers": [],
+            "name": "thisUser",
+            "references": [],
+            "type": "User"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 43,
+                "line": 110
+            },
+            "modifiers": [],
+            "name": "usersSelected",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 35,
+                "line": 118
+            },
+            "modifiers": [],
+            "name": "notify",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 35,
+                "line": 129
+            },
+            "modifiers": [],
+            "name": "myMsg",
+            "references": [],
+            "type": "Message"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 137
+            },
+            "modifiers": [],
+            "name": "pageRef",
+            "references": [],
+            "type": "PageReference"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 42,
+                "line": 143
+            },
+            "modifiers": [],
+            "name": "usersSelected",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 64,
+                "line": 143
+            },
+            "modifiers": [],
+            "name": "step1",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 78,
+                "line": 143
+            },
+            "modifiers": [],
+            "name": "amount",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 93,
+                "line": 143
+            },
+            "modifiers": [],
+            "name": "withStage",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 111,
+                "line": 143
+            },
+            "modifiers": [],
+            "name": "withType",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 129,
+                "line": 143
+            },
+            "modifiers": [],
+            "name": "notify",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 41,
+                "line": 145
+            },
+            "modifiers": [],
+            "name": "newRules",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 147
+            },
+            "modifiers": [],
+            "name": "userId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 149
+            },
+            "modifiers": [],
+            "name": "ruleName",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 39,
+                "line": 151
+            },
+            "modifiers": [],
+            "name": "rule",
+            "references": [],
+            "type": "Opportunity_Swarm_Rule__c"
+        }
+    ]
+}

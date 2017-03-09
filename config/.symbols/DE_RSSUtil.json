@@ -1,0 +1,290 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRWlAAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRWlAAN",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 38,
+                "line": 3
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getRSSFeedObjects",
+            "parameters": [
+                {
+                    "name": "theUrl",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 35
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "parseItem",
+            "parameters": [
+                {
+                    "name": "reader",
+                    "type": "XmlStreamReader"
+                }
+            ],
+            "references": [],
+            "returnType": "DE_RSSObject",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 77
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "parseString",
+            "parameters": [
+                {
+                    "name": "reader",
+                    "type": "XmlStreamReader"
+                }
+            ],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        }
+    ],
+    "name": "DE_RSSUtil",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 1
+        },
+        "modifiers": [
+            "public"
+        ],
+        "name": "DE_RSSUtil",
+        "references": [],
+        "type": "DE_RSSUtil"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 63,
+                "line": 3
+            },
+            "modifiers": [],
+            "name": "theUrl",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 4
+            },
+            "modifiers": [],
+            "name": "toReturn",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 5
+            },
+            "modifiers": [],
+            "name": "h",
+            "references": [],
+            "type": "Http"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 6
+            },
+            "modifiers": [],
+            "name": "req",
+            "references": [],
+            "type": "HttpRequest"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 10
+            },
+            "modifiers": [],
+            "name": "res",
+            "references": [],
+            "type": "HttpResponse"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 12
+            },
+            "modifiers": [],
+            "name": "reader",
+            "references": [],
+            "type": "XmlStreamReader"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 13
+            },
+            "modifiers": [],
+            "name": "hasElements",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 34,
+                "line": 19
+            },
+            "modifiers": [],
+            "name": "item",
+            "references": [],
+            "type": "DE_RSSObject"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 58,
+                "line": 35
+            },
+            "modifiers": [],
+            "name": "reader",
+            "references": [],
+            "type": "XmlStreamReader"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 36
+            },
+            "modifiers": [],
+            "name": "toReturn",
+            "references": [],
+            "type": "DE_RSSObject"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 37
+            },
+            "modifiers": [],
+            "name": "hasElements",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 47
+            },
+            "modifiers": [],
+            "name": "title",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 51
+            },
+            "modifiers": [],
+            "name": "link",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 55
+            },
+            "modifiers": [],
+            "name": "pubDate",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 59
+            },
+            "modifiers": [],
+            "name": "description",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 54,
+                "line": 77
+            },
+            "modifiers": [],
+            "name": "reader",
+            "references": [],
+            "type": "XmlStreamReader"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 78
+            },
+            "modifiers": [],
+            "name": "ret",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 80
+            },
+            "modifiers": [],
+            "name": "hasElements",
+            "references": [],
+            "type": "Boolean"
+        }
+    ]
+}

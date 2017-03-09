@@ -1,0 +1,350 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 15
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "WidgetTemplate",
+            "parameters": [],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000GcRVGAA3",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRVGAA3",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 35,
+                "line": 26
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "createAwesomeMap",
+            "parameters": [
+                {
+                    "name": "fieldName",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "Map",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 39
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "saveTemplate",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 43
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "cloneTemplate",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 56
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "setWidgetTemplate",
+            "parameters": [
+                {
+                    "name": "p_t",
+                    "type": "Widget_Template__c"
+                },
+                {
+                    "name": "p_wcss",
+                    "type": "Map"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "WidgetTemplate",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 2
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "templateID",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 47,
+                "line": 4
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "widget_outer",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 47,
+                "line": 5
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "widget_inner",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 47,
+                "line": 6
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "widget_header",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 47,
+                "line": 7
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "widget_body",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 47,
+                "line": 8
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "widget_footer",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 47,
+                "line": 9
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "widget_body_link",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 47,
+                "line": 10
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "widget_body_link_hover",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 35,
+                "line": 11
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "status",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 35,
+                "line": 12
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "t",
+            "references": [],
+            "type": "Widget_Template__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 54,
+                "line": 13
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "wcss",
+            "references": [],
+            "type": "Map"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 1
+        },
+        "modifiers": [
+            "public"
+        ],
+        "name": "WidgetTemplate",
+        "references": [],
+        "type": "WidgetTemplate"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 59,
+                "line": 26
+            },
+            "modifiers": [],
+            "name": "fieldName",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 27
+            },
+            "modifiers": [],
+            "name": "resultMap",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 36,
+                "line": 45
+            },
+            "modifiers": [],
+            "name": "wt",
+            "references": [],
+            "type": "Widget_Template__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 58,
+                "line": 56
+            },
+            "modifiers": [],
+            "name": "p_t",
+            "references": [],
+            "type": "Widget_Template__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 100,
+                "line": 56
+            },
+            "modifiers": [],
+            "name": "p_wcss",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 50,
+                "line": 61
+            },
+            "modifiers": [],
+            "name": "fieldMap",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 62
+            },
+            "modifiers": [],
+            "name": "s",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 48,
+                "line": 63
+            },
+            "modifiers": [],
+            "name": "r",
+            "references": [],
+            "type": "DescribeFieldResult"
+        }
+    ]
+}

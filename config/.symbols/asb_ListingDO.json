@@ -1,0 +1,1048 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 21
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "asb_ListingDO",
+            "parameters": [
+                {
+                    "name": "listing",
+                    "type": "asb_Listing__c"
+                }
+            ],
+            "references": [],
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 25
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "asb_ListingDO",
+            "parameters": [],
+            "references": [],
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 29
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "asb_ListingDO",
+            "parameters": [
+                {
+                    "name": "app",
+                    "type": "asb_AppDO"
+                }
+            ],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000GcRXhAAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRXhAAN",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 35
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getObject",
+            "parameters": [],
+            "references": [],
+            "returnType": "asb_Listing__c",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 39
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "init",
+            "parameters": [
+                {
+                    "name": "listing",
+                    "type": "asb_Listing__c"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 44
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getLanguageSelectOptions",
+            "parameters": [
+                {
+                    "name": "app",
+                    "type": "asb_AppDO"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 48
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getDescription",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 52
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "setDescription",
+            "parameters": [
+                {
+                    "name": "description",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 56
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getAppDO",
+            "parameters": [],
+            "references": [],
+            "returnType": "asb_AppDO",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 68
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "setAppDO",
+            "parameters": [
+                {
+                    "name": "app",
+                    "type": "asb_AppDO"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 72
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "setApp",
+            "parameters": [
+                {
+                    "name": "appId",
+                    "type": "Id"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 76
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getAppId",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 80
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getBannerAttachmentId",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 84
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getBannerAttachmentUrl",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 88
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "setBannerAttachmentId",
+            "parameters": [
+                {
+                    "name": "id",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 35,
+                "line": 92
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getCategoryCrumb",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 106
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getLanguage",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 35,
+                "line": 110
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getLanguageCrumb",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 124
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getLanguageLabel",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 128
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "setLanguage",
+            "parameters": [
+                {
+                    "name": "language",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 132
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getListedDate",
+            "parameters": [],
+            "references": [],
+            "returnType": "Datetime",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 136
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getRequirements",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 140
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getRequirementsForDisplay",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 147
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "setRequirements",
+            "parameters": [
+                {
+                    "name": "requirements",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 151
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getStatus",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 155
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getStatusLabel",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 159
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getIsLive",
+            "parameters": [],
+            "references": [],
+            "returnType": "Boolean",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 163
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "setStatus",
+            "parameters": [
+                {
+                    "name": "status",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 167
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getTagline",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 171
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "setTagline",
+            "parameters": [
+                {
+                    "name": "tagline",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 175
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getIsDefaultAppListing",
+            "parameters": [],
+            "references": [],
+            "returnType": "Boolean",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 179
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getStore",
+            "parameters": [],
+            "references": [],
+            "returnType": "asb_StoreDO",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 183
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getPopularityAllTime",
+            "parameters": [],
+            "references": [],
+            "returnType": "Integer",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 187
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getPopularity",
+            "parameters": [],
+            "references": [],
+            "returnType": "Integer",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 191
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getPageViewsAllTime",
+            "parameters": [],
+            "references": [],
+            "returnType": "Integer",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 195
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getPageViews",
+            "parameters": [],
+            "references": [],
+            "returnType": "Integer",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 199
+            },
+            "modifiers": [
+                "public",
+                "override"
+            ],
+            "name": "remove",
+            "parameters": [],
+            "references": [],
+            "returnType": "Boolean",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 208
+            },
+            "modifiers": [
+                "public",
+                "override"
+            ],
+            "name": "getCreatedById",
+            "parameters": [],
+            "references": [],
+            "returnType": "Id",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 212
+            },
+            "modifiers": [
+                "public",
+                "override"
+            ],
+            "name": "getLastModifiedById",
+            "parameters": [],
+            "references": [],
+            "returnType": "Id",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 216
+            },
+            "modifiers": [
+                "public",
+                "override"
+            ],
+            "name": "getCreatedDate",
+            "parameters": [],
+            "references": [],
+            "returnType": "Datetime",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 220
+            },
+            "modifiers": [
+                "public",
+                "override"
+            ],
+            "name": "getLastModifiedDate",
+            "parameters": [],
+            "references": [],
+            "returnType": "Datetime",
+            "type": null
+        }
+    ],
+    "name": "asb_ListingDO",
+    "namespace": null,
+    "parentClass": "asb_BaseData",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 11
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "listingObj",
+            "references": [],
+            "type": "asb_Listing__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 12
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "appObj",
+            "references": [],
+            "type": "asb_AppDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 13
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "store",
+            "references": [],
+            "type": "asb_StoreDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 36,
+                "line": 14
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "categoryCrumb",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 36,
+                "line": 15
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "languageCrumb",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 9
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "final"
+            ],
+            "name": "SOBJECT_NAME",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 17
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "final"
+            ],
+            "name": "STATUS_LIVE",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 18
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "final"
+            ],
+            "name": "STATUS_INACTIVE",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 19
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "final"
+            ],
+            "name": "STATUS_DRAFT",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 39,
+                "line": 224
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "langLabelLookup",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 39,
+                "line": 234
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "statusLabelLookup",
+            "references": [],
+            "type": "Map"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 15,
+            "line": 8
+        },
+        "modifiers": [
+            "public"
+        ],
+        "name": "asb_ListingDO",
+        "references": [],
+        "type": "asb_ListingDO"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 41,
+                "line": 21
+            },
+            "modifiers": [],
+            "name": "listing",
+            "references": [],
+            "type": "asb_Listing__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 36,
+                "line": 29
+            },
+            "modifiers": [],
+            "name": "app",
+            "references": [],
+            "type": "asb_AppDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 39,
+                "line": 39
+            },
+            "modifiers": [],
+            "name": "listing",
+            "references": [],
+            "type": "asb_Listing__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 66,
+                "line": 44
+            },
+            "modifiers": [],
+            "name": "app",
+            "references": [],
+            "type": "asb_AppDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 39,
+                "line": 52
+            },
+            "modifiers": [],
+            "name": "description",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 36,
+                "line": 68
+            },
+            "modifiers": [],
+            "name": "app",
+            "references": [],
+            "type": "asb_AppDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 72
+            },
+            "modifiers": [],
+            "name": "appId",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 46,
+                "line": 88
+            },
+            "modifiers": [],
+            "name": "id",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 41,
+                "line": 95
+            },
+            "modifiers": [],
+            "name": "searchParams",
+            "references": [],
+            "type": "SearchParams"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 98
+            },
+            "modifiers": [],
+            "name": "catValue",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 41,
+                "line": 113
+            },
+            "modifiers": [],
+            "name": "searchParams",
+            "references": [],
+            "type": "SearchParams"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 116
+            },
+            "modifiers": [],
+            "name": "langValue",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 36,
+                "line": 128
+            },
+            "modifiers": [],
+            "name": "language",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 40,
+                "line": 147
+            },
+            "modifiers": [],
+            "name": "requirements",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 34,
+                "line": 163
+            },
+            "modifiers": [],
+            "name": "status",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 35,
+                "line": 171
+            },
+            "modifiers": [],
+            "name": "tagline",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 200
+            },
+            "modifiers": [],
+            "name": "retVal",
+            "references": [],
+            "type": "Boolean"
+        }
+    ]
+}

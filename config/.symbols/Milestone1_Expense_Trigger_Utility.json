@@ -1,0 +1,116 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRUVAA3",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRUVAA3",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 31
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "handleExpenseBeforeTrigger",
+            "parameters": [
+                {
+                    "name": "recs",
+                    "type": "LIST"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 28,
+                "line": 46
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "testMethod"
+            ],
+            "name": "testTriggerUtility",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "Milestone1_Expense_Trigger_Utility",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 27,
+            "line": 29
+        },
+        "modifiers": [
+            "public",
+            "with sharing"
+        ],
+        "name": "Milestone1_Expense_Trigger_Utility",
+        "references": [],
+        "type": "Milestone1_Expense_Trigger_Utility"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 79,
+                "line": 31
+            },
+            "modifiers": [],
+            "name": "recs",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 35,
+                "line": 33
+            },
+            "modifiers": [],
+            "name": "rec",
+            "references": [],
+            "type": "Milestone1_Expense__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 37,
+                "line": 48
+            },
+            "modifiers": [],
+            "name": "recs",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 35,
+                "line": 50
+            },
+            "modifiers": [],
+            "name": "rec",
+            "references": [],
+            "type": "Milestone1_Expense__c"
+        }
+    ]
+}

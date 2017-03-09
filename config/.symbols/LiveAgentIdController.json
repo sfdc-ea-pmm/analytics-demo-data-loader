@@ -1,0 +1,61 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRSvAAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRSvAAN",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 36,
+                "line": 4
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getId",
+            "parameters": [],
+            "references": [],
+            "returnType": "Live_Agent_ID__c",
+            "type": null
+        }
+    ],
+    "name": "LiveAgentIdController",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [
+            {
+                "name": "IsTest"
+            }
+        ],
+        "location": {
+            "column": 14,
+            "line": 2
+        },
+        "modifiers": [
+            "public",
+            "testMethod"
+        ],
+        "name": "LiveAgentIdController",
+        "references": [],
+        "type": "LiveAgentIdController"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 5
+            },
+            "modifiers": [],
+            "name": "liveAgentId",
+            "references": [],
+            "type": "Live_Agent_ID__c"
+        }
+    ]
+}

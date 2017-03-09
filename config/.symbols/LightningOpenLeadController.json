@@ -1,0 +1,141 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRSkAAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRSkAAN",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 4
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getOpenLead",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 13
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "updateLeadRecord",
+            "parameters": [
+                {
+                    "name": "leadId",
+                    "type": "String"
+                },
+                {
+                    "name": "ownerId",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 21
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getMyLeads",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        }
+    ],
+    "name": "LightningOpenLeadController",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 1
+        },
+        "modifiers": [
+            "public"
+        ],
+        "name": "LightningOpenLeadController",
+        "references": [],
+        "type": "LightningOpenLeadController"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 5
+            },
+            "modifiers": [],
+            "name": "loggedInUser",
+            "references": [],
+            "type": "User"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 54,
+                "line": 13
+            },
+            "modifiers": [],
+            "name": "leadId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 69,
+                "line": 13
+            },
+            "modifiers": [],
+            "name": "ownerId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 14
+            },
+            "modifiers": [],
+            "name": "theLead",
+            "references": [],
+            "type": "Lead"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 22
+            },
+            "modifiers": [],
+            "name": "loggedInUser",
+            "references": [],
+            "type": "User"
+        }
+    ]
+}

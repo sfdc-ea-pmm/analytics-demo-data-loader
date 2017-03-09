@@ -1,0 +1,111 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000HrKjAAAV",
+    "innerClasses": [],
+    "interfaces": [
+        "System.HttpCalloutMock"
+    ],
+    "key": "01p3600000HrKjAAAV",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 3
+            },
+            "modifiers": [
+                "global"
+            ],
+            "name": "respond",
+            "parameters": [
+                {
+                    "name": "request",
+                    "type": "HttpRequest"
+                }
+            ],
+            "references": [],
+            "returnType": "HttpResponse",
+            "type": null
+        }
+    ],
+    "name": "CreateDataflowHttpCalloutMock",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [
+            {
+                "name": "IsTest"
+            }
+        ],
+        "location": {
+            "column": 14,
+            "line": 2
+        },
+        "modifiers": [
+            "testMethod",
+            "global"
+        ],
+        "name": "CreateDataflowHttpCalloutMock",
+        "references": [],
+        "type": "CreateDataflowHttpCalloutMock"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 45,
+                "line": 3
+            },
+            "modifiers": [],
+            "name": "request",
+            "references": [],
+            "type": "HttpRequest"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 9,
+                "line": 5
+            },
+            "modifiers": [],
+            "name": "dataflowId",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 6
+            },
+            "modifiers": [],
+            "name": "dataflows",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 13,
+                "line": 8
+            },
+            "modifiers": [],
+            "name": "dfServices",
+            "references": [],
+            "type": "Dataflow"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 13
+            },
+            "modifiers": [],
+            "name": "response",
+            "references": [],
+            "type": "HttpResponse"
+        }
+    ]
+}

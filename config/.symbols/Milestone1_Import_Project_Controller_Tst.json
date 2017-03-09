@@ -1,0 +1,305 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRYHAA3",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRYHAA3",
+    "methods": [
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 28,
+                "line": 32
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "testMethod"
+            ],
+            "name": "testImportController",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 28,
+                "line": 54
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "testMethod"
+            ],
+            "name": "testImportControllerNoFileException",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 28,
+                "line": 75
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "testMethod"
+            ],
+            "name": "testImportControllerInvalidXML",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 28,
+                "line": 96
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "testMethod"
+            ],
+            "name": "testImportControllerValidFromDocsFolder",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "Milestone1_Import_Project_Controller_Tst",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [
+            {
+                "name": "IsTest"
+            }
+        ],
+        "location": {
+            "column": 15,
+            "line": 30
+        },
+        "modifiers": [
+            "private",
+            "testMethod"
+        ],
+        "name": "Milestone1_Import_Project_Controller_Tst",
+        "references": [],
+        "type": "Milestone1_Import_Project_Controller_Tst"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 34
+            },
+            "modifiers": [],
+            "name": "testDoc",
+            "references": [],
+            "type": "Document"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 36
+            },
+            "modifiers": [],
+            "name": "body",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 39
+            },
+            "modifiers": [],
+            "name": "docs",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 41,
+                "line": 41
+            },
+            "modifiers": [],
+            "name": "ssc",
+            "references": [],
+            "type": "StandardSetController"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 46,
+                "line": 42
+            },
+            "modifiers": [],
+            "name": "testController",
+            "references": [],
+            "type": "Milestone1_Import_Project_Controller"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 41,
+                "line": 59
+            },
+            "modifiers": [],
+            "name": "ssc",
+            "references": [],
+            "type": "StandardSetController"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 46,
+                "line": 60
+            },
+            "modifiers": [],
+            "name": "testController",
+            "references": [],
+            "type": "Milestone1_Import_Project_Controller"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 70
+            },
+            "modifiers": [],
+            "name": "expectedExceptionThrown",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 77
+            },
+            "modifiers": [],
+            "name": "testDoc",
+            "references": [],
+            "type": "Document"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 79
+            },
+            "modifiers": [],
+            "name": "body",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 84
+            },
+            "modifiers": [],
+            "name": "docs",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 41,
+                "line": 86
+            },
+            "modifiers": [],
+            "name": "ssc",
+            "references": [],
+            "type": "StandardSetController"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 46,
+                "line": 87
+            },
+            "modifiers": [],
+            "name": "testController",
+            "references": [],
+            "type": "Milestone1_Import_Project_Controller"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 98
+            },
+            "modifiers": [],
+            "name": "testDoc",
+            "references": [],
+            "type": "Document"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 100
+            },
+            "modifiers": [],
+            "name": "body",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 41,
+                "line": 105
+            },
+            "modifiers": [],
+            "name": "ssc",
+            "references": [],
+            "type": "StandardSetController"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 46,
+                "line": 106
+            },
+            "modifiers": [],
+            "name": "testController",
+            "references": [],
+            "type": "Milestone1_Import_Project_Controller"
+        }
+    ]
+}

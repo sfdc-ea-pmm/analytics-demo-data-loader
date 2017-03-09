@@ -1,0 +1,470 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 21
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "SSE_CB_Mapper_Controller",
+            "parameters": [],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000GcRVBAA3",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRVBAA3",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 15,
+                "line": 95
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "filterMaps",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 15,
+                "line": 108
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "initializeNetworkMaps",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 15,
+                "line": 115
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "mapCommunityProfiles",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 15,
+                "line": 126
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "insertTemplates",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 15,
+                "line": 136
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "saveAll",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 145
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "updateLink",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        }
+    ],
+    "name": "SSE_CB_Mapper_Controller",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 2
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "map_profile",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 35,
+                "line": 3
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "map_community_profile",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 4
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "map_community",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 5
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "map_template",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 6
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "map_widget_template",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 39,
+                "line": 8
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "ultimateMap",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 10
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "lTemplateMap",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 12
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "soTemplate",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 13
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "soWidgetTemplate",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 15
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "defaultTemplate",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 16
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "defaultWidgetTemplate",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 18
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "sTemplate",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 19
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "sWidget",
+            "references": [],
+            "type": "String"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 27,
+            "line": 1
+        },
+        "modifiers": [
+            "public",
+            "with sharing"
+        ],
+        "name": "SSE_CB_Mapper_Controller",
+        "references": [],
+        "type": "SSE_CB_Mapper_Controller"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 40
+            },
+            "modifiers": [],
+            "name": "p",
+            "references": [],
+            "type": "Profile"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 45
+            },
+            "modifiers": [],
+            "name": "tm",
+            "references": [],
+            "type": "Template_Map__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 55
+            },
+            "modifiers": [],
+            "name": "dt",
+            "references": [],
+            "type": "Org_Template__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 64
+            },
+            "modifiers": [],
+            "name": "wt",
+            "references": [],
+            "type": "Widget_Template__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 74
+            },
+            "modifiers": [],
+            "name": "tmp",
+            "references": [],
+            "type": "Template_Map__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 34,
+                "line": 75
+            },
+            "modifiers": [],
+            "name": "ph_ct",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 76
+            },
+            "modifiers": [],
+            "name": "nId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 77
+            },
+            "modifiers": [],
+            "name": "s",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 90
+            },
+            "modifiers": [],
+            "name": "tm",
+            "references": [],
+            "type": "Template_Map__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 96
+            },
+            "modifiers": [],
+            "name": "phList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 97
+            },
+            "modifiers": [],
+            "name": "nId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 109
+            },
+            "modifiers": [],
+            "name": "n",
+            "references": [],
+            "type": "Network"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 116
+            },
+            "modifiers": [],
+            "name": "phList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 117
+            },
+            "modifiers": [],
+            "name": "nm",
+            "references": [],
+            "type": "NetworkMemberGroup"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 131
+            },
+            "modifiers": [],
+            "name": "tm",
+            "references": [],
+            "type": "Template_Map__c"
+        }
+    ]
+}

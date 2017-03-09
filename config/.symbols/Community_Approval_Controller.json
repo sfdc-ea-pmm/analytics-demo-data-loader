@@ -1,0 +1,56 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 4
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "Community_Approval_Controller",
+            "parameters": [],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000GcRVVAA3",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRVVAA3",
+    "methods": [],
+    "name": "Community_Approval_Controller",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 34,
+                "line": 2
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "myApprovals",
+            "references": [],
+            "type": "LIST"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 1
+        },
+        "modifiers": [
+            "public"
+        ],
+        "name": "Community_Approval_Controller",
+        "references": [],
+        "type": "Community_Approval_Controller"
+    },
+    "variables": []
+}

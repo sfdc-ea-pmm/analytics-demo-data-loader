@@ -1,0 +1,244 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 18
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "ArticleDataCategory",
+            "parameters": [],
+            "references": [],
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 20
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "ArticleDataCategory",
+            "parameters": [
+                {
+                    "name": "data_category_name",
+                    "type": "String"
+                },
+                {
+                    "name": "api_name",
+                    "type": "String"
+                },
+                {
+                    "name": "article_type",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 27
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "ArticleDataCategory",
+            "parameters": [
+                {
+                    "name": "data_category_name",
+                    "type": "String"
+                },
+                {
+                    "name": "api_name",
+                    "type": "String"
+                },
+                {
+                    "name": "article_type",
+                    "type": "String"
+                },
+                {
+                    "name": "parent_api",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000GcRSqAAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRSqAAN",
+    "methods": [],
+    "name": "ArticleDataCategory",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 4
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "data_category_name",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 7
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "api_name",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 10
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "article_type",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 38,
+                "line": 13
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "category_list",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 16
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "parent_api",
+            "references": [],
+            "type": "String"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 1
+        },
+        "modifiers": [
+            "global"
+        ],
+        "name": "ArticleDataCategory",
+        "references": [],
+        "type": "ArticleDataCategory"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 40,
+                "line": 20
+            },
+            "modifiers": [],
+            "name": "data_category_name",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 67,
+                "line": 20
+            },
+            "modifiers": [],
+            "name": "api_name",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 84,
+                "line": 20
+            },
+            "modifiers": [],
+            "name": "article_type",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 40,
+                "line": 27
+            },
+            "modifiers": [],
+            "name": "data_category_name",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 67,
+                "line": 27
+            },
+            "modifiers": [],
+            "name": "api_name",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 84,
+                "line": 27
+            },
+            "modifiers": [],
+            "name": "article_type",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 105,
+                "line": 27
+            },
+            "modifiers": [],
+            "name": "parent_api",
+            "references": [],
+            "type": "String"
+        }
+    ]
+}

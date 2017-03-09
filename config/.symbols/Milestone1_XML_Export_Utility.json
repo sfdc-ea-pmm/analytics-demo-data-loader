@@ -1,0 +1,560 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 41
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "Milestone1_XML_Export_Utility",
+            "parameters": [],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000GcRUBAA3",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRUBAA3",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 34,
+                "line": 49
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "lookup",
+            "parameters": [
+                {
+                    "name": "targetId",
+                    "type": "Id"
+                }
+            ],
+            "references": [],
+            "returnType": "Milestone1_Project__c",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 79
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "buildProjectXmlString",
+            "parameters": [
+                {
+                    "name": "targetId",
+                    "type": "Id"
+                }
+            ],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 105
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "writeProjectToXML",
+            "parameters": [
+                {
+                    "name": "out",
+                    "type": "XmlStreamWriter"
+                },
+                {
+                    "name": "project",
+                    "type": "Milestone1_Project__c"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 121
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "writeMilestoneToXML",
+            "parameters": [
+                {
+                    "name": "out",
+                    "type": "XmlStreamWriter"
+                },
+                {
+                    "name": "milestone",
+                    "type": "Milestone1_Milestone__c"
+                },
+                {
+                    "name": "isParentMilestone",
+                    "type": "Boolean"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 156
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "writeTaskToXML",
+            "parameters": [
+                {
+                    "name": "out",
+                    "type": "XmlStreamWriter"
+                },
+                {
+                    "name": "task",
+                    "type": "Milestone1_Task__c"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 167
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "writeElement",
+            "parameters": [
+                {
+                    "name": "out",
+                    "type": "XmlStreamWriter"
+                },
+                {
+                    "name": "tag",
+                    "type": "String"
+                },
+                {
+                    "name": "content",
+                    "type": "Object"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "Milestone1_XML_Export_Utility",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 35,
+                "line": 31
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "project",
+            "references": [],
+            "type": "Milestone1_Project__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 44,
+                "line": 32
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "milestones",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 46,
+                "line": 33
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "milestonesMap",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 38,
+                "line": 34
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "milestonesTasks",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 40,
+                "line": 35
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "milestonesTasksMap",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 44,
+                "line": 36
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "subMilestones",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 46,
+                "line": 37
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "subMilestonesMap",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 38,
+                "line": 38
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "subMilestonesTasks",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 40,
+                "line": 39
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "subMilestonesTasksMap",
+            "references": [],
+            "type": "Map"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 27,
+            "line": 29
+        },
+        "modifiers": [
+            "public",
+            "with sharing"
+        ],
+        "name": "Milestone1_XML_Export_Utility",
+        "references": [],
+        "type": "Milestone1_XML_Export_Utility"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 44,
+                "line": 49
+            },
+            "modifiers": [],
+            "name": "targetId",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 50
+            },
+            "modifiers": [],
+            "name": "project",
+            "references": [],
+            "type": "Milestone1_Project__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 37,
+                "line": 53
+            },
+            "modifiers": [],
+            "name": "milestone",
+            "references": [],
+            "type": "Milestone1_Milestone__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 37,
+                "line": 59
+            },
+            "modifiers": [],
+            "name": "subMilestone",
+            "references": [],
+            "type": "Milestone1_Milestone__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 65
+            },
+            "modifiers": [],
+            "name": "task",
+            "references": [],
+            "type": "Milestone1_Task__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 71
+            },
+            "modifiers": [],
+            "name": "task",
+            "references": [],
+            "type": "Milestone1_Task__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 44,
+                "line": 79
+            },
+            "modifiers": [],
+            "name": "targetId",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 81
+            },
+            "modifiers": [],
+            "name": "out",
+            "references": [],
+            "type": "XmlStreamWriter"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 99
+            },
+            "modifiers": [],
+            "name": "ret",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 44,
+                "line": 105
+            },
+            "modifiers": [],
+            "name": "out",
+            "references": [],
+            "type": "XmlStreamWriter"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 71,
+                "line": 105
+            },
+            "modifiers": [],
+            "name": "project",
+            "references": [],
+            "type": "Milestone1_Project__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 37,
+                "line": 114
+            },
+            "modifiers": [],
+            "name": "milestone",
+            "references": [],
+            "type": "Milestone1_Milestone__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 46,
+                "line": 121
+            },
+            "modifiers": [],
+            "name": "out",
+            "references": [],
+            "type": "XmlStreamWriter"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 75,
+                "line": 121
+            },
+            "modifiers": [],
+            "name": "milestone",
+            "references": [],
+            "type": "Milestone1_Milestone__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 94,
+                "line": 121
+            },
+            "modifiers": [],
+            "name": "isParentMilestone",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 34,
+                "line": 123
+            },
+            "modifiers": [],
+            "name": "tasks",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 138
+            },
+            "modifiers": [],
+            "name": "task",
+            "references": [],
+            "type": "Milestone1_Task__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 37,
+                "line": 145
+            },
+            "modifiers": [],
+            "name": "subMilestone",
+            "references": [],
+            "type": "Milestone1_Milestone__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 41,
+                "line": 156
+            },
+            "modifiers": [],
+            "name": "out",
+            "references": [],
+            "type": "XmlStreamWriter"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 65,
+                "line": 156
+            },
+            "modifiers": [],
+            "name": "task",
+            "references": [],
+            "type": "Milestone1_Task__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 39,
+                "line": 167
+            },
+            "modifiers": [],
+            "name": "out",
+            "references": [],
+            "type": "XmlStreamWriter"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 51,
+                "line": 167
+            },
+            "modifiers": [],
+            "name": "tag",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 63,
+                "line": 167
+            },
+            "modifiers": [],
+            "name": "content",
+            "references": [],
+            "type": "Object"
+        }
+    ]
+}

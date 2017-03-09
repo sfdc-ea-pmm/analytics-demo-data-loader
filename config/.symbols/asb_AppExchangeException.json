@@ -1,0 +1,27 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRXjAAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRXjAAN",
+    "methods": [],
+    "name": "asb_AppExchangeException",
+    "namespace": null,
+    "parentClass": "Exception",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 5
+        },
+        "modifiers": [
+            "public"
+        ],
+        "name": "asb_AppExchangeException",
+        "references": [],
+        "type": "asb_AppExchangeException"
+    },
+    "variables": []
+}

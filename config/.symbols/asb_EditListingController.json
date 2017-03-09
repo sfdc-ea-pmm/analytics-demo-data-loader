@@ -1,0 +1,241 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 17
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "asb_EditListingController",
+            "parameters": [],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000GcRXxAAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRXxAAN",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 43,
+                "line": 20
+            },
+            "modifiers": [
+                "virtual",
+                "public",
+                "override"
+            ],
+            "name": "init",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 24
+            },
+            "modifiers": [
+                "virtual",
+                "public"
+            ],
+            "name": "init",
+            "parameters": [
+                {
+                    "name": "allowCreateNewListing",
+                    "type": "Boolean"
+                }
+            ],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 77
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getHasFatalError",
+            "parameters": [],
+            "references": [],
+            "returnType": "Boolean",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 81
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getHasErrorBySeverity",
+            "parameters": [
+                {
+                    "name": "level",
+                    "type": "Severity"
+                }
+            ],
+            "references": [],
+            "returnType": "Boolean",
+            "type": null
+        }
+    ],
+    "name": "asb_EditListingController",
+    "namespace": null,
+    "parentClass": "asb_StoreAdminPageController",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 14
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "selectedApp",
+            "references": [],
+            "type": "asb_AppDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 15
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "selectedListing",
+            "references": [],
+            "type": "asb_ListingDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 11
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "final"
+            ],
+            "name": "APP_ID_PARAMETER",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 12
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "final"
+            ],
+            "name": "LISTING_ID_PARAMETER",
+            "references": [],
+            "type": "String"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 23,
+            "line": 9
+        },
+        "modifiers": [
+            "public",
+            "abstract"
+        ],
+        "name": "asb_EditListingController",
+        "references": [],
+        "type": "asb_EditListingController"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 44,
+                "line": 24
+            },
+            "modifiers": [],
+            "name": "allowCreateNewListing",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 25
+            },
+            "modifiers": [],
+            "name": "ret",
+            "references": [],
+            "type": "PageReference"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 28
+            },
+            "modifiers": [],
+            "name": "appIdParam",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 29
+            },
+            "modifiers": [],
+            "name": "listingIdParam",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 61,
+                "line": 81
+            },
+            "modifiers": [],
+            "name": "level",
+            "references": [],
+            "type": "Severity"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 35,
+                "line": 83
+            },
+            "modifiers": [],
+            "name": "message",
+            "references": [],
+            "type": "Message"
+        }
+    ]
+}

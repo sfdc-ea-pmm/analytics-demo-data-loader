@@ -1,0 +1,163 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 9
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "ChatterIdLookup",
+            "parameters": [],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000GcRVZAA3",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRVZAA3",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 15
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getGroups",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 27
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "setSelectedId",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 33
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "edit",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        }
+    ],
+    "name": "ChatterIdLookup",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 3
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "currentChatterId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 5
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "chatterStorage",
+            "references": [],
+            "type": "Chatter_Marquee__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 37,
+                "line": 7
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "chatterGroups",
+            "references": [],
+            "type": "LIST"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 27,
+            "line": 1
+        },
+        "modifiers": [
+            "public",
+            "with sharing"
+        ],
+        "name": "ChatterIdLookup",
+        "references": [],
+        "type": "ChatterIdLookup"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 16
+            },
+            "modifiers": [],
+            "name": "options",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 21
+            },
+            "modifiers": [],
+            "name": "cg",
+            "references": [],
+            "type": "CollaborationGroup"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 38
+            },
+            "modifiers": [],
+            "name": "thisPage",
+            "references": [],
+            "type": "PageReference"
+        }
+    ]
+}

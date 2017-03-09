@@ -1,0 +1,250 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 36
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "Milestone1_Clone_Project_Controller",
+            "parameters": [
+                {
+                    "name": "stc",
+                    "type": "StandardController"
+                }
+            ],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000GcRUCAA3",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRUCAA3",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 90
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "createClone",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        }
+    ],
+    "name": "Milestone1_Clone_Project_Controller",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 34,
+                "line": 31
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "rec",
+            "references": [],
+            "type": "Milestone1_Project__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 34,
+                "line": 32
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "dummyProj",
+            "references": [],
+            "type": "Milestone1_Project__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 43,
+                "line": 33
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "milestones",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 38,
+                "line": 34
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "tasks",
+            "references": [],
+            "type": "LIST"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 27,
+            "line": 29
+        },
+        "modifiers": [
+            "public",
+            "with sharing"
+        ],
+        "name": "Milestone1_Clone_Project_Controller",
+        "references": [],
+        "type": "Milestone1_Clone_Project_Controller"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 77,
+                "line": 36
+            },
+            "modifiers": [],
+            "name": "stc",
+            "references": [],
+            "type": "StandardController"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 93
+            },
+            "modifiers": [],
+            "name": "newProj",
+            "references": [],
+            "type": "Milestone1_Project__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 39,
+                "line": 97
+            },
+            "modifiers": [],
+            "name": "topMilestones",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 39,
+                "line": 98
+            },
+            "modifiers": [],
+            "name": "bottomMilestones",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 37,
+                "line": 99
+            },
+            "modifiers": [],
+            "name": "oldMS",
+            "references": [],
+            "type": "Milestone1_Milestone__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 46,
+                "line": 108
+            },
+            "modifiers": [],
+            "name": "newTopMilestoneMap",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 37,
+                "line": 109
+            },
+            "modifiers": [],
+            "name": "newMS",
+            "references": [],
+            "type": "Milestone1_Milestone__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 46,
+                "line": 115
+            },
+            "modifiers": [],
+            "name": "newBottomMilestoneMap",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 37,
+                "line": 116
+            },
+            "modifiers": [],
+            "name": "newMS",
+            "references": [],
+            "type": "Milestone1_Milestone__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 46,
+                "line": 123
+            },
+            "modifiers": [],
+            "name": "allNewMilestoneMap",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 34,
+                "line": 128
+            },
+            "modifiers": [],
+            "name": "newTasks",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 129
+            },
+            "modifiers": [],
+            "name": "newTask",
+            "references": [],
+            "type": "Milestone1_Task__c"
+        }
+    ]
+}

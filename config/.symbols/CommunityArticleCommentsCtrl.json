@@ -1,0 +1,233 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRWeAAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRWeAAN",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 4
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getArticleFeedItems",
+            "parameters": [
+                {
+                    "name": "title",
+                    "type": "String"
+                },
+                {
+                    "name": "theUrl",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 31
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "postToChatter",
+            "parameters": [
+                {
+                    "name": "comment",
+                    "type": "String"
+                },
+                {
+                    "name": "title",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "CommunityArticleCommentsCtrl",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 1
+        },
+        "modifiers": [
+            "public"
+        ],
+        "name": "CommunityArticleCommentsCtrl",
+        "references": [],
+        "type": "CommunityArticleCommentsCtrl"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 60,
+                "line": 4
+            },
+            "modifiers": [],
+            "name": "title",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 73,
+                "line": 4
+            },
+            "modifiers": [],
+            "name": "theUrl",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 5
+            },
+            "modifiers": [],
+            "name": "fList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 8
+            },
+            "modifiers": [],
+            "name": "isArticle",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 43,
+                "line": 11
+            },
+            "modifiers": [],
+            "name": "kList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 41,
+                "line": 15
+            },
+            "modifiers": [],
+            "name": "ka",
+            "references": [],
+            "type": "KnowledgeArticleVersion"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 16
+            },
+            "modifiers": [],
+            "name": "theId",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 18
+            },
+            "modifiers": [],
+            "name": "aType",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 19
+            },
+            "modifiers": [],
+            "name": "obj",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 45,
+                "line": 31
+            },
+            "modifiers": [],
+            "name": "comment",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 61,
+                "line": 31
+            },
+            "modifiers": [],
+            "name": "title",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 39,
+                "line": 34
+            },
+            "modifiers": [],
+            "name": "kList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 37,
+                "line": 38
+            },
+            "modifiers": [],
+            "name": "ka",
+            "references": [],
+            "type": "KnowledgeArticleVersion"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 40
+            },
+            "modifiers": [],
+            "name": "post",
+            "references": [],
+            "type": "FeedItem"
+        }
+    ]
+}

@@ -1,0 +1,76 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 3
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "TimeRemote",
+            "parameters": [],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000GcRWuAAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRWuAAN",
+    "methods": [
+        {
+            "annotations": [
+                {
+                    "name": "RemoteAction"
+                }
+            ],
+            "location": {
+                "column": 24,
+                "line": 6
+            },
+            "modifiers": [
+                "static",
+                "global"
+            ],
+            "name": "getTimeNow",
+            "parameters": [],
+            "references": [],
+            "returnType": "Long",
+            "type": null
+        }
+    ],
+    "name": "TimeRemote",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 27,
+            "line": 1
+        },
+        "modifiers": [
+            "global",
+            "with sharing"
+        ],
+        "name": "TimeRemote",
+        "references": [],
+        "type": "TimeRemote"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 11,
+                "line": 7
+            },
+            "modifiers": [],
+            "name": "theTime",
+            "references": [],
+            "type": "Long"
+        }
+    ]
+}

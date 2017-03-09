@@ -1,0 +1,786 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRXQAA3",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRXQAA3",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 7
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "isEmpty",
+            "parameters": [
+                {
+                    "name": "l",
+                    "type": "LIST"
+                }
+            ],
+            "references": [],
+            "returnType": "Boolean",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 11
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "containsWithIndex",
+            "parameters": [
+                {
+                    "name": "l",
+                    "type": "LIST"
+                },
+                {
+                    "name": "idVal",
+                    "type": "Id"
+                }
+            ],
+            "references": [],
+            "returnType": "Integer",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 38,
+                "line": 27
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "picklistToSelectOptions",
+            "parameters": [
+                {
+                    "name": "pPicklist",
+                    "type": "LIST"
+                },
+                {
+                    "name": "labelText",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 35,
+                "line": 31
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "picklistToSelectOptions",
+            "parameters": [
+                {
+                    "name": "pPicklist",
+                    "type": "LIST"
+                },
+                {
+                    "name": "labelText",
+                    "type": "String"
+                },
+                {
+                    "name": "toLowerCase",
+                    "type": "Boolean"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 41,
+                "line": 48
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "picklistToCheckboxOptions",
+            "parameters": [
+                {
+                    "name": "pPicklist",
+                    "type": "LIST"
+                },
+                {
+                    "name": "labelText",
+                    "type": "String"
+                },
+                {
+                    "name": "toLowerCase",
+                    "type": "Boolean"
+                },
+                {
+                    "name": "checkedValues",
+                    "type": "Set"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 35,
+                "line": 65
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "picklistToSelectOptions",
+            "parameters": [
+                {
+                    "name": "pPicklist",
+                    "type": "LIST"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 72
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getPicklistValues",
+            "parameters": [
+                {
+                    "name": "pPicklist",
+                    "type": "LIST"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 38,
+                "line": 80
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getSelectOptionsFromCheckboxList",
+            "parameters": [
+                {
+                    "name": "checkboxOptionList",
+                    "type": "LIST"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 92
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "removeElement",
+            "parameters": [
+                {
+                    "name": "lst",
+                    "type": "LIST"
+                },
+                {
+                    "name": "s",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 36,
+                "line": 104
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getLabelLookup",
+            "parameters": [
+                {
+                    "name": "picklistEntries",
+                    "type": "LIST"
+                }
+            ],
+            "references": [],
+            "returnType": "Map",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 112
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getIdMap",
+            "parameters": [
+                {
+                    "name": "objList",
+                    "type": "LIST"
+                }
+            ],
+            "references": [],
+            "returnType": "Map",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 38,
+                "line": 121
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getQueryParamsAsMap",
+            "parameters": [
+                {
+                    "name": "queryParams",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "Map",
+            "type": null
+        }
+    ],
+    "name": "asb_ListUtils",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 5
+        },
+        "modifiers": [
+            "public"
+        ],
+        "name": "asb_ListUtils",
+        "references": [],
+        "type": "asb_ListUtils"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 45,
+                "line": 7
+            },
+            "modifiers": [],
+            "name": "l",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 52,
+                "line": 11
+            },
+            "modifiers": [],
+            "name": "l",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 58,
+                "line": 11
+            },
+            "modifiers": [],
+            "name": "idVal",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 11,
+                "line": 15
+            },
+            "modifiers": [],
+            "name": "index",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 11,
+                "line": 16
+            },
+            "modifiers": [],
+            "name": "i",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 89,
+                "line": 27
+            },
+            "modifiers": [],
+            "name": "pPicklist",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 107,
+                "line": 27
+            },
+            "modifiers": [],
+            "name": "labelText",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 86,
+                "line": 31
+            },
+            "modifiers": [],
+            "name": "pPicklist",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 104,
+                "line": 31
+            },
+            "modifiers": [],
+            "name": "labelText",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 122,
+                "line": 31
+            },
+            "modifiers": [],
+            "name": "toLowerCase",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 32
+            },
+            "modifiers": [],
+            "name": "options",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 34
+            },
+            "modifiers": [],
+            "name": "e",
+            "references": [],
+            "type": "PicklistEntry"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 38
+            },
+            "modifiers": [],
+            "name": "label",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 94,
+                "line": 48
+            },
+            "modifiers": [],
+            "name": "pPicklist",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 112,
+                "line": 48
+            },
+            "modifiers": [],
+            "name": "labelText",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 130,
+                "line": 48
+            },
+            "modifiers": [],
+            "name": "toLowerCase",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 154,
+                "line": 48
+            },
+            "modifiers": [],
+            "name": "checkedValues",
+            "references": [],
+            "type": "Set"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 49
+            },
+            "modifiers": [],
+            "name": "options",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 51
+            },
+            "modifiers": [],
+            "name": "e",
+            "references": [],
+            "type": "PicklistEntry"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 55
+            },
+            "modifiers": [],
+            "name": "label",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 86,
+                "line": 65
+            },
+            "modifiers": [],
+            "name": "pPicklist",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 77,
+                "line": 72
+            },
+            "modifiers": [],
+            "name": "pPicklist",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 73
+            },
+            "modifiers": [],
+            "name": "values",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 74
+            },
+            "modifiers": [],
+            "name": "e",
+            "references": [],
+            "type": "PicklistEntry"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 96,
+                "line": 80
+            },
+            "modifiers": [],
+            "name": "checkboxOptionList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 82
+            },
+            "modifiers": [],
+            "name": "options",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 85
+            },
+            "modifiers": [],
+            "name": "cb",
+            "references": [],
+            "type": "asb_CheckboxOption"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 51,
+                "line": 92
+            },
+            "modifiers": [],
+            "name": "lst",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 63,
+                "line": 92
+            },
+            "modifiers": [],
+            "name": "s",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 11,
+                "line": 94
+            },
+            "modifiers": [],
+            "name": "index",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 95
+            },
+            "modifiers": [],
+            "name": "item",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 78,
+                "line": 104
+            },
+            "modifiers": [],
+            "name": "picklistEntries",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 105
+            },
+            "modifiers": [],
+            "name": "labelLookup",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 106
+            },
+            "modifiers": [],
+            "name": "ple",
+            "references": [],
+            "type": "PicklistEntry"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 56,
+                "line": 112
+            },
+            "modifiers": [],
+            "name": "objList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 114
+            },
+            "modifiers": [],
+            "name": "idMap",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 115
+            },
+            "modifiers": [],
+            "name": "o",
+            "references": [],
+            "type": "SObject"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 65,
+                "line": 121
+            },
+            "modifiers": [],
+            "name": "queryParams",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 122
+            },
+            "modifiers": [],
+            "name": "queryParamsAsMap",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 13,
+                "line": 125
+            },
+            "modifiers": [],
+            "name": "key",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 125
+            },
+            "modifiers": [],
+            "name": "value",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 127
+            },
+            "modifiers": [],
+            "name": "s",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 130
+            },
+            "modifiers": [],
+            "name": "keyValPair",
+            "references": [],
+            "type": "LIST"
+        }
+    ]
+}

@@ -1,0 +1,104 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 9,
+                "line": 8
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "asb_ListingAssetView",
+            "parameters": [
+                {
+                    "name": "la",
+                    "type": "asb_ListingActivity__c"
+                }
+            ],
+            "references": [],
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 9,
+                "line": 12
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "asb_ListingAssetView",
+            "parameters": [
+                {
+                    "name": "listingId",
+                    "type": "Id"
+                },
+                {
+                    "name": "listingAssetId",
+                    "type": "Id"
+                }
+            ],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000GcRXRAA3",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRXRAA3",
+    "methods": [],
+    "name": "asb_ListingAssetView",
+    "namespace": null,
+    "parentClass": "asb_ListingActivityDO",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 6
+        },
+        "modifiers": [
+            "public"
+        ],
+        "name": "asb_ListingAssetView",
+        "references": [],
+        "type": "asb_ListingAssetView"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 53,
+                "line": 8
+            },
+            "modifiers": [],
+            "name": "la",
+            "references": [],
+            "type": "asb_ListingActivity__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 12
+            },
+            "modifiers": [],
+            "name": "listingId",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 47,
+                "line": 12
+            },
+            "modifiers": [],
+            "name": "listingAssetId",
+            "references": [],
+            "type": "Id"
+        }
+    ]
+}

@@ -1,0 +1,296 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRXZAA3",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRXZAA3",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 11
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "createExtensions",
+            "parameters": [
+                {
+                    "name": "newList",
+                    "type": "LIST"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 26
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "updateExtensions",
+            "parameters": [
+                {
+                    "name": "oldListings",
+                    "type": "Map"
+                },
+                {
+                    "name": "newListings",
+                    "type": "LIST"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 41,
+                "line": 48
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "createExtension",
+            "parameters": [
+                {
+                    "name": "lId",
+                    "type": "Id"
+                },
+                {
+                    "name": "searchText",
+                    "type": "String"
+                },
+                {
+                    "name": "rtId",
+                    "type": "Id"
+                }
+            ],
+            "references": [],
+            "returnType": "asb_ListingExtension__c",
+            "type": null
+        }
+    ],
+    "name": "asb_ListingExtensionUtil",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 9
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "final"
+            ],
+            "name": "LISTING_EXT_SOBJECT_NAME",
+            "references": [],
+            "type": "String"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 7
+        },
+        "modifiers": [
+            "public"
+        ],
+        "name": "asb_ListingExtensionUtil",
+        "references": [],
+        "type": "asb_ListingExtensionUtil"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 59,
+                "line": 11
+            },
+            "modifiers": [],
+            "name": "newList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 38,
+                "line": 12
+            },
+            "modifiers": [],
+            "name": "recordTypeMap",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 13
+            },
+            "modifiers": [],
+            "name": "descripRTI",
+            "references": [],
+            "type": "RecordTypeInfo"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 14
+            },
+            "modifiers": [],
+            "name": "requireRTI",
+            "references": [],
+            "type": "RecordTypeInfo"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 18
+            },
+            "modifiers": [],
+            "name": "exts",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 19
+            },
+            "modifiers": [],
+            "name": "l",
+            "references": [],
+            "type": "asb_Listing__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 62,
+                "line": 26
+            },
+            "modifiers": [],
+            "name": "oldListings",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 96,
+                "line": 26
+            },
+            "modifiers": [],
+            "name": "newListings",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 28
+            },
+            "modifiers": [],
+            "name": "changedListings",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 29
+            },
+            "modifiers": [],
+            "name": "newList",
+            "references": [],
+            "type": "asb_Listing__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 30
+            },
+            "modifiers": [],
+            "name": "oldList",
+            "references": [],
+            "type": "asb_Listing__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 39,
+                "line": 40
+            },
+            "modifiers": [],
+            "name": "exts",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 60,
+                "line": 48
+            },
+            "modifiers": [],
+            "name": "lId",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 72,
+                "line": 48
+            },
+            "modifiers": [],
+            "name": "searchText",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 87,
+                "line": 48
+            },
+            "modifiers": [],
+            "name": "rtId",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 49
+            },
+            "modifiers": [],
+            "name": "e",
+            "references": [],
+            "type": "asb_ListingExtension__c"
+        }
+    ]
+}

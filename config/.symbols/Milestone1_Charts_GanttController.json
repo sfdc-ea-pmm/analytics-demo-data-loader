@@ -1,0 +1,622 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRU3AAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRU3AAN",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 50
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getProjectGanttJson",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 64
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "initFieldNames",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 89
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "retrieveData",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 99
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "toJSon",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 148
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "escapeDoubleQuotes",
+            "parameters": [
+                {
+                    "name": "word",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 28,
+                "line": 152
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "testMethod"
+            ],
+            "name": "TestProjectJson",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 28,
+                "line": 189
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "testMethod"
+            ],
+            "name": "TestMilestoneJson",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "Milestone1_Charts_GanttController",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 31
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "mytarget",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 32
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "objectType",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 33
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "startDateFieldName",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 34
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "endDateFieldName",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 35
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "idFieldName",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 36
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "fullViewURL",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 38
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "nameFieldName",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 39
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "completedFieldName",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 40
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "filterFieldName",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 42
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "sobjectList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 43
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "final"
+            ],
+            "name": "REGEXP_QUOTES",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 45
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "final"
+            ],
+            "name": "COLOR_COMPLETE",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 46
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "final"
+            ],
+            "name": "COLOR_LATE",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 47
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "final"
+            ],
+            "name": "COLOR_FUTURE",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 48
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "final"
+            ],
+            "name": "COLOR_CURRENT",
+            "references": [],
+            "type": "String"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 27,
+            "line": 29
+        },
+        "modifiers": [
+            "public",
+            "with sharing"
+        ],
+        "name": "Milestone1_Charts_GanttController",
+        "references": [],
+        "type": "Milestone1_Charts_GanttController"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 52
+            },
+            "modifiers": [],
+            "name": "ret",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 13,
+                "line": 91
+            },
+            "modifiers": [],
+            "name": "query",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 13,
+                "line": 101
+            },
+            "modifiers": [],
+            "name": "ret",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 102
+            },
+            "modifiers": [],
+            "name": "addComma",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 102
+            },
+            "modifiers": [],
+            "name": "completed",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 11,
+                "line": 103
+            },
+            "modifiers": [],
+            "name": "startDate",
+            "references": [],
+            "type": "Date"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 103
+            },
+            "modifiers": [],
+            "name": "endDate",
+            "references": [],
+            "type": "Date"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 13,
+                "line": 104
+            },
+            "modifiers": [],
+            "name": "name",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 104
+            },
+            "modifiers": [],
+            "name": "id",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 105
+            },
+            "modifiers": [],
+            "name": "current",
+            "references": [],
+            "type": "SObject"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 122
+            },
+            "modifiers": [],
+            "name": "color",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 46,
+                "line": 148
+            },
+            "modifiers": [],
+            "name": "word",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 153
+            },
+            "modifiers": [],
+            "name": "p1",
+            "references": [],
+            "type": "Milestone1_Project__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 155
+            },
+            "modifiers": [],
+            "name": "m1",
+            "references": [],
+            "type": "Milestone1_Milestone__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 43,
+                "line": 158
+            },
+            "modifiers": [],
+            "name": "cls",
+            "references": [],
+            "type": "Milestone1_Charts_GanttController"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 161
+            },
+            "modifiers": [],
+            "name": "ret",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 167
+            },
+            "modifiers": [],
+            "name": "testDateString",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 173
+            },
+            "modifiers": [],
+            "name": "m2",
+            "references": [],
+            "type": "Milestone1_Milestone__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 177
+            },
+            "modifiers": [],
+            "name": "m3",
+            "references": [],
+            "type": "Milestone1_Milestone__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 190
+            },
+            "modifiers": [],
+            "name": "p1",
+            "references": [],
+            "type": "Milestone1_Project__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 193
+            },
+            "modifiers": [],
+            "name": "m2",
+            "references": [],
+            "type": "Milestone1_Milestone__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 197
+            },
+            "modifiers": [],
+            "name": "t1",
+            "references": [],
+            "type": "Milestone1_Task__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 43,
+                "line": 200
+            },
+            "modifiers": [],
+            "name": "cls",
+            "references": [],
+            "type": "Milestone1_Charts_GanttController"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 202
+            },
+            "modifiers": [],
+            "name": "ret",
+            "references": [],
+            "type": "String"
+        }
+    ]
+}

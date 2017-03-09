@@ -1,0 +1,223 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 15
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "asb_ListingSearchEngine",
+            "parameters": [],
+            "references": [],
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 19
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "asb_ListingSearchEngine",
+            "parameters": [
+                {
+                    "name": "includeAllListings",
+                    "type": "Boolean"
+                },
+                {
+                    "name": "appId",
+                    "type": "Id"
+                }
+            ],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000GcRXXAA3",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRXXAA3",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 24
+            },
+            "modifiers": [
+                "protected"
+            ],
+            "name": "initializeSearchConfig",
+            "parameters": [
+                {
+                    "name": "includeAllListings",
+                    "type": "Boolean"
+                },
+                {
+                    "name": "appId",
+                    "type": "Id"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 40,
+                "line": 39
+            },
+            "modifiers": [
+                "public",
+                "override"
+            ],
+            "name": "getSearchResults",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        }
+    ],
+    "name": "asb_ListingSearchEngine",
+    "namespace": null,
+    "parentClass": "asb_BaseSearchEngine",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 36,
+                "line": 8
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "final"
+            ],
+            "name": "LISTING_FIELDS",
+            "references": [],
+            "type": "LIST"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 23,
+            "line": 6
+        },
+        "modifiers": [
+            "virtual",
+            "public"
+        ],
+        "name": "asb_ListingSearchEngine",
+        "references": [],
+        "type": "asb_ListingSearchEngine"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 44,
+                "line": 19
+            },
+            "modifiers": [],
+            "name": "includeAllListings",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 66,
+                "line": 19
+            },
+            "modifiers": [],
+            "name": "appId",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 51,
+                "line": 24
+            },
+            "modifiers": [],
+            "name": "includeAllListings",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 73,
+                "line": 24
+            },
+            "modifiers": [],
+            "name": "appId",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 13,
+                "line": 25
+            },
+            "modifiers": [],
+            "name": "usersLanguage",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 13,
+                "line": 27
+            },
+            "modifiers": [],
+            "name": "listingWhereClause",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 44
+            },
+            "modifiers": [],
+            "name": "resultsList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 46
+            },
+            "modifiers": [],
+            "name": "o",
+            "references": [],
+            "type": "SObject"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 47
+            },
+            "modifiers": [],
+            "name": "l",
+            "references": [],
+            "type": "asb_Listing__c"
+        }
+    ]
+}

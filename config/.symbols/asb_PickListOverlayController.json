@@ -1,0 +1,121 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 9,
+                "line": 20
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "asb_PickListOverlayController",
+            "parameters": [],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000GcRXUAA3",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRXUAA3",
+    "methods": [],
+    "name": "asb_PickListOverlayController",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 12
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "title",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 13
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "subTitle",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 34,
+                "line": 15
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "pickListValues",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 16
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "valuesSelected",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 17
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "saveAction",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 18
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "errorMessage",
+            "references": [],
+            "type": "String"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 10
+        },
+        "modifiers": [
+            "public"
+        ],
+        "name": "asb_PickListOverlayController",
+        "references": [],
+        "type": "asb_PickListOverlayController"
+    },
+    "variables": []
+}

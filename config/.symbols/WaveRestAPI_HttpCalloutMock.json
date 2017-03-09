@@ -1,0 +1,263 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 9
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "WaveRestAPI_HttpCalloutMock",
+            "parameters": [
+                {
+                    "name": "body",
+                    "type": "String"
+                },
+                {
+                    "name": "responseHeaders",
+                    "type": "Map"
+                }
+            ],
+            "references": [],
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 15
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "WaveRestAPI_HttpCalloutMock",
+            "parameters": [
+                {
+                    "name": "code",
+                    "type": "Integer"
+                },
+                {
+                    "name": "status",
+                    "type": "String"
+                },
+                {
+                    "name": "body",
+                    "type": "String"
+                },
+                {
+                    "name": "responseHeaders",
+                    "type": "Map"
+                }
+            ],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000IQFB4AAP",
+    "innerClasses": [],
+    "interfaces": [
+        "System.HttpCalloutMock"
+    ],
+    "key": "01p3600000IQFB4AAP",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 22
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "respond",
+            "parameters": [
+                {
+                    "name": "req",
+                    "type": "HttpRequest"
+                }
+            ],
+            "references": [],
+            "returnType": "HttpResponse",
+            "type": null
+        }
+    ],
+    "name": "WaveRestAPI_HttpCalloutMock",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 4
+            },
+            "modifiers": [
+                "protected"
+            ],
+            "name": "code",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 5
+            },
+            "modifiers": [
+                "protected"
+            ],
+            "name": "status",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 6
+            },
+            "modifiers": [
+                "protected"
+            ],
+            "name": "body",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 35,
+                "line": 7
+            },
+            "modifiers": [
+                "protected"
+            ],
+            "name": "responseHeaders",
+            "references": [],
+            "type": "Map"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [
+            {
+                "name": "IsTest"
+            }
+        ],
+        "location": {
+            "column": 14,
+            "line": 2
+        },
+        "modifiers": [
+            "public",
+            "testMethod"
+        ],
+        "name": "WaveRestAPI_HttpCalloutMock",
+        "references": [],
+        "type": "WaveRestAPI_HttpCalloutMock"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 47,
+                "line": 9
+            },
+            "modifiers": [],
+            "name": "body",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 73,
+                "line": 9
+            },
+            "modifiers": [],
+            "name": "responseHeaders",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 48,
+                "line": 15
+            },
+            "modifiers": [],
+            "name": "code",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 61,
+                "line": 15
+            },
+            "modifiers": [],
+            "name": "status",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 76,
+                "line": 15
+            },
+            "modifiers": [],
+            "name": "body",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 102,
+                "line": 15
+            },
+            "modifiers": [],
+            "name": "responseHeaders",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 45,
+                "line": 22
+            },
+            "modifiers": [],
+            "name": "req",
+            "references": [],
+            "type": "HttpRequest"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 24
+            },
+            "modifiers": [],
+            "name": "res",
+            "references": [],
+            "type": "HttpResponse"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 26
+            },
+            "modifiers": [],
+            "name": "key",
+            "references": [],
+            "type": "String"
+        }
+    ]
+}

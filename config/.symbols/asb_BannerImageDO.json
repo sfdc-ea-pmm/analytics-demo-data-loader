@@ -1,0 +1,573 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 20
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "asb_BannerImageDO",
+            "parameters": [],
+            "references": [],
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 24
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "asb_BannerImageDO",
+            "parameters": [
+                {
+                    "name": "bImgC",
+                    "type": "asb_BannerImage__c"
+                }
+            ],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000GcRXJAA3",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRXJAA3",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 28
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "init",
+            "parameters": [
+                {
+                    "name": "bi",
+                    "type": "asb_BannerImage__c"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 15,
+                "line": 33
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getBannerId",
+            "parameters": [],
+            "references": [],
+            "returnType": "Id",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 37
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "setBannerId",
+            "parameters": [
+                {
+                    "name": "id",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 41
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getOrder",
+            "parameters": [],
+            "references": [],
+            "returnType": "Integer",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 45
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "setOrder",
+            "parameters": [
+                {
+                    "name": "displayOrder",
+                    "type": "Integer"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 49
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getLink",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 53
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "setLink",
+            "parameters": [
+                {
+                    "name": "url",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 57
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getHasLink",
+            "parameters": [],
+            "references": [],
+            "returnType": "Boolean",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 61
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getTarget",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 65
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "setTarget",
+            "parameters": [
+                {
+                    "name": "target",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 78
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getIsNewWindow",
+            "parameters": [],
+            "references": [],
+            "returnType": "Boolean",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 82
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getImageId",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 86
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "setImageId",
+            "parameters": [
+                {
+                    "name": "id",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 90
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getImageURL",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 94
+            },
+            "modifiers": [
+                "public",
+                "override"
+            ],
+            "name": "getCreatedById",
+            "parameters": [],
+            "references": [],
+            "returnType": "Id",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 98
+            },
+            "modifiers": [
+                "public",
+                "override"
+            ],
+            "name": "getLastModifiedById",
+            "parameters": [],
+            "references": [],
+            "returnType": "Id",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 102
+            },
+            "modifiers": [
+                "public",
+                "override"
+            ],
+            "name": "getCreatedDate",
+            "parameters": [],
+            "references": [],
+            "returnType": "Datetime",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 106
+            },
+            "modifiers": [
+                "public",
+                "override"
+            ],
+            "name": "getLastModifiedDate",
+            "parameters": [],
+            "references": [],
+            "returnType": "Datetime",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 110
+            },
+            "modifiers": [
+                "public",
+                "override"
+            ],
+            "name": "remove",
+            "parameters": [],
+            "references": [],
+            "returnType": "Boolean",
+            "type": null
+        }
+    ],
+    "name": "asb_BannerImageDO",
+    "namespace": null,
+    "parentClass": "asb_BaseData",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 10
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "imageObj",
+            "references": [],
+            "type": "asb_BannerImage__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 69
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "openInNewWindow",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 12
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "final"
+            ],
+            "name": "SOBJECT_NAME",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 14
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "final"
+            ],
+            "name": "NEW_TARGET",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 15
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "final"
+            ],
+            "name": "CURRENT_TARGET",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 17
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "final"
+            ],
+            "name": "MAX_IMAGE_MB_SIZE",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 37,
+                "line": 18
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "final"
+            ],
+            "name": "VALID_IMAGE_FILE_TYPES",
+            "references": [],
+            "type": "Set"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 8
+        },
+        "modifiers": [
+            "public"
+        ],
+        "name": "asb_BannerImageDO",
+        "references": [],
+        "type": "asb_BannerImageDO"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 49,
+                "line": 24
+            },
+            "modifiers": [],
+            "name": "bImgC",
+            "references": [],
+            "type": "asb_BannerImage__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 42,
+                "line": 28
+            },
+            "modifiers": [],
+            "name": "bi",
+            "references": [],
+            "type": "asb_BannerImage__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 36,
+                "line": 37
+            },
+            "modifiers": [],
+            "name": "id",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 34,
+                "line": 45
+            },
+            "modifiers": [],
+            "name": "displayOrder",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 53
+            },
+            "modifiers": [],
+            "name": "url",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 34,
+                "line": 65
+            },
+            "modifiers": [],
+            "name": "target",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 35,
+                "line": 86
+            },
+            "modifiers": [],
+            "name": "id",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 113
+            },
+            "modifiers": [],
+            "name": "a",
+            "references": [],
+            "type": "Attachment"
+        }
+    ]
+}

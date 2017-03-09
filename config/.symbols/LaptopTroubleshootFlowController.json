@@ -1,0 +1,71 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRW4AAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRW4AAN",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 4
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getPageA",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        }
+    ],
+    "name": "LaptopTroubleshootFlowController",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 50,
+                "line": 2
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "my_interview",
+            "references": [],
+            "type": "laptop_troubleshoot_v2"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 3
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "newRecord",
+            "references": [],
+            "type": "String"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 27,
+            "line": 1
+        },
+        "modifiers": [
+            "public",
+            "with sharing"
+        ],
+        "name": "LaptopTroubleshootFlowController",
+        "references": [],
+        "type": "LaptopTroubleshootFlowController"
+    },
+    "variables": []
+}

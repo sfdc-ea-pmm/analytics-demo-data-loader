@@ -1,0 +1,45 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000HrQCmAAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000HrQCmAAN",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 3
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getIMockarooHelper",
+            "parameters": [],
+            "references": [],
+            "returnType": "IMockarooHelper",
+            "type": null
+        }
+    ],
+    "name": "MockarooHelperFactory",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 27,
+            "line": 1
+        },
+        "modifiers": [
+            "public",
+            "with sharing"
+        ],
+        "name": "MockarooHelperFactory",
+        "references": [],
+        "type": "MockarooHelperFactory"
+    },
+    "variables": []
+}

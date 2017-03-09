@@ -1,0 +1,409 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRSnAAN",
+    "innerClasses": [
+        {
+            "constructors": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 16,
+                        "line": 106
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "UserWrapper",
+                    "parameters": [],
+                    "references": [],
+                    "type": null
+                }
+            ],
+            "externalReferences": [],
+            "id": null,
+            "innerClasses": [],
+            "interfaces": [],
+            "key": null,
+            "methods": [],
+            "name": "UserWrapper",
+            "namespace": null,
+            "parentClass": "",
+            "properties": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 21,
+                        "line": 92
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "usr",
+                    "references": [],
+                    "type": "User"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 30,
+                        "line": 94
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "networkmember",
+                    "references": [],
+                    "type": "NetworkMember"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 31,
+                        "line": 96
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "lstfeedItem",
+                    "references": [],
+                    "type": "LIST"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 21,
+                        "line": 98
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "membersince",
+                    "references": [],
+                    "type": "Date"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 23,
+                        "line": 100
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "level",
+                    "references": [],
+                    "type": "String"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 24,
+                        "line": 102
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "points",
+                    "references": [],
+                    "type": "Integer"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 23,
+                        "line": 104
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "imageurl",
+                    "references": [],
+                    "type": "String"
+                }
+            ],
+            "tableDeclaration": {
+                "annotations": [],
+                "location": {
+                    "column": 18,
+                    "line": 89
+                },
+                "modifiers": [
+                    "public"
+                ],
+                "name": "UserWrapper",
+                "references": [],
+                "type": "UserWrapper"
+            },
+            "variables": []
+        }
+    ],
+    "interfaces": [],
+    "key": "01p3600000GcRSnAAN",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 37,
+                "line": 4
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "searchPeople",
+            "parameters": [
+                {
+                    "name": "searchString",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 54
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "searchTopics",
+            "parameters": [
+                {
+                    "name": "searchString",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 80
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "massageSearchTerm",
+            "parameters": [
+                {
+                    "name": "searchTerm",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 113
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "testFill",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "SearchMembersAndTopicsController",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 27,
+            "line": 1
+        },
+        "modifiers": [
+            "public",
+            "with sharing"
+        ],
+        "name": "SearchMembersAndTopicsController",
+        "references": [],
+        "type": "SearchMembersAndTopicsController"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 57,
+                "line": 4
+            },
+            "modifiers": [],
+            "name": "searchString",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 5
+            },
+            "modifiers": [],
+            "name": "lstusers",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 7
+            },
+            "modifiers": [],
+            "name": "networkId",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 10
+            },
+            "modifiers": [],
+            "name": "mapIdByUser",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 24
+            },
+            "modifiers": [],
+            "name": "mapIdByNetworkmember",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 32
+            },
+            "modifiers": [],
+            "name": "networkmem",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 33
+            },
+            "modifiers": [],
+            "name": "u",
+            "references": [],
+            "type": "UserWrapper"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 36
+            },
+            "modifiers": [],
+            "name": "usrfeed",
+            "references": [],
+            "type": "UserFeed"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 51,
+                "line": 54
+            },
+            "modifiers": [],
+            "name": "searchString",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 56
+            },
+            "modifiers": [],
+            "name": "networkId",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 57
+            },
+            "modifiers": [],
+            "name": "topics",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 60
+            },
+            "modifiers": [],
+            "name": "searchStr",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 61
+            },
+            "modifiers": [],
+            "name": "searchList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 51,
+                "line": 80
+            },
+            "modifiers": [],
+            "name": "searchTerm",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 114
+            },
+            "modifiers": [],
+            "name": "i",
+            "references": [],
+            "type": "Integer"
+        }
+    ]
+}

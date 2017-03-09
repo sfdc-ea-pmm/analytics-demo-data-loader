@@ -1,0 +1,114 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRY4AAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRY4AAN",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 53,
+                "line": 10
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getMessages",
+            "parameters": [],
+            "references": [],
+            "returnType": "Map",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 31
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getSeverityDisplayNames",
+            "parameters": [],
+            "references": [],
+            "returnType": "Map",
+            "type": null
+        }
+    ],
+    "name": "asb_PageMessagesController",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 15,
+            "line": 9
+        },
+        "modifiers": [
+            "public"
+        ],
+        "name": "asb_PageMessagesController",
+        "references": [],
+        "type": "asb_PageMessagesController"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 50,
+                "line": 11
+            },
+            "modifiers": [],
+            "name": "messages",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 37,
+                "line": 12
+            },
+            "modifiers": [],
+            "name": "messagesBySeverity",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 14
+            },
+            "modifiers": [],
+            "name": "message",
+            "references": [],
+            "type": "Message"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 15
+            },
+            "modifiers": [],
+            "name": "severity",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 32
+            },
+            "modifiers": [],
+            "name": "displayNames",
+            "references": [],
+            "type": "Map"
+        }
+    ]
+}

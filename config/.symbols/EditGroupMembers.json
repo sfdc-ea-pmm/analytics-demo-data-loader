@@ -1,0 +1,182 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRTIAA3",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRTIAA3",
+    "methods": [
+        {
+            "annotations": [
+                {
+                    "name": "Future"
+                }
+            ],
+            "location": {
+                "column": 24,
+                "line": 3
+            },
+            "modifiers": [
+                "static",
+                "global"
+            ],
+            "name": "add",
+            "parameters": [
+                {
+                    "name": "groupIds",
+                    "type": "LIST"
+                },
+                {
+                    "name": "userIds",
+                    "type": "LIST"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "Future"
+                }
+            ],
+            "location": {
+                "column": 24,
+                "line": 30
+            },
+            "modifiers": [
+                "static",
+                "global"
+            ],
+            "name": "del",
+            "parameters": [
+                {
+                    "name": "groupdIds",
+                    "type": "LIST"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "EditGroupMembers",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 1
+        },
+        "modifiers": [
+            "global"
+        ],
+        "name": "EditGroupMembers",
+        "references": [],
+        "type": "EditGroupMembers"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 37,
+                "line": 3
+            },
+            "modifiers": [],
+            "name": "groupIds",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 56,
+                "line": 3
+            },
+            "modifiers": [],
+            "name": "userIds",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 5
+            },
+            "modifiers": [],
+            "name": "newMembers",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 6
+            },
+            "modifiers": [],
+            "name": "i",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 35,
+                "line": 11
+            },
+            "modifiers": [],
+            "name": "srList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 13
+            },
+            "modifiers": [],
+            "name": "sr",
+            "references": [],
+            "type": "SaveResult"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 36,
+                "line": 21
+            },
+            "modifiers": [],
+            "name": "err",
+            "references": [],
+            "type": "Error"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 37,
+                "line": 30
+            },
+            "modifiers": [],
+            "name": "groupdIds",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 32
+            },
+            "modifiers": [],
+            "name": "membs",
+            "references": [],
+            "type": "LIST"
+        }
+    ]
+}

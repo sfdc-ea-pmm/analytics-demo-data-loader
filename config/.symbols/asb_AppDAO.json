@@ -1,0 +1,201 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRXCAA3",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRXCAA3",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 8
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getAppById",
+            "parameters": [
+                {
+                    "name": "appId",
+                    "type": "Id"
+                }
+            ],
+            "references": [],
+            "returnType": "asb_AppDO",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 23
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getPopularApps",
+            "parameters": [
+                {
+                    "name": "sortingParam",
+                    "type": "String"
+                },
+                {
+                    "name": "maxCount",
+                    "type": "Integer"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 36,
+                "line": 43
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getPublishedAppsChartData",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        }
+    ],
+    "name": "asb_AppDAO",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 6
+        },
+        "modifiers": [
+            "public"
+        ],
+        "name": "asb_AppDAO",
+        "references": [],
+        "type": "asb_AppDAO"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 40,
+                "line": 8
+            },
+            "modifiers": [],
+            "name": "appId",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 9
+            },
+            "modifiers": [],
+            "name": "apps",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 54,
+                "line": 23
+            },
+            "modifiers": [],
+            "name": "sortingParam",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 75,
+                "line": 23
+            },
+            "modifiers": [],
+            "name": "maxCount",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 24
+            },
+            "modifiers": [],
+            "name": "queryStr",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 31
+            },
+            "modifiers": [],
+            "name": "apps",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 33
+            },
+            "modifiers": [],
+            "name": "appsDO",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 34
+            },
+            "modifiers": [],
+            "name": "a",
+            "references": [],
+            "type": "asb_App__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 44
+            },
+            "modifiers": [],
+            "name": "chartData",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 46
+            },
+            "modifiers": [],
+            "name": "result",
+            "references": [],
+            "type": "AggregateResult"
+        }
+    ]
+}

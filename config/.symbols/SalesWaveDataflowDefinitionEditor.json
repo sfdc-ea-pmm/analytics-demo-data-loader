@@ -1,0 +1,185 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 9,
+                "line": 3
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "SalesWaveDataflowDefinitionEditor",
+            "parameters": [
+                {
+                    "name": "dataflowId",
+                    "type": "Id"
+                }
+            ],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000Hr2tAAAR",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000Hr2tAAAR",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 8
+            },
+            "modifiers": [
+                "public",
+                "override"
+            ],
+            "name": "processDataflowNodes",
+            "parameters": [
+                {
+                    "name": "numberOfMonths",
+                    "type": "Integer"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 52
+            },
+            "modifiers": [
+                "public",
+                "override"
+            ],
+            "name": "validateEdition",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        }
+    ],
+    "name": "SalesWaveDataflowDefinitionEditor",
+    "namespace": null,
+    "parentClass": "DataflowDefinitionEditor",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 1
+        },
+        "modifiers": [
+            "public"
+        ],
+        "name": "SalesWaveDataflowDefinitionEditor",
+        "references": [],
+        "type": "SalesWaveDataflowDefinitionEditor"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 46,
+                "line": 3
+            },
+            "modifiers": [],
+            "name": "dataflowId",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 52,
+                "line": 8
+            },
+            "modifiers": [],
+            "name": "numberOfMonths",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 11
+            },
+            "modifiers": [],
+            "name": "srOppHistFields",
+            "references": [],
+            "type": "StaticResource"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 12
+            },
+            "modifiers": [],
+            "name": "srOppHistSchema",
+            "references": [],
+            "type": "StaticResource"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 25
+            },
+            "modifiers": [],
+            "name": "srOppHistRelabel",
+            "references": [],
+            "type": "StaticResource"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 31
+            },
+            "modifiers": [],
+            "name": "srOppHistFlagFields",
+            "references": [],
+            "type": "StaticResource"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 41
+            },
+            "modifiers": [],
+            "name": "srOppHistTrendingFields",
+            "references": [],
+            "type": "StaticResource"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 53
+            },
+            "modifiers": [],
+            "name": "validationMessages",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 68
+            },
+            "modifiers": [],
+            "name": "oppHistCount",
+            "references": [],
+            "type": "Integer"
+        }
+    ]
+}

@@ -1,0 +1,54 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRaJAAV",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRaJAAV",
+    "methods": [
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 24,
+                "line": 125
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "testMethod"
+            ],
+            "name": "testUnit",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "SearchMembersAndTopicsControllerTest",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [
+            {
+                "name": "IsTest"
+            }
+        ],
+        "location": {
+            "column": 14,
+            "line": 2
+        },
+        "modifiers": [
+            "public",
+            "testMethod"
+        ],
+        "name": "SearchMembersAndTopicsControllerTest",
+        "references": [],
+        "type": "SearchMembersAndTopicsControllerTest"
+    },
+    "variables": []
+}

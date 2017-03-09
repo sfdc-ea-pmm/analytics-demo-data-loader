@@ -1,0 +1,431 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRWjAAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRWjAAN",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 4
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getNetworkId",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 10
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getTopicSuggestions",
+            "parameters": [
+                {
+                    "name": "networkId",
+                    "type": "String"
+                },
+                {
+                    "name": "feedItemId",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 30
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getTopics",
+            "parameters": [
+                {
+                    "name": "feedItemId",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 44
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getKnowledgeableUsers",
+            "parameters": [
+                {
+                    "name": "networkId",
+                    "type": "String"
+                },
+                {
+                    "name": "topicIds",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 59
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getShownUsers",
+            "parameters": [
+                {
+                    "name": "smartUserIds",
+                    "type": "String"
+                },
+                {
+                    "name": "page",
+                    "type": "Decimal"
+                },
+                {
+                    "name": "shownPerPage",
+                    "type": "Decimal"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        }
+    ],
+    "name": "knowledgeableUsersController",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 1
+        },
+        "modifiers": [
+            "public"
+        ],
+        "name": "knowledgeableUsersController",
+        "references": [],
+        "type": "knowledgeableUsersController"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 5
+            },
+            "modifiers": [],
+            "name": "networkId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 55,
+                "line": 10
+            },
+            "modifiers": [],
+            "name": "networkId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 73,
+                "line": 10
+            },
+            "modifiers": [],
+            "name": "feedItemId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 40,
+                "line": 11
+            },
+            "modifiers": [],
+            "name": "topicsPage",
+            "references": [],
+            "type": "TopicSuggestionPage"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 12
+            },
+            "modifiers": [],
+            "name": "topicsList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 13
+            },
+            "modifiers": [],
+            "name": "suggestedIds",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 40,
+                "line": 15
+            },
+            "modifiers": [],
+            "name": "ts",
+            "references": [],
+            "type": "TopicSuggestion"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 21
+            },
+            "modifiers": [],
+            "name": "t",
+            "references": [],
+            "type": "Topic"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 22
+            },
+            "modifiers": [],
+            "name": "tempString",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 45,
+                "line": 30
+            },
+            "modifiers": [],
+            "name": "feedItemId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 31
+            },
+            "modifiers": [],
+            "name": "topicIds",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 33
+            },
+            "modifiers": [],
+            "name": "listedTopics",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 37
+            },
+            "modifiers": [],
+            "name": "ta",
+            "references": [],
+            "type": "TopicAssignment"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 57,
+                "line": 44
+            },
+            "modifiers": [],
+            "name": "networkId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 75,
+                "line": 44
+            },
+            "modifiers": [],
+            "name": "topicIds",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 45
+            },
+            "modifiers": [],
+            "name": "theTopics",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 46
+            },
+            "modifiers": [],
+            "name": "smartUserIds",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 48
+            },
+            "modifiers": [],
+            "name": "smartUsers",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 51
+            },
+            "modifiers": [],
+            "name": "ku",
+            "references": [],
+            "type": "KnowledgeableUser"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 47,
+                "line": 59
+            },
+            "modifiers": [],
+            "name": "smartUserIds",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 69,
+                "line": 59
+            },
+            "modifiers": [],
+            "name": "page",
+            "references": [],
+            "type": "Decimal"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 83,
+                "line": 59
+            },
+            "modifiers": [],
+            "name": "shownPerPage",
+            "references": [],
+            "type": "Decimal"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 60
+            },
+            "modifiers": [],
+            "name": "pageLimit",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 61
+            },
+            "modifiers": [],
+            "name": "pageOffset",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 62
+            },
+            "modifiers": [],
+            "name": "theUserIds",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 64
+            },
+            "modifiers": [],
+            "name": "returnedUsers",
+            "references": [],
+            "type": "LIST"
+        }
+    ]
+}

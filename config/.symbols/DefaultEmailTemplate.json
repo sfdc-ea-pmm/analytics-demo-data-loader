@@ -1,0 +1,99 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 3
+            },
+            "modifiers": [
+                "global"
+            ],
+            "name": "DefaultEmailTemplate",
+            "parameters": [],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000GcRSgAAN",
+    "innerClasses": [],
+    "interfaces": [
+        "Support.EmailTemplateSelector"
+    ],
+    "key": "01p3600000GcRSgAAN",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 15,
+                "line": 6
+            },
+            "modifiers": [
+                "global"
+            ],
+            "name": "getDefaultEmailTemplateId",
+            "parameters": [
+                {
+                    "name": "caseId",
+                    "type": "Id"
+                }
+            ],
+            "references": [],
+            "returnType": "Id",
+            "type": null
+        }
+    ],
+    "name": "DefaultEmailTemplate",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 1
+        },
+        "modifiers": [
+            "global"
+        ],
+        "name": "DefaultEmailTemplate",
+        "references": [],
+        "type": "DefaultEmailTemplate"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 44,
+                "line": 6
+            },
+            "modifiers": [],
+            "name": "caseId",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 9
+            },
+            "modifiers": [],
+            "name": "c",
+            "references": [],
+            "type": "Case"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 12
+            },
+            "modifiers": [],
+            "name": "et",
+            "references": [],
+            "type": "EmailTemplate"
+        }
+    ]
+}

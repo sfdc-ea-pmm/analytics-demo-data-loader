@@ -1,0 +1,440 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 9,
+                "line": 12
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "asb_ListingPopularityDO",
+            "parameters": [
+                {
+                    "name": "lp",
+                    "type": "asb_ListingPopularity__c"
+                }
+            ],
+            "references": [],
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 9,
+                "line": 16
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "asb_ListingPopularityDO",
+            "parameters": [
+                {
+                    "name": "listingId",
+                    "type": "Id"
+                },
+                {
+                    "name": "activityDate",
+                    "type": "Date"
+                }
+            ],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000GcRX7AAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRX7AAN",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 15,
+                "line": 26
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "init",
+            "parameters": [
+                {
+                    "name": "lp",
+                    "type": "asb_ListingPopularity__c"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 31
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getListingId",
+            "parameters": [],
+            "references": [],
+            "returnType": "Id",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 35
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getActivityDate",
+            "parameters": [],
+            "references": [],
+            "returnType": "Date",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 39
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getInstallCount",
+            "parameters": [],
+            "references": [],
+            "returnType": "Integer",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 43
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "incrementInstallCount",
+            "parameters": [
+                {
+                    "name": "incrementAmt",
+                    "type": "Integer"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 47
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "setInstallCount",
+            "parameters": [
+                {
+                    "name": "installCount",
+                    "type": "Integer"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 51
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getPageViews",
+            "parameters": [],
+            "references": [],
+            "returnType": "Integer",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 55
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "incrementPageViews",
+            "parameters": [
+                {
+                    "name": "incrementAmt",
+                    "type": "Integer"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 59
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "setPageViews",
+            "parameters": [
+                {
+                    "name": "pageViews",
+                    "type": "Integer"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 63
+            },
+            "modifiers": [
+                "public",
+                "override"
+            ],
+            "name": "remove",
+            "parameters": [],
+            "references": [],
+            "returnType": "Boolean",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 67
+            },
+            "modifiers": [
+                "public",
+                "override"
+            ],
+            "name": "getCreatedById",
+            "parameters": [],
+            "references": [],
+            "returnType": "Id",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 71
+            },
+            "modifiers": [
+                "public",
+                "override"
+            ],
+            "name": "getLastModifiedById",
+            "parameters": [],
+            "references": [],
+            "returnType": "Id",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 75
+            },
+            "modifiers": [
+                "public",
+                "override"
+            ],
+            "name": "getCreatedDate",
+            "parameters": [],
+            "references": [],
+            "returnType": "Datetime",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 79
+            },
+            "modifiers": [
+                "public",
+                "override"
+            ],
+            "name": "getLastModifiedDate",
+            "parameters": [],
+            "references": [],
+            "returnType": "Datetime",
+            "type": null
+        }
+    ],
+    "name": "asb_ListingPopularityDO",
+    "namespace": null,
+    "parentClass": "asb_BaseData",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 35,
+                "line": 10
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "lpObj",
+            "references": [],
+            "type": "asb_ListingPopularity__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 8
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "final"
+            ],
+            "name": "SOBJECT_NAME",
+            "references": [],
+            "type": "String"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 6
+        },
+        "modifiers": [
+            "public"
+        ],
+        "name": "asb_ListingPopularityDO",
+        "references": [],
+        "type": "asb_ListingPopularityDO"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 58,
+                "line": 12
+            },
+            "modifiers": [],
+            "name": "lp",
+            "references": [],
+            "type": "asb_ListingPopularity__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 36,
+                "line": 16
+            },
+            "modifiers": [],
+            "name": "listingId",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 52,
+                "line": 16
+            },
+            "modifiers": [],
+            "name": "activityDate",
+            "references": [],
+            "type": "Date"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 17
+            },
+            "modifiers": [],
+            "name": "lp",
+            "references": [],
+            "type": "asb_ListingPopularity__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 45,
+                "line": 26
+            },
+            "modifiers": [],
+            "name": "lp",
+            "references": [],
+            "type": "asb_ListingPopularity__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 44,
+                "line": 43
+            },
+            "modifiers": [],
+            "name": "incrementAmt",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 38,
+                "line": 47
+            },
+            "modifiers": [],
+            "name": "installCount",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 41,
+                "line": 55
+            },
+            "modifiers": [],
+            "name": "incrementAmt",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 35,
+                "line": 59
+            },
+            "modifiers": [],
+            "name": "pageViews",
+            "references": [],
+            "type": "Integer"
+        }
+    ]
+}

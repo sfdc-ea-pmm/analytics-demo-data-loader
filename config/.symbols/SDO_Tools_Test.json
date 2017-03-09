@@ -1,0 +1,220 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRZ9AAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRZ9AAN",
+    "methods": [
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 28,
+                "line": 13
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "testMethod"
+            ],
+            "name": "myTest",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "SDO_Tools_Test",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [
+            {
+                "name": "IsTest"
+            }
+        ],
+        "location": {
+            "column": 14,
+            "line": 2
+        },
+        "modifiers": [
+            "public",
+            "testMethod"
+        ],
+        "name": "SDO_Tools_Test",
+        "references": [],
+        "type": "SDO_Tools_Test"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 16
+            },
+            "modifiers": [],
+            "name": "news1",
+            "references": [],
+            "type": "SDO_News__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 21
+            },
+            "modifiers": [],
+            "name": "toolList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 22
+            },
+            "modifiers": [],
+            "name": "tool1",
+            "references": [],
+            "type": "SDO_Tool__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 23
+            },
+            "modifiers": [],
+            "name": "tool2",
+            "references": [],
+            "type": "SDO_Tool__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 24
+            },
+            "modifiers": [],
+            "name": "tool3",
+            "references": [],
+            "type": "SDO_Tool__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 25
+            },
+            "modifiers": [],
+            "name": "tool4",
+            "references": [],
+            "type": "SDO_Tool__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 26
+            },
+            "modifiers": [],
+            "name": "tool5",
+            "references": [],
+            "type": "SDO_Tool__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 27
+            },
+            "modifiers": [],
+            "name": "tool6",
+            "references": [],
+            "type": "SDO_Tool__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 28
+            },
+            "modifiers": [],
+            "name": "tool7",
+            "references": [],
+            "type": "SDO_Tool__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 39
+            },
+            "modifiers": [],
+            "name": "w",
+            "references": [],
+            "type": "Wizard__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 43
+            },
+            "modifiers": [],
+            "name": "ws",
+            "references": [],
+            "type": "Wizard_Step__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 48
+            },
+            "modifiers": [],
+            "name": "wsTool",
+            "references": [],
+            "type": "Wizard_Step_Tool__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 58
+            },
+            "modifiers": [],
+            "name": "sd1",
+            "references": [],
+            "type": "SDOToolsHomepage"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 59
+            },
+            "modifiers": [],
+            "name": "SDOTools",
+            "references": [],
+            "type": "SDO_Tools"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 60
+            },
+            "modifiers": [],
+            "name": "SDOTools2",
+            "references": [],
+            "type": "SDO_Tools"
+        }
+    ]
+}

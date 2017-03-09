@@ -1,0 +1,110 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRaDAAV",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRaDAAV",
+    "methods": [
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 32,
+                "line": 8
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "testMethod"
+            ],
+            "name": "testLog",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "asb_TestLog",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [
+            {
+                "name": "IsTest"
+            }
+        ],
+        "location": {
+            "column": 15,
+            "line": 6
+        },
+        "modifiers": [
+            "private",
+            "testMethod"
+        ],
+        "name": "asb_TestLog",
+        "references": [],
+        "type": "asb_TestLog"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 11,
+                "line": 10
+            },
+            "modifiers": [],
+            "name": "l",
+            "references": [],
+            "type": "asb_Log"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 23
+            },
+            "modifiers": [],
+            "name": "logObj",
+            "references": [],
+            "type": "asb_Log__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 11,
+                "line": 28
+            },
+            "modifiers": [],
+            "name": "l2",
+            "references": [],
+            "type": "asb_Log"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 34
+            },
+            "modifiers": [],
+            "name": "e",
+            "references": [],
+            "type": "asb_AppExchangeException"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 38
+            },
+            "modifiers": [],
+            "name": "longData",
+            "references": [],
+            "type": "String"
+        }
+    ]
+}

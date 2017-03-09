@@ -1,0 +1,45 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000IQC0DAAX",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000IQC0DAAX",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 2
+            },
+            "modifiers": [
+                "public",
+                "override"
+            ],
+            "name": "getAssetType",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        }
+    ],
+    "name": "WaveDashboard",
+    "namespace": null,
+    "parentClass": "WaveAsset",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 22,
+            "line": 1
+        },
+        "modifiers": [
+            "virtual",
+            "public"
+        ],
+        "name": "WaveDashboard",
+        "references": [],
+        "type": "WaveDashboard"
+    },
+    "variables": []
+}

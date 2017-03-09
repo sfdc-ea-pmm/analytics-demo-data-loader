@@ -1,0 +1,720 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRXiAAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRXiAAN",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 17
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "insertData",
+            "parameters": [
+                {
+                    "name": "obj",
+                    "type": "asb_BaseData"
+                }
+            ],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 19
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "insertData",
+            "parameters": [
+                {
+                    "name": "objList",
+                    "type": "LIST"
+                }
+            ],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 23
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "updateData",
+            "parameters": [
+                {
+                    "name": "obj",
+                    "type": "asb_BaseData"
+                }
+            ],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 25
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "updateData",
+            "parameters": [
+                {
+                    "name": "objList",
+                    "type": "LIST"
+                }
+            ],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 29
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "deleteData",
+            "parameters": [
+                {
+                    "name": "obj",
+                    "type": "asb_BaseData"
+                }
+            ],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 31
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "deleteData",
+            "parameters": [
+                {
+                    "name": "objList",
+                    "type": "LIST"
+                }
+            ],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 35
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "upsertData",
+            "parameters": [
+                {
+                    "name": "objList",
+                    "type": "LIST"
+                }
+            ],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 42
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "getListOfCustomObjects",
+            "parameters": [
+                {
+                    "name": "objList",
+                    "type": "LIST"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 48
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "process",
+            "parameters": [
+                {
+                    "name": "objList",
+                    "type": "LIST"
+                },
+                {
+                    "name": "processType",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 84
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "processResults",
+            "parameters": [
+                {
+                    "name": "results",
+                    "type": "LIST"
+                },
+                {
+                    "name": "objList",
+                    "type": "LIST"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 94
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "processResults",
+            "parameters": [
+                {
+                    "name": "results",
+                    "type": "LIST"
+                },
+                {
+                    "name": "objList",
+                    "type": "LIST"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 105
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "createObject",
+            "parameters": [
+                {
+                    "name": "typeName",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "SObject",
+            "type": null
+        }
+    ],
+    "name": "asb_BaseDataDML",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 8
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "FAIL_ON_ERROR",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 10
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "final"
+            ],
+            "name": "INSERT_OPERATION",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 11
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "final"
+            ],
+            "name": "UPDATE_OPERATION",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 12
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "final"
+            ],
+            "name": "DELETE_OPERATION",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 13
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "final"
+            ],
+            "name": "UPSERT_OPERATION",
+            "references": [],
+            "type": "String"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 5
+        },
+        "modifiers": [
+            "public"
+        ],
+        "name": "asb_BaseDataDML",
+        "references": [],
+        "type": "asb_BaseDataDML"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 47,
+                "line": 17
+            },
+            "modifiers": [],
+            "name": "obj",
+            "references": [],
+            "type": "asb_BaseData"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 53,
+                "line": 19
+            },
+            "modifiers": [],
+            "name": "objList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 47,
+                "line": 23
+            },
+            "modifiers": [],
+            "name": "obj",
+            "references": [],
+            "type": "asb_BaseData"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 53,
+                "line": 25
+            },
+            "modifiers": [],
+            "name": "objList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 47,
+                "line": 29
+            },
+            "modifiers": [],
+            "name": "obj",
+            "references": [],
+            "type": "asb_BaseData"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 53,
+                "line": 31
+            },
+            "modifiers": [],
+            "name": "objList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 53,
+                "line": 35
+            },
+            "modifiers": [],
+            "name": "objList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 69,
+                "line": 42
+            },
+            "modifiers": [],
+            "name": "objList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 43
+            },
+            "modifiers": [],
+            "name": "customObjectList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 44
+            },
+            "modifiers": [],
+            "name": "obj",
+            "references": [],
+            "type": "asb_BaseData"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 51,
+                "line": 48
+            },
+            "modifiers": [],
+            "name": "objList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 67,
+                "line": 48
+            },
+            "modifiers": [],
+            "name": "processType",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 55
+            },
+            "modifiers": [],
+            "name": "insertList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 56
+            },
+            "modifiers": [],
+            "name": "updateList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 57
+            },
+            "modifiers": [],
+            "name": "bd",
+            "references": [],
+            "type": "asb_BaseData"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 11,
+                "line": 62
+            },
+            "modifiers": [],
+            "name": "result",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 69
+            },
+            "modifiers": [],
+            "name": "results",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 73
+            },
+            "modifiers": [],
+            "name": "results",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 77
+            },
+            "modifiers": [],
+            "name": "results",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 59,
+                "line": 84
+            },
+            "modifiers": [],
+            "name": "results",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 83,
+                "line": 84
+            },
+            "modifiers": [],
+            "name": "objList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 11,
+                "line": 85
+            },
+            "modifiers": [],
+            "name": "index",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 86
+            },
+            "modifiers": [],
+            "name": "result",
+            "references": [],
+            "type": "SaveResult"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 87
+            },
+            "modifiers": [],
+            "name": "obj",
+            "references": [],
+            "type": "asb_BaseData"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 61,
+                "line": 94
+            },
+            "modifiers": [],
+            "name": "results",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 85,
+                "line": 94
+            },
+            "modifiers": [],
+            "name": "objList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 11,
+                "line": 95
+            },
+            "modifiers": [],
+            "name": "index",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 96
+            },
+            "modifiers": [],
+            "name": "result",
+            "references": [],
+            "type": "DeleteResult"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 97
+            },
+            "modifiers": [],
+            "name": "obj",
+            "references": [],
+            "type": "asb_BaseData"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 44,
+                "line": 105
+            },
+            "modifiers": [],
+            "name": "typeName",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 106
+            },
+            "modifiers": [],
+            "name": "obj",
+            "references": [],
+            "type": "SObject"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 107
+            },
+            "modifiers": [],
+            "name": "targetType",
+            "references": [],
+            "type": "SObjectType"
+        }
+    ]
+}

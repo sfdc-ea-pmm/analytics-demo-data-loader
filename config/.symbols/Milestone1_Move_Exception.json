@@ -1,0 +1,96 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRTmAAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRTmAAN",
+    "methods": [
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 28,
+                "line": 35
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "testMethod"
+            ],
+            "name": "testConstants",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "Milestone1_Move_Exception",
+    "namespace": null,
+    "parentClass": "Exception",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 31
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "final"
+            ],
+            "name": "ERROR_MILESTONE_ALREADY_ASSIGNED_PROJECT",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 32
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "final"
+            ],
+            "name": "ERROR_TASK_ALREADY_ASSIGNED_MILESTONE",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 33
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "final"
+            ],
+            "name": "ERROR_MILESTONE_COMPLETE",
+            "references": [],
+            "type": "String"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 27,
+            "line": 29
+        },
+        "modifiers": [
+            "public",
+            "with sharing"
+        ],
+        "name": "Milestone1_Move_Exception",
+        "references": [],
+        "type": "Milestone1_Move_Exception"
+    },
+    "variables": []
+}

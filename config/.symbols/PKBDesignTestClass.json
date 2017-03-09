@@ -1,0 +1,132 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRYTAA3",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRYTAA3",
+    "methods": [
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 25,
+                "line": 3
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "testMethod"
+            ],
+            "name": "pkbTestMethod",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "PKBDesignTestClass",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [
+            {
+                "name": "IsTest"
+            }
+        ],
+        "location": {
+            "column": 14,
+            "line": 2
+        },
+        "modifiers": [
+            "public",
+            "testMethod"
+        ],
+        "name": "PKBDesignTestClass",
+        "references": [],
+        "type": "PKBDesignTestClass"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 39,
+                "line": 4
+            },
+            "modifiers": [],
+            "name": "design",
+            "references": [],
+            "type": "Public_Knowledge_Base_Design__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 10
+            },
+            "modifiers": [],
+            "name": "myCss",
+            "references": [],
+            "type": "pkb_css_customizations"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 41,
+                "line": 12
+            },
+            "modifiers": [],
+            "name": "myDesign",
+            "references": [],
+            "type": "Public_Knowledge_Base_Design__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 15
+            },
+            "modifiers": [],
+            "name": "colors",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 17
+            },
+            "modifiers": [],
+            "name": "pageRef",
+            "references": [],
+            "type": "PageReference"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 38,
+                "line": 19
+            },
+            "modifiers": [],
+            "name": "sc",
+            "references": [],
+            "type": "StandardController"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 20
+            },
+            "modifiers": [],
+            "name": "myPageCon",
+            "references": [],
+            "type": "PKBDesignerExt"
+        }
+    ]
+}

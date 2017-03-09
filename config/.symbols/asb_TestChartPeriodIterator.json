@@ -1,0 +1,130 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRZrAAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRZrAAN",
+    "methods": [
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 32,
+                "line": 8
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "testMethod"
+            ],
+            "name": "testChartWeekPeriodIterator",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 32,
+                "line": 22
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "testMethod"
+            ],
+            "name": "testChartMonthPeriodIterator",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 32,
+                "line": 36
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "testMethod"
+            ],
+            "name": "testChartYearPeriodIterator",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "asb_TestChartPeriodIterator",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [
+            {
+                "name": "IsTest"
+            }
+        ],
+        "location": {
+            "column": 15,
+            "line": 7
+        },
+        "modifiers": [
+            "private",
+            "testMethod"
+        ],
+        "name": "asb_TestChartPeriodIterator",
+        "references": [],
+        "type": "asb_TestChartPeriodIterator"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 9
+            },
+            "modifiers": [],
+            "name": "week",
+            "references": [],
+            "type": "asb_ChartPeriodIterator"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 23
+            },
+            "modifiers": [],
+            "name": "month",
+            "references": [],
+            "type": "asb_ChartPeriodIterator"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 37
+            },
+            "modifiers": [],
+            "name": "year",
+            "references": [],
+            "type": "asb_ChartPeriodIterator"
+        }
+    ]
+}

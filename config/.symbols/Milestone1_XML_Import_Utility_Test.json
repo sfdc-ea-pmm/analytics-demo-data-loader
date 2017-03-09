@@ -1,0 +1,187 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRYQAA3",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRYQAA3",
+    "methods": [
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 28,
+                "line": 31
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "testMethod"
+            ],
+            "name": "testSOQLQueries",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "Milestone1_XML_Import_Utility_Test",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [
+            {
+                "name": "IsTest"
+            }
+        ],
+        "location": {
+            "column": 15,
+            "line": 30
+        },
+        "modifiers": [
+            "private",
+            "testMethod"
+        ],
+        "name": "Milestone1_XML_Import_Utility_Test",
+        "references": [],
+        "type": "Milestone1_XML_Import_Utility_Test"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 39,
+                "line": 33
+            },
+            "modifiers": [],
+            "name": "m1exportutility",
+            "references": [],
+            "type": "Milestone1_XML_Export_Utility"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 34
+            },
+            "modifiers": [],
+            "name": "testProject",
+            "references": [],
+            "type": "Milestone1_Project__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 38
+            },
+            "modifiers": [],
+            "name": "testMilestone",
+            "references": [],
+            "type": "Milestone1_Milestone__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 42
+            },
+            "modifiers": [],
+            "name": "testMilestone2",
+            "references": [],
+            "type": "Milestone1_Milestone__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 46
+            },
+            "modifiers": [],
+            "name": "testMilestone3",
+            "references": [],
+            "type": "Milestone1_Milestone__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 50
+            },
+            "modifiers": [],
+            "name": "task1",
+            "references": [],
+            "type": "Milestone1_Task__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 53
+            },
+            "modifiers": [],
+            "name": "task2",
+            "references": [],
+            "type": "Milestone1_Task__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 56
+            },
+            "modifiers": [],
+            "name": "task3",
+            "references": [],
+            "type": "Milestone1_Task__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 59
+            },
+            "modifiers": [],
+            "name": "task4",
+            "references": [],
+            "type": "Milestone1_Task__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 62
+            },
+            "modifiers": [],
+            "name": "task5",
+            "references": [],
+            "type": "Milestone1_Task__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 65
+            },
+            "modifiers": [],
+            "name": "xmlString",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 39,
+                "line": 68
+            },
+            "modifiers": [],
+            "name": "importXMLUtility",
+            "references": [],
+            "type": "Milestone1_XML_Import_Utility"
+        }
+    ]
+}

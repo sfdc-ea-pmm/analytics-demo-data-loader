@@ -1,0 +1,350 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 39
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "Milestone1_Move_Task_Extension",
+            "parameters": [
+                {
+                    "name": "stc",
+                    "type": "StandardController"
+                }
+            ],
+            "references": [],
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 47
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "Milestone1_Move_Task_Extension",
+            "parameters": [
+                {
+                    "name": "instc",
+                    "type": "StandardSetController"
+                }
+            ],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000GcRTjAAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRTjAAN",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 54
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "processSelection",
+            "parameters": [
+                {
+                    "name": "processList",
+                    "type": "LIST"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 108
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "moveTasks",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        }
+    ],
+    "name": "Milestone1_Move_Task_Extension",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 37,
+                "line": 31
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "recs",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 32
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "dummyTask",
+            "references": [],
+            "type": "Milestone1_Task__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 33
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "showSave",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 34
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "anySelected",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 35
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "hasChildren",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 36
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "taskId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 45,
+                "line": 37
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "stc",
+            "references": [],
+            "type": "StandardSetController"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 27,
+            "line": 29
+        },
+        "modifiers": [
+            "public",
+            "with sharing"
+        ],
+        "name": "Milestone1_Move_Task_Extension",
+        "references": [],
+        "type": "Milestone1_Move_Task_Extension"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 72,
+                "line": 39
+            },
+            "modifiers": [],
+            "name": "stc",
+            "references": [],
+            "type": "StandardController"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 41
+            },
+            "modifiers": [],
+            "name": "moveTask",
+            "references": [],
+            "type": "Milestone1_Task__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 75,
+                "line": 47
+            },
+            "modifiers": [],
+            "name": "instc",
+            "references": [],
+            "type": "StandardSetController"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 60,
+                "line": 54
+            },
+            "modifiers": [],
+            "name": "processList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 59
+            },
+            "modifiers": [],
+            "name": "recIds",
+            "references": [],
+            "type": "Set"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 60
+            },
+            "modifiers": [],
+            "name": "rec",
+            "references": [],
+            "type": "Milestone1_Task__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 92
+            },
+            "modifiers": [],
+            "name": "rec",
+            "references": [],
+            "type": "Milestone1_Task__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 112
+            },
+            "modifiers": [],
+            "name": "ms",
+            "references": [],
+            "type": "Milestone1_Milestone__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 41,
+                "line": 114
+            },
+            "modifiers": [],
+            "name": "newTasksMap",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 116
+            },
+            "modifiers": [],
+            "name": "newTask",
+            "references": [],
+            "type": "Milestone1_Task__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 128
+            },
+            "modifiers": [],
+            "name": "logs",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 35,
+                "line": 130
+            },
+            "modifiers": [],
+            "name": "log",
+            "references": [],
+            "type": "Milestone1_Log__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 140
+            },
+            "modifiers": [],
+            "name": "copyTask",
+            "references": [],
+            "type": "Milestone1_Task__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 150
+            },
+            "modifiers": [],
+            "name": "errorMsg",
+            "references": [],
+            "type": "Message"
+        }
+    ]
+}

@@ -1,0 +1,103 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 6
+            },
+            "modifiers": [
+                "global"
+            ],
+            "name": "CommunitiesLoginController",
+            "parameters": [],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000GcRU6AAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRU6AAN",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 9
+            },
+            "modifiers": [
+                "global"
+            ],
+            "name": "forwardToAuthPage",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 24,
+                "line": 15
+            },
+            "modifiers": [
+                "static",
+                "testMethod",
+                "global"
+            ],
+            "name": "testCommunitiesLoginController",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "CommunitiesLoginController",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 27,
+            "line": 4
+        },
+        "modifiers": [
+            "global",
+            "with sharing"
+        ],
+        "name": "CommunitiesLoginController",
+        "references": [],
+        "type": "CommunitiesLoginController"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 13,
+                "line": 10
+            },
+            "modifiers": [],
+            "name": "startUrl",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 34,
+                "line": 16
+            },
+            "modifiers": [],
+            "name": "controller",
+            "references": [],
+            "type": "CommunitiesLoginController"
+        }
+    ]
+}

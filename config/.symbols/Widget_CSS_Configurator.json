@@ -1,0 +1,313 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRVHAA3",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRVHAA3",
+    "methods": [
+        {
+            "annotations": [
+                {
+                    "name": "RemoteAction"
+                }
+            ],
+            "location": {
+                "column": 34,
+                "line": 4
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getTemplate",
+            "parameters": [
+                {
+                    "name": "templateID",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "WidgetTemplate",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "RemoteAction"
+                }
+            ],
+            "location": {
+                "column": 26,
+                "line": 41
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "saveTemplate",
+            "parameters": [
+                {
+                    "name": "template",
+                    "type": "WidgetTemplate"
+                }
+            ],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "RemoteAction"
+                }
+            ],
+            "location": {
+                "column": 26,
+                "line": 48
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "cloneTemplate",
+            "parameters": [
+                {
+                    "name": "template",
+                    "type": "WidgetTemplate"
+                }
+            ],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        }
+    ],
+    "name": "Widget_CSS_Configurator",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 1
+        },
+        "modifiers": [
+            "global"
+        ],
+        "name": "Widget_CSS_Configurator",
+        "references": [],
+        "type": "Widget_CSS_Configurator"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 53,
+                "line": 4
+            },
+            "modifiers": [],
+            "name": "templateID",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 42,
+                "line": 5
+            },
+            "modifiers": [],
+            "name": "fieldMap",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 6
+            },
+            "modifiers": [],
+            "name": "keySet",
+            "references": [],
+            "type": "Set"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 7
+            },
+            "modifiers": [],
+            "name": "soql",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 8
+            },
+            "modifiers": [],
+            "name": "x",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 40,
+                "line": 9
+            },
+            "modifiers": [],
+            "name": "r",
+            "references": [],
+            "type": "DescribeFieldResult"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 15
+            },
+            "modifiers": [],
+            "name": "template",
+            "references": [],
+            "type": "Widget_Template__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 42,
+                "line": 18
+            },
+            "modifiers": [],
+            "name": "cssfieldMap",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 19
+            },
+            "modifiers": [],
+            "name": "csskeySet",
+            "references": [],
+            "type": "Set"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 20
+            },
+            "modifiers": [],
+            "name": "csssoql",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 21
+            },
+            "modifiers": [],
+            "name": "x",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 40,
+                "line": 22
+            },
+            "modifiers": [],
+            "name": "r",
+            "references": [],
+            "type": "DescribeFieldResult"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 40,
+                "line": 28
+            },
+            "modifiers": [],
+            "name": "lwcss",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 47,
+                "line": 29
+            },
+            "modifiers": [],
+            "name": "cssMap",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 38,
+                "line": 30
+            },
+            "modifiers": [],
+            "name": "wcss",
+            "references": [],
+            "type": "Widget_CSS_Definition__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 34
+            },
+            "modifiers": [],
+            "name": "w",
+            "references": [],
+            "type": "WidgetTemplate"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 54,
+                "line": 41
+            },
+            "modifiers": [],
+            "name": "template",
+            "references": [],
+            "type": "WidgetTemplate"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 55,
+                "line": 48
+            },
+            "modifiers": [],
+            "name": "template",
+            "references": [],
+            "type": "WidgetTemplate"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 50
+            },
+            "modifiers": [],
+            "name": "newId",
+            "references": [],
+            "type": "String"
+        }
+    ]
+}

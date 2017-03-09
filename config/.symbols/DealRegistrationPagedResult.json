@@ -1,0 +1,119 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRYAAA3",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRYAAA3",
+    "methods": [],
+    "name": "DealRegistrationPagedResult",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 6
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "pageSize",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 9
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "page",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 12
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "total",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 15
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "fldLabels",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 18
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "fldNames",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 22
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "fldTypes",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 25
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "records",
+            "references": [],
+            "type": "LIST"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 1
+        },
+        "modifiers": [
+            "global"
+        ],
+        "name": "DealRegistrationPagedResult",
+        "references": [],
+        "type": "DealRegistrationPagedResult"
+    },
+    "variables": []
+}

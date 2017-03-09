@@ -1,0 +1,99 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRYOAA3",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRYOAA3",
+    "methods": [
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 28,
+                "line": 32
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "testMethod"
+            ],
+            "name": "testTimeTrigger",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "Milestone1_Time_Trigger_Tst",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [
+            {
+                "name": "IsTest"
+            }
+        ],
+        "location": {
+            "column": 15,
+            "line": 30
+        },
+        "modifiers": [
+            "private",
+            "testMethod"
+        ],
+        "name": "Milestone1_Time_Trigger_Tst",
+        "references": [],
+        "type": "Milestone1_Time_Trigger_Tst"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 34
+            },
+            "modifiers": [],
+            "name": "proj",
+            "references": [],
+            "type": "Milestone1_Project__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 37
+            },
+            "modifiers": [],
+            "name": "ms1",
+            "references": [],
+            "type": "Milestone1_Milestone__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 41
+            },
+            "modifiers": [],
+            "name": "task1",
+            "references": [],
+            "type": "Milestone1_Task__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 44
+            },
+            "modifiers": [],
+            "name": "msTime",
+            "references": [],
+            "type": "Milestone1_Time__c"
+        }
+    ]
+}

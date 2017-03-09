@@ -1,0 +1,381 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRWWAA3",
+    "innerClasses": [
+        {
+            "constructors": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 16,
+                        "line": 28
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "objectWrapper",
+                    "parameters": [
+                        {
+                            "name": "fieldName",
+                            "type": "String"
+                        },
+                        {
+                            "name": "fieldLabel",
+                            "type": "String"
+                        }
+                    ],
+                    "references": [],
+                    "type": null
+                }
+            ],
+            "externalReferences": [],
+            "id": null,
+            "innerClasses": [],
+            "interfaces": [],
+            "key": null,
+            "methods": [],
+            "name": "objectWrapper",
+            "namespace": null,
+            "parentClass": "",
+            "properties": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 23,
+                        "line": 26
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "fieldName",
+                    "references": [],
+                    "type": "String"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 23,
+                        "line": 27
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "fieldLabel",
+                    "references": [],
+                    "type": "String"
+                }
+            ],
+            "tableDeclaration": {
+                "annotations": [],
+                "location": {
+                    "column": 18,
+                    "line": 25
+                },
+                "modifiers": [
+                    "global"
+                ],
+                "name": "objectWrapper",
+                "references": [],
+                "type": "objectWrapper"
+            },
+            "variables": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 37,
+                        "line": 28
+                    },
+                    "modifiers": [],
+                    "name": "fieldName",
+                    "references": [],
+                    "type": "String"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 55,
+                        "line": 28
+                    },
+                    "modifiers": [],
+                    "name": "fieldLabel",
+                    "references": [],
+                    "type": "String"
+                }
+            ]
+        },
+        {
+            "constructors": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 16,
+                        "line": 39
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "fieldWrapper",
+                    "parameters": [
+                        {
+                            "name": "fieldName",
+                            "type": "String"
+                        },
+                        {
+                            "name": "fieldType",
+                            "type": "String"
+                        },
+                        {
+                            "name": "fieldLabel",
+                            "type": "String"
+                        }
+                    ],
+                    "references": [],
+                    "type": null
+                }
+            ],
+            "externalReferences": [],
+            "id": null,
+            "innerClasses": [],
+            "interfaces": [],
+            "key": null,
+            "methods": [],
+            "name": "fieldWrapper",
+            "namespace": null,
+            "parentClass": "",
+            "properties": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 23,
+                        "line": 36
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "fieldName",
+                    "references": [],
+                    "type": "String"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 23,
+                        "line": 37
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "fieldType",
+                    "references": [],
+                    "type": "String"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 23,
+                        "line": 38
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "fieldLabel",
+                    "references": [],
+                    "type": "String"
+                }
+            ],
+            "tableDeclaration": {
+                "annotations": [],
+                "location": {
+                    "column": 18,
+                    "line": 35
+                },
+                "modifiers": [
+                    "global"
+                ],
+                "name": "fieldWrapper",
+                "references": [],
+                "type": "fieldWrapper"
+            },
+            "variables": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 36,
+                        "line": 39
+                    },
+                    "modifiers": [],
+                    "name": "fieldName",
+                    "references": [],
+                    "type": "String"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 54,
+                        "line": 39
+                    },
+                    "modifiers": [],
+                    "name": "fieldType",
+                    "references": [],
+                    "type": "String"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 72,
+                        "line": 39
+                    },
+                    "modifiers": [],
+                    "name": "fieldLabel",
+                    "references": [],
+                    "type": "String"
+                }
+            ]
+        }
+    ],
+    "interfaces": [],
+    "key": "01p3600000GcRWWAA3",
+    "methods": [
+        {
+            "annotations": [
+                {
+                    "name": "RemoteAction"
+                }
+            ],
+            "location": {
+                "column": 39,
+                "line": 5
+            },
+            "modifiers": [
+                "static",
+                "global"
+            ],
+            "name": "getObjects",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "RemoteAction"
+                }
+            ],
+            "location": {
+                "column": 38,
+                "line": 16
+            },
+            "modifiers": [
+                "static",
+                "global"
+            ],
+            "name": "getFields",
+            "parameters": [
+                {
+                    "name": "objectName",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 28,
+                "line": 47
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "testMethod"
+            ],
+            "name": "triggerCreateTest",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "SSETriggerBuilder",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 1
+        },
+        "modifiers": [
+            "global"
+        ],
+        "name": "SSETriggerBuilder",
+        "references": [],
+        "type": "SSETriggerBuilder"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 6
+            },
+            "modifiers": [],
+            "name": "allObjects",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 7
+            },
+            "modifiers": [],
+            "name": "singleObject",
+            "references": [],
+            "type": "SObjectType"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 55,
+                "line": 16
+            },
+            "modifiers": [],
+            "name": "objectName",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 17
+            },
+            "modifiers": [],
+            "name": "allFields",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 18
+            },
+            "modifiers": [],
+            "name": "singleField",
+            "references": [],
+            "type": "SObjectField"
+        }
+    ]
+}

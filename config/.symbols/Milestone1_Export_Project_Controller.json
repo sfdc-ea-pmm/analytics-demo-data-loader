@@ -1,0 +1,304 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 40
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "Milestone1_Export_Project_Controller",
+            "parameters": [
+                {
+                    "name": "stc",
+                    "type": "StandardController"
+                }
+            ],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000GcRUZAA3",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRUZAA3",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 52
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "createExportXML",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 77
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "hasError",
+            "parameters": [],
+            "references": [],
+            "returnType": "Boolean",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 81
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "returnToProject",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 86
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "returnToDocument",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 91
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "saveToDocument",
+            "parameters": [
+                {
+                    "name": "name",
+                    "type": "String"
+                },
+                {
+                    "name": "xml",
+                    "type": "String"
+                },
+                {
+                    "name": "description",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "Document",
+            "type": null
+        }
+    ],
+    "name": "Milestone1_Export_Project_Controller",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 31
+            },
+            "modifiers": [
+                "private",
+                "final"
+            ],
+            "name": "ERROR_STRING_FILE_TOO_LONG",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 34,
+                "line": 35
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "rec",
+            "references": [],
+            "type": "Milestone1_Project__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 36
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "exportSuccess",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 37
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "doc",
+            "references": [],
+            "type": "Document"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 38
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "errorMessage",
+            "references": [],
+            "type": "String"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 27,
+            "line": 29
+        },
+        "modifiers": [
+            "public",
+            "with sharing"
+        ],
+        "name": "Milestone1_Export_Project_Controller",
+        "references": [],
+        "type": "Milestone1_Export_Project_Controller"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 78,
+                "line": 40
+            },
+            "modifiers": [],
+            "name": "stc",
+            "references": [],
+            "type": "StandardController"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 39,
+                "line": 54
+            },
+            "modifiers": [],
+            "name": "xmlUtil",
+            "references": [],
+            "type": "Milestone1_XML_Export_Utility"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 55
+            },
+            "modifiers": [],
+            "name": "xmlString",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 62
+            },
+            "modifiers": [],
+            "name": "exportName",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 63
+            },
+            "modifiers": [],
+            "name": "description",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 43,
+                "line": 91
+            },
+            "modifiers": [],
+            "name": "name",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 56,
+                "line": 91
+            },
+            "modifiers": [],
+            "name": "xml",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 68,
+                "line": 91
+            },
+            "modifiers": [],
+            "name": "description",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 92
+            },
+            "modifiers": [],
+            "name": "d",
+            "references": [],
+            "type": "Document"
+        }
+    ]
+}
