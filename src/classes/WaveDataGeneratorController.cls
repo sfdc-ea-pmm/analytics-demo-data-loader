@@ -87,27 +87,27 @@ public with sharing class WaveDataGeneratorController {
 
         // Default URLs
         if(this.selectedObject == 'User'){
-            this.dataUrl = 'https://sfdc-mockaroo.herokuapp.com/283bc870/download?count=20&key=ad4356a0';
+            this.dataUrl = 'https://dl.dropboxusercontent.com/u/72192315/WaveData/Users.csv';
             changed = true;
         }
         else if (this.selectedObject == 'Account') {
-            this.dataUrl = 'https://sfdc-mockaroo.herokuapp.com/e7369170/download?count=100&key=ad4356a0';
+            this.dataUrl = 'https://dl.dropboxusercontent.com/u/72192315/WaveData/Accounts.csv';
             changed = true;
         }
         else if (this.selectedObject == 'Opportunity') {
-            this.dataUrl = 'https://sfdc-mockaroo.herokuapp.com/1f197d90/download?count=100&key=ad4356a0';
+            this.dataUrl = 'https://dl.dropboxusercontent.com/u/72192315/WaveData/Opportunities.csv';
             changed = true;
         }
         else if (this.selectedObject == 'Case') {
-            this.dataUrl = 'https://sfdc-mockaroo.herokuapp.com/faf959e0/download?count=500&key=ad4356a0';
+            this.dataUrl = 'https://dl.dropboxusercontent.com/u/72192315/WaveData/Cases.csv';
             changed = true;
         }
         else if (this.selectedObject == 'Task') {
-            this.dataUrl = 'https://sfdc-mockaroo.herokuapp.com/08b5e490/download?count=100&key=ad4356a0';
+            this.dataUrl = 'https://dl.dropboxusercontent.com/u/72192315/WaveData/Tasks.csv';
             changed = true;
         }
         else if (this.selectedObject == 'Event') {
-            this.dataUrl = 'https://sfdc-mockaroo.herokuapp.com/d73ca970/download?count=100&key=ad4356a0';            
+            this.dataUrl = 'https://dl.dropboxusercontent.com/u/72192315/WaveData/Events.csv';            
             changed = true;
         }
 
@@ -187,16 +187,16 @@ public with sharing class WaveDataGeneratorController {
 
 					if(missingFields.size() > 0){
 						this.validSchema = false;
-						this.validationMessage = 'Invalid Mockaroo data schema. The following fields are required by the selected object: ' + String.join(missingFields, ', ');
+						this.validationMessage = 'Invalid data schema. The following fields are required by the selected object: ' + String.join(missingFields, ', ');
 					}
 					else {
 						this.validSchema = true;
-						this.validationMessage = 'The Mockaroo data schema is correct. You can proceed to generate data.';	
+						this.validationMessage = 'The data schema is correct. You can proceed to generate data.';	
 					}    				
     			}
     			else {
     				this.validSchema = false;
-    				this.validationMessage = 'Invalid Mockaroo data schema. No fields were retrieved.';
+    				this.validationMessage = 'Invalid data schema. No fields were retrieved.';
     			}
     		}
     		else {

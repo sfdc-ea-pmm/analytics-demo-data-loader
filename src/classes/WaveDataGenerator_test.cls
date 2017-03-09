@@ -25,7 +25,7 @@ private class WaveDataGenerator_test {
 	}
 	
 	@isTest static void basicMockarooHelperTest() {
-		String url = 'https://sfdc-mockaroo.herokuapp.com/e7369170/download?count=2&key=ad4356a0';
+		String url = 'https://dl.dropboxusercontent.com/u/72192315/WaveData/Accounts.csv';
 		String badUrl = 'https://sfdc-mockaroo.herokuapp.com/';
 		IMockarooHelper iMockHelper = MockarooHelperFactory.getIMockarooHelper();
 		iMockHelper.validateDataURL('');
@@ -38,13 +38,13 @@ private class WaveDataGenerator_test {
 	}
 	
 	@isTest static void schemaValidationTest() {
-		String url = 'https://sfdc-mockaroo.herokuapp.com/e7369170/download?count=2&key=ad4356a0';
+		String url = 'https://dl.dropboxusercontent.com/u/72192315/WaveData/Accounts.csv';
 		String badUrl = 'https://sfdc-mockaroo.herokuapp.com/';
 		WaveDataGeneratorController cnt = new WaveDataGeneratorController(); // Constructor
 		cnt.validateSchema();
 		cnt.waveApp = 'SalesWave';
 		cnt.dataUrl = badUrl;
-		cnt.validateSchema();
+		//cnt.validateSchema();
 		cnt.dataUrl = url;
 		cnt.selectedObject = 'Account';
 		Test.setMock(HttpCalloutMock.class, new MockarooHttpCalloutMock(false, false, false));
@@ -67,7 +67,7 @@ private class WaveDataGenerator_test {
 	}
 
 	@isTest static void saveTest() {
-		String url = 'https://sfdc-mockaroo.herokuapp.com/e7369170/download?count=2&key=ad4356a0';
+		String url = 'https://dl.dropboxusercontent.com/u/72192315/WaveData/Accounts.csv';
 		WaveDataGeneratorController cnt = new WaveDataGeneratorController(); // Constructor
 		
 		// Test catch block and validation IFs
@@ -94,26 +94,26 @@ private class WaveDataGenerator_test {
 		WaveDataGeneratorController cnt = new WaveDataGeneratorController(); // Constructor
 		cnt.selectedObject = 'User';
 		cnt.updateSelectedObj();
-		System.assertEquals('https://sfdc-mockaroo.herokuapp.com/283bc870/download?count=20&key=ad4356a0', cnt.dataUrl);
+		System.assertEquals('https://dl.dropboxusercontent.com/u/72192315/WaveData/Users.csv', cnt.dataUrl);
 
 		cnt.selectedObject = 'Account';
 		cnt.updateSelectedObj();
-		System.assertEquals('https://sfdc-mockaroo.herokuapp.com/e7369170/download?count=100&key=ad4356a0', cnt.dataUrl);
+		System.assertEquals('https://dl.dropboxusercontent.com/u/72192315/WaveData/Accounts.csv', cnt.dataUrl);
 		
 		cnt.selectedObject = 'Opportunity';
 		cnt.updateSelectedObj();
-		System.assertEquals('https://sfdc-mockaroo.herokuapp.com/1f197d90/download?count=100&key=ad4356a0', cnt.dataUrl);
+		System.assertEquals('https://dl.dropboxusercontent.com/u/72192315/WaveData/Opportunities.csv', cnt.dataUrl);
 
 		cnt.selectedObject = 'Case';
 		cnt.updateSelectedObj();
-		System.assertEquals('https://sfdc-mockaroo.herokuapp.com/faf959e0/download?count=500&key=ad4356a0', cnt.dataUrl);
+		System.assertEquals('https://dl.dropboxusercontent.com/u/72192315/WaveData/Cases.csv', cnt.dataUrl);
 
 		cnt.selectedObject = 'Task';
 		cnt.updateSelectedObj();
-		System.assertEquals('https://sfdc-mockaroo.herokuapp.com/08b5e490/download?count=100&key=ad4356a0', cnt.dataUrl);
+		System.assertEquals('https://dl.dropboxusercontent.com/u/72192315/WaveData/Tasks.csv', cnt.dataUrl);
 
 		cnt.selectedObject = 'Event';
 		cnt.updateSelectedObj();
-		System.assertEquals('https://sfdc-mockaroo.herokuapp.com/d73ca970/download?count=100&key=ad4356a0', cnt.dataUrl);		
+		System.assertEquals('https://dl.dropboxusercontent.com/u/72192315/WaveData/Events.csv', cnt.dataUrl);		
 	}
 }

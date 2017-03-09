@@ -9,12 +9,9 @@ public with sharing class SalesWaveQuotas {
         
         Set<Id> setIds = new Set<Id>();
         
-        // Retrieve record type
-        RecordType recType = [SELECT Id FROM RecordType WHERE Name = 'SalesWaveScripted' AND SobjectType = 'Opportunity'];
-        
         // Retrieve User Ids
         List<Id> lstUserIds = new List<Id>();
-        List<AggregateResult> lstOpps = [SELECT OwnerId FROM Opportunity WHERE RecordTypeId = :recType.Id GROUP BY OwnerId];
+        List<AggregateResult> lstOpps = [SELECT OwnerId FROM Opportunity GROUP BY OwnerId];
 
         for(AggregateResult op : lstOpps){
             setIds.add((Id)op.get('OwnerId'));
