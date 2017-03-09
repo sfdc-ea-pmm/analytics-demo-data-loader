@@ -104,5 +104,28 @@ private class WaveDataManager_test {
 		cnt.installApp();
 		cnt.checkProcessingStatus();		
 	}
+
+	@isTest static void insertFolderTest(){
+
+		WaveDataManagerController cnt = new WaveDataManagerController();
+		cnt.folderName = 'TestingApp';
+
+		String message = 'The Folder name must be specified, cannot be empty and must adhere to the Salesforce DeveloperName format'; 
+		String mockResponseBody = '[{"errorCode" : "228","message" : "' + message +'"}]';
+		
+
+		WaveFolderCreationHttpCalloutMock httpCallout = new WaveFolderCreationHttpCalloutMock(200,'',mockResponseBody, new Map<String, String>());
+		Test.setMock(HttpCalloutMock.class, httpCallout);
+		
+		String res = cnt.insertFolder();
+		System.assertEquals(message,res);
+
+	}
+
+	/*@isTest static void checkExistanceFolderTest(){
+
+		WaveDataManagerController cnt = new WaveDataManagerController();
+		
+	}*/
 	
 }

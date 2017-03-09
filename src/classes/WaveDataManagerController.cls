@@ -423,13 +423,8 @@ public with sharing class WaveDataManagerController {
 		HTTPResponse res = http.send(req);
 
 		if(res.getBody().contains('errorCode')){
-			String message = '';
 			List<RestApiFolderErrorResponse> r = (List<RestApiFolderErrorResponse>)JSON.deserialize(res.getBody(), List<RestApiFolderErrorResponse>.class);
-			for(RestApiFolderErrorResponse response: r){
-				message += response.message + '\n';
-			}
-
-			return message;
+			return r.get(0).message;
 		} 
 
 		return '';
