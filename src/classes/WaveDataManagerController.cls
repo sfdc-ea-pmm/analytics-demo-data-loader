@@ -354,17 +354,28 @@ public with sharing class WaveDataManagerController {
 							// now check whether it was the last one
 							if(this.currentNodeIndex == this.objectsNodes.size() - 1){
 								this.processingLog.add('Creating ' + folderName + ' folder/app...');
+								
 								if(!this.checkFolderExistance()){
+									
 									String result = this.insertFolder();
-									if(!String.isEmpty(result)) {
+									
+									//If empty, no errors
+									if(String.isEmpty(result)) {
+										this.successMessage = 'The entire process finished successfully.';
+										this.processingLog.add('Done.');
+									} else {
 										this.processingLog.add(result);
+										this.errorMessage = 'There was an error in the attempting to create the ' + this.folderName + ' folder. See log for details.';
 									}
+
+									this.jobStatusDsc = '';
+									this.objectsNodes.clear();
+									this.currentNodeIndex = 0;
+								} 
+								else {
+									this.errorMessage = 'The folder ' + this.folderName + ' already exists.';
 								}
-								this.successMessage = 'The entire process finished successfully.';
-								this.currentNodeIndex = 0;
-								this.objectsNodes.clear();
-								this.jobStatusDsc = '';
-								this.processingLog.add('Done.');
+
 							}
 							else {
 								// There are more nodes to process, increment index and reset 
