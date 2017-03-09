@@ -1,0 +1,60 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRYoAAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRYoAAN",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 2
+            },
+            "modifiers": [
+                "public",
+                "abstract"
+            ],
+            "name": "getFieldSetMembers",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 9,
+                "line": 3
+            },
+            "modifiers": [
+                "public",
+                "abstract"
+            ],
+            "name": "getObjectName",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        }
+    ],
+    "name": "SlickSidebarWidget",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 18,
+            "line": 1
+        },
+        "modifiers": [
+            "public"
+        ],
+        "name": "SlickSidebarWidget",
+        "references": [],
+        "type": "SlickSidebarWidget"
+    },
+    "variables": []
+}

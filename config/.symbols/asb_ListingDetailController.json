@@ -1,0 +1,440 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRX1AAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRX1AAN",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 35,
+                "line": 20
+            },
+            "modifiers": [
+                "public",
+                "override"
+            ],
+            "name": "init",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 37,
+                "line": 65
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getDocumentAssets",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 37,
+                "line": 79
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getMediaAssets",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 111
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getActionButtonText",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 115
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getActionButtonUrl",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 119
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getDeviceMatchesAppType",
+            "parameters": [],
+            "references": [],
+            "returnType": "Boolean",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 123
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "createListingInstall",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 129
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getIsChatterEnabled",
+            "parameters": [],
+            "references": [],
+            "returnType": "Boolean",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "RemoteAction"
+                }
+            ],
+            "location": {
+                "column": 24,
+                "line": 94
+            },
+            "modifiers": [
+                "static",
+                "global"
+            ],
+            "name": "logActivity",
+            "parameters": [
+                {
+                    "name": "listingId",
+                    "type": "Id"
+                },
+                {
+                    "name": "listingAsset",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "asb_ListingDetailController",
+    "namespace": null,
+    "parentClass": "asb_AppxStoreBldrController",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 13
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "currentListing",
+            "references": [],
+            "type": "asb_ListingDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 14
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "similarListings",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 15
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "error",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 16
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "userHasAccessToApp",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 38,
+                "line": 18
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "listingAssets",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 10
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "final"
+            ],
+            "name": "INVALID_ID",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 11
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "final"
+            ],
+            "name": "NUMBER_SIMILAR_APPS",
+            "references": [],
+            "type": "Integer"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 9
+        },
+        "modifiers": [
+            "global"
+        ],
+        "name": "asb_ListingDetailController",
+        "references": [],
+        "type": "asb_ListingDetailController"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 21
+            },
+            "modifiers": [],
+            "name": "p",
+            "references": [],
+            "type": "PageReference"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 27
+            },
+            "modifiers": [],
+            "name": "listingId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 33
+            },
+            "modifiers": [],
+            "name": "message",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 34,
+                "line": 66
+            },
+            "modifiers": [],
+            "name": "docAssets",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 37,
+                "line": 69
+            },
+            "modifiers": [],
+            "name": "asset",
+            "references": [],
+            "type": "asb_ListingAssetDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 34,
+                "line": 80
+            },
+            "modifiers": [],
+            "name": "mediaAssets",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 37,
+                "line": 83
+            },
+            "modifiers": [],
+            "name": "asset",
+            "references": [],
+            "type": "asb_ListingAssetDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 124
+            },
+            "modifiers": [],
+            "name": "li",
+            "references": [],
+            "type": "asb_ListingInstall"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 130
+            },
+            "modifiers": [],
+            "name": "enabledForOrg",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 131
+            },
+            "modifiers": [],
+            "name": "enabledOnStore",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 39,
+                "line": 94
+            },
+            "modifiers": [],
+            "name": "listingId",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 57,
+                "line": 94
+            },
+            "modifiers": [],
+            "name": "listingAsset",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 95
+            },
+            "modifiers": [],
+            "name": "la",
+            "references": [],
+            "type": "asb_ListingActivityDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 96
+            },
+            "modifiers": [],
+            "name": "recordTypeId",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 97
+            },
+            "modifiers": [],
+            "name": "listingAssetId",
+            "references": [],
+            "type": "Id"
+        }
+    ]
+}

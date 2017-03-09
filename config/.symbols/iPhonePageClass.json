@@ -1,0 +1,57 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 9,
+                "line": 4
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "iPhonePageClass",
+            "parameters": [],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000GcRT8AAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRT8AAN",
+    "methods": [],
+    "name": "iPhonePageClass",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 2
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "backgroundId",
+            "references": [],
+            "type": "StaticResource"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 27,
+            "line": 1
+        },
+        "modifiers": [
+            "public",
+            "with sharing"
+        ],
+        "name": "iPhonePageClass",
+        "references": [],
+        "type": "iPhonePageClass"
+    },
+    "variables": []
+}

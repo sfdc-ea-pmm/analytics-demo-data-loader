@@ -1,0 +1,155 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 11
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "LiveAgentService",
+            "parameters": [],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000GcRTOAA3",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRTOAA3",
+    "methods": [],
+    "name": "LiveAgentService",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 2
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "deploymentID",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 3
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "buttonId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 4
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "orgId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 5
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "proactiveId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 7
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "currUsr",
+            "references": [],
+            "type": "User"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 8
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "contactId",
+            "references": [],
+            "type": "String"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 1
+        },
+        "modifiers": [
+            "global"
+        ],
+        "name": "LiveAgentService",
+        "references": [],
+        "type": "LiveAgentService"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 12
+            },
+            "modifiers": [],
+            "name": "lcd",
+            "references": [],
+            "type": "LiveChatDeployment"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 13
+            },
+            "modifiers": [],
+            "name": "lcb",
+            "references": [],
+            "type": "LiveChatButton"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 14
+            },
+            "modifiers": [],
+            "name": "proactiveButton",
+            "references": [],
+            "type": "LiveChatButton"
+        }
+    ]
+}

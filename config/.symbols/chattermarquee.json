@@ -1,0 +1,56 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 4
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "chattermarquee",
+            "parameters": [],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000GcRWPAA3",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRWPAA3",
+    "methods": [],
+    "name": "chattermarquee",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 2
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "myalertgroup",
+            "references": [],
+            "type": "CollaborationGroup"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 1
+        },
+        "modifiers": [
+            "public"
+        ],
+        "name": "chattermarquee",
+        "references": [],
+        "type": "chattermarquee"
+    },
+    "variables": []
+}

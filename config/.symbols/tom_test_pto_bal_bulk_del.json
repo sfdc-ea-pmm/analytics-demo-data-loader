@@ -1,0 +1,116 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRWRAA3",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRWRAA3",
+    "methods": [
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 32,
+                "line": 3
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "testMethod"
+            ],
+            "name": "test_pto_balance_validation_with_bulk_delete",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "tom_test_pto_bal_bulk_del",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 1
+        },
+        "modifiers": [
+            "public"
+        ],
+        "name": "tom_test_pto_bal_bulk_del",
+        "references": [],
+        "type": "tom_test_pto_bal_bulk_del"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 8
+            },
+            "modifiers": [],
+            "name": "test_users",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 8,
+                "line": 9
+            },
+            "modifiers": [],
+            "name": "subordinate",
+            "references": [],
+            "type": "User"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 16
+            },
+            "modifiers": [],
+            "name": "tor1",
+            "references": [],
+            "type": "Time_Off_Request__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 20
+            },
+            "modifiers": [],
+            "name": "tor2",
+            "references": [],
+            "type": "Time_Off_Request__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 34
+            },
+            "modifiers": [],
+            "name": "tor3",
+            "references": [],
+            "type": "Time_Off_Request__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 38
+            },
+            "modifiers": [],
+            "name": "tor4",
+            "references": [],
+            "type": "Time_Off_Request__c"
+        }
+    ]
+}

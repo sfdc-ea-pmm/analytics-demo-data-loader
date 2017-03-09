@@ -1,0 +1,660 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRV6AAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRV6AAN",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 13
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getSize",
+            "parameters": [],
+            "references": [],
+            "returnType": "Integer",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 18
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "add",
+            "parameters": [
+                {
+                    "name": "so",
+                    "type": "SelectOption"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 23
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "get",
+            "parameters": [
+                {
+                    "name": "index",
+                    "type": "Integer"
+                }
+            ],
+            "references": [],
+            "returnType": "SelectOption",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 32
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "remove",
+            "parameters": [
+                {
+                    "name": "index",
+                    "type": "Integer"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 38
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "clear",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 42
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getSelectList",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 47
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getSubList",
+            "parameters": [
+                {
+                    "name": "startIndex",
+                    "type": "Integer"
+                },
+                {
+                    "name": "endIndex",
+                    "type": "Integer"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 58
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getNthSubList",
+            "parameters": [
+                {
+                    "name": "index",
+                    "type": "Integer"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 72
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "get0",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 76
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "get1",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 80
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "get2",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 84
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "get3",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 88
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "get4",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 92
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "get5",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 96
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "get6",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 100
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "get7",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 104
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "get8",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 108
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "get9",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 112
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "get10",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 116
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "get11",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 120
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "get12",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 124
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "get13",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 128
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "get14",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 132
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "get15",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 136
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "get16",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 140
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "get17",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 144
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "get18",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 148
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "get19",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 28,
+                "line": 152
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "testMethod"
+            ],
+            "name": "testPaginatedSelectList",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "PaginatedSelectList",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 34,
+                "line": 9
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "selectList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 10
+            },
+            "modifiers": [
+                "private",
+                "final"
+            ],
+            "name": "SUB_LIST_SIZE",
+            "references": [],
+            "type": "Integer"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 27,
+            "line": 7
+        },
+        "modifiers": [
+            "public",
+            "with sharing"
+        ],
+        "name": "PaginatedSelectList",
+        "references": [],
+        "type": "PaginatedSelectList"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 36,
+                "line": 18
+            },
+            "modifiers": [],
+            "name": "so",
+            "references": [],
+            "type": "SelectOption"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 39,
+                "line": 23
+            },
+            "modifiers": [],
+            "name": "index",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 34,
+                "line": 32
+            },
+            "modifiers": [],
+            "name": "index",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 52,
+                "line": 47
+            },
+            "modifiers": [],
+            "name": "startIndex",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 71,
+                "line": 47
+            },
+            "modifiers": [],
+            "name": "endIndex",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 48
+            },
+            "modifiers": [],
+            "name": "subList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 50
+            },
+            "modifiers": [],
+            "name": "i",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 54,
+                "line": 58
+            },
+            "modifiers": [],
+            "name": "index",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 59
+            },
+            "modifiers": [],
+            "name": "subListCount",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 62
+            },
+            "modifiers": [],
+            "name": "startIndex",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 63
+            },
+            "modifiers": [],
+            "name": "endIndex",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 153
+            },
+            "modifiers": [],
+            "name": "myList",
+            "references": [],
+            "type": "PaginatedSelectList"
+        }
+    ]
+}

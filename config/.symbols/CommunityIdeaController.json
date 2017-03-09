@@ -1,0 +1,1143 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRSrAAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRSrAAN",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 4
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getLoginURL",
+            "parameters": [
+                {
+                    "name": "returnURL",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 35,
+                "line": 11
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getCurrentCommunityZones",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 27
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getCurrentCommunityZoneIDs",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 44
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getMyIdeas",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 60
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getTotalIdeas",
+            "parameters": [
+                {
+                    "name": "ideasPerPage",
+                    "type": "Integer"
+                },
+                {
+                    "name": "selectedFilter",
+                    "type": "String"
+                },
+                {
+                    "name": "selPageNo",
+                    "type": "Integer"
+                },
+                {
+                    "name": "selectedZone",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "Integer",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 84
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getIdeasList",
+            "parameters": [
+                {
+                    "name": "ideasPerPage",
+                    "type": "Integer"
+                },
+                {
+                    "name": "selectedFilter",
+                    "type": "String"
+                },
+                {
+                    "name": "selPageNo",
+                    "type": "Integer"
+                },
+                {
+                    "name": "selectedZone",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 124
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getUserIdeas",
+            "parameters": [
+                {
+                    "name": "userId",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 150
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "promoteIdea",
+            "parameters": [
+                {
+                    "name": "IdeaId",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 166
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "promoteFromIdeaDetails",
+            "parameters": [
+                {
+                    "name": "IdeaId",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "Idea",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 181
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "demoteIdea",
+            "parameters": [
+                {
+                    "name": "IdeaId",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 197
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "demoteFromIdeaDetails",
+            "parameters": [
+                {
+                    "name": "IdeaId",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "Idea",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 212
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getIdea",
+            "parameters": [
+                {
+                    "name": "IdeaId",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "Idea",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 37,
+                "line": 248
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getComment",
+            "parameters": [
+                {
+                    "name": "IdeaId",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 37,
+                "line": 259
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "unlikeThisComment",
+            "parameters": [
+                {
+                    "name": "IdeaId",
+                    "type": "String"
+                },
+                {
+                    "name": "VoteId",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 37,
+                "line": 267
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "likeThisComment",
+            "parameters": [
+                {
+                    "name": "IdeaId",
+                    "type": "String"
+                },
+                {
+                    "name": "commentId",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 37,
+                "line": 283
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "postComment",
+            "parameters": [
+                {
+                    "name": "IdeaId",
+                    "type": "String"
+                },
+                {
+                    "name": "CommentBody",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 37,
+                "line": 296
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "deleteThisComment",
+            "parameters": [
+                {
+                    "name": "IdeaId",
+                    "type": "String"
+                },
+                {
+                    "name": "commentId",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 305
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "postIdea",
+            "parameters": [
+                {
+                    "name": "title",
+                    "type": "String"
+                },
+                {
+                    "name": "description",
+                    "type": "String"
+                },
+                {
+                    "name": "zone",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 323
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "findSimilarIdeas",
+            "parameters": [
+                {
+                    "name": "title",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 339
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "isGuestUser",
+            "parameters": [],
+            "references": [],
+            "returnType": "Boolean",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 347
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getUserType",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        }
+    ],
+    "name": "CommunityIdeaController",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 27,
+            "line": 1
+        },
+        "modifiers": [
+            "public",
+            "with sharing"
+        ],
+        "name": "CommunityIdeaController",
+        "references": [],
+        "type": "CommunityIdeaController"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 45,
+                "line": 4
+            },
+            "modifiers": [],
+            "name": "returnURL",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 5
+            },
+            "modifiers": [],
+            "name": "pr",
+            "references": [],
+            "type": "PageReference"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 12
+            },
+            "modifiers": [],
+            "name": "zones",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 28
+            },
+            "modifiers": [],
+            "name": "zones",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 30
+            },
+            "modifiers": [],
+            "name": "zoneRecords",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 32
+            },
+            "modifiers": [],
+            "name": "cmt",
+            "references": [],
+            "type": "Community"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 45
+            },
+            "modifiers": [],
+            "name": "myIdeas",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 49,
+                "line": 60
+            },
+            "modifiers": [],
+            "name": "ideasPerPage",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 70,
+                "line": 60
+            },
+            "modifiers": [],
+            "name": "selectedFilter",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 94,
+                "line": 60
+            },
+            "modifiers": [],
+            "name": "selPageNo",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 112,
+                "line": 60
+            },
+            "modifiers": [],
+            "name": "selectedZone",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 61
+            },
+            "modifiers": [],
+            "name": "recordsPerPage",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 62
+            },
+            "modifiers": [],
+            "name": "pageNo",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 63
+            },
+            "modifiers": [],
+            "name": "pageoffset",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 65
+            },
+            "modifiers": [],
+            "name": "TotalIdeas",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 51,
+                "line": 84
+            },
+            "modifiers": [],
+            "name": "ideasPerPage",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 72,
+                "line": 84
+            },
+            "modifiers": [],
+            "name": "selectedFilter",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 96,
+                "line": 84
+            },
+            "modifiers": [],
+            "name": "selPageNo",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 114,
+                "line": 84
+            },
+            "modifiers": [],
+            "name": "selectedZone",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 86
+            },
+            "modifiers": [],
+            "name": "recordsPerPage",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 87
+            },
+            "modifiers": [],
+            "name": "pageNo",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 88
+            },
+            "modifiers": [],
+            "name": "pageoffset",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 89
+            },
+            "modifiers": [],
+            "name": "IdeasList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 50,
+                "line": 124
+            },
+            "modifiers": [],
+            "name": "userId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 126
+            },
+            "modifiers": [],
+            "name": "IdeasList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 45,
+                "line": 150
+            },
+            "modifiers": [],
+            "name": "IdeaId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 151
+            },
+            "modifiers": [],
+            "name": "recentIdeas",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 153
+            },
+            "modifiers": [],
+            "name": "newVote",
+            "references": [],
+            "type": "Vote"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 54,
+                "line": 166
+            },
+            "modifiers": [],
+            "name": "IdeaId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 168
+            },
+            "modifiers": [],
+            "name": "newVote",
+            "references": [],
+            "type": "Vote"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 44,
+                "line": 181
+            },
+            "modifiers": [],
+            "name": "IdeaId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 182
+            },
+            "modifiers": [],
+            "name": "recentIdeas",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 184
+            },
+            "modifiers": [],
+            "name": "newVote",
+            "references": [],
+            "type": "Vote"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 53,
+                "line": 197
+            },
+            "modifiers": [],
+            "name": "IdeaId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 199
+            },
+            "modifiers": [],
+            "name": "newVote",
+            "references": [],
+            "type": "Vote"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 39,
+                "line": 212
+            },
+            "modifiers": [],
+            "name": "IdeaId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 213
+            },
+            "modifiers": [],
+            "name": "thisidea",
+            "references": [],
+            "type": "Idea"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 55,
+                "line": 248
+            },
+            "modifiers": [],
+            "name": "IdeaId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 250
+            },
+            "modifiers": [],
+            "name": "IdeaCommentList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 62,
+                "line": 259
+            },
+            "modifiers": [],
+            "name": "IdeaId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 77,
+                "line": 259
+            },
+            "modifiers": [],
+            "name": "VoteId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 60,
+                "line": 267
+            },
+            "modifiers": [],
+            "name": "IdeaId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 75,
+                "line": 267
+            },
+            "modifiers": [],
+            "name": "commentId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 269
+            },
+            "modifiers": [],
+            "name": "newVote",
+            "references": [],
+            "type": "Vote"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 56,
+                "line": 283
+            },
+            "modifiers": [],
+            "name": "IdeaId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 71,
+                "line": 283
+            },
+            "modifiers": [],
+            "name": "CommentBody",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 286
+            },
+            "modifiers": [],
+            "name": "newComment",
+            "references": [],
+            "type": "IdeaComment"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 62,
+                "line": 296
+            },
+            "modifiers": [],
+            "name": "IdeaId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 77,
+                "line": 296
+            },
+            "modifiers": [],
+            "name": "commentId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 42,
+                "line": 305
+            },
+            "modifiers": [],
+            "name": "title",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 56,
+                "line": 305
+            },
+            "modifiers": [],
+            "name": "description",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 76,
+                "line": 305
+            },
+            "modifiers": [],
+            "name": "zone",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 306
+            },
+            "modifiers": [],
+            "name": "newIdea",
+            "references": [],
+            "type": "Idea"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 309
+            },
+            "modifiers": [],
+            "name": "Settings",
+            "references": [],
+            "type": "Community"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 54,
+                "line": 323
+            },
+            "modifiers": [],
+            "name": "title",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 324
+            },
+            "modifiers": [],
+            "name": "similarIdeas",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 326
+            },
+            "modifiers": [],
+            "name": "ideaTitle",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 340
+            },
+            "modifiers": [],
+            "name": "userType",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 348
+            },
+            "modifiers": [],
+            "name": "userId",
+            "references": [],
+            "type": "Id"
+        }
+    ]
+}

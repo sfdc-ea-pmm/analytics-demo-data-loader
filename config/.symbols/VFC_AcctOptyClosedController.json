@@ -1,0 +1,619 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 9
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "VFC_AcctOptyClosedController",
+            "parameters": [
+                {
+                    "name": "controller",
+                    "type": "StandardController"
+                }
+            ],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000GcRVIAA3",
+    "innerClasses": [
+        {
+            "constructors": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 16,
+                        "line": 87
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "PlotPoint",
+                    "parameters": [],
+                    "references": [],
+                    "type": null
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 16,
+                        "line": 89
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "PlotPoint",
+                    "parameters": [
+                        {
+                            "name": "m",
+                            "type": "Integer"
+                        },
+                        {
+                            "name": "y1",
+                            "type": "Integer"
+                        },
+                        {
+                            "name": "a1",
+                            "type": "Integer"
+                        },
+                        {
+                            "name": "y2",
+                            "type": "Integer"
+                        },
+                        {
+                            "name": "a2",
+                            "type": "Integer"
+                        },
+                        {
+                            "name": "y3",
+                            "type": "Integer"
+                        },
+                        {
+                            "name": "a3",
+                            "type": "Integer"
+                        }
+                    ],
+                    "references": [],
+                    "type": null
+                }
+            ],
+            "externalReferences": [],
+            "id": null,
+            "innerClasses": [],
+            "interfaces": [],
+            "key": null,
+            "methods": [],
+            "name": "PlotPoint",
+            "namespace": null,
+            "parentClass": "",
+            "properties": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 24,
+                        "line": 79
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "m",
+                    "references": [],
+                    "type": "Integer"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 24,
+                        "line": 80
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "y1",
+                    "references": [],
+                    "type": "Integer"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 24,
+                        "line": 81
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "y2",
+                    "references": [],
+                    "type": "Integer"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 24,
+                        "line": 82
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "y3",
+                    "references": [],
+                    "type": "Integer"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 24,
+                        "line": 83
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "a1",
+                    "references": [],
+                    "type": "Decimal"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 24,
+                        "line": 84
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "a2",
+                    "references": [],
+                    "type": "Decimal"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 24,
+                        "line": 85
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "a3",
+                    "references": [],
+                    "type": "Decimal"
+                }
+            ],
+            "tableDeclaration": {
+                "annotations": [],
+                "location": {
+                    "column": 18,
+                    "line": 78
+                },
+                "modifiers": [
+                    "public"
+                ],
+                "name": "PlotPoint",
+                "references": [],
+                "type": "PlotPoint"
+            },
+            "variables": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 34,
+                        "line": 89
+                    },
+                    "modifiers": [],
+                    "name": "m",
+                    "references": [],
+                    "type": "Integer"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 45,
+                        "line": 89
+                    },
+                    "modifiers": [],
+                    "name": "y1",
+                    "references": [],
+                    "type": "Integer"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 57,
+                        "line": 89
+                    },
+                    "modifiers": [],
+                    "name": "a1",
+                    "references": [],
+                    "type": "Integer"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 69,
+                        "line": 89
+                    },
+                    "modifiers": [],
+                    "name": "y2",
+                    "references": [],
+                    "type": "Integer"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 81,
+                        "line": 89
+                    },
+                    "modifiers": [],
+                    "name": "a2",
+                    "references": [],
+                    "type": "Integer"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 93,
+                        "line": 89
+                    },
+                    "modifiers": [],
+                    "name": "y3",
+                    "references": [],
+                    "type": "Integer"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 105,
+                        "line": 89
+                    },
+                    "modifiers": [],
+                    "name": "a3",
+                    "references": [],
+                    "type": "Integer"
+                }
+            ]
+        }
+    ],
+    "interfaces": [],
+    "key": "01p3600000GcRVIAA3",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 16
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "grabOpportunities",
+            "parameters": [
+                {
+                    "name": "a",
+                    "type": "Account"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 46,
+                "line": 28
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "generateMonthMap",
+            "parameters": [
+                {
+                    "name": "oList",
+                    "type": "LIST"
+                }
+            ],
+            "references": [],
+            "returnType": "Map",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 54
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "convertMapToChartData",
+            "parameters": [
+                {
+                    "name": "a",
+                    "type": "Map"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        }
+    ],
+    "name": "VFC_AcctOptyClosedController",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 3
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "a",
+            "references": [],
+            "type": "Account"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 46,
+                "line": 4
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "oList",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 5
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "testList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 6
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "yearList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 7
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "legend",
+            "references": [],
+            "type": "String"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 27,
+            "line": 1
+        },
+        "modifiers": [
+            "public",
+            "with sharing"
+        ],
+        "name": "VFC_AcctOptyClosedController",
+        "references": [],
+        "type": "VFC_AcctOptyClosedController"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 70,
+                "line": 9
+            },
+            "modifiers": [],
+            "name": "controller",
+            "references": [],
+            "type": "StandardController"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 56,
+                "line": 16
+            },
+            "modifiers": [],
+            "name": "a",
+            "references": [],
+            "type": "Account"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 81,
+                "line": 28
+            },
+            "modifiers": [],
+            "name": "oList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 43,
+                "line": 29
+            },
+            "modifiers": [],
+            "name": "m",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 31
+            },
+            "modifiers": [],
+            "name": "i",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 33
+            },
+            "modifiers": [],
+            "name": "j",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 38
+            },
+            "modifiers": [],
+            "name": "totalAmount",
+            "references": [],
+            "type": "Decimal"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 39
+            },
+            "modifiers": [],
+            "name": "month",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 40
+            },
+            "modifiers": [],
+            "name": "o",
+            "references": [],
+            "type": "Opportunity"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 34,
+                "line": 42
+            },
+            "modifiers": [],
+            "name": "existingMonth",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 44
+            },
+            "modifiers": [],
+            "name": "amt",
+            "references": [],
+            "type": "Decimal"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 85,
+                "line": 54
+            },
+            "modifiers": [],
+            "name": "a",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 55
+            },
+            "modifiers": [],
+            "name": "p",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 56
+            },
+            "modifiers": [],
+            "name": "m",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 57
+            },
+            "modifiers": [],
+            "name": "tmp",
+            "references": [],
+            "type": "PlotPoint"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 59
+            },
+            "modifiers": [],
+            "name": "yrs",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 61
+            },
+            "modifiers": [],
+            "name": "x",
+            "references": [],
+            "type": "Integer"
+        }
+    ]
+}

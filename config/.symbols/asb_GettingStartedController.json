@@ -1,0 +1,85 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 9,
+                "line": 13
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "asb_GettingStartedController",
+            "parameters": [],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000GcRXzAAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRXzAAN",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 15
+            },
+            "modifiers": [
+                "public",
+                "override"
+            ],
+            "name": "init",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        }
+    ],
+    "name": "asb_GettingStartedController",
+    "namespace": null,
+    "parentClass": "asb_StoreAdminPageController",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 11
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "AreThereStores",
+            "references": [],
+            "type": "Boolean"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 10
+        },
+        "modifiers": [
+            "public"
+        ],
+        "name": "asb_GettingStartedController",
+        "references": [],
+        "type": "asb_GettingStartedController"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 16
+            },
+            "modifiers": [],
+            "name": "ret",
+            "references": [],
+            "type": "PageReference"
+        }
+    ]
+}

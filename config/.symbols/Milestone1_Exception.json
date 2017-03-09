@@ -1,0 +1,28 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRUQAA3",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRUQAA3",
+    "methods": [],
+    "name": "Milestone1_Exception",
+    "namespace": null,
+    "parentClass": "Exception",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 27,
+            "line": 29
+        },
+        "modifiers": [
+            "public",
+            "with sharing"
+        ],
+        "name": "Milestone1_Exception",
+        "references": [],
+        "type": "Milestone1_Exception"
+    },
+    "variables": []
+}

@@ -1,0 +1,670 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRVoAAN",
+    "innerClasses": [
+        {
+            "constructors": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 20,
+                        "line": 171
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "mTask",
+                    "parameters": [
+                        {
+                            "name": "adl",
+                            "type": "Task"
+                        }
+                    ],
+                    "references": [],
+                    "type": null
+                }
+            ],
+            "externalReferences": [],
+            "id": null,
+            "innerClasses": [],
+            "interfaces": [],
+            "key": null,
+            "methods": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 28,
+                        "line": 172
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "getSelected",
+                    "parameters": [],
+                    "references": [],
+                    "returnType": "Boolean",
+                    "type": null
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 25,
+                        "line": 173
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "gett",
+                    "parameters": [],
+                    "references": [],
+                    "returnType": "Task",
+                    "type": null
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 25,
+                        "line": 174
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "setSelected",
+                    "parameters": [
+                        {
+                            "name": "sb",
+                            "type": "Boolean"
+                        }
+                    ],
+                    "references": [],
+                    "returnType": "void",
+                    "type": null
+                }
+            ],
+            "name": "mTask",
+            "namespace": null,
+            "parentClass": "",
+            "properties": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 18,
+                        "line": 169
+                    },
+                    "modifiers": [
+                        "private"
+                    ],
+                    "name": "t",
+                    "references": [],
+                    "type": "Task"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 21,
+                        "line": 170
+                    },
+                    "modifiers": [
+                        "private"
+                    ],
+                    "name": "selected",
+                    "references": [],
+                    "type": "Boolean"
+                }
+            ],
+            "tableDeclaration": {
+                "annotations": [],
+                "location": {
+                    "column": 22,
+                    "line": 168
+                },
+                "modifiers": [
+                    "public"
+                ],
+                "name": "mTask",
+                "references": [],
+                "type": "mTask"
+            },
+            "variables": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 32,
+                        "line": 171
+                    },
+                    "modifiers": [],
+                    "name": "adl",
+                    "references": [],
+                    "type": "Task"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 45,
+                        "line": 174
+                    },
+                    "modifiers": [],
+                    "name": "sb",
+                    "references": [],
+                    "type": "Boolean"
+                }
+            ]
+        },
+        {
+            "constructors": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 20,
+                        "line": 180
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "mEvent",
+                    "parameters": [
+                        {
+                            "name": "adl",
+                            "type": "Event"
+                        }
+                    ],
+                    "references": [],
+                    "type": null
+                }
+            ],
+            "externalReferences": [],
+            "id": null,
+            "innerClasses": [],
+            "interfaces": [],
+            "key": null,
+            "methods": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 28,
+                        "line": 181
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "getSel",
+                    "parameters": [],
+                    "references": [],
+                    "returnType": "Boolean",
+                    "type": null
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 26,
+                        "line": 182
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "gete",
+                    "parameters": [],
+                    "references": [],
+                    "returnType": "Event",
+                    "type": null
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 25,
+                        "line": 183
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "setSel",
+                    "parameters": [
+                        {
+                            "name": "sb",
+                            "type": "Boolean"
+                        }
+                    ],
+                    "references": [],
+                    "returnType": "void",
+                    "type": null
+                }
+            ],
+            "name": "mEvent",
+            "namespace": null,
+            "parentClass": "",
+            "properties": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 19,
+                        "line": 178
+                    },
+                    "modifiers": [
+                        "private"
+                    ],
+                    "name": "e",
+                    "references": [],
+                    "type": "Event"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 21,
+                        "line": 179
+                    },
+                    "modifiers": [
+                        "private"
+                    ],
+                    "name": "sel",
+                    "references": [],
+                    "type": "Boolean"
+                }
+            ],
+            "tableDeclaration": {
+                "annotations": [],
+                "location": {
+                    "column": 22,
+                    "line": 177
+                },
+                "modifiers": [
+                    "public"
+                ],
+                "name": "mEvent",
+                "references": [],
+                "type": "mEvent"
+            },
+            "variables": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 34,
+                        "line": 180
+                    },
+                    "modifiers": [],
+                    "name": "adl",
+                    "references": [],
+                    "type": "Event"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 40,
+                        "line": 183
+                    },
+                    "modifiers": [],
+                    "name": "sb",
+                    "references": [],
+                    "type": "Boolean"
+                }
+            ]
+        }
+    ],
+    "interfaces": [],
+    "key": "01p3600000GcRVoAAN",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 13,
+                "line": 19
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "init",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 31
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getEs",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 36
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getTs",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 13,
+                "line": 43
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "MakeTask",
+            "parameters": [],
+            "references": [],
+            "returnType": "Task",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 80
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "MakeEvent",
+            "parameters": [],
+            "references": [],
+            "returnType": "Event",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 122
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "save",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 149
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "clearAll",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        }
+    ],
+    "name": "TEGenController",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 9,
+                "line": 6
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "ts",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 7
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "es",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 6,
+                "line": 8
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "d",
+            "references": [],
+            "type": "Date"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 9,
+                "line": 10
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "ac",
+            "references": [],
+            "type": "Account"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 13,
+                "line": 11
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "oc",
+            "references": [],
+            "type": "Opportunity"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 6,
+                "line": 12
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "ld",
+            "references": [],
+            "type": "Lead"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 6,
+                "line": 13
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "cs",
+            "references": [],
+            "type": "Case"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 9,
+                "line": 14
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "con",
+            "references": [],
+            "type": "Contact"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 9,
+                "line": 16
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "adds",
+            "references": [],
+            "type": "Integer"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 1
+        },
+        "modifiers": [
+            "public"
+        ],
+        "name": "TEGenController",
+        "references": [],
+        "type": "TEGenController"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 20
+            },
+            "modifiers": [],
+            "name": "k",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 44
+            },
+            "modifiers": [],
+            "name": "t",
+            "references": [],
+            "type": "Task"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 81
+            },
+            "modifiers": [],
+            "name": "start",
+            "references": [],
+            "type": "Datetime"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 82
+            },
+            "modifiers": [],
+            "name": "ends",
+            "references": [],
+            "type": "Datetime"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 11,
+                "line": 84
+            },
+            "modifiers": [],
+            "name": "e",
+            "references": [],
+            "type": "Event"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 123
+            },
+            "modifiers": [],
+            "name": "consPage",
+            "references": [],
+            "type": "PageReference"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 125
+            },
+            "modifiers": [],
+            "name": "TIn",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 13,
+                "line": 126
+            },
+            "modifiers": [],
+            "name": "EIn",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 128
+            },
+            "modifiers": [],
+            "name": "l",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 153
+            },
+            "modifiers": [],
+            "name": "k",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 155
+            },
+            "modifiers": [],
+            "name": "t",
+            "references": [],
+            "type": "Task"
+        }
+    ]
+}

@@ -1,0 +1,81 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000IQC08AAH",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000IQC08AAH",
+    "methods": [],
+    "name": "WaveDashboardsResponse",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 2
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "dashboards",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 3
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "nextPageUrl",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 4
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "totalSize",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 5
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "url",
+            "references": [],
+            "type": "String"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 27,
+            "line": 1
+        },
+        "modifiers": [
+            "public",
+            "with sharing"
+        ],
+        "name": "WaveDashboardsResponse",
+        "references": [],
+        "type": "WaveDashboardsResponse"
+    },
+    "variables": []
+}

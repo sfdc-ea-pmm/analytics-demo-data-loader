@@ -1,0 +1,77 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRZeAAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRZeAAN",
+    "methods": [
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 28,
+                "line": 3
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "testMethod"
+            ],
+            "name": "myPhonyTest",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "KnowledgeSearchTest",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [
+            {
+                "name": "IsTest"
+            }
+        ],
+        "location": {
+            "column": 15,
+            "line": 2
+        },
+        "modifiers": [
+            "private",
+            "testMethod"
+        ],
+        "name": "KnowledgeSearchTest",
+        "references": [],
+        "type": "KnowledgeSearchTest"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 4
+            },
+            "modifiers": [],
+            "name": "x",
+            "references": [],
+            "type": "knowledgeSearch_CT"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 5
+            },
+            "modifiers": [],
+            "name": "y",
+            "references": [],
+            "type": "ArticleDataCategory"
+        }
+    ]
+}

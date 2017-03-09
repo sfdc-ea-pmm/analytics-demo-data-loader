@@ -1,0 +1,2793 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRUJAA3",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRUJAA3",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 35,
+                "line": 16
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "setUp",
+            "parameters": [],
+            "references": [],
+            "returnType": "pkb_Controller",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 38,
+                "line": 35
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getGroupToRoot",
+            "parameters": [
+                {
+                    "name": "ref",
+                    "type": "PKB__c"
+                }
+            ],
+            "references": [],
+            "returnType": "Map",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 58,
+                "line": 54
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getCategoryGroupData",
+            "parameters": [
+                {
+                    "name": "ref",
+                    "type": "PKB__c"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 72
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getCurrentSiteSetting",
+            "parameters": [
+                {
+                    "name": "refCon",
+                    "type": "pkb_Controller"
+                }
+            ],
+            "references": [],
+            "returnType": "PKB__c",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 99
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "dataCategoryFilter",
+            "parameters": [
+                {
+                    "name": "dcString",
+                    "type": "String"
+                },
+                {
+                    "name": "p",
+                    "type": "pkb_Controller"
+                }
+            ],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 117
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "parseElapsedTime",
+            "parameters": [
+                {
+                    "name": "sourceTime",
+                    "type": "Datetime"
+                }
+            ],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 37,
+                "line": 156
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "calculateViewStats",
+            "parameters": [
+                {
+                    "name": "source",
+                    "type": "Set"
+                }
+            ],
+            "references": [],
+            "returnType": "Map",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 37,
+                "line": 175
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "calculateUsefulnesStats",
+            "parameters": [
+                {
+                    "name": "source",
+                    "type": "Set"
+                }
+            ],
+            "references": [],
+            "returnType": "Map",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 71,
+                "line": 204
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "processForMobile",
+            "parameters": [
+                {
+                    "name": "source",
+                    "type": "LIST"
+                },
+                {
+                    "name": "maxItems",
+                    "type": "Integer"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 49,
+                "line": 246
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getFeaturedArticles",
+            "parameters": [
+                {
+                    "name": "req",
+                    "type": "RequestItem"
+                }
+            ],
+            "references": [],
+            "returnType": "ResponseItem",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 49,
+                "line": 269
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getPopularArticles",
+            "parameters": [
+                {
+                    "name": "req",
+                    "type": "RequestItem"
+                }
+            ],
+            "references": [],
+            "returnType": "ResponseItem",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 49,
+                "line": 357
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getRecommendedArticles",
+            "parameters": [
+                {
+                    "name": "req",
+                    "type": "RequestItem"
+                }
+            ],
+            "references": [],
+            "returnType": "ResponseItem",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 70,
+                "line": 388
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "getRecommendedArticlesByKeyword",
+            "parameters": [
+                {
+                    "name": "p",
+                    "type": "pkb_Controller"
+                },
+                {
+                    "name": "req",
+                    "type": "RequestItem"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 49,
+                "line": 432
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "searchString",
+            "parameters": [
+                {
+                    "name": "req",
+                    "type": "RequestItem"
+                }
+            ],
+            "references": [],
+            "returnType": "ResponseItem",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 70,
+                "line": 461
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "getArticlesByFilter",
+            "parameters": [
+                {
+                    "name": "p",
+                    "type": "pkb_Controller"
+                },
+                {
+                    "name": "req",
+                    "type": "RequestItem"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 49,
+                "line": 501
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getCurrentSiteSetUp",
+            "parameters": [],
+            "references": [],
+            "returnType": "ResponseItem",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 49,
+                "line": 616
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getLanguages",
+            "parameters": [],
+            "references": [],
+            "returnType": "ResponseItem",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 634
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getLanguagesList",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 650
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "getLang",
+            "parameters": [
+                {
+                    "name": "current",
+                    "type": "PKB__c"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 658
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "getRequestedLanguage",
+            "parameters": [
+                {
+                    "name": "req",
+                    "type": "RequestItem"
+                }
+            ],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 49,
+                "line": 686
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "processContactUs",
+            "parameters": [
+                {
+                    "name": "req",
+                    "type": "RequestItem"
+                }
+            ],
+            "references": [],
+            "returnType": "ResponseItem",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 820
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "filterArticleByFLS",
+            "parameters": [
+                {
+                    "name": "fieldList",
+                    "type": "String"
+                },
+                {
+                    "name": "mapFields",
+                    "type": "Map"
+                }
+            ],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 49,
+                "line": 843
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getArticleDetail",
+            "parameters": [
+                {
+                    "name": "req",
+                    "type": "RequestItem"
+                }
+            ],
+            "references": [],
+            "returnType": "ResponseItem",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 49,
+                "line": 1001
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "submitFeedBack",
+            "parameters": [
+                {
+                    "name": "req",
+                    "type": "RequestItem"
+                }
+            ],
+            "references": [],
+            "returnType": "ResponseItem",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 38,
+                "line": 1069
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getLangMap",
+            "parameters": [],
+            "references": [],
+            "returnType": "Map",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 1076
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "isPhoneCallAvailable",
+            "parameters": [
+                {
+                    "name": "d",
+                    "type": "Datetime"
+                },
+                {
+                    "name": "businessHour",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "Boolean",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 1117
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getPhoneCallAvailable",
+            "parameters": [
+                {
+                    "name": "d",
+                    "type": "Datetime"
+                }
+            ],
+            "references": [],
+            "returnType": "Object",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 1142
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getNamespace",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        }
+    ],
+    "name": "pkb_mobile_controller",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 5
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "MAX_ARTICLES",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 6
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "MAX_QUERY_ROWS",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 7
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "final"
+            ],
+            "name": "MAX_ALLOWED_FILES_TO_UPLOAD",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 8
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "DEFAULT_LANGUAGE",
+            "references": [],
+            "type": "String"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 27,
+            "line": 1
+        },
+        "modifiers": [
+            "public",
+            "with sharing"
+        ],
+        "name": "pkb_mobile_controller",
+        "references": [],
+        "type": "pkb_mobile_controller"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 18
+            },
+            "modifiers": [],
+            "name": "refCon",
+            "references": [],
+            "type": "pkb_Controller"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 20
+            },
+            "modifiers": [],
+            "name": "pkbSetting",
+            "references": [],
+            "type": "PKB__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 61,
+                "line": 35
+            },
+            "modifiers": [],
+            "name": "ref",
+            "references": [],
+            "type": "PKB__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 36
+            },
+            "modifiers": [],
+            "name": "res",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 87,
+                "line": 54
+            },
+            "modifiers": [],
+            "name": "ref",
+            "references": [],
+            "type": "PKB__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 48,
+                "line": 55
+            },
+            "modifiers": [],
+            "name": "res",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 65,
+                "line": 72
+            },
+            "modifiers": [],
+            "name": "refCon",
+            "references": [],
+            "type": "pkb_Controller"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 74
+            },
+            "modifiers": [],
+            "name": "res",
+            "references": [],
+            "type": "PKB__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 75
+            },
+            "modifiers": [],
+            "name": "settingsMap",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 53,
+                "line": 99
+            },
+            "modifiers": [],
+            "name": "dcString",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 77,
+                "line": 99
+            },
+            "modifiers": [],
+            "name": "p",
+            "references": [],
+            "type": "pkb_Controller"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 101
+            },
+            "modifiers": [],
+            "name": "qDC",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 53,
+                "line": 117
+            },
+            "modifiers": [],
+            "name": "sourceTime",
+            "references": [],
+            "type": "Datetime"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 118
+            },
+            "modifiers": [],
+            "name": "result",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 119
+            },
+            "modifiers": [],
+            "name": "monthNames",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 134
+            },
+            "modifiers": [],
+            "name": "sourceDate",
+            "references": [],
+            "type": "Date"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 135
+            },
+            "modifiers": [],
+            "name": "today",
+            "references": [],
+            "type": "Date"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 136
+            },
+            "modifiers": [],
+            "name": "yesterday",
+            "references": [],
+            "type": "Date"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 66,
+                "line": 156
+            },
+            "modifiers": [],
+            "name": "source",
+            "references": [],
+            "type": "Set"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 158
+            },
+            "modifiers": [],
+            "name": "viewStats",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 159
+            },
+            "modifiers": [],
+            "name": "qStr",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 40,
+                "line": 163
+            },
+            "modifiers": [],
+            "name": "lKStat",
+            "references": [],
+            "type": "KnowledgeArticleViewStat"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 71,
+                "line": 175
+            },
+            "modifiers": [],
+            "name": "source",
+            "references": [],
+            "type": "Set"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 176
+            },
+            "modifiers": [],
+            "name": "usefulStats",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 179
+            },
+            "modifiers": [],
+            "name": "elm",
+            "references": [],
+            "type": "AggregateResult"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 189
+            },
+            "modifiers": [],
+            "name": "i",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 132,
+                "line": 204
+            },
+            "modifiers": [],
+            "name": "source",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 147,
+                "line": 204
+            },
+            "modifiers": [],
+            "name": "maxItems",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 206
+            },
+            "modifiers": [],
+            "name": "checkACCESS",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 208
+            },
+            "modifiers": [],
+            "name": "kaIds",
+            "references": [],
+            "type": "Set"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 51,
+                "line": 209
+            },
+            "modifiers": [],
+            "name": "ka",
+            "references": [],
+            "type": "KnowledgeArticleData"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 213
+            },
+            "modifiers": [],
+            "name": "viewStats",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 214
+            },
+            "modifiers": [],
+            "name": "useStats",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 60,
+                "line": 216
+            },
+            "modifiers": [],
+            "name": "res",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 53,
+                "line": 217
+            },
+            "modifiers": [],
+            "name": "tmp",
+            "references": [],
+            "type": "mobileKnowledgeArticleData"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 51,
+                "line": 218
+            },
+            "modifiers": [],
+            "name": "ka",
+            "references": [],
+            "type": "KnowledgeArticleData"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 219
+            },
+            "modifiers": [],
+            "name": "theKAId",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 223
+            },
+            "modifiers": [],
+            "name": "elap",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 98,
+                "line": 246
+            },
+            "modifiers": [],
+            "name": "req",
+            "references": [],
+            "type": "RequestItem"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 39,
+                "line": 248
+            },
+            "modifiers": [],
+            "name": "resp",
+            "references": [],
+            "type": "ResponseItem"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 250
+            },
+            "modifiers": [],
+            "name": "p",
+            "references": [],
+            "type": "pkb_Controller"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 97,
+                "line": 269
+            },
+            "modifiers": [],
+            "name": "req",
+            "references": [],
+            "type": "RequestItem"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 39,
+                "line": 271
+            },
+            "modifiers": [],
+            "name": "resp",
+            "references": [],
+            "type": "ResponseItem"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 274
+            },
+            "modifiers": [],
+            "name": "checkACCESS",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 276
+            },
+            "modifiers": [],
+            "name": "p",
+            "references": [],
+            "type": "pkb_Controller"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 277
+            },
+            "modifiers": [],
+            "name": "thisSetting",
+            "references": [],
+            "type": "PKB__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 279
+            },
+            "modifiers": [],
+            "name": "maxPopular",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 280
+            },
+            "modifiers": [],
+            "name": "maxKAVrecords",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 282
+            },
+            "modifiers": [],
+            "name": "kList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 285
+            },
+            "modifiers": [],
+            "name": "qDC",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 298
+            },
+            "modifiers": [],
+            "name": "KAVQ",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 304
+            },
+            "modifiers": [],
+            "name": "KAIds",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 43,
+                "line": 305
+            },
+            "modifiers": [],
+            "name": "aId",
+            "references": [],
+            "type": "KnowledgeArticleVersion"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 306
+            },
+            "modifiers": [],
+            "name": "theKAId",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 316
+            },
+            "modifiers": [],
+            "name": "qStr",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 44,
+                "line": 321
+            },
+            "modifiers": [],
+            "name": "lKStat",
+            "references": [],
+            "type": "KnowledgeArticleViewStat"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 55,
+                "line": 325
+            },
+            "modifiers": [],
+            "name": "tmp",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 63,
+                "line": 326
+            },
+            "modifiers": [],
+            "name": "tmp2",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 65,
+                "line": 328
+            },
+            "modifiers": [],
+            "name": "idToArt",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 61,
+                "line": 330
+            },
+            "modifiers": [],
+            "name": "k",
+            "references": [],
+            "type": "mobileKnowledgeArticleData"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 335
+            },
+            "modifiers": [],
+            "name": "i",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 101,
+                "line": 357
+            },
+            "modifiers": [],
+            "name": "req",
+            "references": [],
+            "type": "RequestItem"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 39,
+                "line": 359
+            },
+            "modifiers": [],
+            "name": "resp",
+            "references": [],
+            "type": "ResponseItem"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 361
+            },
+            "modifiers": [],
+            "name": "p",
+            "references": [],
+            "type": "pkb_Controller"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 117,
+                "line": 388
+            },
+            "modifiers": [],
+            "name": "p",
+            "references": [],
+            "type": "pkb_Controller"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 150,
+                "line": 388
+            },
+            "modifiers": [],
+            "name": "req",
+            "references": [],
+            "type": "RequestItem"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 390
+            },
+            "modifiers": [],
+            "name": "results",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 60,
+                "line": 391
+            },
+            "modifiers": [],
+            "name": "res",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 393
+            },
+            "modifiers": [],
+            "name": "pkbfs",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 394
+            },
+            "modifiers": [],
+            "name": "anums",
+            "references": [],
+            "type": "Set"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 395
+            },
+            "modifiers": [],
+            "name": "escapedQ",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 398
+            },
+            "modifiers": [],
+            "name": "orQuery",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 402
+            },
+            "modifiers": [],
+            "name": "current",
+            "references": [],
+            "type": "PKB__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 403
+            },
+            "modifiers": [],
+            "name": "sName",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 410
+            },
+            "modifiers": [],
+            "name": "q",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 416
+            },
+            "modifiers": [],
+            "name": "searchList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 418
+            },
+            "modifiers": [],
+            "name": "f",
+            "references": [],
+            "type": "PKB_Featured__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 52,
+                "line": 422
+            },
+            "modifiers": [],
+            "name": "tmpResults",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 91,
+                "line": 432
+            },
+            "modifiers": [],
+            "name": "req",
+            "references": [],
+            "type": "RequestItem"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 39,
+                "line": 434
+            },
+            "modifiers": [],
+            "name": "resp",
+            "references": [],
+            "type": "ResponseItem"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 436
+            },
+            "modifiers": [],
+            "name": "p",
+            "references": [],
+            "type": "pkb_Controller"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 105,
+                "line": 461
+            },
+            "modifiers": [],
+            "name": "p",
+            "references": [],
+            "type": "pkb_Controller"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 138,
+                "line": 461
+            },
+            "modifiers": [],
+            "name": "req",
+            "references": [],
+            "type": "RequestItem"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 463
+            },
+            "modifiers": [],
+            "name": "results",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 59,
+                "line": 464
+            },
+            "modifiers": [],
+            "name": "res",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 466
+            },
+            "modifiers": [],
+            "name": "escapedDC",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 469
+            },
+            "modifiers": [],
+            "name": "qDC",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 470
+            },
+            "modifiers": [],
+            "name": "escapedQ",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 473
+            },
+            "modifiers": [],
+            "name": "escapedLang",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 475
+            },
+            "modifiers": [],
+            "name": "soslQuery",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 484
+            },
+            "modifiers": [],
+            "name": "kList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 485
+            },
+            "modifiers": [],
+            "name": "q",
+            "references": [],
+            "type": "SObject"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 51,
+                "line": 489
+            },
+            "modifiers": [],
+            "name": "tmpResults",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 39,
+                "line": 503
+            },
+            "modifiers": [],
+            "name": "resp",
+            "references": [],
+            "type": "ResponseItem"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 506
+            },
+            "modifiers": [],
+            "name": "pc",
+            "references": [],
+            "type": "pkb_Controller"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 507
+            },
+            "modifiers": [],
+            "name": "current",
+            "references": [],
+            "type": "PKB__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 516
+            },
+            "modifiers": [],
+            "name": "tmpStr",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 517
+            },
+            "modifiers": [],
+            "name": "cT",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 518
+            },
+            "modifiers": [],
+            "name": "o",
+            "references": [],
+            "type": "SelectOption"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 39,
+                "line": 524
+            },
+            "modifiers": [],
+            "name": "pl",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 38,
+                "line": 525
+            },
+            "modifiers": [],
+            "name": "p",
+            "references": [],
+            "type": "PicklistEntry"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 559
+            },
+            "modifiers": [],
+            "name": "elms",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 563
+            },
+            "modifiers": [],
+            "name": "isCallEnabled",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 39,
+                "line": 618
+            },
+            "modifiers": [],
+            "name": "resp",
+            "references": [],
+            "type": "ResponseItem"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 620
+            },
+            "modifiers": [],
+            "name": "pc",
+            "references": [],
+            "type": "pkb_Controller"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 621
+            },
+            "modifiers": [],
+            "name": "current",
+            "references": [],
+            "type": "PKB__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 636
+            },
+            "modifiers": [],
+            "name": "res",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 638
+            },
+            "modifiers": [],
+            "name": "pc",
+            "references": [],
+            "type": "pkb_Controller"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 640
+            },
+            "modifiers": [],
+            "name": "current",
+            "references": [],
+            "type": "PKB__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 49,
+                "line": 650
+            },
+            "modifiers": [],
+            "name": "current",
+            "references": [],
+            "type": "PKB__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 652
+            },
+            "modifiers": [],
+            "name": "res",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 78,
+                "line": 658
+            },
+            "modifiers": [],
+            "name": "req",
+            "references": [],
+            "type": "RequestItem"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 660
+            },
+            "modifiers": [],
+            "name": "language",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 662
+            },
+            "modifiers": [],
+            "name": "validLanguages",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 663
+            },
+            "modifiers": [],
+            "name": "setOfLang",
+            "references": [],
+            "type": "Set"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 665
+            },
+            "modifiers": [],
+            "name": "res",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 667
+            },
+            "modifiers": [],
+            "name": "escapedLang",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 95,
+                "line": 686
+            },
+            "modifiers": [],
+            "name": "req",
+            "references": [],
+            "type": "RequestItem"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 39,
+                "line": 688
+            },
+            "modifiers": [],
+            "name": "resp",
+            "references": [],
+            "type": "ResponseItem"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 692
+            },
+            "modifiers": [],
+            "name": "user_lat",
+            "references": [],
+            "type": "Decimal"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 693
+            },
+            "modifiers": [],
+            "name": "user_long",
+            "references": [],
+            "type": "Decimal"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 697
+            },
+            "modifiers": [],
+            "name": "tmpLatitude",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 698
+            },
+            "modifiers": [],
+            "name": "tmpLongitude",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 714
+            },
+            "modifiers": [],
+            "name": "p",
+            "references": [],
+            "type": "pkb_Controller"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 715
+            },
+            "modifiers": [],
+            "name": "pkbSetting",
+            "references": [],
+            "type": "PKB__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 42,
+                "line": 726
+            },
+            "modifiers": [],
+            "name": "auxCD",
+            "references": [],
+            "type": "ContactUsData"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 739
+            },
+            "modifiers": [],
+            "name": "sanitized",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 748
+            },
+            "modifiers": [],
+            "name": "emoIcon",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 40,
+                "line": 750
+            },
+            "modifiers": [],
+            "name": "validEntries",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 769
+            },
+            "modifiers": [],
+            "name": "caseDetails",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 771
+            },
+            "modifiers": [],
+            "name": "tc",
+            "references": [],
+            "type": "Case"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 39,
+                "line": 778
+            },
+            "modifiers": [],
+            "name": "lc",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 37,
+                "line": 780
+            },
+            "modifiers": [],
+            "name": "c",
+            "references": [],
+            "type": "Contact"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 52,
+                "line": 820
+            },
+            "modifiers": [],
+            "name": "fieldList",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 88,
+                "line": 820
+            },
+            "modifiers": [],
+            "name": "mapFields",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 9,
+                "line": 821
+            },
+            "modifiers": [],
+            "name": "finalText",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 15,
+                "line": 822
+            },
+            "modifiers": [],
+            "name": "k",
+            "references": [],
+            "type": "SObjectField"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 823
+            },
+            "modifiers": [],
+            "name": "f",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 95,
+                "line": 843
+            },
+            "modifiers": [],
+            "name": "req",
+            "references": [],
+            "type": "RequestItem"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 845
+            },
+            "modifiers": [],
+            "name": "checkACCESS",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 39,
+                "line": 848
+            },
+            "modifiers": [],
+            "name": "resp",
+            "references": [],
+            "type": "ResponseItem"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 850
+            },
+            "modifiers": [],
+            "name": "escapedLang",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 851
+            },
+            "modifiers": [],
+            "name": "defaultPublishStatus",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 852
+            },
+            "modifiers": [],
+            "name": "sq",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 853
+            },
+            "modifiers": [],
+            "name": "sqlQ",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 38,
+                "line": 867
+            },
+            "modifiers": [],
+            "name": "kA",
+            "references": [],
+            "type": "KnowledgeArticleVersion"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 869
+            },
+            "modifiers": [],
+            "name": "kavID",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 870
+            },
+            "modifiers": [],
+            "name": "token",
+            "references": [],
+            "type": "SObjectType"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 42,
+                "line": 875
+            },
+            "modifiers": [],
+            "name": "dr",
+            "references": [],
+            "type": "DescribeSObjectResult"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 39,
+                "line": 876
+            },
+            "modifiers": [],
+            "name": "mapFields",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 878
+            },
+            "modifiers": [],
+            "name": "p",
+            "references": [],
+            "type": "pkb_Controller"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 880
+            },
+            "modifiers": [],
+            "name": "artFields",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 11,
+                "line": 881
+            },
+            "modifiers": [],
+            "name": "fieldsOrder",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 882
+            },
+            "modifiers": [],
+            "name": "fieldSet",
+            "references": [],
+            "type": "Set"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 884
+            },
+            "modifiers": [],
+            "name": "pkbSetting",
+            "references": [],
+            "type": "PKB__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 900
+            },
+            "modifiers": [],
+            "name": "sql",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 905
+            },
+            "modifiers": [],
+            "name": "soqlResults",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 907
+            },
+            "modifiers": [],
+            "name": "article",
+            "references": [],
+            "type": "SObject"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 908
+            },
+            "modifiers": [],
+            "name": "responseBody",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 910
+            },
+            "modifiers": [],
+            "name": "fieldValues",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 911
+            },
+            "modifiers": [],
+            "name": "value",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 912
+            },
+            "modifiers": [],
+            "name": "keyVal",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 913
+            },
+            "modifiers": [],
+            "name": "richTextFields",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 40,
+                "line": 914
+            },
+            "modifiers": [],
+            "name": "fDescribe",
+            "references": [],
+            "type": "DescribeFieldResult"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 915
+            },
+            "modifiers": [],
+            "name": "skipFields",
+            "references": [],
+            "type": "Set"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 916
+            },
+            "modifiers": [],
+            "name": "flsCheckedList",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 917
+            },
+            "modifiers": [],
+            "name": "f",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 943
+            },
+            "modifiers": [],
+            "name": "id",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 44,
+                "line": 944
+            },
+            "modifiers": [],
+            "name": "art",
+            "references": [],
+            "type": "ArticleDetail"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 54,
+                "line": 962
+            },
+            "modifiers": [],
+            "name": "afds",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 971
+            },
+            "modifiers": [],
+            "name": "ka_ID",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 972
+            },
+            "modifiers": [],
+            "name": "viewStats",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 973
+            },
+            "modifiers": [],
+            "name": "useStats",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 93,
+                "line": 1001
+            },
+            "modifiers": [],
+            "name": "req",
+            "references": [],
+            "type": "RequestItem"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 39,
+                "line": 1003
+            },
+            "modifiers": [],
+            "name": "resp",
+            "references": [],
+            "type": "ResponseItem"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 46,
+                "line": 1010
+            },
+            "modifiers": [],
+            "name": "details",
+            "references": [],
+            "type": "FeedBackDetails"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 1024
+            },
+            "modifiers": [],
+            "name": "feedbackSourceOptions",
+            "references": [],
+            "type": "Set"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 1026
+            },
+            "modifiers": [],
+            "name": "fs",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 52,
+                "line": 1028
+            },
+            "modifiers": [],
+            "name": "afd",
+            "references": [],
+            "type": "PKB_Article_Feedback_Deflection__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 58,
+                "line": 1076
+            },
+            "modifiers": [],
+            "name": "d",
+            "references": [],
+            "type": "Datetime"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 68,
+                "line": 1076
+            },
+            "modifiers": [],
+            "name": "businessHour",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 1080
+            },
+            "modifiers": [],
+            "name": "result",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 1087
+            },
+            "modifiers": [],
+            "name": "l",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 1095
+            },
+            "modifiers": [],
+            "name": "nextTime",
+            "references": [],
+            "type": "Datetime"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 1107
+            },
+            "modifiers": [],
+            "name": "isWithin",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 57,
+                "line": 1117
+            },
+            "modifiers": [],
+            "name": "d",
+            "references": [],
+            "type": "Datetime"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 1118
+            },
+            "modifiers": [],
+            "name": "ret",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 39,
+                "line": 1120
+            },
+            "modifiers": [],
+            "name": "r",
+            "references": [],
+            "type": "ResponseItem"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 1121
+            },
+            "modifiers": [],
+            "name": "businessHour",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 1124
+            },
+            "modifiers": [],
+            "name": "isCallEnabled",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 1143
+            },
+            "modifiers": [],
+            "name": "tmp",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 1145
+            },
+            "modifiers": [],
+            "name": "fullName",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 1146
+            },
+            "modifiers": [],
+            "name": "pageNameParts",
+            "references": [],
+            "type": "LIST"
+        }
+    ]
+}

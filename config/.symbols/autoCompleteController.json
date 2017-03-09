@@ -1,0 +1,198 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRV4AAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRV4AAN",
+    "methods": [
+        {
+            "annotations": [
+                {
+                    "name": "RemoteAction"
+                }
+            ],
+            "location": {
+                "column": 29,
+                "line": 3
+            },
+            "modifiers": [
+                "static",
+                "global"
+            ],
+            "name": "findSObjects",
+            "parameters": [
+                {
+                    "name": "obj",
+                    "type": "String"
+                },
+                {
+                    "name": "qry",
+                    "type": "String"
+                },
+                {
+                    "name": "addFields",
+                    "type": "String"
+                },
+                {
+                    "name": "profilename",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        }
+    ],
+    "name": "autoCompleteController",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 1
+        },
+        "modifiers": [
+            "global"
+        ],
+        "name": "autoCompleteController",
+        "references": [],
+        "type": "autoCompleteController"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 49,
+                "line": 3
+            },
+            "modifiers": [],
+            "name": "obj",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 61,
+                "line": 3
+            },
+            "modifiers": [],
+            "name": "qry",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 73,
+                "line": 3
+            },
+            "modifiers": [],
+            "name": "addFields",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 91,
+                "line": 3
+            },
+            "modifiers": [],
+            "name": "profilename",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 7
+            },
+            "modifiers": [],
+            "name": "fieldList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 41,
+                "line": 12
+            },
+            "modifiers": [],
+            "name": "gd",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 13
+            },
+            "modifiers": [],
+            "name": "sot",
+            "references": [],
+            "type": "SObjectType"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 20
+            },
+            "modifiers": [],
+            "name": "filter",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 23
+            },
+            "modifiers": [],
+            "name": "soql",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 28
+            },
+            "modifiers": [],
+            "name": "s",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 47
+            },
+            "modifiers": [],
+            "name": "s",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 57
+            },
+            "modifiers": [],
+            "name": "L",
+            "references": [],
+            "type": "LIST"
+        }
+    ]
+}

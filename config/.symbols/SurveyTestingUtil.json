@@ -1,0 +1,372 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 9
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "SurveyTestingUtil",
+            "parameters": [],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000GcRUpAAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRUpAAN",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 24
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "createSurveyTaker",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 15,
+                "line": 33
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "createTestSurvey",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 15,
+                "line": 41
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "createTestQuestions",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 48
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "createQuestion",
+            "parameters": [
+                {
+                    "name": "i",
+                    "type": "Integer"
+                }
+            ],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 62
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "createTestContact",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 78
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "createTestResponses",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 88
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "getType",
+            "parameters": [
+                {
+                    "name": "i",
+                    "type": "Integer"
+                }
+            ],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 98
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "getChoices",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 34,
+                "line": 19
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "testMethod"
+            ],
+            "name": "testConstructor",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "SurveyTestingUtil",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 2
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "surveyId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 3
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "questionIds",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 4
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "contactId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 5
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "surveyTakerId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 6
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "contactId2",
+            "references": [],
+            "type": "String"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 27,
+            "line": 1
+        },
+        "modifiers": [
+            "public",
+            "with sharing"
+        ],
+        "name": "SurveyTestingUtil",
+        "references": [],
+        "type": "SurveyTestingUtil"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 25
+            },
+            "modifiers": [],
+            "name": "st",
+            "references": [],
+            "type": "SurveyTaker__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 15,
+                "line": 34
+            },
+            "modifiers": [],
+            "name": "s",
+            "references": [],
+            "type": "Survey__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 41,
+                "line": 48
+            },
+            "modifiers": [],
+            "name": "i",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 49
+            },
+            "modifiers": [],
+            "name": "q",
+            "references": [],
+            "type": "Survey_Question__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 13,
+                "line": 63
+            },
+            "modifiers": [],
+            "name": "c",
+            "references": [],
+            "type": "Contact"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 13,
+                "line": 70
+            },
+            "modifiers": [],
+            "name": "c2",
+            "references": [],
+            "type": "Contact"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 79
+            },
+            "modifiers": [],
+            "name": "r",
+            "references": [],
+            "type": "SurveyQuestionResponse__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 81
+            },
+            "modifiers": [],
+            "name": "sq",
+            "references": [],
+            "type": "Survey_Question__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 34,
+                "line": 88
+            },
+            "modifiers": [],
+            "name": "i",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 20
+            },
+            "modifiers": [],
+            "name": "tu",
+            "references": [],
+            "type": "SurveyTestingUtil"
+        }
+    ]
+}

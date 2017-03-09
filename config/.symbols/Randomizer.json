@@ -1,0 +1,521 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000HqtF0AAJ",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000HqtF0AAJ",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 4
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getRandomNumber",
+            "parameters": [
+                {
+                    "name": "size",
+                    "type": "Integer"
+                }
+            ],
+            "references": [],
+            "returnType": "Integer",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 10
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getRandomBoolean",
+            "parameters": [],
+            "references": [],
+            "returnType": "Boolean",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 19
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getRandomString",
+            "parameters": [
+                {
+                    "name": "strings",
+                    "type": "LIST"
+                }
+            ],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 44
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getRandomPickListValue",
+            "parameters": [
+                {
+                    "name": "s_object",
+                    "type": "SObject"
+                },
+                {
+                    "name": "field_name",
+                    "type": "String"
+                },
+                {
+                    "name": "allow_blank",
+                    "type": "Boolean"
+                }
+            ],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 42,
+                "line": 62
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getPicVals",
+            "parameters": [
+                {
+                    "name": "s_object",
+                    "type": "SObject"
+                }
+            ],
+            "references": [],
+            "returnType": "Map",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 83
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getPlaceholderText",
+            "parameters": [
+                {
+                    "name": "length",
+                    "type": "Integer"
+                }
+            ],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        }
+    ],
+    "name": "Randomizer",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 1
+        },
+        "modifiers": [
+            "public"
+        ],
+        "name": "Randomizer",
+        "references": [],
+        "type": "Randomizer"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 48,
+                "line": 4
+            },
+            "modifiers": [],
+            "name": "size",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 5
+            },
+            "modifiers": [],
+            "name": "d",
+            "references": [],
+            "type": "Double"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 52,
+                "line": 19
+            },
+            "modifiers": [],
+            "name": "strings",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 20
+            },
+            "modifiers": [],
+            "name": "ranks",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 21
+            },
+            "modifiers": [],
+            "name": "rankMap",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 15,
+                "line": 23
+            },
+            "modifiers": [],
+            "name": "s",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 24
+            },
+            "modifiers": [],
+            "name": "isDup",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 11,
+                "line": 25
+            },
+            "modifiers": [],
+            "name": "rank",
+            "references": [],
+            "type": "Double"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 28
+            },
+            "modifiers": [],
+            "name": "x",
+            "references": [],
+            "type": "Double"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 54,
+                "line": 44
+            },
+            "modifiers": [],
+            "name": "s_object",
+            "references": [],
+            "type": "SObject"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 71,
+                "line": 44
+            },
+            "modifiers": [],
+            "name": "field_name",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 91,
+                "line": 44
+            },
+            "modifiers": [],
+            "name": "allow_blank",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 45
+            },
+            "modifiers": [],
+            "name": "Strings",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 11,
+                "line": 47
+            },
+            "modifiers": [],
+            "name": "b",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 50
+            },
+            "modifiers": [],
+            "name": "sobject_type",
+            "references": [],
+            "type": "SObjectType"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 51
+            },
+            "modifiers": [],
+            "name": "sobject_describe",
+            "references": [],
+            "type": "DescribeSObjectResult"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 36,
+                "line": 52
+            },
+            "modifiers": [],
+            "name": "field_map",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 53
+            },
+            "modifiers": [],
+            "name": "pick_list_values",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 54
+            },
+            "modifiers": [],
+            "name": "a",
+            "references": [],
+            "type": "PicklistEntry"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 61,
+                "line": 62
+            },
+            "modifiers": [],
+            "name": "s_object",
+            "references": [],
+            "type": "SObject"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 63
+            },
+            "modifiers": [],
+            "name": "valueMap",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 64
+            },
+            "modifiers": [],
+            "name": "sobject_type",
+            "references": [],
+            "type": "SObjectType"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 65
+            },
+            "modifiers": [],
+            "name": "r",
+            "references": [],
+            "type": "DescribeSObjectResult"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 36,
+                "line": 66
+            },
+            "modifiers": [],
+            "name": "field_map",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 15,
+                "line": 68
+            },
+            "modifiers": [],
+            "name": "s",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 69
+            },
+            "modifiers": [],
+            "name": "strings",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 70
+            },
+            "modifiers": [],
+            "name": "F",
+            "references": [],
+            "type": "DescribeFieldResult"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 72
+            },
+            "modifiers": [],
+            "name": "pick_list_values",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 73
+            },
+            "modifiers": [],
+            "name": "a",
+            "references": [],
+            "type": "PicklistEntry"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 50,
+                "line": 83
+            },
+            "modifiers": [],
+            "name": "length",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 84
+            },
+            "modifiers": [],
+            "name": "firstSentence",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 85
+            },
+            "modifiers": [],
+            "name": "sentenceList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 97
+            },
+            "modifiers": [],
+            "name": "s",
+            "references": [],
+            "type": "String"
+        }
+    ]
+}

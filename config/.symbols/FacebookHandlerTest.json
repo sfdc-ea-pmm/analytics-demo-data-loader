@@ -1,0 +1,222 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRZaAAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRZaAAN",
+    "methods": [
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 24,
+                "line": 7
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "testMethod"
+            ],
+            "name": "testSaveAndUpdateUser",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 24,
+                "line": 39
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "testMethod"
+            ],
+            "name": "testGetImage",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 49
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "generateRandomString",
+            "parameters": [
+                {
+                    "name": "len",
+                    "type": "Integer"
+                }
+            ],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        }
+    ],
+    "name": "FacebookHandlerTest",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 34,
+                "line": 4
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "data",
+            "references": [],
+            "type": "UserData"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [
+            {
+                "name": "IsTest"
+            }
+        ],
+        "location": {
+            "column": 14,
+            "line": 2
+        },
+        "modifiers": [
+            "public",
+            "testMethod"
+        ],
+        "name": "FacebookHandlerTest",
+        "references": [],
+        "type": "FacebookHandlerTest"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 10
+            },
+            "modifiers": [],
+            "name": "attributeMap",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 12
+            },
+            "modifiers": [],
+            "name": "email",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 21
+            },
+            "modifiers": [],
+            "name": "fbHandler",
+            "references": [],
+            "type": "FacebookHandler"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 23
+            },
+            "modifiers": [],
+            "name": "user",
+            "references": [],
+            "type": "User"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 43
+            },
+            "modifiers": [],
+            "name": "fbHandler",
+            "references": [],
+            "type": "FacebookHandler"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 44
+            },
+            "modifiers": [],
+            "name": "b",
+            "references": [],
+            "type": "Blob"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 55,
+                "line": 49
+            },
+            "modifiers": [],
+            "name": "len",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 50
+            },
+            "modifiers": [],
+            "name": "chars",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 51
+            },
+            "modifiers": [],
+            "name": "randStr",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 53
+            },
+            "modifiers": [],
+            "name": "idx",
+            "references": [],
+            "type": "Integer"
+        }
+    ]
+}

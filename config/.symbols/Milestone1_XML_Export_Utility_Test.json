@@ -1,0 +1,176 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRYPAA3",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRYPAA3",
+    "methods": [
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 32,
+                "line": 32
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "testMethod"
+            ],
+            "name": "testSOQLQueries",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "Milestone1_XML_Export_Utility_Test",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [
+            {
+                "name": "IsTest"
+            }
+        ],
+        "location": {
+            "column": 15,
+            "line": 30
+        },
+        "modifiers": [
+            "private",
+            "testMethod"
+        ],
+        "name": "Milestone1_XML_Export_Utility_Test",
+        "references": [],
+        "type": "Milestone1_XML_Export_Utility_Test"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 39,
+                "line": 34
+            },
+            "modifiers": [],
+            "name": "m1exportutility",
+            "references": [],
+            "type": "Milestone1_XML_Export_Utility"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 35
+            },
+            "modifiers": [],
+            "name": "testProject",
+            "references": [],
+            "type": "Milestone1_Project__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 39
+            },
+            "modifiers": [],
+            "name": "testLog",
+            "references": [],
+            "type": "Milestone1_Log__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 45
+            },
+            "modifiers": [],
+            "name": "testMilestone",
+            "references": [],
+            "type": "Milestone1_Milestone__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 49
+            },
+            "modifiers": [],
+            "name": "testSubMilestone",
+            "references": [],
+            "type": "Milestone1_Milestone__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 53
+            },
+            "modifiers": [],
+            "name": "task1",
+            "references": [],
+            "type": "Milestone1_Task__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 55
+            },
+            "modifiers": [],
+            "name": "task2",
+            "references": [],
+            "type": "Milestone1_Task__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 58
+            },
+            "modifiers": [],
+            "name": "xmlString",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 60
+            },
+            "modifiers": [],
+            "name": "projectNamePos",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 61
+            },
+            "modifiers": [],
+            "name": "milestoneNamePos",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 62
+            },
+            "modifiers": [],
+            "name": "subMilestoneNamePos",
+            "references": [],
+            "type": "Integer"
+        }
+    ]
+}

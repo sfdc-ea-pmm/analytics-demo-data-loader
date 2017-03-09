@@ -1,0 +1,268 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRUFAA3",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRUFAA3",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 41,
+                "line": 31
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "cloneProject",
+            "parameters": [
+                {
+                    "name": "rec",
+                    "type": "Milestone1_Project__c"
+                }
+            ],
+            "references": [],
+            "returnType": "Milestone1_Project__c",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 56,
+                "line": 37
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "cloneMilestonesIntoMap",
+            "parameters": [
+                {
+                    "name": "recs",
+                    "type": "LIST"
+                }
+            ],
+            "references": [],
+            "returnType": "Map",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 44,
+                "line": 47
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "cloneTasksIntoList",
+            "parameters": [
+                {
+                    "name": "recs",
+                    "type": "LIST"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 51,
+                "line": 56
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "cloneTasksIntoMap",
+            "parameters": [
+                {
+                    "name": "recs",
+                    "type": "LIST"
+                }
+            ],
+            "references": [],
+            "returnType": "Map",
+            "type": null
+        }
+    ],
+    "name": "Milestone1_Clone_Utility",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 27,
+            "line": 29
+        },
+        "modifiers": [
+            "public",
+            "with sharing"
+        ],
+        "name": "Milestone1_Clone_Utility",
+        "references": [],
+        "type": "Milestone1_Clone_Utility"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 76,
+                "line": 31
+            },
+            "modifiers": [],
+            "name": "rec",
+            "references": [],
+            "type": "Milestone1_Project__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 32
+            },
+            "modifiers": [],
+            "name": "newRec",
+            "references": [],
+            "type": "Milestone1_Project__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 109,
+                "line": 37
+            },
+            "modifiers": [],
+            "name": "recs",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 46,
+                "line": 38
+            },
+            "modifiers": [],
+            "name": "recMap",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 37,
+                "line": 39
+            },
+            "modifiers": [],
+            "name": "rec",
+            "references": [],
+            "type": "Milestone1_Milestone__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 37,
+                "line": 40
+            },
+            "modifiers": [],
+            "name": "newRec",
+            "references": [],
+            "type": "Milestone1_Milestone__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 88,
+                "line": 47
+            },
+            "modifiers": [],
+            "name": "recs",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 34,
+                "line": 48
+            },
+            "modifiers": [],
+            "name": "newRecs",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 49
+            },
+            "modifiers": [],
+            "name": "rec",
+            "references": [],
+            "type": "Milestone1_Task__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 50
+            },
+            "modifiers": [],
+            "name": "newRec",
+            "references": [],
+            "type": "Milestone1_Task__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 94,
+                "line": 56
+            },
+            "modifiers": [],
+            "name": "recs",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 41,
+                "line": 57
+            },
+            "modifiers": [],
+            "name": "recMap",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 58
+            },
+            "modifiers": [],
+            "name": "rec",
+            "references": [],
+            "type": "Milestone1_Task__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 59
+            },
+            "modifiers": [],
+            "name": "newRec",
+            "references": [],
+            "type": "Milestone1_Task__c"
+        }
+    ]
+}

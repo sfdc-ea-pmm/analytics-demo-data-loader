@@ -1,0 +1,849 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRZDAA3",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRZDAA3",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 47
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "CreateUser",
+            "parameters": [],
+            "references": [],
+            "returnType": "User",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 40,
+                "line": 70
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "CreateContent",
+            "parameters": [
+                {
+                    "name": "basename",
+                    "type": "String"
+                },
+                {
+                    "name": "objectCount",
+                    "type": "Integer"
+                },
+                {
+                    "name": "contentType",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 111
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "RC_ContentSearchUtil",
+            "parameters": [
+                {
+                    "name": "testRecord",
+                    "type": "SObject"
+                },
+                {
+                    "name": "sObjectType",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 28,
+                "line": 257
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "testMethod"
+            ],
+            "name": "RC_ContentSearchTestMethod_Negative",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 28,
+                "line": 270
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "testMethod"
+            ],
+            "name": "RC_ContentSearchTestMethod_Opportunity",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 28,
+                "line": 281
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "testMethod"
+            ],
+            "name": "RC_ContentSearchTestMethod_Account",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 28,
+                "line": 292
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "testMethod"
+            ],
+            "name": "RC_ContentSearchTestMethod_Lead",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 28,
+                "line": 303
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "testMethod"
+            ],
+            "name": "RC_ContentSearchTestMethod_Case",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 28,
+                "line": 314
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "testMethod"
+            ],
+            "name": "RC_ContentSearchTestMethod_Task",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 17,
+                "line": 327
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "testMethod"
+            ],
+            "name": "RC_FeedPostTestMethod",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "RC_ContentSearch_test",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 37
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "testUser",
+            "references": [],
+            "type": "User"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [
+            {
+                "name": "IsTest"
+            }
+        ],
+        "location": {
+            "column": 15,
+            "line": 34
+        },
+        "modifiers": [
+            "private",
+            "testMethod"
+        ],
+        "name": "RC_ContentSearch_test",
+        "references": [],
+        "type": "RC_ContentSearch_test"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 49
+            },
+            "modifiers": [],
+            "name": "p",
+            "references": [],
+            "type": "Profile"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 50
+            },
+            "modifiers": [],
+            "name": "uTest",
+            "references": [],
+            "type": "User"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 61,
+                "line": 70
+            },
+            "modifiers": [],
+            "name": "basename",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 79,
+                "line": 70
+            },
+            "modifiers": [],
+            "name": "objectCount",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 99,
+                "line": 70
+            },
+            "modifiers": [],
+            "name": "contentType",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 72
+            },
+            "modifiers": [],
+            "name": "newContent",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 75
+            },
+            "modifiers": [],
+            "name": "testBlob",
+            "references": [],
+            "type": "Blob"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 78
+            },
+            "modifiers": [],
+            "name": "contentOrigin",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 79
+            },
+            "modifiers": [],
+            "name": "contentAvailableContentTest",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 89
+            },
+            "modifiers": [],
+            "name": "i",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 53,
+                "line": 111
+            },
+            "modifiers": [],
+            "name": "testRecord",
+            "references": [],
+            "type": "SObject"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 71,
+                "line": 111
+            },
+            "modifiers": [],
+            "name": "sObjectType",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 113
+            },
+            "modifiers": [],
+            "name": "contentAvailableTest",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 117
+            },
+            "modifiers": [],
+            "name": "NUM_TEST_CONTENT_1",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 118
+            },
+            "modifiers": [],
+            "name": "testContentPos",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 119
+            },
+            "modifiers": [],
+            "name": "thisContentPos",
+            "references": [],
+            "type": "ContentVersion"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 126
+            },
+            "modifiers": [],
+            "name": "NUM_TEST_CONTENT_2",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 127
+            },
+            "modifiers": [],
+            "name": "testContentNeg",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 128
+            },
+            "modifiers": [],
+            "name": "thisContentNeg",
+            "references": [],
+            "type": "ContentVersion"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 139
+            },
+            "modifiers": [],
+            "name": "searchById",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 140
+            },
+            "modifiers": [],
+            "name": "searchResults",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 144
+            },
+            "modifiers": [],
+            "name": "page",
+            "references": [],
+            "type": "PageReference"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 149
+            },
+            "modifiers": [],
+            "name": "controller",
+            "references": [],
+            "type": "RC_ContentSearch"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 157
+            },
+            "modifiers": [],
+            "name": "thisRecordQueryString",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 160
+            },
+            "modifiers": [],
+            "name": "thisRecordTemp",
+            "references": [],
+            "type": "SObject"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 165
+            },
+            "modifiers": [],
+            "name": "recordKeywordString",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 181
+            },
+            "modifiers": [],
+            "name": "fileTypeTest",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 182
+            },
+            "modifiers": [],
+            "name": "fileNameTest",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 183
+            },
+            "modifiers": [],
+            "name": "fileTypeTestOutput",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 185
+            },
+            "modifiers": [],
+            "name": "filenameTestOutput",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 259
+            },
+            "modifiers": [],
+            "name": "page",
+            "references": [],
+            "type": "PageReference"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 262
+            },
+            "modifiers": [],
+            "name": "controller",
+            "references": [],
+            "type": "RC_ContentSearch"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 272
+            },
+            "modifiers": [],
+            "name": "testOpportunity",
+            "references": [],
+            "type": "Opportunity"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 275
+            },
+            "modifiers": [],
+            "name": "testSObjectType",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 283
+            },
+            "modifiers": [],
+            "name": "testRecord",
+            "references": [],
+            "type": "Account"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 286
+            },
+            "modifiers": [],
+            "name": "testSObjectType",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 294
+            },
+            "modifiers": [],
+            "name": "testRecord",
+            "references": [],
+            "type": "Lead"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 297
+            },
+            "modifiers": [],
+            "name": "testSObjectType",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 305
+            },
+            "modifiers": [],
+            "name": "testRecord",
+            "references": [],
+            "type": "Case"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 308
+            },
+            "modifiers": [],
+            "name": "testSObjectType",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 316
+            },
+            "modifiers": [],
+            "name": "testRecord",
+            "references": [],
+            "type": "Task"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 319
+            },
+            "modifiers": [],
+            "name": "testSObjectType",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 329
+            },
+            "modifiers": [],
+            "name": "testOpportunity",
+            "references": [],
+            "type": "Opportunity"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 338
+            },
+            "modifiers": [],
+            "name": "numTestContent",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 339
+            },
+            "modifiers": [],
+            "name": "testContentPos",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 340
+            },
+            "modifiers": [],
+            "name": "thisContentPos",
+            "references": [],
+            "type": "ContentVersion"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 347
+            },
+            "modifiers": [],
+            "name": "searchById",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 348
+            },
+            "modifiers": [],
+            "name": "searchResults",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 352
+            },
+            "modifiers": [],
+            "name": "page",
+            "references": [],
+            "type": "PageReference"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 359
+            },
+            "modifiers": [],
+            "name": "controller",
+            "references": [],
+            "type": "RC_ContentSearch"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 365
+            },
+            "modifiers": [],
+            "name": "testComment",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 367
+            },
+            "modifiers": [],
+            "name": "postResult",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 370
+            },
+            "modifiers": [],
+            "name": "testFeedItems",
+            "references": [],
+            "type": "LIST"
+        }
+    ]
+}

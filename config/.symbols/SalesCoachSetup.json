@@ -1,0 +1,904 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 18
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "SalesCoachSetup",
+            "parameters": [],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000GcRW5AAN",
+    "innerClasses": [
+        {
+            "constructors": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 16,
+                        "line": 289
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "ItemProduct",
+                    "parameters": [
+                        {
+                            "name": "pScSectionItem",
+                            "type": "Sales_Coach_Section_Item__c"
+                        }
+                    ],
+                    "references": [],
+                    "type": null
+                }
+            ],
+            "externalReferences": [],
+            "id": null,
+            "innerClasses": [],
+            "interfaces": [],
+            "key": null,
+            "methods": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 44,
+                        "line": 287
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "getItem",
+                    "parameters": [],
+                    "references": [],
+                    "returnType": "Sales_Coach_Section_Item__c",
+                    "type": null
+                }
+            ],
+            "name": "ItemProduct",
+            "namespace": null,
+            "parentClass": "",
+            "properties": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 45,
+                        "line": 286
+                    },
+                    "modifiers": [
+                        "private"
+                    ],
+                    "name": "item",
+                    "references": [],
+                    "type": "Sales_Coach_Section_Item__c"
+                }
+            ],
+            "tableDeclaration": {
+                "annotations": [],
+                "location": {
+                    "column": 18,
+                    "line": 285
+                },
+                "modifiers": [
+                    "public"
+                ],
+                "name": "ItemProduct",
+                "references": [],
+                "type": "ItemProduct"
+            },
+            "variables": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 57,
+                        "line": 289
+                    },
+                    "modifiers": [],
+                    "name": "pScSectionItem",
+                    "references": [],
+                    "type": "Sales_Coach_Section_Item__c"
+                }
+            ]
+        },
+        {
+            "constructors": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 16,
+                        "line": 302
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "SectionWithItems",
+                    "parameters": [
+                        {
+                            "name": "pSection",
+                            "type": "Sales_Coach_Section__c"
+                        },
+                        {
+                            "name": "pScSectionItems",
+                            "type": "LIST"
+                        }
+                    ],
+                    "references": [],
+                    "type": null
+                }
+            ],
+            "externalReferences": [],
+            "id": null,
+            "innerClasses": [],
+            "interfaces": [],
+            "key": null,
+            "methods": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 39,
+                        "line": 299
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "getScSection",
+                    "parameters": [],
+                    "references": [],
+                    "returnType": "Sales_Coach_Section__c",
+                    "type": null
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 34,
+                        "line": 300
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "getItemProducts",
+                    "parameters": [],
+                    "references": [],
+                    "returnType": "LIST",
+                    "type": null
+                }
+            ],
+            "name": "SectionWithItems",
+            "namespace": null,
+            "parentClass": "",
+            "properties": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 40,
+                        "line": 296
+                    },
+                    "modifiers": [
+                        "private"
+                    ],
+                    "name": "scSection",
+                    "references": [],
+                    "type": "Sales_Coach_Section__c"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 35,
+                        "line": 297
+                    },
+                    "modifiers": [
+                        "private"
+                    ],
+                    "name": "itemProducts",
+                    "references": [],
+                    "type": "LIST"
+                }
+            ],
+            "tableDeclaration": {
+                "annotations": [],
+                "location": {
+                    "column": 11,
+                    "line": 295
+                },
+                "modifiers": [],
+                "name": "SectionWithItems",
+                "references": [],
+                "type": "SectionWithItems"
+            },
+            "variables": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 56,
+                        "line": 302
+                    },
+                    "modifiers": [],
+                    "name": "pSection",
+                    "references": [],
+                    "type": "Sales_Coach_Section__c"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 100,
+                        "line": 302
+                    },
+                    "modifiers": [],
+                    "name": "pScSectionItems",
+                    "references": [],
+                    "type": "LIST"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 45,
+                        "line": 306
+                    },
+                    "modifiers": [],
+                    "name": "item",
+                    "references": [],
+                    "type": "Sales_Coach_Section_Item__c"
+                }
+            ]
+        }
+    ],
+    "interfaces": [],
+    "key": "01p3600000GcRW5AAN",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 13
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getShowSections",
+            "parameters": [],
+            "references": [],
+            "returnType": "Boolean",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 14
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getScStage",
+            "parameters": [],
+            "references": [],
+            "returnType": "Sales_Coach_Stage__c",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 42,
+                "line": 15
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getScActivities",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 35,
+                "line": 16
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getSwi",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 28
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getSections",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 72
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "saveActivities",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 89
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "saveStage",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 99
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "saveSections",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 145
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "deleteActivity",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 164
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "deleteSection",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 183
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "deleteSectionItem",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 205
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "createNewScStage",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 212
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "addBlankActivities",
+            "parameters": [
+                {
+                    "name": "pNumOfBlank",
+                    "type": "Integer"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 228
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "populateSections",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 46,
+                "line": 265
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getSectionItems",
+            "parameters": [
+                {
+                    "name": "SCSList",
+                    "type": "LIST"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 34,
+                "line": 22
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getOpptyStages",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 28,
+                "line": 313
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "testMethod"
+            ],
+            "name": "SalesCoachSetup",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "SalesCoachSetup",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 3
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "showSections",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 34,
+                "line": 4
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "scStage",
+            "references": [],
+            "type": "Sales_Coach_Stage__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 43,
+                "line": 5
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "scActivities",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 36,
+                "line": 6
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "swi",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 45,
+                "line": 8
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "userValMap",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 10
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "stage",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 11
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "toDelete",
+            "references": [],
+            "type": "String"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 27,
+            "line": 1
+        },
+        "modifiers": [
+            "public",
+            "with sharing"
+        ],
+        "name": "SalesCoachSetup",
+        "references": [],
+        "type": "SalesCoachSetup"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 29
+            },
+            "modifiers": [],
+            "name": "salesCoachStage",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 39,
+                "line": 73
+            },
+            "modifiers": [],
+            "name": "toAdd",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 37,
+                "line": 75
+            },
+            "modifiers": [],
+            "name": "sca",
+            "references": [],
+            "type": "Sales_Coach_Activity__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 38,
+                "line": 100
+            },
+            "modifiers": [],
+            "name": "updateScSections",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 43,
+                "line": 101
+            },
+            "modifiers": [],
+            "name": "updateScSectionItems",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 34,
+                "line": 102
+            },
+            "modifiers": [],
+            "name": "s",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 34,
+                "line": 109
+            },
+            "modifiers": [],
+            "name": "section",
+            "references": [],
+            "type": "SectionWithItems"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 37,
+                "line": 113
+            },
+            "modifiers": [],
+            "name": "item",
+            "references": [],
+            "type": "ItemProduct"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 146
+            },
+            "modifiers": [],
+            "name": "scActivity",
+            "references": [],
+            "type": "Sales_Coach_Activity__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 165
+            },
+            "modifiers": [],
+            "name": "scSection",
+            "references": [],
+            "type": "Sales_Coach_Section__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 37,
+                "line": 184
+            },
+            "modifiers": [],
+            "name": "scSectionItem",
+            "references": [],
+            "type": "Sales_Coach_Section_Item__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 45,
+                "line": 212
+            },
+            "modifiers": [],
+            "name": "pNumOfBlank",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 217
+            },
+            "modifiers": [],
+            "name": "i",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 220
+            },
+            "modifiers": [],
+            "name": "x",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 38,
+                "line": 230
+            },
+            "modifiers": [],
+            "name": "scSections",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 43,
+                "line": 231
+            },
+            "modifiers": [],
+            "name": "scSectionItems",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 251
+            },
+            "modifiers": [],
+            "name": "i",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 253
+            },
+            "modifiers": [],
+            "name": "x",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 91,
+                "line": 265
+            },
+            "modifiers": [],
+            "name": "SCSList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 40,
+                "line": 266
+            },
+            "modifiers": [],
+            "name": "returnList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 268
+            },
+            "modifiers": [],
+            "name": "scSection",
+            "references": [],
+            "type": "Sales_Coach_Section__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 271
+            },
+            "modifiers": [],
+            "name": "itemsize",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 273
+            },
+            "modifiers": [],
+            "name": "x",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 314
+            },
+            "modifiers": [],
+            "name": "SCS",
+            "references": [],
+            "type": "SalesCoachSetup"
+        }
+    ]
+}

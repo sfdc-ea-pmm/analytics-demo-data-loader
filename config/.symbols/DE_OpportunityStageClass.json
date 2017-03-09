@@ -1,0 +1,237 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 44
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "DE_OpportunityStageClass",
+            "parameters": [
+                {
+                    "name": "stdController",
+                    "type": "StandardController"
+                }
+            ],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000GcRTRAA3",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRTRAA3",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 52
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getPicklistValues",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 81
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "reload",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        }
+    ],
+    "name": "DE_OpportunityStageClass",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 36
+            },
+            "modifiers": [
+                "private",
+                "final"
+            ],
+            "name": "mysObject",
+            "references": [],
+            "type": "Opportunity"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 37
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "oppStageList",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 38
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "oppStageNum",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 40
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "pickListVals",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 41
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "valsText",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 42
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "loadOnce",
+            "references": [],
+            "type": "Boolean"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 27,
+            "line": 34
+        },
+        "modifiers": [
+            "public",
+            "with sharing"
+        ],
+        "name": "DE_OpportunityStageClass",
+        "references": [],
+        "type": "DE_OpportunityStageClass"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 66,
+                "line": 44
+            },
+            "modifiers": [],
+            "name": "stdController",
+            "references": [],
+            "type": "StandardController"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 55
+            },
+            "modifiers": [],
+            "name": "i",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 57
+            },
+            "modifiers": [],
+            "name": "closedLostStages",
+            "references": [],
+            "type": "Set"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 59
+            },
+            "modifiers": [],
+            "name": "os",
+            "references": [],
+            "type": "OpportunityStage"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 64
+            },
+            "modifiers": [],
+            "name": "os",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 83
+            },
+            "modifiers": [],
+            "name": "skip",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 84
+            },
+            "modifiers": [],
+            "name": "val",
+            "references": [],
+            "type": "String"
+        }
+    ]
+}

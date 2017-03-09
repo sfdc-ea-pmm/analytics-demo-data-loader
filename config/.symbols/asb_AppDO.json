@@ -1,0 +1,1250 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 9,
+                "line": 24
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "asb_AppDO",
+            "parameters": [],
+            "references": [],
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 9,
+                "line": 28
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "asb_AppDO",
+            "parameters": [
+                {
+                    "name": "storeId",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 9,
+                "line": 33
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "asb_AppDO",
+            "parameters": [
+                {
+                    "name": "a",
+                    "type": "asb_App__c"
+                }
+            ],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000GcRXnAAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRXnAAN",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 15,
+                "line": 37
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "init",
+            "parameters": [
+                {
+                    "name": "a",
+                    "type": "asb_App__c"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 42
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getDisplayLanguageList",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 51
+            },
+            "modifiers": [
+                "public",
+                "override"
+            ],
+            "name": "getName",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 55
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getHasCategories",
+            "parameters": [],
+            "references": [],
+            "returnType": "Boolean",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 59
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getCategories",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 63
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getCategoriesLabel",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 78
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getHasLanguages",
+            "parameters": [],
+            "references": [],
+            "returnType": "Boolean",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 83
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getLanguagesLabel",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 98
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "setCategories",
+            "parameters": [
+                {
+                    "name": "categories",
+                    "type": "LIST"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 103
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getDefaultListing",
+            "parameters": [],
+            "references": [],
+            "returnType": "Id",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 107
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "setDefaultListing",
+            "parameters": [
+                {
+                    "name": "listing",
+                    "type": "Id"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 111
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getLanguages",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 115
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "setLanguages",
+            "parameters": [
+                {
+                    "name": "languages",
+                    "type": "LIST"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 120
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getLiveListings",
+            "parameters": [],
+            "references": [],
+            "returnType": "Integer",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 124
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getStore",
+            "parameters": [],
+            "references": [],
+            "returnType": "Id",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 128
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "setStore",
+            "parameters": [
+                {
+                    "name": "store",
+                    "type": "Id"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 132
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getPageViews",
+            "parameters": [],
+            "references": [],
+            "returnType": "Integer",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 136
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getPageViewsAllTime",
+            "parameters": [],
+            "references": [],
+            "returnType": "Integer",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 140
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getPopularityAllTime",
+            "parameters": [],
+            "references": [],
+            "returnType": "Integer",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 144
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getFirstListedDate",
+            "parameters": [],
+            "references": [],
+            "returnType": "Date",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 148
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getAppType",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 152
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "setAppType",
+            "parameters": [
+                {
+                    "name": "appType",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 156
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getPopularity",
+            "parameters": [],
+            "references": [],
+            "returnType": "Integer",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 160
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getStatus",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 164
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "setIsActive",
+            "parameters": [
+                {
+                    "name": "active",
+                    "type": "Boolean"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 169
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getIsActive",
+            "parameters": [],
+            "references": [],
+            "returnType": "Boolean",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 173
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "deactivate",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 177
+            },
+            "modifiers": [
+                "public",
+                "override"
+            ],
+            "name": "remove",
+            "parameters": [],
+            "references": [],
+            "returnType": "Boolean",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 15,
+                "line": 185
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "clear",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 189
+            },
+            "modifiers": [
+                "public",
+                "override"
+            ],
+            "name": "getCreatedById",
+            "parameters": [],
+            "references": [],
+            "returnType": "Id",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 193
+            },
+            "modifiers": [
+                "public",
+                "override"
+            ],
+            "name": "getLastModifiedById",
+            "parameters": [],
+            "references": [],
+            "returnType": "Id",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 197
+            },
+            "modifiers": [
+                "public",
+                "override"
+            ],
+            "name": "getCreatedDate",
+            "parameters": [],
+            "references": [],
+            "returnType": "Datetime",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 201
+            },
+            "modifiers": [
+                "public",
+                "override"
+            ],
+            "name": "getLastModifiedDate",
+            "parameters": [],
+            "references": [],
+            "returnType": "Datetime",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 279
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getTypeLabel",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 283
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getIsAndroidType",
+            "parameters": [],
+            "references": [],
+            "returnType": "Boolean",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 287
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getIsiOSType",
+            "parameters": [],
+            "references": [],
+            "returnType": "Boolean",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 291
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getIsMobileApp",
+            "parameters": [],
+            "references": [],
+            "returnType": "Boolean",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 295
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getIsWebApp",
+            "parameters": [],
+            "references": [],
+            "returnType": "Boolean",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 299
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getAppTypeForDisplay",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 309
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getInstallUrl",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 313
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "setInstallUrl",
+            "parameters": [
+                {
+                    "name": "url",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 317
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getLogoUrl",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 322
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "setLogoUrl",
+            "parameters": [
+                {
+                    "name": "logoUrl",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 215
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getAllCategoriesString",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        }
+    ],
+    "name": "asb_AppDO",
+    "namespace": null,
+    "parentClass": "asb_BaseData",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 22
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "appObj",
+            "references": [],
+            "type": "asb_App__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 37,
+                "line": 231
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "categoryCheckboxOptions",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 37,
+                "line": 265
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "languageCheckboxOptions",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 8
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "final"
+            ],
+            "name": "SOBJECT_NAME",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 10
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "final"
+            ],
+            "name": "APP_TYPE_IOS",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 11
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "final"
+            ],
+            "name": "APP_TYPE_ANDROID",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 12
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "final"
+            ],
+            "name": "APP_TYPE_WEB",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 37,
+                "line": 14
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "appTypeLabelMap",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 37,
+                "line": 205
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "categoriesLabelLookup",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 38,
+                "line": 221
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "categorySelectOptions",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 36,
+                "line": 245
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "langLabelLookup",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 38,
+                "line": 255
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "languageSelectOptions",
+            "references": [],
+            "type": "LIST"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 6
+        },
+        "modifiers": [
+            "public"
+        ],
+        "name": "asb_AppDO",
+        "references": [],
+        "type": "asb_AppDO"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 28
+            },
+            "modifiers": [],
+            "name": "storeId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 33
+            },
+            "modifiers": [],
+            "name": "a",
+            "references": [],
+            "type": "asb_App__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 37
+            },
+            "modifiers": [],
+            "name": "a",
+            "references": [],
+            "type": "asb_App__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 44
+            },
+            "modifiers": [],
+            "name": "langList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 45
+            },
+            "modifiers": [],
+            "name": "s",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 64
+            },
+            "modifiers": [],
+            "name": "categoriesDisplay",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 65
+            },
+            "modifiers": [],
+            "name": "selectedCategories",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 66
+            },
+            "modifiers": [],
+            "name": "categories",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 15,
+                "line": 68
+            },
+            "modifiers": [],
+            "name": "category",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 84
+            },
+            "modifiers": [],
+            "name": "languagesDisplay",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 85
+            },
+            "modifiers": [],
+            "name": "selectedLanguages",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 86
+            },
+            "modifiers": [],
+            "name": "languages",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 15,
+                "line": 88
+            },
+            "modifiers": [],
+            "name": "language",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 41,
+                "line": 98
+            },
+            "modifiers": [],
+            "name": "categories",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 35,
+                "line": 107
+            },
+            "modifiers": [],
+            "name": "listing",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 40,
+                "line": 115
+            },
+            "modifiers": [],
+            "name": "languages",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 128
+            },
+            "modifiers": [],
+            "name": "store",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 34,
+                "line": 152
+            },
+            "modifiers": [],
+            "name": "appType",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 34,
+                "line": 164
+            },
+            "modifiers": [],
+            "name": "active",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 11,
+                "line": 178
+            },
+            "modifiers": [],
+            "name": "retVal",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 234
+            },
+            "modifiers": [],
+            "name": "selectedCategories",
+            "references": [],
+            "type": "Set"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 268
+            },
+            "modifiers": [],
+            "name": "selectedLanguages",
+            "references": [],
+            "type": "Set"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 35,
+                "line": 313
+            },
+            "modifiers": [],
+            "name": "url",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 318
+            },
+            "modifiers": [],
+            "name": "prefix",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 322
+            },
+            "modifiers": [],
+            "name": "logoUrl",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 216
+            },
+            "modifiers": [],
+            "name": "categoryLabels",
+            "references": [],
+            "type": "LIST"
+        }
+    ]
+}

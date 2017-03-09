@@ -1,0 +1,385 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRVlAAN",
+    "innerClasses": [
+        {
+            "constructors": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 16,
+                        "line": 92
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "cObject",
+                    "parameters": [
+                        {
+                            "name": "obj",
+                            "type": "SObject"
+                        }
+                    ],
+                    "references": [],
+                    "type": null
+                }
+            ],
+            "externalReferences": [],
+            "id": null,
+            "innerClasses": [],
+            "interfaces": [],
+            "key": null,
+            "methods": [],
+            "name": "cObject",
+            "namespace": null,
+            "parentClass": "",
+            "properties": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 17,
+                        "line": 90
+                    },
+                    "modifiers": [
+                        "private"
+                    ],
+                    "name": "obj",
+                    "references": [],
+                    "type": "SObject"
+                }
+            ],
+            "tableDeclaration": {
+                "annotations": [],
+                "location": {
+                    "column": 18,
+                    "line": 89
+                },
+                "modifiers": [
+                    "public"
+                ],
+                "name": "cObject",
+                "references": [],
+                "type": "cObject"
+            },
+            "variables": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 32,
+                        "line": 92
+                    },
+                    "modifiers": [],
+                    "name": "obj",
+                    "references": [],
+                    "type": "SObject"
+                }
+            ]
+        }
+    ],
+    "interfaces": [],
+    "key": "01p3600000GcRVlAAN",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 6
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "sortList",
+            "parameters": [
+                {
+                    "name": "items",
+                    "type": "LIST"
+                },
+                {
+                    "name": "sortField",
+                    "type": "String"
+                },
+                {
+                    "name": "order",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "superSort",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 1
+        },
+        "modifiers": [
+            "public"
+        ],
+        "name": "superSort",
+        "references": [],
+        "type": "superSort"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 47,
+                "line": 6
+            },
+            "modifiers": [],
+            "name": "items",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 61,
+                "line": 6
+            },
+            "modifiers": [],
+            "name": "sortField",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 79,
+                "line": 6
+            },
+            "modifiers": [],
+            "name": "order",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 10
+            },
+            "modifiers": [],
+            "name": "isSortFieldReference",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 11
+            },
+            "modifiers": [],
+            "name": "referenceName",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 21
+            },
+            "modifiers": [],
+            "name": "referenceIds",
+            "references": [],
+            "type": "Set"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 22
+            },
+            "modifiers": [],
+            "name": "s",
+            "references": [],
+            "type": "SObject"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 26
+            },
+            "modifiers": [],
+            "name": "objectID",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 27
+            },
+            "modifiers": [],
+            "name": "prefix",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 28
+            },
+            "modifiers": [],
+            "name": "objectType",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 45,
+                "line": 29
+            },
+            "modifiers": [],
+            "name": "gd",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 36,
+                "line": 30
+            },
+            "modifiers": [],
+            "name": "s",
+            "references": [],
+            "type": "SObjectType"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 37
+            },
+            "modifiers": [],
+            "name": "queryString",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 38
+            },
+            "modifiers": [],
+            "name": "s",
+            "references": [],
+            "type": "SObject"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 47
+            },
+            "modifiers": [],
+            "name": "resultList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 36,
+                "line": 50
+            },
+            "modifiers": [],
+            "name": "objectMap",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 52
+            },
+            "modifiers": [],
+            "name": "ob",
+            "references": [],
+            "type": "SObject"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 57
+            },
+            "modifiers": [],
+            "name": "o",
+            "references": [],
+            "type": "cObject"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 63
+            },
+            "modifiers": [],
+            "name": "o",
+            "references": [],
+            "type": "cObject"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 69
+            },
+            "modifiers": [],
+            "name": "keys",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 72
+            },
+            "modifiers": [],
+            "name": "key",
+            "references": [],
+            "type": "Object"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 79
+            },
+            "modifiers": [],
+            "name": "ob",
+            "references": [],
+            "type": "cObject"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 83
+            },
+            "modifiers": [],
+            "name": "i",
+            "references": [],
+            "type": "Integer"
+        }
+    ]
+}

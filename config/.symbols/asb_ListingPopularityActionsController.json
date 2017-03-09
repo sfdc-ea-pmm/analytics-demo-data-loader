@@ -1,0 +1,76 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 9,
+                "line": 8
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "asb_ListingPopularityActionsController",
+            "parameters": [
+                {
+                    "name": "controller",
+                    "type": "StandardController"
+                }
+            ],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000GcRWyAAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRWyAAN",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 10
+            },
+            "modifiers": [
+                "public",
+                "override"
+            ],
+            "name": "init",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        }
+    ],
+    "name": "asb_ListingPopularityActionsController",
+    "namespace": null,
+    "parentClass": "asb_AppxStoreBldrController",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 6
+        },
+        "modifiers": [
+            "public"
+        ],
+        "name": "asb_ListingPopularityActionsController",
+        "references": [],
+        "type": "asb_ListingPopularityActionsController"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 78,
+                "line": 8
+            },
+            "modifiers": [],
+            "name": "controller",
+            "references": [],
+            "type": "StandardController"
+        }
+    ]
+}

@@ -1,0 +1,87 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 3
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "ReportFinderUtil",
+            "parameters": [],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000GcRUiAAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRUiAAN",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 5
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "findReportId",
+            "parameters": [
+                {
+                    "name": "reportName",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        }
+    ],
+    "name": "ReportFinderUtil",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 27,
+            "line": 1
+        },
+        "modifiers": [
+            "public",
+            "with sharing"
+        ],
+        "name": "ReportFinderUtil",
+        "references": [],
+        "type": "ReportFinderUtil"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 37,
+                "line": 5
+            },
+            "modifiers": [],
+            "name": "reportName",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 13,
+                "line": 7
+            },
+            "modifiers": [],
+            "name": "myReport",
+            "references": [],
+            "type": "SObject"
+        }
+    ]
+}

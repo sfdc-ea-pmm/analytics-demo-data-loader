@@ -1,0 +1,148 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRXYAA3",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRXYAA3",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 40,
+                "line": 8
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getListingPopularity",
+            "parameters": [
+                {
+                    "name": "listingId",
+                    "type": "Id"
+                }
+            ],
+            "references": [],
+            "returnType": "asb_ListingPopularityDO",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 46,
+                "line": 14
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getListingPopularities",
+            "parameters": [
+                {
+                    "name": "listingIds",
+                    "type": "Set"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        }
+    ],
+    "name": "asb_ListingPopularityDAO",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 6
+        },
+        "modifiers": [
+            "public"
+        ],
+        "name": "asb_ListingPopularityDAO",
+        "references": [],
+        "type": "asb_ListingPopularityDAO"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 64,
+                "line": 8
+            },
+            "modifiers": [],
+            "name": "listingId",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 35,
+                "line": 9
+            },
+            "modifiers": [],
+            "name": "pdoList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 77,
+                "line": 14
+            },
+            "modifiers": [],
+            "name": "listingIds",
+            "references": [],
+            "type": "Set"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 36,
+                "line": 15
+            },
+            "modifiers": [],
+            "name": "pdoMap",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 34,
+                "line": 17
+            },
+            "modifiers": [],
+            "name": "pList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 21
+            },
+            "modifiers": [],
+            "name": "lp",
+            "references": [],
+            "type": "asb_ListingPopularity__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 11,
+                "line": 26
+            },
+            "modifiers": [],
+            "name": "lid",
+            "references": [],
+            "type": "Id"
+        }
+    ]
+}

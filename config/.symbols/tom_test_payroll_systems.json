@@ -1,0 +1,127 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRWKAA3",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRWKAA3",
+    "methods": [
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 32,
+                "line": 3
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "testMethod"
+            ],
+            "name": "test_payroll_systems",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "tom_test_payroll_systems",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 1
+        },
+        "modifiers": [
+            "public"
+        ],
+        "name": "tom_test_payroll_systems",
+        "references": [],
+        "type": "tom_test_payroll_systems"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 8
+            },
+            "modifiers": [],
+            "name": "test_payroll_system",
+            "references": [],
+            "type": "Payroll_System__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 15
+            },
+            "modifiers": [],
+            "name": "test_users",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 8,
+                "line": 16
+            },
+            "modifiers": [],
+            "name": "user",
+            "references": [],
+            "type": "User"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 23
+            },
+            "modifiers": [],
+            "name": "tor",
+            "references": [],
+            "type": "Time_Off_Request__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 28
+            },
+            "modifiers": [],
+            "name": "tor2",
+            "references": [],
+            "type": "Time_Off_Request__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 45
+            },
+            "modifiers": [],
+            "name": "tor5",
+            "references": [],
+            "type": "Time_Off_Request__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 56
+            },
+            "modifiers": [],
+            "name": "missing_payroll_system",
+            "references": [],
+            "type": "Payroll_System__c"
+        }
+    ]
+}

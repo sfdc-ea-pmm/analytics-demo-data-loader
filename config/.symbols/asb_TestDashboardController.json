@@ -1,0 +1,546 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRZsAAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRZsAAN",
+    "methods": [
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 35,
+                "line": 13
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "testMethod"
+            ],
+            "name": "testGetStore",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 32,
+                "line": 38
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "testMethod"
+            ],
+            "name": "testChangeTimeSpan",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 32,
+                "line": 68
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "testMethod"
+            ],
+            "name": "testPrev",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 32,
+                "line": 95
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "testMethod"
+            ],
+            "name": "testNext",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 32,
+                "line": 123
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "testMethod"
+            ],
+            "name": "testChangeRecordType",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "asb_TestDashboardController",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [
+            {
+                "name": "IsTest"
+            }
+        ],
+        "location": {
+            "column": 15,
+            "line": 11
+        },
+        "modifiers": [
+            "private",
+            "testMethod"
+        ],
+        "name": "asb_TestDashboardController",
+        "references": [],
+        "type": "asb_TestDashboardController"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 14
+            },
+            "modifiers": [],
+            "name": "storeObj",
+            "references": [],
+            "type": "asb_Store__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 9,
+                "line": 18
+            },
+            "modifiers": [],
+            "name": "u",
+            "references": [],
+            "type": "User"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 15,
+                "line": 22
+            },
+            "modifiers": [],
+            "name": "ado",
+            "references": [],
+            "type": "asb_AppDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 25
+            },
+            "modifiers": [],
+            "name": "lst",
+            "references": [],
+            "type": "asb_ListingDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 26
+            },
+            "modifiers": [],
+            "name": "lstActivity",
+            "references": [],
+            "type": "asb_ListingActivityDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 27
+            },
+            "modifiers": [],
+            "name": "store",
+            "references": [],
+            "type": "asb_StoreDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 29
+            },
+            "modifiers": [],
+            "name": "controller",
+            "references": [],
+            "type": "asb_DashboardController"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 39
+            },
+            "modifiers": [],
+            "name": "storeObj",
+            "references": [],
+            "type": "asb_Store__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 9,
+                "line": 42
+            },
+            "modifiers": [],
+            "name": "u",
+            "references": [],
+            "type": "User"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 15,
+                "line": 46
+            },
+            "modifiers": [],
+            "name": "ado",
+            "references": [],
+            "type": "asb_AppDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 49
+            },
+            "modifiers": [],
+            "name": "lst",
+            "references": [],
+            "type": "asb_ListingDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 50
+            },
+            "modifiers": [],
+            "name": "lstActivity",
+            "references": [],
+            "type": "asb_ListingActivityDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 51
+            },
+            "modifiers": [],
+            "name": "store",
+            "references": [],
+            "type": "asb_StoreDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 53
+            },
+            "modifiers": [],
+            "name": "controller",
+            "references": [],
+            "type": "asb_DashboardController"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 9,
+                "line": 70
+            },
+            "modifiers": [],
+            "name": "u",
+            "references": [],
+            "type": "User"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 73
+            },
+            "modifiers": [],
+            "name": "storeObj",
+            "references": [],
+            "type": "asb_Store__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 15,
+                "line": 74
+            },
+            "modifiers": [],
+            "name": "ado",
+            "references": [],
+            "type": "asb_AppDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 77
+            },
+            "modifiers": [],
+            "name": "lst",
+            "references": [],
+            "type": "asb_ListingDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 78
+            },
+            "modifiers": [],
+            "name": "lstActivity",
+            "references": [],
+            "type": "asb_ListingActivityDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 79
+            },
+            "modifiers": [],
+            "name": "store",
+            "references": [],
+            "type": "asb_StoreDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 81
+            },
+            "modifiers": [],
+            "name": "controller",
+            "references": [],
+            "type": "asb_DashboardController"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 9,
+                "line": 98
+            },
+            "modifiers": [],
+            "name": "u",
+            "references": [],
+            "type": "User"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 101
+            },
+            "modifiers": [],
+            "name": "storeObj",
+            "references": [],
+            "type": "asb_Store__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 15,
+                "line": 102
+            },
+            "modifiers": [],
+            "name": "ado",
+            "references": [],
+            "type": "asb_AppDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 105
+            },
+            "modifiers": [],
+            "name": "lst",
+            "references": [],
+            "type": "asb_ListingDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 106
+            },
+            "modifiers": [],
+            "name": "lstActivity",
+            "references": [],
+            "type": "asb_ListingActivityDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 107
+            },
+            "modifiers": [],
+            "name": "store",
+            "references": [],
+            "type": "asb_StoreDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 109
+            },
+            "modifiers": [],
+            "name": "controller",
+            "references": [],
+            "type": "asb_DashboardController"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 9,
+                "line": 126
+            },
+            "modifiers": [],
+            "name": "u",
+            "references": [],
+            "type": "User"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 129
+            },
+            "modifiers": [],
+            "name": "storeObj",
+            "references": [],
+            "type": "asb_Store__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 15,
+                "line": 130
+            },
+            "modifiers": [],
+            "name": "ado",
+            "references": [],
+            "type": "asb_AppDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 133
+            },
+            "modifiers": [],
+            "name": "lst",
+            "references": [],
+            "type": "asb_ListingDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 134
+            },
+            "modifiers": [],
+            "name": "lstActivity",
+            "references": [],
+            "type": "asb_ListingActivityDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 135
+            },
+            "modifiers": [],
+            "name": "store",
+            "references": [],
+            "type": "asb_StoreDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 137
+            },
+            "modifiers": [],
+            "name": "controller",
+            "references": [],
+            "type": "asb_DashboardController"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 151
+            },
+            "modifiers": [],
+            "name": "controller1",
+            "references": [],
+            "type": "asb_DashboardController"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 162
+            },
+            "modifiers": [],
+            "name": "controller2",
+            "references": [],
+            "type": "asb_DashboardController"
+        }
+    ]
+}

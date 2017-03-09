@@ -1,0 +1,531 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRStAAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRStAAN",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 39,
+                "line": 7
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getRecords",
+            "parameters": [
+                {
+                    "name": "ObjectName",
+                    "type": "String"
+                },
+                {
+                    "name": "fieldSetName",
+                    "type": "String"
+                },
+                {
+                    "name": "userSelection",
+                    "type": "String"
+                },
+                {
+                    "name": "objectFilter",
+                    "type": "String"
+                },
+                {
+                    "name": "leadInboxFilterOption",
+                    "type": "String"
+                },
+                {
+                    "name": "pageNumber",
+                    "type": "Decimal"
+                },
+                {
+                    "name": "recordsSize",
+                    "type": "Decimal"
+                }
+            ],
+            "references": [],
+            "returnType": "LeadPassPagedResult",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 108
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getLead",
+            "parameters": [
+                {
+                    "name": "leadID",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 115
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "saveLead",
+            "parameters": [
+                {
+                    "name": "lead",
+                    "type": "Lead"
+                },
+                {
+                    "name": "convertLeadToOpportunity",
+                    "type": "Boolean"
+                }
+            ],
+            "references": [],
+            "returnType": "Lead",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 47,
+                "line": 143
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getFieldSet",
+            "parameters": [
+                {
+                    "name": "fieldSetName",
+                    "type": "String"
+                },
+                {
+                    "name": "ObjectName",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        }
+    ],
+    "name": "LeadPassController",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 27,
+            "line": 1
+        },
+        "modifiers": [
+            "public",
+            "with sharing"
+        ],
+        "name": "LeadPassController",
+        "references": [],
+        "type": "LeadPassController"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 57,
+                "line": 7
+            },
+            "modifiers": [],
+            "name": "ObjectName",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 76,
+                "line": 7
+            },
+            "modifiers": [],
+            "name": "fieldSetName",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 97,
+                "line": 7
+            },
+            "modifiers": [],
+            "name": "userSelection",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 119,
+                "line": 7
+            },
+            "modifiers": [],
+            "name": "objectFilter",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 140,
+                "line": 7
+            },
+            "modifiers": [],
+            "name": "leadInboxFilterOption",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 171,
+                "line": 7
+            },
+            "modifiers": [],
+            "name": "pageNumber",
+            "references": [],
+            "type": "Decimal"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 191,
+                "line": 7
+            },
+            "modifiers": [],
+            "name": "recordsSize",
+            "references": [],
+            "type": "Decimal"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 8
+            },
+            "modifiers": [],
+            "name": "currentUserId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 9
+            },
+            "modifiers": [],
+            "name": "str",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 10
+            },
+            "modifiers": [],
+            "name": "query",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 11
+            },
+            "modifiers": [],
+            "name": "queryCount",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 12
+            },
+            "modifiers": [],
+            "name": "objectFilterList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 15
+            },
+            "modifiers": [],
+            "name": "key",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 21
+            },
+            "modifiers": [],
+            "name": "fldLabels",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 22
+            },
+            "modifiers": [],
+            "name": "fldNames",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 23
+            },
+            "modifiers": [],
+            "name": "fldTypes",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 35,
+                "line": 25
+            },
+            "modifiers": [],
+            "name": "f",
+            "references": [],
+            "type": "FieldSetMember"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 56
+            },
+            "modifiers": [],
+            "name": "pageSize",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 57
+            },
+            "modifiers": [],
+            "name": "offset",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 58
+            },
+            "modifiers": [],
+            "name": "r",
+            "references": [],
+            "type": "LeadPassPagedResult"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 45,
+                "line": 108
+            },
+            "modifiers": [],
+            "name": "leadID",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 109
+            },
+            "modifiers": [],
+            "name": "lead",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 38,
+                "line": 115
+            },
+            "modifiers": [],
+            "name": "lead",
+            "references": [],
+            "type": "Lead"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 52,
+                "line": 115
+            },
+            "modifiers": [],
+            "name": "convertLeadToOpportunity",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 116
+            },
+            "modifiers": [],
+            "name": "uid",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 34,
+                "line": 119
+            },
+            "modifiers": [],
+            "name": "lc",
+            "references": [],
+            "type": "LeadConvert"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 121
+            },
+            "modifiers": [],
+            "name": "convertStatus",
+            "references": [],
+            "type": "LeadStatus"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 40,
+                "line": 123
+            },
+            "modifiers": [],
+            "name": "lcr",
+            "references": [],
+            "type": "LeadConvertResult"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 130
+            },
+            "modifiers": [],
+            "name": "t",
+            "references": [],
+            "type": "Task"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 66,
+                "line": 143
+            },
+            "modifiers": [],
+            "name": "fieldSetName",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 87,
+                "line": 143
+            },
+            "modifiers": [],
+            "name": "ObjectName",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 41,
+                "line": 144
+            },
+            "modifiers": [],
+            "name": "GlobalDescribeMap",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 145
+            },
+            "modifiers": [],
+            "name": "SObjectTypeObj",
+            "references": [],
+            "type": "SObjectType"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 38,
+                "line": 146
+            },
+            "modifiers": [],
+            "name": "DescribeSObjectResultObj",
+            "references": [],
+            "type": "DescribeSObjectResult"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 147
+            },
+            "modifiers": [],
+            "name": "fieldSetObj",
+            "references": [],
+            "type": "FieldSet"
+        }
+    ]
+}

@@ -1,0 +1,797 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 34
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "PriceisRight",
+            "parameters": [],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000GcRVAAA3",
+    "innerClasses": [
+        {
+            "constructors": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 16,
+                        "line": 330
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "PIR",
+                    "parameters": [
+                        {
+                            "name": "p",
+                            "type": "Product2"
+                        },
+                        {
+                            "name": "pr",
+                            "type": "String"
+                        },
+                        {
+                            "name": "Q",
+                            "type": "String"
+                        }
+                    ],
+                    "references": [],
+                    "type": null
+                }
+            ],
+            "externalReferences": [],
+            "id": null,
+            "innerClasses": [],
+            "interfaces": [],
+            "key": null,
+            "methods": [],
+            "name": "PIR",
+            "namespace": null,
+            "parentClass": "",
+            "properties": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 25,
+                        "line": 325
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "prod",
+                    "references": [],
+                    "type": "Product2"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 23,
+                        "line": 326
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "price",
+                    "references": [],
+                    "type": "String"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 23,
+                        "line": 327
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "Quantity",
+                    "references": [],
+                    "type": "String"
+                }
+            ],
+            "tableDeclaration": {
+                "annotations": [],
+                "location": {
+                    "column": 18,
+                    "line": 323
+                },
+                "modifiers": [
+                    "public"
+                ],
+                "name": "PIR",
+                "references": [],
+                "type": "PIR"
+            },
+            "variables": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 29,
+                        "line": 330
+                    },
+                    "modifiers": [],
+                    "name": "p",
+                    "references": [],
+                    "type": "Product2"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 39,
+                        "line": 330
+                    },
+                    "modifiers": [],
+                    "name": "pr",
+                    "references": [],
+                    "type": "String"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 50,
+                        "line": 330
+                    },
+                    "modifiers": [],
+                    "name": "Q",
+                    "references": [],
+                    "type": "String"
+                }
+            ]
+        }
+    ],
+    "interfaces": [],
+    "key": "01p3600000GcRVAAA3",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 48
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getItems",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 62
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getQuant",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 71
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getPrice",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 72
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "setPrice",
+            "parameters": [
+                {
+                    "name": "Price",
+                    "type": "LIST"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 73
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getQuantity",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 74
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "setQuantity",
+            "parameters": [
+                {
+                    "name": "Quantity",
+                    "type": "LIST"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 79
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "ComeOnDown",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 183
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "updateOpptyNames",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 252
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "updateNoOLI",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        }
+    ],
+    "name": "PriceisRight",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 19
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "products",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 34,
+                "line": 20
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "OLI",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 21
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "pricebook",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 22
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "Price",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 23
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "Quantity",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 24
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "priceright",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 25
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "randDisc",
+            "references": [],
+            "type": "Decimal"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 26
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "randQuantity",
+            "references": [],
+            "type": "Decimal"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 27
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "randListPrice",
+            "references": [],
+            "type": "Decimal"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 28
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "done",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 29
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "GlobalAmount",
+            "references": [],
+            "type": "Decimal"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 30
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "GlobalAvg",
+            "references": [],
+            "type": "Decimal"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 31
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "GlobalNum",
+            "references": [],
+            "type": "Decimal"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 18
+        },
+        "modifiers": [
+            "public"
+        ],
+        "name": "PriceisRight",
+        "references": [],
+        "type": "PriceisRight"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 43
+            },
+            "modifiers": [],
+            "name": "p",
+            "references": [],
+            "type": "Product2"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 49
+            },
+            "modifiers": [],
+            "name": "options",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 63
+            },
+            "modifiers": [],
+            "name": "options",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 35,
+                "line": 72
+            },
+            "modifiers": [],
+            "name": "Price",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 38,
+                "line": 74
+            },
+            "modifiers": [],
+            "name": "Quantity",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 81
+            },
+            "modifiers": [],
+            "name": "p",
+            "references": [],
+            "type": "PIR"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 83
+            },
+            "modifiers": [],
+            "name": "ProductName",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 98
+            },
+            "modifiers": [],
+            "name": "pb",
+            "references": [],
+            "type": "PricebookEntry"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 38,
+                "line": 142
+            },
+            "modifiers": [],
+            "name": "o",
+            "references": [],
+            "type": "OpportunityLineItem"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 150
+            },
+            "modifiers": [],
+            "name": "UnitPrice",
+            "references": [],
+            "type": "Double"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 159
+            },
+            "modifiers": [],
+            "name": "UnitPrice",
+            "references": [],
+            "type": "Double"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 167
+            },
+            "modifiers": [],
+            "name": "UnitPrice",
+            "references": [],
+            "type": "Double"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 184
+            },
+            "modifiers": [],
+            "name": "opty",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 187
+            },
+            "modifiers": [],
+            "name": "OL",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 192
+            },
+            "modifiers": [],
+            "name": "o",
+            "references": [],
+            "type": "Opportunity"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 194
+            },
+            "modifiers": [],
+            "name": "OpptyAmount",
+            "references": [],
+            "type": "Double"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 42,
+                "line": 195
+            },
+            "modifiers": [],
+            "name": "OpL",
+            "references": [],
+            "type": "OpportunityLineItem"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 205
+            },
+            "modifiers": [],
+            "name": "DecOppty",
+            "references": [],
+            "type": "Decimal"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 206
+            },
+            "modifiers": [],
+            "name": "astName",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 207
+            },
+            "modifiers": [],
+            "name": "NameHasAst",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 211
+            },
+            "modifiers": [],
+            "name": "OpptyName",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 15,
+                "line": 253
+            },
+            "modifiers": [],
+            "name": "NoOLI",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 258
+            },
+            "modifiers": [],
+            "name": "o",
+            "references": [],
+            "type": "Opportunity"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 13,
+                "line": 260
+            },
+            "modifiers": [],
+            "name": "NoOLIAmount",
+            "references": [],
+            "type": "Decimal"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 13,
+                "line": 265
+            },
+            "modifiers": [],
+            "name": "DecOppty",
+            "references": [],
+            "type": "Decimal"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 266
+            },
+            "modifiers": [],
+            "name": "astName",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 13,
+                "line": 267
+            },
+            "modifiers": [],
+            "name": "NameHasAst",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 271
+            },
+            "modifiers": [],
+            "name": "OpptyName",
+            "references": [],
+            "type": "String"
+        }
+    ]
+}

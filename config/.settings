@@ -1,0 +1,17 @@
+{
+    "projectName": "Wave Demos",
+    "username": "dthom@servicewavesdo.za",
+    "id": "c91de470-033c-11e7-995e-cd941fea7344",
+    "namespace": "",
+    "orgType": "developer",
+    "loginUrl": "https://login.salesforce.com/",
+    "instanceUrl": "https://na30.salesforce.com",
+    "workspace": "/Users/mac-11/Documents",
+    "subscription": [
+        "ApexClass",
+        "ApexComponent",
+        "ApexPage",
+        "ApexTrigger",
+        "StaticResource"
+    ]
+}

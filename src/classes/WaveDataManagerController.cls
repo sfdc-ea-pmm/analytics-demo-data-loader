@@ -24,7 +24,6 @@ public with sharing class WaveDataManagerController {
 	private WaveMetadata metadata;
 	private Map<String, String> appDescriptions; // <appName, appDesc>
 	private Map<String, Integer> appIndexes; // <appName, appIndex in this.metadata.waveApplications>
-	public String folderName {get;set;}
 
 	public WaveDataManagerController() {
 		this.objectsNodes = new List<WaveApplicationObject>();
@@ -110,103 +109,95 @@ public with sharing class WaveDataManagerController {
 	public void installApp(){
 		this.resetMessages();
 
-		if(!String.isBlank(folderName)){
-			if(!this.checkFolderExistance()){
-				try {			
-					// We build the node array
-					this.objectsNodes.clear();
+		try {			
+			// We build the node array
+			this.objectsNodes.clear();
 
-					// We start collecting the common object to add to the node array
-					if(this.metadata.commonObjects != null) {
-						for(WaveMetadataApplicationObject wmaObj: this.metadata.commonObjects) {
-							List<WaveApplicationObject> objs = this.getObjectsToProcess(wmaObj);
-							this.objectsNodes.addAll(objs);
-						}
-					}
-					
-					if(this.metadata.waveApplications != null && this.appIndexes.containsKey(this.selectedWaveApp)){
-						// Based on the selection
-						WaveMetadataApplication selectedApp = this.metadata.waveApplications.get(this.appIndexes.get(this.selectedWaveApp));
-						if(selectedApp.objects != null){
-							for(WaveMetadataApplicationObject wmaObj: selectedApp.objects) {
-								List<WaveApplicationObject> objs = this.getObjectsToProcess(wmaObj);
-								this.objectsNodes.addAll(objs);
-							}
-						}
-					}
-
-					if(this.objectsNodes.size() > 0){
-						this.currentNodeIndex = 0;
-						
-						SF_MetadataUtils mdUtils = new SF_MetadataUtils();
-
-						// Objects and fields Setup
-						for(WaveApplicationObject waObj: this.objectsNodes) {
-							
-							this.processingLog.add('Processing ' + waObj.name + ' object metadata...');
-
-							// Check object existence using waObj.name property					
-							if(!mdUtils.objectExists(waObj.name)){
-								// If object doesn't exist, create it
-								this.processingLog.add(waObj.name + ' doesn\'t exists. Attempting to create it...');
-								List<String> errors = mdUtils.createObject(waObj.name);
-								if(errors.size() == 0){
-									this.processingLog.add(waObj.name + ' object created successfully.');
-								}
-								else {
-									this.processingLog.addAll(errors);
-								}						
-							}
-
-							// Check fields existence using waObj.fields property
-							for(WaveApplicationObjectField field: waObj.fields) {
-								// If field doesn't exist, create it using field properties
-								if(field.Name.endsWithIgnoreCase('__c') && !mdUtils.fieldExists(waObj.name, field.Name)){
-									this.processingLog.add(waObj.name + '.' + field.Name + ' field doesn\'t exists. Attempting to create it...');
-									SF_MetadataUtils.CustomFieldSpecification fieldSpec = new SF_MetadataUtils.CustomFieldSpecification();
-									fieldSpec.ObjectName = waObj.name;
-									fieldSpec.Name = field.Name;
-							    	fieldSpec.Label = field.Label;
-							    	fieldSpec.Type = field.Type;
-									fieldSpec.ReferenceTo = field.ReferenceTo;
-									fieldSpec.Length = field.Length;
-									fieldSpec.Precision = field.Precision;
-									fieldSpec.Scale = field.Scale;
-									fieldSpec.IsExternalId = field.IsExternalId;
-									fieldSpec.IsRequired = field.IsRequired;
-
-									List<String> errors = mdUtils.createField(fieldSpec);
-									if(errors.size() == 0){
-										this.processingLog.add(waObj.name + '.' + field.Name + ' field created successfully.');
-									}
-									else {
-										this.processingLog.add(waObj.name + '.' + field.Name + ' field couldn\'t be created. Reasons: ');
-										this.processingLog.addAll(errors);
-									}
-								}
-							}
-						}
-
-						// Print some message at the UI to inform that setup has succeeded
-						this.processingLog.add('All needed metadata was created successfully.');
-
-						// We start loading data for each object
-						this.processNode();
-					}
-					else {
-						this.warningMessage = 'No data to process.';
-					}
-				} 
-				catch(Exception e) {
-					System.debug(e.getMessage());
-					System.debug(e.getStackTraceString());
-					this.errorMessage = e.getMessage();
-				}	
-			} else {
-				this.errorMessage = 'The folder ' + this.folderName + ' already exists.';
+			// We start collecting the common object to add to the node array
+			if(this.metadata.commonObjects != null) {
+				for(WaveMetadataApplicationObject wmaObj: this.metadata.commonObjects) {
+					List<WaveApplicationObject> objs = this.getObjectsToProcess(wmaObj);
+					this.objectsNodes.addAll(objs);
+				}
 			}
-		} else {
-			this.errorMessage = 'A folder/app must be specified.';
+			
+			if(this.metadata.waveApplications != null && this.appIndexes.containsKey(this.selectedWaveApp)){
+				// Based on the selection
+				WaveMetadataApplication selectedApp = this.metadata.waveApplications.get(this.appIndexes.get(this.selectedWaveApp));
+				if(selectedApp.objects != null){
+					for(WaveMetadataApplicationObject wmaObj: selectedApp.objects) {
+						List<WaveApplicationObject> objs = this.getObjectsToProcess(wmaObj);
+						this.objectsNodes.addAll(objs);
+					}
+				}
+			}
+
+			if(this.objectsNodes.size() > 0){
+				this.currentNodeIndex = 0;
+				
+				SF_MetadataUtils mdUtils = new SF_MetadataUtils();
+
+				// Objects and fields Setup
+				for(WaveApplicationObject waObj: this.objectsNodes) {
+					
+					this.processingLog.add('Processing ' + waObj.name + ' object metadata...');
+
+					// Check object existence using waObj.name property					
+					if(!mdUtils.objectExists(waObj.name)){
+						// If object doesn't exist, create it
+						this.processingLog.add(waObj.name + ' doesn\'t exists. Attempting to create it...');
+						List<String> errors = mdUtils.createObject(waObj.name);
+						if(errors.size() == 0){
+							this.processingLog.add(waObj.name + ' object created successfully.');
+						}
+						else {
+							this.processingLog.addAll(errors);
+						}						
+					}
+
+					// Check fields existence using waObj.fields property
+					for(WaveApplicationObjectField field: waObj.fields) {
+						// If field doesn't exist, create it using field properties
+						if(field.Name.endsWithIgnoreCase('__c') && !mdUtils.fieldExists(waObj.name, field.Name)){
+							this.processingLog.add(waObj.name + '.' + field.Name + ' field doesn\'t exists. Attempting to create it...');
+							SF_MetadataUtils.CustomFieldSpecification fieldSpec = new SF_MetadataUtils.CustomFieldSpecification();
+							fieldSpec.ObjectName = waObj.name;
+							fieldSpec.Name = field.Name;
+					    	fieldSpec.Label = field.Label;
+					    	fieldSpec.Type = field.Type;
+							fieldSpec.ReferenceTo = field.ReferenceTo;
+							fieldSpec.Length = field.Length;
+							fieldSpec.Precision = field.Precision;
+							fieldSpec.Scale = field.Scale;
+							fieldSpec.IsExternalId = field.IsExternalId;
+							fieldSpec.IsRequired = field.IsRequired;
+
+							List<String> errors = mdUtils.createField(fieldSpec);
+							if(errors.size() == 0){
+								this.processingLog.add(waObj.name + '.' + field.Name + ' field created successfully.');
+							}
+							else {
+								this.processingLog.add(waObj.name + '.' + field.Name + ' field couldn\'t be created. Reasons: ');
+								this.processingLog.addAll(errors);
+							}
+						}
+					}
+				}
+
+				// Print some message at the UI to inform that setup has succeeded
+				this.processingLog.add('All needed metadata was created successfully.');
+
+				// We start loading data for each object
+				this.processNode();
+			}
+			else {
+				this.warningMessage = 'No data to process.';
+			}
+		} 
+		catch(Exception e) {
+			System.debug(e.getMessage());
+			System.debug(e.getStackTraceString());
+			this.errorMessage = e.getMessage();
 		}
 	}
 
@@ -353,29 +344,11 @@ public with sharing class WaveDataManagerController {
 							
 							// now check whether it was the last one
 							if(this.currentNodeIndex == this.objectsNodes.size() - 1){
-								this.processingLog.add('Creating ' + folderName + ' folder/app...');
-								
-								if(!this.checkFolderExistance()){
-									
-									String result = this.insertFolder();
-									
-									//If empty, no errors
-									if(String.isEmpty(result)) {
-										this.successMessage = 'The entire process finished successfully.';
-										this.processingLog.add('Done.');
-									} else {
-										this.processingLog.add(result);
-										this.errorMessage = 'There was an error in the attempting to create the ' + this.folderName + ' folder. See log for details.';
-									}
-
-									this.jobStatusDsc = '';
-									this.objectsNodes.clear();
-									this.currentNodeIndex = 0;
-								} 
-								else {
-									this.errorMessage = 'The folder ' + this.folderName + ' already exists.';
-								}
-
+								this.successMessage = 'The entire process finished successfully.';
+								this.currentNodeIndex = 0;
+								this.objectsNodes.clear();
+								this.jobStatusDsc = '';
+								this.processingLog.add('Done.');
 							}
 							else {
 								// There are more nodes to process, increment index and reset 
@@ -402,37 +375,6 @@ public with sharing class WaveDataManagerController {
 		}		
 
 		return null;
-	}
-
-	public String insertFolder() {
-
-		String jsonToPost = '{"label":"' + this.folderName + '","name":"' + this.folderName + '"}';
-
-		Http http = new Http();
-		HttpRequest req = new HttpRequest();
-
-		String salesforceHost = System.Url.getSalesforceBaseURL().toExternalForm();
-		String url =  salesforceHost + '/services/data/v39.0/wave/folders';
-
-		req.setMethod('POST');
-		req.setEndpoint(url);
-		req.setHeader('Content-type', 'application/json');
-		req.setHeader('Authorization', 'OAuth ' + UserInfo.getSessionId());
-		req.setBody(jsonToPost);
-		
-		HTTPResponse res = http.send(req);
-
-		if(res.getBody().contains('errorCode')){
-			List<RestApiFolderErrorResponse> r = (List<RestApiFolderErrorResponse>)JSON.deserialize(res.getBody(), List<RestApiFolderErrorResponse>.class);
-			return r.get(0).message;
-		} 
-
-		return '';
-	}
-
-	private boolean checkFolderExistance(){
-		Folder[] lstFolders = [SELECT Id FROM Folder WHERE DeveloperName = :this.folderName AND Type = 'Insights'];
-		return lstFolders.size() > 0;
 	}
 
 	public PageReference displayMetadataResponse()

@@ -1,0 +1,303 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 43
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "Milestone1_Import_Project_Controller",
+            "parameters": [
+                {
+                    "name": "ssc",
+                    "type": "StandardSetController"
+                }
+            ],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000GcRUcAAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRUcAAN",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 55
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "importTemplateXML",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 95
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getDocumentXMLString",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        }
+    ],
+    "name": "Milestone1_Import_Project_Controller",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 34,
+                "line": 30
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "project",
+            "references": [],
+            "type": "Milestone1_Project__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 31
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "docs",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 32
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "docOptions",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 33
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "contentType",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 34
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "docId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 35
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "fileName",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 36
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "fileBody",
+            "references": [],
+            "type": "Blob"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 37
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "docsSize",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 38
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "maxFileSize",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 39
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "MAX_FILE_SIZE",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 41
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "CONTENT_ERROR",
+            "references": [],
+            "type": "String"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 27,
+            "line": 29
+        },
+        "modifiers": [
+            "public",
+            "with sharing"
+        ],
+        "name": "Milestone1_Import_Project_Controller",
+        "references": [],
+        "type": "Milestone1_Import_Project_Controller"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 81,
+                "line": 43
+            },
+            "modifiers": [],
+            "name": "ssc",
+            "references": [],
+            "type": "StandardSetController"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 48
+            },
+            "modifiers": [],
+            "name": "doc",
+            "references": [],
+            "type": "Document"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 43,
+                "line": 62
+            },
+            "modifiers": [],
+            "name": "importUtility",
+            "references": [],
+            "type": "Milestone1_XML_Import_Utility"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 63
+            },
+            "modifiers": [],
+            "name": "xml",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 84
+            },
+            "modifiers": [],
+            "name": "errorMsg",
+            "references": [],
+            "type": "Message"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 97
+            },
+            "modifiers": [],
+            "name": "docs",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 100
+            },
+            "modifiers": [],
+            "name": "xml",
+            "references": [],
+            "type": "String"
+        }
+    ]
+}

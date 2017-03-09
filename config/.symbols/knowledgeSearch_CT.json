@@ -1,0 +1,812 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRSpAAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRSpAAN",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 38,
+                "line": 3
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "searchAll",
+            "parameters": [
+                {
+                    "name": "searchKey",
+                    "type": "String"
+                },
+                {
+                    "name": "pageNumber",
+                    "type": "Decimal"
+                }
+            ],
+            "references": [],
+            "returnType": "ArticlePagedResult",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 46,
+                "line": 19
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "convertJSONToListOfArticleDataCategory",
+            "parameters": [
+                {
+                    "name": "json",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 32
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "createWithDataCategoryCondition",
+            "parameters": [
+                {
+                    "name": "dataCategoryList",
+                    "type": "LIST"
+                }
+            ],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 41
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "getTotalSize",
+            "parameters": [
+                {
+                    "name": "key",
+                    "type": "String"
+                },
+                {
+                    "name": "soql_with_data_category",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "Integer",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 50,
+                "line": 58
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "getArticles",
+            "parameters": [
+                {
+                    "name": "key",
+                    "type": "String"
+                },
+                {
+                    "name": "soql_with_data_category",
+                    "type": "String"
+                },
+                {
+                    "name": "offset",
+                    "type": "Integer"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 38,
+                "line": 80
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "searchByCategory",
+            "parameters": [
+                {
+                    "name": "searchKey",
+                    "type": "String"
+                },
+                {
+                    "name": "dataCategoryString",
+                    "type": "String"
+                },
+                {
+                    "name": "pageNumber",
+                    "type": "Decimal"
+                }
+            ],
+            "references": [],
+            "returnType": "ArticlePagedResult",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 58,
+                "line": 98
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "getDataCategoryGroups",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 59,
+                "line": 109
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "getDataCategoryGroupPairs",
+            "parameters": [
+                {
+                    "name": "dataCategoryGroups",
+                    "type": "LIST"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 46,
+                "line": 120
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "getChildCategories",
+            "parameters": [
+                {
+                    "name": "parent",
+                    "type": "DataCategory"
+                },
+                {
+                    "name": "sObject_name",
+                    "type": "String"
+                },
+                {
+                    "name": "name",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 45,
+                "line": 131
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getDataCategories_ct",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        }
+    ],
+    "name": "knowledgeSearch_CT",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 27,
+            "line": 1
+        },
+        "modifiers": [
+            "public",
+            "with sharing"
+        ],
+        "name": "knowledgeSearch_CT",
+        "references": [],
+        "type": "knowledgeSearch_CT"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 55,
+                "line": 3
+            },
+            "modifiers": [],
+            "name": "searchKey",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 74,
+                "line": 3
+            },
+            "modifiers": [],
+            "name": "pageNumber",
+            "references": [],
+            "type": "Decimal"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 4
+            },
+            "modifiers": [],
+            "name": "pageSize",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 5
+            },
+            "modifiers": [],
+            "name": "key",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 6
+            },
+            "modifiers": [],
+            "name": "offset",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 8
+            },
+            "modifiers": [],
+            "name": "a",
+            "references": [],
+            "type": "ArticlePagedResult"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 92,
+                "line": 19
+            },
+            "modifiers": [],
+            "name": "json",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 35,
+                "line": 20
+            },
+            "modifiers": [],
+            "name": "adcList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 21
+            },
+            "modifiers": [],
+            "name": "objList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 22
+            },
+            "modifiers": [],
+            "name": "obj",
+            "references": [],
+            "type": "Object"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 23
+            },
+            "modifiers": [],
+            "name": "json_map",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 24
+            },
+            "modifiers": [],
+            "name": "adc",
+            "references": [],
+            "type": "ArticleDataCategory"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 85,
+                "line": 32
+            },
+            "modifiers": [],
+            "name": "dataCategoryList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 33
+            },
+            "modifiers": [],
+            "name": "soql_with_data_category",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 34
+            },
+            "modifiers": [],
+            "name": "adc",
+            "references": [],
+            "type": "ArticleDataCategory"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 48,
+                "line": 41
+            },
+            "modifiers": [],
+            "name": "key",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 60,
+                "line": 41
+            },
+            "modifiers": [],
+            "name": "soql_with_data_category",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 42
+            },
+            "modifiers": [],
+            "name": "soql",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 69,
+                "line": 58
+            },
+            "modifiers": [],
+            "name": "key",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 81,
+                "line": 58
+            },
+            "modifiers": [],
+            "name": "soql_with_data_category",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 114,
+                "line": 58
+            },
+            "modifiers": [],
+            "name": "offset",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 59
+            },
+            "modifiers": [],
+            "name": "soql",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 62
+            },
+            "modifiers": [],
+            "name": "soql_limit",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 62,
+                "line": 80
+            },
+            "modifiers": [],
+            "name": "searchKey",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 80,
+                "line": 80
+            },
+            "modifiers": [],
+            "name": "dataCategoryString",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 108,
+                "line": 80
+            },
+            "modifiers": [],
+            "name": "pageNumber",
+            "references": [],
+            "type": "Decimal"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 35,
+                "line": 81
+            },
+            "modifiers": [],
+            "name": "dataCategoryList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 83
+            },
+            "modifiers": [],
+            "name": "pageSize",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 84
+            },
+            "modifiers": [],
+            "name": "key",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 85
+            },
+            "modifiers": [],
+            "name": "offset",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 87
+            },
+            "modifiers": [],
+            "name": "soql_with_data_category",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 89
+            },
+            "modifiers": [],
+            "name": "a",
+            "references": [],
+            "type": "ArticlePagedResult"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 100
+            },
+            "modifiers": [],
+            "name": "objType",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 124,
+                "line": 109
+            },
+            "modifiers": [],
+            "name": "dataCategoryGroups",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 48,
+                "line": 110
+            },
+            "modifiers": [],
+            "name": "pairs",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 44,
+                "line": 111
+            },
+            "modifiers": [],
+            "name": "result",
+            "references": [],
+            "type": "DescribeDataCategoryGroupResult"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 46,
+                "line": 112
+            },
+            "modifiers": [],
+            "name": "pair",
+            "references": [],
+            "type": "DataCategoryGroupSobjectTypePair"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 85,
+                "line": 120
+            },
+            "modifiers": [],
+            "name": "parent",
+            "references": [],
+            "type": "DataCategory"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 100,
+                "line": 120
+            },
+            "modifiers": [],
+            "name": "sObject_name",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 121,
+                "line": 120
+            },
+            "modifiers": [],
+            "name": "name",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 121
+            },
+            "modifiers": [],
+            "name": "adc_childCategories",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 122
+            },
+            "modifiers": [],
+            "name": "category",
+            "references": [],
+            "type": "DataCategory"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 123
+            },
+            "modifiers": [],
+            "name": "adc_childCategory",
+            "references": [],
+            "type": "ArticleDataCategory"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 132
+            },
+            "modifiers": [],
+            "name": "adc_list",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 46,
+                "line": 133
+            },
+            "modifiers": [],
+            "name": "pairs",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 60,
+                "line": 135
+            },
+            "modifiers": [],
+            "name": "result",
+            "references": [],
+            "type": "DescribeDataCategoryGroupStructureResult"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 136
+            },
+            "modifiers": [],
+            "name": "adc",
+            "references": [],
+            "type": "ArticleDataCategory"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 35,
+                "line": 137
+            },
+            "modifiers": [],
+            "name": "adc_topCategories",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 138
+            },
+            "modifiers": [],
+            "name": "adc_topCategory",
+            "references": [],
+            "type": "ArticleDataCategory"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 34,
+                "line": 141
+            },
+            "modifiers": [],
+            "name": "topCategory",
+            "references": [],
+            "type": "DataCategory"
+        }
+    ]
+}

@@ -1,0 +1,1724 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 9,
+                "line": 32
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "pkb_mobile_proxy",
+            "parameters": [],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000GcRTxAAN",
+    "innerClasses": [
+        {
+            "constructors": [],
+            "externalReferences": [],
+            "id": null,
+            "innerClasses": [],
+            "interfaces": [],
+            "key": null,
+            "methods": [],
+            "name": "RequestItem",
+            "namespace": null,
+            "parentClass": "",
+            "properties": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 19,
+                        "line": 201
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "lang",
+                    "references": [],
+                    "type": "String"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 19,
+                        "line": 202
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "sessionId",
+                    "references": [],
+                    "type": "String"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 19,
+                        "line": 203
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "dataCategories",
+                    "references": [],
+                    "type": "String"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 19,
+                        "line": 204
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "searchCriteria",
+                    "references": [],
+                    "type": "String"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 19,
+                        "line": 205
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "operationType",
+                    "references": [],
+                    "type": "String"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 30,
+                        "line": 206
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "contactData",
+                    "references": [],
+                    "type": "Map"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 26,
+                        "line": 207
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "articleFeedback",
+                    "references": [],
+                    "type": "FeedBackDetails"
+                }
+            ],
+            "tableDeclaration": {
+                "annotations": [],
+                "location": {
+                    "column": 28,
+                    "line": 199
+                },
+                "modifiers": [
+                    "public",
+                    "with sharing"
+                ],
+                "name": "RequestItem",
+                "references": [],
+                "type": "RequestItem"
+            },
+            "variables": []
+        },
+        {
+            "constructors": [],
+            "externalReferences": [],
+            "id": null,
+            "innerClasses": [],
+            "interfaces": [],
+            "key": null,
+            "methods": [],
+            "name": "FeedBackDetails",
+            "namespace": null,
+            "parentClass": "",
+            "properties": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 18,
+                        "line": 212
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "isDeferred",
+                    "references": [],
+                    "type": "Boolean"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 17,
+                        "line": 213
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "sessionId",
+                    "references": [],
+                    "type": "String"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 17,
+                        "line": 214
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "feedbackComments",
+                    "references": [],
+                    "type": "String"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 17,
+                        "line": 215
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "searchString",
+                    "references": [],
+                    "type": "String"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 17,
+                        "line": 216
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "source",
+                    "references": [],
+                    "type": "String"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 17,
+                        "line": 217
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "kavId",
+                    "references": [],
+                    "type": "String"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 17,
+                        "line": 218
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "articleNumber",
+                    "references": [],
+                    "type": "String"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 17,
+                        "line": 219
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "title",
+                    "references": [],
+                    "type": "String"
+                }
+            ],
+            "tableDeclaration": {
+                "annotations": [],
+                "location": {
+                    "column": 29,
+                    "line": 210
+                },
+                "modifiers": [
+                    "public",
+                    "with sharing"
+                ],
+                "name": "FeedBackDetails",
+                "references": [],
+                "type": "FeedBackDetails"
+            },
+            "variables": []
+        },
+        {
+            "constructors": [],
+            "externalReferences": [],
+            "id": null,
+            "innerClasses": [],
+            "interfaces": [],
+            "key": null,
+            "methods": [],
+            "name": "ResponseItem",
+            "namespace": null,
+            "parentClass": "",
+            "properties": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 18,
+                        "line": 227
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "isSuccess",
+                    "references": [],
+                    "type": "Boolean"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 17,
+                        "line": 228
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "message",
+                    "references": [],
+                    "type": "String"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 17,
+                        "line": 229
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "responseBody",
+                    "references": [],
+                    "type": "String"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 17,
+                        "line": 230
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "caseId",
+                    "references": [],
+                    "type": "String"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 17,
+                        "line": 231
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "caseNumber",
+                    "references": [],
+                    "type": "String"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 30,
+                        "line": 232
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "contactDetails",
+                    "references": [],
+                    "type": "Map"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 44,
+                        "line": 233
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "articles",
+                    "references": [],
+                    "type": "LIST"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 30,
+                        "line": 234
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "filterDC",
+                    "references": [],
+                    "type": "Map"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 24,
+                        "line": 235
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "lang",
+                    "references": [],
+                    "type": "LIST"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 30,
+                        "line": 236
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "setup",
+                    "references": [],
+                    "type": "Map"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 24,
+                        "line": 237
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "articleData",
+                    "references": [],
+                    "type": "ArticleDetail"
+                }
+            ],
+            "tableDeclaration": {
+                "annotations": [],
+                "location": {
+                    "column": 29,
+                    "line": 226
+                },
+                "modifiers": [
+                    "public",
+                    "with sharing"
+                ],
+                "name": "ResponseItem",
+                "references": [],
+                "type": "ResponseItem"
+            },
+            "variables": []
+        },
+        {
+            "constructors": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 10,
+                        "line": 247
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "PKBDataCategory",
+                    "parameters": [
+                        {
+                            "name": "c",
+                            "type": "String"
+                        },
+                        {
+                            "name": "r",
+                            "type": "String"
+                        }
+                    ],
+                    "references": [],
+                    "type": null
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 10,
+                        "line": 252
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "PKBDataCategory",
+                    "parameters": [
+                        {
+                            "name": "c",
+                            "type": "String"
+                        },
+                        {
+                            "name": "r",
+                            "type": "String"
+                        },
+                        {
+                            "name": "l",
+                            "type": "String"
+                        }
+                    ],
+                    "references": [],
+                    "type": null
+                }
+            ],
+            "externalReferences": [],
+            "id": null,
+            "innerClasses": [],
+            "interfaces": [],
+            "key": null,
+            "methods": [],
+            "name": "PKBDataCategory",
+            "namespace": null,
+            "parentClass": "",
+            "properties": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 17,
+                        "line": 243
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "catName",
+                    "references": [],
+                    "type": "String"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 17,
+                        "line": 244
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "rootName",
+                    "references": [],
+                    "type": "String"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 17,
+                        "line": 245
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "catLabel",
+                    "references": [],
+                    "type": "String"
+                }
+            ],
+            "tableDeclaration": {
+                "annotations": [],
+                "location": {
+                    "column": 29,
+                    "line": 242
+                },
+                "modifiers": [
+                    "public",
+                    "with sharing"
+                ],
+                "name": "PKBDataCategory",
+                "references": [],
+                "type": "PKBDataCategory"
+            },
+            "variables": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 34,
+                        "line": 247
+                    },
+                    "modifiers": [],
+                    "name": "c",
+                    "references": [],
+                    "type": "String"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 44,
+                        "line": 247
+                    },
+                    "modifiers": [],
+                    "name": "r",
+                    "references": [],
+                    "type": "String"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 34,
+                        "line": 252
+                    },
+                    "modifiers": [],
+                    "name": "c",
+                    "references": [],
+                    "type": "String"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 44,
+                        "line": 252
+                    },
+                    "modifiers": [],
+                    "name": "r",
+                    "references": [],
+                    "type": "String"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 54,
+                        "line": 252
+                    },
+                    "modifiers": [],
+                    "name": "l",
+                    "references": [],
+                    "type": "String"
+                }
+            ]
+        },
+        {
+            "constructors": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 10,
+                        "line": 278
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "mobileKnowledgeArticleData",
+                    "parameters": [],
+                    "references": [],
+                    "type": null
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 10,
+                        "line": 281
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "mobileKnowledgeArticleData",
+                    "parameters": [
+                        {
+                            "name": "kav",
+                            "type": "KnowledgeArticleData"
+                        }
+                    ],
+                    "references": [],
+                    "type": null
+                }
+            ],
+            "externalReferences": [],
+            "id": null,
+            "innerClasses": [],
+            "interfaces": [],
+            "key": null,
+            "methods": [],
+            "name": "mobileKnowledgeArticleData",
+            "namespace": null,
+            "parentClass": "",
+            "properties": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 13,
+                        "line": 261
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "id",
+                    "references": [],
+                    "type": "Id"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 17,
+                        "line": 262
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "title",
+                    "references": [],
+                    "type": "String"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 17,
+                        "line": 263
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "summary",
+                    "references": [],
+                    "type": "String"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 17,
+                        "line": 264
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "urlName",
+                    "references": [],
+                    "type": "String"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 17,
+                        "line": 265
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "articleTypeName",
+                    "references": [],
+                    "type": "String"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 17,
+                        "line": 266
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "articleTypeLabel",
+                    "references": [],
+                    "type": "String"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 19,
+                        "line": 267
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "lastModifiedDate",
+                    "references": [],
+                    "type": "Datetime"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 19,
+                        "line": 268
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "firstPublishedDate",
+                    "references": [],
+                    "type": "Datetime"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 19,
+                        "line": 269
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "lastPublishedDate",
+                    "references": [],
+                    "type": "Datetime"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 17,
+                        "line": 270
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "articleNumber",
+                    "references": [],
+                    "type": "String"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 17,
+                        "line": 271
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "elapsed",
+                    "references": [],
+                    "type": "String"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 34,
+                        "line": 272
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "theAV",
+                    "references": [],
+                    "type": "KnowledgeArticleVersion"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 18,
+                        "line": 273
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "viewStat",
+                    "references": [],
+                    "type": "Integer"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 18,
+                        "line": 274
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "usefulStat",
+                    "references": [],
+                    "type": "Integer"
+                }
+            ],
+            "tableDeclaration": {
+                "annotations": [],
+                "location": {
+                    "column": 29,
+                    "line": 260
+                },
+                "modifiers": [
+                    "public",
+                    "with sharing"
+                ],
+                "name": "mobileKnowledgeArticleData",
+                "references": [],
+                "type": "mobileKnowledgeArticleData"
+            },
+            "variables": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 73,
+                        "line": 281
+                    },
+                    "modifiers": [],
+                    "name": "kav",
+                    "references": [],
+                    "type": "KnowledgeArticleData"
+                }
+            ]
+        },
+        {
+            "constructors": [],
+            "externalReferences": [],
+            "id": null,
+            "innerClasses": [],
+            "interfaces": [],
+            "key": null,
+            "methods": [],
+            "name": "ArticleDetail",
+            "namespace": null,
+            "parentClass": "",
+            "properties": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 13,
+                        "line": 296
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "id",
+                    "references": [],
+                    "type": "Id"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 17,
+                        "line": 297
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "title",
+                    "references": [],
+                    "type": "String"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 17,
+                        "line": 298
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "summary",
+                    "references": [],
+                    "type": "String"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 17,
+                        "line": 299
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "urlName",
+                    "references": [],
+                    "type": "String"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 17,
+                        "line": 300
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "articleTypeName",
+                    "references": [],
+                    "type": "String"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 17,
+                        "line": 301
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "articleTypeLabel",
+                    "references": [],
+                    "type": "String"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 19,
+                        "line": 302
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "lastModifiedDate",
+                    "references": [],
+                    "type": "Datetime"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 19,
+                        "line": 303
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "firstPublishedDate",
+                    "references": [],
+                    "type": "Datetime"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 19,
+                        "line": 304
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "lastPublishedDate",
+                    "references": [],
+                    "type": "Datetime"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 17,
+                        "line": 305
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "articleNumber",
+                    "references": [],
+                    "type": "String"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 17,
+                        "line": 306
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "elapsed",
+                    "references": [],
+                    "type": "String"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 18,
+                        "line": 307
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "feedbackGiven",
+                    "references": [],
+                    "type": "Boolean"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 17,
+                        "line": 308
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "fieldValues",
+                    "references": [],
+                    "type": "Object"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 18,
+                        "line": 309
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "viewStat",
+                    "references": [],
+                    "type": "Integer"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 18,
+                        "line": 310
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "usefulStat",
+                    "references": [],
+                    "type": "Integer"
+                }
+            ],
+            "tableDeclaration": {
+                "annotations": [],
+                "location": {
+                    "column": 29,
+                    "line": 295
+                },
+                "modifiers": [
+                    "public",
+                    "with sharing"
+                ],
+                "name": "ArticleDetail",
+                "references": [],
+                "type": "ArticleDetail"
+            },
+            "variables": []
+        }
+    ],
+    "interfaces": [],
+    "key": "01p3600000GcRTxAAN",
+    "methods": [
+        {
+            "annotations": [
+                {
+                    "name": "RemoteAction"
+                }
+            ],
+            "location": {
+                "column": 23,
+                "line": 70
+            },
+            "modifiers": [
+                "static",
+                "global"
+            ],
+            "name": "postBlobContent",
+            "parameters": [
+                {
+                    "name": "pId",
+                    "type": "String"
+                },
+                {
+                    "name": "aId",
+                    "type": "String"
+                },
+                {
+                    "name": "fileName",
+                    "type": "String"
+                },
+                {
+                    "name": "contentType",
+                    "type": "String"
+                },
+                {
+                    "name": "base64BlobValue",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "RemoteAction"
+                }
+            ],
+            "location": {
+                "column": 23,
+                "line": 120
+            },
+            "modifiers": [
+                "static",
+                "global"
+            ],
+            "name": "getPhoneCallAvailable",
+            "parameters": [],
+            "references": [],
+            "returnType": "Object",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "RemoteAction"
+                }
+            ],
+            "location": {
+                "column": 24,
+                "line": 125
+            },
+            "modifiers": [
+                "static",
+                "global"
+            ],
+            "name": "getRemoteAction",
+            "parameters": [
+                {
+                    "name": "requestJson",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 317
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "notifyAdmin",
+            "parameters": [
+                {
+                    "name": "e",
+                    "type": "Exception"
+                },
+                {
+                    "name": "introMessage",
+                    "type": "String"
+                },
+                {
+                    "name": "adminEmail",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "pkb_mobile_proxy",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 21
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "articlesPerPage",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 22
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "selectedCategory",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 23
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "urlSearchQuery",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 24
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "selectedLanguage",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 25
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "categories",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 26
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "languages",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 27
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "currPage",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 28
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "langMap",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 30
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "sessionId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 3
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "DEFAULT_LANGUAGE",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 4
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "COOKIE_SESSION_NAME",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 5
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "COOKIE_CONTACT_NAME",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 7
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "validOperations",
+            "references": [],
+            "type": "Set"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 28,
+            "line": 1
+        },
+        "modifiers": [
+            "global",
+            "with sharing"
+        ],
+        "name": "pkb_mobile_proxy",
+        "references": [],
+        "type": "pkb_mobile_proxy"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 34
+            },
+            "modifiers": [],
+            "name": "p",
+            "references": [],
+            "type": "pkb_Controller"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 11,
+                "line": 35
+            },
+            "modifiers": [],
+            "name": "cSetting",
+            "references": [],
+            "type": "PKB__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 11,
+                "line": 52
+            },
+            "modifiers": [],
+            "name": "sessionCookie",
+            "references": [],
+            "type": "Cookie"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 46,
+                "line": 70
+            },
+            "modifiers": [],
+            "name": "pId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 58,
+                "line": 70
+            },
+            "modifiers": [],
+            "name": "aId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 70,
+                "line": 70
+            },
+            "modifiers": [],
+            "name": "fileName",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 87,
+                "line": 70
+            },
+            "modifiers": [],
+            "name": "contentType",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 107,
+                "line": 70
+            },
+            "modifiers": [],
+            "name": "base64BlobValue",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 7,
+                "line": 79
+            },
+            "modifiers": [],
+            "name": "parentId",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 7,
+                "line": 80
+            },
+            "modifiers": [],
+            "name": "attachmentId",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 83
+            },
+            "modifiers": [],
+            "name": "att",
+            "references": [],
+            "type": "Attachment"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 103
+            },
+            "modifiers": [],
+            "name": "atm",
+            "references": [],
+            "type": "Attachment"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 47,
+                "line": 125
+            },
+            "modifiers": [],
+            "name": "requestJson",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 127
+            },
+            "modifiers": [],
+            "name": "theSC2",
+            "references": [],
+            "type": "StandardController"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 128
+            },
+            "modifiers": [],
+            "name": "thisResponseItem",
+            "references": [],
+            "type": "ResponseItem"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 15,
+                "line": 129
+            },
+            "modifiers": [],
+            "name": "thisRequestItem",
+            "references": [],
+            "type": "RequestItem"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 130
+            },
+            "modifiers": [],
+            "name": "opType",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 15,
+                "line": 133
+            },
+            "modifiers": [],
+            "name": "parser",
+            "references": [],
+            "type": "JSONParser"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 9,
+                "line": 134
+            },
+            "modifiers": [],
+            "name": "requestItemType",
+            "references": [],
+            "type": "Type"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 43,
+                "line": 317
+            },
+            "modifiers": [],
+            "name": "e",
+            "references": [],
+            "type": "Exception"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 53,
+                "line": 317
+            },
+            "modifiers": [],
+            "name": "introMessage",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 74,
+                "line": 317
+            },
+            "modifiers": [],
+            "name": "adminEmail",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 318
+            },
+            "modifiers": [],
+            "name": "body",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 319
+            },
+            "modifiers": [],
+            "name": "msg",
+            "references": [],
+            "type": "SingleEmailMessage"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 320
+            },
+            "modifiers": [],
+            "name": "debug",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 36,
+                "line": 336
+            },
+            "modifiers": [],
+            "name": "results",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 337
+            },
+            "modifiers": [],
+            "name": "success",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 338
+            },
+            "modifiers": [],
+            "name": "i",
+            "references": [],
+            "type": "Integer"
+        }
+    ]
+}

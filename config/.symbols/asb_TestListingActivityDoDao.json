@@ -1,0 +1,176 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRa3AAF",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRa3AAF",
+    "methods": [
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 32,
+                "line": 9
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "testMethod"
+            ],
+            "name": "testListingActivities",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "asb_TestListingActivityDoDao",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [
+            {
+                "name": "IsTest"
+            }
+        ],
+        "location": {
+            "column": 15,
+            "line": 7
+        },
+        "modifiers": [
+            "private",
+            "testMethod"
+        ],
+        "name": "asb_TestListingActivityDoDao",
+        "references": [],
+        "type": "asb_TestListingActivityDoDao"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 10
+            },
+            "modifiers": [],
+            "name": "cpi",
+            "references": [],
+            "type": "asb_ChartPeriodIterator"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 11
+            },
+            "modifiers": [],
+            "name": "listing",
+            "references": [],
+            "type": "asb_ListingDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 12
+            },
+            "modifiers": [],
+            "name": "doc",
+            "references": [],
+            "type": "asb_ListingAssetDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 12
+            },
+            "modifiers": [],
+            "name": "video",
+            "references": [],
+            "type": "asb_ListingAssetDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 37,
+                "line": 12
+            },
+            "modifiers": [],
+            "name": "screenshot",
+            "references": [],
+            "type": "asb_ListingAssetDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 13
+            },
+            "modifiers": [],
+            "name": "app",
+            "references": [],
+            "type": "asb_AppDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 13,
+                "line": 14
+            },
+            "modifiers": [],
+            "name": "chartJSON",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 15
+            },
+            "modifiers": [],
+            "name": "chartData",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 11,
+                "line": 16
+            },
+            "modifiers": [],
+            "name": "dateToday",
+            "references": [],
+            "type": "Date"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 34
+            },
+            "modifiers": [],
+            "name": "la",
+            "references": [],
+            "type": "asb_ListingActivityDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 107
+            },
+            "modifiers": [],
+            "name": "laObj",
+            "references": [],
+            "type": "asb_ListingActivity__c"
+        }
+    ]
+}

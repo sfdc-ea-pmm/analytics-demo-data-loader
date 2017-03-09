@@ -1,0 +1,216 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRXfAAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRXfAAN",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 8
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "createAttachment",
+            "parameters": [
+                {
+                    "name": "parentId",
+                    "type": "Id"
+                },
+                {
+                    "name": "attachmentBlob",
+                    "type": "Blob"
+                },
+                {
+                    "name": "attachmentName",
+                    "type": "String"
+                },
+                {
+                    "name": "contentType",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "Attachment",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 20
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "updateAttachment",
+            "parameters": [
+                {
+                    "name": "attachmentId",
+                    "type": "Id"
+                },
+                {
+                    "name": "attachmentBlob",
+                    "type": "Blob"
+                },
+                {
+                    "name": "attachmentName",
+                    "type": "String"
+                },
+                {
+                    "name": "contentType",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "Attachment",
+            "type": null
+        }
+    ],
+    "name": "asb_AttachmentUtil",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 6
+        },
+        "modifiers": [
+            "public"
+        ],
+        "name": "asb_AttachmentUtil",
+        "references": [],
+        "type": "asb_AttachmentUtil"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 47,
+                "line": 8
+            },
+            "modifiers": [],
+            "name": "parentId",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 62,
+                "line": 8
+            },
+            "modifiers": [],
+            "name": "attachmentBlob",
+            "references": [],
+            "type": "Blob"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 85,
+                "line": 8
+            },
+            "modifiers": [],
+            "name": "attachmentName",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 108,
+                "line": 8
+            },
+            "modifiers": [],
+            "name": "contentType",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 9
+            },
+            "modifiers": [],
+            "name": "a",
+            "references": [],
+            "type": "Attachment"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 47,
+                "line": 20
+            },
+            "modifiers": [],
+            "name": "attachmentId",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 66,
+                "line": 20
+            },
+            "modifiers": [],
+            "name": "attachmentBlob",
+            "references": [],
+            "type": "Blob"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 89,
+                "line": 20
+            },
+            "modifiers": [],
+            "name": "attachmentName",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 112,
+                "line": 20
+            },
+            "modifiers": [],
+            "name": "contentType",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 21
+            },
+            "modifiers": [],
+            "name": "attachments",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 24
+            },
+            "modifiers": [],
+            "name": "a",
+            "references": [],
+            "type": "Attachment"
+        }
+    ]
+}

@@ -1,0 +1,699 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 9,
+                "line": 17
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "pkb_SiteMap",
+            "parameters": [],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000GcRUGAA3",
+    "innerClasses": [
+        {
+            "constructors": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 10,
+                        "line": 135
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "KAWrapper",
+                    "parameters": [
+                        {
+                            "name": "ka",
+                            "type": "SObject"
+                        }
+                    ],
+                    "references": [],
+                    "type": null
+                }
+            ],
+            "externalReferences": [],
+            "id": null,
+            "innerClasses": [],
+            "interfaces": [],
+            "key": null,
+            "methods": [],
+            "name": "KAWrapper",
+            "namespace": null,
+            "parentClass": "",
+            "properties": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 13,
+                        "line": 128
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "id",
+                    "references": [],
+                    "type": "Id"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 13,
+                        "line": 129
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "knowledgearticleid",
+                    "references": [],
+                    "type": "Id"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 17,
+                        "line": 130
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "lastpublisheddate",
+                    "references": [],
+                    "type": "String"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 17,
+                        "line": 131
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "aType",
+                    "references": [],
+                    "type": "String"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 17,
+                        "line": 132
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "UrlName",
+                    "references": [],
+                    "type": "String"
+                }
+            ],
+            "tableDeclaration": {
+                "annotations": [],
+                "location": {
+                    "column": 29,
+                    "line": 127
+                },
+                "modifiers": [
+                    "public",
+                    "with sharing"
+                ],
+                "name": "KAWrapper",
+                "references": [],
+                "type": "KAWrapper"
+            },
+            "variables": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 28,
+                        "line": 135
+                    },
+                    "modifiers": [],
+                    "name": "ka",
+                    "references": [],
+                    "type": "SObject"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 13,
+                        "line": 137
+                    },
+                    "modifiers": [],
+                    "name": "aux",
+                    "references": [],
+                    "type": "Datetime"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 23,
+                        "line": 146
+                    },
+                    "modifiers": [],
+                    "name": "token",
+                    "references": [],
+                    "type": "SObjectType"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 33,
+                        "line": 149
+                    },
+                    "modifiers": [],
+                    "name": "dr",
+                    "references": [],
+                    "type": "DescribeSObjectResult"
+                }
+            ]
+        },
+        {
+            "constructors": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 10,
+                        "line": 161
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "SMWrapper",
+                    "parameters": [
+                        {
+                            "name": "l",
+                            "type": "String"
+                        },
+                        {
+                            "name": "o",
+                            "type": "Integer"
+                        }
+                    ],
+                    "references": [],
+                    "type": null
+                }
+            ],
+            "externalReferences": [],
+            "id": null,
+            "innerClasses": [],
+            "interfaces": [],
+            "key": null,
+            "methods": [],
+            "name": "SMWrapper",
+            "namespace": null,
+            "parentClass": "",
+            "properties": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 18,
+                        "line": 157
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "offset",
+                    "references": [],
+                    "type": "Integer"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 17,
+                        "line": 158
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "lastModDate",
+                    "references": [],
+                    "type": "String"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 17,
+                        "line": 159
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "lang",
+                    "references": [],
+                    "type": "String"
+                }
+            ],
+            "tableDeclaration": {
+                "annotations": [],
+                "location": {
+                    "column": 29,
+                    "line": 156
+                },
+                "modifiers": [
+                    "public",
+                    "with sharing"
+                ],
+                "name": "SMWrapper",
+                "references": [],
+                "type": "SMWrapper"
+            },
+            "variables": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 27,
+                        "line": 161
+                    },
+                    "modifiers": [],
+                    "name": "l",
+                    "references": [],
+                    "type": "String"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 39,
+                        "line": 161
+                    },
+                    "modifiers": [],
+                    "name": "o",
+                    "references": [],
+                    "type": "Integer"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 13,
+                        "line": 163
+                    },
+                    "modifiers": [],
+                    "name": "aux",
+                    "references": [],
+                    "type": "Datetime"
+                }
+            ]
+        }
+    ],
+    "interfaces": [],
+    "key": "01p3600000GcRUGAA3",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 15,
+                "line": 40
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "init",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 71
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getDocumentationList",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 91
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getSiteMapsList",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 106
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getSiteMapsList",
+            "parameters": [
+                {
+                    "name": "lang",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        }
+    ],
+    "name": "pkb_SiteMap",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 5
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "availableArticleTypes",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 9
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "availableLanguages",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 14
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "lang",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 15
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "offset",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 55
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "siteUrl",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 11
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "MAX_ARTICLES",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 12
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "DEFAULT_PUBLISH_STATUS",
+            "references": [],
+            "type": "String"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 27,
+            "line": 1
+        },
+        "modifiers": [
+            "public",
+            "with sharing"
+        ],
+        "name": "pkb_SiteMap",
+        "references": [],
+        "type": "pkb_SiteMap"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 22
+            },
+            "modifiers": [],
+            "name": "tmpOffset",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 43
+            },
+            "modifiers": [],
+            "name": "a",
+            "references": [],
+            "type": "PicklistEntry"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 48
+            },
+            "modifiers": [],
+            "name": "a",
+            "references": [],
+            "type": "PicklistEntry"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 11,
+                "line": 57
+            },
+            "modifiers": [],
+            "name": "surl",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 60
+            },
+            "modifiers": [],
+            "name": "pref",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 73
+            },
+            "modifiers": [],
+            "name": "results",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 11,
+                "line": 75
+            },
+            "modifiers": [],
+            "name": "offs",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 76
+            },
+            "modifiers": [],
+            "name": "qry",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 84
+            },
+            "modifiers": [],
+            "name": "iK",
+            "references": [],
+            "type": "SObject"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 93
+            },
+            "modifiers": [],
+            "name": "results",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 94
+            },
+            "modifiers": [],
+            "name": "tmp",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 15,
+                "line": 95
+            },
+            "modifiers": [],
+            "name": "l",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 48,
+                "line": 106
+            },
+            "modifiers": [],
+            "name": "lang",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 108
+            },
+            "modifiers": [],
+            "name": "results",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 109
+            },
+            "modifiers": [],
+            "name": "q",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 11,
+                "line": 114
+            },
+            "modifiers": [],
+            "name": "max",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 8,
+                "line": 115
+            },
+            "modifiers": [],
+            "name": "l",
+            "references": [],
+            "type": "Long"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 116
+            },
+            "modifiers": [],
+            "name": "numPages",
+            "references": [],
+            "type": "Double"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 121
+            },
+            "modifiers": [],
+            "name": "i",
+            "references": [],
+            "type": "Integer"
+        }
+    ]
+}

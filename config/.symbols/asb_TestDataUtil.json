@@ -1,0 +1,1100 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRZtAAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRZtAAN",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 12
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "createStore",
+            "parameters": [],
+            "references": [],
+            "returnType": "asb_Store__c",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 15
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "createStore",
+            "parameters": [
+                {
+                    "name": "status",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "asb_Store__c",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 27
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "createUser",
+            "parameters": [
+                {
+                    "name": "name",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "User",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 54
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "testExplicitlySetFields",
+            "parameters": [
+                {
+                    "name": "obj1",
+                    "type": "asb_BaseData"
+                },
+                {
+                    "name": "obj2",
+                    "type": "asb_BaseData"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 73
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "testExplicitlySetFields",
+            "parameters": [
+                {
+                    "name": "obj1",
+                    "type": "asb_BaseData"
+                },
+                {
+                    "name": "userId",
+                    "type": "Id"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 35,
+                "line": 87
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "createApps",
+            "parameters": [
+                {
+                    "name": "storeObj",
+                    "type": "asb_Store__c"
+                },
+                {
+                    "name": "appCount",
+                    "type": "Integer"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 97
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "createApp",
+            "parameters": [
+                {
+                    "name": "storeObj",
+                    "type": "asb_Store__c"
+                }
+            ],
+            "references": [],
+            "returnType": "asb_AppDO",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 103
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "createAppInMemory",
+            "parameters": [
+                {
+                    "name": "storeObj",
+                    "type": "asb_Store__c"
+                }
+            ],
+            "references": [],
+            "returnType": "asb_AppDO",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 34,
+                "line": 118
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "createListingObject",
+            "parameters": [
+                {
+                    "name": "app",
+                    "type": "asb_AppDO"
+                },
+                {
+                    "name": "uniqueName",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "asb_Listing__c",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 34,
+                "line": 122
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "createListingObject",
+            "parameters": [
+                {
+                    "name": "app",
+                    "type": "asb_AppDO"
+                },
+                {
+                    "name": "uniqueName",
+                    "type": "String"
+                },
+                {
+                    "name": "status",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "asb_Listing__c",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 139
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "createListings",
+            "parameters": [
+                {
+                    "name": "numListings",
+                    "type": "Integer"
+                },
+                {
+                    "name": "StoreStatus",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 157
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "createListings",
+            "parameters": [
+                {
+                    "name": "numListings",
+                    "type": "Integer"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 161
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "createListing",
+            "parameters": [
+                {
+                    "name": "uniqueName",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "asb_ListingDO",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 165
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "createListing",
+            "parameters": [
+                {
+                    "name": "app",
+                    "type": "asb_AppDO"
+                },
+                {
+                    "name": "uniqueName",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "asb_ListingDO",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 169
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "createListing",
+            "parameters": [
+                {
+                    "name": "app",
+                    "type": "asb_AppDO"
+                },
+                {
+                    "name": "uniqueName",
+                    "type": "String"
+                },
+                {
+                    "name": "status",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "asb_ListingDO",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 38,
+                "line": 185
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "createListingAsset",
+            "parameters": [
+                {
+                    "name": "listingId",
+                    "type": "String"
+                },
+                {
+                    "name": "assetType",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "asb_ListingAssetDO",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 38,
+                "line": 195
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "createDocumentAsset",
+            "parameters": [
+                {
+                    "name": "listing",
+                    "type": "asb_ListingDO"
+                }
+            ],
+            "references": [],
+            "returnType": "asb_ListingAssetDO",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 38,
+                "line": 208
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "createVideoAsset",
+            "parameters": [
+                {
+                    "name": "listing",
+                    "type": "asb_ListingDO"
+                }
+            ],
+            "references": [],
+            "returnType": "asb_ListingAssetDO",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 38,
+                "line": 220
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "createImageAsset",
+            "parameters": [
+                {
+                    "name": "listing",
+                    "type": "asb_ListingDO"
+                }
+            ],
+            "references": [],
+            "returnType": "asb_ListingAssetDO",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 34,
+                "line": 231
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "createStoreLogo",
+            "parameters": [],
+            "references": [],
+            "returnType": "asb_DocumentDO",
+            "type": null
+        }
+    ],
+    "name": "asb_TestDataUtil",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 9
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "ctr",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 10
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "ado",
+            "references": [],
+            "type": "asb_AppDO"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [
+            {
+                "name": "IsTest"
+            }
+        ],
+        "location": {
+            "column": 14,
+            "line": 7
+        },
+        "modifiers": [
+            "public",
+            "testMethod"
+        ],
+        "name": "asb_TestDataUtil",
+        "references": [],
+        "type": "asb_TestDataUtil"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 48,
+                "line": 15
+            },
+            "modifiers": [],
+            "name": "status",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 17
+            },
+            "modifiers": [],
+            "name": "s",
+            "references": [],
+            "type": "asb_Store__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 42,
+                "line": 27
+            },
+            "modifiers": [],
+            "name": "name",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 11,
+                "line": 29
+            },
+            "modifiers": [],
+            "name": "p",
+            "references": [],
+            "type": "Profile"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 32
+            },
+            "modifiers": [],
+            "name": "u",
+            "references": [],
+            "type": "User"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 59,
+                "line": 54
+            },
+            "modifiers": [],
+            "name": "obj1",
+            "references": [],
+            "type": "asb_BaseData"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 78,
+                "line": 54
+            },
+            "modifiers": [],
+            "name": "obj2",
+            "references": [],
+            "type": "asb_BaseData"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 8,
+                "line": 55
+            },
+            "modifiers": [],
+            "name": "todayDate",
+            "references": [],
+            "type": "Date"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 59,
+                "line": 73
+            },
+            "modifiers": [],
+            "name": "obj1",
+            "references": [],
+            "type": "asb_BaseData"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 68,
+                "line": 73
+            },
+            "modifiers": [],
+            "name": "userId",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 8,
+                "line": 74
+            },
+            "modifiers": [],
+            "name": "todayDate",
+            "references": [],
+            "type": "Date"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 59,
+                "line": 87
+            },
+            "modifiers": [],
+            "name": "storeObj",
+            "references": [],
+            "type": "asb_Store__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 77,
+                "line": 87
+            },
+            "modifiers": [],
+            "name": "appCount",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 88
+            },
+            "modifiers": [],
+            "name": "apps",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 90
+            },
+            "modifiers": [],
+            "name": "cnt",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 52,
+                "line": 97
+            },
+            "modifiers": [],
+            "name": "storeObj",
+            "references": [],
+            "type": "asb_Store__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 60,
+                "line": 103
+            },
+            "modifiers": [],
+            "name": "storeObj",
+            "references": [],
+            "type": "asb_Store__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 109
+            },
+            "modifiers": [],
+            "name": "values",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 64,
+                "line": 118
+            },
+            "modifiers": [],
+            "name": "app",
+            "references": [],
+            "type": "asb_AppDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 76,
+                "line": 118
+            },
+            "modifiers": [],
+            "name": "uniqueName",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 64,
+                "line": 122
+            },
+            "modifiers": [],
+            "name": "app",
+            "references": [],
+            "type": "asb_AppDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 76,
+                "line": 122
+            },
+            "modifiers": [],
+            "name": "uniqueName",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 95,
+                "line": 122
+            },
+            "modifiers": [],
+            "name": "status",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 124
+            },
+            "modifiers": [],
+            "name": "listing",
+            "references": [],
+            "type": "asb_Listing__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 47,
+                "line": 139
+            },
+            "modifiers": [],
+            "name": "numListings",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 67,
+                "line": 139
+            },
+            "modifiers": [],
+            "name": "StoreStatus",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 140
+            },
+            "modifiers": [],
+            "name": "listings",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 141
+            },
+            "modifiers": [],
+            "name": "store",
+            "references": [],
+            "type": "asb_Store__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 143
+            },
+            "modifiers": [],
+            "name": "apps",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 145
+            },
+            "modifiers": [],
+            "name": "i",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 146
+            },
+            "modifiers": [],
+            "name": "app",
+            "references": [],
+            "type": "asb_AppDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 151
+            },
+            "modifiers": [],
+            "name": "i",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 47,
+                "line": 157
+            },
+            "modifiers": [],
+            "name": "numListings",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 54,
+                "line": 161
+            },
+            "modifiers": [],
+            "name": "uniqueName",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 57,
+                "line": 165
+            },
+            "modifiers": [],
+            "name": "app",
+            "references": [],
+            "type": "asb_AppDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 69,
+                "line": 165
+            },
+            "modifiers": [],
+            "name": "uniqueName",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 57,
+                "line": 169
+            },
+            "modifiers": [],
+            "name": "app",
+            "references": [],
+            "type": "asb_AppDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 69,
+                "line": 169
+            },
+            "modifiers": [],
+            "name": "uniqueName",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 88,
+                "line": 169
+            },
+            "modifiers": [],
+            "name": "status",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 170
+            },
+            "modifiers": [],
+            "name": "listing",
+            "references": [],
+            "type": "asb_Listing__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 171
+            },
+            "modifiers": [],
+            "name": "listingDO",
+            "references": [],
+            "type": "asb_ListingDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 175
+            },
+            "modifiers": [],
+            "name": "banner",
+            "references": [],
+            "type": "Attachment"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 64,
+                "line": 185
+            },
+            "modifiers": [],
+            "name": "listingId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 82,
+                "line": 185
+            },
+            "modifiers": [],
+            "name": "assetType",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 186
+            },
+            "modifiers": [],
+            "name": "la",
+            "references": [],
+            "type": "asb_ListingAssetDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 72,
+                "line": 195
+            },
+            "modifiers": [],
+            "name": "listing",
+            "references": [],
+            "type": "asb_ListingDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 37,
+                "line": 196
+            },
+            "modifiers": [],
+            "name": "doc",
+            "references": [],
+            "type": "Document"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 69,
+                "line": 208
+            },
+            "modifiers": [],
+            "name": "listing",
+            "references": [],
+            "type": "asb_ListingDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 34,
+                "line": 209
+            },
+            "modifiers": [],
+            "name": "video",
+            "references": [],
+            "type": "Video"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 69,
+                "line": 220
+            },
+            "modifiers": [],
+            "name": "listing",
+            "references": [],
+            "type": "asb_ListingDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 34,
+                "line": 221
+            },
+            "modifiers": [],
+            "name": "image",
+            "references": [],
+            "type": "Image"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 13,
+                "line": 232
+            },
+            "modifiers": [],
+            "name": "storeDocsFolder",
+            "references": [],
+            "type": "Folder"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 235
+            },
+            "modifiers": [],
+            "name": "doc",
+            "references": [],
+            "type": "asb_DocumentDO"
+        }
+    ]
+}

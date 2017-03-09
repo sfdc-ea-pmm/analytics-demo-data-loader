@@ -1,0 +1,306 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRXWAA3",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRXWAA3",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 13
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getIsDuplicate",
+            "parameters": [
+                {
+                    "name": "listingId",
+                    "type": "Id"
+                },
+                {
+                    "name": "listingAssetId",
+                    "type": "Id"
+                },
+                {
+                    "name": "recordType",
+                    "type": "Id"
+                }
+            ],
+            "references": [],
+            "returnType": "Boolean",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 38,
+                "line": 29
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getListingActivity",
+            "parameters": [
+                {
+                    "name": "listingId",
+                    "type": "Id"
+                },
+                {
+                    "name": "recordType",
+                    "type": "Id"
+                }
+            ],
+            "references": [],
+            "returnType": "asb_ListingActivityDO",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 36,
+                "line": 43
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getListingActivityChartData",
+            "parameters": [
+                {
+                    "name": "recordType",
+                    "type": "Id"
+                },
+                {
+                    "name": "cpi",
+                    "type": "asb_ChartPeriodIterator"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        }
+    ],
+    "name": "asb_ListingActivityDAO",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 6
+        },
+        "modifiers": [
+            "public"
+        ],
+        "name": "asb_ListingActivityDAO",
+        "references": [],
+        "type": "asb_ListingActivityDAO"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 42,
+                "line": 13
+            },
+            "modifiers": [],
+            "name": "listingId",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 56,
+                "line": 13
+            },
+            "modifiers": [],
+            "name": "listingAssetId",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 75,
+                "line": 13
+            },
+            "modifiers": [],
+            "name": "recordType",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 11,
+                "line": 14
+            },
+            "modifiers": [],
+            "name": "count",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 60,
+                "line": 29
+            },
+            "modifiers": [],
+            "name": "listingId",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 74,
+                "line": 29
+            },
+            "modifiers": [],
+            "name": "recordType",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 30
+            },
+            "modifiers": [],
+            "name": "listingActivities",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 67,
+                "line": 43
+            },
+            "modifiers": [],
+            "name": "recordType",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 103,
+                "line": 43
+            },
+            "modifiers": [],
+            "name": "cpi",
+            "references": [],
+            "type": "asb_ChartPeriodIterator"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 8,
+                "line": 44
+            },
+            "modifiers": [],
+            "name": "activityDate",
+            "references": [],
+            "type": "Date"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 45
+            },
+            "modifiers": [],
+            "name": "datesToSort",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 46
+            },
+            "modifiers": [],
+            "name": "listingActivityChartData",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 47
+            },
+            "modifiers": [],
+            "name": "groupByClause",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 49
+            },
+            "modifiers": [],
+            "name": "query",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 60
+            },
+            "modifiers": [],
+            "name": "results",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 61
+            },
+            "modifiers": [],
+            "name": "allDataPoints",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 63
+            },
+            "modifiers": [],
+            "name": "result",
+            "references": [],
+            "type": "AggregateResult"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 13,
+                "line": 77
+            },
+            "modifiers": [],
+            "name": "sortedDate",
+            "references": [],
+            "type": "Date"
+        }
+    ]
+}

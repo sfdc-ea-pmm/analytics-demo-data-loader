@@ -1,0 +1,733 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 41
+            },
+            "modifiers": [
+                "protected"
+            ],
+            "name": "asb_ListingActivityDO",
+            "parameters": [
+                {
+                    "name": "listingId",
+                    "type": "Id"
+                },
+                {
+                    "name": "recordType",
+                    "type": "Id"
+                }
+            ],
+            "references": [],
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 45
+            },
+            "modifiers": [
+                "protected"
+            ],
+            "name": "asb_ListingActivityDO",
+            "parameters": [
+                {
+                    "name": "listingId",
+                    "type": "Id"
+                },
+                {
+                    "name": "listingAssetId",
+                    "type": "Id"
+                },
+                {
+                    "name": "recordType",
+                    "type": "Id"
+                }
+            ],
+            "references": [],
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 9,
+                "line": 53
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "asb_ListingActivityDO",
+            "parameters": [
+                {
+                    "name": "la",
+                    "type": "asb_ListingActivity__c"
+                }
+            ],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000GcRY0AAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRY0AAN",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 15,
+                "line": 57
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "init",
+            "parameters": [
+                {
+                    "name": "la",
+                    "type": "asb_ListingActivity__c"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 74
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getListingId",
+            "parameters": [],
+            "references": [],
+            "returnType": "Id",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 78
+            },
+            "modifiers": [
+                "protected"
+            ],
+            "name": "setListingId",
+            "parameters": [
+                {
+                    "name": "listingId",
+                    "type": "Id"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 82
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getListingAssetId",
+            "parameters": [],
+            "references": [],
+            "returnType": "Id",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 86
+            },
+            "modifiers": [
+                "protected"
+            ],
+            "name": "setListingAssetId",
+            "parameters": [
+                {
+                    "name": "listingAssetId",
+                    "type": "Id"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 90
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getIsDuplicate",
+            "parameters": [],
+            "references": [],
+            "returnType": "Boolean",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 94
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "setIsDuplicate",
+            "parameters": [
+                {
+                    "name": "isDuplicate",
+                    "type": "Boolean"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 98
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getRecordType",
+            "parameters": [],
+            "references": [],
+            "returnType": "Id",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 102
+            },
+            "modifiers": [
+                "protected"
+            ],
+            "name": "setRecordType",
+            "parameters": [
+                {
+                    "name": "recordType",
+                    "type": "Id"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 106
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getAssetType",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 110
+            },
+            "modifiers": [
+                "public",
+                "override"
+            ],
+            "name": "remove",
+            "parameters": [],
+            "references": [],
+            "returnType": "Boolean",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 114
+            },
+            "modifiers": [
+                "public",
+                "override"
+            ],
+            "name": "getCreatedById",
+            "parameters": [],
+            "references": [],
+            "returnType": "Id",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 118
+            },
+            "modifiers": [
+                "public",
+                "override"
+            ],
+            "name": "getLastModifiedById",
+            "parameters": [],
+            "references": [],
+            "returnType": "Id",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 122
+            },
+            "modifiers": [
+                "public",
+                "override"
+            ],
+            "name": "getCreatedDate",
+            "parameters": [],
+            "references": [],
+            "returnType": "Datetime",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 126
+            },
+            "modifiers": [
+                "public",
+                "override"
+            ],
+            "name": "getLastModifiedDate",
+            "parameters": [],
+            "references": [],
+            "returnType": "Datetime",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 25
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getRecordTypeId",
+            "parameters": [
+                {
+                    "name": "recordType",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "Id",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 29
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getPageViewRecordTypeId",
+            "parameters": [],
+            "references": [],
+            "returnType": "Id",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 32
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getInstallRecordTypeId",
+            "parameters": [],
+            "references": [],
+            "returnType": "Id",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 35
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getAssetViewRecordTypeId",
+            "parameters": [],
+            "references": [],
+            "returnType": "Id",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 38,
+                "line": 62
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "create",
+            "parameters": [
+                {
+                    "name": "la",
+                    "type": "asb_ListingActivity__c"
+                }
+            ],
+            "references": [],
+            "returnType": "asb_ListingActivityDO",
+            "type": null
+        }
+    ],
+    "name": "asb_ListingActivityDO",
+    "namespace": null,
+    "parentClass": "asb_BaseData",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 35,
+                "line": 39
+            },
+            "modifiers": [
+                "protected"
+            ],
+            "name": "laObj",
+            "references": [],
+            "type": "asb_ListingActivity__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 8
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "final"
+            ],
+            "name": "SOBJECT_NAME",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 10
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "final"
+            ],
+            "name": "REQUEST_ACCESS_PENDING",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 11
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "final"
+            ],
+            "name": "REQUEST_ACCESS_APPROVED",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 12
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "final"
+            ],
+            "name": "REQUEST_ACCESS_REJECTED",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 14
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "final"
+            ],
+            "name": "RECORD_TYPE_PAGE_VIEW",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 15
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "final"
+            ],
+            "name": "RECORD_TYPE_INSTALL",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 16
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "final"
+            ],
+            "name": "RECORD_TYPE_ASSET_VIEW",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 39,
+                "line": 18
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "final"
+            ],
+            "name": "recordTypeMap",
+            "references": [],
+            "type": "Map"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 22,
+            "line": 6
+        },
+        "modifiers": [
+            "virtual",
+            "public"
+        ],
+        "name": "asb_ListingActivityDO",
+        "references": [],
+        "type": "asb_ListingActivityDO"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 37,
+                "line": 41
+            },
+            "modifiers": [],
+            "name": "listingId",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 51,
+                "line": 41
+            },
+            "modifiers": [],
+            "name": "recordType",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 37,
+                "line": 45
+            },
+            "modifiers": [],
+            "name": "listingId",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 51,
+                "line": 45
+            },
+            "modifiers": [],
+            "name": "listingAssetId",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 70,
+                "line": 45
+            },
+            "modifiers": [],
+            "name": "recordType",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 54,
+                "line": 53
+            },
+            "modifiers": [],
+            "name": "la",
+            "references": [],
+            "type": "asb_ListingActivity__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 43,
+                "line": 57
+            },
+            "modifiers": [],
+            "name": "la",
+            "references": [],
+            "type": "asb_ListingActivity__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 78
+            },
+            "modifiers": [],
+            "name": "listingId",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 38,
+                "line": 86
+            },
+            "modifiers": [],
+            "name": "listingAssetId",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 37,
+                "line": 94
+            },
+            "modifiers": [],
+            "name": "isDuplicate",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 34,
+                "line": 102
+            },
+            "modifiers": [],
+            "name": "recordType",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 20
+            },
+            "modifiers": [],
+            "name": "rt",
+            "references": [],
+            "type": "RecordType"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 42,
+                "line": 25
+            },
+            "modifiers": [],
+            "name": "recordType",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 68,
+                "line": 62
+            },
+            "modifiers": [],
+            "name": "la",
+            "references": [],
+            "type": "asb_ListingActivity__c"
+        }
+    ]
+}

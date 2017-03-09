@@ -1,0 +1,774 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRXKAA3",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRXKAA3",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 17
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "validateFile",
+            "parameters": [
+                {
+                    "name": "fblob",
+                    "type": "Blob"
+                },
+                {
+                    "name": "fname",
+                    "type": "String"
+                },
+                {
+                    "name": "extensions",
+                    "type": "Set"
+                },
+                {
+                    "name": "ftitle",
+                    "type": "String"
+                },
+                {
+                    "name": "maxTitleLength",
+                    "type": "Integer"
+                },
+                {
+                    "name": "fileMBLimit",
+                    "type": "Integer"
+                }
+            ],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 38
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "validateMBFile",
+            "parameters": [
+                {
+                    "name": "fblob",
+                    "type": "Blob"
+                },
+                {
+                    "name": "fname",
+                    "type": "String"
+                },
+                {
+                    "name": "extensions",
+                    "type": "Set"
+                },
+                {
+                    "name": "fileMBLimit",
+                    "type": "Integer"
+                }
+            ],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 47
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "validateKBFile",
+            "parameters": [
+                {
+                    "name": "fblob",
+                    "type": "Blob"
+                },
+                {
+                    "name": "fname",
+                    "type": "String"
+                },
+                {
+                    "name": "extensions",
+                    "type": "Set"
+                },
+                {
+                    "name": "fileMBLimit",
+                    "type": "Integer"
+                }
+            ],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 57
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "validateMBFile",
+            "parameters": [
+                {
+                    "name": "fblob",
+                    "type": "Blob"
+                },
+                {
+                    "name": "fname",
+                    "type": "String"
+                },
+                {
+                    "name": "extensions",
+                    "type": "Set"
+                },
+                {
+                    "name": "fileMBLimit",
+                    "type": "Integer"
+                },
+                {
+                    "name": "errors",
+                    "type": "LIST"
+                }
+            ],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 67
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "validateKBFile",
+            "parameters": [
+                {
+                    "name": "fblob",
+                    "type": "Blob"
+                },
+                {
+                    "name": "fname",
+                    "type": "String"
+                },
+                {
+                    "name": "extensions",
+                    "type": "Set"
+                },
+                {
+                    "name": "fileMBLimit",
+                    "type": "Integer"
+                },
+                {
+                    "name": "errors",
+                    "type": "LIST"
+                }
+            ],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 76
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "validateFile",
+            "parameters": [
+                {
+                    "name": "fblob",
+                    "type": "Blob"
+                },
+                {
+                    "name": "fname",
+                    "type": "String"
+                },
+                {
+                    "name": "extensions",
+                    "type": "Set"
+                },
+                {
+                    "name": "fileSizeLimit",
+                    "type": "Integer"
+                },
+                {
+                    "name": "toBytesFactor",
+                    "type": "Integer"
+                },
+                {
+                    "name": "sizeMetric",
+                    "type": "String"
+                },
+                {
+                    "name": "errors",
+                    "type": "LIST"
+                }
+            ],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 100
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "validateExtension",
+            "parameters": [
+                {
+                    "name": "validExtensions",
+                    "type": "Set"
+                },
+                {
+                    "name": "fileExtension",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        }
+    ],
+    "name": "asb_GenericValidator",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 7
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "final"
+            ],
+            "name": "ONE_MB_TO_KB",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 8
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "final"
+            ],
+            "name": "ONE_KB_TO_BYTES",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 9
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "final"
+            ],
+            "name": "MB_TXT",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 10
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "final"
+            ],
+            "name": "KB_TXT",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 11
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "final"
+            ],
+            "name": "DOT",
+            "references": [],
+            "type": "String"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 6
+        },
+        "modifiers": [
+            "public"
+        ],
+        "name": "asb_GenericValidator",
+        "references": [],
+        "type": "asb_GenericValidator"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 43,
+                "line": 17
+            },
+            "modifiers": [],
+            "name": "fblob",
+            "references": [],
+            "type": "Blob"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 57,
+                "line": 17
+            },
+            "modifiers": [],
+            "name": "fname",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 76,
+                "line": 17
+            },
+            "modifiers": [],
+            "name": "extensions",
+            "references": [],
+            "type": "Set"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 18
+            },
+            "modifiers": [],
+            "name": "ftitle",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 38,
+                "line": 18
+            },
+            "modifiers": [],
+            "name": "maxTitleLength",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 62,
+                "line": 18
+            },
+            "modifiers": [],
+            "name": "fileMBLimit",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 44,
+                "line": 38
+            },
+            "modifiers": [],
+            "name": "fblob",
+            "references": [],
+            "type": "Blob"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 58,
+                "line": 38
+            },
+            "modifiers": [],
+            "name": "fname",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 77,
+                "line": 38
+            },
+            "modifiers": [],
+            "name": "extensions",
+            "references": [],
+            "type": "Set"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 97,
+                "line": 38
+            },
+            "modifiers": [],
+            "name": "fileMBLimit",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 44,
+                "line": 47
+            },
+            "modifiers": [],
+            "name": "fblob",
+            "references": [],
+            "type": "Blob"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 58,
+                "line": 47
+            },
+            "modifiers": [],
+            "name": "fname",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 77,
+                "line": 47
+            },
+            "modifiers": [],
+            "name": "extensions",
+            "references": [],
+            "type": "Set"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 97,
+                "line": 47
+            },
+            "modifiers": [],
+            "name": "fileMBLimit",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 44,
+                "line": 57
+            },
+            "modifiers": [],
+            "name": "fblob",
+            "references": [],
+            "type": "Blob"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 58,
+                "line": 57
+            },
+            "modifiers": [],
+            "name": "fname",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 77,
+                "line": 57
+            },
+            "modifiers": [],
+            "name": "extensions",
+            "references": [],
+            "type": "Set"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 97,
+                "line": 57
+            },
+            "modifiers": [],
+            "name": "fileMBLimit",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 123,
+                "line": 57
+            },
+            "modifiers": [],
+            "name": "errors",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 44,
+                "line": 67
+            },
+            "modifiers": [],
+            "name": "fblob",
+            "references": [],
+            "type": "Blob"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 58,
+                "line": 67
+            },
+            "modifiers": [],
+            "name": "fname",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 77,
+                "line": 67
+            },
+            "modifiers": [],
+            "name": "extensions",
+            "references": [],
+            "type": "Set"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 97,
+                "line": 67
+            },
+            "modifiers": [],
+            "name": "fileMBLimit",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 123,
+                "line": 67
+            },
+            "modifiers": [],
+            "name": "errors",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 43,
+                "line": 76
+            },
+            "modifiers": [],
+            "name": "fblob",
+            "references": [],
+            "type": "Blob"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 57,
+                "line": 76
+            },
+            "modifiers": [],
+            "name": "fname",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 76,
+                "line": 76
+            },
+            "modifiers": [],
+            "name": "extensions",
+            "references": [],
+            "type": "Set"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 96,
+                "line": 76
+            },
+            "modifiers": [],
+            "name": "fileSizeLimit",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 118,
+                "line": 76
+            },
+            "modifiers": [],
+            "name": "toBytesFactor",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 139,
+                "line": 76
+            },
+            "modifiers": [],
+            "name": "sizeMetric",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 164,
+                "line": 76
+            },
+            "modifiers": [],
+            "name": "errors",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 11,
+                "line": 79
+            },
+            "modifiers": [],
+            "name": "useDefaultsErrors",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 13,
+                "line": 85
+            },
+            "modifiers": [],
+            "name": "ext",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 88
+            },
+            "modifiers": [],
+            "name": "retValue",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 53,
+                "line": 100
+            },
+            "modifiers": [],
+            "name": "validExtensions",
+            "references": [],
+            "type": "Set"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 77,
+                "line": 100
+            },
+            "modifiers": [],
+            "name": "fileExtension",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 104
+            },
+            "modifiers": [],
+            "name": "e",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 11,
+                "line": 111
+            },
+            "modifiers": [],
+            "name": "allowedExts",
+            "references": [],
+            "type": "String"
+        }
+    ]
+}

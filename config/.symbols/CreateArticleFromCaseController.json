@@ -1,0 +1,174 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 4
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "CreateArticleFromCaseController",
+            "parameters": [
+                {
+                    "name": "controller",
+                    "type": "StandardController"
+                }
+            ],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000GcRY9AAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRY9AAN",
+    "methods": [
+        {
+            "annotations": [
+                {
+                    "name": "RemoteAction"
+                }
+            ],
+            "location": {
+                "column": 22,
+                "line": 7
+            },
+            "modifiers": [
+                "static",
+                "global"
+            ],
+            "name": "createArticle",
+            "parameters": [
+                {
+                    "name": "caseId",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "CreateArticleFromCaseController",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 27,
+            "line": 3
+        },
+        "modifiers": [
+            "global",
+            "with sharing"
+        ],
+        "name": "CreateArticleFromCaseController",
+        "references": [],
+        "type": "CreateArticleFromCaseController"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 71,
+                "line": 4
+            },
+            "modifiers": [],
+            "name": "controller",
+            "references": [],
+            "type": "StandardController"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 43,
+                "line": 7
+            },
+            "modifiers": [],
+            "name": "caseId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 8
+            },
+            "modifiers": [],
+            "name": "c",
+            "references": [],
+            "type": "Case"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 10
+            },
+            "modifiers": [],
+            "name": "subject",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 11
+            },
+            "modifiers": [],
+            "name": "sText",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 12
+            },
+            "modifiers": [],
+            "name": "specialChars",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 13
+            },
+            "modifiers": [],
+            "name": "i",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 16
+            },
+            "modifiers": [],
+            "name": "a",
+            "references": [],
+            "type": "FAQ__kav"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 29
+            },
+            "modifiers": [],
+            "name": "fi",
+            "references": [],
+            "type": "FeedItem"
+        }
+    ]
+}

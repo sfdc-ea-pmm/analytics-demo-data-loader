@@ -1,0 +1,116 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRWGAA3",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRWGAA3",
+    "methods": [
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 25,
+                "line": 3
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "testMethod"
+            ],
+            "name": "test_overlap",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "tom_test_overlap",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 1
+        },
+        "modifiers": [
+            "public"
+        ],
+        "name": "tom_test_overlap",
+        "references": [],
+        "type": "tom_test_overlap"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 9
+            },
+            "modifiers": [],
+            "name": "test_users",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 8,
+                "line": 10
+            },
+            "modifiers": [],
+            "name": "subordinate",
+            "references": [],
+            "type": "User"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 8,
+                "line": 14
+            },
+            "modifiers": [],
+            "name": "subordinate2",
+            "references": [],
+            "type": "User"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 8,
+                "line": 24
+            },
+            "modifiers": [],
+            "name": "user_ids",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 26
+            },
+            "modifiers": [],
+            "name": "tors",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 86
+            },
+            "modifiers": [],
+            "name": "days",
+            "references": [],
+            "type": "LIST"
+        }
+    ]
+}

@@ -1,0 +1,1149 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRTtAAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRTtAAN",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 34
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "handleMilestoneDeleteTrigger",
+            "parameters": [
+                {
+                    "name": "oldMap",
+                    "type": "Map"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 58
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "checkMilestoneManualReparent",
+            "parameters": [
+                {
+                    "name": "oldMap",
+                    "type": "Map"
+                },
+                {
+                    "name": "newMap",
+                    "type": "Map"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 73
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "handleMilestoneBeforeTrigger",
+            "parameters": [
+                {
+                    "name": "recs",
+                    "type": "LIST"
+                },
+                {
+                    "name": "recMapById",
+                    "type": "Map"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 258
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "handleMilestoneAfterTrigger",
+            "parameters": [
+                {
+                    "name": "recs",
+                    "type": "Map"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 262
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "updateParents",
+            "parameters": [
+                {
+                    "name": "recMapById",
+                    "type": "Map"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 59,
+                "line": 297
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "refreshRecordMapByParent",
+            "parameters": [
+                {
+                    "name": "recs",
+                    "type": "LIST"
+                }
+            ],
+            "references": [],
+            "returnType": "Map",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 312
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "updateMilestones",
+            "parameters": [
+                {
+                    "name": "idSet",
+                    "type": "Set"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 326
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "batchUpdateMilestones",
+            "parameters": [
+                {
+                    "name": "idSet",
+                    "type": "Set"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 333
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "updateProjects",
+            "parameters": [
+                {
+                    "name": "idSet",
+                    "type": "Set"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 347
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "batchUpdateProjects",
+            "parameters": [
+                {
+                    "name": "idSet",
+                    "type": "Set"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 362
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "milestonePermissions",
+            "parameters": [
+                {
+                    "name": "objectName",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "Boolean",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 375
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "checkAccessRightLookUpFields",
+            "parameters": [
+                {
+                    "name": "milestones",
+                    "type": "LIST"
+                }
+            ],
+            "references": [],
+            "returnType": "Boolean",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 394
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "checkAccessRightReferences",
+            "parameters": [
+                {
+                    "name": "sobjectList",
+                    "type": "LIST"
+                },
+                {
+                    "name": "reference",
+                    "type": "String"
+                },
+                {
+                    "name": "sharedObjectName",
+                    "type": "String"
+                },
+                {
+                    "name": "userId",
+                    "type": "String"
+                },
+                {
+                    "name": "errorMessage",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "Boolean",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 32,
+                "line": 434
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "testMethod"
+            ],
+            "name": "testMilestoneBatchUpdate",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "Milestone1_Milestone_Trigger_Utility",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 31
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "final"
+            ],
+            "name": "INSUFFICIENT_PRIVILEGES_TO_ACCESS_PARENT_MILESTONE",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 32
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "final"
+            ],
+            "name": "INSUFFICIENT_PRIVILEGES_TO_ACCESS_PROJECT",
+            "references": [],
+            "type": "String"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 27,
+            "line": 29
+        },
+        "modifiers": [
+            "public",
+            "with sharing"
+        ],
+        "name": "Milestone1_Milestone_Trigger_Utility",
+        "references": [],
+        "type": "Milestone1_Milestone_Trigger_Utility"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 86,
+                "line": 34
+            },
+            "modifiers": [],
+            "name": "oldMap",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 39,
+                "line": 37
+            },
+            "modifiers": [],
+            "name": "extraChildren",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 86,
+                "line": 58
+            },
+            "modifiers": [],
+            "name": "oldMap",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 127,
+                "line": 58
+            },
+            "modifiers": [],
+            "name": "newMap",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 59
+            },
+            "modifiers": [],
+            "name": "allPassed",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 37,
+                "line": 60
+            },
+            "modifiers": [],
+            "name": "newRec",
+            "references": [],
+            "type": "Milestone1_Milestone__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 37,
+                "line": 61
+            },
+            "modifiers": [],
+            "name": "oldRec",
+            "references": [],
+            "type": "Milestone1_Milestone__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 80,
+                "line": 73
+            },
+            "modifiers": [],
+            "name": "recs",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 119,
+                "line": 73
+            },
+            "modifiers": [],
+            "name": "recMapById",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 49,
+                "line": 78
+            },
+            "modifiers": [],
+            "name": "recMapByParentId",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 81
+            },
+            "modifiers": [],
+            "name": "parentMilestoneIds",
+            "references": [],
+            "type": "Set"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 38,
+                "line": 82
+            },
+            "modifiers": [],
+            "name": "rec",
+            "references": [],
+            "type": "Milestone1_Milestone__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 44,
+                "line": 89
+            },
+            "modifiers": [],
+            "name": "parentMilestones",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 47,
+                "line": 96
+            },
+            "modifiers": [],
+            "name": "parentMilestonesMap",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 42,
+                "line": 97
+            },
+            "modifiers": [],
+            "name": "parent",
+            "references": [],
+            "type": "Milestone1_Milestone__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 42,
+                "line": 101
+            },
+            "modifiers": [],
+            "name": "rec",
+            "references": [],
+            "type": "Milestone1_Milestone__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 40,
+                "line": 116
+            },
+            "modifiers": [],
+            "name": "extraChildren",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 49,
+                "line": 139
+            },
+            "modifiers": [],
+            "name": "extraChildrenMap",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 38,
+                "line": 140
+            },
+            "modifiers": [],
+            "name": "extraChild",
+            "references": [],
+            "type": "Milestone1_Milestone__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 35,
+                "line": 151
+            },
+            "modifiers": [],
+            "name": "lateTasks",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 44,
+                "line": 163
+            },
+            "modifiers": [],
+            "name": "lateTasksByMilestoneId",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 164
+            },
+            "modifiers": [],
+            "name": "lateTask",
+            "references": [],
+            "type": "Milestone1_Task__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 54,
+                "line": 172
+            },
+            "modifiers": [],
+            "name": "parentHelpers",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 51,
+                "line": 173
+            },
+            "modifiers": [],
+            "name": "selfHelpers",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 44,
+                "line": 178
+            },
+            "modifiers": [],
+            "name": "topChildren",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 44,
+                "line": 179
+            },
+            "modifiers": [],
+            "name": "bottomChildren",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 42,
+                "line": 182
+            },
+            "modifiers": [],
+            "name": "rec",
+            "references": [],
+            "type": "Milestone1_Milestone__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 42,
+                "line": 193
+            },
+            "modifiers": [],
+            "name": "rec",
+            "references": [],
+            "type": "Milestone1_Milestone__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 51,
+                "line": 223
+            },
+            "modifiers": [],
+            "name": "allHelpers",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 49,
+                "line": 226
+            },
+            "modifiers": [],
+            "name": "helper",
+            "references": [],
+            "type": "Milestone1_Milestone_Values_Helper"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 44,
+                "line": 228
+            },
+            "modifiers": [],
+            "name": "recChildren",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 46,
+                "line": 230
+            },
+            "modifiers": [],
+            "name": "extraChild",
+            "references": [],
+            "type": "Milestone1_Milestone__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 85,
+                "line": 258
+            },
+            "modifiers": [],
+            "name": "recs",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 72,
+                "line": 262
+            },
+            "modifiers": [],
+            "name": "recMapById",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 266
+            },
+            "modifiers": [],
+            "name": "milestoneUpdateSet",
+            "references": [],
+            "type": "Set"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 267
+            },
+            "modifiers": [],
+            "name": "projectUpdateSet",
+            "references": [],
+            "type": "Set"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 37,
+                "line": 269
+            },
+            "modifiers": [],
+            "name": "rec",
+            "references": [],
+            "type": "Milestone1_Milestone__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 114,
+                "line": 297
+            },
+            "modifiers": [],
+            "name": "recs",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 48,
+                "line": 298
+            },
+            "modifiers": [],
+            "name": "recMapByParentId",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 37,
+                "line": 299
+            },
+            "modifiers": [],
+            "name": "rec",
+            "references": [],
+            "type": "Milestone1_Milestone__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 50,
+                "line": 312
+            },
+            "modifiers": [],
+            "name": "idSet",
+            "references": [],
+            "type": "Set"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 53,
+                "line": 326
+            },
+            "modifiers": [],
+            "name": "idSet",
+            "references": [],
+            "type": "Set"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 48,
+                "line": 333
+            },
+            "modifiers": [],
+            "name": "idSet",
+            "references": [],
+            "type": "Set"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 51,
+                "line": 347
+            },
+            "modifiers": [],
+            "name": "idSet",
+            "references": [],
+            "type": "Set"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 53,
+                "line": 362
+            },
+            "modifiers": [],
+            "name": "objectName",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 37,
+                "line": 364
+            },
+            "modifiers": [],
+            "name": "schemaMap",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 365
+            },
+            "modifiers": [],
+            "name": "descRes",
+            "references": [],
+            "type": "DescribeSObjectResult"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 84,
+                "line": 375
+            },
+            "modifiers": [],
+            "name": "milestones",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 11,
+                "line": 376
+            },
+            "modifiers": [],
+            "name": "hasPermission",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 66,
+                "line": 394
+            },
+            "modifiers": [],
+            "name": "sobjectList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 86,
+                "line": 394
+            },
+            "modifiers": [],
+            "name": "reference",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 103,
+                "line": 394
+            },
+            "modifiers": [],
+            "name": "sharedObjectName",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 127,
+                "line": 394
+            },
+            "modifiers": [],
+            "name": "userId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 141,
+                "line": 394
+            },
+            "modifiers": [],
+            "name": "errorMessage",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 395
+            },
+            "modifiers": [],
+            "name": "query",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 15,
+                "line": 396
+            },
+            "modifiers": [],
+            "name": "milestoneShareSObjectType",
+            "references": [],
+            "type": "SObjectType"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 11,
+                "line": 397
+            },
+            "modifiers": [],
+            "name": "hasPermission",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 400
+            },
+            "modifiers": [],
+            "name": "referenceObjects",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 11,
+                "line": 401
+            },
+            "modifiers": [],
+            "name": "referenceObjectId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 402
+            },
+            "modifiers": [],
+            "name": "myObject",
+            "references": [],
+            "type": "SObject"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 11,
+                "line": 408
+            },
+            "modifiers": [],
+            "name": "querySharedObjects",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 410
+            },
+            "modifiers": [],
+            "name": "sharedObjectFound",
+            "references": [],
+            "type": "SObject"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 411
+            },
+            "modifiers": [],
+            "name": "sharedObjects",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 412
+            },
+            "modifiers": [],
+            "name": "myObject",
+            "references": [],
+            "type": "SObject"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 415
+            },
+            "modifiers": [],
+            "name": "sharedObject",
+            "references": [],
+            "type": "SObject"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 436
+            },
+            "modifiers": [],
+            "name": "project",
+            "references": [],
+            "type": "Milestone1_Project__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 441
+            },
+            "modifiers": [],
+            "name": "pList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 15,
+                "line": 443
+            },
+            "modifiers": [],
+            "name": "i",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 455
+            },
+            "modifiers": [],
+            "name": "mList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 15,
+                "line": 457
+            },
+            "modifiers": [],
+            "name": "j",
+            "references": [],
+            "type": "Integer"
+        }
+    ]
+}

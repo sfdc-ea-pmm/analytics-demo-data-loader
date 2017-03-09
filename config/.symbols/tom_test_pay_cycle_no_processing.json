@@ -1,0 +1,94 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRWUAA3",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRWUAA3",
+    "methods": [
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 25,
+                "line": 3
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "testMethod"
+            ],
+            "name": "tom_test_pay_cycle_no_processing",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "tom_test_pay_cycle_no_processing",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 1
+        },
+        "modifiers": [
+            "public"
+        ],
+        "name": "tom_test_pay_cycle_no_processing",
+        "references": [],
+        "type": "tom_test_pay_cycle_no_processing"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 10
+            },
+            "modifiers": [],
+            "name": "c1",
+            "references": [],
+            "type": "Pay_Cycle__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 11
+            },
+            "modifiers": [],
+            "name": "c2",
+            "references": [],
+            "type": "Pay_Cycle__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 13
+            },
+            "modifiers": [],
+            "name": "test_users",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 8,
+                "line": 15
+            },
+            "modifiers": [],
+            "name": "subordinate",
+            "references": [],
+            "type": "User"
+        }
+    ]
+}

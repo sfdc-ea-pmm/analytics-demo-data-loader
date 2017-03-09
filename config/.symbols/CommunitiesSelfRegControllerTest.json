@@ -1,0 +1,67 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRYVAA3",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRYVAA3",
+    "methods": [
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 24,
+                "line": 6
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "testMethod"
+            ],
+            "name": "testCommunitiesSelfRegController",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "CommunitiesSelfRegControllerTest",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [
+            {
+                "name": "IsTest"
+            }
+        ],
+        "location": {
+            "column": 35,
+            "line": 4
+        },
+        "modifiers": [
+            "public",
+            "testMethod",
+            "with sharing"
+        ],
+        "name": "CommunitiesSelfRegControllerTest",
+        "references": [],
+        "type": "CommunitiesSelfRegControllerTest"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 38,
+                "line": 7
+            },
+            "modifiers": [],
+            "name": "controller",
+            "references": [],
+            "type": "CommunitiesSelfRegController"
+        }
+    ]
+}

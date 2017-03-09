@@ -1,0 +1,70 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 7
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "Community_Recent_Cases_Controller",
+            "parameters": [],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000GcRVtAAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRVtAAN",
+    "methods": [],
+    "name": "Community_Recent_Cases_Controller",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 3
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "loggedInUser",
+            "references": [],
+            "type": "User"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 5
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "recentCases",
+            "references": [],
+            "type": "LIST"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 27,
+            "line": 1
+        },
+        "modifiers": [
+            "public",
+            "with sharing"
+        ],
+        "name": "Community_Recent_Cases_Controller",
+        "references": [],
+        "type": "Community_Recent_Cases_Controller"
+    },
+    "variables": []
+}

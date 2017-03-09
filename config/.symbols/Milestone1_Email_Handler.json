@@ -1,0 +1,935 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRUMAA3",
+    "innerClasses": [],
+    "interfaces": [
+        "Messaging.InboundEmailHandler"
+    ],
+    "key": "01p3600000GcRUMAA3",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 41,
+                "line": 51
+            },
+            "modifiers": [
+                "global"
+            ],
+            "name": "handleInboundEmail",
+            "parameters": [
+                {
+                    "name": "email",
+                    "type": "InboundEmail"
+                },
+                {
+                    "name": "envelope",
+                    "type": "InboundEnvelope"
+                }
+            ],
+            "references": [],
+            "returnType": "InboundEmailResult",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 48,
+                "line": 65
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "processReplyEmail",
+            "parameters": [
+                {
+                    "name": "email",
+                    "type": "InboundEmail"
+                }
+            ],
+            "references": [],
+            "returnType": "InboundEmailResult",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 48,
+                "line": 95
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "processNewEmail",
+            "parameters": [
+                {
+                    "name": "email",
+                    "type": "InboundEmail"
+                }
+            ],
+            "references": [],
+            "returnType": "InboundEmailResult",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 38,
+                "line": 161
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "insertMilestoneTask",
+            "parameters": [
+                {
+                    "name": "toUsers",
+                    "type": "LIST"
+                },
+                {
+                    "name": "milestone",
+                    "type": "Milestone1_Milestone__c"
+                },
+                {
+                    "name": "email",
+                    "type": "InboundEmail"
+                },
+                {
+                    "name": "taskName",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "Milestone1_Task__c",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 38,
+                "line": 183
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "updateMilestoneTask",
+            "parameters": [
+                {
+                    "name": "msTask",
+                    "type": "Milestone1_Task__c"
+                },
+                {
+                    "name": "email",
+                    "type": "InboundEmail"
+                }
+            ],
+            "references": [],
+            "returnType": "Milestone1_Task__c",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 193
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "insertNote",
+            "parameters": [
+                {
+                    "name": "msTask",
+                    "type": "Milestone1_Task__c"
+                },
+                {
+                    "name": "email",
+                    "type": "InboundEmail"
+                }
+            ],
+            "references": [],
+            "returnType": "Note",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 204
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "parseAddress",
+            "parameters": [
+                {
+                    "name": "emailAddress",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 229
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "processSubject",
+            "parameters": [
+                {
+                    "name": "subject",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 247
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "insertAttachments",
+            "parameters": [
+                {
+                    "name": "newTask",
+                    "type": "Milestone1_Task__c"
+                },
+                {
+                    "name": "email",
+                    "type": "InboundEmail"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 44,
+                "line": 287
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "getMilestone",
+            "parameters": [
+                {
+                    "name": "milestoneAliasName",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "Milestone1_Milestone__c",
+            "type": null
+        }
+    ],
+    "name": "Milestone1_Email_Handler",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 41
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "final"
+            ],
+            "name": "REGEX_FWD_RE",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 42
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "ERROR_USERS_NOT_FOUND",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 43
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "ERROR_SUBJECT_MISSING_ALIAS",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 44
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "ERROR_ALIAS_NOT_FOUND",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 45
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "ERROR_FROM_USER_NOT_FOUND",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 46
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "ERROR_TO_USER_NOT_FOUND",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 47
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "ERROR_TASK_NOT_FOUND",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 48
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "ERROR_SUBJECT_MISSING_TASK",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 49
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "ERROR_SUBJECT_MISSING",
+            "references": [],
+            "type": "String"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 29
+        },
+        "modifiers": [
+            "global"
+        ],
+        "name": "Milestone1_Email_Handler",
+        "references": [],
+        "type": "Milestone1_Email_Handler"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 83,
+                "line": 51
+            },
+            "modifiers": [],
+            "name": "email",
+            "references": [],
+            "type": "InboundEmail"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 116,
+                "line": 51
+            },
+            "modifiers": [],
+            "name": "envelope",
+            "references": [],
+            "type": "InboundEnvelope"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 38,
+                "line": 53
+            },
+            "modifiers": [],
+            "name": "result",
+            "references": [],
+            "type": "InboundEmailResult"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 89,
+                "line": 65
+            },
+            "modifiers": [],
+            "name": "email",
+            "references": [],
+            "type": "InboundEmail"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 38,
+                "line": 69
+            },
+            "modifiers": [],
+            "name": "result",
+            "references": [],
+            "type": "InboundEmailResult"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 72
+            },
+            "modifiers": [],
+            "name": "processedSubjectLine",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 73
+            },
+            "modifiers": [],
+            "name": "milestoneAliasName",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 74
+            },
+            "modifiers": [],
+            "name": "taskName",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 75
+            },
+            "modifiers": [],
+            "name": "milestone",
+            "references": [],
+            "type": "Milestone1_Milestone__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 34,
+                "line": 77
+            },
+            "modifiers": [],
+            "name": "matchingTasks",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 87,
+                "line": 95
+            },
+            "modifiers": [],
+            "name": "email",
+            "references": [],
+            "type": "InboundEmail"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 38,
+                "line": 98
+            },
+            "modifiers": [],
+            "name": "result",
+            "references": [],
+            "type": "InboundEmailResult"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 99
+            },
+            "modifiers": [],
+            "name": "milestone",
+            "references": [],
+            "type": "Milestone1_Milestone__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 102
+            },
+            "modifiers": [],
+            "name": "fromUsers",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 103
+            },
+            "modifiers": [],
+            "name": "firstEmail",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 109
+            },
+            "modifiers": [],
+            "name": "toUsers",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 125
+            },
+            "modifiers": [],
+            "name": "processedSubjectLine",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 126
+            },
+            "modifiers": [],
+            "name": "milestoneAliasName",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 127
+            },
+            "modifiers": [],
+            "name": "taskName",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 40,
+                "line": 152
+            },
+            "modifiers": [],
+            "name": "newTask",
+            "references": [],
+            "type": "Milestone1_Task__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 69,
+                "line": 161
+            },
+            "modifiers": [],
+            "name": "toUsers",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 102,
+                "line": 161
+            },
+            "modifiers": [],
+            "name": "milestone",
+            "references": [],
+            "type": "Milestone1_Milestone__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 136,
+                "line": 161
+            },
+            "modifiers": [],
+            "name": "email",
+            "references": [],
+            "type": "InboundEmail"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 150,
+                "line": 161
+            },
+            "modifiers": [],
+            "name": "taskName",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 163
+            },
+            "modifiers": [],
+            "name": "newTask",
+            "references": [],
+            "type": "Milestone1_Task__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 77,
+                "line": 183
+            },
+            "modifiers": [],
+            "name": "msTask",
+            "references": [],
+            "type": "Milestone1_Task__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 108,
+                "line": 183
+            },
+            "modifiers": [],
+            "name": "email",
+            "references": [],
+            "type": "InboundEmail"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 54,
+                "line": 193
+            },
+            "modifiers": [],
+            "name": "msTask",
+            "references": [],
+            "type": "Milestone1_Task__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 85,
+                "line": 193
+            },
+            "modifiers": [],
+            "name": "email",
+            "references": [],
+            "type": "InboundEmail"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 195
+            },
+            "modifiers": [],
+            "name": "newNote",
+            "references": [],
+            "type": "Note"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 46,
+                "line": 204
+            },
+            "modifiers": [],
+            "name": "emailAddress",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 206
+            },
+            "modifiers": [],
+            "name": "addressTokens",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 207
+            },
+            "modifiers": [],
+            "name": "returnEmail",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 210
+            },
+            "modifiers": [],
+            "name": "buildName",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 211
+            },
+            "modifiers": [],
+            "name": "x",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 54,
+                "line": 229
+            },
+            "modifiers": [],
+            "name": "subject",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 231
+            },
+            "modifiers": [],
+            "name": "result",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 61,
+                "line": 247
+            },
+            "modifiers": [],
+            "name": "newTask",
+            "references": [],
+            "type": "Milestone1_Task__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 93,
+                "line": 247
+            },
+            "modifiers": [],
+            "name": "email",
+            "references": [],
+            "type": "InboundEmail"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 51,
+                "line": 250
+            },
+            "modifiers": [],
+            "name": "binaryAttachments",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 49,
+                "line": 251
+            },
+            "modifiers": [],
+            "name": "textAttachments",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 252
+            },
+            "modifiers": [],
+            "name": "insertAttachments",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 57,
+                "line": 256
+            },
+            "modifiers": [],
+            "name": "currentBinaryAttachment",
+            "references": [],
+            "type": "BinaryAttachment"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 260
+            },
+            "modifiers": [],
+            "name": "newAttachment",
+            "references": [],
+            "type": "Attachment"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 55,
+                "line": 268
+            },
+            "modifiers": [],
+            "name": "currentTextAttachment",
+            "references": [],
+            "type": "TextAttachment"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 272
+            },
+            "modifiers": [],
+            "name": "newAttachment",
+            "references": [],
+            "type": "Attachment"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 65,
+                "line": 287
+            },
+            "modifiers": [],
+            "name": "milestoneAliasName",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 288
+            },
+            "modifiers": [],
+            "name": "milestone",
+            "references": [],
+            "type": "Milestone1_Milestone__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 36,
+                "line": 292
+            },
+            "modifiers": [],
+            "name": "milestones",
+            "references": [],
+            "type": "LIST"
+        }
+    ]
+}

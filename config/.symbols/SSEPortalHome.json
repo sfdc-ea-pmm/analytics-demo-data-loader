@@ -1,0 +1,494 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 11,
+                "line": 17
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "SSEPortalHome",
+            "parameters": [],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000GcRVyAAN",
+    "innerClasses": [
+        {
+            "constructors": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 16,
+                        "line": 63
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "ApprovalRequests",
+                    "parameters": [
+                        {
+                            "name": "p",
+                            "type": "ProcessInstanceStep"
+                        }
+                    ],
+                    "references": [],
+                    "type": null
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 16,
+                        "line": 71
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "ApprovalRequests",
+                    "parameters": [],
+                    "references": [],
+                    "type": null
+                }
+            ],
+            "externalReferences": [],
+            "id": null,
+            "innerClasses": [],
+            "interfaces": [],
+            "key": null,
+            "methods": [],
+            "name": "ApprovalRequests",
+            "namespace": null,
+            "parentClass": "",
+            "properties": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 36,
+                        "line": 53
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "pi",
+                    "references": [],
+                    "type": "ProcessInstanceStep"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 23,
+                        "line": 54
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "TargetObjectName",
+                    "references": [],
+                    "type": "String"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 23,
+                        "line": 55
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "TargetObjectType",
+                    "references": [],
+                    "type": "String"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 23,
+                        "line": 59
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "SubmittedDate",
+                    "references": [],
+                    "type": "String"
+                }
+            ],
+            "tableDeclaration": {
+                "annotations": [],
+                "location": {
+                    "column": 17,
+                    "line": 52
+                },
+                "modifiers": [
+                    "public"
+                ],
+                "name": "ApprovalRequests",
+                "references": [],
+                "type": "ApprovalRequests"
+            },
+            "variables": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 53,
+                        "line": 63
+                    },
+                    "modifiers": [],
+                    "name": "p",
+                    "references": [],
+                    "type": "ProcessInstanceStep"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 22,
+                        "line": 67
+                    },
+                    "modifiers": [],
+                    "name": "Temp",
+                    "references": [],
+                    "type": "Datetime"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 22,
+                        "line": 75
+                    },
+                    "modifiers": [],
+                    "name": "Temp",
+                    "references": [],
+                    "type": "Datetime"
+                }
+            ]
+        }
+    ],
+    "interfaces": [],
+    "key": "01p3600000GcRVyAAN",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 40
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "AcceptLead",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 35,
+                "line": 81
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "testMethod"
+            ],
+            "name": "testSSEPortalHome",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "SSEPortalHome",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 9,
+                "line": 3
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "loggedInUser",
+            "references": [],
+            "type": "User"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 5
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "userTemplate",
+            "references": [],
+            "type": "Org_Template__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 6
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "MyRegisteredProducts",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 7
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "MyRecentCases",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 8
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "TopSolutions",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 9
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "PopularIdeas",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 10
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "MyEntitlements",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 11
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "LeadInbox",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 34,
+                "line": 12
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "ApprovalRequests",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 13
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "AllCases",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 14
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "AllEntitlements",
+            "references": [],
+            "type": "LIST"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 1
+        },
+        "modifiers": [
+            "public"
+        ],
+        "name": "SSEPortalHome",
+        "references": [],
+        "type": "SSEPortalHome"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 35,
+                "line": 27
+            },
+            "modifiers": [],
+            "name": "Requests",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 28
+            },
+            "modifiers": [],
+            "name": "Request",
+            "references": [],
+            "type": "ProcessInstanceStep"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 29
+            },
+            "modifiers": [],
+            "name": "ar",
+            "references": [],
+            "type": "ApprovalRequests"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 32
+            },
+            "modifiers": [],
+            "name": "templateList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 41
+            },
+            "modifiers": [],
+            "name": "leadId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 42
+            },
+            "modifiers": [],
+            "name": "theLead",
+            "references": [],
+            "type": "Lead"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 45
+            },
+            "modifiers": [],
+            "name": "page",
+            "references": [],
+            "type": "PageReference"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 82
+            },
+            "modifiers": [],
+            "name": "pageRef",
+            "references": [],
+            "type": "PageReference"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 84
+            },
+            "modifiers": [],
+            "name": "l",
+            "references": [],
+            "type": "Lead"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 87
+            },
+            "modifiers": [],
+            "name": "controller",
+            "references": [],
+            "type": "SSEPortalHome"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 89
+            },
+            "modifiers": [],
+            "name": "ap",
+            "references": [],
+            "type": "ApprovalRequests"
+        }
+    ]
+}

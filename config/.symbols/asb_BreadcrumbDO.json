@@ -1,0 +1,101 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 9,
+                "line": 12
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "asb_BreadcrumbDO",
+            "parameters": [
+                {
+                    "name": "pLabel",
+                    "type": "String"
+                },
+                {
+                    "name": "pUrl",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000GcRX9AAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRX9AAN",
+    "methods": [],
+    "name": "asb_BreadcrumbDO",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 9
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "label",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 10
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "url",
+            "references": [],
+            "type": "String"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 7
+        },
+        "modifiers": [
+            "public"
+        ],
+        "name": "asb_BreadcrumbDO",
+        "references": [],
+        "type": "asb_BreadcrumbDO"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 12
+            },
+            "modifiers": [],
+            "name": "pLabel",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 48,
+                "line": 12
+            },
+            "modifiers": [],
+            "name": "pUrl",
+            "references": [],
+            "type": "String"
+        }
+    ]
+}

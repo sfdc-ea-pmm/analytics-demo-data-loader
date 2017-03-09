@@ -1,0 +1,1138 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 18
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "OrgCustomizerController",
+            "parameters": [],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000GcRWbAAN",
+    "innerClasses": [
+        {
+            "constructors": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 16,
+                        "line": 344
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "superCase",
+                    "parameters": [
+                        {
+                            "name": "cas",
+                            "type": "Case"
+                        },
+                        {
+                            "name": "sol",
+                            "type": "Solution"
+                        }
+                    ],
+                    "references": [],
+                    "type": null
+                }
+            ],
+            "externalReferences": [],
+            "id": null,
+            "innerClasses": [],
+            "interfaces": [],
+            "key": null,
+            "methods": [],
+            "name": "superCase",
+            "namespace": null,
+            "parentClass": "",
+            "properties": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 21,
+                        "line": 342
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "theCase",
+                    "references": [],
+                    "type": "Case"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 25,
+                        "line": 343
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "theSolution",
+                    "references": [],
+                    "type": "Solution"
+                }
+            ],
+            "tableDeclaration": {
+                "annotations": [],
+                "location": {
+                    "column": 18,
+                    "line": 341
+                },
+                "modifiers": [
+                    "public"
+                ],
+                "name": "superCase",
+                "references": [],
+                "type": "superCase"
+            },
+            "variables": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 32,
+                        "line": 344
+                    },
+                    "modifiers": [],
+                    "name": "cas",
+                    "references": [],
+                    "type": "Case"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 46,
+                        "line": 344
+                    },
+                    "modifiers": [],
+                    "name": "sol",
+                    "references": [],
+                    "type": "Solution"
+                }
+            ]
+        },
+        {
+            "constructors": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 16,
+                        "line": 354
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "mProduct",
+                    "parameters": [
+                        {
+                            "name": "pr",
+                            "type": "Product2"
+                        }
+                    ],
+                    "references": [],
+                    "type": null
+                }
+            ],
+            "externalReferences": [],
+            "id": null,
+            "innerClasses": [],
+            "interfaces": [],
+            "key": null,
+            "methods": [],
+            "name": "mProduct",
+            "namespace": null,
+            "parentClass": "",
+            "properties": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 25,
+                        "line": 351
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "p",
+                    "references": [],
+                    "type": "Product2"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 24,
+                        "line": 352
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "updated",
+                    "references": [],
+                    "type": "Boolean"
+                }
+            ],
+            "tableDeclaration": {
+                "annotations": [],
+                "location": {
+                    "column": 18,
+                    "line": 350
+                },
+                "modifiers": [
+                    "public"
+                ],
+                "name": "mProduct",
+                "references": [],
+                "type": "mProduct"
+            },
+            "variables": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 34,
+                        "line": 354
+                    },
+                    "modifiers": [],
+                    "name": "pr",
+                    "references": [],
+                    "type": "Product2"
+                }
+            ]
+        }
+    ],
+    "interfaces": [],
+    "key": "01p3600000GcRWbAAN",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 38
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "CaseSelectListInit",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 51
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "updateOrganization",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 55
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "updateAccounts",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 119
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "updateContacts",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 127
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "removeImages",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 135
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "updateProducts",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 152
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "updateCampaigns",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 160
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "updateUsers",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 168
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "updateCases",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 188
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "updateGroups",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 197
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "resetAccounts",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 255
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "resetContacts",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 265
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "resetProducts",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 293
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "resetCampaigns",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 304
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "resetUsers",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 315
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "noMessage",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 316
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "showMessage",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 318
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "setupCasesSolutions",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 331
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "changeAllCaseType",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "OrgCustomizerController",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 2
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "theOrganization",
+            "references": [],
+            "type": "Organization"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 3
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "theAccounts",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 4
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "theContacts",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 5
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "theProducts",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 6
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "theCampaigns",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 7
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "theUsers",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 8
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "theGroupsInternal",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 9
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "theGroupsExternal",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 10
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "theCases",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 12
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "message",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 13
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "showMessage",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 15
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "caseTypes",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 16
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "selectedCaseType",
+            "references": [],
+            "type": "String"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 1
+        },
+        "modifiers": [
+            "public"
+        ],
+        "name": "OrgCustomizerController",
+        "references": [],
+        "type": "OrgCustomizerController"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 24
+            },
+            "modifiers": [],
+            "name": "p",
+            "references": [],
+            "type": "Product2"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 40
+            },
+            "modifiers": [],
+            "name": "rt",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 44
+            },
+            "modifiers": [],
+            "name": "r",
+            "references": [],
+            "type": "RecordType"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 57
+            },
+            "modifiers": [],
+            "name": "aIDs",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 58
+            },
+            "modifiers": [],
+            "name": "a",
+            "references": [],
+            "type": "Account"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 62
+            },
+            "modifiers": [],
+            "name": "allUsers",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 64
+            },
+            "modifiers": [],
+            "name": "u",
+            "references": [],
+            "type": "User"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 69
+            },
+            "modifiers": [],
+            "name": "allOpps",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 71
+            },
+            "modifiers": [],
+            "name": "o",
+            "references": [],
+            "type": "Opportunity"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 72
+            },
+            "modifiers": [],
+            "name": "DecOppty",
+            "references": [],
+            "type": "Decimal"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 73
+            },
+            "modifiers": [],
+            "name": "astName",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 74
+            },
+            "modifiers": [],
+            "name": "NameHasAst",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 77
+            },
+            "modifiers": [],
+            "name": "OpptyName",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 128
+            },
+            "modifiers": [],
+            "name": "p",
+            "references": [],
+            "type": "mProduct"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 136
+            },
+            "modifiers": [],
+            "name": "p",
+            "references": [],
+            "type": "mProduct"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 139
+            },
+            "modifiers": [],
+            "name": "allAssets",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 140
+            },
+            "modifiers": [],
+            "name": "p",
+            "references": [],
+            "type": "mProduct"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 141
+            },
+            "modifiers": [],
+            "name": "a",
+            "references": [],
+            "type": "Asset"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 169
+            },
+            "modifiers": [],
+            "name": "updateCases",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 170
+            },
+            "modifiers": [],
+            "name": "updateSolutions",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 172
+            },
+            "modifiers": [],
+            "name": "item",
+            "references": [],
+            "type": "superCase"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 198
+            },
+            "modifiers": [],
+            "name": "aIDs",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 199
+            },
+            "modifiers": [],
+            "name": "a",
+            "references": [],
+            "type": "Account"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 206
+            },
+            "modifiers": [],
+            "name": "allOpps",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 208
+            },
+            "modifiers": [],
+            "name": "o",
+            "references": [],
+            "type": "Opportunity"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 209
+            },
+            "modifiers": [],
+            "name": "DecOppty",
+            "references": [],
+            "type": "Decimal"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 210
+            },
+            "modifiers": [],
+            "name": "astName",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 211
+            },
+            "modifiers": [],
+            "name": "NameHasAst",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 214
+            },
+            "modifiers": [],
+            "name": "OpptyName",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 256
+            },
+            "modifiers": [],
+            "name": "cont",
+            "references": [],
+            "type": "Contact"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 267
+            },
+            "modifiers": [],
+            "name": "p",
+            "references": [],
+            "type": "mProduct"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 272
+            },
+            "modifiers": [],
+            "name": "allAssets",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 273
+            },
+            "modifiers": [],
+            "name": "p",
+            "references": [],
+            "type": "mProduct"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 274
+            },
+            "modifiers": [],
+            "name": "a",
+            "references": [],
+            "type": "Asset"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 282
+            },
+            "modifiers": [],
+            "name": "p",
+            "references": [],
+            "type": "mProduct"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 294
+            },
+            "modifiers": [],
+            "name": "camp",
+            "references": [],
+            "type": "Campaign"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 305
+            },
+            "modifiers": [],
+            "name": "usr",
+            "references": [],
+            "type": "User"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 322
+            },
+            "modifiers": [],
+            "name": "theCase",
+            "references": [],
+            "type": "Case"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 323
+            },
+            "modifiers": [],
+            "name": "theSolution",
+            "references": [],
+            "type": "Solution"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 333
+            },
+            "modifiers": [],
+            "name": "cases",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 334
+            },
+            "modifiers": [],
+            "name": "c",
+            "references": [],
+            "type": "Case"
+        }
+    ]
+}
