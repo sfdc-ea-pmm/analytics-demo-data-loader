@@ -64,12 +64,12 @@
 				<apex:outputLabel >Please select an App to Load</apex:outputLabel>
 		        <apex:selectList value="{!selectedWaveApp}" multiselect="false" size="10" style="width:200px">
 		   			<apex:selectOptions value="{!waveApps}"/>
-		   			<apex:actionSupport reRender="appDescription,vsbButton" event="onchange" />
+		   			<apex:actionSupport reRender="appDescription,vsbButton,folderName" event="onchange" action="{!waveAppSelected}" />
 		   		</apex:selectList>
 			</apex:panelGrid>   		
 	   		<apex:panelGrid columns="1" width="200px">
 	   			<apex:outputText value="Description" style="font-weight: bold" />
-	   			<apex:outputText value="{!appDesciption}" id="appDescription" />
+	   			<apex:outputText value="{!appDescription}" id="appDescription" />
 	   		</apex:panelGrid>
 	   		<apex:panelGrid columns="1" width="200px">
 	   			<apex:outputLabel >Specify a new folder/app:</apex:outputLabel>

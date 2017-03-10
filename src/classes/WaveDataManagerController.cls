@@ -25,6 +25,7 @@ public with sharing class WaveDataManagerController {
 	private Map<String, String> appDescriptions; // <appName, appDesc>
 	private Map<String, Integer> appIndexes; // <appName, appIndex in this.metadata.waveApplications>
 	public String folderName {get;set;}
+	public List<WaveApplicationRow> applicationRows;
 
 	public WaveDataManagerController() {
 		this.objectsNodes = new List<WaveApplicationObject>();
@@ -52,23 +53,10 @@ public with sharing class WaveDataManagerController {
 				MetadataApiException = RollupService.LastMetadataAPIConnectionException.getMessage();*/
 		}
 
-		// Retrieve and parse metadata
-		HttpRequest req = new HttpRequest();
-		req.setEndpoint('https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/WaveMetadata.json');
-        req.setMethod('GET');
+		if(applicationRows == null){
+			applicationRows = WaveConfiguratorUtils.getWaveApplications('https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/WaveApplications.csv');			
+		}
 
-		Http http = new Http();
-        HTTPResponse res = http.send(req);
-
-		String jsonMetadata = res.getBody();
-		this.metadata = (WaveMetadata)JSON.deserialize(jsonMetadata, WaveMetadata.class);
-
-		if(this.metadata != null && this.metadata.waveApplications != null){
-        	for(WaveMetadataApplication genericApp: this.metadata.waveApplications) {
-				appDescriptions.put(genericApp.appName, genericApp.appDescription);
-			}
-        }
-		
 		return null;
 	}
 
@@ -77,10 +65,11 @@ public with sharing class WaveDataManagerController {
         List<SelectOption> options = new List<SelectOption>();
 
         Integer index = 0;
-        if(this.metadata != null && this.metadata.waveApplications != null){
-        	for(WaveMetadataApplication genericApp: this.metadata.waveApplications) {
-				options.add(new SelectOption(genericApp.appName, genericApp.appName));
-				this.appIndexes.put(genericApp.appName, index);
+        if(this.applicationRows != null){
+        	for(WaveApplicationRow genericApp: this.applicationRows) {
+				options.add(new SelectOption(genericApp.Name, genericApp.Label));
+				this.appIndexes.put(genericApp.Name, index);
+				this.appDescriptions.put(genericApp.Name, genericApp.Description);
 				index++;
 			}
         }
@@ -88,7 +77,13 @@ public with sharing class WaveDataManagerController {
         return options;
     }
 
-    public String getAppDesciption(){
+    public PageReference waveAppSelected(){
+
+    	this.folderName = this.selectedWaveApp;
+    	return null;
+    }
+
+    public String getAppDescription(){
     	
     	String dsc = 'No description available.';
 
@@ -112,26 +107,27 @@ public with sharing class WaveDataManagerController {
 
 		if(!String.isBlank(folderName)){
 			if(!this.checkFolderExistance()){
-				try {			
+				try {
 					// We build the node array
 					this.objectsNodes.clear();
 
-					// We start collecting the common object to add to the node array
-					if(this.metadata.commonObjects != null) {
-						for(WaveMetadataApplicationObject wmaObj: this.metadata.commonObjects) {
+					Integer appIndex = this.appIndexes.get(this.selectedWaveApp);
+					WaveApplicationRow appRow = this.applicationRows.get(appIndex);
+
+					// Retrieve and parse metadata
+					HttpRequest req = new HttpRequest();
+					req.setEndpoint(appRow.MetadataUrl);
+			        req.setMethod('GET');
+					Http http = new Http();
+			        HTTPResponse res = http.send(req);
+
+					String jsonMetadata = res.getBody();
+					WaveMetadataApplication selectedApp = (WaveMetadataApplication)JSON.deserialize(jsonMetadata, WaveMetadataApplication.class);
+					
+					if(selectedApp != null && selectedApp.objects != null){
+						for(WaveMetadataApplicationObject wmaObj: selectedApp.objects) {
 							List<WaveApplicationObject> objs = this.getObjectsToProcess(wmaObj);
 							this.objectsNodes.addAll(objs);
-						}
-					}
-					
-					if(this.metadata.waveApplications != null && this.appIndexes.containsKey(this.selectedWaveApp)){
-						// Based on the selection
-						WaveMetadataApplication selectedApp = this.metadata.waveApplications.get(this.appIndexes.get(this.selectedWaveApp));
-						if(selectedApp.objects != null){
-							for(WaveMetadataApplicationObject wmaObj: selectedApp.objects) {
-								List<WaveApplicationObject> objs = this.getObjectsToProcess(wmaObj);
-								this.objectsNodes.addAll(objs);
-							}
 						}
 					}
 
@@ -406,7 +402,10 @@ public with sharing class WaveDataManagerController {
 
 	public String insertFolder() {
 
-		String jsonToPost = '{"label":"' + this.folderName + '","name":"' + this.folderName + '"}';
+		Integer appIndex = this.appIndexes.get(this.selectedWaveApp);
+		WaveApplicationRow appRow = this.applicationRows.get(appIndex);
+
+		String jsonToPost = '{"label":"' + appRow.Label + '","name":"' + this.folderName + '"}';
 
 		Http http = new Http();
 		HttpRequest req = new HttpRequest();
