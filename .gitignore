@@ -8,3 +8,4 @@ src/classes/DFJSON_old.cls
 src/classes/DFJSON_old.cls-meta.xml
 src/classes/WW_CopyHistoryOld.cls
 src/classes/WW_CopyHistoryOld.cls-meta.xml
+*.sublime-project
