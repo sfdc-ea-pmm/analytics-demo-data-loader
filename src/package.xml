@@ -24,6 +24,7 @@
 		<members>WaveObjectRelation</members>
 		<members>WaveConfiguratorUtils</members>
 		<members>WaveApplicationRow</members>
+		<members>Edgemart</members>
 		<name>ApexClass</name>
 	</types>
 	<types>

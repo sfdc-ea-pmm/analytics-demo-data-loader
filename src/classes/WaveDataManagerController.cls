@@ -20,6 +20,7 @@ public with sharing class WaveDataManagerController {
 	public Integer currentNodeIndex { get; set; }
 	public String currentObjectProcessing { get; set; }
 	public List<WaveApplicationObject> objectsNodes { get; set; }
+	public List<Edgemart> edgemarts { get; set; }
 
 	private WaveMetadata metadata;
 	private Map<String, String> appDescriptions; // <appName, appDesc>
@@ -125,10 +126,15 @@ public with sharing class WaveDataManagerController {
 					WaveMetadataApplication selectedApp = (WaveMetadataApplication)JSON.deserialize(jsonMetadata, WaveMetadataApplication.class);
 					
 					if(selectedApp != null && selectedApp.objects != null){
+						
+						// Retrieve objects to process
 						for(WaveMetadataApplicationObject wmaObj: selectedApp.objects) {
 							List<WaveApplicationObject> objs = this.getObjectsToProcess(wmaObj);
 							this.objectsNodes.addAll(objs);
 						}
+
+						// Edgemarts
+						this.edgemarts = selectedApp.edgemarts;
 					}
 
 					if(this.objectsNodes.size() > 0){
@@ -187,10 +193,11 @@ public with sharing class WaveDataManagerController {
 						this.processingLog.add('All needed metadata was created successfully.');
 
 						// We start loading data for each object
+						this.processingLog.add('This process can take up to 30 minutes. We will refresh status every 5 seconds.');
 						this.processNode();
 					}
 					else {
-						this.warningMessage = 'No data to process.';
+						this.warningMessage = 'No data to load.';
 					}
 				} 
 				catch(Exception e) {
@@ -357,9 +364,19 @@ public with sharing class WaveDataManagerController {
 									
 									//If empty, no errors
 									if(String.isEmpty(result)) {
-										this.successMessage = 'The entire process finished successfully.';
-										this.processingLog.add('Done.');
-									} else {
+										// Now load the edgemarts
+										try {
+											loadAllEdgemarts();
+											this.successMessage = 'The entire process finished successfully.';
+											this.processingLog.add('Done.');
+										}
+										catch(Exception e) {
+											System.debug(e.getMessage());
+											System.debug(e.getStackTraceString());
+											this.errorMessage = e.getMessage();
+										}
+									}
+									else {
 										this.processingLog.add(result);
 										this.errorMessage = 'There was an error in the attempting to create the ' + this.folderName + ' folder. See log for details.';
 									}
@@ -432,6 +449,61 @@ public with sharing class WaveDataManagerController {
 	private boolean checkFolderExistance(){
 		Folder[] lstFolders = [SELECT Id FROM Folder WHERE DeveloperName = :this.folderName AND Type = 'Insights'];
 		return lstFolders.size() > 0;
+	}
+
+	private void loadAllEdgemarts(){
+		if(this.edgemarts != null){
+			for(Edgemart edg : this.edgemarts){
+				this.loadEdgemart(edg);
+			}
+		}
+	}
+
+	private void loadEdgemart(Edgemart e){
+
+		this.processingLog.add('Loading edgmart data for: ' + e.Label);
+
+		// Retrive the JSON metadata for edgemart
+		Http http = new Http();
+		HttpRequest req = new HttpRequest();
+		req.setEndpoint(e.MetadataJsonUrl);
+        req.setMethod('GET');
+		HTTPResponse res = http.send(req);
+		String jsonMetadata = res.getBody();
+
+		// Retrieve csv data for edgemart
+		req = new HttpRequest();
+		req.setEndpoint(e.DataUrl);
+        req.setMethod('GET');
+        res = http.send(req);
+        Blob csvBlob = Blob.valueof(res.getBody());
+		
+		InsightsExternalData iedObj = new InsightsExternalData();
+		iedObj.Format = 'Csv';
+        iedObj.EdgemartAlias = e.Name;
+        iedObj.EdgemartLabel = e.Label;
+        iedObj.EdgemartContainer = this.folderName;
+        iedObj.Operation = 'Overwrite';
+        iedObj.Action = 'None';
+        iedObj.MetadataJson = EncodingUtil.base64Decode(EncodingUtil.base64Encode(Blob.valueOf(jsonMetadata)));
+
+        insert iedObj;        
+
+        // Add the Data
+        InsightsExternalDataPart dataPart = new InsightsExternalDataPart();
+        dataPart.InsightsExternalDataId = iedObj.Id;
+        dataPart.PartNumber = 1;
+        Integer size = csvBlob.size();
+        dataPart.dataFile = csvBlob;
+        dataPart.DataLength = size;
+        
+        insert dataPart;
+
+        // Final Step: Manage the Upload
+        iedObj.Action = 'Process';
+        update iedObj;
+
+        this.processingLog.add('Edgmart data loaded successfully.');
 	}
 
 	public PageReference displayMetadataResponse()
