@@ -371,6 +371,8 @@ public with sharing class WaveDataManagerController {
 											this.processingLog.add('Done.');
 										}
 										catch(Exception e) {
+											// TODO first: Delete recently created app/folder here, rollback
+											// Folder deleted, continue
 											System.debug(e.getMessage());
 											System.debug(e.getStackTraceString());
 											this.errorMessage = e.getMessage();
@@ -463,45 +465,7 @@ public with sharing class WaveDataManagerController {
 
 		this.processingLog.add('Loading edgmart data for: ' + e.Label);
 
-		// Retrive the JSON metadata for edgemart
-		Http http = new Http();
-		HttpRequest req = new HttpRequest();
-		req.setEndpoint(e.MetadataJsonUrl);
-        req.setMethod('GET');
-		HTTPResponse res = http.send(req);
-		String jsonMetadata = res.getBody();
-
-		// Retrieve csv data for edgemart
-		req = new HttpRequest();
-		req.setEndpoint(e.DataUrl);
-        req.setMethod('GET');
-        res = http.send(req);
-        Blob csvBlob = Blob.valueof(res.getBody());
-		
-		InsightsExternalData iedObj = new InsightsExternalData();
-		iedObj.Format = 'Csv';
-        iedObj.EdgemartAlias = e.Name;
-        iedObj.EdgemartLabel = e.Label;
-        iedObj.EdgemartContainer = this.folderName;
-        iedObj.Operation = 'Overwrite';
-        iedObj.Action = 'None';
-        iedObj.MetadataJson = EncodingUtil.base64Decode(EncodingUtil.base64Encode(Blob.valueOf(jsonMetadata)));
-
-        insert iedObj;        
-
-        // Add the Data
-        InsightsExternalDataPart dataPart = new InsightsExternalDataPart();
-        dataPart.InsightsExternalDataId = iedObj.Id;
-        dataPart.PartNumber = 1;
-        Integer size = csvBlob.size();
-        dataPart.DataFile = csvBlob;
-        dataPart.DataLength = size;
-        
-        insert dataPart;
-
-        // Final Step: Manage the Upload
-        iedObj.Action = 'Process';
-        update iedObj;
+		WaveConfiguratorUtils.loadEdgemart(e, this.folderName);
 
         this.processingLog.add('Edgmart data loaded successfully.');
 	}

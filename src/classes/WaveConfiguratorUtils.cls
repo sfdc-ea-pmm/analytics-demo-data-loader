@@ -57,5 +57,72 @@ public with sharing class WaveConfiguratorUtils {
 		return apps;
 	}
 
-	public class WaveConfiguratorException extends Exception {}
+	public static void loadEdgemart(Edgemart e, String appDeveloperName){
+		if(e != null){
+			if(String.isNotBlank(appDeveloperName)){
+				// Retrive the JSON metadata for edgemart
+				Http http = new Http();
+				HttpRequest req = new HttpRequest();
+				req.setEndpoint(e.MetadataJsonUrl);
+		        req.setMethod('GET');
+				HTTPResponse res = http.send(req);
+
+				if(checkStatus(res)){
+
+					String jsonMetadata = res.getBody();
+					// Retrieve csv data for edgemart
+					req = new HttpRequest();
+					req.setEndpoint(e.DataUrl);
+			        req.setMethod('GET');
+			        res = http.send(req);
+
+			        if(checkStatus(res)){
+
+			        	Blob csvBlob = Blob.valueof(res.getBody());
+						InsightsExternalData iedObj = new InsightsExternalData();
+						iedObj.Format = 'Csv';
+				        iedObj.EdgemartAlias = e.Name;
+				        iedObj.EdgemartLabel = e.Label;
+				        iedObj.EdgemartContainer = appDeveloperName;
+				        iedObj.Operation = 'Overwrite';
+				        iedObj.Action = 'None';
+				        iedObj.MetadataJson = EncodingUtil.base64Decode(EncodingUtil.base64Encode(Blob.valueOf(jsonMetadata)));
+
+				        insert iedObj;        
+
+				        // Add the Data
+				        InsightsExternalDataPart dataPart = new InsightsExternalDataPart();
+				        dataPart.InsightsExternalDataId = iedObj.Id;
+				        dataPart.PartNumber = 1;
+				        Integer size = csvBlob.size();
+				        dataPart.DataFile = csvBlob;
+				        dataPart.DataLength = size;
+				        
+				        insert dataPart;
+
+				        // Final Step: Manage the Upload
+				        iedObj.Action = 'Process';
+				        update iedObj;
+
+			        } 
+			        else {
+			        	throw new WaveConfiguratorException('Unable to retrieve CSV for edgemart: ' + e.Name + '. Check respective URL: ' + e.DataUrl);
+				    }
+				}
+				else {
+					throw new WaveConfiguratorException('Unable to retrieve JSON metadata for edgemart: ' + e.Name + '. Check respective URL: ' + e.MetadataJsonUrl);
+				}			
+			} 
+			else {
+				throw new WaveConfiguratorException('The folder name can not be blank.');
+			}
+		} 
+		else {
+			throw new WaveConfiguratorException('Edgemart can not be null.');
+		}		
+	}
+
+	private static boolean checkStatus(HTTPResponse r){
+		return r.getStatusCode() == 200;
+	}
 }
