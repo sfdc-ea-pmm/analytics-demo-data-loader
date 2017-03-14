@@ -494,7 +494,7 @@ public with sharing class WaveDataManagerController {
         dataPart.InsightsExternalDataId = iedObj.Id;
         dataPart.PartNumber = 1;
         Integer size = csvBlob.size();
-        dataPart.dataFile = csvBlob;
+        dataPart.DataFile = csvBlob;
         dataPart.DataLength = size;
         
         insert dataPart;
