@@ -140,7 +140,7 @@ public with sharing class WaveDataManagerController {
 
 					if(this.objectsNodes.size() > 0){
 						this.currentNodeIndex = 0;
-						disabledButton = true;
+						this.disabledButton = true;
 
 						SF_MetadataUtils mdUtils = new SF_MetadataUtils();
 
@@ -443,19 +443,7 @@ public with sharing class WaveDataManagerController {
 
 		String jsonToPost = '{"label":"' + appRow.Label + '","name":"' + this.folderName + '"}';
 
-		Http http = new Http();
-		HttpRequest req = new HttpRequest();
-
-		String salesforceHost = System.Url.getSalesforceBaseURL().toExternalForm();
-		String url =  salesforceHost + '/services/data/v39.0/wave/folders';
-
-		req.setMethod('POST');
-		req.setEndpoint(url);
-		req.setHeader('Content-type', 'application/json');
-		req.setHeader('Authorization', 'OAuth ' + UserInfo.getSessionId());
-		req.setBody(jsonToPost);
-		
-		HTTPResponse res = http.send(req);
+		HTTPResponse res = WaveConfiguratorUtils.httpCallout('/services/data/v39.0/wave/folders', 'POST', true, jsonToPost);
 
 		if(res.getBody().contains('errorCode')){
 			List<RestApiFolderErrorResponse> r = (List<RestApiFolderErrorResponse>)JSON.deserialize(res.getBody(), List<RestApiFolderErrorResponse>.class);
