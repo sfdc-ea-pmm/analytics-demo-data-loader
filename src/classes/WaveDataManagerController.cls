@@ -57,6 +57,14 @@ public with sharing class WaveDataManagerController {
 
 		if(applicationRows == null){
 			applicationRows = WaveConfiguratorUtils.getWaveApplications('https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/WaveApplications.csv');			
+			if(this.applicationRows != null){
+				Integer index = 0;
+	        	for(WaveApplicationRow genericApp: this.applicationRows) {
+					this.appIndexes.put(genericApp.Name, index);
+					this.appDescriptions.put(genericApp.Name, genericApp.Description);
+					index++;
+				}
+	        }
 		}
 
 		return null;
@@ -66,13 +74,9 @@ public with sharing class WaveDataManagerController {
         
         List<SelectOption> options = new List<SelectOption>();
 
-        Integer index = 0;
         if(this.applicationRows != null){
         	for(WaveApplicationRow genericApp: this.applicationRows) {
 				options.add(new SelectOption(genericApp.Name, genericApp.Label));
-				this.appIndexes.put(genericApp.Name, index);
-				this.appDescriptions.put(genericApp.Name, genericApp.Description);
-				index++;
 			}
         }
 

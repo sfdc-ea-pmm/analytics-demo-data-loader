@@ -152,4 +152,39 @@ public with sharing class WaveConfiguratorUtils {
 		HttpResponse response = http.send(req);
 		return response;
 	}
+
+	public static String createDataflow(String devName, String label, String folderId)
+	{
+		String dataflowJson = '{' + 
+		'	"attributes":{' + 
+		'		"type":"Dataflow"' + 
+		'	},' + 
+		'	"DeveloperName":"' + devName + '",' + 
+  		'	"MasterLabel":"' + label + '",' + 
+  		'	"State":"Active",' + 
+  		'	"FolderId":"' + folderId + '",' +
+  		'	"DataflowType":"User"' +
+  		'}';
+
+  		HttpResponse res = WaveConfiguratorUtils.httpCallout('/services/data/v39.0/sobjects/Dataflow', 'POST', true, dataflowJson);
+  		
+  		if(!WaveConfiguratorUtils.checkStatus(res)){
+  			if(res.getBody().contains('errorCode')){
+				List<RestApiErrorResponse> r = (List<RestApiErrorResponse>)JSON.deserialize(res.getBody(), List<RestApiErrorResponse>.class);
+				System.debug('Dataflow for ' + label + ' could not be created. Detailed message: ' + r.get(0).message);
+			}
+
+  			throw new WaveConfiguratorException('Dataflow for ' + label + ' could not be created. Check debug logs.');
+  		}
+  		else {
+  			RestApiResponseBody responseBody = (RestApiResponseBody)JSON.deserialize(res.getBody(), RestApiResponseBody.class);
+  			if(!responseBody.success){
+  				// Future: process errors property  				  			
+  				throw new WaveConfiguratorException('Dataflow for ' + label + ' could not be created. Check debug logs.');
+  			}
+  			else {
+  				return responseBody.id;
+  			}
+  		}
+	}
 }
