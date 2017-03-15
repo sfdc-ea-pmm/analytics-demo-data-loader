@@ -125,4 +125,31 @@ public with sharing class WaveConfiguratorUtils {
 	private static boolean checkStatus(HTTPResponse r){
 		return r.getStatusCode() == 200;
 	}
+
+	public static HttpResponse httpCallout(String url, String method, Boolean sfdcApi, String parameter){
+		Http http = new Http();
+		HttpRequest req = new HttpRequest();
+		String totalUrl = url;
+
+		if(sfdcApi){
+			String salesforceHost = System.Url.getSalesforceBaseURL().toExternalForm();
+			totalUrl = salesforceHost + url;
+
+			if(method.toUpperCase() == 'DELETE'){
+				totalUrl += '/' + parameter;
+			}
+
+			if(method.toUpperCase() == 'POST'){
+				req.setBody(parameter);
+			}
+		}
+
+		req.setMethod(method);
+		req.setEndpoint(totalUrl);
+		req.setHeader('Content-type', 'application/json');
+		req.setHeader('Authorization', 'OAuth ' + UserInfo.getSessionId());
+
+		HttpResponse response = http.send(req);
+		return response;
+	}
 }

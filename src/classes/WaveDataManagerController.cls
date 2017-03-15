@@ -22,6 +22,7 @@ public with sharing class WaveDataManagerController {
 	public List<WaveApplicationObject> objectsNodes { get; set; }
 	public List<Edgemart> edgemarts { get; set; }
 
+	public boolean disabledButton { get; set; }
 	private WaveMetadata metadata;
 	private Map<String, String> appDescriptions; // <appName, appDesc>
 	private Map<String, Integer> appIndexes; // <appName, appIndex in this.metadata.waveApplications>
@@ -139,7 +140,8 @@ public with sharing class WaveDataManagerController {
 
 					if(this.objectsNodes.size() > 0){
 						this.currentNodeIndex = 0;
-						
+						disabledButton = true;
+
 						SF_MetadataUtils mdUtils = new SF_MetadataUtils();
 
 						// Objects and fields Setup
@@ -342,6 +344,7 @@ public with sharing class WaveDataManagerController {
 						currentNode.currentDataIndex = 0;
 						this.objectsNodes.clear();
 						this.jobStatusDsc = '';
+						this.disabledButton = false;
 					}
 					else {
 						// Completed entire job, inspect if there are more data files 
@@ -372,6 +375,7 @@ public with sharing class WaveDataManagerController {
 										}
 										catch(Exception e) {
 											// TODO first: Delete recently created app/folder here, rollback
+											this.deleteFolder();
 											// Folder deleted, continue
 											System.debug(e.getMessage());
 											System.debug(e.getStackTraceString());
@@ -386,6 +390,7 @@ public with sharing class WaveDataManagerController {
 									this.jobStatusDsc = '';
 									this.objectsNodes.clear();
 									this.currentNodeIndex = 0;
+									this.disabledButton = false;
 								} 
 								else {
 									this.errorMessage = 'The folder ' + this.folderName + ' already exists.';
@@ -404,12 +409,14 @@ public with sharing class WaveDataManagerController {
 				else if(asyncJob.Status == 'Aborted'){
 					this.errorMessage = 'The process was aborted while loading data for the ' + this.objectsNodes.get(this.currentNodeIndex).name + ' object.';
 					this.currentNodeIndex = 0;
+					this.disabledButton = false;
 					this.objectsNodes.clear();
 					this.jobStatusDsc = '';
 				}
 				else if(asyncJob.Status == 'Failed'){
 					this.errorMessage = 'The process failed while loading data for the ' + this.objectsNodes.get(this.currentNodeIndex).name + ' object.';
 					this.currentNodeIndex = 0;
+					this.disabledButton = false;
 					this.objectsNodes.clear();
 					this.jobStatusDsc = '';
 				}
@@ -417,6 +424,16 @@ public with sharing class WaveDataManagerController {
 		}		
 
 		return null;
+	}
+
+	private void deleteFolder(){
+		String folderId = this.getFolderId(this.folderName);
+		WaveConfiguratorUtils.httpCallout('/services/data/v39.0/wave/folders', 'DELETE', true, folderId);
+	}
+
+	private String getFolderId(String devName){
+		Folder folder = [SELECT Id FROM Folder WHERE DeveloperName = :devName AND Type = 'Insights'];
+		return folder.Id;
 	}
 
 	public String insertFolder() {
