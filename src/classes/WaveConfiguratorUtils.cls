@@ -122,8 +122,9 @@ public with sharing class WaveConfiguratorUtils {
 		}		
 	}
 
-	private static boolean checkStatus(HTTPResponse r){
-		return r.getStatusCode() == 200;
+	public static boolean checkStatus(HTTPResponse r){
+		String strStatusCode = String.valueOf(r.getStatusCode());
+		return !(strStatusCode.startsWith('4') || strStatusCode.startsWith('5'));
 	}
 
 	public static HttpResponse httpCallout(String url, String method, Boolean sfdcApi, String parameter){
@@ -171,20 +172,104 @@ public with sharing class WaveConfiguratorUtils {
   		if(!WaveConfiguratorUtils.checkStatus(res)){
   			if(res.getBody().contains('errorCode')){
 				List<RestApiErrorResponse> r = (List<RestApiErrorResponse>)JSON.deserialize(res.getBody(), List<RestApiErrorResponse>.class);
-				System.debug('Dataflow for ' + label + ' could not be created. Detailed message: ' + r.get(0).message);
+				System.debug('Dataflow for ' + label + ' could not be created. Detailed message: ' + r.get(0).message);				
 			}
 
-  			throw new WaveConfiguratorException('Dataflow for ' + label + ' could not be created. Check debug logs.');
+			throw new WaveConfiguratorException('Dataflow for ' + label + ' could not be created. Check debug logs.');
   		}
   		else {
   			RestApiResponseBody responseBody = (RestApiResponseBody)JSON.deserialize(res.getBody(), RestApiResponseBody.class);
   			if(!responseBody.success){
   				// Future: process errors property  				  			
-  				throw new WaveConfiguratorException('Dataflow for ' + label + ' could not be created. Check debug logs.');
+  				throw new WaveConfiguratorException('Dataflow for ' + label + ' could not be created.');
   			}
   			else {
   				return responseBody.id;
   			}
   		}
+	}
+
+	public static String createDataflowVersion(String dataflowId, String dataflowDefinitionJson)
+	{
+		String postJson = '{' + 
+		'	"attributes":{' + 
+		'		"type":"DataflowVersion"' + 
+		'	},' + 
+		'	"DataflowId":"' + dataflowId + '",' + 
+  		'	"DataflowDefinition":' + JSON.serialize(dataflowDefinitionJson) + 
+  		'}';
+
+  		HttpResponse res = WaveConfiguratorUtils.httpCallout('/services/data/v39.0/sobjects/DataflowVersion', 'POST', true, postJson);
+  		
+  		if(!WaveConfiguratorUtils.checkStatus(res)){
+  			if(res.getBody().contains('errorCode')){
+				List<RestApiErrorResponse> r = (List<RestApiErrorResponse>)JSON.deserialize(res.getBody(), List<RestApiErrorResponse>.class);
+				System.debug('Dataflow Definition could not be created. Detailed message: ' + r.get(0).message);				
+			}
+
+			throw new WaveConfiguratorException('Dataflow Definition could not be created. Check debug logs.');
+  		}
+  		else {
+  			RestApiResponseBody responseBody = (RestApiResponseBody)JSON.deserialize(res.getBody(), RestApiResponseBody.class);
+  			if(!responseBody.success){
+  				// Future: process errors property  				  			
+  				throw new WaveConfiguratorException('Dataflow Definition could not be created.');
+  			}
+  			else {
+  				return responseBody.id;
+  			}
+  		}
+	}
+
+	public static void linkDataflowToVersion(String dataflowId, String versionId) {
+
+		String postJson = '{' + 
+		'	"attributes":{' + 
+		'		"type":"Dataflow"' + 
+		'	},' + 
+		'	"CurrentId":"' + versionId + '"' + 
+  		'}';
+
+		Http http = new Http();
+		HttpRequest req = new HttpRequest();
+
+		String salesforceHost = System.Url.getSalesforceBaseURL().toExternalForm();
+		String url = salesforceHost + '/services/data/v39.0/sobjects/Dataflow/' + dataflowId + '?_HttpMethod=PATCH';
+
+		req.setMethod('POST');
+		req.setEndpoint(url);
+		req.setHeader('Content-type', 'application/json');
+		req.setHeader('Authorization', 'OAuth ' + UserInfo.getSessionId());
+		req.setBody(postJson);
+
+		HTTPResponse res = http.send(req);
+
+		if(!WaveConfiguratorUtils.checkStatus(res)){
+  			if(res.getBody().contains('errorCode')){
+				List<RestApiErrorResponse> r = (List<RestApiErrorResponse>)JSON.deserialize(res.getBody(), List<RestApiErrorResponse>.class);
+				System.debug('Dataflow Definition version id could not be set. Detailed message: ' + r.get(0).message);
+			}
+
+			throw new WaveConfiguratorException('Dataflow Definition version id could not be set. Check debug logs.');
+  		}
+	}
+
+	@future(callout=true)
+	public static void deleteFolder(String folderId, String sessionId){
+		System.debug('Attempting to delete wave folder/application Id: ' + folderId);
+		String salesforceHost = System.Url.getSalesforceBaseURL().toExternalForm();
+		Http http = new Http();
+		HttpRequest req = new HttpRequest();
+		req.setMethod('DELETE');
+		req.setEndpoint(salesforceHost + '/services/data/v39.0/wave/folders/' + folderId);
+		req.setHeader('Authorization', 'OAuth ' + sessionId);
+
+		HttpResponse res = http.send(req);
+
+		System.debug('deleteFolder response: ' + res);
+
+		if(!WaveConfiguratorUtils.checkStatus(res)){
+			System.debug('Folder wave folder/application could not be deleted.');
+		}
 	}
 }

@@ -16,6 +16,7 @@
         <members>WaveApplicationObject</members>
         <members>WaveApplicationObjectField</members>
         <members>WaveApplicationObjectRelation</members>
+        <members>WaveApplicationRow</members>
         <members>WaveConfiguratorException</members>
         <members>WaveConfiguratorUtils</members>
         <members>WaveConfiguratorUtils_test</members>

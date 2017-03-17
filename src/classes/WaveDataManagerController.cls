@@ -21,13 +21,14 @@ public with sharing class WaveDataManagerController {
 	public String currentObjectProcessing { get; set; }
 	public List<WaveApplicationObject> objectsNodes { get; set; }
 	public List<Edgemart> edgemarts { get; set; }
-
 	public boolean disabledButton { get; set; }
 	private WaveMetadata metadata;
 	private Map<String, String> appDescriptions; // <appName, appDesc>
 	private Map<String, Integer> appIndexes; // <appName, appIndex in this.metadata.waveApplications>
 	public String folderName {get;set;}
 	public List<WaveApplicationRow> applicationRows;
+	public WaveMetadataApplication selectedAppMetadata { get; set; }
+	public String dataflowDefinitionJson { get; set; }
 
 	public WaveDataManagerController() {
 		this.objectsNodes = new List<WaveApplicationObject>();
@@ -128,18 +129,34 @@ public with sharing class WaveDataManagerController {
 			        HTTPResponse res = http.send(req);
 
 					String jsonMetadata = res.getBody();
-					WaveMetadataApplication selectedApp = (WaveMetadataApplication)JSON.deserialize(jsonMetadata, WaveMetadataApplication.class);
+					this.selectedAppMetadata = (WaveMetadataApplication)JSON.deserialize(jsonMetadata, WaveMetadataApplication.class);
 					
-					if(selectedApp != null && selectedApp.objects != null){
+					if(this.selectedAppMetadata != null && this.selectedAppMetadata.objects != null){
 						
 						// Retrieve objects to process
-						for(WaveMetadataApplicationObject wmaObj: selectedApp.objects) {
+						for(WaveMetadataApplicationObject wmaObj: this.selectedAppMetadata.objects) {
 							List<WaveApplicationObject> objs = this.getObjectsToProcess(wmaObj);
 							this.objectsNodes.addAll(objs);
 						}
 
 						// Edgemarts
-						this.edgemarts = selectedApp.edgemarts;
+						this.edgemarts = this.selectedAppMetadata.edgemarts;
+
+						// Dataflow Definition JSON file
+						req = new HttpRequest();
+						req.setEndpoint(this.selectedAppMetadata.dataflowLocation);
+			        	req.setMethod('GET');
+						http = new Http();
+			        	HTTPResponse resDf = http.send(req);
+
+						if(WaveConfiguratorUtils.checkStatus(resDf)){
+							this.dataflowDefinitionJson = resDf.getBody();
+						}
+						else {
+							this.objectsNodes.clear();
+							System.debug(resDf);
+							throw new WaveConfiguratorException('Unable to retrieve Dataflow Definition JSON file for Wave Application.');							
+						}
 					}
 
 					if(this.objectsNodes.size() > 0){
@@ -373,17 +390,36 @@ public with sharing class WaveDataManagerController {
 									if(String.isEmpty(result)) {
 										// Now load the edgemarts
 										try {
-											loadAllEdgemarts();
-											this.successMessage = 'The entire process finished successfully.';
-											this.processingLog.add('Done.');
+											//loadAllEdgemarts();
+											
+											// Edgemarts loaded, now create dataflow
+											this.processingLog.add('Checking Dataflow Definition JSON file for application...');
+
+											if(!String.isBlank(this.dataflowDefinitionJson)){
+												this.processingLog.add('Dataflow Definition JSON file checked. Creating dataflow...');
+												
+												Integer appIndex = this.appIndexes.get(this.selectedWaveApp);
+												WaveApplicationRow appRow = this.applicationRows.get(appIndex);
+												String dataflowId = WaveConfiguratorUtils.createDataflow(this.folderName, appRow.Label, this.getFolderId(this.folderName));
+												String versionId = WaveConfiguratorUtils.createDataflowVersion(dataflowId, this.dataflowDefinitionJson);
+												WaveConfiguratorUtils.linkDataflowToVersion(dataflowId, versionId);
+
+												this.processingLog.add('Dataflow created successfully.');
+												this.successMessage = 'The entire process finished successfully.';
+												this.processingLog.add('Done.');
+											}
+											else {
+												//WaveConfiguratorUtils.createDataflowVersion(dataflowId, dataflowDefinitionJson);
+												this.errorMessage = 'Invalid Dataflow Definition JSON for Wave Application. Check URL: ' + selectedAppMetadata.dataflowLocation;
+												this.rollbackProcess();	
+											}
 										}
 										catch(Exception e) {
-											// TODO first: Delete recently created app/folder here, rollback
-											this.deleteFolder();
-											// Folder deleted, continue
 											System.debug(e.getMessage());
 											System.debug(e.getStackTraceString());
 											this.errorMessage = e.getMessage();
+
+											this.rollbackProcess();											
 										}
 									}
 									else {
@@ -493,5 +529,11 @@ public with sharing class WaveDataManagerController {
 			MetadataConnectionWarning = true;
 		}
 		return null;
+	}
+
+	private void rollbackProcess(){
+		// Delete recently created app/folder here
+		String folderId = this.getFolderId(this.folderName);
+		WaveConfiguratorUtils.deleteFolder(folderId, UserInfo.getSessionId());
 	}
 }
