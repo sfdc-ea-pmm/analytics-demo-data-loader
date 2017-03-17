@@ -1,4 +1,4 @@
 config
 debug/logs
 *.sublime-project
-Wave Tooling.sublime-workspace
+/*.sublime-workspace

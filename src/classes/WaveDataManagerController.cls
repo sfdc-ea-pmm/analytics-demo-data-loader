@@ -21,12 +21,14 @@ public with sharing class WaveDataManagerController {
 	public String currentObjectProcessing { get; set; }
 	public List<WaveApplicationObject> objectsNodes { get; set; }
 	public List<Edgemart> edgemarts { get; set; }
-
+	public boolean disabledButton { get; set; }
 	private WaveMetadata metadata;
 	private Map<String, String> appDescriptions; // <appName, appDesc>
 	private Map<String, Integer> appIndexes; // <appName, appIndex in this.metadata.waveApplications>
 	public String folderName {get;set;}
 	public List<WaveApplicationRow> applicationRows;
+	public WaveMetadataApplication selectedAppMetadata { get; set; }
+	public String dataflowDefinitionJson { get; set; }
 
 	public WaveDataManagerController() {
 		this.objectsNodes = new List<WaveApplicationObject>();
@@ -56,6 +58,14 @@ public with sharing class WaveDataManagerController {
 
 		if(applicationRows == null){
 			applicationRows = WaveConfiguratorUtils.getWaveApplications('https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/WaveApplications.csv');			
+			if(this.applicationRows != null){
+				Integer index = 0;
+	        	for(WaveApplicationRow genericApp: this.applicationRows) {
+					this.appIndexes.put(genericApp.Name, index);
+					this.appDescriptions.put(genericApp.Name, genericApp.Description);
+					index++;
+				}
+	        }
 		}
 
 		return null;
@@ -65,13 +75,9 @@ public with sharing class WaveDataManagerController {
         
         List<SelectOption> options = new List<SelectOption>();
 
-        Integer index = 0;
         if(this.applicationRows != null){
         	for(WaveApplicationRow genericApp: this.applicationRows) {
 				options.add(new SelectOption(genericApp.Name, genericApp.Label));
-				this.appIndexes.put(genericApp.Name, index);
-				this.appDescriptions.put(genericApp.Name, genericApp.Description);
-				index++;
 			}
         }
 
@@ -107,7 +113,7 @@ public with sharing class WaveDataManagerController {
 		this.resetMessages();
 
 		if(!String.isBlank(folderName)){
-			if(!this.checkFolderExistance()){
+			if(!WaveConfiguratorUtils.checkFolderExistance(this.folderName)){
 				try {
 					// We build the node array
 					this.objectsNodes.clear();
@@ -123,23 +129,40 @@ public with sharing class WaveDataManagerController {
 			        HTTPResponse res = http.send(req);
 
 					String jsonMetadata = res.getBody();
-					WaveMetadataApplication selectedApp = (WaveMetadataApplication)JSON.deserialize(jsonMetadata, WaveMetadataApplication.class);
+					this.selectedAppMetadata = (WaveMetadataApplication)JSON.deserialize(jsonMetadata, WaveMetadataApplication.class);
 					
-					if(selectedApp != null && selectedApp.objects != null){
+					if(this.selectedAppMetadata != null && this.selectedAppMetadata.objects != null){
 						
 						// Retrieve objects to process
-						for(WaveMetadataApplicationObject wmaObj: selectedApp.objects) {
+						for(WaveMetadataApplicationObject wmaObj: this.selectedAppMetadata.objects) {
 							List<WaveApplicationObject> objs = this.getObjectsToProcess(wmaObj);
 							this.objectsNodes.addAll(objs);
 						}
 
 						// Edgemarts
-						this.edgemarts = selectedApp.edgemarts;
+						this.edgemarts = this.selectedAppMetadata.edgemarts;
+
+						// Dataflow Definition JSON file
+						req = new HttpRequest();
+						req.setEndpoint(this.selectedAppMetadata.dataflowLocation);
+			        	req.setMethod('GET');
+						http = new Http();
+			        	HTTPResponse resDf = http.send(req);
+
+						if(WaveConfiguratorUtils.checkStatus(resDf)){
+							this.dataflowDefinitionJson = resDf.getBody();
+						}
+						else {
+							this.objectsNodes.clear();
+							System.debug(resDf);
+							throw new WaveConfiguratorException('Unable to retrieve Dataflow Definition JSON file for Wave Application.');							
+						}
 					}
 
 					if(this.objectsNodes.size() > 0){
 						this.currentNodeIndex = 0;
-						
+						this.disabledButton = true;
+
 						SF_MetadataUtils mdUtils = new SF_MetadataUtils();
 
 						// Objects and fields Setup
@@ -342,6 +365,7 @@ public with sharing class WaveDataManagerController {
 						currentNode.currentDataIndex = 0;
 						this.objectsNodes.clear();
 						this.jobStatusDsc = '';
+						this.disabledButton = false;
 					}
 					else {
 						// Completed entire job, inspect if there are more data files 
@@ -358,24 +382,44 @@ public with sharing class WaveDataManagerController {
 							if(this.currentNodeIndex == this.objectsNodes.size() - 1){
 								this.processingLog.add('Creating ' + folderName + ' folder/app...');
 								
-								if(!this.checkFolderExistance()){
+								if(!WaveConfiguratorUtils.checkFolderExistance(this.folderName)){
 									
-									String result = this.insertFolder();
+									Integer appIndex = this.appIndexes.get(this.selectedWaveApp);
+									WaveApplicationRow appRow = this.applicationRows.get(appIndex);
+
+									String result = WaveConfiguratorUtils.insertFolder(appRow.Label, this.folderName);
 									
 									//If empty, no errors
 									if(String.isEmpty(result)) {
 										// Now load the edgemarts
 										try {
-											loadAllEdgemarts();
-											this.successMessage = 'The entire process finished successfully.';
-											this.processingLog.add('Done.');
+											//loadAllEdgemarts();
+											
+											// Edgemarts loaded, now create dataflow
+											this.processingLog.add('Checking Dataflow Definition JSON file for application...');
+
+											if(!String.isBlank(this.dataflowDefinitionJson)){
+												this.processingLog.add('Dataflow Definition JSON file checked. Creating dataflow...');
+												String dataflowId = WaveConfiguratorUtils.createDataflow(this.folderName, appRow.Label, WaveConfiguratorUtils.getFolderId(this.folderName));
+												String versionId = WaveConfiguratorUtils.createDataflowVersion(dataflowId, this.dataflowDefinitionJson);
+												WaveConfiguratorUtils.linkDataflowToVersion(dataflowId, versionId);
+
+												this.processingLog.add('Dataflow created successfully.');
+												this.successMessage = 'The entire process finished successfully.';
+												this.processingLog.add('Done.');
+											}
+											else {
+												//WaveConfiguratorUtils.createDataflowVersion(dataflowId, dataflowDefinitionJson);
+												this.errorMessage = 'Invalid Dataflow Definition JSON for Wave Application. Check URL: ' + selectedAppMetadata.dataflowLocation;
+												this.rollbackProcess();	
+											}
 										}
 										catch(Exception e) {
-											// TODO first: Delete recently created app/folder here, rollback
-											// Folder deleted, continue
 											System.debug(e.getMessage());
 											System.debug(e.getStackTraceString());
 											this.errorMessage = e.getMessage();
+
+											this.rollbackProcess();											
 										}
 									}
 									else {
@@ -386,6 +430,7 @@ public with sharing class WaveDataManagerController {
 									this.jobStatusDsc = '';
 									this.objectsNodes.clear();
 									this.currentNodeIndex = 0;
+									this.disabledButton = false;
 								} 
 								else {
 									this.errorMessage = 'The folder ' + this.folderName + ' already exists.';
@@ -404,12 +449,14 @@ public with sharing class WaveDataManagerController {
 				else if(asyncJob.Status == 'Aborted'){
 					this.errorMessage = 'The process was aborted while loading data for the ' + this.objectsNodes.get(this.currentNodeIndex).name + ' object.';
 					this.currentNodeIndex = 0;
+					this.disabledButton = false;
 					this.objectsNodes.clear();
 					this.jobStatusDsc = '';
 				}
 				else if(asyncJob.Status == 'Failed'){
 					this.errorMessage = 'The process failed while loading data for the ' + this.objectsNodes.get(this.currentNodeIndex).name + ' object.';
 					this.currentNodeIndex = 0;
+					this.disabledButton = false;
 					this.objectsNodes.clear();
 					this.jobStatusDsc = '';
 				}
@@ -419,40 +466,7 @@ public with sharing class WaveDataManagerController {
 		return null;
 	}
 
-	public String insertFolder() {
-
-		Integer appIndex = this.appIndexes.get(this.selectedWaveApp);
-		WaveApplicationRow appRow = this.applicationRows.get(appIndex);
-
-		String jsonToPost = '{"label":"' + appRow.Label + '","name":"' + this.folderName + '"}';
-
-		Http http = new Http();
-		HttpRequest req = new HttpRequest();
-
-		String salesforceHost = System.Url.getSalesforceBaseURL().toExternalForm();
-		String url =  salesforceHost + '/services/data/v39.0/wave/folders';
-
-		req.setMethod('POST');
-		req.setEndpoint(url);
-		req.setHeader('Content-type', 'application/json');
-		req.setHeader('Authorization', 'OAuth ' + UserInfo.getSessionId());
-		req.setBody(jsonToPost);
 		
-		HTTPResponse res = http.send(req);
-
-		if(res.getBody().contains('errorCode')){
-			List<RestApiFolderErrorResponse> r = (List<RestApiFolderErrorResponse>)JSON.deserialize(res.getBody(), List<RestApiFolderErrorResponse>.class);
-			return r.get(0).message;
-		} 
-
-		return '';
-	}
-
-	private boolean checkFolderExistance(){
-		Folder[] lstFolders = [SELECT Id FROM Folder WHERE DeveloperName = :this.folderName AND Type = 'Insights'];
-		return lstFolders.size() > 0;
-	}
-
 	private void loadAllEdgemarts(){
 		if(this.edgemarts != null){
 			for(Edgemart edg : this.edgemarts){
@@ -484,5 +498,11 @@ public with sharing class WaveDataManagerController {
 			MetadataConnectionWarning = true;
 		}
 		return null;
+	}
+
+	private void rollbackProcess(){
+		// Delete recently created app/folder here
+		String folderId = WaveConfiguratorUtils.getFolderId(this.folderName);
+		WaveConfiguratorUtils.deleteFolder(folderId, UserInfo.getSessionId());
 	}
 }
