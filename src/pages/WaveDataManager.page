@@ -93,7 +93,7 @@
 		</apex:outputPanel>
 	</apex:form>
 	<apex:form id="form3" styleClass="standardText">
-		<apex:actionPoller action="{!checkProcessingStatus}" reRender="processingStatus,processingLogConsole,messages,form1,form3, btnInstallApp" interval="5" enabled="{!objectsNodes.size > 0}" id="checkFunction"/>
+		<apex:actionPoller action="{!checkObjectLoadingStatus}" reRender="processingStatus,processingLogConsole,messages,form1,form3, btnInstallApp" interval="5" enabled="{!objectsNodes.size > 0}" id="checkFunction"/>
 		<apex:outputPanel rendered="{!processingLog.size > 0}">
 			<apex:outputText value="Status" id="processingStatus" style="font-weight: bold" />
 			<apex:panelGrid columns="1" width="600px" style="border: 1px solid #000;">

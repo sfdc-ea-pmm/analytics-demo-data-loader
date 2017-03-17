@@ -110,59 +110,102 @@ public with sharing class WaveDataManagerController {
 	}
 
 	public void installApp(){
+		
 		this.resetMessages();
 
-		if(!String.isBlank(folderName)){
-			if(!WaveConfiguratorUtils.checkFolderExistance(this.folderName)){
-				try {
-					// We build the node array
-					this.objectsNodes.clear();
+		// Start with validations
+		Boolean passedValidation = true;
 
-					Integer appIndex = this.appIndexes.get(this.selectedWaveApp);
-					WaveApplicationRow appRow = this.applicationRows.get(appIndex);
+		if(String.isBlank(folderName)){
+			passedValidation = false;
+			this.errorMessage = 'A folder/app must be specified.';
+		}
 
-					// Retrieve and parse metadata
-					HttpRequest req = new HttpRequest();
-					req.setEndpoint(appRow.MetadataUrl);
-			        req.setMethod('GET');
-					Http http = new Http();
-			        HTTPResponse res = http.send(req);
+		if(WaveConfiguratorUtils.folderExists(this.folderName)){
+			passedValidation = false;
+			this.errorMessage = 'The folder ' + this.folderName + ' already exists.';
+		}
 
-					String jsonMetadata = res.getBody();
-					this.selectedAppMetadata = (WaveMetadataApplication)JSON.deserialize(jsonMetadata, WaveMetadataApplication.class);
+		if(WaveConfiguratorUtils.dataflowExistsByName(this.folderName)){
+			passedValidation = false;
+			this.errorMessage = 'The dataflow ' + this.folderName + ' already exists.';
+		}
+
+		if(passedValidation){
+			try {
+				Integer appIndex = this.appIndexes.get(this.selectedWaveApp);
+				WaveApplicationRow appRow = this.applicationRows.get(appIndex);
+
+				// Retrieve and parse metadata
+				HttpRequest req = new HttpRequest();
+				req.setEndpoint(appRow.MetadataUrl);
+		        req.setMethod('GET');
+				Http http = new Http();
+		        HTTPResponse res = http.send(req);
+
+				String jsonMetadata = res.getBody();
+				this.selectedAppMetadata = (WaveMetadataApplication)JSON.deserialize(jsonMetadata, WaveMetadataApplication.class);
+
+				if(this.selectedAppMetadata != null && this.selectedAppMetadata.objects != null){
 					
-					if(this.selectedAppMetadata != null && this.selectedAppMetadata.objects != null){
+					// Edgemarts
+					this.edgemarts = this.selectedAppMetadata.edgemarts;		
+					
+					// Dataflow Definition JSON file
+					req = new HttpRequest();
+					req.setEndpoint(this.selectedAppMetadata.dataflowLocation);
+		        	req.setMethod('GET');
+					http = new Http();
+		        	HTTPResponse resDf = http.send(req);
+
+		        	if(WaveConfiguratorUtils.checkStatus(resDf)){
+						String dfDefJsonBody = resDf.getBody();
+						if(String.isBlank(dfDefJsonBody)){
+							throw new WaveConfiguratorException('Invalid Dataflow Definition JSON for Wave Application. Check URL: ' + selectedAppMetadata.dataflowLocation);
+						}
 						
-						// Retrieve objects to process
-						for(WaveMetadataApplicationObject wmaObj: this.selectedAppMetadata.objects) {
-							List<WaveApplicationObject> objs = this.getObjectsToProcess(wmaObj);
-							this.objectsNodes.addAll(objs);
-						}
+						this.dataflowDefinitionJson = dfDefJsonBody;						
+					}
+					else {
+						System.debug(resDf);
 
-						// Edgemarts
-						this.edgemarts = this.selectedAppMetadata.edgemarts;
-
-						// Dataflow Definition JSON file
-						req = new HttpRequest();
-						req.setEndpoint(this.selectedAppMetadata.dataflowLocation);
-			        	req.setMethod('GET');
-						http = new Http();
-			        	HTTPResponse resDf = http.send(req);
-
-						if(WaveConfiguratorUtils.checkStatus(resDf)){
-							this.dataflowDefinitionJson = resDf.getBody();
-						}
-						else {
-							this.objectsNodes.clear();
-							System.debug(resDf);
-							throw new WaveConfiguratorException('Unable to retrieve Dataflow Definition JSON file for Wave Application.');							
-						}
+						throw new WaveConfiguratorException('Unable to retrieve Dataflow Definition JSON file for Wave Application.');							
 					}
 
-					if(this.objectsNodes.size() > 0){
-						this.currentNodeIndex = 0;
-						this.disabledButton = true;
+					// Create app/folder
+					this.processingLog.add('Creating ' + this.folderName + ' folder/application...');
+					String resFolderCreate = WaveConfiguratorUtils.insertFolder(appRow.Label, this.folderName);
+					
+					//If empty, no errors
+					if(!String.isEmpty(resFolderCreate)) {
+						this.processingLog.add(resFolderCreate);
 
+						throw new WaveConfiguratorException('There was an error in the attempting to create the ' + this.folderName + ' folder. See log for details.');
+					}
+
+					this.processingLog.add(this.folderName + ' folder/application created successfully.');
+
+					// Create dataflow
+					// Create dataflow version
+					// Link dataflow to dataflow version current id
+					this.processingLog.add('Creating ' + this.folderName + ' dataflow...');
+					
+					String dataflowId = WaveConfiguratorUtils.createDataflow(this.folderName, appRow.Label, WaveConfiguratorUtils.getFolderId(this.folderName));
+					String versionId = WaveConfiguratorUtils.createDataflowVersion(dataflowId, this.dataflowDefinitionJson);
+					WaveConfiguratorUtils.linkDataflowToVersion(dataflowId, versionId);
+
+					this.processingLog.add('Dataflow created successfully.');
+
+					// Retrieve objects to process
+					for(WaveMetadataApplicationObject wmaObj: this.selectedAppMetadata.objects) {
+						List<WaveApplicationObject> objs = this.getObjectsToProcess(wmaObj);
+						this.objectsNodes.addAll(objs);
+					}
+
+					// Check if there are objects data to load					
+					if(this.objectsNodes.size() > 0){						
+
+						// Create objects metadata if needed
 						SF_MetadataUtils mdUtils = new SF_MetadataUtils();
 
 						// Objects and fields Setup
@@ -213,26 +256,32 @@ public with sharing class WaveDataManagerController {
 						}
 
 						// Print some message at the UI to inform that setup has succeeded
-						this.processingLog.add('All needed metadata was created successfully.');
+						this.processingLog.add('All needed metadata was created successfully.');						
+					}					
 
+					if(this.objectsNodes.size() > 0){
 						// We start loading data for each object
 						this.processingLog.add('This process can take up to 30 minutes. We will refresh status every 5 seconds.');
-						this.processNode();
+						this.currentNodeIndex = 0;
+						this.disabledButton = true;
+
+						// This launchs all the process of loading data to salesforce objects
+						this.processCurrentObjectLoadNode();	
 					}
 					else {
-						this.warningMessage = 'No data to load.';
-					}
-				} 
-				catch(Exception e) {
-					System.debug(e.getMessage());
-					System.debug(e.getStackTraceString());
-					this.errorMessage = e.getMessage();
-				}	
-			} else {
-				this.errorMessage = 'The folder ' + this.folderName + ' already exists.';
+						this.processingLog.add('There are no objects to load.');
+						this.processingLog.add('Done.');
+						this.successMessage = 'Application installed successfully.';
+					}					
+				}
 			}
-		} else {
-			this.errorMessage = 'A folder/app must be specified.';
+			catch(Exception e) {
+				System.debug(e.getMessage());
+				System.debug(e.getStackTraceString());
+				this.errorMessage = e.getMessage();
+
+				this.rollbackProcess();
+			}
 		}
 	}
 
@@ -304,7 +353,7 @@ public with sharing class WaveDataManagerController {
 		return listToProcess;
 	}
 
-	private void processNode(){
+	private void processCurrentObjectLoadNode(){
 		
 		WaveApplicationObject currentNode = this.objectsNodes.get(this.currentNodeIndex);
 		IMockarooHelper iMockHelper = MockarooHelperFactory.getIMockarooHelper();
@@ -347,7 +396,7 @@ public with sharing class WaveDataManagerController {
 		this.showJobStatistics = true;
 	}
 
-	public PageReference checkProcessingStatus(){
+	public PageReference checkObjectLoadingStatus(){
 		
 		if(!String.isBlank(this.batchProcessId)){
 
@@ -372,7 +421,7 @@ public with sharing class WaveDataManagerController {
 						// within the current node
 						if(currentNode.currentDataIndex < currentNode.additionalDataFiles){
 							currentNode.currentDataIndex = currentNode.currentDataIndex + 1;
-							this.processNode();
+							this.processCurrentObjectLoadNode();
 						}
 						else{
 							// Entire node finished, reset currentNode.currentDataIndex
@@ -380,71 +429,37 @@ public with sharing class WaveDataManagerController {
 							
 							// now check whether it was the last one
 							if(this.currentNodeIndex == this.objectsNodes.size() - 1){
-								this.processingLog.add('Creating ' + folderName + ' folder/app...');
 								
-								if(!WaveConfiguratorUtils.checkFolderExistance(this.folderName)){
+								try {
+									// Now load the edgemarts
+									loadAllEdgemarts();
 									
-									Integer appIndex = this.appIndexes.get(this.selectedWaveApp);
-									WaveApplicationRow appRow = this.applicationRows.get(appIndex);
-
-									String result = WaveConfiguratorUtils.insertFolder(appRow.Label, this.folderName);
+									this.processingLog.add('Done.');
+									this.successMessage = 'Application installed successfully.';
+								} 
+								catch(Exception e) {
+									this.errorMessage = e.getMessage();
+									System.debug(e.getMessage());
+									System.debug(e.getStackTraceString());
 									
-									//If empty, no errors
-									if(String.isEmpty(result)) {
-										// Now load the edgemarts
-										try {
-											//loadAllEdgemarts();
-											
-											// Edgemarts loaded, now create dataflow
-											this.processingLog.add('Checking Dataflow Definition JSON file for application...');
-
-											if(!String.isBlank(this.dataflowDefinitionJson)){
-												this.processingLog.add('Dataflow Definition JSON file checked. Creating dataflow...');
-												String dataflowId = WaveConfiguratorUtils.createDataflow(this.folderName, appRow.Label, WaveConfiguratorUtils.getFolderId(this.folderName));
-												String versionId = WaveConfiguratorUtils.createDataflowVersion(dataflowId, this.dataflowDefinitionJson);
-												WaveConfiguratorUtils.linkDataflowToVersion(dataflowId, versionId);
-
-												this.processingLog.add('Dataflow created successfully.');
-												this.successMessage = 'The entire process finished successfully.';
-												this.processingLog.add('Done.');
-											}
-											else {
-												//WaveConfiguratorUtils.createDataflowVersion(dataflowId, dataflowDefinitionJson);
-												this.errorMessage = 'Invalid Dataflow Definition JSON for Wave Application. Check URL: ' + selectedAppMetadata.dataflowLocation;
-												this.rollbackProcess();	
-											}
-										}
-										catch(Exception e) {
-											System.debug(e.getMessage());
-											System.debug(e.getStackTraceString());
-											this.errorMessage = e.getMessage();
-
-											this.rollbackProcess();											
-										}
-									}
-									else {
-										this.processingLog.add(result);
-										this.errorMessage = 'There was an error in the attempting to create the ' + this.folderName + ' folder. See log for details.';
-									}
-
+									// Rollback
+									this.rollbackProcess();
+								}
+								finally {
 									this.jobStatusDsc = '';
 									this.objectsNodes.clear();
 									this.currentNodeIndex = 0;
 									this.disabledButton = false;
-								} 
-								else {
-									this.errorMessage = 'The folder ' + this.folderName + ' already exists.';
 								}
-
 							}
 							else {
-								// There are more nodes to process, increment index and reset 
+								// There are more nodes to process, increment index and reset
 								// currentNode.currentDataIndex
 								this.currentNodeIndex = this.currentNodeIndex + 1;
-								this.processNode();
+								this.processCurrentObjectLoadNode();
 							}
 						}
-					}					
+					}		
 				}
 				else if(asyncJob.Status == 'Aborted'){
 					this.errorMessage = 'The process was aborted while loading data for the ' + this.objectsNodes.get(this.currentNodeIndex).name + ' object.';
@@ -504,5 +519,9 @@ public with sharing class WaveDataManagerController {
 		// Delete recently created app/folder here
 		String folderId = WaveConfiguratorUtils.getFolderId(this.folderName);
 		WaveConfiguratorUtils.deleteFolder(folderId, UserInfo.getSessionId());
+
+		// Delete recently created dataflow
+		String dataflowId = WaveConfiguratorUtils.getDataflowIdByName(this.folderName);
+		WaveConfiguratorUtils.deleteDataflow(dataflowId, UserInfo.getSessionId());
 	}
 }

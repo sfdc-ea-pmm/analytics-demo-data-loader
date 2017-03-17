@@ -254,6 +254,42 @@ public with sharing class WaveConfiguratorUtils {
   		}
 	}
 
+	public static Boolean dataflowExistsByName(String devName){
+		Dataflow[] dfResults = [SELECT Id FROM Dataflow WHERE DeveloperName = :devName];
+		
+		return dfResults.size() > 0;
+	}
+
+	public static String getDataflowIdByName(String devName){
+		Dataflow[] dfResults = [SELECT Id FROM Dataflow WHERE DeveloperName = :devName];
+		String dfId = '';
+
+		if(dfResults.size() > 0){
+			dfId = dfResults.get(0).Id;
+		}
+
+		return dfId;
+	}
+
+	@future(callout=true)
+	public static void deleteDataflow(String dataflowId, String sessionId){
+		System.debug('Attempting to delete wave dataflow Id: ' + dataflowId);
+		String salesforceHost = System.Url.getSalesforceBaseURL().toExternalForm();
+		Http http = new Http();
+		HttpRequest req = new HttpRequest();
+		req.setMethod('DELETE');
+		req.setEndpoint(salesforceHost + '/services/data/v39.0/sobjects/Dataflow/' + dataflowId);
+		req.setHeader('Authorization', 'OAuth ' + sessionId);
+
+		HttpResponse res = http.send(req);
+
+		System.debug('deleteDataflow response: ' + res);
+
+		if(!WaveConfiguratorUtils.checkStatus(res)){
+			System.debug('Dataflow ' + dataflowId + ' could not be deleted.');
+		}
+	}
+
 	@future(callout=true)
 	public static void deleteFolder(String folderId, String sessionId){
 		System.debug('Attempting to delete wave folder/application Id: ' + folderId);
@@ -269,7 +305,7 @@ public with sharing class WaveConfiguratorUtils {
 		System.debug('deleteFolder response: ' + res);
 
 		if(!WaveConfiguratorUtils.checkStatus(res)){
-			System.debug('Folder wave folder/application could not be deleted.');
+			System.debug('Wave folder/application could not be deleted.');
 		}
 	}
 
@@ -293,13 +329,9 @@ public with sharing class WaveConfiguratorUtils {
 		return folder.Id;
 	}
 
-	public static boolean checkFolderExistance(String folderName){
+	public static boolean folderExists(String folderName){
 		Folder[] lstFolders = [SELECT Id FROM Folder WHERE DeveloperName = :folderName AND Type = 'Insights'];
 		return lstFolders.size() > 0;
 	}
-
-
-
-
 
 }
