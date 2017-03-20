@@ -25,7 +25,9 @@ public with sharing class WaveDataManagerController {
 	private WaveMetadata metadata;
 	private Map<String, String> appDescriptions; // <appName, appDesc>
 	private Map<String, Integer> appIndexes; // <appName, appIndex in this.metadata.waveApplications>
-	public String folderName {get;set;}
+	public String folderName { get; set; }
+	public String dataflowName { get; set; }
+	public String dataflowLabel { get; set; }
 	public List<WaveApplicationRow> applicationRows;
 	public WaveMetadataApplication selectedAppMetadata { get; set; }
 	public String dataflowDefinitionJson { get; set; }
@@ -121,14 +123,24 @@ public with sharing class WaveDataManagerController {
 			this.errorMessage = 'A folder/app must be specified.';
 		}
 
+		if(String.isBlank(this.dataflowName)){
+			passedValidation = false;
+			this.errorMessage = 'A dataflow name must be specified.';
+		}
+
+		if(String.isBlank(this.dataflowLabel)){
+			passedValidation = false;
+			this.errorMessage = 'A dataflow label must be specified.';
+		}
+
 		if(WaveConfiguratorUtils.folderExists(this.folderName)){
 			passedValidation = false;
 			this.errorMessage = 'The folder ' + this.folderName + ' already exists.';
 		}
 
-		if(WaveConfiguratorUtils.dataflowExistsByName(this.folderName)){
+		if(WaveConfiguratorUtils.dataflowExistsByName(this.dataflowName)){
 			passedValidation = false;
-			this.errorMessage = 'The dataflow ' + this.folderName + ' already exists.';
+			this.errorMessage = 'The dataflow ' + this.dataflowName + ' already exists.';
 		}
 
 		if(passedValidation){
@@ -188,9 +200,16 @@ public with sharing class WaveDataManagerController {
 					// Create dataflow
 					// Create dataflow version
 					// Link dataflow to dataflow version current id
-					this.processingLog.add('Creating ' + this.folderName + ' dataflow...');
+					this.processingLog.add('Creating ' + this.dataflowName + ' dataflow...');
 					
-					String dataflowId = WaveConfiguratorUtils.createDataflow(this.folderName, appRow.Label, WaveConfiguratorUtils.getFolderId(this.folderName));
+					String dataflowResponse = WaveConfiguratorUtils.createDataflow(this.dataflowName, this.dataflowLabel, WaveConfiguratorUtils.getFolderId(this.folderName));
+
+					if(dataflowResponse.contains('Error')){
+						this.processingLog.add(dataflowResponse);
+						throw new WaveConfiguratorException('Dataflow for ' + this.dataflowLabel + ' could not be created. Check debug logs.');
+					}
+
+					String dataflowId = dataflowResponse;					
 					String versionId = WaveConfiguratorUtils.createDataflowVersion(dataflowId, this.dataflowDefinitionJson);
 					WaveConfiguratorUtils.linkDataflowToVersion(dataflowId, versionId);
 
@@ -521,7 +540,7 @@ public with sharing class WaveDataManagerController {
 		WaveConfiguratorUtils.deleteFolder(folderId, UserInfo.getSessionId());
 
 		// Delete recently created dataflow
-		String dataflowId = WaveConfiguratorUtils.getDataflowIdByName(this.folderName);
+		String dataflowId = WaveConfiguratorUtils.getDataflowIdByName(this.dataflowName);
 		WaveConfiguratorUtils.deleteDataflow(dataflowId, UserInfo.getSessionId());
 	}
 }

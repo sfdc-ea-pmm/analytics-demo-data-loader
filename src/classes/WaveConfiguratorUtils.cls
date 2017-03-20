@@ -169,13 +169,14 @@ public with sharing class WaveConfiguratorUtils {
 
   		HttpResponse res = WaveConfiguratorUtils.httpCallout('/services/data/v39.0/sobjects/Dataflow', 'POST', true, dataflowJson);
   		
-  		if(!WaveConfiguratorUtils.checkStatus(res)){
-  			if(res.getBody().contains('errorCode')){
-				List<RestApiErrorResponse> r = (List<RestApiErrorResponse>)JSON.deserialize(res.getBody(), List<RestApiErrorResponse>.class);
-				System.debug('Dataflow for ' + label + ' could not be created. Detailed message: ' + r.get(0).message);				
-			}
+  		if(!WaveConfiguratorUtils.checkStatus(res) || res.getBody().contains('errorCode')){
 
-			throw new WaveConfiguratorException('Dataflow for ' + label + ' could not be created. Check debug logs.');
+			List<RestApiErrorResponse> r = (List<RestApiErrorResponse>)JSON.deserialize(res.getBody(), List<RestApiErrorResponse>.class);
+			System.debug('Dataflow for ' + label + ' could not be created. Detailed message: ' + r.get(0).message);	
+
+			return 'Error: ' + r.get(0).message;
+
+			//throw new WaveConfiguratorException('Dataflow for ' + label + ' could not be created. Check debug logs.');
   		}
   		else {
   			RestApiResponseBody responseBody = (RestApiResponseBody)JSON.deserialize(res.getBody(), RestApiResponseBody.class);
