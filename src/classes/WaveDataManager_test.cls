@@ -66,6 +66,11 @@ private class WaveDataManager_test {
 		String oppDataUrl = 'https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/Sales/Opportunities.csv';
 		String usersDataWithDblqUrl = 'http://www.example.com/usersCsvWithDBLQ';
 		String quotaMetadataUrl = 'https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/Sales/QuotaMetadata.json';
+		String waveForSalesJsonUrl = 'https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/WaveForSales.json';
+		String waveForSalesDataflowUrl = 'https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/Sales/Wave_For_Sales_Dataflow.json';
+
+		String salesforceHost = System.Url.getSalesforceBaseURL().toExternalForm();
+		String newFolderUrl = salesforceHost + '/services/data/v39.0/wave/folders';
 
 		multimock.setStaticResource(appsMetadataUrl, 'WaveAppsMetadataCSV');
 		multimock.setStaticResource(usersMetadataUrl, 'UserMetadataCSV');
@@ -76,6 +81,9 @@ private class WaveDataManager_test {
 		multimock.setStaticResource(oppMetadataUrl, 'OpportunityMetadataCSV');
 		multimock.setStaticResource(oppDataUrl, 'OpportunitiesDataCSV');
 		multimock.setStaticResource(quotaMetadataUrl, 'QuotaMetadataUrl');
+		multimock.setStaticResource(waveForSalesJsonUrl, 'WaveForSalesJson');
+		multimock.setStaticResource(waveForSalesDataflowUrl, 'WaveForSalesDataflowUrl');
+		multimock.setStaticResource(newFolderUrl, 'BlankResponseBody');
 
 		multimock.setStatusCode(200);
 		multimock.setHeader('Content-Type', 'text/plain');
@@ -84,81 +92,77 @@ private class WaveDataManager_test {
 	}
 
 
-	@isTest static void intermediateControllerTest(){
+	@isTest static void installAppValidationsTest(){
 
 		MultiStaticResourceCalloutMock multimock = createStaticResources(); 
-		String usersDataUrl = 'https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/Users.csv';
-		String usersDataWithDblqUrl = 'http://www.example.com/usersCsvWithDBLQ';
-
+		
 		WaveDataManagerController cnt = new WaveDataManagerController();
 
 		Test.setMock(HttpCalloutMock.class, multimock);
 		cnt.pageLoad();
 
+		cnt.selectedWaveApp = 'Wave_for_Sales';
+		
+		cnt.installApp();
+
+	}
+
+
+	@isTest static void getWaveAppsAndDescriptionTest(){
+		WaveDataManagerController cnt = new WaveDataManagerController();
 		List<SelectOption> options = cnt.getWaveApps();
 
-		System.assertNotEquals(0, options.size());
-		
+		System.assertEquals(0, options.size());
+
 		cnt.selectedWaveApp = 'Wave for Sales';
 		String appDsc = cnt.getAppDescription();
 
-
 		//System.assertNotEquals('No description available.', appDsc);
+	}
 
-		cnt.displayMetadataResponse();
+
+ 	@isTest static void displayMetadataResponseTest(){
+ 		WaveDataManagerController cnt = new WaveDataManagerController();
+
+ 		cnt.displayMetadataResponse();
 		System.assertEquals(false, cnt.MetadataConnectionWarning);
 
 		cnt.MetadataResponse = 'TEST';
 		cnt.displayMetadataResponse();
 		System.assertEquals(true, cnt.MetadataConnectionWarning);
-		
+ 	}
+
+
+	@isTest static void getDataTest(){
+		String usersDataUrl = 'https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/Users.csv';
+		String usersDataWithDblqUrl = 'http://www.example.com/usersCsvWithDBLQ';
+		MultiStaticResourceCalloutMock multimock = createStaticResources(); 
+		Test.setMock(HttpCalloutMock.class, multimock);
+
 		WaveCsvDataRetriever wcdr = new WaveCsvDataRetriever();
 		wcdr.validateDataURL('');
 		wcdr.getSchemaFieldNames(usersDataUrl);
 		wcdr.getData(usersDataWithDblqUrl, true);
-
-		cnt.selectedWaveApp = 'Wave_for_Sales';
-		cnt.folderName = 'TestingFolder';        
-		
-		cnt.installApp();
-		cnt.checkProcessingStatus();
-
 	}
 
-	@isTest static void insertFolderTest(){
+
+	@isTest static void installAppTest(){
+		MultiStaticResourceCalloutMock multimock = createStaticResources(); 
 
 		WaveDataManagerController cnt = new WaveDataManagerController();
-		MultiStaticResourceCalloutMock multimock = new MultiStaticResourceCalloutMock();
-		String appsMetadataUrl = 'https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/WaveApplications.csv';
-		multimock.setStaticResource(appsMetadataUrl, 'WaveAppsMetadataCSV');
-		multimock.setStatusCode(200);
-		multimock.setHeader('Content-Type', 'text/plain');		
+
 		Test.setMock(HttpCalloutMock.class, multimock);
 		cnt.pageLoad();
-		cnt.folderName = 'TestingApp';
-		String message = 'The Folder name must be specified, cannot be empty and must adhere to the Salesforce DeveloperName format'; 
-		String mockResponseBody = '[{"errorCode" : "228","message" : "' + message +'"}]';
-		WaveFolderCreationHttpCalloutMock httpCallout = new WaveFolderCreationHttpCalloutMock(200,'',mockResponseBody, new Map<String, String>());
-		Test.setMock(HttpCalloutMock.class, httpCallout);
+
+		cnt.dataflowName = 'TestingDataflowName';
+		cnt.dataflowLabel = 'Testing Dataflow Label';
+		cnt.folderName = 'TestingFolder';
 		cnt.selectedWaveApp = 'Wave_for_Sales';
-		String res = cnt.insertFolder();
-		System.assertEquals(message,res);
+
+		cnt.installApp();
 	}
 
-	/*@isTest static void checkExistanceFolderTest(){
-		Folder folder = new Folder();
-		folder.Name = 'TestingApp';
 
-		WaveDataManagerController cnt = new WaveDataManagerController();
-		cnt.folderName = folder.Name;
 
-		insert folder;
-
-		cnt.deleteFolder();
-		
-		folder = [SELECT Id FROM Folder WHERE DeveloperName = :cnt.folderName AND Type = 'Insights'];
-
-		System.assertEquals(null, folder);
-	}*/
 	
 }

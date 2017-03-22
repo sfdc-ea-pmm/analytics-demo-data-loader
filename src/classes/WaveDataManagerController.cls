@@ -28,6 +28,7 @@ public with sharing class WaveDataManagerController {
 	public String folderName { get; set; }
 	public String dataflowName { get; set; }
 	public String dataflowLabel { get; set; }
+	public String emailAddress { get; set; }
 	public List<WaveApplicationRow> applicationRows;
 	public WaveMetadataApplication selectedAppMetadata { get; set; }
 	public String dataflowDefinitionJson { get; set; }
@@ -37,6 +38,7 @@ public with sharing class WaveDataManagerController {
 		this.processingLog = new List<String>();
 		this.appDescriptions = new Map<String, String>();
 		this.appIndexes = new Map<String, Integer>();
+		this.emailAddress = UserInfo.getUserEmail();
 		this.MetadataResponse = '';
 	}
 
@@ -143,11 +145,17 @@ public with sharing class WaveDataManagerController {
 			this.errorMessage = 'The dataflow ' + this.dataflowName + ' already exists.';
 		}
 
+		if(!String.isBlank(this.emailAddress)){
+			if(WaveConfiguratorUtils.isInvalidEmail(this.emailAddress)){
+				passedValidation = false;
+				this.errorMessage = 'The email address ' + this.emailAddress + ' is invalid.';
+			}
+		}		
+
 		if(passedValidation){
 			try {
 				Integer appIndex = this.appIndexes.get(this.selectedWaveApp);
 				WaveApplicationRow appRow = this.applicationRows.get(appIndex);
-
 				// Retrieve and parse metadata
 				HttpRequest req = new HttpRequest();
 				req.setEndpoint(appRow.MetadataUrl);
@@ -452,10 +460,11 @@ public with sharing class WaveDataManagerController {
 								try {
 									// Now load the edgemarts
 									loadAllEdgemarts();
-									
+									WaveConfiguratorUtils.sendEmail(this.emailAddress, this.dataflowLabel);
 									this.processingLog.add('Done.');
 									this.successMessage = 'Application installed successfully.';
 								} 
+
 								catch(Exception e) {
 									this.errorMessage = e.getMessage();
 									System.debug(e.getMessage());

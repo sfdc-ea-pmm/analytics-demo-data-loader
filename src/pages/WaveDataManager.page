@@ -78,6 +78,8 @@
 	   			<apex:inputText value="{!dataflowName}" id="dataflowName" />
 	   			<apex:outputLabel >Specify the dataflow label:</apex:outputLabel>
 	   			<apex:inputText value="{!dataflowLabel}" id="dataflowLabel" />
+	   			<apex:outputLabel >Notify this email when complete:</apex:outputLabel>
+	   			<apex:inputText value="{!emailAddress}" id="emailAddress" />
 	   		</apex:panelGrid><br />
 	   		<vs:visualstrapblock id="vsbButton" style="padding-top: 20px;">
 	   			<apex:commandButton value="Install App" styleClass="{!IF(disabledButton, 'disabled','')} btn-primary btn-lg" action="{!installApp}" rendered="{!selectedWaveApp != ''}" id="btnInstallApp" style="text-transform: none;" />

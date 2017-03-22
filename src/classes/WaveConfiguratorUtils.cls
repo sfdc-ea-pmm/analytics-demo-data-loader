@@ -81,13 +81,15 @@ public with sharing class WaveConfiguratorUtils {
 			        	Blob csvBlob = Blob.valueof(res.getBody());
 						InsightsExternalData iedObj = new InsightsExternalData();
 						iedObj.Format = 'Csv';
-				        iedObj.EdgemartAlias = e.Name;
+				        //iedObj.EdgemartAlias = e.Name;
 				        iedObj.EdgemartLabel = e.Label;
 				        iedObj.EdgemartContainer = appDeveloperName;
-				        iedObj.Operation = 'Overwrite';
+				        iedObj.Operation = 'Append';
 				        iedObj.Action = 'None';
 				        iedObj.MetadataJson = EncodingUtil.base64Decode(EncodingUtil.base64Encode(Blob.valueOf(jsonMetadata)));
 
+				        System.debug('iedObj: ' + iedObj);
+				        System.debug('Folder exists? ' + folderExists(iedObj.EdgemartContainer));
 				        insert iedObj;        
 
 				        // Add the Data
@@ -324,6 +326,27 @@ public with sharing class WaveConfiguratorUtils {
 		return '';
 	}
 
+	public static void sendEmail(String address, String dataflowLabel){
+		if(!String.isBlank(address)){
+			Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
+			String[] toAddresses = new String[] { address };
+			String body = 'Congratulations, your data and Wave dataflow have been loaded into ' + UserInfo.getOrganizationId() + '.'; 
+			body += 'Please log-in and Start the ' + dataflowLabel + ' Data Flow from the Wave Dataflow editor.';
+			
+			mail.setToAddresses(toAddresses);
+			mail.setSubject('Wave application installation succeeded');
+			mail.setPlainTextBody(body);
+			Messaging.sendEmail(new Messaging.SingleEmailMessage[] { mail });
+		}
+	}
+
+	public static Boolean isInvalidEmail(String address){
+		String emailRegex = '([a-zA-Z0-9_\\-\\.]+)@((\\[a-z]{1,3}\\.[a-z]{1,3}\\.[a-z]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})';
+	    Pattern MyPattern = Pattern.compile(emailRegex);
+	    Matcher MyMatcher = MyPattern.matcher(address);
+
+	    return !MyMatcher.matches(); 
+	}
 
 	public static String getFolderId(String devName){
 		Folder folder = [SELECT Id FROM Folder WHERE DeveloperName = :devName AND Type = 'Insights'];
