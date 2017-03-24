@@ -205,12 +205,14 @@ public with sharing class WaveDataManagerController {
 
 					this.processingLog.add(this.folderName + ' folder/application created successfully.');
 
+					String folderId = WaveConfiguratorUtils.getFolderId(this.folderName);
+
 					// Create dataflow
 					// Create dataflow version
 					// Link dataflow to dataflow version current id
 					this.processingLog.add('Creating ' + this.dataflowName + ' dataflow...');
 					
-					String dataflowResponse = WaveConfiguratorUtils.createDataflow(this.dataflowName, this.dataflowLabel, WaveConfiguratorUtils.getFolderId(this.folderName));
+					String dataflowResponse = WaveConfiguratorUtils.createDataflow(this.dataflowName, this.dataflowLabel, folderId);
 
 					if(dataflowResponse.contains('Error')){
 						this.processingLog.add(dataflowResponse);
@@ -218,7 +220,7 @@ public with sharing class WaveDataManagerController {
 					}
 
 					String dataflowId = dataflowResponse;					
-					String versionId = WaveConfiguratorUtils.createDataflowVersion(dataflowId, this.dataflowDefinitionJson);
+					String versionId = WaveConfiguratorUtils.createDataflowVersion(dataflowId, this.dataflowDefinitionJson.replaceAll('<folderId>', folderId));
 					WaveConfiguratorUtils.linkDataflowToVersion(dataflowId, versionId);
 
 					this.processingLog.add('Dataflow created successfully.');
@@ -512,17 +514,18 @@ public with sharing class WaveDataManagerController {
 		
 	private void loadAllEdgemarts(){
 		if(this.edgemarts != null){
+			String folderId = WaveConfiguratorUtils.getFolderId(this.folderName);
 			for(Edgemart edg : this.edgemarts){
-				this.loadEdgemart(edg);
+				this.loadEdgemart(edg, folderId);
 			}
 		}
 	}
 
-	private void loadEdgemart(Edgemart e){
+	private void loadEdgemart(Edgemart e, String folderId){
 
 		this.processingLog.add('Loading edgmart data for: ' + e.Label);
 
-		WaveConfiguratorUtils.loadEdgemart(e, this.folderName);
+		WaveConfiguratorUtils.loadEdgemart(e, folderId);
 
         this.processingLog.add('Edgmart data loaded successfully.');
 	}

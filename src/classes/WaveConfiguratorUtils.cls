@@ -81,15 +81,13 @@ public with sharing class WaveConfiguratorUtils {
 			        	Blob csvBlob = Blob.valueof(res.getBody());
 						InsightsExternalData iedObj = new InsightsExternalData();
 						iedObj.Format = 'Csv';
-				        //iedObj.EdgemartAlias = e.Name;
+				        iedObj.EdgemartAlias = e.Name;
 				        iedObj.EdgemartLabel = e.Label;
 				        iedObj.EdgemartContainer = appDeveloperName;
 				        iedObj.Operation = 'Append';
 				        iedObj.Action = 'None';
 				        iedObj.MetadataJson = EncodingUtil.base64Decode(EncodingUtil.base64Encode(Blob.valueOf(jsonMetadata)));
 
-				        System.debug('iedObj: ' + iedObj);
-				        System.debug('Folder exists? ' + folderExists(iedObj.EdgemartContainer));
 				        insert iedObj;        
 
 				        // Add the Data
@@ -326,6 +324,37 @@ public with sharing class WaveConfiguratorUtils {
 		return '';
 	}
 
+	public static String insertWaveDashboard(String dashboardJsonTemplate, String folderId){
+		String dashboardJsonToSend = dashboardJsonTemplate;
+		String replacement = folderId; 
+		String target = '<folderId>';
+
+		System.debug('Before: ' + dashboardJsonToSend);
+
+		dashboardJsonToSend = dashboardJsonToSend.replace(target, replacement);
+		dashboardJsonToSend = dashboardJsonToSend.replace('\\"', '"');
+		dashboardJsonToSend = dashboardJsonToSend.replace('"{', '{');
+		dashboardJsonToSend = dashboardJsonToSend.replace('}"', '}');
+
+
+		System.debug('After: ' + dashboardJsonToSend);
+		HTTPResponse res = WaveConfiguratorUtils.httpCallout('/services/data/v39.0/wave/dashboards', 'POST', true, dashboardJsonToSend);
+
+		if(!WaveConfiguratorUtils.checkStatus(res)){
+			if(res.getBody().contains('ErrorCode')){
+				List<RestApiErrorResponse> r = (List<RestApiErrorResponse>)JSON.deserialize(res.getBody(), List<RestApiErrorResponse>.class);
+			}
+
+			throw new WaveConfiguratorException('Dashboard could not be created. Check debug logs.');
+		} 
+		else {
+			RestApiResponseBody responseBody = (RestApiResponseBody)JSON.deserialize(res.getBody(), RestApiResponseBody.class);
+  			return responseBody.id;		
+		}
+
+	}
+
+
 	public static void sendEmail(String address, String dataflowLabel){
 		if(!String.isBlank(address)){
 			Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
@@ -349,8 +378,8 @@ public with sharing class WaveConfiguratorUtils {
 	}
 
 	public static String getFolderId(String devName){
-		Folder folder = [SELECT Id FROM Folder WHERE DeveloperName = :devName AND Type = 'Insights'];
-		return folder.Id;
+		List<Folder> folder = [SELECT Id FROM Folder WHERE DeveloperName = :devName AND Type = 'Insights'];
+		return folder.get(0).Id;
 	}
 
 	public static boolean folderExists(String folderName){
