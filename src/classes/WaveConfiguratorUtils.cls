@@ -169,7 +169,7 @@ public with sharing class WaveConfiguratorUtils {
 
   		HttpResponse res = WaveConfiguratorUtils.httpCallout('/services/data/v39.0/sobjects/Dataflow', 'POST', true, dataflowJson);
   		
-  		if(!WaveConfiguratorUtils.checkStatus(res) || res.getBody().contains('errorCode')){
+  		if(!WaveConfiguratorUtils.checkStatus(res) || res.getBody().containsIgnoreCase('errorCode')){
 
 			List<RestApiErrorResponse> r = (List<RestApiErrorResponse>)JSON.deserialize(res.getBody(), List<RestApiErrorResponse>.class);
 			System.debug('Dataflow for ' + label + ' could not be created. Detailed message: ' + r.get(0).message);	
@@ -203,7 +203,7 @@ public with sharing class WaveConfiguratorUtils {
   		HttpResponse res = WaveConfiguratorUtils.httpCallout('/services/data/v39.0/sobjects/DataflowVersion', 'POST', true, postJson);
   		
   		if(!WaveConfiguratorUtils.checkStatus(res)){
-  			if(res.getBody().contains('errorCode')){
+  			if(res.getBody().containsIgnoreCase('errorCode')){
 				List<RestApiErrorResponse> r = (List<RestApiErrorResponse>)JSON.deserialize(res.getBody(), List<RestApiErrorResponse>.class);
 				System.debug('Dataflow Definition could not be created. Detailed message: ' + r.get(0).message);				
 			}
@@ -246,7 +246,7 @@ public with sharing class WaveConfiguratorUtils {
 		HTTPResponse res = http.send(req);
 
 		if(!WaveConfiguratorUtils.checkStatus(res)){
-  			if(res.getBody().contains('errorCode')){
+  			if(res.getBody().containsIgnoreCase('errorCode')){
 				List<RestApiErrorResponse> r = (List<RestApiErrorResponse>)JSON.deserialize(res.getBody(), List<RestApiErrorResponse>.class);
 				System.debug('Dataflow Definition version id could not be set. Detailed message: ' + r.get(0).message);
 			}
@@ -316,7 +316,7 @@ public with sharing class WaveConfiguratorUtils {
 
 		HTTPResponse res = WaveConfiguratorUtils.httpCallout('/services/data/v39.0/wave/folders', 'POST', true, jsonToPost);
 
-		if(res.getBody().contains('errorCode')){
+		if(res.getBody().containsIgnoreCase('errorCode')){
 			List<RestApiFolderErrorResponse> r = (List<RestApiFolderErrorResponse>)JSON.deserialize(res.getBody(), List<RestApiFolderErrorResponse>.class);
 			return r.get(0).message;
 		} 
@@ -327,22 +327,20 @@ public with sharing class WaveConfiguratorUtils {
 	public static String insertWaveDashboard(String dashboardJsonTemplate, String folderId){
 		String dashboardJsonToSend = dashboardJsonTemplate;
 		String replacement = folderId; 
-		String target = '<folderId>';
-
-		System.debug('Before: ' + dashboardJsonToSend);
+		String target = '<folderId>';		
 
 		dashboardJsonToSend = dashboardJsonToSend.replace(target, replacement);
-		dashboardJsonToSend = dashboardJsonToSend.replace('\\"', '"');
-		dashboardJsonToSend = dashboardJsonToSend.replace('"{', '{');
-		dashboardJsonToSend = dashboardJsonToSend.replace('}"', '}');
+		//dashboardJsonToSend = dashboardJsonToSend.replace('\\"', '"');
+		//dashboardJsonToSend = dashboardJsonToSend.replace('"{', '{');
+		//dashboardJsonToSend = dashboardJsonToSend.replace('}"', '}');
 
-
-		System.debug('After: ' + dashboardJsonToSend);
+		System.debug(dashboardJsonToSend);
 		HTTPResponse res = WaveConfiguratorUtils.httpCallout('/services/data/v39.0/wave/dashboards', 'POST', true, dashboardJsonToSend);
 
 		if(!WaveConfiguratorUtils.checkStatus(res)){
-			if(res.getBody().contains('ErrorCode')){
+			if(res.getBody().containsIgnoreCase('errorCode')){
 				List<RestApiErrorResponse> r = (List<RestApiErrorResponse>)JSON.deserialize(res.getBody(), List<RestApiErrorResponse>.class);
+				throw new WaveConfiguratorException('Dashboard could not be created. Cause: ' + r.get(0).message + '.');
 			}
 
 			throw new WaveConfiguratorException('Dashboard could not be created. Check debug logs.');
@@ -351,9 +349,7 @@ public with sharing class WaveConfiguratorUtils {
 			RestApiResponseBody responseBody = (RestApiResponseBody)JSON.deserialize(res.getBody(), RestApiResponseBody.class);
   			return responseBody.id;		
 		}
-
 	}
-
 
 	public static void sendEmail(String address, String dataflowLabel){
 		if(!String.isBlank(address)){

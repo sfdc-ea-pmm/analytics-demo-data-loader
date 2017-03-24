@@ -224,6 +224,20 @@ public with sharing class WaveDataManagerController {
 					WaveConfiguratorUtils.linkDataflowToVersion(dataflowId, versionId);
 
 					this.processingLog.add('Dataflow created successfully.');
+					// We leave this commented for now: UNABLE TO CREATE DASHBOARD BEFORE RUNNING DATAFLOW
+					/*
+					if(this.selectedAppMetadata.dashboards != null && this.selectedAppMetadata.dashboards.size() > 0){
+						this.processingLog.add('Encountered ' + this.selectedAppMetadata.dashboards.size() + ' dashboards for the application.');
+						
+						for(String dashJsonUrl : this.selectedAppMetadata.dashboards){
+							this.loadDashboard(dashJsonUrl, folderId);
+						}
+
+						this.processingLog.add('All dashboards were successfully created.');
+					}
+					else {
+						this.processingLog.add('The application doesn\'t contain any dashboard.');
+					}*/
 
 					// Retrieve objects to process
 					for(WaveMetadataApplicationObject wmaObj: this.selectedAppMetadata.objects) {
@@ -544,6 +558,16 @@ public with sharing class WaveDataManagerController {
 			MetadataConnectionWarning = true;
 		}
 		return null;
+	}
+
+	private void loadDashboard(String dashJsonUrl, String folderId){
+		HttpRequest req = new HttpRequest();
+		req.setEndpoint(dashJsonUrl);
+        req.setMethod('GET');
+		Http http = new Http();
+        HTTPResponse res = http.send(req);
+
+		WaveConfiguratorUtils.insertWaveDashboard(res.getBody(), folderId);
 	}
 
 	private void rollbackProcess(){
