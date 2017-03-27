@@ -79,30 +79,67 @@ public with sharing class WaveConfiguratorUtils {
 			        if(checkStatus(res)){
 
 			        	Blob csvBlob = Blob.valueof(res.getBody());
-						InsightsExternalData iedObj = new InsightsExternalData();
-						iedObj.Format = 'Csv';
-				        iedObj.EdgemartAlias = e.Name;
-				        iedObj.EdgemartLabel = e.Label;
-				        iedObj.EdgemartContainer = appDeveloperName;
-				        iedObj.Operation = 'Append';
-				        iedObj.Action = 'None';
-				        iedObj.MetadataJson = EncodingUtil.base64Decode(EncodingUtil.base64Encode(Blob.valueOf(jsonMetadata)));
 
-				        insert iedObj;        
+				        String jsonToSend = '{' + 
+							'	"attributes":{' + 
+							'		"type":"InsightsExternalData"' + 
+							'	},' + 
+							'	"Format":"csv",' + 
+					  		'	"EdgemartAlias":"' + e.Name + '",' + 
+					  		'	"EdgemartLabel":"' + e.Label + '",' + 
+					  		'	"EdgemartContainer":"' + appDeveloperName + '",' + 
+					  		'	"Operation":"Append",' + 
+					  		'	"Action":"None",' + 
+					  		'	"MetadataJson":"' + EncodingUtil.base64Encode(Blob.valueOf(jsonMetadata)) + '"' +
+					  		'}';
 
-				        // Add the Data
-				        InsightsExternalDataPart dataPart = new InsightsExternalDataPart();
-				        dataPart.InsightsExternalDataId = iedObj.Id;
-				        dataPart.PartNumber = 1;
-				        Integer size = csvBlob.size();
-				        dataPart.DataFile = csvBlob;
-				        dataPart.DataLength = size;
-				        
-				        insert dataPart;
+				        res = httpCallout('/services/data/v39.0/sobjects/InsightsExternalData', 'POST', true, jsonToSend);
 
-				        // Final Step: Manage the Upload
-				        iedObj.Action = 'Process';
-				        update iedObj;
+				        if(checkStatus(res)){
+
+				        	RestApiResponseBody responseBody = (RestApiResponseBody)JSON.deserialize(res.getBody(), RestApiResponseBody.class);
+				   			
+			   				//Add the Data
+
+					        Integer size = csvBlob.size();
+					        jsonToSend = '{' + 
+							'	"attributes":{' + 
+							'		"type":"InsightsExternalDataPart"' + 
+							'	},' + 
+							'	"InsightsExternalDataId":"' + responseBody.Id + '",' + 
+							'	"PartNumber":"1",' + 
+					  		'	"DataFile":"' + EncodingUtil.base64Encode(csvBlob) + '",' + 
+					  		'	"DataLength":"' + size + '"' + 
+					  		'}';
+
+					        res = httpCallout('/services/data/v39.0/sobjects/InsightsExternalDataPart', 'POST', true, jsonToSend);
+
+					        if(checkStatus(res)){
+
+					        	//Final Step: Manage the Upload
+						        
+						        jsonToSend = '{' + 
+								'	"attributes":{' + 
+								'		"type":"InsightsExternalData"' + 
+								'	},' + 
+						  		'	"Action":"Process"' + 
+						  		'}';
+
+						        res = httpCallout('/services/data/v39.0/sobjects/InsightsExternalData/' + responseBody.Id + '?_HttpMethod=PATCH', 'POST', true, jsonToSend);
+	
+						        if(!checkStatus(res) || res.getBody().containsIgnoreCase('errorCode')){
+						        	List<RestApiErrorResponse> r = (List<RestApiErrorResponse>)JSON.deserialize(res.getBody(), List<RestApiErrorResponse>.class);
+						        	throw new WaveConfiguratorException();
+						        }
+						    } 
+						    else {
+						    	throw new WaveConfiguratorException();
+						    } 	        
+
+					    } 
+					    else{
+					    	throw new WaveConfiguratorException();
+					    } 
 
 			        } 
 			        else {
