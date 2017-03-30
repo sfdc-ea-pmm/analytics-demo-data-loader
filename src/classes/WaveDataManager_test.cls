@@ -71,6 +71,7 @@ private class WaveDataManager_test {
 
 		String salesforceHost = System.Url.getSalesforceBaseURL().toExternalForm();
 		String newFolderUrl = salesforceHost + '/services/data/v39.0/wave/folders';
+		String datasetsResponse = salesforceHost + '/services/data/v39.0/wave/datasets?pageSize=200';
 
 		multimock.setStaticResource(appsMetadataUrl, 'WaveAppsMetadataCSV');
 		multimock.setStaticResource(usersMetadataUrl, 'UserMetadataCSV');
@@ -84,6 +85,7 @@ private class WaveDataManager_test {
 		multimock.setStaticResource(waveForSalesJsonUrl, 'WaveForSalesJson');
 		multimock.setStaticResource(waveForSalesDataflowUrl, 'WaveForSalesDataflowUrl');
 		multimock.setStaticResource(newFolderUrl, 'BlankResponseBody');
+		multimock.setStaticResource(datasetsResponse, 'DatasetsResponse');
 
 		multimock.setStatusCode(200);
 		multimock.setHeader('Content-Type', 'text/plain');
@@ -160,9 +162,33 @@ private class WaveDataManager_test {
 		cnt.selectedWaveApp = 'Wave_for_Sales';
 
 		cnt.installApp();
+		//cnt.checkObjectLoadingStatus();
 	}
 
 
+	@isTest static void insertFolderTest() {
+		MultiStaticResourceCalloutMock multimock = new MultiStaticResourceCalloutMock();
+		String appsMetadataUrl = 'https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/WaveApplications.csv';
+		multimock.setStaticResource(appsMetadataUrl, 'WaveAppsMetadataCSV');
+		multimock.setStatusCode(200);
+		multimock.setHeader('Content-Type', 'text/plain');		
+		Test.setMock(HttpCalloutMock.class, multimock);
 
-	
+		String message = 'The Folder name must be specified, cannot be empty and must adhere to the Salesforce DeveloperName format'; 
+		String mockResponseBody = '[{"errorCode" : "228","message" : "' + message +'"}]';
+		
+		WaveFolderCreationHttpCalloutMock httpCallout = new WaveFolderCreationHttpCalloutMock(200,'',mockResponseBody, new Map<String, String>());
+		
+		Test.setMock(HttpCalloutMock.class, httpCallout);
+				
+		String res = WaveConfiguratorUtils.insertFolder('TestingFolderLabel','Testing FolderName');
+		System.assertEquals(message,res);
+	}
+
+
+	@isTest static void sendEmailTest(){
+		String address = 'test@test.com';		
+		String label = 'Test label'; 
+		WaveConfiguratorUtils.sendEmail(address, label);		
+	}	
 }

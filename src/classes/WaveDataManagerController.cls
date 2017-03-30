@@ -25,6 +25,7 @@ public with sharing class WaveDataManagerController {
 	private WaveMetadata metadata;
 	private Map<String, String> appDescriptions; // <appName, appDesc>
 	private Map<String, Integer> appIndexes; // <appName, appIndex in this.metadata.waveApplications>
+	private Map<String, String> edgemartNamesToSave; // <edgemart name as it comes from JSON, unique edgemart name to store>
 	public String folderName { get; set; }
 	public String dataflowName { get; set; }
 	public String dataflowLabel { get; set; }
@@ -39,7 +40,7 @@ public with sharing class WaveDataManagerController {
 		this.appDescriptions = new Map<String, String>();
 		this.appIndexes = new Map<String, Integer>();
 		this.emailAddress = UserInfo.getUserEmail();
-		this.MetadataResponse = '';
+		this.MetadataResponse = '';		
 	}
 
 	public PageReference pageLoad()
@@ -207,6 +208,9 @@ public with sharing class WaveDataManagerController {
 
 					String folderId = WaveConfiguratorUtils.getFolderId(this.folderName);
 
+					// Now load the edgemarts
+					loadAllEdgemarts();
+
 					// Create dataflow
 					// Create dataflow version
 					// Link dataflow to dataflow version current id
@@ -219,13 +223,23 @@ public with sharing class WaveDataManagerController {
 						throw new WaveConfiguratorException('Dataflow for ' + this.dataflowLabel + ' could not be created. Check debug logs.');
 					}
 
-					String dataflowId = dataflowResponse;					
-					String versionId = WaveConfiguratorUtils.createDataflowVersion(dataflowId, this.dataflowDefinitionJson.replaceAll('<folderId>', folderId));
+					String dataflowId = dataflowResponse;
+					
+					// folderId placeholder substitution
+					String jsonDataflowDefToSave = this.dataflowDefinitionJson.replace('<folderId>', folderId);
+
+					// Dataset names substitution
+					for(String dsDesiredName : this.edgemartNamesToSave.keySet()){
+						jsonDataflowDefToSave = jsonDataflowDefToSave.replace('<' + dsDesiredName + '>', this.edgemartNamesToSave.get(dsDesiredName));
+					}
+
+					String versionId = WaveConfiguratorUtils.createDataflowVersion(dataflowId, jsonDataflowDefToSave);
 					WaveConfiguratorUtils.linkDataflowToVersion(dataflowId, versionId);
 
-					this.processingLog.add('Dataflow created successfully.');
+					this.processingLog.add('Dataflow created successfully.');					
+
 					// We leave this commented for now: UNABLE TO CREATE DASHBOARD BEFORE RUNNING DATAFLOW
-					/*
+					
 					if(this.selectedAppMetadata.dashboards != null && this.selectedAppMetadata.dashboards.size() > 0){
 						this.processingLog.add('Encountered ' + this.selectedAppMetadata.dashboards.size() + ' dashboards for the application.');
 						
@@ -237,7 +251,7 @@ public with sharing class WaveDataManagerController {
 					}
 					else {
 						this.processingLog.add('The application doesn\'t contain any dashboard.');
-					}*/
+					}
 
 					// Retrieve objects to process
 					for(WaveMetadataApplicationObject wmaObj: this.selectedAppMetadata.objects) {
@@ -474,8 +488,6 @@ public with sharing class WaveDataManagerController {
 							if(this.currentNodeIndex == this.objectsNodes.size() - 1){
 								
 								try {
-									// Now load the edgemarts
-									loadAllEdgemarts();
 									WaveConfiguratorUtils.sendEmail(this.emailAddress, this.dataflowLabel);
 									this.processingLog.add('Done.');
 									this.successMessage = 'Application installed successfully.';
@@ -528,8 +540,50 @@ public with sharing class WaveDataManagerController {
 		
 	private void loadAllEdgemarts(){
 		if(this.edgemarts != null){
+			
 			String folderId = WaveConfiguratorUtils.getFolderId(this.folderName);
+			
+			// Get all the datasets names
+			List<WaveAsset> waveAssets = new List<WaveAsset>();
+			String jsonDatasets = WaveConfiguratorUtils.getWaveAssetsJSON('datasets', null);
+            WaveDatasetsResponse datasetsResponse = (WaveDatasetsResponse)JSON.deserialize(jsonDatasets, WaveDatasetsResponse.class);
+            
+            while(datasetsResponse != null && datasetsResponse.datasets != null){
+                
+                for(WaveDataset dataset : datasetsResponse.datasets){
+                    waveAssets.add(dataset);
+                }
+
+                if(datasetsResponse.nextPageUrl != null){
+                    jsonDatasets = WaveConfiguratorUtils.getWaveAssetsJSON('datasets', datasetsResponse.nextPageUrl);
+                    datasetsResponse = (WaveDatasetsResponse)JSON.deserialize(jsonDatasets, WaveDatasetsResponse.class);
+                }
+                else {
+                    datasetsResponse = null;
+                }
+            }
+
+            // Here we should have all the datasets, we load the map for searches
+            this.edgemartNamesToSave = new Map<String, String>();
+
+            for(WaveAsset dataset : waveAssets){
+            	this.edgemartNamesToSave.put(dataset.name, dataset.name);
+            }
+
 			for(Edgemart edg : this.edgemarts){
+				// First we have to check dataset's name existance in wave
+				Integer iSuffix = 0;
+				String edgNameCandidate = edg.Name;
+
+				while(this.edgemartNamesToSave.containsKey(edgNameCandidate)){
+					iSuffix++;
+					edgNameCandidate = edg.Name + iSuffix;
+				}
+
+				// Now we will use edgNameCandidate as edgemart's name to avoid API name collision
+				this.edgemartNamesToSave.put(edg.Name, edgNameCandidate);
+				edg.Name = edgNameCandidate;
+
 				this.loadEdgemart(edg, folderId);
 			}
 		}
@@ -567,7 +621,7 @@ public with sharing class WaveDataManagerController {
 		Http http = new Http();
         HTTPResponse res = http.send(req);
 
-		WaveConfiguratorUtils.insertWaveDashboard(res.getBody(), folderId);
+		WaveConfiguratorUtils.insertWaveDashboard(res.getBody(), folderId, this.edgemartNamesToSave);
 	}
 
 	private void rollbackProcess(){

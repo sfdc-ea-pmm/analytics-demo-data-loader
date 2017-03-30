@@ -129,16 +129,20 @@ public with sharing class WaveConfiguratorUtils {
 	
 						        if(!checkStatus(res) || res.getBody().containsIgnoreCase('errorCode')){
 						        	List<RestApiErrorResponse> r = (List<RestApiErrorResponse>)JSON.deserialize(res.getBody(), List<RestApiErrorResponse>.class);
-						        	throw new WaveConfiguratorException();
+						        	
+						        	throw new WaveConfiguratorException('Error updating InsightsExternalData object: ' + r.get(0).message);
 						        }
 						    } 
 						    else {
-						    	throw new WaveConfiguratorException();
+								List<RestApiErrorResponse> r = (List<RestApiErrorResponse>)JSON.deserialize(res.getBody(), List<RestApiErrorResponse>.class);	
+						    	
+						    	throw new WaveConfiguratorException('Error inserting InsightsExternalDataPart object: ' + r.get(0).message);
 						    } 	        
 
 					    } 
 					    else{
-					    	throw new WaveConfiguratorException();
+					    	List<RestApiErrorResponse> r = (List<RestApiErrorResponse>)JSON.deserialize(res.getBody(), List<RestApiErrorResponse>.class);	
+						    throw new WaveConfiguratorException('Error inserting InsightsExternalData object: ' + r.get(0).message);
 					    } 
 
 			        } 
@@ -293,13 +297,13 @@ public with sharing class WaveConfiguratorUtils {
 	}
 
 	public static Boolean dataflowExistsByName(String devName){
-		Dataflow[] dfResults = [SELECT Id FROM Dataflow WHERE DeveloperName = :devName];
+		Dataflow[] dfResults = [SELECT Id FROM Dataflow WHERE DeveloperName = :devName AND State = 'Active'];
 		
 		return dfResults.size() > 0;
 	}
 
 	public static String getDataflowIdByName(String devName){
-		Dataflow[] dfResults = [SELECT Id FROM Dataflow WHERE DeveloperName = :devName];
+		Dataflow[] dfResults = [SELECT Id FROM Dataflow WHERE DeveloperName = :devName AND State = 'Active'];
 		String dfId = '';
 
 		if(dfResults.size() > 0){
@@ -361,15 +365,16 @@ public with sharing class WaveConfiguratorUtils {
 		return '';
 	}
 
-	public static String insertWaveDashboard(String dashboardJsonTemplate, String folderId){
+	public static String insertWaveDashboard(String dashboardJsonTemplate, String folderId, Map<String, String> datasetsMap){
 		String dashboardJsonToSend = dashboardJsonTemplate;
 		String replacement = folderId; 
-		String target = '<folderId>';		
+		String target = '<folderId>';
 
 		dashboardJsonToSend = dashboardJsonToSend.replace(target, replacement);
-		//dashboardJsonToSend = dashboardJsonToSend.replace('\\"', '"');
-		//dashboardJsonToSend = dashboardJsonToSend.replace('"{', '{');
-		//dashboardJsonToSend = dashboardJsonToSend.replace('}"', '}');
+
+		for(String dsDesiredName : datasetsMap.keySet()){
+			dashboardJsonToSend = dashboardJsonToSend.replace('<' + dsDesiredName + '>', datasetsMap.get(dsDesiredName));
+		}
 
 		System.debug(dashboardJsonToSend);
 		HTTPResponse res = WaveConfiguratorUtils.httpCallout('/services/data/v39.0/wave/dashboards', 'POST', true, dashboardJsonToSend);
@@ -387,6 +392,25 @@ public with sharing class WaveConfiguratorUtils {
   			return responseBody.id;		
 		}
 	}
+
+	public static String updateWaveDashboard(String dashboardJsonTemplate, String dashboardId){
+
+		HTTPResponse res = WaveConfiguratorUtils.httpCallout('/services/data/v39.0/wave/dashboards/' + dashboardId + '?_HttpMethod=PATCH', 'POST', true, dashboardJsonTemplate);
+
+		if(!WaveConfiguratorUtils.checkStatus(res)){
+			if(res.getBody().containsIgnoreCase('errorCode')){
+				List<RestApiErrorResponse> r = (List<RestApiErrorResponse>)JSON.deserialize(res.getBody(), List<RestApiErrorResponse>.class);
+				throw new WaveConfiguratorException('Dashboard could not be updated. Cause: ' + r.get(0).message + '.');
+			}
+
+			throw new WaveConfiguratorException('Dashboard could not be updated. Check debug logs.');
+		} 
+		else {
+			RestApiResponseBody responseBody = (RestApiResponseBody)JSON.deserialize(res.getBody(), RestApiResponseBody.class);
+  			return responseBody.id;		
+		}
+	}
+
 
 	public static void sendEmail(String address, String dataflowLabel){
 		if(!String.isBlank(address)){
@@ -412,7 +436,13 @@ public with sharing class WaveConfiguratorUtils {
 
 	public static String getFolderId(String devName){
 		List<Folder> folder = [SELECT Id FROM Folder WHERE DeveloperName = :devName AND Type = 'Insights'];
-		return folder.get(0).Id;
+		String folderId = '';
+
+		if(folder.size() > 0){
+			folderId = folder.get(0).Id;
+		}
+
+		return folderId;
 	}
 
 	public static boolean folderExists(String folderName){
@@ -420,4 +450,20 @@ public with sharing class WaveConfiguratorUtils {
 		return lstFolders.size() > 0;
 	}
 
+	// Retrieves asset JSON through WAVE REST API, only works within the ORG in which this code executes
+	// @param waveAssets: Type of asset to retrieve [folders, datasets, lenses, dashboards]
+	// @param requestUrl: If not null, uses this URL to request data
+	public static String getWaveAssetsJSON(String waveAssets, String requestUrl){
+        HttpRequest req = new HttpRequest();
+        String salesforceHost = System.Url.getSalesforceBaseURL().toExternalForm();
+        String url = salesforceHost + (requestUrl != null ? requestUrl : '/services/data/v39.0/wave/' + waveAssets + '?pageSize=200');
+        req.setEndpoint(url);
+        req.setHeader('Authorization', 'OAuth ' + UserInfo.getSessionId());
+        req.setMethod('GET');
+
+        Http httpMgr = new Http();
+        HTTPResponse res = httpMgr.send(req);
+
+        return res.getBody();
+    }
 }
