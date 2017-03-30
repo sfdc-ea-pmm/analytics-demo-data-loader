@@ -5,7 +5,6 @@ public with sharing class WaveDataManagerController {
 	public String MetadataResponse {get;set;}
 	public Boolean MetadataConnectionWarning {get;set;}
 	public String MetadataApiException {get;set;}
-
 	public String selectedWaveApp { get; set; }
 	public String errorMessage { get; set; }
 	public String successMessage  { get; set; }
@@ -26,6 +25,7 @@ public with sharing class WaveDataManagerController {
 	private Map<String, String> appDescriptions; // <appName, appDesc>
 	private Map<String, Integer> appIndexes; // <appName, appIndex in this.metadata.waveApplications>
 	private Map<String, String> edgemartNamesToSave; // <edgemart name as it comes from JSON, unique edgemart name to store>
+	private Map<String, String> dashboardsIdsByName;
 	public String folderName { get; set; }
 	public String dataflowName { get; set; }
 	public String dataflowLabel { get; set; }
@@ -243,8 +243,26 @@ public with sharing class WaveDataManagerController {
 					if(this.selectedAppMetadata.dashboards != null && this.selectedAppMetadata.dashboards.size() > 0){
 						this.processingLog.add('Encountered ' + this.selectedAppMetadata.dashboards.size() + ' dashboards for the application.');
 						
-						for(String dashJsonUrl : this.selectedAppMetadata.dashboards){
-							this.loadDashboard(dashJsonUrl, folderId);
+						// First we insert dummy dashboards to get the IDs
+						List<StaticResource> srList = [SELECT Body FROM StaticResource WHERE Name = 'DummyWaveDashboardJson'];
+						if(srList.size() == 0){
+							throw new WaveConfiguratorException('DummyWaveDashboardJson Static Resource not found.');
+						}
+						
+						String dummyDashboardJson = srList.get(0).Body.toString();
+						
+						for(WaveMetadataApplicationDashboard dashObj : this.selectedAppMetadata.dashboards){
+							String dashId = this.loadDashboardWithJSON(dummyDashboardJson, folderId);
+							this.dashboardsIdsByName.put(dashObj.Name, dashId);
+						}
+
+						// At this point we should have all dashboards created
+						// No we update them to reflect links between them and datasets
+						for(WaveMetadataApplicationDashboard dashObj : this.selectedAppMetadata.dashboards){
+							String dashJsonUrl = dashObj.JsonUrl;
+							String dashId = this.dashboardsIdsByName.get(dashObj.Name);
+
+							this.updateDashboard(dashJsonUrl, dashId, folderId);
 						}
 
 						this.processingLog.add('All dashboards were successfully created.');
@@ -614,14 +632,28 @@ public with sharing class WaveDataManagerController {
 		return null;
 	}
 
-	private void loadDashboard(String dashJsonUrl, String folderId){
+	private String loadDashboardWithURL(String dashJsonUrl, String folderId){
 		HttpRequest req = new HttpRequest();
 		req.setEndpoint(dashJsonUrl);
         req.setMethod('GET');
 		Http http = new Http();
         HTTPResponse res = http.send(req);
 
-		WaveConfiguratorUtils.insertWaveDashboard(res.getBody(), folderId, this.edgemartNamesToSave);
+		return WaveConfiguratorUtils.insertWaveDashboard(res.getBody(), folderId, this.edgemartNamesToSave);
+	}
+
+	private String loadDashboardWithJSON(String dashJson, String folderId){
+		return WaveConfiguratorUtils.insertWaveDashboard(dashJson, folderId, null);
+	}
+
+	private void updateDashboard(String dashJsonUrl, String dashboardId, String folderId){
+		HttpRequest req = new HttpRequest();
+		req.setEndpoint(dashJsonUrl);
+        req.setMethod('GET');
+		Http http = new Http();
+        HTTPResponse res = http.send(req);
+
+		WaveConfiguratorUtils.updateWaveDashboard(res.getBody(), dashboardId, folderId, this.edgemartNamesToSave, this.dashboardsIdsByName);
 	}
 
 	private void rollbackProcess(){

@@ -4,5 +4,5 @@ public virtual class WaveMetadataApplication {
 	public String dataflowLocation;
 	public List<WaveMetadataApplicationObject> objects;
 	public List<Edgemart> edgemarts;
-	public List<String> dashboards;
+	public List<WaveMetadataApplicationDashboard> dashboards;
 }

@@ -372,8 +372,10 @@ public with sharing class WaveConfiguratorUtils {
 
 		dashboardJsonToSend = dashboardJsonToSend.replace(target, replacement);
 
-		for(String dsDesiredName : datasetsMap.keySet()){
-			dashboardJsonToSend = dashboardJsonToSend.replace('<' + dsDesiredName + '>', datasetsMap.get(dsDesiredName));
+		if(datasetsMap != null){
+			for(String dsDesiredName : datasetsMap.keySet()){
+				dashboardJsonToSend = dashboardJsonToSend.replace('<' + dsDesiredName + '>', datasetsMap.get(dsDesiredName));
+			}
 		}
 
 		System.debug(dashboardJsonToSend);
@@ -391,11 +393,28 @@ public with sharing class WaveConfiguratorUtils {
 			RestApiResponseBody responseBody = (RestApiResponseBody)JSON.deserialize(res.getBody(), RestApiResponseBody.class);
   			return responseBody.id;		
 		}
-	}
+	}	
 
-	public static String updateWaveDashboard(String dashboardJsonTemplate, String dashboardId){
+	public static String updateWaveDashboard(String dashboardJsonTemplate, String dashboardId, String folderId, Map<String, String> datasetsMap, Map<String, String> dashboardsIdsByNameMap){
 
-		HTTPResponse res = WaveConfiguratorUtils.httpCallout('/services/data/v39.0/wave/dashboards/' + dashboardId + '?_HttpMethod=PATCH', 'POST', true, dashboardJsonTemplate);
+		// We replace the <folderId>
+		String dashboardJsonToSend = dashboardJsonTemplate.replace('<folderId>', folderId);
+		
+		// We replace the dataset names
+		if(datasetsMap != null){
+			for(String dsDesiredName : datasetsMap.keySet()){
+				dashboardJsonToSend = dashboardJsonToSend.replace('<' + dsDesiredName + '>', datasetsMap.get(dsDesiredName));
+			}
+		}
+
+		// We replace the dashboard names for internal linking
+		if(dashboardsIdsByNameMap != null){
+			for(String nameLink : dashboardsIdsByNameMap.keySet()){
+				dashboardJsonToSend = dashboardJsonToSend.replace('<' + nameLink + '>', dashboardsIdsByNameMap.get(nameLink));
+			}
+		}
+
+		HTTPResponse res = WaveConfiguratorUtils.httpCallout('/services/data/v39.0/wave/dashboards/' + dashboardId + '?_HttpMethod=PATCH', 'POST', true, dashboardJsonToSend);
 
 		if(!WaveConfiguratorUtils.checkStatus(res)){
 			if(res.getBody().containsIgnoreCase('errorCode')){
