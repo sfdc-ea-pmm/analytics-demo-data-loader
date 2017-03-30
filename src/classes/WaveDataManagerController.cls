@@ -188,8 +188,6 @@ public with sharing class WaveDataManagerController {
 						this.dataflowDefinitionJson = dfDefJsonBody;						
 					}
 					else {
-						System.debug(resDf);
-
 						throw new WaveConfiguratorException('Unable to retrieve Dataflow Definition JSON file for Wave Application.');							
 					}
 
@@ -238,8 +236,6 @@ public with sharing class WaveDataManagerController {
 
 					this.processingLog.add('Dataflow created successfully.');					
 
-					// We leave this commented for now: UNABLE TO CREATE DASHBOARD BEFORE RUNNING DATAFLOW
-					
 					if(this.selectedAppMetadata.dashboards != null && this.selectedAppMetadata.dashboards.size() > 0){
 						this.processingLog.add('Encountered ' + this.selectedAppMetadata.dashboards.size() + ' dashboards for the application.');
 						
@@ -249,6 +245,8 @@ public with sharing class WaveDataManagerController {
 							throw new WaveConfiguratorException('DummyWaveDashboardJson Static Resource not found.');
 						}
 						
+						// We create the dummy dashboards and the Map for storing resulting IDs
+						this.dashboardsIdsByName = new Map<String, String>();
 						String dummyDashboardJson = srList.get(0).Body.toString();
 						
 						for(WaveMetadataApplicationDashboard dashObj : this.selectedAppMetadata.dashboards){

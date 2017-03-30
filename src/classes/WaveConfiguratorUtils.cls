@@ -325,8 +325,6 @@ public with sharing class WaveConfiguratorUtils {
 
 		HttpResponse res = http.send(req);
 
-		System.debug('deleteDataflow response: ' + res);
-
 		if(!WaveConfiguratorUtils.checkStatus(res)){
 			System.debug('Dataflow ' + dataflowId + ' could not be deleted.');
 		}
@@ -343,8 +341,6 @@ public with sharing class WaveConfiguratorUtils {
 		req.setHeader('Authorization', 'OAuth ' + sessionId);
 
 		HttpResponse res = http.send(req);
-
-		System.debug('deleteFolder response: ' + res);
 
 		if(!WaveConfiguratorUtils.checkStatus(res)){
 			System.debug('Wave folder/application could not be deleted.');
@@ -378,7 +374,6 @@ public with sharing class WaveConfiguratorUtils {
 			}
 		}
 
-		System.debug(dashboardJsonToSend);
 		HTTPResponse res = WaveConfiguratorUtils.httpCallout('/services/data/v39.0/wave/dashboards', 'POST', true, dashboardJsonToSend);
 
 		if(!WaveConfiguratorUtils.checkStatus(res)){
