@@ -31,6 +31,8 @@
         <members>WaveDashboardsResponse</members>
         <members>WaveDataManagerController</members>
         <members>WaveDataManager_test</members>
+        <members>WaveDataset</members>
+        <members>WaveDatasetsResponse</members>
         <members>WaveMetadata</members>
         <members>WaveMetadataApplication</members>
         <members>WaveMetadataApplicationObject</members>
