@@ -27,6 +27,7 @@ public with sharing class WaveDataManagerController {
 	private Map<String, String> edgemartNamesToSave; // <edgemart name as it comes from JSON, unique edgemart name to store>
 	private Map<String, String> dashboardsIdsByName;
 	public String folderName { get; set; }
+	public String folderId { get; set; }
 	public String dataflowName { get; set; }
 	public String dataflowLabel { get; set; }
 	public String emailAddress { get; set; }
@@ -34,13 +35,17 @@ public with sharing class WaveDataManagerController {
 	public WaveMetadataApplication selectedAppMetadata { get; set; }
 	public String dataflowDefinitionJson { get; set; }
 
+	// Secuence control
+	public String installationStep { get; set; }
+
 	public WaveDataManagerController() {
 		this.objectsNodes = new List<WaveApplicationObject>();
 		this.processingLog = new List<String>();
 		this.appDescriptions = new Map<String, String>();
 		this.appIndexes = new Map<String, Integer>();
 		this.emailAddress = UserInfo.getUserEmail();
-		this.MetadataResponse = '';		
+		this.MetadataResponse = '';
+		this.installationStep = '';
 	}
 
 	public PageReference pageLoad()
@@ -167,30 +172,8 @@ public with sharing class WaveDataManagerController {
 				String jsonMetadata = res.getBody();
 				this.selectedAppMetadata = (WaveMetadataApplication)JSON.deserialize(jsonMetadata, WaveMetadataApplication.class);
 
-				if(this.selectedAppMetadata != null && this.selectedAppMetadata.objects != null){
+				if(this.selectedAppMetadata != null){
 					
-					// Edgemarts
-					this.edgemarts = this.selectedAppMetadata.edgemarts;		
-					
-					// Dataflow Definition JSON file
-					req = new HttpRequest();
-					req.setEndpoint(this.selectedAppMetadata.dataflowLocation);
-		        	req.setMethod('GET');
-					http = new Http();
-		        	HTTPResponse resDf = http.send(req);
-
-		        	if(WaveConfiguratorUtils.checkStatus(resDf)){
-						String dfDefJsonBody = resDf.getBody();
-						if(String.isBlank(dfDefJsonBody)){
-							throw new WaveConfiguratorException('Invalid Dataflow Definition JSON for Wave Application. Check URL: ' + selectedAppMetadata.dataflowLocation);
-						}
-						
-						this.dataflowDefinitionJson = dfDefJsonBody;						
-					}
-					else {
-						throw new WaveConfiguratorException('Unable to retrieve Dataflow Definition JSON file for Wave Application.');							
-					}
-
 					// Create app/folder
 					this.processingLog.add('Creating ' + this.folderName + ' folder/application...');
 					String resFolderCreate = WaveConfiguratorUtils.insertFolder(appRow.Label, this.folderName);
@@ -204,148 +187,10 @@ public with sharing class WaveDataManagerController {
 
 					this.processingLog.add(this.folderName + ' folder/application created successfully.');
 
-					String folderId = WaveConfiguratorUtils.getFolderId(this.folderName);
+					this.folderId = WaveConfiguratorUtils.getFolderId(this.folderName);
 
-					// Now load the edgemarts
-					loadAllEdgemarts();
-
-					// Create dataflow
-					// Create dataflow version
-					// Link dataflow to dataflow version current id
-					this.processingLog.add('Creating ' + this.dataflowName + ' dataflow...');
-					
-					String dataflowResponse = WaveConfiguratorUtils.createDataflow(this.dataflowName, this.dataflowLabel, folderId);
-
-					if(dataflowResponse.contains('Error')){
-						this.processingLog.add(dataflowResponse);
-						throw new WaveConfiguratorException('Dataflow for ' + this.dataflowLabel + ' could not be created. Check debug logs.');
-					}
-
-					String dataflowId = dataflowResponse;
-					
-					// folderId placeholder substitution
-					String jsonDataflowDefToSave = this.dataflowDefinitionJson.replace('<folderId>', folderId);
-
-					// Dataset names substitution
-					for(String dsDesiredName : this.edgemartNamesToSave.keySet()){
-						jsonDataflowDefToSave = jsonDataflowDefToSave.replace('<' + dsDesiredName + '>', this.edgemartNamesToSave.get(dsDesiredName));
-					}
-
-					String versionId = WaveConfiguratorUtils.createDataflowVersion(dataflowId, jsonDataflowDefToSave);
-					WaveConfiguratorUtils.linkDataflowToVersion(dataflowId, versionId);
-
-					this.processingLog.add('Dataflow created successfully.');					
-
-					if(this.selectedAppMetadata.dashboards != null && this.selectedAppMetadata.dashboards.size() > 0){
-						this.processingLog.add('Encountered ' + this.selectedAppMetadata.dashboards.size() + ' dashboards for the application.');
-						
-						// First we insert dummy dashboards to get the IDs
-						List<StaticResource> srList = [SELECT Body FROM StaticResource WHERE Name = 'DummyWaveDashboardJson'];
-						if(srList.size() == 0){
-							throw new WaveConfiguratorException('DummyWaveDashboardJson Static Resource not found.');
-						}
-						
-						// We create the dummy dashboards and the Map for storing resulting IDs
-						this.dashboardsIdsByName = new Map<String, String>();
-						String dummyDashboardJson = srList.get(0).Body.toString();
-						
-						for(WaveMetadataApplicationDashboard dashObj : this.selectedAppMetadata.dashboards){
-							String dashId = this.loadDashboardWithJSON(dummyDashboardJson, folderId);
-							this.dashboardsIdsByName.put(dashObj.Name, dashId);
-						}
-
-						// At this point we should have all dashboards created
-						// No we update them to reflect links between them and datasets
-						for(WaveMetadataApplicationDashboard dashObj : this.selectedAppMetadata.dashboards){
-							String dashJsonUrl = dashObj.JsonUrl;
-							String dashId = this.dashboardsIdsByName.get(dashObj.Name);
-
-							this.updateDashboard(dashJsonUrl, dashId, folderId);
-						}
-
-						this.processingLog.add('All dashboards were successfully created.');
-					}
-					else {
-						this.processingLog.add('The application doesn\'t contain any dashboard.');
-					}
-
-					// Retrieve objects to process
-					for(WaveMetadataApplicationObject wmaObj: this.selectedAppMetadata.objects) {
-						List<WaveApplicationObject> objs = this.getObjectsToProcess(wmaObj);
-						this.objectsNodes.addAll(objs);
-					}
-
-					// Check if there are objects data to load					
-					if(this.objectsNodes.size() > 0){						
-
-						// Create objects metadata if needed
-						SF_MetadataUtils mdUtils = new SF_MetadataUtils();
-
-						// Objects and fields Setup
-						for(WaveApplicationObject waObj: this.objectsNodes) {
-							
-							this.processingLog.add('Processing ' + waObj.name + ' object metadata...');
-
-							// Check object existence using waObj.name property					
-							if(!mdUtils.objectExists(waObj.name)){
-								// If object doesn't exist, create it
-								this.processingLog.add(waObj.name + ' doesn\'t exists. Attempting to create it...');
-								List<String> errors = mdUtils.createObject(waObj.name);
-								if(errors.size() == 0){
-									this.processingLog.add(waObj.name + ' object created successfully.');
-								}
-								else {
-									this.processingLog.addAll(errors);
-								}						
-							}
-
-							// Check fields existence using waObj.fields property
-							for(WaveApplicationObjectField field: waObj.fields) {
-								// If field doesn't exist, create it using field properties
-								if(field.Name.endsWithIgnoreCase('__c') && !mdUtils.fieldExists(waObj.name, field.Name)){
-									this.processingLog.add(waObj.name + '.' + field.Name + ' field doesn\'t exists. Attempting to create it...');
-									SF_MetadataUtils.CustomFieldSpecification fieldSpec = new SF_MetadataUtils.CustomFieldSpecification();
-									fieldSpec.ObjectName = waObj.name;
-									fieldSpec.Name = field.Name;
-							    	fieldSpec.Label = field.Label;
-							    	fieldSpec.Type = field.Type;
-									fieldSpec.ReferenceTo = field.ReferenceTo;
-									fieldSpec.Length = field.Length;
-									fieldSpec.Precision = field.Precision;
-									fieldSpec.Scale = field.Scale;
-									fieldSpec.IsExternalId = field.IsExternalId;
-									fieldSpec.IsRequired = field.IsRequired;
-
-									List<String> errors = mdUtils.createField(fieldSpec);
-									if(errors.size() == 0){
-										this.processingLog.add(waObj.name + '.' + field.Name + ' field created successfully.');
-									}
-									else {
-										this.processingLog.add(waObj.name + '.' + field.Name + ' field couldn\'t be created. Reasons: ');
-										this.processingLog.addAll(errors);
-									}
-								}
-							}
-						}
-
-						// Print some message at the UI to inform that setup has succeeded
-						this.processingLog.add('All needed metadata was created successfully.');						
-					}					
-
-					if(this.objectsNodes.size() > 0){
-						// We start loading data for each object
-						this.processingLog.add('This process can take up to 30 minutes. We will refresh status every 5 seconds.');
-						this.currentNodeIndex = 0;
-						this.disabledButton = true;
-
-						// This launchs all the process of loading data to salesforce objects
-						this.processCurrentObjectLoadNode();	
-					}
-					else {
-						this.processingLog.add('There are no objects to load.');
-						this.processingLog.add('Done.');
-						this.successMessage = 'Application installed successfully.';
-					}					
+					// Now we configure step to begin loading the edgemarts
+					this.installationStep = 'LoadEdgemarts';
 				}
 			}
 			catch(Exception e) {
@@ -553,63 +398,11 @@ public with sharing class WaveDataManagerController {
 		return null;
 	}
 
-		
-	private void loadAllEdgemarts(){
-		if(this.edgemarts != null){
-			
-			String folderId = WaveConfiguratorUtils.getFolderId(this.folderName);
-			
-			// Get all the datasets names
-			List<WaveAsset> waveAssets = new List<WaveAsset>();
-			String jsonDatasets = WaveConfiguratorUtils.getWaveAssetsJSON('datasets', null);
-            WaveDatasetsResponse datasetsResponse = (WaveDatasetsResponse)JSON.deserialize(jsonDatasets, WaveDatasetsResponse.class);
-            
-            while(datasetsResponse != null && datasetsResponse.datasets != null){
-                
-                for(WaveDataset dataset : datasetsResponse.datasets){
-                    waveAssets.add(dataset);
-                }
-
-                if(datasetsResponse.nextPageUrl != null){
-                    jsonDatasets = WaveConfiguratorUtils.getWaveAssetsJSON('datasets', datasetsResponse.nextPageUrl);
-                    datasetsResponse = (WaveDatasetsResponse)JSON.deserialize(jsonDatasets, WaveDatasetsResponse.class);
-                }
-                else {
-                    datasetsResponse = null;
-                }
-            }
-
-            // Here we should have all the datasets, we load the map for searches
-            this.edgemartNamesToSave = new Map<String, String>();
-
-            for(WaveAsset dataset : waveAssets){
-            	this.edgemartNamesToSave.put(dataset.name, dataset.name);
-            }
-
-			for(Edgemart edg : this.edgemarts){
-				// First we have to check dataset's name existance in wave
-				Integer iSuffix = 0;
-				String edgNameCandidate = edg.Name;
-
-				while(this.edgemartNamesToSave.containsKey(edgNameCandidate)){
-					iSuffix++;
-					edgNameCandidate = edg.Name + iSuffix;
-				}
-
-				// Now we will use edgNameCandidate as edgemart's name to avoid API name collision
-				this.edgemartNamesToSave.put(edg.Name, edgNameCandidate);
-				edg.Name = edgNameCandidate;
-
-				this.loadEdgemart(edg, folderId);
-			}
-		}
-	}
-
-	private void loadEdgemart(Edgemart e, String folderId){
+	private void loadEdgemart(Edgemart e, String pFolderId){
 
 		this.processingLog.add('Loading edgmart data for: ' + e.Label);
 
-		WaveConfiguratorUtils.loadEdgemart(e, folderId);
+		WaveConfiguratorUtils.loadEdgemart(e, pFolderId);
 
         this.processingLog.add('Edgmart data loaded successfully.');
 	}
@@ -630,37 +423,329 @@ public with sharing class WaveDataManagerController {
 		return null;
 	}
 
-	private String loadDashboardWithURL(String dashJsonUrl, String folderId){
+	private String loadDashboardWithURL(String dashJsonUrl, String pFolderId){
 		HttpRequest req = new HttpRequest();
 		req.setEndpoint(dashJsonUrl);
         req.setMethod('GET');
 		Http http = new Http();
         HTTPResponse res = http.send(req);
 
-		return WaveConfiguratorUtils.insertWaveDashboard(res.getBody(), folderId, this.edgemartNamesToSave);
+		return WaveConfiguratorUtils.insertWaveDashboard(res.getBody(), pFolderId, this.edgemartNamesToSave);
 	}
 
-	private String loadDashboardWithJSON(String dashJson, String folderId){
-		return WaveConfiguratorUtils.insertWaveDashboard(dashJson, folderId, null);
+	private String loadDashboardWithJSON(String dashJson, String pFolderId){
+		return WaveConfiguratorUtils.insertWaveDashboard(dashJson, pFolderId, null);
 	}
 
-	private void updateDashboard(String dashJsonUrl, String dashboardId, String folderId){
+	private void updateDashboard(String dashJsonUrl, String dashboardId, String pFolderId){
 		HttpRequest req = new HttpRequest();
 		req.setEndpoint(dashJsonUrl);
         req.setMethod('GET');
 		Http http = new Http();
         HTTPResponse res = http.send(req);
 
-		WaveConfiguratorUtils.updateWaveDashboard(res.getBody(), dashboardId, folderId, this.edgemartNamesToSave, this.dashboardsIdsByName);
+		WaveConfiguratorUtils.updateWaveDashboard(res.getBody(), dashboardId, pFolderId, this.edgemartNamesToSave, this.dashboardsIdsByName);
 	}
 
 	private void rollbackProcess(){
 		// Delete recently created app/folder here
-		String folderId = WaveConfiguratorUtils.getFolderId(this.folderName);
-		WaveConfiguratorUtils.deleteFolder(folderId, UserInfo.getSessionId());
+		WaveConfiguratorUtils.deleteFolder(this.folderId, UserInfo.getSessionId());
 
 		// Delete recently created dataflow
 		String dataflowId = WaveConfiguratorUtils.getDataflowIdByName(this.dataflowName);
 		WaveConfiguratorUtils.deleteDataflow(dataflowId, UserInfo.getSessionId());
+	}
+
+	// Edgemarts
+	public void loadAllEdgemarts(){
+		try {
+			if(this.installationStep == 'LoadEdgemarts'){
+
+				this.edgemarts = this.selectedAppMetadata.edgemarts;
+
+				if(this.edgemarts != null){
+					
+					
+					// Get all the datasets names
+					List<WaveAsset> waveAssets = new List<WaveAsset>();
+					String jsonDatasets = WaveConfiguratorUtils.getWaveAssetsJSON('datasets', null);
+		            WaveDatasetsResponse datasetsResponse = (WaveDatasetsResponse)JSON.deserialize(jsonDatasets, WaveDatasetsResponse.class);
+		            
+		            while(datasetsResponse != null && datasetsResponse.datasets != null){
+		                
+		                for(WaveDataset dataset : datasetsResponse.datasets){
+		                    waveAssets.add(dataset);
+		                }
+
+		                if(datasetsResponse.nextPageUrl != null){
+		                    jsonDatasets = WaveConfiguratorUtils.getWaveAssetsJSON('datasets', datasetsResponse.nextPageUrl);
+		                    datasetsResponse = (WaveDatasetsResponse)JSON.deserialize(jsonDatasets, WaveDatasetsResponse.class);
+		                }
+		                else {
+		                    datasetsResponse = null;
+		                }
+		            }
+
+		            // Here we should have all the datasets, we load the map for searches
+		            this.edgemartNamesToSave = new Map<String, String>();
+
+		            for(WaveAsset dataset : waveAssets){
+		            	this.edgemartNamesToSave.put(dataset.name, dataset.name);
+		            }
+
+					for(Edgemart edg : this.edgemarts){
+						// First we have to check dataset's name existance in wave
+						Integer iSuffix = 0;
+						String edgNameCandidate = edg.Name;
+
+						while(this.edgemartNamesToSave.containsKey(edgNameCandidate)){
+							iSuffix++;
+							edgNameCandidate = edg.Name + iSuffix;
+						}
+
+						// Now we will use edgNameCandidate as edgemart's name to avoid API name collision
+						this.edgemartNamesToSave.put(edg.Name, edgNameCandidate);
+						edg.Name = edgNameCandidate;
+
+						this.loadEdgemart(edg, this.folderId);
+					}
+				}
+
+				// Configure next step
+				this.installationStep = 'CreateDataflow';
+			}
+			else {
+				// We reset
+				this.installationStep = '';
+			}			
+		}
+		catch(Exception e) {
+			System.debug(e.getMessage());
+			System.debug(e.getStackTraceString());
+			this.errorMessage = e.getMessage();
+			this.installationStep = '';
+
+			this.rollbackProcess();
+		}
+	}
+
+	// Create dataflow
+	// Create dataflow version
+	// Link dataflow to dataflow version current id
+	public void createDataflow(){
+		try{
+			if(this.installationStep == 'CreateDataflow'){
+					
+				this.processingLog.add('Creating ' + this.dataflowName + ' dataflow...');
+				
+				String dataflowResponse = WaveConfiguratorUtils.createDataflow(this.dataflowName, this.dataflowLabel, this.folderId);
+
+				if(dataflowResponse.contains('Error')){
+					this.processingLog.add(dataflowResponse);
+					throw new WaveConfiguratorException('Dataflow for ' + this.dataflowLabel + ' could not be created. Check debug logs.');
+				}
+
+				String dataflowId = dataflowResponse;
+
+				// Dataflow Definition JSON file
+				HttpRequest req = new HttpRequest();
+				req.setEndpoint(this.selectedAppMetadata.dataflowLocation);
+	        	req.setMethod('GET');
+				Http http = new Http();
+	        	HTTPResponse resDf = http.send(req);
+
+	        	if(WaveConfiguratorUtils.checkStatus(resDf)){
+					String dfDefJsonBody = resDf.getBody();
+					if(String.isBlank(dfDefJsonBody)){
+						throw new WaveConfiguratorException('Invalid Dataflow Definition JSON for Wave Application. Check URL: ' + selectedAppMetadata.dataflowLocation);
+					}
+					
+					this.dataflowDefinitionJson = dfDefJsonBody;						
+				}
+				else {
+					throw new WaveConfiguratorException('Unable to retrieve Dataflow Definition JSON file for Wave Application.');							
+				}
+				
+				// folderId placeholder substitution
+				String jsonDataflowDefToSave = this.dataflowDefinitionJson.replace('<folderId>', this.folderId);
+
+				// Dataset names substitution
+				for(String dsDesiredName : this.edgemartNamesToSave.keySet()){
+					jsonDataflowDefToSave = jsonDataflowDefToSave.replace('<' + dsDesiredName + '>', this.edgemartNamesToSave.get(dsDesiredName));
+				}
+
+				String versionId = WaveConfiguratorUtils.createDataflowVersion(dataflowId, jsonDataflowDefToSave);
+				WaveConfiguratorUtils.linkDataflowToVersion(dataflowId, versionId);
+
+				this.processingLog.add('Dataflow created successfully.');
+				this.installationStep = 'LoadDashboards';
+			}
+			else {
+				// We reset
+				this.installationStep = '';
+			}
+		}
+		catch(Exception e) {
+			System.debug(e.getMessage());
+			System.debug(e.getStackTraceString());
+			this.errorMessage = e.getMessage();
+			this.installationStep = '';
+
+			this.rollbackProcess();
+		}
+	}
+
+	public void loadAllDashboards(){
+		try {
+			if(this.installationStep == 'LoadDashboards'){
+				if(this.selectedAppMetadata.dashboards != null && this.selectedAppMetadata.dashboards.size() > 0){
+					
+					this.processingLog.add('Encountered ' + this.selectedAppMetadata.dashboards.size() + ' dashboards for the application.');
+					
+					// First we insert dummy dashboards to get the IDs
+					List<StaticResource> srList = [SELECT Body FROM StaticResource WHERE Name = 'DummyWaveDashboardJson'];
+					if(srList.size() == 0){
+						throw new WaveConfiguratorException('DummyWaveDashboardJson Static Resource not found.');
+					}
+					
+					// We create the dummy dashboards and the Map for storing resulting IDs
+					this.dashboardsIdsByName = new Map<String, String>();
+					String dummyDashboardJson = srList.get(0).Body.toString();
+					
+					for(WaveMetadataApplicationDashboard dashObj : this.selectedAppMetadata.dashboards){
+						String dashId = this.loadDashboardWithJSON(dummyDashboardJson, this.folderId);
+						this.dashboardsIdsByName.put(dashObj.Name, dashId);
+					}
+
+					// At this point we should have all dashboards created
+					// No we update them to reflect links between them and datasets
+					for(WaveMetadataApplicationDashboard dashObj : this.selectedAppMetadata.dashboards){
+						String dashJsonUrl = dashObj.JsonUrl;
+						String dashId = this.dashboardsIdsByName.get(dashObj.Name);
+
+						this.updateDashboard(dashJsonUrl, dashId, this.folderId);
+					}
+
+					this.processingLog.add('All dashboards were successfully created.');
+				}
+				else {
+					this.processingLog.add('The application doesn\'t contain any dashboard.');
+				}
+
+				this.installationStep = 'LoadObjects';
+			}
+			else {
+				// We reset
+				this.installationStep = '';
+			}
+		}
+		catch(Exception e) {
+			System.debug(e.getMessage());
+			System.debug(e.getStackTraceString());
+			this.errorMessage = e.getMessage();
+			this.installationStep = '';
+
+			this.rollbackProcess();
+		}		
+	}
+
+	public void loadAllObjects(){
+		try {
+			if(this.installationStep == 'LoadObjects'){
+
+				if(this.selectedAppMetadata.objects != null){
+					// Retrieve objects to process
+					for(WaveMetadataApplicationObject wmaObj: this.selectedAppMetadata.objects) {
+						List<WaveApplicationObject> objs = this.getObjectsToProcess(wmaObj);
+						this.objectsNodes.addAll(objs);
+					}
+				}
+
+				// Check if there are objects data to load					
+				if(this.objectsNodes.size() > 0){						
+
+					// Create objects metadata if needed
+					SF_MetadataUtils mdUtils = new SF_MetadataUtils();
+
+					// Objects and fields Setup
+					for(WaveApplicationObject waObj: this.objectsNodes) {
+						
+						this.processingLog.add('Processing ' + waObj.name + ' object metadata...');
+
+						// Check object existence using waObj.name property					
+						if(!mdUtils.objectExists(waObj.name)){
+							// If object doesn't exist, create it
+							this.processingLog.add(waObj.name + ' doesn\'t exists. Attempting to create it...');
+							List<String> errors = mdUtils.createObject(waObj.name);
+							if(errors.size() == 0){
+								this.processingLog.add(waObj.name + ' object created successfully.');
+							}
+							else {
+								this.processingLog.addAll(errors);
+							}						
+						}
+
+						// Check fields existence using waObj.fields property
+						for(WaveApplicationObjectField field: waObj.fields) {
+							// If field doesn't exist, create it using field properties
+							if(field.Name.endsWithIgnoreCase('__c') && !mdUtils.fieldExists(waObj.name, field.Name)){
+								this.processingLog.add(waObj.name + '.' + field.Name + ' field doesn\'t exists. Attempting to create it...');
+								SF_MetadataUtils.CustomFieldSpecification fieldSpec = new SF_MetadataUtils.CustomFieldSpecification();
+								fieldSpec.ObjectName = waObj.name;
+								fieldSpec.Name = field.Name;
+						    	fieldSpec.Label = field.Label;
+						    	fieldSpec.Type = field.Type;
+								fieldSpec.ReferenceTo = field.ReferenceTo;
+								fieldSpec.Length = field.Length;
+								fieldSpec.Precision = field.Precision;
+								fieldSpec.Scale = field.Scale;
+								fieldSpec.IsExternalId = field.IsExternalId;
+								fieldSpec.IsRequired = field.IsRequired;
+
+								List<String> errors = mdUtils.createField(fieldSpec);
+								if(errors.size() == 0){
+									this.processingLog.add(waObj.name + '.' + field.Name + ' field created successfully.');
+								}
+								else {
+									this.processingLog.add(waObj.name + '.' + field.Name + ' field couldn\'t be created. Reasons: ');
+									this.processingLog.addAll(errors);
+								}
+							}
+						}
+					}
+
+					// Print some message at the UI to inform that setup has succeeded
+					this.processingLog.add('All needed metadata was created successfully.');						
+				}					
+
+				if(this.objectsNodes.size() > 0){
+					// We start loading data for each object
+					this.processingLog.add('This process can take up to 30 minutes. We will refresh status every 5 seconds.');
+					this.currentNodeIndex = 0;
+					this.disabledButton = true;
+
+					// This launchs all the process of loading data to salesforce objects
+					this.processCurrentObjectLoadNode();	
+				}
+				else {
+					this.processingLog.add('There are no objects to load.');
+					this.processingLog.add('Done.');
+					this.successMessage = 'Application installed successfully.';
+				}				
+			}
+		}
+		catch(Exception e) {
+			System.debug(e.getMessage());
+			System.debug(e.getStackTraceString());
+			this.errorMessage = e.getMessage();
+			this.installationStep = '';
+
+			this.rollbackProcess();
+		}
+		finally {
+			// We reset this, don't want to re-execute this method. If we don't do this, 
+			// page will recall this method.
+			this.installationStep = '';
+		}
 	}
 }
