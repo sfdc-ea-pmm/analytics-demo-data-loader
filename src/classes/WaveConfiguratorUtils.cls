@@ -209,6 +209,17 @@ public with sharing class WaveConfiguratorUtils {
 		return response;
 	}
 
+	public static HttpResponse httpGetCallout(String url){
+		Http http = new Http();
+		HttpRequest req = new HttpRequest();
+
+		req.setMethod('GET');
+		req.setEndpoint(url);
+
+		HttpResponse response = http.send(req);
+		return response;
+	}
+
 	public String createDataflow(String devName, String label, String folderId)
 	{
 		String dataflowJson = '{' + 

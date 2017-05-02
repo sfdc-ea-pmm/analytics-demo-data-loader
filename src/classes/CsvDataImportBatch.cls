@@ -9,29 +9,47 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
 	private List<String> debugMessages;
 	
 	global CsvDataImportBatch(SObjectType objectType, String csvData, Map<Integer, String> fieldPositions, List<WaveApplicationObjectRelation> relations) {
-		this.objectType = objectType;
-		this.csvData = csvData;
-		this.fieldPositions = fieldPositions;
-		this.relations = relations;
-		this.debugMessages = new List<String>();
+		try {
+			this.objectType = objectType;
+			this.csvData = csvData;
+			this.fieldPositions = fieldPositions;
+			this.relations = relations;
+			this.debugMessages = new List<String>();
 
-		// Then we get the table of <fieldName, columnIndexInCSV
-		this.fieldIndexes = new Map<String, Integer>();
-		for(Integer columnNumber: this.fieldPositions.keySet()) {
-    		
-    		// Gets the column name
-    		String headerValue = this.fieldPositions.get(columnNumber);
+			// Then we get the table of <fieldName, columnIndexInCSV
+			this.fieldIndexes = new Map<String, Integer>();
+			for(Integer columnNumber: this.fieldPositions.keySet()) {
+	    		
+	    		// Gets the column name
+	    		String headerValue = this.fieldPositions.get(columnNumber);
 
-    		this.fieldIndexes.put(headerValue, columnNumber);
-    	}
+	    		this.fieldIndexes.put(headerValue, columnNumber);
+	    	}
+
+	    	System.debug('Received ' + this.csvData.length() + ' length string.');
+		}
+		catch(Exception ex){
+			System.debug('Exception in constructor');
+			System.debug(ex.getMessage());
+			System.debug(ex.getStackTraceString());
+		}
 	}
 	
 	global Iterable<String> start(Database.BatchableContext BC) {
 		
-		// Prepare headers and return all data
-		this.prepareSmartLookups();
+		try {
+			// Prepare headers and return all data
+			this.prepareSmartLookups();
 
-		return new Utility_RowIterator(this.csvData);
+			return new Utility_RowIterator(this.csvData);
+		}
+		catch(Exception ex){
+			System.debug('Exception in start');
+			System.debug(ex.getMessage());
+			System.debug(ex.getStackTraceString());
+
+			return new List<String>();
+		}
 	}
 
    	global void execute(Database.BatchableContext BC, List<String> scope) {
