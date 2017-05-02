@@ -306,7 +306,9 @@ public with sharing class WaveDataManagerController {
 	private void processCurrentObjectLoadNode(){
 		
 		WaveApplicationObject currentNode = this.objectsNodes.get(this.currentNodeIndex);
-		IMockarooHelper iMockHelper = MockarooHelperFactory.getIMockarooHelper();
+		
+		/*
+		IMockarooHelper iMockHelper = MockarooHelperFactory.getIMockarooHelper();		
 		List<List<String>> csvData;
 		
 		// Check whether we are in the initial chunk of CSV data or not
@@ -332,18 +334,42 @@ public with sharing class WaveDataManagerController {
 			csvData = iMockHelper.getData(newUrl, false);
 		}
 
-		this.processingLog.add('Loading ' + csvData.size() + ' records for ' + currentNode.name + ' object...');
+		this.processingLog.add('Loading ' + csvData.size() + ' records for ' + currentNode.name + ' object...');*/		
 
-		// Start the batch process
-		CsvDataImportBatch batchProcess = new CsvDataImportBatch(Schema.getGlobalDescribe().get(currentNode.name), csvData, currentNode.fieldPositions, currentNode.relations);
-		this.batchProcessId = Database.executeBatch(batchProcess);
+		HttpResponse res = WaveConfiguratorUtils.httpCallout(currentNode.url, 'GET', false, '');
+		String csvDataWithHeaders = res.getBody();
+		
+		// We search for \n
+		Integer indexOfLF = csvDataWithHeaders.indexOf('\n');
+		if(indexOfLF != -1){
+			String headersLine = csvDataWithHeaders.substring(0, indexOfLF);
+			
+			// We search for \r
+			if(headersLine.indexOf('\r') != -1){
+				headersLine = headersLine.replace('\r', '');
+			}
 
-		// Now monitor job execution
-		this.monitorJobExecution = true;
-		AsyncApexJob asyncJob = [SELECT CompletedDate, JobItemsProcessed, NumberOfErrors, Status, TotalJobItems FROM AsyncApexJob WHERE Id = :this.batchProcessId];			
-		this.totalBatches = asyncJob.TotalJobItems;
-		this.batchesProcessed = asyncJob.JobItemsProcessed;
-		this.showJobStatistics = true;
+			List<String> headers = headersLine.split(',');
+
+			currentNode.fieldPositions = new Map<Integer, String>();
+				
+			for(Integer i = 0; i < headers.size(); i++) {
+				currentNode.fieldPositions.put(i, headers[i]);
+			}
+
+			String csvData = csvDataWithHeaders.substringAfter('\n');
+
+			// Start the batch process
+			CsvDataImportBatch batchProcess = new CsvDataImportBatch(Schema.getGlobalDescribe().get(currentNode.name), csvData, currentNode.fieldPositions, currentNode.relations);
+			this.batchProcessId = Database.executeBatch(batchProcess);
+
+			// Now monitor job execution
+			this.monitorJobExecution = true;
+			AsyncApexJob asyncJob = [SELECT CompletedDate, JobItemsProcessed, NumberOfErrors, Status, TotalJobItems FROM AsyncApexJob WHERE Id = :this.batchProcessId];			
+			this.totalBatches = asyncJob.TotalJobItems;
+			this.batchesProcessed = asyncJob.JobItemsProcessed;
+			this.showJobStatistics = true;
+		}		
 	}
 
 

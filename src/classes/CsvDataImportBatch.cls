@@ -1,6 +1,6 @@
-global class CsvDataImportBatch implements Database.Batchable<List<String>>, Database.Stateful {
+global class CsvDataImportBatch implements Database.Batchable<String>, Database.Stateful {
 	
-	private List<List<String>> csvData;
+	private String csvData;
 	private Map<Integer, String> fieldPositions;
 	private Map<String, Integer> fieldIndexes;
 	private List<WaveApplicationObjectRelation> relations;
@@ -8,7 +8,7 @@ global class CsvDataImportBatch implements Database.Batchable<List<String>>, Dat
 	private List<SmartLookup> smartLookups;
 	private List<String> debugMessages;
 	
-	global CsvDataImportBatch(SObjectType objectType, List<List<String>> csvData, Map<Integer, String> fieldPositions, List<WaveApplicationObjectRelation> relations) {
+	global CsvDataImportBatch(SObjectType objectType, String csvData, Map<Integer, String> fieldPositions, List<WaveApplicationObjectRelation> relations) {
 		this.objectType = objectType;
 		this.csvData = csvData;
 		this.fieldPositions = fieldPositions;
@@ -26,27 +26,36 @@ global class CsvDataImportBatch implements Database.Batchable<List<String>>, Dat
     	}
 	}
 	
-	global Iterable<List<String>> start(Database.BatchableContext BC) {
+	global Iterable<String> start(Database.BatchableContext BC) {
 		
 		// Prepare headers and return all data
 		this.prepareSmartLookups();
 
-		return this.csvData;
+		return new Utility_RowIterator(this.csvData);
 	}
 
-   	global void execute(Database.BatchableContext BC, List<List<String>> scope) {
+   	global void execute(Database.BatchableContext BC, List<String> scope) {
 
    		System.debug('About to process ' + scope.size() + ' records of type ' + this.objectType.getDescribe().getName());
 		
+   		List<String> lines = new List<String>();
+
+        for(String row : scope)
+        {
+            lines.add(row);
+        }
+
+        List<List<String>> rowsBatch = CSVReader.Parse(String.join(lines, '\n'));
+
    		// First handle smart lookups
-   		this.processSmartLookupForBatch(scope);
+   		this.processSmartLookupForBatch(rowsBatch);
 
    		List<SObject> objectsBatch = new List<SObject>();
    		List<String> lstExternalIds = new List<String>();
    		Map<String, Schema.SObjectField> objectFields = this.objectType.getDescribe().fields.getMap();
 
    		// For each row of data in the CSV
-		for(List<String> sObjRow: scope) {
+		for(List<String> sObjRow: rowsBatch) {
 
 			// Will create an object
 			SObject objToCreate = this.objectType.newSObject();
