@@ -1,6 +1,0 @@
-public class WaveObjectRelation {
-	public String csvColumnName;
-	public String targetSObject;
-	public String targetSObjectLookupField;
-	public String foreignKeyField;
-}

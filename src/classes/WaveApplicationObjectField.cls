@@ -8,4 +8,5 @@ public class WaveApplicationObjectField {
 	public Integer Scale {get; set;}
 	public Boolean IsExternalId {get; set;}
 	public Boolean IsRequired {get; set;}
+	public String DefaultValue {get; set;}
 }

@@ -3,6 +3,7 @@ public class WaveMetadataApplicationObject {
 	public String url;
 	public Integer additionalDataFiles;
 	public String metadataUrl;
+	public List<String> dateFieldsToShift;
 	public List<WaveMetadataApplicationObject> children;
 	public List<WaveMetadataApplicationObjectRelation> relations;
 }

@@ -1,5 +1,6 @@
 public virtual class WaveMetadataApplication {
 	public String appName;
+	public String appType;
 	public String appDescription;
 	public String dataflowLocation;
 	public List<WaveMetadataApplicationObject> objects;

@@ -1,8 +1,27 @@
 public with sharing class WaveConfiguratorUtils {
 	
+	private String apiVersion;
+
 	public WaveConfiguratorUtils() {
 		
 	}
+
+
+	public GenericAppConfiguration getAppConfiguration(String configurationFileName){
+		StaticResource[] sr = [SELECT Id, Body FROM StaticResource WHERE Name = :configurationFileName LIMIT 1];
+		
+		if(sr.size() > 0){
+			String body = sr.get(0).Body.toString();
+			GenericAppConfiguration appConfig = (GenericAppConfiguration)JSON.deserialize(body, GenericAppConfiguration.class);
+			apiVersion = appConfig.apiVersion;
+
+			return appConfig;
+		} 
+		else {
+			throw new WaveConfiguratorException('The configuration file ' + configurationFileName + ' does not exist. Please add it as static resource to initialize the installation proccess.');
+		}
+	}
+
 
 	public static List<WaveApplicationRow> getWaveApplications(String csvUrl){
 		
@@ -57,7 +76,7 @@ public with sharing class WaveConfiguratorUtils {
 		return apps;
 	}
 
-	public static void loadEdgemart(Edgemart e, String appDeveloperName){
+	public void loadEdgemart(Edgemart e, String appDeveloperName){
 		if(e != null){
 			if(String.isNotBlank(appDeveloperName)){
 				// Retrive the JSON metadata for edgemart
@@ -66,7 +85,6 @@ public with sharing class WaveConfiguratorUtils {
 				req.setEndpoint(e.MetadataJsonUrl);
 		        req.setMethod('GET');
 				HTTPResponse res = http.send(req);
-
 				if(checkStatus(res)){
 
 					String jsonMetadata = res.getBody();
@@ -75,7 +93,6 @@ public with sharing class WaveConfiguratorUtils {
 					req.setEndpoint(e.DataUrl);
 			        req.setMethod('GET');
 			        res = http.send(req);
-
 			        if(checkStatus(res)){
 
 			        	Blob csvBlob = Blob.valueof(res.getBody());
@@ -88,13 +105,12 @@ public with sharing class WaveConfiguratorUtils {
 					  		'	"EdgemartAlias":"' + e.Name + '",' + 
 					  		'	"EdgemartLabel":"' + e.Label + '",' + 
 					  		'	"EdgemartContainer":"' + appDeveloperName + '",' + 
-					  		'	"Operation":"Append",' + 
+					  		'	"Operation":"Overwrite",' + 
 					  		'	"Action":"None",' + 
 					  		'	"MetadataJson":"' + EncodingUtil.base64Encode(Blob.valueOf(jsonMetadata)) + '"' +
 					  		'}';
 
-				        res = httpCallout('/services/data/v39.0/sobjects/InsightsExternalData', 'POST', true, jsonToSend);
-
+				        res = httpCallout('/services/data/' + apiVersion + '/sobjects/InsightsExternalData', 'POST', true, jsonToSend);
 				        if(checkStatus(res)){
 
 				        	RestApiResponseBody responseBody = (RestApiResponseBody)JSON.deserialize(res.getBody(), RestApiResponseBody.class);
@@ -112,8 +128,7 @@ public with sharing class WaveConfiguratorUtils {
 					  		'	"DataLength":"' + size + '"' + 
 					  		'}';
 
-					        res = httpCallout('/services/data/v39.0/sobjects/InsightsExternalDataPart', 'POST', true, jsonToSend);
-
+					        res = httpCallout('/services/data/' + apiVersion + '/sobjects/InsightsExternalDataPart', 'POST', true, jsonToSend);
 					        if(checkStatus(res)){
 
 					        	//Final Step: Manage the Upload
@@ -124,9 +139,8 @@ public with sharing class WaveConfiguratorUtils {
 								'	},' + 
 						  		'	"Action":"Process"' + 
 						  		'}';
-
-						        res = httpCallout('/services/data/v39.0/sobjects/InsightsExternalData/' + responseBody.Id + '?_HttpMethod=PATCH', 'POST', true, jsonToSend);
-	
+								
+						        res = httpCallout('/services/data/' + apiVersion + '/sobjects/InsightsExternalData/' + responseBody.Id + '?_HttpMethod=PATCH', 'POST', true, jsonToSend);
 						        if(!checkStatus(res) || res.getBody().containsIgnoreCase('errorCode')){
 						        	List<RestApiErrorResponse> r = (List<RestApiErrorResponse>)JSON.deserialize(res.getBody(), List<RestApiErrorResponse>.class);
 						        	
@@ -195,7 +209,7 @@ public with sharing class WaveConfiguratorUtils {
 		return response;
 	}
 
-	public static String createDataflow(String devName, String label, String folderId)
+	public String createDataflow(String devName, String label, String folderId)
 	{
 		String dataflowJson = '{' + 
 		'	"attributes":{' + 
@@ -208,7 +222,7 @@ public with sharing class WaveConfiguratorUtils {
   		'	"DataflowType":"User"' +
   		'}';
 
-  		HttpResponse res = WaveConfiguratorUtils.httpCallout('/services/data/v39.0/sobjects/Dataflow', 'POST', true, dataflowJson);
+  		HttpResponse res = WaveConfiguratorUtils.httpCallout('/services/data/' + apiVersion + '/sobjects/Dataflow', 'POST', true, dataflowJson);
   		
   		if(!WaveConfiguratorUtils.checkStatus(res) || res.getBody().containsIgnoreCase('errorCode')){
 
@@ -231,7 +245,7 @@ public with sharing class WaveConfiguratorUtils {
   		}
 	}
 
-	public static String createDataflowVersion(String dataflowId, String dataflowDefinitionJson)
+	public String createDataflowVersion(String dataflowId, String dataflowDefinitionJson)
 	{
 		String postJson = '{' + 
 		'	"attributes":{' + 
@@ -241,7 +255,7 @@ public with sharing class WaveConfiguratorUtils {
   		'	"DataflowDefinition":' + JSON.serialize(dataflowDefinitionJson) + 
   		'}';
 
-  		HttpResponse res = WaveConfiguratorUtils.httpCallout('/services/data/v39.0/sobjects/DataflowVersion', 'POST', true, postJson);
+  		HttpResponse res = WaveConfiguratorUtils.httpCallout('/services/data/' + apiVersion + '/sobjects/DataflowVersion', 'POST', true, postJson);
   		
   		if(!WaveConfiguratorUtils.checkStatus(res)){
   			if(res.getBody().containsIgnoreCase('errorCode')){
@@ -263,7 +277,7 @@ public with sharing class WaveConfiguratorUtils {
   		}
 	}
 
-	public static void linkDataflowToVersion(String dataflowId, String versionId) {
+	public void linkDataflowToVersion(String dataflowId, String versionId) {
 
 		String postJson = '{' + 
 		'	"attributes":{' + 
@@ -276,7 +290,7 @@ public with sharing class WaveConfiguratorUtils {
 		HttpRequest req = new HttpRequest();
 
 		String salesforceHost = System.Url.getSalesforceBaseURL().toExternalForm();
-		String url = salesforceHost + '/services/data/v39.0/sobjects/Dataflow/' + dataflowId + '?_HttpMethod=PATCH';
+		String url = salesforceHost + '/services/data/' + apiVersion + '/sobjects/Dataflow/' + dataflowId + '?_HttpMethod=PATCH';
 
 		req.setMethod('POST');
 		req.setEndpoint(url);
@@ -313,14 +327,13 @@ public with sharing class WaveConfiguratorUtils {
 		return dfId;
 	}
 
-	@future(callout=true)
-	public static void deleteDataflow(String dataflowId, String sessionId){
+	public static void deleteDataflow(String dataflowId, String sessionId, String apiVersion){
 		System.debug('Attempting to delete wave dataflow Id: ' + dataflowId);
 		String salesforceHost = System.Url.getSalesforceBaseURL().toExternalForm();
 		Http http = new Http();
 		HttpRequest req = new HttpRequest();
 		req.setMethod('DELETE');
-		req.setEndpoint(salesforceHost + '/services/data/v39.0/sobjects/Dataflow/' + dataflowId);
+		req.setEndpoint(salesforceHost + '/services/data/' + apiVersion + '/sobjects/Dataflow/' + dataflowId);
 		req.setHeader('Authorization', 'OAuth ' + sessionId);
 
 		HttpResponse res = http.send(req);
@@ -331,37 +344,58 @@ public with sharing class WaveConfiguratorUtils {
 	}
 
 	@future(callout=true)
-	public static void deleteFolder(String folderId, String sessionId){
+	public static void deleteFolder(String folderId, String dataflowId, String sessionId, String apiVersion, String mainMessage, String stackTrace){
+		
+		if(String.isNotBlank(dataflowId)){
+			// First we have to delete the dataflow
+			WaveConfiguratorUtils.deleteDataflow(dataflowId, sessionId, apiVersion);
+		}
+
 		System.debug('Attempting to delete wave folder/application Id: ' + folderId);
+		
+		if(String.isNotBlank(mainMessage)){
+			System.debug('Reason: ' + mainMessage);
+		}
+
+		if(String.isNotBlank(stackTrace)){
+			System.debug('Stack trace: ' + stackTrace);
+		}
+
 		String salesforceHost = System.Url.getSalesforceBaseURL().toExternalForm();
 		Http http = new Http();
 		HttpRequest req = new HttpRequest();
 		req.setMethod('DELETE');
-		req.setEndpoint(salesforceHost + '/services/data/v39.0/wave/folders/' + folderId);
+		req.setEndpoint(salesforceHost + '/services/data/' + apiVersion + '/wave/folders/' + folderId);
 		req.setHeader('Authorization', 'OAuth ' + sessionId);
 
 		HttpResponse res = http.send(req);
 
 		if(!WaveConfiguratorUtils.checkStatus(res)){
+			System.debug(res.getBody());
 			System.debug('Wave folder/application could not be deleted.');
 		}
 	}
 
-	public static String insertFolder(String appRowLabel, String folderName) {
-
+	public String insertFolder(String appRowLabel, String folderName) {
 		String jsonToPost = '{"label":"' + appRowLabel + '","name":"' + folderName + '"}';
 
-		HTTPResponse res = WaveConfiguratorUtils.httpCallout('/services/data/v39.0/wave/folders', 'POST', true, jsonToPost);
+		HTTPResponse res = WaveConfiguratorUtils.httpCallout('/services/data/' + apiVersion + '/wave/folders', 'POST', true, jsonToPost);
 
-		if(res.getBody().containsIgnoreCase('errorCode')){
-			List<RestApiFolderErrorResponse> r = (List<RestApiFolderErrorResponse>)JSON.deserialize(res.getBody(), List<RestApiFolderErrorResponse>.class);
-			return r.get(0).message;
+		if(!WaveConfiguratorUtils.checkStatus(res)){
+			if(res.getBody().containsIgnoreCase('errorCode')){
+				List<RestApiFolderErrorResponse> r = (List<RestApiFolderErrorResponse>)JSON.deserialize(res.getBody(), List<RestApiFolderErrorResponse>.class);
+				throw new WaveConfiguratorException('There was an error in the attempt to create the: ' + folderName + ' folder. Cause: ' + r.get(0).message + '.');
+			} 
+
+			throw new WaveConfiguratorException('There was an error in the attempt to create the: ' + folderName + ' folder.');
 		} 
-
-		return '';
+		else {
+			RestApiResponseBody responseBody = (RestApiResponseBody)JSON.deserialize(res.getBody(), RestApiResponseBody.class);
+  			return responseBody.id;		
+		}
 	}
 
-	public static String insertWaveDashboard(String dashboardJsonTemplate, String folderId, Map<String, String> datasetsMap){
+	public String insertWaveDashboard(String dashboardJsonTemplate, String folderId, Map<String, String> datasetsMap){
 		String dashboardJsonToSend = dashboardJsonTemplate;
 		String replacement = folderId; 
 		String target = '<folderId>';
@@ -374,7 +408,7 @@ public with sharing class WaveConfiguratorUtils {
 			}
 		}
 
-		HTTPResponse res = WaveConfiguratorUtils.httpCallout('/services/data/v39.0/wave/dashboards', 'POST', true, dashboardJsonToSend);
+		HTTPResponse res = WaveConfiguratorUtils.httpCallout('/services/data/' + apiVersion + '/wave/dashboards', 'POST', true, dashboardJsonToSend);
 
 		if(!WaveConfiguratorUtils.checkStatus(res)){
 			if(res.getBody().containsIgnoreCase('errorCode')){
@@ -390,7 +424,7 @@ public with sharing class WaveConfiguratorUtils {
 		}
 	}	
 
-	public static String updateWaveDashboard(String dashboardJsonTemplate, String dashboardId, String folderId, Map<String, String> datasetsMap, Map<String, String> dashboardsIdsByNameMap){
+	public String updateWaveDashboard(String dashboardJsonTemplate, String dashboardId, String folderId, Map<String, String> datasetsMap, Map<String, String> dashboardsIdsByNameMap){
 
 		// We replace the <folderId>
 		String dashboardJsonToSend = dashboardJsonTemplate.replace('<folderId>', folderId);
@@ -409,7 +443,7 @@ public with sharing class WaveConfiguratorUtils {
 			}
 		}
 
-		HTTPResponse res = WaveConfiguratorUtils.httpCallout('/services/data/v39.0/wave/dashboards/' + dashboardId + '?_HttpMethod=PATCH', 'POST', true, dashboardJsonToSend);
+		HTTPResponse res = WaveConfiguratorUtils.httpCallout('/services/data/' + apiVersion + '/wave/dashboards/' + dashboardId + '?_HttpMethod=PATCH', 'POST', true, dashboardJsonToSend);
 
 		if(!WaveConfiguratorUtils.checkStatus(res)){
 			if(res.getBody().containsIgnoreCase('errorCode')){
@@ -448,17 +482,7 @@ public with sharing class WaveConfiguratorUtils {
 	    return !MyMatcher.matches(); 
 	}
 
-	public static String getFolderId(String devName){
-		List<Folder> folder = [SELECT Id FROM Folder WHERE DeveloperName = :devName AND Type = 'Insights'];
-		String folderId = '';
-
-		if(folder.size() > 0){
-			folderId = folder.get(0).Id;
-		}
-
-		return folderId;
-	}
-
+	
 	public static boolean folderExists(String folderName){
 		Folder[] lstFolders = [SELECT Id FROM Folder WHERE DeveloperName = :folderName AND Type = 'Insights'];
 		return lstFolders.size() > 0;
@@ -467,10 +491,10 @@ public with sharing class WaveConfiguratorUtils {
 	// Retrieves asset JSON through WAVE REST API, only works within the ORG in which this code executes
 	// @param waveAssets: Type of asset to retrieve [folders, datasets, lenses, dashboards]
 	// @param requestUrl: If not null, uses this URL to request data
-	public static String getWaveAssetsJSON(String waveAssets, String requestUrl){
+	public String getWaveAssetsJSON(String waveAssets, String requestUrl){
         HttpRequest req = new HttpRequest();
         String salesforceHost = System.Url.getSalesforceBaseURL().toExternalForm();
-        String url = salesforceHost + (requestUrl != null ? requestUrl : '/services/data/v39.0/wave/' + waveAssets + '?pageSize=200');
+        String url = salesforceHost + (requestUrl != null ? requestUrl : '/services/data/' + apiVersion + '/wave/' + waveAssets + '?pageSize=200');
         req.setEndpoint(url);
         req.setHeader('Authorization', 'OAuth ' + UserInfo.getSessionId());
         req.setMethod('GET');

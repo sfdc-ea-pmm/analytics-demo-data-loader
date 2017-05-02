@@ -2,52 +2,33 @@
 // the creation of custom objects and fields
 public with sharing class SF_MetadataUtils {
 	
-	private Map<String, Boolean> existingObjectsMap = new Map<String, Boolean>();
-    private Map<String, Map<String, Boolean>> existingFieldsMap = new Map<String, Map<String, Boolean>>();
-
-	public SF_MetadataUtils() {
-		
-        // We use lowercase names to avoid duplicated fields and objects
-
-        String[] objNamesArray = new String[]{};
+	
+	public static Boolean objectExists(String objName){
         Map<String, Schema.SObjectType> globalDescribe = Schema.getGlobalDescribe(); 
-        for(String objectKey : globalDescribe.keySet()){
-            String objectName = globalDescribe.get(objectKey).getDescribe().getName();
-            if(!objectName.endsWithIgnoreCase('__kav')){
-                // We add the object to the existing ones map
-                String objNameLower = objectName.toLowerCase();
-                this.existingObjectsMap.put(objNameLower, true);
-                Map<String, Boolean> fieldsMap = new Map<String, Boolean>();
-                this.existingFieldsMap.put(objNameLower, fieldsMap);
+		return globalDescribe.containsKey(objName.toLowerCase());
+	}
 
-                objNamesArray.add(objectName);
+	public static Boolean fieldExists(String objName, String fieldName){
+        Map<String, Schema.SObjectType> globalDescribe = Schema.getGlobalDescribe();
+        if(globalDescribe.containsKey(objName.toLowerCase())){
+            Schema.sObjectType objType = globalDescribe.get(objName.toLowerCase());            
+            Schema.DescribeSObjectResult[] descResult = Schema.describeSObjects(new String[]{ objType.getDescribe().getName() });
+            if(descResult.size() > 0){
+                Schema.DescribeSObjectResult descResultItem = descResult[0];
+                Map<String, Schema.SObjectField> fieldMap = descResultItem.fields.getMap();
+
+                return fieldMap.containsKey(fieldName);
+            }
+            else {
+                return false;
             }
         }
-
-        // Now for each object, the fields
-        Schema.DescribeSObjectResult[] sObjectsDescribe = Schema.describeSObjects(objNamesArray);
-        for(Schema.DescribeSObjectResult objDesc : sObjectsDescribe){
-            
-            Map<String, Boolean> currentFieldMap = this.existingFieldsMap.get(objDesc.getName().toLowerCase());
-            Map<String, Schema.SObjectField> fieldMap = objDesc.fields.getMap();
-
-            for(String fieldKey : fieldMap.keySet()){
-                Schema.SObjectField fieldSchema = fieldMap.get(fieldKey);
-                Schema.DescribeFieldResult dfr = fieldSchema.getDescribe();
-                currentFieldMap.put(dfr.getName().toLowerCase(), true);
-            }
+        else {
+            return false;
         }
 	}
 
-	public Boolean objectExists(String objName){
-		return this.existingObjectsMap.containsKey(objName.toLowerCase());
-	}
-
-	public Boolean fieldExists(String objName, String fieldName){
-		return this.existingObjectsMap.containsKey(objName.toLowerCase()) && this.existingFieldsMap.get(objName.toLowerCase()).containsKey(fieldName.toLowerCase());
-	}
-
-	public List<String> createObject(String objName){
+	public static List<String> createObject(String objName){
 		
         List<String> errors = new List<String>();
 		List<MetadataService.SaveResult> results;
@@ -67,12 +48,7 @@ public with sharing class SF_MetadataUtils {
             new MetadataService.Metadata[] { cObj }
         );
 
-        if(results != null && results.size() > 0 && results.get(0).success){
-        	this.existingObjectsMap.put(objName, true);
-            Map<String, Boolean> fieldsMap = new Map<String, Boolean>();
-            this.existingFieldsMap.put(objName, fieldsMap);
-        }
-        else {
+        if(results == null || results.size() == 0 && !results.get(0).success){
         	// Return error messages
             if(!Test.isRunningTest()){
                 for(MetadataService.Error err : results.get(0).errors){
@@ -84,54 +60,93 @@ public with sharing class SF_MetadataUtils {
         return errors;
 	}
 
-	public List<String> createField(CustomFieldSpecification fieldSpec){
+	public static List<String> createField(CustomFieldSpecification fieldSpec){
 		
         List<String> errors = new List<String>();
 		if(fieldSpec.Name.endsWithIgnoreCase('__c')){
-            List<MetadataService.SaveResult> results;
+            List<MetadataService.UpsertResult> results;
             MetadataService.MetadataPort service = createService();
             MetadataService.CustomField cField = new MetadataService.CustomField();
-            
-            cField.fullName = fieldSpec.ObjectName + '.' + fieldSpec.Name;
-            cField.label = fieldSpec.Label;
-            cField.type_x = fieldSpec.Type;
-            
-            if(!String.isBlank(fieldSpec.ReferenceTo)){
-                cField.referenceTo = fieldSpec.ReferenceTo;
-            }
 
-            if(fieldSpec.Length > 0 && !fieldSpec.Type.equalsIgnoreCase('MasterDetail') && !fieldSpec.Type.equalsIgnoreCase('Lookup') && !fieldSpec.Type.equalsIgnoreCase('Date'))
+            String objectName = fieldSpec.ObjectName;
+
+            cField.externalId = fieldSpec.IsExternalId;
+            cField.required = fieldSpec.IsRequired;
+
+            // Default value
+            cField.defaultValue = fieldSpec.DefaultValue;
+
+            if(objectName.equalsIgnoreCase('Task') || objectName.equalsIgnoreCase('Event'))
             {
+                // Special management for Activity fields
+                cField.fullName = 'Activity.' + fieldSpec.Name;
+                cField.label = fieldSpec.Label;
+                cField.type_x = fieldSpec.Type;
+            }
+            else{
+                cField.fullName = fieldSpec.ObjectName + '.' + fieldSpec.Name;
+                cField.label = fieldSpec.Label;
+                cField.type_x = fieldSpec.Type;
+            }            
+                       
+            if(fieldSpec.Type.equalsIgnoreCase('Lookup') || fieldSpec.Type.equalsIgnoreCase('MasterDetail')){
+                // Master-Detail or Lookup
+                cField.referenceTo = fieldSpec.ReferenceTo;
+                cField.relationshipName = fieldSpec.ObjectName.replace('__c', '') + 'Related';
+                
+                // Some fields must not be passed to Metadata API
+                cField.defaultValue = null;
+                cField.required = null;
+                cField.externalId = null;
+            }
+            else if(fieldSpec.Type.equalsIgnoreCase('Checkbox')){
+                // Checkbox
+                if(String.isBlank(cField.defaultValue)){
+                    cField.defaultValue = 'false';
+                }
+            }
+            else if(fieldSpec.Type.equalsIgnoreCase('Number') || fieldSpec.Type.equalsIgnoreCase('Currency') || fieldSpec.Type.equalsIgnoreCase('Percent')){
+                cField.precision = fieldSpec.Precision;
+                cField.scale = fieldSpec.Scale;
+            }
+            else if(fieldSpec.Type.equalsIgnoreCase('Text')){
                 cField.length = fieldSpec.Length;
             }
-
-            if(fieldSpec.Type.equalsIgnoreCase('MasterDetail') || fieldSpec.Type.equalsIgnoreCase('Lookup')){
-                cField.relationshipName = fieldSpec.ObjectName.replace('__c', '') + 'Related';
+            else if(fieldSpec.Type.equalsIgnoreCase('LongTextArea')){
+                cField.visibleLines = 3;
             }
 
-            results = service.createMetadata(
-                new MetadataService.Metadata[] { cField }
+            // Field level security for Admin
+            MetadataService.Profile admProfile = new MetadataService.Profile();
+            admProfile.fullName = 'Admin';
+            MetadataService.ProfileTabVisibility[] tvs = new MetadataService.ProfileTabVisibility[]{}; 
+            admProfile.tabVisibilities = tvs;
+            MetadataService.ProfileFieldLevelSecurity fieldSec = new MetadataService.ProfileFieldLevelSecurity();
+            fieldSec.field = cField.fullName;
+            fieldSec.editable=true;
+            admProfile.FieldPermissions = new MetadataService.ProfileFieldLevelSecurity[] { fieldSec } ;
+
+            // FLS for Analytics Cloud Integration User
+            MetadataService.Profile aciuProfile = new MetadataService.Profile();
+            aciuProfile.fullName = 'Analytics Cloud Integration User';
+            MetadataService.ProfileTabVisibility[] aciuTvs = new MetadataService.ProfileTabVisibility[]{}; 
+            aciuProfile.tabVisibilities = aciuTvs;
+            MetadataService.ProfileFieldLevelSecurity aciuFLS = new MetadataService.ProfileFieldLevelSecurity();
+            aciuFLS.field = cField.fullName;
+            aciuFLS.editable=true;
+            aciuProfile.FieldPermissions = new MetadataService.ProfileFieldLevelSecurity[] { aciuFLS } ;
+
+            results = service.upsertMetadata(
+                new MetadataService.Metadata[] { cField, admProfile, aciuProfile }
             );
 
-            if(results != null && results.size() > 0 && results.get(0).success){
-                Map<String, Boolean> fieldsMap;
-                if(!this.existingFieldsMap.containsKey(fieldSpec.ObjectName)){
-                    fieldsMap = new Map<String, Boolean>();
-                    this.existingFieldsMap.put(fieldSpec.ObjectName, fieldsMap);
-                }
-                else {
-                    fieldsMap = this.existingFieldsMap.get(fieldSpec.ObjectName);
-                }
-                
-                fieldsMap.put(fieldSpec.Name, true);
-            }
-            else {
+            if(results == null || results.size() == 0 || !results.get(0).success){
                 // Return error messages
                 if(!Test.isRunningTest()){
                     for(MetadataService.Error err : results.get(0).errors){
                         errors.add(err.message);
                     }
-                }
+                }   
             }
         }
         else {
@@ -146,6 +161,7 @@ public with sharing class SF_MetadataUtils {
         MetadataService.MetadataPort service = new MetadataService.MetadataPort();
         service.SessionHeader = new MetadataService.SessionHeader_element();
         service.SessionHeader.sessionId = UserInfo.getSessionId();
+        service.timeout_x = 120000;
         
         return service;
     }
@@ -178,5 +194,6 @@ public with sharing class SF_MetadataUtils {
 		public Integer Scale;
 		public Boolean IsExternalId;
 		public Boolean IsRequired;
+        public String DefaultValue;
     }
 }
