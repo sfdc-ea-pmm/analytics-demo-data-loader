@@ -305,80 +305,89 @@ public with sharing class WaveDataManagerController {
 
 	private void processCurrentObjectLoadNode(){
 		
-		WaveApplicationObject currentNode = this.objectsNodes.get(this.currentNodeIndex);
-		
-		/*
-		IMockarooHelper iMockHelper = MockarooHelperFactory.getIMockarooHelper();		
-		List<List<String>> csvData;
-		
-		// Check whether we are in the initial chunk of CSV data or not
-		if(currentNode.currentDataIndex == 0){
+		try{
+			WaveApplicationObject currentNode = this.objectsNodes.get(this.currentNodeIndex);
 			
-			// We start processing the initial chunk of data
-			csvData = iMockHelper.getData(currentNode.url, false);
-
-    		if(csvData.size() > 0){
-				// Will extract headers
-				List<String> headers = csvData.remove(0);
-				currentNode.fieldPositions = new Map<Integer, String>();
+			/*
+			IMockarooHelper iMockHelper = MockarooHelperFactory.getIMockarooHelper();		
+			List<List<String>> csvData;
+			
+			// Check whether we are in the initial chunk of CSV data or not
+			if(currentNode.currentDataIndex == 0){
 				
+				// We start processing the initial chunk of data
+				csvData = iMockHelper.getData(currentNode.url, false);
+
+	    		if(csvData.size() > 0){
+					// Will extract headers
+					List<String> headers = csvData.remove(0);
+					currentNode.fieldPositions = new Map<Integer, String>();
+					
+					for(Integer i = 0; i < headers.size(); i++) {
+						currentNode.fieldPositions.put(i, headers[i]);
+					}
+				}
+
+				currentObjectProcessing = currentNode.name;
+			}
+			else {
+				String newUrl = currentNode.url.substringBeforeLast('.csv') + currentNode.currentDataIndex + '.csv';
+				csvData = iMockHelper.getData(newUrl, false);
+			}
+
+			this.processingLog.add('Loading ' + csvData.size() + ' records for ' + currentNode.name + ' object...');*/		
+
+			HttpResponse res = WaveConfiguratorUtils.httpGetCallout(currentNode.url);
+			String csvDataWithHeaders = res.getBody();
+			
+			// We search for \n
+			Integer indexOfLF = csvDataWithHeaders.indexOf('\n');
+			if(indexOfLF != -1){
+				
+				String headersLine = csvDataWithHeaders.substring(0, indexOfLF);
+				System.debug('Headers: ' + headersLine);
+				
+				// We search for \r
+				if(headersLine.indexOf('\r') != -1){
+					headersLine = headersLine.replace('\r', '');
+				}
+
+				List<String> headers = headersLine.split(',');
+
+				currentNode.fieldPositions = new Map<Integer, String>();
+					
 				for(Integer i = 0; i < headers.size(); i++) {
 					currentNode.fieldPositions.put(i, headers[i]);
 				}
-			}
 
-			currentObjectProcessing = currentNode.name;
-		}
-		else {
-			String newUrl = currentNode.url.substringBeforeLast('.csv') + currentNode.currentDataIndex + '.csv';
-			csvData = iMockHelper.getData(newUrl, false);
-		}
+				String csvData = csvDataWithHeaders.substringAfter('\n');
 
-		this.processingLog.add('Loading ' + csvData.size() + ' records for ' + currentNode.name + ' object...');*/		
+				if(csvData.length() > 0){
 
-		HttpResponse res = WaveConfiguratorUtils.httpGetCallout(currentNode.url);
-		String csvDataWithHeaders = res.getBody();
-		
-		// We search for \n
-		Integer indexOfLF = csvDataWithHeaders.indexOf('\n');
-		if(indexOfLF != -1){
-			
-			String headersLine = csvDataWithHeaders.substring(0, indexOfLF);
-			System.debug('Headers: ' + headersLine);
-			
-			// We search for \r
-			if(headersLine.indexOf('\r') != -1){
-				headersLine = headersLine.replace('\r', '');
-			}
+					this.currentObjectProcessing = currentNode.name;
 
-			List<String> headers = headersLine.split(',');
+					this.processingLog.add('Loading records for ' + currentNode.name + ' object...');
 
-			currentNode.fieldPositions = new Map<Integer, String>();
-				
-			for(Integer i = 0; i < headers.size(); i++) {
-				currentNode.fieldPositions.put(i, headers[i]);
-			}
+					// Start the batch process
+					CsvDataImportBatch batchProcess = new CsvDataImportBatch(Schema.getGlobalDescribe().get(currentNode.name), csvData, currentNode.fieldPositions, currentNode.relations);
+					this.batchProcessId = Database.executeBatch(batchProcess);
+					this.enableObjectProcessingCheck = true;
 
-			String csvData = csvDataWithHeaders.substringAfter('\n');
-
-			if(csvData.length() > 0){
-
-				this.currentObjectProcessing = currentNode.name;
-
-				this.processingLog.add('Loading records for ' + currentNode.name + ' object...');
-
-				// Start the batch process
-				CsvDataImportBatch batchProcess = new CsvDataImportBatch(Schema.getGlobalDescribe().get(currentNode.name), csvData, currentNode.fieldPositions, currentNode.relations);
-				this.batchProcessId = Database.executeBatch(batchProcess);
-
-				// Now monitor job execution
-				this.monitorJobExecution = true;
-				AsyncApexJob asyncJob = [SELECT CompletedDate, JobItemsProcessed, NumberOfErrors, Status, TotalJobItems FROM AsyncApexJob WHERE Id = :this.batchProcessId];			
-				this.totalBatches = asyncJob.TotalJobItems;
-				this.batchesProcessed = asyncJob.JobItemsProcessed;
-				this.showJobStatistics = true;
-			}
-		}		
+					// Now monitor job execution
+					this.monitorJobExecution = true;
+					AsyncApexJob asyncJob = [SELECT CompletedDate, JobItemsProcessed, NumberOfErrors, Status, TotalJobItems FROM AsyncApexJob WHERE Id = :this.batchProcessId];			
+					this.totalBatches = asyncJob.TotalJobItems;
+					this.batchesProcessed = asyncJob.JobItemsProcessed;
+					this.showJobStatistics = true;
+				}
+			}	
+		} catch(Exception e){
+			System.debug(e.getMessage());
+			System.debug(e.getStackTraceString());
+			this.enableObjectProcessingCheck = false;
+			this.disabledButton = false;
+			this.errorMessage = e.getMessage();
+		}	
 	}
 
 
@@ -846,7 +855,6 @@ public with sharing class WaveDataManagerController {
 			System.debug(e.getStackTraceString());
 			this.errorMessage = e.getMessage();
 			this.installationStep = '';
-
 			this.rollbackProcess(e.getMessage(), e.getStackTraceString());
 		}		
 	}
@@ -860,7 +868,6 @@ public with sharing class WaveDataManagerController {
 
 			// This launchs all the process of loading data to salesforce objects
 			this.processCurrentObjectLoadNode();
-			this.enableObjectProcessingCheck = true;	
 		}
 		else {
 			this.processingLog.add('There are no objects to load.');
