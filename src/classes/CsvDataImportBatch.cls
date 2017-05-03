@@ -26,14 +26,11 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
     	}
 
     	for(WaveApplicationObjectRelation wAppObjectRelation: relations){
-    		String colunmName = wAppObjectRelation.csvColumnName;
-    		if(!this.fieldIndexes.containsKey(colunmName)){
-    			throw new WaveConfiguratorException('The column name ' + colunmName + ' is not present in fieldIndexes map.');
+    		String columnName = wAppObjectRelation.csvColumnName;
+    		if(!this.fieldIndexes.containsKey(columnName)){
+    			throw new WaveConfiguratorException('Error with relation. The CSV dataset is required to contain a column named ' + columnName + '.');
     		}
-    	}
-
-    	System.debug('Received ' + this.csvData.length() + ' length string.');
-		
+    	}		
 	}
 	
 	global Iterable<String> start(Database.BatchableContext BC) {
