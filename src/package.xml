@@ -2,6 +2,7 @@
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
         <members>CSVReader</members>
+        <members>CreateObjectsAndFieldsQueueable</members>
         <members>CsvDataImportBatch</members>
         <members>Edgemart</members>
         <members>IMockarooHelper</members>

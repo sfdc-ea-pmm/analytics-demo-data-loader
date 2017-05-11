@@ -144,9 +144,9 @@ private class WaveDataManager_test {
 		cnt.folderName = 'TestingFolder';
 		cnt.folderLabel = 'Testing Folder';
 		cnt.selectedWaveApp = 'Simple';
-
+		cnt.selectedInstallationProcess = 'fullInstallation';
 		
-		cnt.installApp();
+		cnt.executeSelectedProcess();
 		cnt.loadAllEdgemarts();
 		cnt.createDataflowStep();
 		cnt.loadAllDashboards();
@@ -316,19 +316,37 @@ private class WaveDataManager_test {
 	}
 
 
-	/*@isTest static void executeSelectedProcessTest(){
+	@isTest static void executeSelectedProcessTest(){
 		WaveDataManagerController cnt = new WaveDataManagerController();
-		cnt.selectedInstallationProcess = 'fullInstallation';
-		cnt.executeSelectedProcess();
+		MultiStaticResourceCalloutMock multimock = createStaticResources(); 
+
+		Test.setMock(HttpCalloutMock.class, multimock);
+		cnt.pageLoad();
+
 		cnt.selectedInstallationProcess = 'createMetadata';
+		cnt.selectedWaveApp = 'Simple';
 		cnt.executeSelectedProcess();
-		
+
 		cnt.selectedInstallationProcess = 'createWaveApp';
+		cnt.dataflowName = 'TestingDataflowName';
+		cnt.dataflowLabel = 'Testing Dataflow Label';
+		cnt.folderName = 'TestingFolder';
+		cnt.folderLabel = 'Testing Folder';
 		cnt.executeSelectedProcess();
+
 		cnt.selectedInstallationProcess = 'timeShifting';
 		cnt.executeSelectedProcess();
+	}
+
+	@isTest static void loadObjectsThroughChoosingProcess(){
+		WaveDataManagerController cnt = new WaveDataManagerController();
+		MultiStaticResourceCalloutMock multimock = createStaticResources(); 
+
+		Test.setMock(HttpCalloutMock.class, multimock);
+		cnt.pageLoad();
+
+		cnt.selectedWaveApp = 'Simple';
 		cnt.selectedInstallationProcess = 'loadObjects';
 		cnt.executeSelectedProcess();
-		
-	}*/
+	}
 }

@@ -10,6 +10,7 @@ public with sharing class WaveDataManagerController {
 	public String successMessage  { get; set; }
 	public String warningMessage  { get; set; }
 	public Id batchProcessId { get; set; }
+	public Id queueProcessId { get; set; }
 	public Boolean monitorJobExecution { get; set; }
 	public Boolean showJobStatistics { get; set; }
 	public Integer batchesProcessed { get; set; }
@@ -44,7 +45,6 @@ public with sharing class WaveDataManagerController {
 	public Boolean enableTimeShiftingCheck { get; set; }
 	public Boolean enableObjectProcessingCheck { get; set; }
 	public String selectedInstallationProcess { get; set; }
-
 	// Secuence control
 	public String installationStep { get; set; }
 
@@ -1056,10 +1056,12 @@ public with sharing class WaveDataManagerController {
 		// Check if there are objects data to load					
 		if(lstObjects.size() > 0){						
 
+			List<SF_MetadataUtils.CustomFieldSpecification> objectsAndFieldsToCreate = new List<SF_MetadataUtils.CustomFieldSpecification>();
+			
 			// Objects and fields Setup
 			for(WaveApplicationObject waObj: lstObjects) {
 				
-				this.processingLog.add('Processing ' + waObj.name + ' object metadata...');
+				/*this.processingLog.add('Processing ' + waObj.name + ' object metadata...');
 
 				// Check object existence using waObj.name property					
 				if(!SF_MetadataUtils.objectExists(waObj.name)){
@@ -1072,14 +1074,15 @@ public with sharing class WaveDataManagerController {
 					else {
 						this.processingLog.addAll(errors);
 					}						
-				}
+				}*/
 
 				// Check fields existence using waObj.fields property
 				for(WaveApplicationObjectField field: waObj.fields) {
 						
 					// If field doesn't exist, create it using field properties
 					if(field.Name.endsWithIgnoreCase('__c') && !SF_MetadataUtils.fieldExists(waObj.name, field.Name)){
-						this.processingLog.add(waObj.name + '.' + field.Name + ' field doesn\'t exists. Attempting to create it...');
+						
+						//this.processingLog.add(waObj.name + '.' + field.Name + ' field doesn\'t exists. Attempting to create it...');
 						SF_MetadataUtils.CustomFieldSpecification fieldSpec = new SF_MetadataUtils.CustomFieldSpecification();
 						fieldSpec.ObjectName = waObj.name;
 						fieldSpec.Name = field.Name;
@@ -1093,21 +1096,42 @@ public with sharing class WaveDataManagerController {
 						fieldSpec.IsRequired = field.IsRequired;
 						fieldSpec.DefaultValue = field.DefaultValue;
 						
-						List<String> errors = SF_MetadataUtils.createField(fieldSpec);
+						objectsAndFieldsToCreate.add(fieldSpec);
+
+						/*List<String> errors = SF_MetadataUtils.createField(fieldSpec);
 						if(errors.size() == 0){
 							this.processingLog.add(waObj.name + '.' + field.Name + ' field created successfully.');
 						}
 						else {
 							this.processingLog.add(waObj.name + '.' + field.Name + ' field couldn\'t be created. Reasons: ');
 							this.processingLog.addAll(errors);
-						}
+						}*/
 					}
 					
 				}
 			}
 
+			System.debug(objectsAndFieldsToCreate);
+			CreateObjectsAndFieldsQueueable metadataCreationQueue = new CreateObjectsAndFieldsQueueable(objectsAndFieldsToCreate);
+			this.queueProcessId = System.enqueueJob(metadataCreationQueue);
+
 			// Print some message at the UI to inform that setup has succeeded
 			this.processingLog.add('All needed metadata was created successfully.');
 		} 
+	}
+
+	public PageReference checkMetadataCreationStatus(){
+		
+		try {
+			if(!String.isBlank(this.queueProcessId)){
+
+				
+			}
+		}
+		catch(Exception e) {
+			
+		}
+
+		return null;
 	}
 }
