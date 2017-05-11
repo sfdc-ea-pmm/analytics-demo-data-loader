@@ -1089,10 +1089,29 @@ public with sharing class WaveDataManagerController {
 				}
 			}
 
-			this.currentObjectIndex = 0;
-			this.currentFieldIndex = 0;
-			this.processCurrentObjectAndFieldsMetadata(true);
-			this.processingObjectsAndFieldsMetadata = true;
+			if(this.objectsAndFieldsMatrix.size() > 0){
+				// We have metadata to process
+				this.currentObjectIndex = 0;
+				this.currentFieldIndex = 0;
+				this.processCurrentObjectAndFieldsMetadata(true);
+				this.processingObjectsAndFieldsMetadata = true;
+			}
+			else {
+				// We DON'T have metadata to process
+				this.processingLog.add('No need to create new objects and fields.');
+
+				if(this.selectedInstallationProcess == 'loadObjects'){
+					// We chain this with object data loading
+					this.launchObjectsLoading();
+				}
+				else if(this.selectedInstallationProcess == 'fullInstallation') {
+					// Now we configure step to begin loading the edgemarts
+					this.installationStep = 'LoadEdgemarts';
+				}
+				else if(this.selectedInstallationProcess == 'createMetadata'){
+					this.disabledButton = false;
+				}
+			}
 		} 
 	}
 

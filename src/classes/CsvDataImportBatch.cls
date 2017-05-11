@@ -83,7 +83,7 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
 				String fieldName = this.fieldPositions.get(i);
 				String fieldValue = sObjRow[i];
 
-				if(objectFields.containsKey(fieldName)){
+				if(String.isNotBlank(fieldValue) && objectFields.containsKey(fieldName)){
 					
 					// Get field datatype
 					Schema.DisplayType fieldType  = objectFields.get(fieldName).getDescribe().getType();
