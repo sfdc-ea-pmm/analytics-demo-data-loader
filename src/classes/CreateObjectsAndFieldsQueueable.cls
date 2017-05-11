@@ -1,20 +1,19 @@
-public with sharing class CreateObjectsAndFieldsQueueable implements Queueable{
+public with sharing class CreateObjectsAndFieldsQueueable implements Queueable, Database.AllowsCallouts{
 	
-	private List<SF_MetadataUtils.CustomFieldSpecification> objectsAndFields;
+	private SF_MetadataUtils.CustomFieldSpecification fieldToCreate;
+	private String sessionId;
 
-	public CreateObjectsAndFieldsQueueable(List<SF_MetadataUtils.CustomFieldSpecification> objectsAndFields) {
-		this.objectsAndFields = objectsAndFields;
+	public CreateObjectsAndFieldsQueueable(SF_MetadataUtils.CustomFieldSpecification fieldToCreate, String sessionId) {
+		this.fieldToCreate = fieldToCreate;
+		this.sessionId = sessionId;
 	}
 
 	public void execute(QueueableContext context) {
-
-		for(SF_MetadataUtils.CustomFieldSpecification fields: objectsAndFields){
-			if(!SF_MetadataUtils.objectExists(fields.ObjectName)){
-				List<String> objectCreationErrors = SF_MetadataUtils.createObject(fields.ObjectName);
-			}
-
-			List<String> fieldCreationErrors = SF_MetadataUtils.createField(fields);	
+	
+		if(!SF_MetadataUtils.objectExists(fieldToCreate.ObjectName)){
+			List<String> objectCreationErrors = SF_MetadataUtils.createObject(fieldToCreate.ObjectName, this.sessionId);
 		}
-    }
 
+		List<String> fieldCreationErrors = SF_MetadataUtils.createField(fieldToCreate, this.sessionId);
+    }
 }

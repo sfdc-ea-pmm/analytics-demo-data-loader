@@ -28,11 +28,22 @@ public with sharing class SF_MetadataUtils {
         }
 	}
 
-	public static List<String> createObject(String objName){
+    // Client passes the session id
+    public static List<String> createObject(String objName, String sessionId){
+        MetadataService.MetadataPort service = createService(sessionId);
+        return SF_MetadataUtils.createObjectAux(objName, service);
+    }
+
+    // Current user's session id is used
+    public static List<String> createObject(String objName){
+        MetadataService.MetadataPort service = createService();
+        return SF_MetadataUtils.createObjectAux(objName, service);
+    }
+
+	private static List<String> createObjectAux(String objName, MetadataService.MetadataPort service){
 		
         List<String> errors = new List<String>();
-		List<MetadataService.SaveResult> results;
-		MetadataService.MetadataPort service = createService();
+		List<MetadataService.SaveResult> results;		
 		MetadataService.CustomObject cObj = new MetadataService.CustomObject();
 
         cObj.fullName = objName.endsWith('__c') ? objName : objName + '__c';
@@ -60,12 +71,21 @@ public with sharing class SF_MetadataUtils {
         return errors;
 	}
 
-	public static List<String> createField(CustomFieldSpecification fieldSpec){
+    public static List<String> createField(CustomFieldSpecification fieldSpec){
+        MetadataService.MetadataPort service = createService();
+        return SF_MetadataUtils.createFieldAux(fieldSpec, service);
+    }
+
+    public static List<String> createField(CustomFieldSpecification fieldSpec, String sessionId){
+        MetadataService.MetadataPort service = createService(sessionId);
+        return SF_MetadataUtils.createFieldAux(fieldSpec, service);
+    }
+
+	private static List<String> createFieldAux(CustomFieldSpecification fieldSpec, MetadataService.MetadataPort service){
 		
         List<String> errors = new List<String>();
 		if(fieldSpec.Name.endsWithIgnoreCase('__c')){
-            List<MetadataService.UpsertResult> results;
-            MetadataService.MetadataPort service = createService();
+            List<MetadataService.UpsertResult> results;            
             MetadataService.CustomField cField = new MetadataService.CustomField();
 
             String objectName = fieldSpec.ObjectName;
@@ -161,6 +181,16 @@ public with sharing class SF_MetadataUtils {
         MetadataService.MetadataPort service = new MetadataService.MetadataPort();
         service.SessionHeader = new MetadataService.SessionHeader_element();
         service.SessionHeader.sessionId = UserInfo.getSessionId();
+        service.timeout_x = 120000;
+        
+        return service;
+    }
+
+    public static MetadataService.MetadataPort createService(String sessionId)
+    {
+        MetadataService.MetadataPort service = new MetadataService.MetadataPort();
+        service.SessionHeader = new MetadataService.SessionHeader_element();
+        service.SessionHeader.sessionId = sessionId;
         service.timeout_x = 120000;
         
         return service;

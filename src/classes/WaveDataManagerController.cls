@@ -45,6 +45,11 @@ public with sharing class WaveDataManagerController {
 	public Boolean enableTimeShiftingCheck { get; set; }
 	public Boolean enableObjectProcessingCheck { get; set; }
 	public String selectedInstallationProcess { get; set; }
+	public List<List<SF_MetadataUtils.CustomFieldSpecification>> objectsAndFieldsMatrix;
+	public Integer currentObjectIndex;
+	public Integer currentFieldIndex;
+	public Boolean processingObjectsAndFieldsMetadata { get; set; }
+
 	// Secuence control
 	public String installationStep { get; set; }
 
@@ -56,10 +61,12 @@ public with sharing class WaveDataManagerController {
 		this.appIndexes = new Map<String, Integer>();
 		this.emailAddress = UserInfo.getUserEmail();
 		this.utils = new WaveConfiguratorUtils();
+		this.objectsAndFieldsMatrix = new List<List<SF_MetadataUtils.CustomFieldSpecification>>();
 		this.MetadataResponse = '';
 		this.installationStep = '';
 		this.enableTimeShiftingCheck = false;
 		this.enableObjectProcessingCheck = false;
+		this.processingObjectsAndFieldsMetadata = false;
 		this.selectedInstallationProcess = 'fullInstallation';
 	}
 
@@ -217,10 +224,7 @@ public with sharing class WaveDataManagerController {
 						}
 					}
 					
-					createObjectsAndFields(this.objectsNodes);
-
-					// Now we configure step to begin loading the edgemarts
-					this.installationStep = 'LoadEdgemarts';
+					createObjectsAndFields(this.objectsNodes);					
 				}
 			}
 			catch(Exception e) {
@@ -921,8 +925,8 @@ public with sharing class WaveDataManagerController {
 						lstObjects.addAll(objs);
 					}
 
-					createObjectsAndFields(lstObjects);
-					this.disabledButton = false;
+					this.objectsNodes = lstObjects;
+					createObjectsAndFields(this.objectsNodes);
 				}
 			}
 
@@ -991,11 +995,8 @@ public with sharing class WaveDataManagerController {
 						lstObjects.addAll(objs);
 					}
 
-					createObjectsAndFields(lstObjects);
-
 					this.objectsNodes = lstObjects;
-					this.launchObjectsLoading();
-					//this.disabledButton = false;
+					createObjectsAndFields(this.objectsNodes);
 				}
 			}
 
@@ -1055,34 +1056,16 @@ public with sharing class WaveDataManagerController {
 		
 		// Check if there are objects data to load					
 		if(lstObjects.size() > 0){						
-
-			List<SF_MetadataUtils.CustomFieldSpecification> objectsAndFieldsToCreate = new List<SF_MetadataUtils.CustomFieldSpecification>();
 			
 			// Objects and fields Setup
 			for(WaveApplicationObject waObj: lstObjects) {
-				
-				/*this.processingLog.add('Processing ' + waObj.name + ' object metadata...');
-
-				// Check object existence using waObj.name property					
-				if(!SF_MetadataUtils.objectExists(waObj.name)){
-					// If object doesn't exist, create it
-					this.processingLog.add(waObj.name + ' doesn\'t exists. Attempting to create it...');
-					List<String> errors = SF_MetadataUtils.createObject(waObj.name);
-					if(errors.size() == 0){
-						this.processingLog.add(waObj.name + ' object created successfully.');
-					}
-					else {
-						this.processingLog.addAll(errors);
-					}						
-				}*/
+				List<SF_MetadataUtils.CustomFieldSpecification> fieldsToCreate = new List<SF_MetadataUtils.CustomFieldSpecification>();
 
 				// Check fields existence using waObj.fields property
 				for(WaveApplicationObjectField field: waObj.fields) {
 						
 					// If field doesn't exist, create it using field properties
 					if(field.Name.endsWithIgnoreCase('__c') && !SF_MetadataUtils.fieldExists(waObj.name, field.Name)){
-						
-						//this.processingLog.add(waObj.name + '.' + field.Name + ' field doesn\'t exists. Attempting to create it...');
 						SF_MetadataUtils.CustomFieldSpecification fieldSpec = new SF_MetadataUtils.CustomFieldSpecification();
 						fieldSpec.ObjectName = waObj.name;
 						fieldSpec.Name = field.Name;
@@ -1096,40 +1079,123 @@ public with sharing class WaveDataManagerController {
 						fieldSpec.IsRequired = field.IsRequired;
 						fieldSpec.DefaultValue = field.DefaultValue;
 						
-						objectsAndFieldsToCreate.add(fieldSpec);
-
-						/*List<String> errors = SF_MetadataUtils.createField(fieldSpec);
-						if(errors.size() == 0){
-							this.processingLog.add(waObj.name + '.' + field.Name + ' field created successfully.');
-						}
-						else {
-							this.processingLog.add(waObj.name + '.' + field.Name + ' field couldn\'t be created. Reasons: ');
-							this.processingLog.addAll(errors);
-						}*/
+						fieldsToCreate.add(fieldSpec);
 					}
 					
 				}
+
+				if(fieldsToCreate.size() > 0){
+					this.objectsAndFieldsMatrix.add(fieldsToCreate);
+				}
 			}
 
-			System.debug(objectsAndFieldsToCreate);
-			CreateObjectsAndFieldsQueueable metadataCreationQueue = new CreateObjectsAndFieldsQueueable(objectsAndFieldsToCreate);
-			this.queueProcessId = System.enqueueJob(metadataCreationQueue);
-
-			// Print some message at the UI to inform that setup has succeeded
-			this.processingLog.add('All needed metadata was created successfully.');
+			this.currentObjectIndex = 0;
+			this.currentFieldIndex = 0;
+			this.processCurrentObjectAndFieldsMetadata(true);
+			this.processingObjectsAndFieldsMetadata = true;
 		} 
+	}
+
+	private void processCurrentObjectAndFieldsMetadata(Boolean startingWithObject){
+
+		SF_MetadataUtils.CustomFieldSpecification initialField = this.objectsAndFieldsMatrix.get(this.currentObjectIndex).get(this.currentFieldIndex);
+		
+		if(startingWithObject){
+			this.processingLog.add('Processing ' + initialField.ObjectName + ' object metadata...');
+		}
+
+		if(!SF_MetadataUtils.objectExists(initialField.ObjectName)){
+			this.processingLog.add(initialField.ObjectName + ' doesn\'t exists. Attempting to create it...');										
+		}
+
+		CreateObjectsAndFieldsQueueable metadataCreationQueue = new CreateObjectsAndFieldsQueueable(initialField, UserInfo.getSessionId());
+		this.queueProcessId = System.enqueueJob(metadataCreationQueue);
 	}
 
 	public PageReference checkMetadataCreationStatus(){
 		
 		try {
-			if(!String.isBlank(this.queueProcessId)){
+			if(!String.isBlank(this.queueProcessId) && this.processingObjectsAndFieldsMetadata){
+				List<AsyncApexJob> lstJobs = [SELECT CompletedDate, JobItemsProcessed, NumberOfErrors, Status, TotalJobItems FROM AsyncApexJob WHERE Id = :this.queueProcessId];
+				SF_MetadataUtils.CustomFieldSpecification currentField = this.objectsAndFieldsMatrix.get(this.currentObjectIndex).get(this.currentFieldIndex);
 
-				
+				if(lstJobs.size() > 0){
+					AsyncApexJob asyncJob = lstJobs.get(0);
+
+					if(asyncJob.Status == 'Completed'){
+						if(asyncJob.NumberOfErrors > 0) {
+							this.errorMessage = 'Error while processing metadata for the ' + currentField.ObjectName + ' object. Field: ' + currentField.Name + ' .See logs for details.';
+							this.currentObjectIndex = 0;
+							this.currentFieldIndex = 0;
+							this.processingObjectsAndFieldsMetadata = false;
+							this.disabledButton = false;
+						}
+						else {
+							// now check whether it was the last one
+							List<SF_MetadataUtils.CustomFieldSpecification> currentFieldList = this.objectsAndFieldsMatrix.get(this.currentObjectIndex);
+
+							if(this.currentObjectIndex == this.objectsAndFieldsMatrix.size() - 1){
+								
+								if(this.currentFieldIndex == currentFieldList.size() - 1){
+									this.currentObjectIndex = 0;
+									this.currentFieldIndex = 0;
+									this.objectsAndFieldsMatrix.clear();
+									this.processingObjectsAndFieldsMetadata = false;
+									this.disabledButton = false;
+									this.processingLog.add('All needed metadata was created successfully.');
+
+									if(this.selectedInstallationProcess == 'loadObjects'){
+										this.launchObjectsLoading();
+									}
+									else if(this.selectedInstallationProcess == 'fullInstallation') {
+										// Now we configure step to begin loading the edgemarts
+										this.installationStep = 'LoadEdgemarts';
+									}
+								}
+								else{
+									this.currentFieldIndex = this.currentFieldIndex + 1;
+									this.processCurrentObjectAndFieldsMetadata(false);
+								}
+							}
+							else {
+								if(this.currentFieldIndex == currentFieldList.size() - 1){
+									this.currentObjectIndex = this.currentObjectIndex + 1;
+									this.currentFieldIndex = 0;
+									this.processCurrentObjectAndFieldsMetadata(false);
+								}
+								else{
+									this.currentFieldIndex = this.currentFieldIndex + 1;
+									this.processCurrentObjectAndFieldsMetadata(false);
+								}
+							}
+						}		
+					}
+					else if(asyncJob.Status == 'Aborted'){
+						this.errorMessage = 'The process was aborted while processing metadata for the ' + currentField.ObjectName + ' object. Field: ' + currentField.Name + ' .See logs for details.';
+						this.currentObjectIndex = 0;
+						this.currentFieldIndex = 0;
+						this.processingObjectsAndFieldsMetadata = false;
+						this.disabledButton = false;
+					}
+					else if(asyncJob.Status == 'Failed'){
+						this.errorMessage = 'The process failed while processing metadata for the ' + currentField.ObjectName + ' object. Field: ' + currentField.Name + ' .See logs for details.';
+						this.currentObjectIndex = 0;
+						this.currentFieldIndex = 0;
+						this.processingObjectsAndFieldsMetadata = false;
+						this.disabledButton = false;
+					}
+				}
 			}
 		}
 		catch(Exception e) {
-			
+			this.errorMessage = e.getMessage();
+			System.debug(e.getMessage());
+			System.debug(e.getStackTraceString());
+			this.currentObjectIndex = 0;
+			this.currentFieldIndex = 0;
+			this.processingObjectsAndFieldsMetadata = false;
+			this.disabledButton = false;
+			this.objectsAndFieldsMatrix.clear();
 		}
 
 		return null;
