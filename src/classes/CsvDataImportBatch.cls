@@ -201,6 +201,12 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
 	            String sObjToQuery = s.SObjectType;
 	            String sFieldToQuery = s.targetField;
 				String generatedQuery = 'SELECT Id, ' + sFieldToQuery + ' FROM ' + sObjToQuery + ' WHERE ' + sFieldToQuery + ' IN :relevantValues';
+	            
+	            // RecordType special hadling
+				if(sObjToQuery == 'RecordType'){
+					generatedQuery += ' AND SobjectType = \'' + this.objectType.getDescribe().getName() + '\'';
+				}
+
 	            List<SObject> temp = Database.query(generatedQuery);
 	            
 	            for (SObject t: temp) {
@@ -210,13 +216,8 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
 	            // Search whether there are Extenal_Id__c with not found id
 	            for(String relVal: relevantValues) {
 	            	if(!s.replaceValues.containsKey(relVal)){
-	            		// Log Ids that weren't found for the name
-	            		//System.debug(String.format('Id not found for {0} = "{1}" in SObject: {2}. This may cause an exception.', new String[]{ sFieldToQuery, relVal, sObjToQuery }));
-	            		// This time: Throw exception
+	            		// This time: Throw exception for not being able to find Id for lookup
 	            		throw new CsvDataImportException(String.format('Id not found for {0} = "{1}" in SObject: {2}. This may cause an exception.', new String[]{ sFieldToQuery, relVal, sObjToQuery }));
-	            	}
-	            	else {
-	            		//System.debug('Successful lookup in ' + sObjToQuery + ' object. Id for ' + sFieldToQuery + ' = ' + relVal + ': ' + s.replaceValues.get(relVal));
 	            	}
 	            }
 	        }

@@ -454,12 +454,17 @@ public with sharing class WaveConfiguratorUtils {
 			}
 		}
 
+		System.debug(dashboardJsonToSend);
 		HTTPResponse res = WaveConfiguratorUtils.httpCallout('/services/data/' + apiVersion + '/wave/dashboards/' + dashboardId + '?_HttpMethod=PATCH', 'POST', true, dashboardJsonToSend);
 
 		if(!WaveConfiguratorUtils.checkStatus(res)){
 			if(res.getBody().containsIgnoreCase('errorCode')){
 				List<RestApiErrorResponse> r = (List<RestApiErrorResponse>)JSON.deserialize(res.getBody(), List<RestApiErrorResponse>.class);
-				throw new WaveConfiguratorException('Dashboard could not be updated. Cause: ' + r.get(0).message + '.');
+				String causesList = '';
+				for(RestApiErrorResponse err : r){
+					causesList += r.get(0).message + '. ';
+				}
+				throw new WaveConfiguratorException('Dashboard could not be updated. Cause: ' + causesList);
 			}
 
 			throw new WaveConfiguratorException('Dashboard could not be updated. Check debug logs.');

@@ -311,35 +311,7 @@ public with sharing class WaveDataManagerController {
 		
 		try{
 			WaveApplicationObject currentNode = this.objectsNodes.get(this.currentNodeIndex);
-			
-			/*
-			IMockarooHelper iMockHelper = MockarooHelperFactory.getIMockarooHelper();		
-			List<List<String>> csvData;
-			
-			// Check whether we are in the initial chunk of CSV data or not
-			if(currentNode.currentDataIndex == 0){
-				
-				// We start processing the initial chunk of data
-				csvData = iMockHelper.getData(currentNode.url, false);
-
-	    		if(csvData.size() > 0){
-					// Will extract headers
-					List<String> headers = csvData.remove(0);
-					currentNode.fieldPositions = new Map<Integer, String>();
-					
-					for(Integer i = 0; i < headers.size(); i++) {
-						currentNode.fieldPositions.put(i, headers[i]);
-					}
-				}
-
-				currentObjectProcessing = currentNode.name;
-			}
-			else {
-				String newUrl = currentNode.url.substringBeforeLast('.csv') + currentNode.currentDataIndex + '.csv';
-				csvData = iMockHelper.getData(newUrl, false);
-			}
-
-			this.processingLog.add('Loading ' + csvData.size() + ' records for ' + currentNode.name + ' object...');*/		
+			this.processingLog.add('Loading records for ' + currentNode.name + ' object...');
 
 			HttpResponse res = WaveConfiguratorUtils.httpGetCallout(currentNode.url);
 			String csvDataWithHeaders = res.getBody();
@@ -368,9 +340,7 @@ public with sharing class WaveDataManagerController {
 
 				if(csvData.length() > 0){
 
-					this.currentObjectProcessing = currentNode.name;
-
-					this.processingLog.add('Loading records for ' + currentNode.name + ' object...');
+					this.currentObjectProcessing = currentNode.name;					
 
 					// Start the batch process
 					CsvDataImportBatch batchProcess = new CsvDataImportBatch(Schema.getGlobalDescribe().get(currentNode.name), csvData, currentNode.fieldPositions, currentNode.relations);

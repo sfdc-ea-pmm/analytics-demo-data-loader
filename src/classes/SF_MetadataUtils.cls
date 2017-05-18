@@ -132,7 +132,12 @@ public with sharing class SF_MetadataUtils {
             else if(fieldSpec.Type.equalsIgnoreCase('Text')){
                 cField.length = fieldSpec.Length;
             }
+            else if(fieldSpec.Type.equalsIgnoreCase('TextArea')){
+                cField.length = fieldSpec.Length;
+                cField.visibleLines = 3;
+            }
             else if(fieldSpec.Type.equalsIgnoreCase('LongTextArea')){
+                cField.length = fieldSpec.Length;
                 cField.visibleLines = 3;
             }
 
