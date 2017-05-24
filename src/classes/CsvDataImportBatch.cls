@@ -190,7 +190,9 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
 
 	        	// For each row we collect the values in the set
 	            for (List<String> row : scope) {
-	                smLookUp.plainTextValues.add(row[smLookUp.columnNumber]);
+	            	if(String.isNotBlank(row[smLookUp.columnNumber])){
+	            		smLookUp.plainTextValues.add(row[smLookUp.columnNumber]);
+	            	}
 	            }
 	        }
 
@@ -215,7 +217,7 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
 
 	            // Search whether there are Extenal_Id__c with not found id
 	            for(String relVal: relevantValues) {
-	            	if(!s.replaceValues.containsKey(relVal)){
+	            	if(String.isNotBlank(relVal) && !s.replaceValues.containsKey(relVal)){
 	            		// This time: Throw exception for not being able to find Id for lookup
 	            		throw new CsvDataImportException(String.format('Id not found for {0} = "{1}" in SObject: {2}. This may cause an exception.', new String[]{ sFieldToQuery, relVal, sObjToQuery }));
 	            	}
