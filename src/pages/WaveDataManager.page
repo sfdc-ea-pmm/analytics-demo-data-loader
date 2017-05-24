@@ -127,12 +127,16 @@
 	<apex:form id="form3" styleClass="standardText">
 		
 		<apex:actionPoller action="{!checkObjectLoadingStatus}" reRender="processingStatus,processingLogConsole,messages,form1,form3,vsbButton" interval="5" enabled="{!enableObjectProcessingCheck}" id="checkFunction"/>
+		
 		<apex:actionPoller action="{!checkTimeShiftingStatus}" reRender="processingStatus,processingLogConsole,messages,form1,form3,vsbButton" interval="5" enabled="{!timeShiftingItems.size > 0 && enableTimeShiftingCheck}" id="checkTimeShiftingFunction"/>
-		<!--<apex:actionPoller action="{!checkMetadataCreationStatus}" reRender="processingStatus,processingLogConsole,messages,form1,form3,vsbButton" interval="5" id="checkMetadataFunction"/>-->
+		
+		<apex:actionPoller action="{!checkMetadataCreationStatus}" reRender="processingStatus,processingLogConsole,messages,form1,form3,vsbButton" enabled="{!processingObjectsAndFieldsMetadata}" interval="5" id="checkMetadataFunction"/>
+
+		<apex:actionPoller action="{!checkEdgemartsLoadingStatus}" reRender="processingStatus,processingLogConsole,messages,form1,form3,vsbButton" enabled="{!processingEdgemarts}" interval="5" id="checkEdgemartsFunction"/>
 
 		<!-- Edgemarts Load Panel/Function -->
 		<apex:outputPanel id="loadEdgemartsPanel">
-			<apex:actionFunction name="loadEdgemarts" action="{!loadAllEdgemarts}" reRender="loadEdgemartsPanel,createDataflowPanel,processingLogPanel,form1,vsbButton" />
+			<apex:actionFunction name="loadEdgemarts" action="{!loadAllEdgemarts}" reRender="loadEdgemartsPanel,form3,createDataflowPanel,processingLogPanel,form1,vsbButton" />
 
 			<apex:outputPanel rendered="{!installationStep = 'LoadEdgemarts'}">
 				<script type="text/javascript">

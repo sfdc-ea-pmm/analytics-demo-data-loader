@@ -56,20 +56,21 @@ private class WaveDataManager_test {
 		MultiStaticResourceCalloutMock multimock = new MultiStaticResourceCalloutMock();
 		
 		String appsMetadataUrl = 'https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/WaveApplications.csv';
-		String usersMetadataUrl = 'https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/Users_metadata.csv';
-		String usersDataUrl = 'https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/Users.csv';
-		String accountsMetadataUrl = 'https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/Accounts_metadata.csv';
-		String accountsDataUrl = 'https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/Accounts.csv';
-		String oppMetadataUrl = 'https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/Sales/Opportunity_metadata.csv';
-		String oppDataUrl = 'https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/Sales/Opportunities.csv';
-		String quotaMetadataUrl = 'https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/Sales/QuotaMetadata.json';
-		String waveForSalesJsonUrl = 'https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/WaveForSales.json';
-		String waveForSalesDataflowUrl = 'https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/Sales/Wave_For_Sales_Dataflow.json';
+		String usersMetadataUrl = 'https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/Sales/metadata/User_metadata.csv';
+		String usersDataUrl = 'https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/Sales/data/User.csv';
+		String accountsMetadataUrl = 'https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/Sales/metadata/Account_metadata.csv';
+		String accountsDataUrl = 'https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/Sales/data/Account.csv';
+
+		String oppMetadataUrl = 'https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/Sales/metadata/Opportunity_metadata.csv';
+		String oppDataUrl = 'https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/Sales/data/Opportunity.csv';
+		String quotaMetadataUrl = 'https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/Sales/QuotaMetadata.json'; 
+		String waveForSalesJsonUrl = 'https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/Sales/WaveForSales.json';
+		String waveForSalesDataflowUrl = 'https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/Sales/dataflows/Wave_For_Sales_Dataflow.json';
 		String metadataJsonFriendsUrl = 'https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/Simple/FriendsMetadata.json';
 		String dataCsvFriendsUrl = 'https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/Simple/Friends.csv';
 		String metadataJsonSimpleUsersUrl = 'https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/Simple/SimpleUsersMetadata.json';
 		String metadataJsonUsersFriendsUrl = 'https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/Simple/UsersAndFriendsMetadata.json';
-		String simpleAppJsonUrl = 'https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/Simple.json';
+		String simpleAppJsonUrl = 'https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/Simple/Simple.json';
 		String dataCsvSimpleUsersUrl = 'https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/Simple/SimpleUsers.csv';
 		String dataCsvUsersFriendsUrl = 'https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/Simple/UsersAndFriends.csv';
 		String dataflowLocationUrl = 'https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/Simple/SimpleDataflow.json';

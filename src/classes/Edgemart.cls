@@ -3,4 +3,5 @@ public class Edgemart {
 	public String Label;
 	public String MetadataJsonUrl;
 	public String DataUrl;
+    public String XmdUrl;
 }

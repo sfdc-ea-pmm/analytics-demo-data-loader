@@ -49,6 +49,8 @@ public with sharing class WaveDataManagerController {
 	public Integer currentObjectIndex;
 	public Integer currentFieldIndex;
 	public Boolean processingObjectsAndFieldsMetadata { get; set; }
+	public Boolean processingEdgemarts { get; set; }
+	public Map<String, Boolean> edgeMartsChecked;
 
 	// Secuence control
 	public String installationStep { get; set; }
@@ -67,6 +69,8 @@ public with sharing class WaveDataManagerController {
 		this.enableTimeShiftingCheck = false;
 		this.enableObjectProcessingCheck = false;
 		this.processingObjectsAndFieldsMetadata = false;
+		this.processingEdgemarts = false;
+		this.edgeMartsChecked = new Map<String, Boolean>();
 		this.selectedInstallationProcess = 'fullInstallation';
 	}
 
@@ -574,6 +578,45 @@ public with sharing class WaveDataManagerController {
         this.processingLog.add('Edgmart data loaded successfully.');
 	}
 
+	
+	private void attachAllXmdFiles(String edgemartAlias){
+		
+		List<sObject> edgemart = [SELECT DeveloperName,Id FROM EdgeMart WHERE DeveloperName = :edgemartAlias];
+
+		if(edgemart.size() > 0){
+			String url = '/services/data/' + genericAppConfiguration.apiVersion + '/wave/datasets/' + edgemart.get(0).Id;
+
+			HttpResponse res = WaveConfiguratorUtils.httpCallout(url, 'GET', true, '');
+
+			WaveDataset datasetResponse = (WaveDataset)JSON.deserialize(res.getBody(), WaveDataset.class);
+			
+			Map<String, String> xmdJsonfiles = new Map<String, String>();
+
+			for(Edgemart e : this.edgemarts){
+	        	HttpResponse resGetJsonXmd = WaveConfiguratorUtils.httpGetCallout(e.XmdUrl);
+	        	xmdJsonfiles.put(e.Name, resGetJsonXmd.getBody());
+	        } 
+
+	        this.processingLog.add('Loading xmd file for ' + datasetResponse.Name + ' edgemart...');
+
+	        String datasetId = datasetResponse.Id;
+	        String currentVersionId = datasetResponse.currentVersionId;
+	        
+	        String urlToAttach = '/services/data/' + genericAppConfiguration.apiVersion + '/wave/datasets/' + datasetId + '/versions/' + currentVersionId + '/xmds/user';
+
+	        HttpResponse resAttachXmd = WaveConfiguratorUtils.httpCallout(urlToAttach, 'PUT', true, xmdJsonfiles.get(datasetResponse.Name));
+
+	        if(!WaveConfiguratorUtils.checkStatus(resAttachXmd) || resAttachXmd.getBody().containsIgnoreCase('errorCode')){
+	        	List<RestApiErrorResponse> r = (List<RestApiErrorResponse>)JSON.deserialize(resAttachXmd.getBody(), List<RestApiErrorResponse>.class);
+	        	throw new WaveConfiguratorException('The xmd file could not be attached to the ' + datasetResponse.Name + ' dataset. Cause: ' + r.get(0).message);
+	        }
+
+	        this.processingLog.add('Xmd file for ' + datasetResponse.Name + ' loaded successfully.');
+        }
+
+	}
+
+
 	public PageReference displayMetadataResponse()
 	{
 		// Display the response from the client side Metadata API callout
@@ -683,10 +726,15 @@ public with sharing class WaveDataManagerController {
 						edg.Name = edgNameCandidate;
 
 						this.loadEdgemart(edg, this.folderId);
+
+						this.edgeMartsChecked.put(edg.Name, false);
 					}
+
+					//this.processingEdgemarts = true;
+
+
 				}
 
-				// Configure next step
 				this.installationStep = 'CreateDataflow';
 			}
 			else {
@@ -703,6 +751,64 @@ public with sharing class WaveDataManagerController {
 			this.rollbackProcess(e.getMessage(), e.getStackTraceString());
 		}
 	}
+
+	
+	public PageReference checkEdgemartsLoadingStatus(){
+		try{
+
+			List<String> edgemartsNames = new List<String>();
+
+			for(Edgemart e: this.edgemarts){
+				edgemartsNames.add(e.Name);
+			}
+
+			List<InsightsExternalData> insightsExternalDataList = [SELECT Id, EdgemartAlias, EdgemartContainer, Status, StatusMessage FROM InsightsExternalData WHERE EdgeMartAlias IN :edgemartsNames];
+
+			if(insightsExternalDataList.size() > 0){
+				for(InsightsExternalData ied : insightsExternalDataList){
+					if(!this.edgeMartsChecked.get(ied.EdgemartAlias)){
+						if(ied.Status == 'Completed'){
+							//this.attachAllXmdFiles(ied.EdgemartAlias);
+							this.edgeMartsChecked.put(ied.EdgemartAlias, true);
+						} 
+						else if(ied.Status == 'CompletedWithWarnings'){
+							throw new WaveConfiguratorException('The ' + ied.EdgemartAlias + ' edgemart has been processed with some warnings. Cause: ' + ied.StatusMessage);
+						}
+						else if(ied.Status == 'Failed'){
+							throw new WaveConfiguratorException('The ' + ied.EdgemartAlias + ' edgemart could not be processed. Cause: ' + ied.StatusMessage);
+						}
+
+					}
+				}
+			}
+
+			Boolean allChecked = true;
+
+			for(String edgemartAlias: this.edgeMartsChecked.keySet()){
+				if(!this.edgeMartsChecked.get(edgeMartAlias)){
+					allChecked = false;
+				}
+			}
+
+			if(allChecked){
+				this.processingEdgemarts = false;
+				this.installationStep = 'CreateDataflow';
+			}
+
+		}
+		catch(Exception e){
+			System.debug(e.getMessage());
+			System.debug(e.getStackTraceString());
+			this.errorMessage = e.getMessage();
+			this.installationStep = '';
+			this.processingEdgemarts = false;
+			this.rollbackProcess(e.getMessage(), e.getStackTraceString());
+		}
+
+		return null;
+
+	}
+
 
 	// Create dataflow
 	// Create dataflow version

@@ -195,7 +195,7 @@ public with sharing class WaveConfiguratorUtils {
 				totalUrl += '/' + parameter;
 			}
 
-			if(method.toUpperCase() == 'POST'){
+			if(method.toUpperCase() == 'POST' || method.toUpperCase() == 'PUT'){
 				req.setBody(parameter);
 			}
 		}

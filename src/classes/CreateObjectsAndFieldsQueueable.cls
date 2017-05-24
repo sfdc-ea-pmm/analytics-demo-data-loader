@@ -15,5 +15,8 @@ public with sharing class CreateObjectsAndFieldsQueueable implements Queueable, 
 		}
 
 		List<String> fieldCreationErrors = SF_MetadataUtils.createField(fieldToCreate, this.sessionId);
+
+		System.debug('Field Creation errors: ' + fieldCreationErrors);
+
     }
 }
