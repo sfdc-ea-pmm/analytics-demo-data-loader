@@ -341,6 +341,9 @@ public with sharing class WaveDataManagerController {
 				}
 
 				String csvData = csvDataWithHeaders.substringAfter('\n');
+				if(currentNode.url == 'https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/Sales/data/PricebookEntry.csv'){
+					System.debug(csvData);
+				}
 
 				if(csvData.length() > 0){
 

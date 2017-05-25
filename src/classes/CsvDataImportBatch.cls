@@ -81,7 +81,7 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
 				
 				// We get the name using the position and then its value
 				String fieldName = this.fieldPositions.get(i);
-				String fieldValue = sObjRow[i];
+				String fieldValue = sObjRow[i].trim();
 
 				if(String.isNotBlank(fieldValue) && objectFields.containsKey(fieldName)){
 					
@@ -127,7 +127,7 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
 		if(objectsBatch.size() > 0) {
 			
 			// We must determine which objects to insert, and which to update
-			String genQuery = 'SELECT Id, External_Id__c FROM ' + this.objectType.getDescribe().getName() + ' WHERE External_Id__c IN :lstExternalIds';
+			String genQuery = 'SELECT Id, External_Id__c FROM ' + this.objectType.getDescribe().getName() + ' WHERE External_Id__c IN :lstExternalIds ALL ROWS';
 	        List<SObject> alreadyThere = Database.query(genQuery);
 	        Map<String, String> sfIdsByExternalId = new Map<String, String>();
 	        
@@ -190,8 +190,9 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
 
 	        	// For each row we collect the values in the set
 	            for (List<String> row : scope) {
-	            	if(String.isNotBlank(row[smLookUp.columnNumber])){
-	            		smLookUp.plainTextValues.add(row[smLookUp.columnNumber]);
+	            	String currVal = row[smLookUp.columnNumber].trim();
+	            	if(String.isNotBlank(currVal)){
+	            		smLookUp.plainTextValues.add(currVal);
 	            	}
 	            }
 	        }
