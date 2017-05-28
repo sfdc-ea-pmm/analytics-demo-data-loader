@@ -81,7 +81,7 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
 				
 				// We get the name using the position and then its value
 				String fieldName = this.fieldPositions.get(i);
-				String fieldValue = sObjRow[i].trim();
+				String fieldValue = sObjRow[i];
 
 				if(String.isNotBlank(fieldValue) && objectFields.containsKey(fieldName)){
 					
@@ -190,9 +190,8 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
 
 	        	// For each row we collect the values in the set
 	            for (List<String> row : scope) {
-	            	String currVal = row[smLookUp.columnNumber].trim();
-	            	if(String.isNotBlank(currVal)){
-	            		smLookUp.plainTextValues.add(currVal);
+	            	if(String.isNotBlank(row[smLookUp.columnNumber])){
+	            		smLookUp.plainTextValues.add(row[smLookUp.columnNumber]);
 	            	}
 	            }
 	        }

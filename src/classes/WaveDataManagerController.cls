@@ -666,15 +666,13 @@ public with sharing class WaveDataManagerController {
 		this.enableObjectProcessingCheck = false;
 		this.enableTimeShiftingCheck = false;
 
-		// We get the dataflow ID
-		String dataflowId = WaveConfiguratorUtils.getDataflowIdByName(this.dataflowName);
+		if(this.selectedInstallationProcess == 'fullInstallation' || this.selectedInstallationProcess == 'createWaveApp'){
+			// We get the dataflow ID
+			String dataflowId = WaveConfiguratorUtils.getDataflowIdByName(this.dataflowName);
 
-		// Delete recently created app/folder here
-		WaveConfiguratorUtils.deleteFolder(this.folderId, dataflowId, UserInfo.getSessionId(), genericAppConfiguration.apiVersion, mainMessage, stackTrace);
-
-		// Delete recently created dataflow
-		//String dataflowId = WaveConfiguratorUtils.getDataflowIdByName(this.dataflowName);
-		//WaveConfiguratorUtils.deleteDataflow(dataflowId, UserInfo.getSessionId(), genericAppConfiguration.apiVersion);
+			// Delete recently created app/folder here
+			WaveConfiguratorUtils.deleteFolder(this.folderId, dataflowId, UserInfo.getSessionId(), genericAppConfiguration.apiVersion, mainMessage, stackTrace);
+		}		
 	}
 
 	// Edgemarts
