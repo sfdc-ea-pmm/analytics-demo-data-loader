@@ -113,8 +113,12 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
 						}
 						else {
 							// String
-							if(!(this.objectType.getDescribe().getName() == 'User' && fieldName == 'Name')){
+							if(!(this.objectType.getDescribe().getName() == 'User' && (fieldName.equalsIgnoreCase('Name') || fieldName.equalsIgnoreCase('Username')))){
 								objToCreate.put(fieldName, fieldValue);	
+							}
+							
+							if(this.objectType.getDescribe().getName() == 'User' && fieldName.equalsIgnoreCase('Alias')){
+								objToCreate.put('Username', fieldValue + DateTime.now().getTime() + '@demo.user');	
 							}
 						}
 
