@@ -351,7 +351,7 @@ public with sharing class WaveDataManagerController {
 
 					// Start the batch process
 					CsvDataImportBatch batchProcess = new CsvDataImportBatch(Schema.getGlobalDescribe().get(currentNode.name), csvData, currentNode.fieldPositions, currentNode.relations);
-					this.batchProcessId = Database.executeBatch(batchProcess);
+					this.batchProcessId = Database.executeBatch(batchProcess, genericAppConfiguration.objectLoadingBatchSize);
 					this.enableObjectProcessingCheck = true;
 
 					// Now monitor job execution
@@ -381,10 +381,32 @@ public with sharing class WaveDataManagerController {
 
 			// Start the batch process
 			TimeShiftingBatch batchProcess = new TimeShiftingBatch(currentNode.objectTypeName, currentNode.fieldsToTimeShift, currentNode.appType);
-			this.batchProcessId = Database.executeBatch(batchProcess);
+			this.batchProcessId = Database.executeBatch(batchProcess, genericAppConfiguration.timeShiftingBatchSize);
 
+		} 
+		else{
+			this.processingLog.add('There are no fields for time shifting.');
+			this.finishTimeShiftingProcess();			
 		}
 
+	}
+
+	private void finishTimeShiftingProcess(){
+		this.disabledButton = false;
+		this.currentTimeShiftingNodeIndex = 0;
+		this.timeShiftingItems.clear();
+		this.processingLog.add('Done.');
+
+		if(this.selectedInstallationProcess == 'timeShifting'){
+			this.successMessage = 'The Time Shifting process has finished successfully.';
+		}
+		else if(this.selectedInstallationProcess == 'prepcore'){
+			this.successMessage = 'Prep core process finished successfully.';
+		}
+		else{
+			WaveConfiguratorUtils.sendEmail(this.emailAddress, this.dataflowLabel);
+			this.successMessage = 'Application installed successfully. Please open Wave Analytics / Data Manager to run the corresponding Dataflow.';
+		}
 	}
 
 	public PageReference checkObjectLoadingStatus(){
@@ -428,7 +450,7 @@ public with sharing class WaveDataManagerController {
 									this.currentTimeShiftingNodeIndex = 0;
 									this.enableObjectProcessingCheck = false;
 
-									if(this.selectedInstallationProcess == 'fullInstallation'){
+									if(this.selectedInstallationProcess == 'prepcore' || this.selectedInstallationProcess == 'fullInstallation'){
 										this.enableTimeShiftingCheck = true;
 										this.processTimeShiftingObjects();
 									} 
@@ -512,18 +534,7 @@ public with sharing class WaveDataManagerController {
 						else {
 							// now check whether it was the last one
 							if(this.currentTimeShiftingNodeIndex == this.timeShiftingItems.size() - 1){
-								WaveConfiguratorUtils.sendEmail(this.emailAddress, this.dataflowLabel);
-								this.disabledButton = false;
-								this.currentTimeShiftingNodeIndex = 0;
-								this.timeShiftingItems.clear();
-								this.processingLog.add('Done.');
-
-								if(this.selectedInstallationProcess == 'timeShifting'){
-									this.successMessage = 'The Time Shifting process has finished successfully.';
-								}
-								else{
-									this.successMessage = 'Application installed successfully. Please open Wave Analytics / Data Manager to run the corresponding Dataflow.';
-								}
+								this.finishTimeShiftingProcess();
 							}
 							else {
 								// There are more nodes to process, increment index and reset
@@ -1059,11 +1070,16 @@ public with sharing class WaveDataManagerController {
 				}
 			}
 			
-			else if(this.selectedInstallationProcess == 'loadObjects'){
+			else if(this.selectedInstallationProcess == 'loadObjects' || this.selectedInstallationProcess == 'prepcore'){
 				this.disabledButton = true;
 				this.selectAppMetadata();
 
 				if(this.selectedAppMetadata.objects != null){
+					this.timeShiftingItems.clear();
+				
+					for(WaveMetadataApplicationObject wmaObj: this.selectedAppMetadata.objects) {
+						this.addTimeShiftingNode(wmaObj);
+					}
 					
 					List<WaveApplicationObject> lstObjects = new List<WaveApplicationObject>();
 					// Retrieve objects to process
@@ -1177,7 +1193,7 @@ public with sharing class WaveDataManagerController {
 				// We DON'T have metadata to process
 				this.processingLog.add('No need to create new objects and fields.');
 
-				if(this.selectedInstallationProcess == 'loadObjects'){
+				if(this.selectedInstallationProcess == 'loadObjects' || this.selectedInstallationProcess == 'prepcore'){
 					// We chain this with object data loading
 					this.launchObjectsLoading();
 				}
@@ -1240,7 +1256,7 @@ public with sharing class WaveDataManagerController {
 									this.disabledButton = false;
 									this.processingLog.add('All needed metadata was created successfully.');
 
-									if(this.selectedInstallationProcess == 'loadObjects'){
+									if(this.selectedInstallationProcess == 'loadObjects' || this.selectedInstallationProcess == 'prepcore'){
 										this.launchObjectsLoading();
 									}
 									else if(this.selectedInstallationProcess == 'fullInstallation') {

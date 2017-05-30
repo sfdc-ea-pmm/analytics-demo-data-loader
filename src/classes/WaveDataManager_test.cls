@@ -63,7 +63,6 @@ private class WaveDataManager_test {
 
 		String oppMetadataUrl = 'https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/Sales/metadata/Opportunity_metadata.csv';
 		String oppDataUrl = 'https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/Sales/data/Opportunity.csv';
-		String quotaMetadataUrl = 'https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/Sales/QuotaMetadata.json'; 
 		String waveForSalesJsonUrl = 'https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/Sales/WaveForSales.json';
 		String waveForSalesDataflowUrl = 'https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/Sales/dataflows/Wave_For_Sales_Dataflow.json';
 		String metadataJsonFriendsUrl = 'https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/Simple/FriendsMetadata.json';
@@ -79,18 +78,18 @@ private class WaveDataManager_test {
 		String usersFriendsTableDashboardUrl = 'https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/Simple/dashboards/UserFriendsTable.json';
 
 		String salesforceHost = System.Url.getSalesforceBaseURL().toExternalForm();
-		String newFolderUrl = salesforceHost + '/services/data/v39.0/wave/folders';
-		String datasetsResponse = salesforceHost + '/services/data/v39.0/wave/datasets?pageSize=200';
-		String insertFolderResponse = salesforceHost + '/services/data/v39.0/wave/folders';
-		String insertDataflowResponse = salesforceHost + '/services/data/v39.0/sobjects/Dataflow';
-		String insightsExternalDataResponse = salesforceHost + '/services/data/v39.0/sobjects/InsightsExternalData';
-		String insightsExternalDataPartResponse = salesforceHost + '/services/data/v39.0/sobjects/InsightsExternalDataPart';
-		String updateInsightsExternalDataResponse = salesforceHost + '/services/data/v39.0/sobjects/InsightsExternalData/06V360000009sKjEAI?_HttpMethod=PATCH';
-		String dataflowVersionResponse = salesforceHost + '/services/data/v39.0/sobjects/DataflowVersion';
-		String updateDataflowResponse = salesforceHost + '/services/data/v39.0/sobjects/Dataflow/02K36000000E0XDEA0?_HttpMethod=PATCH';
-		String deleteDataflowResponse = salesforceHost + '/services/data/v39.0/sobjects/Dataflow/02K36000000E0XDEA0';
-		String insertDashboardResponse = salesforceHost + '/services/data/v39.0/wave/dashboards';
-		String updateDashboardResponse = salesforceHost + '/services/data/v39.0/wave/dashboards/02K36000000E0XDEA0?_HttpMethod=PATCH';
+		String newFolderUrl = salesforceHost + '/services/data/v40.0/wave/folders';
+		String datasetsResponse = salesforceHost + '/services/data/v40.0/wave/datasets?pageSize=200';
+		String insertFolderResponse = salesforceHost + '/services/data/v40.0/wave/folders';
+		String insertDataflowResponse = salesforceHost + '/services/data/v40.0/sobjects/Dataflow';
+		String insightsExternalDataResponse = salesforceHost + '/services/data/v40.0/sobjects/InsightsExternalData';
+		String insightsExternalDataPartResponse = salesforceHost + '/services/data/v40.0/sobjects/InsightsExternalDataPart';
+		String updateInsightsExternalDataResponse = salesforceHost + '/services/data/v40.0/sobjects/InsightsExternalData/06V360000009sKjEAI?_HttpMethod=PATCH';
+		String dataflowVersionResponse = salesforceHost + '/services/data/v40.0/sobjects/DataflowVersion';
+		String updateDataflowResponse = salesforceHost + '/services/data/v40.0/sobjects/Dataflow/02K36000000E0XDEA0?_HttpMethod=PATCH';
+		String deleteDataflowResponse = salesforceHost + '/services/data/v40.0/sobjects/Dataflow/02K36000000E0XDEA0';
+		String insertDashboardResponse = salesforceHost + '/services/data/v40.0/wave/dashboards';
+		String updateDashboardResponse = salesforceHost + '/services/data/v40.0/wave/dashboards/02K36000000E0XDEA0?_HttpMethod=PATCH';
 
 		multimock.setStaticResource(appsMetadataUrl, 'WaveAppsMetadataCSV');
 		multimock.setStaticResource(usersMetadataUrl, 'UserMetadataCSV');
@@ -99,7 +98,6 @@ private class WaveDataManager_test {
 		multimock.setStaticResource(accountsDataUrl, 'AccountsDataCSV');
 		multimock.setStaticResource(oppMetadataUrl, 'OpportunityMetadataCSV');
 		multimock.setStaticResource(oppDataUrl, 'OpportunitiesDataCSV');
-		multimock.setStaticResource(quotaMetadataUrl, 'QuotaMetadataUrl');
 		multimock.setStaticResource(waveForSalesJsonUrl, 'WaveForSalesJson');
 		multimock.setStaticResource(waveForSalesDataflowUrl, 'WaveForSalesDataflowUrl');
 		multimock.setStaticResource(newFolderUrl, 'BlankResponseBody');
@@ -313,7 +311,7 @@ private class WaveDataManager_test {
 		MultiStaticResourceCalloutMock multimock = createStaticResources(); 
 		Test.setMock(HttpCalloutMock.class, multimock);
 
-		WaveConfiguratorUtils.deleteDataflow('02K36000000E0XDEA0','','v39.0');
+		WaveConfiguratorUtils.deleteDataflow('02K36000000E0XDEA0','','v40.0');
 	}
 
 

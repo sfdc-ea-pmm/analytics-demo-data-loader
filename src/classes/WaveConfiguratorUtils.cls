@@ -18,7 +18,7 @@ public with sharing class WaveConfiguratorUtils {
 			return appConfig;
 		} 
 		else {
-			throw new WaveConfiguratorException('The configuration file ' + configurationFileName + ' does not exist. Please add it as static resource to initialize the installation proccess.');
+			throw new WaveConfiguratorException('The configuration file ' + configurationFileName + ' does not exist. Please add it as static resource to initialize the installation process.');
 		}
 	}
 

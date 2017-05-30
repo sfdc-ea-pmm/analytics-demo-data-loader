@@ -80,6 +80,7 @@
 	   				<apex:selectOption itemValue="createWaveApp" itemLabel="Create Wave Application"/>
 	   				<apex:selectOption itemValue="loadObjects" itemLabel="Load Data"/>
 	   				<apex:selectOption itemValue="timeShifting" itemLabel="Time shifting"/>
+	   				<apex:selectOption itemValue="prepcore" itemLabel="Prep Core"/>
 	   				<apex:actionSupport event="onchange" rerender="folderGroup,emailNotification"/>
 	   			</apex:selectList>
 

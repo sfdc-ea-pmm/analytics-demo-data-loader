@@ -52,109 +52,122 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
 
    	global void execute(Database.BatchableContext BC, List<String> scope) {
 
-   		System.debug('About to process ' + scope.size() + ' records of type ' + this.objectType.getDescribe().getName());
-		
-   		List<String> lines = new List<String>();
+   		try{
 
-        for(String row : scope)
-        {
-            lines.add(row);
-        }
 
-        List<List<String>> rowsBatch = CSVReader.Parse(String.join(lines, '\n'));
+	   		System.debug('About to process ' + scope.size() + ' records of type ' + this.objectType.getDescribe().getName());
+			
+	   		List<String> lines = new List<String>();
 
-   		// First handle smart lookups
-   		this.processSmartLookupForBatch(rowsBatch);
+	        for(String row : scope)
+	        {
+	            lines.add(row);
+	        }
 
-   		List<SObject> objectsBatch = new List<SObject>();
-   		List<String> lstExternalIds = new List<String>();
-   		Map<String, Schema.SObjectField> objectFields = this.objectType.getDescribe().fields.getMap();
+	        List<List<String>> rowsBatch = CSVReader.Parse(String.join(lines, '\n'));
 
-   		// For each row of data in the CSV
-		for(List<String> sObjRow: rowsBatch) {
+	   		// First handle smart lookups
+	   		this.processSmartLookupForBatch(rowsBatch);
 
-			// Will create an object
-			SObject objToCreate = this.objectType.newSObject();
+	   		List<SObject> objectsBatch = new List<SObject>();
+	   		List<String> lstExternalIds = new List<String>();
+	   		Map<String, Schema.SObjectField> objectFields = this.objectType.getDescribe().fields.getMap();
 
-			// For each column in the CSV row
-			for(Integer i = 0; i < sObjRow.size(); i++) {
-				
-				// We get the name using the position and then its value
-				String fieldName = this.fieldPositions.get(i);
-				String fieldValue = sObjRow[i];
+	   		// For each row of data in the CSV
+			for(List<String> sObjRow: rowsBatch) {
 
-				if(String.isNotBlank(fieldValue) && objectFields.containsKey(fieldName)){
+				// Will create an object
+				SObject objToCreate = this.objectType.newSObject();
+
+				// For each column in the CSV row
+				for(Integer i = 0; i < sObjRow.size(); i++) {
 					
-					// Get field datatype
-					Schema.DisplayType fieldType  = objectFields.get(fieldName).getDescribe().getType();
+					// We get the name using the position and then its value
+					String fieldName = this.fieldPositions.get(i);
+					String fieldValue = sObjRow[i];
 
-					if(fieldType == Schema.DisplayType.Boolean){
-						// Boolean
-						objToCreate.put(fieldName, Boolean.valueOf(fieldValue));
-					}
-					else if (fieldType == Schema.DisplayType.Currency || fieldType == Schema.DisplayType.Double || fieldType == Schema.DisplayType.Percent) {
-						// Real number
-						objToCreate.put(fieldName, Double.valueOf(fieldValue));
-					}
-					else if (fieldType == Schema.DisplayType.Integer) {
-						// Integer
-						objToCreate.put(fieldName, Integer.valueOf(fieldValue));
-					}
-					else if (fieldType == Schema.DisplayType.Date) {
-						// Date
-						objToCreate.put(fieldName, Date.valueOf(fieldValue));	
-					}
-					else if (fieldType == Schema.DisplayType.DateTime) {
-						// Datetime
-						objToCreate.put(fieldName, DateTime.valueOf(fieldValue));
-					}
-					else {
-						// String
-						if(!(this.objectType.getDescribe().getName() == 'User' && fieldName == 'Name')){
-							objToCreate.put(fieldName, fieldValue);	
+					if(String.isNotBlank(fieldValue) && objectFields.containsKey(fieldName)){
+						
+						// Get field datatype
+						Schema.DisplayType fieldType  = objectFields.get(fieldName).getDescribe().getType();
+
+						if(fieldType == Schema.DisplayType.Boolean){
+							// Boolean
+							objToCreate.put(fieldName, Boolean.valueOf(fieldValue));
+						}
+						else if (fieldType == Schema.DisplayType.Currency || fieldType == Schema.DisplayType.Double || fieldType == Schema.DisplayType.Percent) {
+							// Real number
+							objToCreate.put(fieldName, Double.valueOf(fieldValue));
+						}
+						else if (fieldType == Schema.DisplayType.Integer) {
+							// Integer
+							objToCreate.put(fieldName, Integer.valueOf(fieldValue));
+						}
+						else if (fieldType == Schema.DisplayType.Date) {
+							// Date
+							objToCreate.put(fieldName, Date.valueOf(fieldValue));	
+						}
+						else if (fieldType == Schema.DisplayType.DateTime) {
+							// Datetime
+							objToCreate.put(fieldName, DateTime.valueOf(fieldValue));
+						}
+						else {
+							// String
+							if(!(this.objectType.getDescribe().getName() == 'User' && fieldName == 'Name')){
+								objToCreate.put(fieldName, fieldValue);	
+							}
+						}
+
+						if(fieldName.equalsIgnoreCase('External_Id__c')){
+							lstExternalIds.add(fieldValue);
 						}
 					}
-
-					if(fieldName.equalsIgnoreCase('External_Id__c')){
-						lstExternalIds.add(fieldValue);
-					}
 				}
+
+				objectsBatch.add(objToCreate);
 			}
 
-			objectsBatch.add(objToCreate);
+			if(objectsBatch.size() > 0) {
+				
+				// We must determine which objects to insert, and which to update
+				String genQuery = 'SELECT Id, External_Id__c FROM ' + this.objectType.getDescribe().getName() + ' WHERE External_Id__c IN :lstExternalIds ALL ROWS';
+		        List<SObject> alreadyThere = Database.query(genQuery);
+		        Map<String, String> sfIdsByExternalId = new Map<String, String>();
+		        
+		        for(SObject sObj: alreadyThere) {
+		        	sfIdsByExternalId.put(String.valueOf(sObj.get('External_Id__c')), String.valueOf(sObj.get('Id')));
+		        }
+
+		        List<SObject> lstToInsert = new List<SObject>();
+		        List<SObject> lstToUpdate = new List<SObject>();
+
+		        for(SObject sObj: objectsBatch) {
+		        	if(sfIdsByExternalId.containsKey(String.valueOf(sObj.get('External_Id__c')))){
+		        		sObj.put('Id', sfIdsByExternalId.get(String.valueOf(sObj.get('External_Id__c'))));
+		        		lstToUpdate.add(sObj);
+		        	}
+		        	else {
+		        		lstToInsert.add(sObj);
+		        	}
+		        }
+
+		        System.debug(lstToInsert.size() + ' objects to insert.');
+		        System.debug(lstToUpdate.size() + ' objects to update.');
+
+		        // DML
+		        update lstToUpdate; // For now, only inserts
+				insert lstToInsert;
+			}
+
+		} 
+		catch(Exception ex){
+			System.debug('Exception in execute batch');
+			System.debug(ex.getMessage());
+			System.debug(ex.getStackTraceString());
+			throw ex;
 		}
 
-		if(objectsBatch.size() > 0) {
-			
-			// We must determine which objects to insert, and which to update
-			String genQuery = 'SELECT Id, External_Id__c FROM ' + this.objectType.getDescribe().getName() + ' WHERE External_Id__c IN :lstExternalIds ALL ROWS';
-	        List<SObject> alreadyThere = Database.query(genQuery);
-	        Map<String, String> sfIdsByExternalId = new Map<String, String>();
-	        
-	        for(SObject sObj: alreadyThere) {
-	        	sfIdsByExternalId.put(String.valueOf(sObj.get('External_Id__c')), String.valueOf(sObj.get('Id')));
-	        }
 
-	        List<SObject> lstToInsert = new List<SObject>();
-	        List<SObject> lstToUpdate = new List<SObject>();
-
-	        for(SObject sObj: objectsBatch) {
-	        	if(sfIdsByExternalId.containsKey(String.valueOf(sObj.get('External_Id__c')))){
-	        		sObj.put('Id', sfIdsByExternalId.get(String.valueOf(sObj.get('External_Id__c'))));
-	        		lstToUpdate.add(sObj);
-	        	}
-	        	else {
-	        		lstToInsert.add(sObj);
-	        	}
-	        }
-
-	        System.debug(lstToInsert.size() + ' objects to insert.');
-	        System.debug(lstToUpdate.size() + ' objects to update.');
-
-	        // DML
-	        update lstToUpdate; // For now, only inserts
-			insert lstToInsert;
-		}
 	}
 	
 	global void finish(Database.BatchableContext BC) {
