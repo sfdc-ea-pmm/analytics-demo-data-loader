@@ -475,7 +475,6 @@ public with sharing class WaveConfiguratorUtils {
 		}
 	}
 
-
 	public static void sendEmail(String address, String dataflowLabel){
 		if(!String.isBlank(address)){
 			Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
@@ -485,6 +484,17 @@ public with sharing class WaveConfiguratorUtils {
 			
 			mail.setToAddresses(toAddresses);
 			mail.setSubject('Wave application installation succeeded');
+			mail.setPlainTextBody(body);
+			Messaging.sendEmail(new Messaging.SingleEmailMessage[] { mail });
+		}
+	}
+
+	public static void sendEmail(String addressTo, String subject, String body){
+		if(!String.isBlank(addressTo)){
+			Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
+			String[] toAddresses = new String[] { addressTo };
+			mail.setToAddresses(toAddresses);
+			mail.setSubject(subject);
 			mail.setPlainTextBody(body);
 			Messaging.sendEmail(new Messaging.SingleEmailMessage[] { mail });
 		}

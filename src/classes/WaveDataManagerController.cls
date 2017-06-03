@@ -400,9 +400,6 @@ public with sharing class WaveDataManagerController {
 		if(this.selectedInstallationProcess == 'timeShifting'){
 			this.successMessage = 'The Time Shifting process has finished successfully.';
 		}
-		else if(this.selectedInstallationProcess == 'prepcore'){
-			this.successMessage = 'Prep core process finished successfully.';
-		}
 		else{
 			WaveConfiguratorUtils.sendEmail(this.emailAddress, this.dataflowLabel);
 			this.successMessage = 'Application installed successfully. Please open Wave Analytics / Data Manager to run the corresponding Dataflow.';
@@ -450,7 +447,7 @@ public with sharing class WaveDataManagerController {
 									this.currentTimeShiftingNodeIndex = 0;
 									this.enableObjectProcessingCheck = false;
 
-									if(this.selectedInstallationProcess == 'prepcore' || this.selectedInstallationProcess == 'fullInstallation'){
+									if(this.selectedInstallationProcess == 'fullInstallation'){
 										this.enableTimeShiftingCheck = true;
 										this.processTimeShiftingObjects();
 									} 
@@ -1070,7 +1067,7 @@ public with sharing class WaveDataManagerController {
 				}
 			}
 			
-			else if(this.selectedInstallationProcess == 'loadObjects' || this.selectedInstallationProcess == 'prepcore'){
+			else if(this.selectedInstallationProcess == 'loadObjects'){
 				this.disabledButton = true;
 				this.selectAppMetadata();
 
@@ -1193,7 +1190,7 @@ public with sharing class WaveDataManagerController {
 				// We DON'T have metadata to process
 				this.processingLog.add('No need to create new objects and fields.');
 
-				if(this.selectedInstallationProcess == 'loadObjects' || this.selectedInstallationProcess == 'prepcore'){
+				if(this.selectedInstallationProcess == 'loadObjects'){
 					// We chain this with object data loading
 					this.launchObjectsLoading();
 				}
@@ -1256,7 +1253,7 @@ public with sharing class WaveDataManagerController {
 									this.disabledButton = false;
 									this.processingLog.add('All needed metadata was created successfully.');
 
-									if(this.selectedInstallationProcess == 'loadObjects' || this.selectedInstallationProcess == 'prepcore'){
+									if(this.selectedInstallationProcess == 'loadObjects'){
 										this.launchObjectsLoading();
 									}
 									else if(this.selectedInstallationProcess == 'fullInstallation') {

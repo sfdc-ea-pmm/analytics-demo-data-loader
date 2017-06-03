@@ -75,12 +75,11 @@
 	   			
 	   			<apex:outputLabel for="processType">Specify the process:</apex:outputLabel>
 	   			<apex:selectList value="{!selectedInstallationProcess}" size="1" id="processType">
-	   				<apex:selectOption itemValue="fullInstallation" itemLabel="Full Installation"/>
+	   				<apex:selectOption itemValue="loadObjects" itemLabel="Prep Core Data"/>
 	   				<apex:selectOption itemValue="createMetadata" itemLabel="Create Objects and Fields"/>
+	   				<apex:selectOption itemValue="fullInstallation" itemLabel="Full Installation"/>
 	   				<apex:selectOption itemValue="createWaveApp" itemLabel="Create Wave Application"/>
-	   				<apex:selectOption itemValue="loadObjects" itemLabel="Load Data"/>
 	   				<apex:selectOption itemValue="timeShifting" itemLabel="Time shifting"/>
-	   				<apex:selectOption itemValue="prepcore" itemLabel="Prep Core"/>
 	   				<apex:actionSupport event="onchange" rerender="folderGroup,emailNotification"/>
 	   			</apex:selectList>
 

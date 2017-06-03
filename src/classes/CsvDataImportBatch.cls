@@ -83,10 +83,11 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
 				for(Integer i = 0; i < sObjRow.size(); i++) {
 					
 					// We get the name using the position and then its value
-					String fieldName = this.fieldPositions.get(i);
-					String fieldValue = sObjRow[i];
+					String fieldName = this.fieldPositions.get(i);					
 
-					if(String.isNotBlank(fieldValue) && objectFields.containsKey(fieldName)){
+					if(String.isNotBlank(sObjRow[i]) && objectFields.containsKey(fieldName)){
+
+						String fieldValue = sObjRow[i].trim();
 						
 						// Get field datatype
 						Schema.DisplayType fieldType  = objectFields.get(fieldName).getDescribe().getType();
@@ -113,12 +114,14 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
 						}
 						else {
 							// String
-							if(!(this.objectType.getDescribe().getName() == 'User' && (fieldName.equalsIgnoreCase('Name') || fieldName.equalsIgnoreCase('Username')))){
+							if(!(this.objectType.getDescribe().getName() == 'User' && (fieldName.equalsIgnoreCase('Name') || fieldName.equalsIgnoreCase('Username') || fieldName.equalsIgnoreCase('CommunityNickname')))){
 								objToCreate.put(fieldName, fieldValue);	
 							}
 							
 							if(this.objectType.getDescribe().getName() == 'User' && fieldName.equalsIgnoreCase('Alias')){
-								objToCreate.put('Username', fieldValue + DateTime.now().getTime() + '@demo.user');	
+								String nick = fieldValue + DateTime.now().getTime();
+								objToCreate.put('CommunityNickname', nick);
+								objToCreate.put('Username', nick + '@demo.user');	
 							}
 						}
 
@@ -165,13 +168,17 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
 
 		} 
 		catch(Exception ex){
-			System.debug('Exception in execute batch');
+			String subject = 'Exception processing data load for objects of type: ' + this.objectType.getDescribe().getName();
+			System.debug(subject);
 			System.debug(ex.getMessage());
-			System.debug(ex.getStackTraceString());
+			
+			if(ex.getTypeName() != WaveConfiguratorException.class.ToString()){
+				System.debug(ex.getStackTraceString());
+				WaveConfiguratorUtils.sendEmail(UserInfo.getUserEmail(), subject, ex.getMessage() + '\n' + ex.getStackTraceString());
+			}
+
 			throw ex;
 		}
-
-
 	}
 	
 	global void finish(Database.BatchableContext BC) {
@@ -207,8 +214,9 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
 
 	        	// For each row we collect the values in the set
 	            for (List<String> row : scope) {
-	            	if(String.isNotBlank(row[smLookUp.columnNumber])){
-	            		smLookUp.plainTextValues.add(row[smLookUp.columnNumber]);
+	            	String val = row[smLookUp.columnNumber];
+	            	if(String.isNotBlank(val)){
+	            		smLookUp.plainTextValues.add(val.trim());
 	            	}
 	            }
 	        }
@@ -236,7 +244,7 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
 	            for(String relVal: relevantValues) {
 	            	if(String.isNotBlank(relVal) && !s.replaceValues.containsKey(relVal)){
 	            		// This time: Throw exception for not being able to find Id for lookup
-	            		throw new CsvDataImportException(String.format('Id not found for {0} = "{1}" in SObject: {2}. This may cause an exception.', new String[]{ sFieldToQuery, relVal, sObjToQuery }));
+	            		throw new CsvDataImportException(String.format('Id not found for {0} = "{1}" in SObject: {2}.', new String[]{ sFieldToQuery, relVal, sObjToQuery }));
 	            	}
 	            }
 	        }
