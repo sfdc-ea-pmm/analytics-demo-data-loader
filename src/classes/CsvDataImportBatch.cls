@@ -72,7 +72,9 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
 	   		List<SObject> objectsBatch = new List<SObject>();
 	   		List<String> lstExternalIds = new List<String>();
 	   		Map<String, Schema.SObjectField> objectFields = this.objectType.getDescribe().fields.getMap();
-
+			
+            System.debug(this.fieldPositions);
+            
 	   		// For each row of data in the CSV
 			for(List<String> sObjRow: rowsBatch) {
 
@@ -83,8 +85,8 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
 				for(Integer i = 0; i < sObjRow.size(); i++) {
 					
 					// We get the name using the position and then its value
-					String fieldName = this.fieldPositions.get(i);					
-
+					String fieldName = this.fieldPositions.get(i);
+                    
 					if(String.isNotBlank(sObjRow[i]) && objectFields.containsKey(fieldName)){
 
 						String fieldValue = sObjRow[i].trim();
@@ -137,7 +139,12 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
 			if(objectsBatch.size() > 0) {
 				
 				// We must determine which objects to insert, and which to update
-				String genQuery = 'SELECT Id, External_Id__c FROM ' + this.objectType.getDescribe().getName() + ' WHERE External_Id__c IN :lstExternalIds ALL ROWS';
+				String genQuery = 'SELECT Id, External_Id__c FROM ' + this.objectType.getDescribe().getName() + ' WHERE External_Id__c IN :lstExternalIds';
+                
+                // only add All Rows and IsDeleted when Tasks and Events
+                if(this.objectType.getDescribe().getName() == 'Task' || this.objectType.getDescribe().getName() == 'Event')
+                    genQuery += ' AND IsDeleted = False ALL ROWS';
+                
 		        List<SObject> alreadyThere = Database.query(genQuery);
 		        Map<String, String> sfIdsByExternalId = new Map<String, String>();
 		        
@@ -228,7 +235,7 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
 	            String sObjToQuery = s.SObjectType;
 	            String sFieldToQuery = s.targetField;
 				String generatedQuery = 'SELECT Id, ' + sFieldToQuery + ' FROM ' + sObjToQuery + ' WHERE ' + sFieldToQuery + ' IN :relevantValues';
-	            
+
 	            // RecordType special hadling
 				if(sObjToQuery == 'RecordType'){
 					generatedQuery += ' AND SobjectType = \'' + this.objectType.getDescribe().getName() + '\'';
@@ -238,6 +245,8 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
 	            
 	            for (SObject t: temp) {
 	                s.replaceValues.put(String.valueOf(t.get(sFieldToQuery)), String.valueOf(t.get('Id')));
+                    System.debug(s.columnNumber + ' ' + String.valueOf(t.get(sFieldToQuery)) + ' ' + String.valueOf(t.get('Id')));
+                    System.debug(s.columnNumber + ' ' + s.replaceValues.get(String.valueOf(t.get(sFieldToQuery))));
 	            }
 
 	            // Search whether there are Extenal_Id__c with not found id
@@ -252,7 +261,12 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
 	        // Replace name values with Id equivalent
 	        for (List<String> row : scope) {
 	            for (SmartLookup s: this.smartLookups) {
-	            	row[s.ColumnNumber] = s.replaceValues.get(row[s.ColumnNumber]);
+                    // s.replaceValues.get(row[s.ColumnNumber]) is turning out to be null, 
+                    // so we are going to trim row[s.ColumnNumber]
+                    //System.debug(s.columnNumber + ' ' + row[s.ColumnNumber] + ' ' + s.replaceValues.get(row[s.ColumnNumber]));
+	            	if(String.isNotBlank(row[s.ColumnNumber])){
+	            		row[s.ColumnNumber] = s.replaceValues.get(row[s.ColumnNumber].trim());
+	            	}
 	            }
 	        }
 		}

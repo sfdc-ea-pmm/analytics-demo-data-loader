@@ -237,7 +237,7 @@ public with sharing class WaveDataManagerController {
 		try{
 			WaveApplicationObject currentNode = this.objectsNodes.get(this.currentNodeIndex);
 			this.processingLog.add('Loading records for ' + currentNode.name + ' object...');
-
+            System.debug('Current Node Url: ' + currentNode.url);
 			HttpResponse res = WaveConfiguratorUtils.httpGetCallout(currentNode.url);
 			String csvDataWithHeaders = res.getBody();
 			
