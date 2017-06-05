@@ -77,27 +77,12 @@
 	   			<apex:selectList value="{!selectedInstallationProcess}" size="1" id="processType">
 	   				<apex:selectOption itemValue="loadObjects" itemLabel="Prep Core Data"/>
 	   				<apex:selectOption itemValue="createMetadata" itemLabel="Create Objects and Fields"/>
-	   				<apex:selectOption itemValue="fullInstallation" itemLabel="Full Installation"/>
-	   				<apex:selectOption itemValue="createWaveApp" itemLabel="Create Wave Application"/>
 	   				<apex:selectOption itemValue="timeShifting" itemLabel="Time shifting"/>
 	   				<apex:actionSupport event="onchange" rerender="folderGroup,emailNotification"/>
 	   			</apex:selectList>
 
-	   			<apex:outputPanel id="folderGroup" >
-	   				<apex:panelGrid columns="1" rendered="{!selectedInstallationProcess = 'fullInstallation' || selectedInstallationProcess = 'createWaveApp'}">
-			   			<apex:outputLabel >Specify the wave application label:</apex:outputLabel>
-			   			<apex:inputText value="{!folderLabel}" id="folderLabel" />
-			   			<apex:outputLabel >Specify the wave application name:</apex:outputLabel>
-			   			<apex:inputText value="{!folderName}" id="folderName" />
-			   			<apex:outputLabel >Specify the dataflow name:</apex:outputLabel>
-			   			<apex:inputText value="{!dataflowName}" id="dataflowName" />
-			   			<apex:outputLabel >Specify the dataflow label:</apex:outputLabel>
-			   			<apex:inputText value="{!dataflowLabel}" id="dataflowLabel" />
-		   			</apex:panelGrid>
-	   			</apex:outputPanel>
-
-				<apex:outputPanel id="emailNotification">
-					<apex:panelGrid columns="1" rendered="{!selectedInstallationProcess = 'fullInstallation'}">
+				<apex:outputPanel id="emailNotification" >
+					<apex:panelGrid columns="1" rendered="{!selectedInstallationProcess != 'createMetadata'}">
 			   			<apex:outputLabel >Notify this email when complete:</apex:outputLabel>
 			   			<apex:inputText value="{!emailAddress}" id="emailAddress" />
 		   			</apex:panelGrid>
@@ -131,41 +116,6 @@
 		<apex:actionPoller action="{!checkTimeShiftingStatus}" reRender="processingStatus,processingLogConsole,messages,form1,form3,vsbButton" interval="5" enabled="{!timeShiftingItems.size > 0 && enableTimeShiftingCheck}" id="checkTimeShiftingFunction"/>
 		
 		<apex:actionPoller action="{!checkMetadataCreationStatus}" reRender="processingStatus,processingLogConsole,messages,form1,form3,vsbButton" enabled="{!processingObjectsAndFieldsMetadata}" interval="5" id="checkMetadataFunction"/>
-
-		<apex:actionPoller action="{!checkEdgemartsLoadingStatus}" reRender="processingStatus,processingLogConsole,messages,form1,form3,vsbButton" enabled="{!processingEdgemarts}" interval="5" id="checkEdgemartsFunction"/>
-
-		<!-- Edgemarts Load Panel/Function -->
-		<apex:outputPanel id="loadEdgemartsPanel">
-			<apex:actionFunction name="loadEdgemarts" action="{!loadAllEdgemarts}" reRender="loadEdgemartsPanel,form3,createDataflowPanel,processingLogPanel,form1,vsbButton" />
-
-			<apex:outputPanel rendered="{!installationStep = 'LoadEdgemarts'}">
-				<script type="text/javascript">
-					loadEdgemarts();
-				</script>
-			</apex:outputPanel>
-		</apex:outputPanel>
-
-		<!-- Dataflow Create Panel/Function -->
-		<apex:outputPanel id="createDataflowPanel">
-			<apex:actionFunction name="createDataflow" action="{!createDataflowStep}" reRender="createDataflowPanel,loadDashboardsPanel,processingLogPanel,form1,vsbButton" />
-
-			<apex:outputPanel rendered="{!installationStep = 'CreateDataflow'}">
-				<script type="text/javascript">
-					createDataflow();
-				</script>
-			</apex:outputPanel>
-		</apex:outputPanel>
-
-		<!-- Dashboards Load Panel/Function -->
-		<apex:outputPanel id="loadDashboardsPanel">
-			<apex:actionFunction name="loadDashboards" action="{!loadAllDashboards}" reRender="loadDashboardsPanel,loadObjectsPanel,processingLogPanel,form1,vsbButton" />
-
-			<apex:outputPanel rendered="{!installationStep = 'LoadDashboards'}">
-				<script type="text/javascript">
-					loadDashboards();
-				</script>
-			</apex:outputPanel>
-		</apex:outputPanel>
 
 		<!-- Objects Load Panel/Function -->
 		<apex:outputPanel id="loadObjectsPanel">

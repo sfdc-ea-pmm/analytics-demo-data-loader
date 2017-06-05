@@ -162,85 +162,6 @@ public with sharing class WaveDataManagerController {
 		this.processingLog.clear();
 	}
 
-	public void installApp(){
-		
-		this.resetMessages();
-
-		// Start with validations
-		Boolean passedValidation = true;
-
-		if(String.isBlank(this.folderName)){
-			passedValidation = false;
-			this.errorMessage = 'A folder/app name must be specified.';
-		}
-
-		if(String.isBlank(this.folderLabel)){
-			passedValidation = false;
-			this.errorMessage = 'A folder/app label name must be specified.';
-		}
-
-		if(String.isBlank(this.dataflowName)){
-			passedValidation = false;
-			this.errorMessage = 'A dataflow name must be specified.';
-		}
-
-		if(String.isBlank(this.dataflowLabel)){
-			passedValidation = false;
-			this.errorMessage = 'A dataflow label must be specified.';
-		}
-
-		if(WaveConfiguratorUtils.folderExists(this.folderName)){
-			passedValidation = false;
-			this.errorMessage = 'The folder ' + this.folderName + ' already exists.';
-		}
-
-		if(WaveConfiguratorUtils.dataflowExistsByName(this.dataflowName)){
-			passedValidation = false;
-			this.errorMessage = 'The dataflow ' + this.dataflowName + ' already exists.';
-		}
-
-		if(!String.isBlank(this.emailAddress)){
-			if(WaveConfiguratorUtils.isInvalidEmail(this.emailAddress)){
-				passedValidation = false;
-				this.errorMessage = 'The email address ' + this.emailAddress + ' is invalid.';
-			}
-		}		
-
-		if(passedValidation){
-			
-			this.disabledButton = true;
-			try {
-
-				WaveApplicationRow appRow = selectAppMetadata();
-
-				if(this.selectedAppMetadata != null){
-					
-					// Create app/folder
-					
-					this.folderId = this.createFolder(appRow.Label, this.folderName);
-
-					if(this.selectedAppMetadata.objects != null){
-						// Retrieve objects to process
-						for(WaveMetadataApplicationObject wmaObj: this.selectedAppMetadata.objects) {
-							List<WaveApplicationObject> objs = this.getObjectsToProcess(wmaObj);
-							this.objectsNodes.addAll(objs);
-							this.addTimeShiftingNode(wmaObj);
-						}
-					}
-					
-					createObjectsAndFields(this.objectsNodes);					
-				}
-			}
-			catch(Exception e) {
-				System.debug(e.getMessage());
-				System.debug(e.getStackTraceString());
-				this.errorMessage = e.getMessage();
-				this.disabledButton = false;
-				this.rollbackProcess(e.getMessage(), e.getStackTraceString());
-			}
-		}
-	}
-
 	public List<WaveApplicationObject> getObjectsToProcess(WaveMetadataApplicationObject wmaObj){
 		List<WaveApplicationObject> listToProcess = new List<WaveApplicationObject>();
 		WaveApplicationObject rootObj = new WaveApplicationObject();
@@ -399,10 +320,7 @@ public with sharing class WaveDataManagerController {
 
 		if(this.selectedInstallationProcess == 'timeShifting'){
 			this.successMessage = 'The Time Shifting process has finished successfully.';
-		}
-		else{
-			WaveConfiguratorUtils.sendEmail(this.emailAddress, this.dataflowLabel);
-			this.successMessage = 'Application installed successfully. Please open Wave Analytics / Data Manager to run the corresponding Dataflow.';
+			WaveConfiguratorUtils.sendEmail(this.emailAddress, 'Time Shifting completed successfully', 'The Time Shifting process of your SDO data has finished successfully.');
 		}
 	}
 
@@ -455,6 +373,7 @@ public with sharing class WaveDataManagerController {
 										this.disabledButton = false;
 										this.processingLog.add('Done.');
 										this.successMessage = 'Data loaded successfully.';
+										WaveConfiguratorUtils.sendEmail(this.emailAddress, 'Prep Core Data completed successfully', 'The Prep Core Data has finished successfully.');
 									}
 								}
 								else {
@@ -580,54 +499,6 @@ public with sharing class WaveDataManagerController {
 		return null;
 	}
 
-	private void loadEdgemart(Edgemart e, String pFolderId){
-
-		this.processingLog.add('Loading edgmart data for: ' + e.Label);
-
-		utils.loadEdgemart(e, pFolderId);
-
-        this.processingLog.add('Edgmart data loaded successfully.');
-	}
-
-	
-	private void attachAllXmdFiles(String edgemartAlias){
-		
-		List<sObject> edgemart = [SELECT DeveloperName,Id FROM EdgeMart WHERE DeveloperName = :edgemartAlias];
-
-		if(edgemart.size() > 0){
-			String url = '/services/data/' + genericAppConfiguration.apiVersion + '/wave/datasets/' + edgemart.get(0).Id;
-
-			HttpResponse res = WaveConfiguratorUtils.httpCallout(url, 'GET', true, '');
-
-			WaveDataset datasetResponse = (WaveDataset)JSON.deserialize(res.getBody(), WaveDataset.class);
-			
-			Map<String, String> xmdJsonfiles = new Map<String, String>();
-
-			for(Edgemart e : this.edgemarts){
-	        	HttpResponse resGetJsonXmd = WaveConfiguratorUtils.httpGetCallout(e.XmdUrl);
-	        	xmdJsonfiles.put(e.Name, resGetJsonXmd.getBody());
-	        } 
-
-	        this.processingLog.add('Loading xmd file for ' + datasetResponse.Name + ' edgemart...');
-
-	        String datasetId = datasetResponse.Id;
-	        String currentVersionId = datasetResponse.currentVersionId;
-	        
-	        String urlToAttach = '/services/data/' + genericAppConfiguration.apiVersion + '/wave/datasets/' + datasetId + '/versions/' + currentVersionId + '/xmds/user';
-
-	        HttpResponse resAttachXmd = WaveConfiguratorUtils.httpCallout(urlToAttach, 'PUT', true, xmdJsonfiles.get(datasetResponse.Name));
-
-	        if(!WaveConfiguratorUtils.checkStatus(resAttachXmd) || resAttachXmd.getBody().containsIgnoreCase('errorCode')){
-	        	List<RestApiErrorResponse> r = (List<RestApiErrorResponse>)JSON.deserialize(resAttachXmd.getBody(), List<RestApiErrorResponse>.class);
-	        	throw new WaveConfiguratorException('The xmd file could not be attached to the ' + datasetResponse.Name + ' dataset. Cause: ' + r.get(0).message);
-	        }
-
-	        this.processingLog.add('Xmd file for ' + datasetResponse.Name + ' loaded successfully.');
-        }
-
-	}
-
-
 	public PageReference displayMetadataResponse()
 	{
 		// Display the response from the client side Metadata API callout
@@ -644,308 +515,11 @@ public with sharing class WaveDataManagerController {
 		return null;
 	}
 
-	/*private String loadDashboardWithURL(String dashJsonUrl, String pFolderId){
-		HttpRequest req = new HttpRequest();
-		req.setEndpoint(dashJsonUrl);
-        req.setMethod('GET');
-		Http http = new Http();
-        HTTPResponse res = http.send(req);
-
-		return WaveConfiguratorUtils.insertWaveDashboard(res.getBody(), pFolderId, this.edgemartNamesToSave);
-	}*/
-
-	private String loadDashboardWithJSON(String dashJson, String pFolderId){
-		return utils.insertWaveDashboard(dashJson, pFolderId, null);
-	}
-
-	private void updateDashboard(String dashJsonUrl, String dashboardId, String pFolderId){
-		HttpRequest req = new HttpRequest();
-		req.setEndpoint(dashJsonUrl);
-        req.setMethod('GET');
-		Http http = new Http();
-        HTTPResponse res = http.send(req);
-
-		utils.updateWaveDashboard(res.getBody(), dashboardId, pFolderId, this.edgemartNamesToSave, this.dashboardsIdsByName);
-	}
-
 	private void rollbackProcess(String mainMessage, String stackTrace){
 
 		this.disabledButton = false;
 		this.enableObjectProcessingCheck = false;
 		this.enableTimeShiftingCheck = false;
-
-		if(this.selectedInstallationProcess == 'fullInstallation' || this.selectedInstallationProcess == 'createWaveApp'){
-			// We get the dataflow ID
-			String dataflowId = WaveConfiguratorUtils.getDataflowIdByName(this.dataflowName);
-
-			// Delete recently created app/folder here
-			WaveConfiguratorUtils.deleteFolder(this.folderId, dataflowId, UserInfo.getSessionId(), genericAppConfiguration.apiVersion, mainMessage, stackTrace);
-		}		
-	}
-
-	// Edgemarts
-	public void loadAllEdgemarts(){
-		try {
-			if(this.installationStep == 'LoadEdgemarts'){
-
-				this.edgemarts = this.selectedAppMetadata.edgemarts;
-
-				if(this.edgemarts != null){
-					
-					
-					// Get all the datasets names
-					List<WaveAsset> waveAssets = new List<WaveAsset>();
-					String jsonDatasets = utils.getWaveAssetsJSON('datasets', null);
-		            WaveDatasetsResponse datasetsResponse = (WaveDatasetsResponse)JSON.deserialize(jsonDatasets, WaveDatasetsResponse.class);
-		            
-		            while(datasetsResponse != null && datasetsResponse.datasets != null){
-		                
-		                for(WaveDataset dataset : datasetsResponse.datasets){
-		                    waveAssets.add(dataset);
-		                }
-
-		                if(datasetsResponse.nextPageUrl != null){
-		                    jsonDatasets = utils.getWaveAssetsJSON('datasets', datasetsResponse.nextPageUrl);
-		                    datasetsResponse = (WaveDatasetsResponse)JSON.deserialize(jsonDatasets, WaveDatasetsResponse.class);
-		                }
-		                else {
-		                    datasetsResponse = null;
-		                }
-		            }
-
-		            // Here we should have all the datasets, we load the map for searches
-		            this.edgemartNamesToSave = new Map<String, String>();
-
-		            for(WaveAsset dataset : waveAssets){
-		            	this.edgemartNamesToSave.put(dataset.name, dataset.name);
-		            }
-
-					for(Edgemart edg : this.edgemarts){
-						// First we have to check dataset's name existance in wave
-						Integer iSuffix = 0;
-						String edgNameCandidate = edg.Name;
-
-						while(this.edgemartNamesToSave.containsKey(edgNameCandidate)){
-							iSuffix++;
-							edgNameCandidate = edg.Name + iSuffix;
-						}
-
-						// Now we will use edgNameCandidate as edgemart's name to avoid API name collision
-						this.edgemartNamesToSave.put(edg.Name, edgNameCandidate);
-						edg.Name = edgNameCandidate;
-
-						this.loadEdgemart(edg, this.folderId);
-
-						this.edgeMartsChecked.put(edg.Name, false);
-					}
-
-					//this.processingEdgemarts = true;
-
-
-				}
-
-				this.installationStep = 'CreateDataflow';
-			}
-			else {
-				// We reset
-				this.installationStep = '';
-			}			
-		}
-		catch(Exception e) {
-			System.debug(e.getMessage());
-			System.debug(e.getStackTraceString());
-			this.errorMessage = e.getMessage();
-			this.installationStep = '';
-
-			this.rollbackProcess(e.getMessage(), e.getStackTraceString());
-		}
-	}
-
-	
-	public PageReference checkEdgemartsLoadingStatus(){
-		try{
-
-			List<String> edgemartsNames = new List<String>();
-
-			for(Edgemart e: this.edgemarts){
-				edgemartsNames.add(e.Name);
-			}
-
-			List<InsightsExternalData> insightsExternalDataList = [SELECT Id, EdgemartAlias, EdgemartContainer, Status, StatusMessage FROM InsightsExternalData WHERE EdgeMartAlias IN :edgemartsNames];
-
-			if(insightsExternalDataList.size() > 0){
-				for(InsightsExternalData ied : insightsExternalDataList){
-					if(!this.edgeMartsChecked.get(ied.EdgemartAlias)){
-						if(ied.Status == 'Completed'){
-							//this.attachAllXmdFiles(ied.EdgemartAlias);
-							this.edgeMartsChecked.put(ied.EdgemartAlias, true);
-						} 
-						else if(ied.Status == 'CompletedWithWarnings'){
-							throw new WaveConfiguratorException('The ' + ied.EdgemartAlias + ' edgemart has been processed with some warnings. Cause: ' + ied.StatusMessage);
-						}
-						else if(ied.Status == 'Failed'){
-							throw new WaveConfiguratorException('The ' + ied.EdgemartAlias + ' edgemart could not be processed. Cause: ' + ied.StatusMessage);
-						}
-
-					}
-				}
-			}
-
-			Boolean allChecked = true;
-
-			for(String edgemartAlias: this.edgeMartsChecked.keySet()){
-				if(!this.edgeMartsChecked.get(edgeMartAlias)){
-					allChecked = false;
-				}
-			}
-
-			if(allChecked){
-				this.processingEdgemarts = false;
-				this.installationStep = 'CreateDataflow';
-			}
-
-		}
-		catch(Exception e){
-			System.debug(e.getMessage());
-			System.debug(e.getStackTraceString());
-			this.errorMessage = e.getMessage();
-			this.installationStep = '';
-			this.processingEdgemarts = false;
-			this.rollbackProcess(e.getMessage(), e.getStackTraceString());
-		}
-
-		return null;
-
-	}
-
-
-	// Create dataflow
-	// Create dataflow version
-	// Link dataflow to dataflow version current id
-	public void createDataflowStep(){
-		try{
-			if(this.installationStep == 'CreateDataflow'){
-				this.processingLog.add('Creating ' + this.dataflowName + ' dataflow...');
-						
-				String dataflowResponse = utils.createDataflow(this.dataflowName, this.dataflowLabel, this.folderId);
-
-				if(dataflowResponse.contains('Error')){
-					this.processingLog.add(dataflowResponse);
-					throw new WaveConfiguratorException('Dataflow for ' + this.dataflowLabel + ' could not be created. Check debug logs.');
-				}
-
-				String dataflowId = dataflowResponse;
-
-				// Dataflow Definition JSON file
-				HttpRequest req = new HttpRequest();
-				req.setEndpoint(this.selectedAppMetadata.dataflowLocation);
-		    	req.setMethod('GET');
-				Http http = new Http();
-		    	HTTPResponse resDf = http.send(req);
-
-		    	if(WaveConfiguratorUtils.checkStatus(resDf)){
-					String dfDefJsonBody = resDf.getBody();
-					if(String.isBlank(dfDefJsonBody)){
-						throw new WaveConfiguratorException('Invalid Dataflow Definition JSON for Wave Application. Check URL: ' + selectedAppMetadata.dataflowLocation);
-					}
-					
-					this.dataflowDefinitionJson = dfDefJsonBody;						
-				}
-				else {
-					throw new WaveConfiguratorException('Unable to retrieve Dataflow Definition JSON file for Wave Application.');							
-				}
-				
-				// folderId placeholder substitution
-				String jsonDataflowDefToSave = this.dataflowDefinitionJson.replace('<folderId>', this.folderId);
-
-				// Dataset names substitution
-				for(String dsDesiredName : this.edgemartNamesToSave.keySet()){
-					jsonDataflowDefToSave = jsonDataflowDefToSave.replace('<' + dsDesiredName + '>', this.edgemartNamesToSave.get(dsDesiredName));
-				}
-
-				String versionId = utils.createDataflowVersion(dataflowId, jsonDataflowDefToSave);
-				utils.linkDataflowToVersion(dataflowId, versionId);
-
-				this.processingLog.add('Dataflow created successfully.');
-				this.installationStep = 'LoadDashboards';
-			}
-			else {
-				// We reset
-				this.installationStep = '';
-			}
-		}
-		catch(Exception e) {
-			System.debug(e.getMessage());
-			System.debug(e.getStackTraceString());
-			this.errorMessage = e.getMessage();
-			this.installationStep = '';
-
-			this.rollbackProcess(e.getMessage(), e.getStackTraceString());
-		}
-	}
-
-	public void loadAllDashboards(){
-		try {
-			if(this.installationStep == 'LoadDashboards'){
-				if(this.selectedAppMetadata.dashboards != null && this.selectedAppMetadata.dashboards.size() > 0){
-					
-					this.processingLog.add('Encountered ' + this.selectedAppMetadata.dashboards.size() + ' dashboards for the application.');
-					
-					// First we insert dummy dashboards to get the IDs
-					List<StaticResource> srList = [SELECT Body FROM StaticResource WHERE Name = 'DummyWaveDashboardJson'];
-					if(srList.size() == 0){
-						throw new WaveConfiguratorException('DummyWaveDashboardJson Static Resource not found.');
-					}
-					
-					// We create the dummy dashboards and the Map for storing resulting IDs
-					this.dashboardsIdsByName = new Map<String, String>();
-					String dummyDashboardJson = srList.get(0).Body.toString();
-					
-					for(WaveMetadataApplicationDashboard dashObj : this.selectedAppMetadata.dashboards){
-						String dashId = this.loadDashboardWithJSON(dummyDashboardJson, this.folderId);
-						this.dashboardsIdsByName.put(dashObj.Name, dashId);
-					}
-
-					// At this point we should have all dashboards created
-					// No we update them to reflect links between them and datasets
-					for(WaveMetadataApplicationDashboard dashObj : this.selectedAppMetadata.dashboards){
-						
-						this.processingLog.add('Creating ' + dashObj.Name + ' dashboard...');
-						String dashJsonUrl = dashObj.JsonUrl;
-						String dashId = this.dashboardsIdsByName.get(dashObj.Name);
-
-						this.updateDashboard(dashJsonUrl, dashId, this.folderId);
-					}
-
-					this.processingLog.add('All dashboards were successfully created.');
-				}
-				else {
-					this.processingLog.add('The application doesn\'t contain any dashboard.');
-				}
-
-				if(this.selectedInstallationProcess == 'fullInstallation'){
-					this.installationStep = 'LoadObjects';
-				} 
-				else {
-					this.installationStep = '';
-					this.processingLog.add('Done.');
-					this.successMessage = 'Application installed successfully. Please open Wave Analytics / Data Manager to run the corresponding Dataflow.';
-					this.disabledButton = false;
-				}
-				
-			}
-			else {
-				// We reset
-				this.installationStep = '';
-			}
-		}
-		catch(Exception e) {
-			System.debug(e.getMessage());
-			System.debug(e.getStackTraceString());
-			this.errorMessage = e.getMessage();
-			this.installationStep = '';
-			this.rollbackProcess(e.getMessage(), e.getStackTraceString());
-		}		
 	}
 
 	public void launchObjectsLoading(){
@@ -992,12 +566,7 @@ public with sharing class WaveDataManagerController {
 		this.resetMessages();
 
 		try{
-			
-			if(this.selectedInstallationProcess == 'fullInstallation'){
-				installApp();
-			} 
-
-			else if(this.selectedInstallationProcess == 'createMetadata'){
+			if(this.selectedInstallationProcess == 'createMetadata'){
 				this.disabledButton = true;
 				this.selectAppMetadata();
 
@@ -1014,42 +583,6 @@ public with sharing class WaveDataManagerController {
 					createObjectsAndFields(this.objectsNodes);
 				}
 			}
-
-			else if(this.selectedInstallationProcess == 'createWaveApp'){
-
-				if(String.isBlank(this.folderName)){
-					passedValidation = false;
-					this.errorMessage = 'A folder/app name must be specified.';
-				}
-
-				if(String.isBlank(this.folderLabel)){
-					passedValidation = false;
-					this.errorMessage = 'A folder/app label name must be specified.';
-				}
-
-				if(WaveConfiguratorUtils.folderExists(this.folderName)){
-					passedValidation = false;
-					this.errorMessage = 'The folder ' + this.folderName + ' already exists.';
-				}
-
-				if(String.isBlank(this.dataflowLabel)){
-					passedValidation = false;
-					this.errorMessage = 'A dataflow label must be specified.';
-				}
-
-				if(WaveConfiguratorUtils.dataflowExistsByName(this.dataflowName)){
-					passedValidation = false;
-					this.errorMessage = 'The dataflow ' + this.dataflowName + ' already exists.';
-				}
-
-				if(passedValidation){
-					this.disabledButton = true;
-					this.selectAppMetadata();
-					this.folderId = this.createFolder(this.folderLabel, this.folderName);
-					this.installationStep = 'LoadEdgemarts';
-				}
-			} 
-			
 			else if(this.selectedInstallationProcess == 'timeShifting'){
 				this.disabledButton = true;
 				this.selectAppMetadata();
@@ -1066,7 +599,6 @@ public with sharing class WaveDataManagerController {
 					this.processTimeShiftingObjects();
 				}
 			}
-			
 			else if(this.selectedInstallationProcess == 'loadObjects'){
 				this.disabledButton = true;
 				this.selectAppMetadata();
@@ -1089,7 +621,6 @@ public with sharing class WaveDataManagerController {
 					createObjectsAndFields(this.objectsNodes);
 				}
 			}
-
 		} 
 		catch(Exception e) {
 			System.debug(e.getMessage());
@@ -1111,20 +642,6 @@ public with sharing class WaveDataManagerController {
 			this.timeShiftingItems.add(timeShiftingItem);
 		}
 	}
-
-	public String createFolder(String label, String pFolderName){
-		// Create app/folder
-		String folderIdToReturn;
-
-		this.processingLog.add('Creating ' + pFolderName + ' folder/application...');
-
-		folderIdToReturn = utils.insertFolder(label, pFolderName);
-		
-		this.processingLog.add(pFolderName + ' folder/application created successfully.');
-
-		return folderIdToReturn;
-	}
-
 
 	public WaveApplicationRow selectAppMetadata(){
 		Integer appIndex = this.appIndexes.get(this.selectedWaveApp);
@@ -1193,10 +710,6 @@ public with sharing class WaveDataManagerController {
 				if(this.selectedInstallationProcess == 'loadObjects'){
 					// We chain this with object data loading
 					this.launchObjectsLoading();
-				}
-				else if(this.selectedInstallationProcess == 'fullInstallation') {
-					// Now we configure step to begin loading the edgemarts
-					this.installationStep = 'LoadEdgemarts';
 				}
 				else if(this.selectedInstallationProcess == 'createMetadata'){
 					this.disabledButton = false;
