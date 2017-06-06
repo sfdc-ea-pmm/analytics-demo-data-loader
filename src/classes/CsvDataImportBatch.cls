@@ -6,17 +6,18 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
 	private List<WaveApplicationObjectRelation> relations;
 	private SObjectType objectType;
 	private List<SmartLookup> smartLookups;
-	private List<String> debugMessages;
+	private List<String> errorMessages;
 	
 	global CsvDataImportBatch(SObjectType objectType, String csvData, Map<Integer, String> fieldPositions, List<WaveApplicationObjectRelation> relations) {
 		this.objectType = objectType;
 		this.csvData = csvData;
 		this.fieldPositions = fieldPositions;
 		this.relations = relations;
-		this.debugMessages = new List<String>();
+		this.errorMessages = new List<String>();
 
 		// Then we get the table of <fieldName, columnIndexInCSV
 		this.fieldIndexes = new Map<String, Integer>();
+
 		for(Integer columnNumber: this.fieldPositions.keySet()) {
     		
     		// Gets the column name
@@ -175,21 +176,21 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
 
 		} 
 		catch(Exception ex){
-			String subject = 'Exception processing data load for objects of type: ' + this.objectType.getDescribe().getName();
-			System.debug(subject);
-			System.debug(ex.getMessage());
 			
-			if(ex.getTypeName() != WaveConfiguratorException.class.ToString()){
-				System.debug(ex.getStackTraceString());
-				WaveConfiguratorUtils.sendEmail(UserInfo.getUserEmail(), subject, ex.getMessage() + '\n' + ex.getStackTraceString());
-			}
+			System.debug(ex.getMessage());
 
-			throw ex;
+			this.errorMessages.add(ex.getMessage());
+
+			//throw ex;
 		}
 	}
 	
 	global void finish(Database.BatchableContext BC) {
 		
+		if(this.errorMessages.size() > 0){
+			String subject = 'Exception processing data load for objects of type: ' + this.objectType.getDescribe().getName();
+			WaveConfiguratorUtils.sendEmail(UserInfo.getUserEmail(), subject, String.join(this.errorMessages, '\r\n'));
+		}
 	}
 
 	private void prepareSmartLookups(){
