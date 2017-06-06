@@ -365,16 +365,16 @@ public with sharing class WaveDataManagerController {
 									this.currentTimeShiftingNodeIndex = 0;
 									this.enableObjectProcessingCheck = false;
 
-									if(this.selectedInstallationProcess == 'fullInstallation'){
-										this.enableTimeShiftingCheck = true;
-										this.processTimeShiftingObjects();
-									} 
-									else {
-										this.disabledButton = false;
-										this.logMessage('Done.');
-										this.successMessage = 'Data loaded successfully.';
-										WaveConfiguratorUtils.sendEmail(this.emailAddress, 'Prep Core Data completed successfully', 'The Prep Core Data has finished successfully.');
+									if(String.isNotBlank(this.selectedAppMetadata.userProfilePicturesUrl)){
+										this.logMessage('Loading user profile photos...');
+										utils.uploadPhoto(this.selectedAppMetadata.userProfilePicturesUrl);
+										this.logMessage('User profile photos loaded successfully.');
 									}
+
+									this.disabledButton = false;
+									this.logMessage('Done.');
+									this.successMessage = 'Data loaded successfully.';								
+									WaveConfiguratorUtils.sendEmail(this.emailAddress, 'Prep Core Data completed successfully', 'The Prep Core Data has finished successfully.');
 								}
 								else {
 									// There are more nodes to process, increment index and reset

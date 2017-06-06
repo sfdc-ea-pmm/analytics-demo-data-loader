@@ -167,4 +167,50 @@ public with sharing class WaveConfiguratorUtils {
 
         return res.getBody();
     }
+
+    private Blob getUserPhotos(String url){
+		Http http = new Http();
+		HttpRequest req = new HttpRequest();
+		req.setEndpoint(url);
+        req.setMethod('GET');
+
+        HTTPResponse res = http.send(req);
+        return res.getBodyAsBlob();
+	}
+
+	public void uploadPhoto(String url){
+
+		Map<String,Blob> photosToQuery = new Map<String,Blob>();
+		Map<String,String> imagesType = new Map<String,String>();
+
+		Blob file = this.getUserPhotos(url);
+		Zippex zip = new Zippex(file);
+
+		for(String fileName: zip.getFileNames()){
+			String fileBaseName = fileName.substringAfterLast('/');
+			String nameToSave = fileBaseName.substringBeforeLast('.');
+
+			if(String.isNotBlank(nameToSave)){
+				imagesType.put(nameToSave, fileName.substringAfterLast('.'));
+				photosToQuery.put(nameToSave, zip.getFile(fileName));
+			}
+		}
+
+		List<User> users = [SELECT Id, External_Id__c FROM User WHERE External_Id__c IN :photosToQuery.keyset()];
+
+		if(users.size() > 0){
+			for(User u: users){
+				String fileName = u.External_Id__c;
+
+				Blob blobFile = photosToQuery.get(fileName);
+				String imageName = fileName + imagesType.get(fileName);
+				String extension = 'image/' + imagesType.get(fileName);
+
+				ConnectApi.UserProfiles.setPhoto(null, u.Id, new ConnectApi.BinaryInput(blobFile, extension, imageName));
+			}		
+		}
+		else{
+			throw new WaveConfiguratorException('There are no users matching with photo\'s names.');
+		}
+	}
 }
