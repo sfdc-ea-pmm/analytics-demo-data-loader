@@ -168,22 +168,22 @@ public with sharing class WaveConfiguratorUtils {
         return res.getBody();
     }
 
-    private Blob getUserPhotos(String url){
+    private Blob getUsersPhotosZipBlob(String zipFileUrl){
 		Http http = new Http();
 		HttpRequest req = new HttpRequest();
-		req.setEndpoint(url);
+		req.setEndpoint(zipFileUrl);
         req.setMethod('GET');
 
         HTTPResponse res = http.send(req);
         return res.getBodyAsBlob();
 	}
 
-	public void uploadPhoto(String url){
+	public void uploadUsersPhotos(String zipFileUrl){
 
 		Map<String,Blob> photosToQuery = new Map<String,Blob>();
 		Map<String,String> imagesType = new Map<String,String>();
 
-		Blob file = this.getUserPhotos(url);
+		Blob file = this.getUsersPhotosZipBlob(zipFileUrl);
 		Zippex zip = new Zippex(file);
 
 		for(String fileName: zip.getFileNames()){
@@ -207,10 +207,7 @@ public with sharing class WaveConfiguratorUtils {
 				String extension = 'image/' + imagesType.get(fileName);
 
 				ConnectApi.UserProfiles.setPhoto(null, u.Id, new ConnectApi.BinaryInput(blobFile, extension, imageName));
-			}		
-		}
-		else{
-			throw new WaveConfiguratorException('There are no users matching with photo\'s names.');
+			}
 		}
 	}
 }

@@ -82,7 +82,7 @@ public with sharing class WaveDataManagerController {
 		try{
 
 			//Get App Configuration File
-			genericAppConfiguration = utils.getAppConfiguration(genericAppConfigurationFileName);
+			this.genericAppConfiguration = utils.getAppConfiguration(genericAppConfigurationFileName);
 			this.pageRendered = true;
 
 			// Attempt to connect to the Metadata API
@@ -99,7 +99,7 @@ public with sharing class WaveDataManagerController {
 			}
 
 			if(applicationRows == null){
-				applicationRows = WaveConfiguratorUtils.getWaveApplications(genericAppConfiguration.waveApplicationsUrl);			
+				applicationRows = WaveConfiguratorUtils.getWaveApplications(this.genericAppConfiguration.baseUrl + this.genericAppConfiguration.waveApplicationsUrl);			
 				if(this.applicationRows != null){
 					Integer index = 0;
 		        	for(WaveApplicationRow genericApp: this.applicationRows) {
@@ -166,13 +166,13 @@ public with sharing class WaveDataManagerController {
 		List<WaveApplicationObject> listToProcess = new List<WaveApplicationObject>();
 		WaveApplicationObject rootObj = new WaveApplicationObject();
 		rootObj.name = wmaObj.name;
-		rootObj.url = wmaObj.url;
+		rootObj.url = this.genericAppConfiguration.baseUrl + wmaObj.url;
 		rootObj.additionalDataFiles = wmaObj.additionalDataFiles;
 		listToProcess.add(rootObj);
 
 		// We process the fields metadata
 		IMockarooHelper iMockHelper = MockarooHelperFactory.getIMockarooHelper();
-    	List<List<String>> csvMetadata = iMockHelper.getData(wmaObj.metadataUrl, false);
+    	List<List<String>> csvMetadata = iMockHelper.getData(this.genericAppConfiguration.baseUrl + wmaObj.metadataUrl, false);
     	
     	if(csvMetadata.size() > 0){
 			// Will extract headers
@@ -272,7 +272,7 @@ public with sharing class WaveDataManagerController {
 
 					// Start the batch process
 					CsvDataImportBatch batchProcess = new CsvDataImportBatch(Schema.getGlobalDescribe().get(currentNode.name), csvData, currentNode.fieldPositions, currentNode.relations);
-					this.batchProcessId = Database.executeBatch(batchProcess, genericAppConfiguration.objectLoadingBatchSize);
+					this.batchProcessId = Database.executeBatch(batchProcess, this.genericAppConfiguration.objectLoadingBatchSize);
 					this.enableObjectProcessingCheck = true;
 
 					// Now monitor job execution
@@ -302,7 +302,7 @@ public with sharing class WaveDataManagerController {
 
 			// Start the batch process
 			TimeShiftingBatch batchProcess = new TimeShiftingBatch(currentNode.objectTypeName, currentNode.fieldsToTimeShift, currentNode.appType);
-			this.batchProcessId = Database.executeBatch(batchProcess, genericAppConfiguration.timeShiftingBatchSize);
+			this.batchProcessId = Database.executeBatch(batchProcess, this.genericAppConfiguration.timeShiftingBatchSize);
 
 		} 
 		else{
@@ -367,7 +367,7 @@ public with sharing class WaveDataManagerController {
 
 									if(String.isNotBlank(this.selectedAppMetadata.userProfilePicturesUrl)){
 										this.logMessage('Loading user profile photos...');
-										utils.uploadPhoto(this.selectedAppMetadata.userProfilePicturesUrl);
+										utils.uploadUsersPhotos(this.genericAppConfiguration.baseUrl + this.selectedAppMetadata.userProfilePicturesUrl);
 										this.logMessage('User profile photos loaded successfully.');
 									}
 

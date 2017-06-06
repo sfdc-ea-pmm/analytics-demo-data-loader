@@ -5,6 +5,7 @@
         <members>CreateObjectsAndFieldsQueueable</members>
         <members>CsvDataImportBatch</members>
         <members>Edgemart</members>
+        <members>GenericAppConfiguration</members>
         <members>HexUtil</members>
         <members>IMockarooHelper</members>
         <members>MetadataService</members>
