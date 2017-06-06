@@ -5,10 +5,12 @@
         <members>CreateObjectsAndFieldsQueueable</members>
         <members>CsvDataImportBatch</members>
         <members>Edgemart</members>
+        <members>HexUtil</members>
         <members>IMockarooHelper</members>
         <members>MetadataService</members>
         <members>MetadataServiceTest</members>
         <members>MockarooHelperFactory</members>
+        <members>Puff</members>
         <members>RestApiErrorResponse</members>
         <members>RestApiFolderErrorResponse</members>
         <members>RestApiResponseBody</members>
@@ -34,6 +36,8 @@
         <members>WaveMetadataApplicationObject</members>
         <members>WaveMetadataApplicationObjectRelation</members>
         <members>WaveTimeShiftingItem</members>
+        <members>Zippex</members>
+        <members>ZippexTests</members>
         <name>ApexClass</name>
     </types>
     <types>

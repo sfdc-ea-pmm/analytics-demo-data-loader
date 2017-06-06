@@ -38,7 +38,7 @@ public with sharing class WaveDataManagerController {
 	public WaveMetadataApplication selectedAppMetadata { get; set; }
 	public String dataflowDefinitionJson { get; set; }
 	public GenericAppConfiguration genericAppConfiguration { get; set; }
-	public static final String genericAppConfigurationFileName = 'GenericAppConfiguration';
+	public static final String genericAppConfigurationFileName = 'SEADemoDataLoaderConfig';
 	public Boolean pageRendered { get; set; }
 	public WaveConfiguratorUtils utils;
 	public List<WaveTimeShiftingItem> timeShiftingItems { get; set; }
@@ -236,7 +236,7 @@ public with sharing class WaveDataManagerController {
 		
 		try{
 			WaveApplicationObject currentNode = this.objectsNodes.get(this.currentNodeIndex);
-			this.processingLog.add('Loading records for ' + currentNode.name + ' object...');
+			this.logMessage('Loading records for ' + currentNode.name + ' object...');
             System.debug('Current Node Url: ' + currentNode.url);
 			HttpResponse res = WaveConfiguratorUtils.httpGetCallout(currentNode.url);
 			String csvDataWithHeaders = res.getBody();
@@ -298,7 +298,7 @@ public with sharing class WaveDataManagerController {
 		if(this.timeShiftingItems.size() > 0){
 			WaveTimeShiftingItem currentNode = this.timeShiftingItems.get(this.currentTimeShiftingNodeIndex);
 
-			this.processingLog.add('Loading ' + currentNode.fieldsToTimeShift.size() + ' fields for time shifting for ' + currentNode.objectTypeName + ' object...');
+			this.logMessage('Loading ' + currentNode.fieldsToTimeShift.size() + ' fields for time shifting for ' + currentNode.objectTypeName + ' object...');
 
 			// Start the batch process
 			TimeShiftingBatch batchProcess = new TimeShiftingBatch(currentNode.objectTypeName, currentNode.fieldsToTimeShift, currentNode.appType);
@@ -306,7 +306,7 @@ public with sharing class WaveDataManagerController {
 
 		} 
 		else{
-			this.processingLog.add('There are no fields for time shifting.');
+			this.logMessage('There are no fields for time shifting.');
 			this.finishTimeShiftingProcess();			
 		}
 
@@ -316,7 +316,7 @@ public with sharing class WaveDataManagerController {
 		this.disabledButton = false;
 		this.currentTimeShiftingNodeIndex = 0;
 		this.timeShiftingItems.clear();
-		this.processingLog.add('Done.');
+		this.logMessage('Done.');
 
 		if(this.selectedInstallationProcess == 'timeShifting'){
 			this.successMessage = 'The Time Shifting process has finished successfully.';
@@ -371,7 +371,7 @@ public with sharing class WaveDataManagerController {
 									} 
 									else {
 										this.disabledButton = false;
-										this.processingLog.add('Done.');
+										this.logMessage('Done.');
 										this.successMessage = 'Data loaded successfully.';
 										WaveConfiguratorUtils.sendEmail(this.emailAddress, 'Prep Core Data completed successfully', 'The Prep Core Data has finished successfully.');
 									}
@@ -525,7 +525,7 @@ public with sharing class WaveDataManagerController {
 	public void launchObjectsLoading(){
 		if(this.objectsNodes.size() > 0){
 			// We start loading data for each object
-			this.processingLog.add('This process can take up to 30 minutes. We will refresh status every 5 seconds.');
+			this.logMessage('This process can take up to 30 minutes. We will refresh status every 5 seconds.');
 			this.currentNodeIndex = 0;
 			this.disabledButton = true;
 
@@ -533,7 +533,7 @@ public with sharing class WaveDataManagerController {
 			this.processCurrentObjectLoadNode();
 		}
 		else {
-			this.processingLog.add('There are no objects to load.');
+			this.logMessage('There are no objects to load.');
 		}
 	}
 
@@ -705,7 +705,7 @@ public with sharing class WaveDataManagerController {
 			}
 			else {
 				// We DON'T have metadata to process
-				this.processingLog.add('No need to create new objects and fields.');
+				this.logMessage('No need to create new objects and fields.');
 
 				if(this.selectedInstallationProcess == 'loadObjects'){
 					// We chain this with object data loading
@@ -723,11 +723,11 @@ public with sharing class WaveDataManagerController {
 		SF_MetadataUtils.CustomFieldSpecification initialField = this.objectsAndFieldsMatrix.get(this.currentObjectIndex).get(this.currentFieldIndex);
 		
 		if(startingWithObject){
-			this.processingLog.add('Processing ' + initialField.ObjectName + ' object metadata...');
+			this.logMessage('Processing ' + initialField.ObjectName + ' object metadata...');
 		}
 
 		if(!SF_MetadataUtils.objectExists(initialField.ObjectName)){
-			this.processingLog.add(initialField.ObjectName + ' doesn\'t exists. Attempting to create it...');										
+			this.logMessage(initialField.ObjectName + ' doesn\'t exists. Attempting to create it...');										
 		}
 
 		CreateObjectsAndFieldsQueueable metadataCreationQueue = new CreateObjectsAndFieldsQueueable(initialField, UserInfo.getSessionId());
@@ -764,7 +764,7 @@ public with sharing class WaveDataManagerController {
 									this.objectsAndFieldsMatrix.clear();
 									this.processingObjectsAndFieldsMetadata = false;
 									this.disabledButton = false;
-									this.processingLog.add('All needed metadata was created successfully.');
+									this.logMessage('All needed metadata was created successfully.');
 
 									if(this.selectedInstallationProcess == 'loadObjects'){
 										this.launchObjectsLoading();
@@ -821,5 +821,10 @@ public with sharing class WaveDataManagerController {
 		}
 
 		return null;
+	}
+
+	private void logMessage(String msg){
+		DateTime dtNow = DateTime.now();
+		this.processingLog.add(String.format('[{0}] {1}', new String[]{ dtNow.format('yyyyMMdd HH:mm:ss') , msg }));
 	}
 }

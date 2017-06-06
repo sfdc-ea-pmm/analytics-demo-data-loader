@@ -57,7 +57,7 @@
 
 	<vs:importvisualstrap theme="paper" />
 
-	<apex:sectionHeader title="Wave Data Manager" subtitle="Configuration and Data Loading"/>
+	<apex:sectionHeader title="SEA Demo Data Loader" subtitle="Saleforce Einstein Analytics Demo Data Loader"/>
 	<apex:form style="margin-top: 50px;" styleClass="standardText" rendered="{!pageRendered}">
 		<apex:panelGrid columns="2" columnClasses="valignTop">
 			<apex:panelGrid columns="1">
