@@ -168,7 +168,7 @@ public with sharing class WaveConfiguratorUtils {
         return res.getBody();
     }
 
-    private Blob getUsersPhotosZipBlob(String zipFileUrl){
+    public Blob getUsersPhotosZipBlob(String zipFileUrl){
 		Http http = new Http();
 		HttpRequest req = new HttpRequest();
 		req.setEndpoint(zipFileUrl);

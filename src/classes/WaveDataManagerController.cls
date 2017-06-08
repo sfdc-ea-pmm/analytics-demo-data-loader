@@ -54,9 +54,18 @@ public with sharing class WaveDataManagerController {
 	public List<List<SF_MetadataUtils.RecordTypeSpecification>> objectsRecordTypesMatrix;
 	public Integer currentRecordTypeIndex;
 	public Boolean processingRecordTypes { get; set; }
+	public List<UserPhotoInfo> userPhotoNodes;
+	public Integer currentUserPhotoNodeIndex;
+	public Boolean uploadingUserPhotos { get; set; }
 
 	// Secuence control
 	public String installationStep { get; set; }
+
+	public class UserPhotoInfo {
+		public String zipFileUrl;
+		public String fileNameToExtract;
+		public String fileBaseName;
+	}
 
 	public WaveDataManagerController() {
 		this.objectsNodes = new List<WaveApplicationObject>();
@@ -76,6 +85,7 @@ public with sharing class WaveDataManagerController {
 		this.processingEdgemarts = false;
 		this.edgeMartsChecked = new Map<String, Boolean>();
 		this.selectedInstallationProcess = 'fullInstallation';
+		this.userPhotoNodes = new List<UserPhotoInfo>();
 	}
 
 	public PageReference pageLoad()
@@ -369,16 +379,45 @@ public with sharing class WaveDataManagerController {
 									this.currentTimeShiftingNodeIndex = 0;
 									this.enableObjectProcessingCheck = false;
 
-									/*if(String.isNotBlank(this.selectedAppMetadata.userProfilePicturesUrl)){
-										this.logMessage('Loading user profile photos...');
-										utils.uploadUsersPhotos(this.genericAppConfiguration.baseUrl + this.selectedAppMetadata.userProfilePicturesUrl);
-										this.logMessage('User profile photos loaded successfully.');
-									}*/
+									if(String.isNotBlank(this.selectedAppMetadata.userProfilePicturesUrl)){
+										// Build upload photos nodes
+										String zipFileUrl = this.genericAppConfiguration.baseUrl + this.selectedAppMetadata.userProfilePicturesUrl;
+										Blob file = this.utils.getUsersPhotosZipBlob(zipFileUrl);
+										Zippex zip = new Zippex(file);
+										
+										for(String fileName: zip.getFileNames()){
+			
+											String fileBaseName = fileName;
+											
+											if(fileName.contains('/')){
+												fileBaseName = fileName.substringAfterLast('/');
+											}
+													
+											String nameToSave = fileBaseName.substringBeforeLast('.');
 
-									this.disabledButton = false;
-									this.logMessage('Done.');
-									this.successMessage = 'Data loaded successfully.';								
-									WaveConfiguratorUtils.sendEmail(this.emailAddress, 'Prep Core Data completed successfully', 'The Prep Core Data has finished successfully.');
+											if(String.isNotBlank(nameToSave)){
+												// Add to the node array to be processed
+												UserPhotoInfo userPhoto = new UserPhotoInfo();
+												userPhoto.fileNameToExtract = fileName;
+												userPhoto.fileBaseName = fileBaseName;
+												userPhoto.zipFileUrl = zipFileUrl;
+												this.userPhotoNodes.add(userPhoto);
+											}
+										}
+
+										if(this.userPhotoNodes.size() > 0){
+											this.logMessage('Loading user profile photos...');
+											this.currentUserPhotoNodeIndex = 0;
+											this.processCurrentUserPhoto();
+											this.uploadingUserPhotos = true;
+										}
+										else {
+											this.finishPrepCoreData();
+										}
+									}
+									else {
+										this.finishPrepCoreData();
+									}									
 								}
 								else {
 									// There are more nodes to process, increment index and reset
@@ -427,6 +466,89 @@ public with sharing class WaveDataManagerController {
 		}
 
 		return null;
+	}
+
+	public void processCurrentUserPhoto(){
+		// Launch current queueable job
+		UserPhotoInfo currentNode = this.userPhotoNodes.get(this.currentUserPhotoNodeIndex);		
+		UploadUserPhotoQueueable userPhotoUploadQueue = new UploadUserPhotoQueueable(currentNode.zipFileUrl, currentNode.fileNameToExtract, currentNode.fileBaseName);
+		this.queueProcessId = System.enqueueJob(userPhotoUploadQueue);
+	}
+
+	public PageReference checkUserPhotoUploadStatus(){
+		
+		try {
+			if(!String.isBlank(this.queueProcessId)){
+				UserPhotoInfo currentNode = this.userPhotoNodes.get(this.currentUserPhotoNodeIndex);
+				List<AsyncApexJob> lstJobs = [SELECT CompletedDate, JobItemsProcessed, NumberOfErrors, Status, TotalJobItems FROM AsyncApexJob WHERE Id = :this.queueProcessId];
+				
+				if(lstJobs.size() > 0){
+
+					AsyncApexJob asyncJob = lstJobs.get(0);
+
+					if(asyncJob.Status == 'Completed'){
+						if(asyncJob.NumberOfErrors > 0) {
+							this.errorMessage = 'The process was interrupted due to errors while uploading ' + this.userPhotoNodes.get(this.currentUserPhotoNodeIndex).fileBaseName + ' photo. See logs for details.';
+							this.currentUserPhotoNodeIndex = 0;
+							this.userPhotoNodes.clear();
+							this.jobStatusDsc = '';
+							this.disabledButton = false;
+							this.uploadingUserPhotos = false;
+						}
+						else {
+							// now check whether it was the last one
+							if(this.currentUserPhotoNodeIndex == this.userPhotoNodes.size() - 1){
+								this.finishPrepCoreData();
+							}
+							else {
+								// There are more nodes to process, increment index and reset
+								this.currentUserPhotoNodeIndex = this.currentUserPhotoNodeIndex + 1;
+								this.processCurrentUserPhoto();
+							}
+						}		
+					}
+					else if(asyncJob.Status == 'Aborted'){
+						this.errorMessage = 'The process was aborted while uploading ' + this.userPhotoNodes.get(this.currentUserPhotoNodeIndex).fileBaseName + ' photo. See logs for details.';
+						this.currentUserPhotoNodeIndex = 0;
+						this.userPhotoNodes.clear();
+						this.jobStatusDsc = '';
+						this.disabledButton = false;
+						this.uploadingUserPhotos = false;
+					}
+					else if(asyncJob.Status == 'Failed'){
+						this.errorMessage = 'The process failed while uploading ' + this.userPhotoNodes.get(this.currentUserPhotoNodeIndex).fileBaseName + ' photo. See logs for details.';
+						this.currentUserPhotoNodeIndex = 0;
+						this.userPhotoNodes.clear();
+						this.jobStatusDsc = '';
+						this.disabledButton = false;
+						this.uploadingUserPhotos = false;
+					}
+				}
+			}
+		}
+		catch(Exception e) {
+			this.errorMessage = e.getMessage();
+			System.debug(e.getMessage());
+			System.debug(e.getStackTraceString());
+			
+			this.jobStatusDsc = '';
+			this.userPhotoNodes.clear();
+			this.currentUserPhotoNodeIndex = 0;
+			this.disabledButton = false;
+			this.uploadingUserPhotos = false;
+		}
+
+		return null;
+	}
+
+	public void finishPrepCoreData(){
+		this.disabledButton = false;
+		this.uploadingUserPhotos = false;
+		this.currentUserPhotoNodeIndex = 0;
+		this.userPhotoNodes.clear();
+		this.logMessage('Done.');
+		this.successMessage = 'Data loaded successfully.';								
+		WaveConfiguratorUtils.sendEmail(this.emailAddress, 'Prep Core Data completed successfully', 'The Prep Core Data has finished successfully.');
 	}
 
 	public PageReference checkTimeShiftingStatus(){

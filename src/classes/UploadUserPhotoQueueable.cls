@@ -1,17 +1,19 @@
-public class UploadUserPhotoQueueable implements Queueable {
+public class UploadUserPhotoQueueable implements Queueable, Database.AllowsCallouts {
 	
-	private Zippex zipHandler;
+	private String zipFileUrl;
 	private String fileNameToExtract;
 	private String fileBaseName;
 
-	public UploadUserPhotoQueueable(Zippex zipHandler, String fileNameToExtract, String fileBaseName){
-		this.zipHandler = zipHandler;
+	public UploadUserPhotoQueueable(String zipFileUrl, String fileNameToExtract, String fileBaseName){
+		this.zipFileUrl = zipFileUrl;
 		this.fileNameToExtract = fileNameToExtract;
 		this.fileBaseName = fileBaseName;
 	}
 
 	public void execute(QueueableContext context) {
         
+        Blob file = new WaveConfiguratorUtils().getUsersPhotosZipBlob(zipFileUrl);
+		Zippex zipHandler = new Zippex(file);
         String nameToSave = this.fileBaseName.substringBeforeLast('.');
 
 		if(String.isNotBlank(nameToSave)){
