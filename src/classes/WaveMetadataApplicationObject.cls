@@ -6,4 +6,5 @@ public class WaveMetadataApplicationObject {
 	public List<String> dateFieldsToShift;
 	public List<WaveMetadataApplicationObject> children;
 	public List<WaveMetadataApplicationObjectRelation> relations;
+	public List<WaveRecordTypeItem> recordTypes;
 }

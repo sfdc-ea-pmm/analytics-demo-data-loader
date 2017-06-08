@@ -187,11 +187,18 @@ public with sharing class WaveConfiguratorUtils {
 		Zippex zip = new Zippex(file);
 
 		for(String fileName: zip.getFileNames()){
-			String fileBaseName = fileName.substringAfterLast('/');
+			
+			String fileBaseName = fileName;
+			
+			if(fileName.contains('/')){
+				fileBaseName = fileName.substringAfterLast('/');
+			}
+					
 			String nameToSave = fileBaseName.substringBeforeLast('.');
 
 			if(String.isNotBlank(nameToSave)){
 				imagesType.put(nameToSave, fileName.substringAfterLast('.'));
+				
 				photosToQuery.put(nameToSave, zip.getFile(fileName));
 			}
 		}

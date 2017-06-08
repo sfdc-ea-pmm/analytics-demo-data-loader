@@ -51,6 +51,9 @@ public with sharing class WaveDataManagerController {
 	public Boolean processingObjectsAndFieldsMetadata { get; set; }
 	public Boolean processingEdgemarts { get; set; }
 	public Map<String, Boolean> edgeMartsChecked;
+	public List<List<SF_MetadataUtils.RecordTypeSpecification>> objectsRecordTypesMatrix;
+	public Integer currentRecordTypeIndex;
+	public Boolean processingRecordTypes { get; set; }
 
 	// Secuence control
 	public String installationStep { get; set; }
@@ -64,6 +67,7 @@ public with sharing class WaveDataManagerController {
 		this.emailAddress = UserInfo.getUserEmail();
 		this.utils = new WaveConfiguratorUtils();
 		this.objectsAndFieldsMatrix = new List<List<SF_MetadataUtils.CustomFieldSpecification>>();
+		this.objectsRecordTypesMatrix = new List<List<SF_MetadataUtils.RecordTypeSpecification>>();
 		this.MetadataResponse = '';
 		this.installationStep = '';
 		this.enableTimeShiftingCheck = false;
@@ -365,11 +369,11 @@ public with sharing class WaveDataManagerController {
 									this.currentTimeShiftingNodeIndex = 0;
 									this.enableObjectProcessingCheck = false;
 
-									if(String.isNotBlank(this.selectedAppMetadata.userProfilePicturesUrl)){
+									/*if(String.isNotBlank(this.selectedAppMetadata.userProfilePicturesUrl)){
 										this.logMessage('Loading user profile photos...');
 										utils.uploadUsersPhotos(this.genericAppConfiguration.baseUrl + this.selectedAppMetadata.userProfilePicturesUrl);
 										this.logMessage('User profile photos loaded successfully.');
-									}
+									}*/
 
 									this.disabledButton = false;
 									this.logMessage('Done.');
@@ -537,6 +541,15 @@ public with sharing class WaveDataManagerController {
 		}
 	}
 
+	private void launchRecordTypeCreation(){
+		if(this.objectsRecordTypesMatrix.size() > 0){
+			this.currentObjectIndex = 0;
+			this.currentRecordTypeIndex = 0;
+			this.processCurrentRecordType(true);
+			this.processingRecordTypes = true;
+		}
+	}
+
 	public void loadAllObjects(){
 		try {
 			if(this.installationStep == 'LoadObjects'){
@@ -574,9 +587,11 @@ public with sharing class WaveDataManagerController {
 					
 					List<WaveApplicationObject> lstObjects = new List<WaveApplicationObject>();
 					// Retrieve objects to process
+
 					for(WaveMetadataApplicationObject wmaObj: this.selectedAppMetadata.objects) {
 						List<WaveApplicationObject> objs = this.getObjectsToProcess(wmaObj);
 						lstObjects.addAll(objs);
+						this.addRecordTypeNodes(wmaObj);
 					}
 
 					this.objectsNodes = lstObjects;
@@ -615,6 +630,7 @@ public with sharing class WaveDataManagerController {
 					for(WaveMetadataApplicationObject wmaObj: this.selectedAppMetadata.objects) {
 						List<WaveApplicationObject> objs = this.getObjectsToProcess(wmaObj);
 						lstObjects.addAll(objs);
+						this.addRecordTypeNodes(wmaObj);
 					}
 
 					this.objectsNodes = lstObjects;
@@ -630,6 +646,29 @@ public with sharing class WaveDataManagerController {
 			this.installationStep = '';
 			this.rollbackProcess(e.getMessage(), e.getStackTraceString());
 		}
+	}
+
+	public void addRecordTypeNodes(WaveMetadataApplicationObject wmaObj){
+		
+		if(wmaObj.recordTypes != null && wmaObj.recordTypes.size() > 0){
+			
+			List<SF_MetadataUtils.RecordTypeSpecification> recordTypesToCreate = new List<SF_MetadataUtils.RecordTypeSpecification>();
+			
+			for(WaveRecordTypeItem rt: wmaObj.recordTypes){
+				SF_MetadataUtils.RecordTypeSpecification rtSpec = new SF_MetadataUtils.RecordTypeSpecification();
+				rtSpec.ObjectName = wmaObj.name;
+				rtSpec.Name = rt.Label;
+				rtSpec.DeveloperName = rt.developerName;
+				rtSpec.BusinessProcessName = rt.businessProcessName;
+
+				recordTypesToCreate.add(rtSpec);
+			}
+
+			if(recordTypesToCreate.size() > 0){
+				this.objectsRecordTypesMatrix.add(recordTypesToCreate);
+			}
+		}
+		
 	}
 
 	public void addTimeShiftingNode(WaveMetadataApplicationObject wmaObj){
@@ -655,13 +694,33 @@ public with sharing class WaveDataManagerController {
 
 		String jsonMetadata = res.getBody();
 		this.selectedAppMetadata = (WaveMetadataApplication)JSON.deserialize(jsonMetadata, WaveMetadataApplication.class);
-
 		return appRow;
 	}
 
 	public void createObjectsAndFields(List<WaveApplicationObject> lstObjects){
 		
-		// Check if there are objects data to load					
+		List<String> taskFieldErrors = SF_MetadataUtils.assignAccessToField('Task', 'WhatId');
+		String errors = '';
+
+		if(taskFieldErrors.size() > 0){
+			for(String error: taskFieldErrors){
+				errors += error;
+			}
+
+			throw new WaveConfiguratorException('WhatId field in Task object could not be granted. Cause: ' + errors);
+		}
+
+		List<String> eventFieldErrors = SF_MetadataUtils.assignAccessToField('Event', 'WhatId');
+		
+		if(eventFieldErrors.size() > 0){
+			for(String error: eventFieldErrors){
+				errors += error;
+			}
+
+			throw new WaveConfiguratorException('WhatId field in Event object could not be granted. Cause: ' + errors);
+		}
+
+		// Check if there are objects data to load
 		if(lstObjects.size() > 0){						
 			
 			// Objects and fields Setup
@@ -688,7 +747,6 @@ public with sharing class WaveDataManagerController {
 						
 						fieldsToCreate.add(fieldSpec);
 					}
-					
 				}
 
 				if(fieldsToCreate.size() > 0){
@@ -706,16 +764,130 @@ public with sharing class WaveDataManagerController {
 			else {
 				// We DON'T have metadata to process
 				this.logMessage('No need to create new objects and fields.');
-
-				if(this.selectedInstallationProcess == 'loadObjects'){
+				
+				/*if(this.selectedInstallationProcess == 'loadObjects'){
 					// We chain this with object data loading
 					this.launchObjectsLoading();
 				}
 				else if(this.selectedInstallationProcess == 'createMetadata'){
 					this.disabledButton = false;
+				}*/
+
+				if(this.objectsRecordTypesMatrix.size() > 0){
+					this.launchRecordTypeCreation();
+				}
+				else {
+					
+					if(this.selectedInstallationProcess == 'loadObjects'){
+						// We chain this with object data loading
+						this.launchObjectsLoading();
+					}
+					else if(this.selectedInstallationProcess == 'createMetadata'){
+						this.disabledButton = false;
+					}
 				}
 			}
 		} 
+	}
+
+	private void processCurrentRecordType(Boolean startingWithObject){
+		SF_MetadataUtils.RecordTypeSpecification initialRecordType = this.objectsRecordTypesMatrix.get(this.currentObjectIndex).get(this.currentRecordTypeIndex);
+		
+		if(startingWithObject){
+			this.logMessage('Processing ' + initialRecordType.ObjectName + ' record type...');
+		}
+
+		CreateRecordTypesQueueable recordTypeCreationQueue = new CreateRecordTypesQueueable(initialRecordType, UserInfo.getSessionId());
+		this.queueProcessId = System.enqueueJob(recordTypeCreationQueue);		
+	}
+
+	public PageReference checkRecordTypeCreationStatus(){
+		
+		try {
+			if(!String.isBlank(this.queueProcessId) && this.processingRecordTypes){
+				List<AsyncApexJob> lstJobs = [SELECT CompletedDate, JobItemsProcessed, NumberOfErrors, Status, TotalJobItems FROM AsyncApexJob WHERE Id = :this.queueProcessId];
+				SF_MetadataUtils.RecordTypeSpecification currentRecordType = this.objectsRecordTypesMatrix.get(this.currentObjectIndex).get(this.currentRecordTypeIndex);
+
+				if(lstJobs.size() > 0){
+					AsyncApexJob asyncJob = lstJobs.get(0);
+
+					if(asyncJob.Status == 'Completed'){
+						if(asyncJob.NumberOfErrors > 0) {
+							this.errorMessage = 'Error while processing ' + currentRecordType.Name + ' record type for the ' + currentRecordType.ObjectName + ' object. See logs for details.';
+							this.currentObjectIndex = 0;
+							this.currentRecordTypeIndex = 0;
+							this.processingRecordTypes = false;
+							this.disabledButton = false;
+						}
+						else {
+							// now check whether it was the last one
+							List<SF_MetadataUtils.RecordTypeSpecification> currentRecordTypeList = this.objectsRecordTypesMatrix.get(this.currentObjectIndex);
+
+							if(this.currentObjectIndex == this.objectsRecordTypesMatrix.size() - 1){
+								
+								if(this.currentRecordTypeIndex == currentRecordTypeList.size() - 1){
+									this.currentObjectIndex = 0;
+									this.currentRecordTypeIndex = 0;
+									this.objectsRecordTypesMatrix.clear();
+									this.processingRecordTypes = false;
+									this.disabledButton = false;
+									this.logMessage('All needed metadata was created successfully.');
+
+									if(this.selectedInstallationProcess == 'loadObjects'){
+										this.launchObjectsLoading();
+									}
+									else if(this.selectedInstallationProcess == 'fullInstallation') {
+										// Now we configure step to begin loading the edgemarts
+										this.installationStep = 'LoadEdgemarts';
+									}
+								}
+								else{
+									this.currentRecordTypeIndex = this.currentRecordTypeIndex + 1;
+									this.processCurrentRecordType(false);
+								}
+							}
+							else {
+								if(this.currentRecordTypeIndex == currentRecordTypeList.size() - 1){
+									this.currentObjectIndex = this.currentObjectIndex + 1;
+									this.currentRecordTypeIndex = 0;
+									this.processCurrentRecordType(true);
+								}
+								else{
+									this.currentRecordTypeIndex = this.currentRecordTypeIndex + 1;
+									this.processCurrentRecordType(false);
+								}
+							}
+						}		
+					}
+					else if(asyncJob.Status == 'Aborted'){
+						this.errorMessage = 'The process was aborted while processing ' + currentRecordType.Name + ' record type for the ' + currentRecordType.ObjectName + ' object. See logs for details.';
+						this.currentObjectIndex = 0;
+						this.currentRecordTypeIndex = 0;
+						this.processingRecordTypes = false;
+						this.disabledButton = false;
+					}
+					else if(asyncJob.Status == 'Failed'){
+						this.errorMessage = 'The process failed while processing ' + currentRecordType.Name + ' record type for the ' + currentRecordType.ObjectName + ' object. See logs for details.';
+						this.currentObjectIndex = 0;
+						this.currentRecordTypeIndex = 0;
+						this.processingRecordTypes = false;
+						this.disabledButton = false;
+					}
+				}
+			}
+		}
+		catch(Exception e) {
+			this.errorMessage = e.getMessage();
+			System.debug(e.getMessage());
+			System.debug(e.getStackTraceString());
+			this.currentObjectIndex = 0;
+			this.currentRecordTypeIndex = 0;
+			this.processingRecordTypes = false;
+			this.disabledButton = false;
+			this.objectsRecordTypesMatrix.clear();
+		}
+
+		return null;
 	}
 
 	private void processCurrentObjectAndFieldsMetadata(Boolean startingWithObject){
@@ -765,14 +937,16 @@ public with sharing class WaveDataManagerController {
 									this.processingObjectsAndFieldsMetadata = false;
 									this.disabledButton = false;
 									this.logMessage('All needed metadata was created successfully.');
+									
+									this.launchRecordTypeCreation();
 
-									if(this.selectedInstallationProcess == 'loadObjects'){
+									/*if(this.selectedInstallationProcess == 'loadObjects'){
 										this.launchObjectsLoading();
 									}
 									else if(this.selectedInstallationProcess == 'fullInstallation') {
 										// Now we configure step to begin loading the edgemarts
 										this.installationStep = 'LoadEdgemarts';
-									}
+									}*/
 								}
 								else{
 									this.currentFieldIndex = this.currentFieldIndex + 1;
@@ -783,7 +957,7 @@ public with sharing class WaveDataManagerController {
 								if(this.currentFieldIndex == currentFieldList.size() - 1){
 									this.currentObjectIndex = this.currentObjectIndex + 1;
 									this.currentFieldIndex = 0;
-									this.processCurrentObjectAndFieldsMetadata(false);
+									this.processCurrentObjectAndFieldsMetadata(true);
 								}
 								else{
 									this.currentFieldIndex = this.currentFieldIndex + 1;

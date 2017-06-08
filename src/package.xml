@@ -3,6 +3,7 @@
     <types>
         <members>CSVReader</members>
         <members>CreateObjectsAndFieldsQueueable</members>
+        <members>CreateRecordTypesQueueable</members>
         <members>CsvDataImportBatch</members>
         <members>Edgemart</members>
         <members>GenericAppConfiguration</members>
@@ -36,6 +37,7 @@
         <members>WaveMetadataApplicationDashboard</members>
         <members>WaveMetadataApplicationObject</members>
         <members>WaveMetadataApplicationObjectRelation</members>
+        <members>WaveRecordTypeItem</members>
         <members>WaveTimeShiftingItem</members>
         <members>Zippex</members>
         <members>ZippexTests</members>

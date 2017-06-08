@@ -1,14 +1,13 @@
 // This class combines Schema class for describe metadata and MetadataService calls to handle
 // the creation of custom objects and fields
 public with sharing class SF_MetadataUtils {
-	
-	
-	public static Boolean objectExists(String objName){
+    
+    public static Boolean objectExists(String objName){
         Map<String, Schema.SObjectType> globalDescribe = Schema.getGlobalDescribe(); 
-		return globalDescribe.containsKey(objName.toLowerCase());
-	}
+        return globalDescribe.containsKey(objName.toLowerCase());
+    }
 
-	public static Boolean fieldExists(String objName, String fieldName){
+    public static Boolean fieldExists(String objName, String fieldName){
         Map<String, Schema.SObjectType> globalDescribe = Schema.getGlobalDescribe();
         if(globalDescribe.containsKey(objName.toLowerCase())){
             Schema.sObjectType objType = globalDescribe.get(objName.toLowerCase());            
@@ -26,7 +25,7 @@ public with sharing class SF_MetadataUtils {
         else {
             return false;
         }
-	}
+    }
 
     // Client passes the session id
     public static List<String> createObject(String objName, String sessionId){
@@ -40,11 +39,11 @@ public with sharing class SF_MetadataUtils {
         return SF_MetadataUtils.createObjectAux(objName, service);
     }
 
-	private static List<String> createObjectAux(String objName, MetadataService.MetadataPort service){
-		
+    private static List<String> createObjectAux(String objName, MetadataService.MetadataPort service){
+        
         List<String> errors = new List<String>();
-		List<MetadataService.SaveResult> results;		
-		MetadataService.CustomObject cObj = new MetadataService.CustomObject();
+        List<MetadataService.SaveResult> results;       
+        MetadataService.CustomObject cObj = new MetadataService.CustomObject();
 
         cObj.fullName = objName.endsWith('__c') ? objName : objName + '__c';
         cObj.label = objName;
@@ -60,7 +59,7 @@ public with sharing class SF_MetadataUtils {
         );
 
         if(results == null || results.size() == 0 && !results.get(0).success){
-        	// Return error messages
+            // Return error messages
             if(!Test.isRunningTest()){
                 for(MetadataService.Error err : results.get(0).errors){
                     errors.add(err.message);
@@ -69,7 +68,7 @@ public with sharing class SF_MetadataUtils {
         }
 
         return errors;
-	}
+    }
 
     public static List<String> createField(CustomFieldSpecification fieldSpec){
         MetadataService.MetadataPort service = createService();
@@ -81,10 +80,10 @@ public with sharing class SF_MetadataUtils {
         return SF_MetadataUtils.createFieldAux(fieldSpec, service);
     }
 
-	private static List<String> createFieldAux(CustomFieldSpecification fieldSpec, MetadataService.MetadataPort service){
-		
+    private static List<String> createFieldAux(CustomFieldSpecification fieldSpec, MetadataService.MetadataPort service){
+        
         List<String> errors = new List<String>();
-		if(fieldSpec.Name.endsWithIgnoreCase('__c')){
+        if(fieldSpec.Name.endsWithIgnoreCase('__c')){
             List<MetadataService.UpsertResult> results;            
             MetadataService.CustomField cField = new MetadataService.CustomField();
 
@@ -179,9 +178,94 @@ public with sharing class SF_MetadataUtils {
         }
 
         return errors;
-	}
+    }
 
-	public static MetadataService.MetadataPort createService()
+    public static List<String> assignAccessToField(String objName, String fieldName){
+
+        List<String> errors = new List<String>();
+        List<MetadataService.UpsertResult> results;
+        String fieldFullName = '';
+        MetadataService.MetadataPort service = createService();
+
+        if(objName.equalsIgnoreCase('Task') || objName.equalsIgnoreCase('Event'))
+        {
+            // Special management for Activity fields
+            fieldFullName = 'Activity.' + fieldName;
+        }
+        else{
+            fieldFullName = objName + '.' + fieldName;
+        }
+
+        // Field level security for Admin
+        MetadataService.Profile admProfile = new MetadataService.Profile();
+        admProfile.fullName = 'Admin';
+        MetadataService.ProfileTabVisibility[] tvs = new MetadataService.ProfileTabVisibility[]{}; 
+        admProfile.tabVisibilities = tvs;
+        MetadataService.ProfileFieldLevelSecurity fieldSec = new MetadataService.ProfileFieldLevelSecurity();
+        fieldSec.field = fieldFullName;
+        fieldSec.editable=true;
+        admProfile.FieldPermissions = new MetadataService.ProfileFieldLevelSecurity[] { fieldSec } ;
+
+        // FLS for Analytics Cloud Integration User
+        MetadataService.Profile aciuProfile = new MetadataService.Profile();
+        aciuProfile.fullName = 'Analytics Cloud Integration User';
+        MetadataService.ProfileTabVisibility[] aciuTvs = new MetadataService.ProfileTabVisibility[]{}; 
+        aciuProfile.tabVisibilities = aciuTvs;
+        MetadataService.ProfileFieldLevelSecurity aciuFLS = new MetadataService.ProfileFieldLevelSecurity();
+        aciuFLS.field = fieldFullName;
+        aciuFLS.readable = true;
+        aciuFLS.editable = false;
+        aciuProfile.FieldPermissions = new MetadataService.ProfileFieldLevelSecurity[] { aciuFLS } ;
+
+        results = service.upsertMetadata(
+            new MetadataService.Metadata[] { admProfile, aciuProfile }
+        );
+
+        if(results == null || results.size() == 0 || !results.get(0).success){
+            // Return error messages
+            if(!Test.isRunningTest()){
+                for(MetadataService.Error err : results.get(0).errors){
+                    errors.add(err.message);
+                }
+            }   
+        }
+
+        return errors;
+    }
+
+    public static List<String> createRecordType(RecordTypeSpecification recordTypeSpec, String sessionId)
+    {
+        List<String> errors = new List<String>();
+        List<MetadataService.UpsertResult> results;
+
+        MetadataService.RecordType recordType = new MetadataService.RecordType();
+        recordType.active = true;
+        recordType.fullName = recordTypeSpec.ObjectName + '.' + recordTypeSpec.DeveloperName;
+        recordType.label = recordTypeSpec.Name;
+        recordType.businessProcess = recordTypeSpec.BusinessProcessName;
+        recordType.description = recordTypeSpec.Description;
+
+        MetadataService.MetadataPort service = createService(sessionId);
+        
+        results = service.upsertMetadata(
+            new MetadataService.Metadata[] { recordType }
+        );
+
+
+        if(results == null || results.size() == 0 || !results.get(0).success){
+            // Return error messages
+            if(!Test.isRunningTest()){
+                for(MetadataService.Error err : results.get(0).errors){
+                    errors.add(err.message);
+                }
+            }   
+        }
+
+        return errors;
+    }
+
+
+    public static MetadataService.MetadataPort createService()
     {
         MetadataService.MetadataPort service = new MetadataService.MetadataPort();
         service.SessionHeader = new MetadataService.SessionHeader_element();
@@ -219,16 +303,24 @@ public with sharing class SF_MetadataUtils {
     }
 
     public class CustomFieldSpecification {
-    	public String ObjectName;
-    	public String Name;
-    	public String Label;
-    	public String Type;
-		public String ReferenceTo;
-		public Integer Length;
-		public Integer Precision;
-		public Integer Scale;
-		public Boolean IsExternalId;
-		public Boolean IsRequired;
+        public String ObjectName;
+        public String Name;
+        public String Label;
+        public String Type;
+        public String ReferenceTo;
+        public Integer Length;
+        public Integer Precision;
+        public Integer Scale;
+        public Boolean IsExternalId;
+        public Boolean IsRequired;
         public String DefaultValue;
+    }
+
+    public class RecordTypeSpecification {
+        public String ObjectName;
+        public String DeveloperName;
+        public String Name;
+        public String Description;
+        public String BusinessProcessName;
     }
 }

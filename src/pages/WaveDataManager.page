@@ -117,6 +117,8 @@
 		
 		<apex:actionPoller action="{!checkMetadataCreationStatus}" reRender="processingStatus,processingLogConsole,messages,form1,form3,vsbButton" enabled="{!processingObjectsAndFieldsMetadata}" interval="5" id="checkMetadataFunction"/>
 
+		<apex:actionPoller action="{!checkRecordTypeCreationStatus}" reRender="processingStatus,processingLogConsole,messages,form1,form3,vsbButton" enabled="{!processingRecordTypes}" interval="5"/>
+
 		<!-- Objects Load Panel/Function -->
 		<apex:outputPanel id="loadObjectsPanel">
 			<apex:actionFunction name="loadObjects" action="{!loadAllObjects}" reRender="loadObjectsPanel,form3,processingLogPanel,form1,vsbButton" />

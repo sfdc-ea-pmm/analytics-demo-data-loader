@@ -53,10 +53,7 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
 
    	global void execute(Database.BatchableContext BC, List<String> scope) {
 
-   		try{
-
-
-	   		System.debug('About to process ' + scope.size() + ' records of type ' + this.objectType.getDescribe().getName());
+   		try {
 			
 	   		List<String> lines = new List<String>();
 
@@ -181,7 +178,7 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
 
 			this.errorMessages.add(ex.getMessage());
 
-			//throw ex;
+			throw ex;
 		}
 	}
 	
