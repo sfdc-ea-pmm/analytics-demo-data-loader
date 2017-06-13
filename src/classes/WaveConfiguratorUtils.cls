@@ -14,6 +14,13 @@ public with sharing class WaveConfiguratorUtils {
 			GenericAppConfiguration appConfig = (GenericAppConfiguration)JSON.deserialize(body, GenericAppConfiguration.class);
 			apiVersion = appConfig.apiVersion;
 
+			/*if(!SF_MetadataUtils.objectExists(configurationFileName)){
+				List<String> objectErrros = SF_MetadataUtils.createObject(configurationFileName);
+				if(objectErrros.size() > 0){
+					throw new WaveConfiguratorException('There was an error in the attempt to create the app configuration object.');
+				}
+			}*/
+
 			return appConfig;
 		} 
 		else {

@@ -11,7 +11,17 @@ public with sharing class CreateRecordTypesQueueable implements Queueable, Datab
 	
 		List<String> fieldCreationErrors = SF_MetadataUtils.createRecordType(rtToCreate, this.sessionId);
 
-		System.debug('Field Creation errors: ' + fieldCreationErrors);
+		if(fieldCreationErrors.size() > 0){
+			
+			String errors = '';
+			
+			for(String err: fieldCreationErrors){
+				errors += err + '.';
+			}
 
+			System.debug('Field Creation errors: ' + errors);
+			throw new WaveConfiguratorException('Record types could not be created. Cause: ' + errors);
+		}
+		
     }
 }

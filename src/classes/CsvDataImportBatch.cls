@@ -64,14 +64,14 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
 
 	        List<List<String>> rowsBatch = CSVReader.Parse(String.join(lines, '\n'));
 
+	        System.debug('About to process ' + rowsBatch.size() + ' objects of type ' + this.objectType.getDescribe().getName());
+
 	   		// First handle smart lookups
 	   		this.processSmartLookupForBatch(rowsBatch);
 
 	   		List<SObject> objectsBatch = new List<SObject>();
 	   		List<String> lstExternalIds = new List<String>();
 	   		Map<String, Schema.SObjectField> objectFields = this.objectType.getDescribe().fields.getMap();
-			
-            System.debug(this.fieldPositions);
             
 	   		// For each row of data in the CSV
 			for(List<String> sObjRow: rowsBatch) {
@@ -243,8 +243,6 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
 	            
 	            for (SObject t: temp) {
 	                s.replaceValues.put(String.valueOf(t.get(sFieldToQuery)), String.valueOf(t.get('Id')));
-                    System.debug(s.columnNumber + ' ' + String.valueOf(t.get(sFieldToQuery)) + ' ' + String.valueOf(t.get('Id')));
-                    System.debug(s.columnNumber + ' ' + s.replaceValues.get(String.valueOf(t.get(sFieldToQuery))));
 	            }
 
 	            // Search whether there are Extenal_Id__c with not found id
@@ -259,10 +257,7 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
 	        // Replace name values with Id equivalent
 	        for (List<String> row : scope) {
 	            for (SmartLookup s: this.smartLookups) {
-                    // s.replaceValues.get(row[s.ColumnNumber]) is turning out to be null, 
-                    // so we are going to trim row[s.ColumnNumber]
-                    //System.debug(s.columnNumber + ' ' + row[s.ColumnNumber] + ' ' + s.replaceValues.get(row[s.ColumnNumber]));
-	            	if(String.isNotBlank(row[s.ColumnNumber])){
+                    if(String.isNotBlank(row[s.ColumnNumber])){
 	            		row[s.ColumnNumber] = s.replaceValues.get(row[s.ColumnNumber].trim());
 	            	}
 	            }

@@ -12,11 +12,33 @@ public with sharing class CreateObjectsAndFieldsQueueable implements Queueable, 
 	
 		if(!SF_MetadataUtils.objectExists(fieldToCreate.ObjectName)){
 			List<String> objectCreationErrors = SF_MetadataUtils.createObject(fieldToCreate.ObjectName, this.sessionId);
+			
+			if(objectCreationErrors.size() > 0){
+				String errors = '';
+			
+				for(String err: objectCreationErrors){
+					errors += err + '.';
+				}
+
+				System.debug('Object Creation errors: ' + errors);
+				throw new WaveConfiguratorException('An object could not be created. Cause: ' + errors);
+
+			}
 		}
 
 		List<String> fieldCreationErrors = SF_MetadataUtils.createField(fieldToCreate, this.sessionId);
 
-		System.debug('Field Creation errors: ' + fieldCreationErrors);
+		if(fieldCreationErrors.size() > 0){
+			String errors = '';
+		
+			for(String err: fieldCreationErrors){
+				errors += err + '.';
+			}
+
+			System.debug('Field Creation errors: ' + errors);
+			throw new WaveConfiguratorException('A field could not be created. Cause: ' + errors);
+			
+		}
 
     }
 }

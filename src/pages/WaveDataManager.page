@@ -60,7 +60,7 @@
 	<apex:sectionHeader title="SEA Demo Data Loader" subtitle="Saleforce Einstein Analytics Demo Data Loader"/>
 	<apex:form style="margin-top: 50px;" styleClass="standardText" rendered="{!pageRendered}">
 		<apex:panelGrid columns="2" columnClasses="valignTop">
-			<apex:panelGrid columns="1">
+			<apex:panelGrid columns="1" id="appSelection">
 				<apex:outputLabel >Please select an App to Load</apex:outputLabel>
 		        <apex:selectList value="{!selectedWaveApp}" multiselect="false" size="10" style="width:200px">
 		   			<apex:selectOptions value="{!waveApps}"/>
@@ -73,6 +73,35 @@
 	   		</apex:panelGrid>
 	   		<apex:panelGrid columns="1" width="200px" id="controls">
 	   			
+	   			<apex:outputPanel id="appSettings">
+		   			<apex:outputPanel >
+		   				<apex:commandLink value="{!IF(advancedOption, 'Hide Advanced Settings', 'Show Advanced Settings')}" action="{!handleAdvancedSetting}" reRender="appSettings" />
+					</apex:outputPanel>
+					
+					<apex:panelGrid columns="1" rendered="{!advancedOption}" >
+						
+						<apex:outputLabel >Api Version:</apex:outputLabel>
+						<apex:inputText value="{!genericAppConfiguration.apiVersion}" />
+						
+						<apex:outputLabel >Base URL:</apex:outputLabel>
+						<apex:inputText value="{!genericAppConfiguration.baseUrl}" style="width:400px;">
+							<apex:actionSupport action="{!getWaveApplications}" event="onchange" rerender="appSelection,appDescription,form1"/>
+						</apex:inputText>
+
+						<apex:outputLabel >Application List URI (relative to Base URL):</apex:outputLabel>
+						<apex:inputText value="{!genericAppConfiguration.waveApplicationsUrl}" style="width:400px;">
+							<apex:actionSupport action="{!getWaveApplications}" event="onchange" rerender="appSelection,appDescription,form1"/>
+						</apex:inputText>
+
+						<apex:outputLabel >Objects Load Batch Size:</apex:outputLabel>
+						<apex:inputText value="{!genericAppConfiguration.objectLoadingBatchSize}"/>
+
+						<apex:outputLabel >Time Shifting Batch Size:</apex:outputLabel>
+						<apex:inputText value="{!genericAppConfiguration.timeShiftingBatchSize}"/>
+						
+					</apex:panelGrid>
+				</apex:outputPanel>
+
 	   			<apex:outputLabel for="processType">Specify the process:</apex:outputLabel>
 	   			<apex:selectList value="{!selectedInstallationProcess}" size="1" id="processType">
 	   				<apex:selectOption itemValue="loadObjects" itemLabel="Prep Core Data"/>
@@ -118,6 +147,8 @@
 		<apex:actionPoller action="{!checkMetadataCreationStatus}" reRender="processingStatus,processingLogConsole,messages,form1,form3,vsbButton" enabled="{!processingObjectsAndFieldsMetadata}" interval="5" id="checkMetadataFunction"/>
 
 		<apex:actionPoller action="{!checkRecordTypeCreationStatus}" reRender="processingStatus,processingLogConsole,messages,form1,form3,vsbButton" enabled="{!processingRecordTypes}" interval="5"/>
+		
+		<apex:actionPoller action="{!checkUserPhotoUploadStatus}" reRender="processingStatus,processingLogConsole,messages,form1,form3,vsbButton" enabled="{!uploadingUserPhotos}" interval="5"/>
 
 		<!-- Objects Load Panel/Function -->
 		<apex:outputPanel id="loadObjectsPanel">

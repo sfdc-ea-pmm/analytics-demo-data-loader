@@ -57,6 +57,8 @@ public with sharing class WaveDataManagerController {
 	public List<UserPhotoInfo> userPhotoNodes;
 	public Integer currentUserPhotoNodeIndex;
 	public Boolean uploadingUserPhotos { get; set; }
+	public Boolean advancedOption { get; set; }
+	public String selectedOptionToOverride { get; set; }
 
 	// Secuence control
 	public String installationStep { get; set; }
@@ -86,6 +88,7 @@ public with sharing class WaveDataManagerController {
 		this.edgeMartsChecked = new Map<String, Boolean>();
 		this.selectedInstallationProcess = 'fullInstallation';
 		this.userPhotoNodes = new List<UserPhotoInfo>();
+		this.advancedOption = false;
 	}
 
 	public PageReference pageLoad()
@@ -97,6 +100,7 @@ public with sharing class WaveDataManagerController {
 
 			//Get App Configuration File
 			this.genericAppConfiguration = utils.getAppConfiguration(genericAppConfigurationFileName);
+			//this.selectedOptionToOverride = this.genericAppConfiguration.apiVersion;
 			this.pageRendered = true;
 
 			// Attempt to connect to the Metadata API
@@ -113,7 +117,7 @@ public with sharing class WaveDataManagerController {
 			}
 
 			if(applicationRows == null){
-				applicationRows = WaveConfiguratorUtils.getWaveApplications(this.genericAppConfiguration.baseUrl + this.genericAppConfiguration.waveApplicationsUrl);			
+				applicationRows = WaveConfiguratorUtils.getWaveApplications(this.genericAppConfiguration.baseUrl + this.genericAppConfiguration.waveApplicationsUrl);
 				if(this.applicationRows != null){
 					Integer index = 0;
 		        	for(WaveApplicationRow genericApp: this.applicationRows) {
@@ -126,10 +130,34 @@ public with sharing class WaveDataManagerController {
 
 		} 
 		catch(WaveConfiguratorException ex){
-			this.errorMessage = ex.getMessage();
+			this.errorMessage = ex.getMessage();			
 		}
 
 		return null;
+	}
+
+	public void handleAdvancedSetting(){
+		this.advancedOption = !this.advancedOption;
+	}
+
+	public void getWaveApplications(){
+		this.errorMessage = '';
+		this.applicationRows = null;
+		
+		try{
+			applicationRows = WaveConfiguratorUtils.getWaveApplications(this.genericAppConfiguration.baseUrl + this.genericAppConfiguration.waveApplicationsUrl);			
+			if(this.applicationRows != null){
+				Integer index = 0;
+	        	for(WaveApplicationRow genericApp: this.applicationRows) {
+					this.appIndexes.put(genericApp.Name, index);
+					this.appDescriptions.put(genericApp.Name, genericApp.Description);
+					index++;
+				}
+	        }
+        }
+        catch(Exception ex){
+        	this.errorMessage = 'The ' + this.genericAppConfiguration.baseUrl + this.genericAppConfiguration.waveApplicationsUrl + ' URL doesn\'t point to a valid wave applications list resource. Try changing Base URL and/or Application List URI.';
+        }
 	}
 
 	public List<SelectOption> getWaveApps() {
@@ -251,7 +279,7 @@ public with sharing class WaveDataManagerController {
 		try{
 			WaveApplicationObject currentNode = this.objectsNodes.get(this.currentNodeIndex);
 			this.logMessage('Loading records for ' + currentNode.name + ' object...');
-            System.debug('Current Node Url: ' + currentNode.url);
+            
 			HttpResponse res = WaveConfiguratorUtils.httpGetCallout(currentNode.url);
 			String csvDataWithHeaders = res.getBody();
 			
@@ -260,8 +288,7 @@ public with sharing class WaveDataManagerController {
 			if(indexOfLF != -1){
 				
 				String headersLine = csvDataWithHeaders.substring(0, indexOfLF);
-				System.debug('Headers: ' + headersLine);
-				
+								
 				// We search for \r
 				if(headersLine.indexOf('\r') != -1){
 					headersLine = headersLine.replace('\r', '');
@@ -276,13 +303,10 @@ public with sharing class WaveDataManagerController {
 				}
 
 				String csvData = csvDataWithHeaders.substringAfter('\n');
-				if(currentNode.url == 'https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/Sales/data/PricebookEntry.csv'){
-					System.debug(csvData);
-				}
 
 				if(csvData.length() > 0){
 
-					this.currentObjectProcessing = currentNode.name;					
+					this.currentObjectProcessing = currentNode.name;
 
 					// Start the batch process
 					CsvDataImportBatch batchProcess = new CsvDataImportBatch(Schema.getGlobalDescribe().get(currentNode.name), csvData, currentNode.fieldPositions, currentNode.relations);
@@ -297,7 +321,8 @@ public with sharing class WaveDataManagerController {
 					this.showJobStatistics = true;
 				}
 			}	
-		} catch(Exception e){
+		} 
+		catch(Exception e){
 			System.debug(e.getMessage());
 			System.debug(e.getStackTraceString());
 			this.enableObjectProcessingCheck = false;
