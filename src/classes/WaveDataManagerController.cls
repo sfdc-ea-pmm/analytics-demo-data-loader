@@ -214,8 +214,8 @@ public with sharing class WaveDataManagerController {
 
 		// We process the fields metadata
 		IMockarooHelper iMockHelper = MockarooHelperFactory.getIMockarooHelper();
-    	List<List<String>> csvMetadata = iMockHelper.getData(this.genericAppConfiguration.baseUrl + wmaObj.metadataUrl, false);
-    	
+		List<List<String>> csvMetadata = iMockHelper.getData(this.genericAppConfiguration.baseUrl + wmaObj.metadataUrl, false);
+
     	if(csvMetadata.size() > 0){
 			// Will extract headers
 			List<String> headers = csvMetadata.remove(0);
