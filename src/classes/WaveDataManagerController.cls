@@ -877,6 +877,7 @@ public with sharing class WaveDataManagerController {
 
 			for(WaveApplicationObject waObj: lstObjects) {
 				objects.add(waObj.Name);
+				System.debug(waObj.Name);
 
 				for(WaveApplicationObjectField field: waObj.fields) {
 					if(field.Name.endsWithIgnoreCase('__c')){
@@ -906,7 +907,6 @@ public with sharing class WaveDataManagerController {
 				}
 
 				fieldPermissions.put(fPermissions.Field.toUpperCase(), fPermissions.PermissionsRead);
-				
 			}			
 
 			// Objects and fields Setup
@@ -915,11 +915,13 @@ public with sharing class WaveDataManagerController {
 
 				// Check fields existence using waObj.fields property
 				for(WaveApplicationObjectField field: waObj.fields) {
+
+					String fieldFullName = waObj.name.toUpperCase() + '.' + field.Name.toUpperCase();					
 					
 					// If field doesn't exist, create it using field properties
 					if((field.Name.endsWithIgnoreCase('__c') && !SF_MetadataUtils.fieldExists(waObj.name, field.Name)) || 
 						(field.Name.endsWithIgnoreCase('__c') && SF_MetadataUtils.fieldExists(waObj.name, field.Name) 
-						&& !objectsAndFieldsPermissions.get(waObj.name).get(waObj.name.toUpperCase() + '.' + field.Name.toUpperCase()))
+						&& objectsAndFieldsPermissions.get(waObj.name).containsKey(fieldFullName) && !objectsAndFieldsPermissions.get(waObj.name).get(fieldFullName))
 					)
 					{
 						SF_MetadataUtils.CustomFieldSpecification fieldSpec = new SF_MetadataUtils.CustomFieldSpecification();
