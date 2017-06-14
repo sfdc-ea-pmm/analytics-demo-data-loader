@@ -214,7 +214,12 @@ public with sharing class WaveDataManagerController {
 
 		// We process the fields metadata
 		IMockarooHelper iMockHelper = MockarooHelperFactory.getIMockarooHelper();
-		List<List<String>> csvMetadata = iMockHelper.getData(this.genericAppConfiguration.baseUrl + wmaObj.metadataUrl, false);
+		
+		System.debug(this.genericAppConfiguration.baseUrl + wmaObj.metadataUrl);
+    	
+    	List<List<String>> csvMetadata = iMockHelper.getData(this.genericAppConfiguration.baseUrl + wmaObj.metadataUrl, false);
+    	
+    	System.debug(csvMetadata);
 
     	if(csvMetadata.size() > 0){
 			// Will extract headers
@@ -229,6 +234,9 @@ public with sharing class WaveDataManagerController {
 			rootObj.fields = new List<WaveApplicationObjectField>();
 
 			for(List<String> metadataRow: csvMetadata) {
+
+				System.debug(fieldPositions.get('Label'));
+				System.debug(metadataRow.get(fieldPositions.get('Label')));
 
 				WaveApplicationObjectField fieldMetadata = new WaveApplicationObjectField();
 				fieldMetadata.Label = metadataRow.get(fieldPositions.get('Label')).trim();
@@ -724,6 +732,7 @@ public with sharing class WaveDataManagerController {
 
 		Boolean passedValidation = true;
 		this.resetMessages();
+		this.getWaveApplications();
 
 		try{
 			if(this.selectedInstallationProcess == 'createMetadata'){
@@ -868,17 +877,62 @@ public with sharing class WaveDataManagerController {
 		}
 
 		// Check if there are objects data to load
-		if(lstObjects.size() > 0){						
+		if(lstObjects.size() > 0){
+
+			Set<String> objects = new Set<String>();
+			Set<String> fields = new Set<String>();
+
+			for(WaveApplicationObject waObj: lstObjects) {
+				objects.add(waObj.Name);
+
+				for(WaveApplicationObjectField field: waObj.fields) {
+					if(field.Name.endsWithIgnoreCase('__c')){
+						fields.add(waObj.Name + '.' + field.Name);
+					}
+				}			
+			}
+
+			List<FieldPermissions> result = [SELECT SobjectType, Field, PermissionsRead FROM FieldPermissions 
+							WHERE SobjectType IN :objects
+							AND Field IN :fields
+							AND parentid IN (SELECT id FROM PermissionSet WHERE
+							PermissionSet.Profile.Name = 'Analytics Cloud Integration User' AND IsOwnedByProfile = true)
+			];
+
+			Map<String,Map<String,Boolean>> objectsAndFieldsPermissions = new Map<String,Map<String,Boolean>>();
 			
+			for(FieldPermissions fPermissions: result){
+				Map<String,Boolean> fieldPermissions;
+
+				if(objectsAndFieldsPermissions.containsKey(fPermissions.SobjectType)){
+					fieldPermissions = objectsAndFieldsPermissions.get(fPermissions.SobjectType);
+				}
+				else{
+					fieldPermissions = new Map<String,Boolean>();
+					objectsAndFieldsPermissions.put(fPermissions.SobjectType, fieldPermissions);
+				}
+
+				fieldPermissions.put(fPermissions.Field.toUpperCase(), fPermissions.PermissionsRead);
+				
+			}
+
+			System.debug(objectsAndFieldsPermissions);
+
 			// Objects and fields Setup
 			for(WaveApplicationObject waObj: lstObjects) {
 				List<SF_MetadataUtils.CustomFieldSpecification> fieldsToCreate = new List<SF_MetadataUtils.CustomFieldSpecification>();
 
 				// Check fields existence using waObj.fields property
 				for(WaveApplicationObjectField field: waObj.fields) {
-						
+					
+					System.debug(waObj.name.toUpperCase() + '.' + field.Name.toUpperCase());
+					System.debug(objectsAndFieldsPermissions.get(waObj.name));
+
 					// If field doesn't exist, create it using field properties
-					if(field.Name.endsWithIgnoreCase('__c') && !SF_MetadataUtils.fieldExists(waObj.name, field.Name)){
+					if((field.Name.endsWithIgnoreCase('__c') && !SF_MetadataUtils.fieldExists(waObj.name, field.Name)) || 
+						(field.Name.endsWithIgnoreCase('__c') && SF_MetadataUtils.fieldExists(waObj.name, field.Name) 
+						&& !objectsAndFieldsPermissions.get(waObj.name).get(waObj.name.toUpperCase() + '.' + field.Name.toUpperCase())))
+					{
 						SF_MetadataUtils.CustomFieldSpecification fieldSpec = new SF_MetadataUtils.CustomFieldSpecification();
 						fieldSpec.ObjectName = waObj.name;
 						fieldSpec.Name = field.Name;
@@ -894,7 +948,7 @@ public with sharing class WaveDataManagerController {
 						
 						fieldsToCreate.add(fieldSpec);
 					}
-				}
+				}				
 
 				if(fieldsToCreate.size() > 0){
 					this.objectsAndFieldsMatrix.add(fieldsToCreate);
@@ -912,14 +966,6 @@ public with sharing class WaveDataManagerController {
 				// We DON'T have metadata to process
 				this.logMessage('No need to create new objects and fields.');
 				
-				/*if(this.selectedInstallationProcess == 'loadObjects'){
-					// We chain this with object data loading
-					this.launchObjectsLoading();
-				}
-				else if(this.selectedInstallationProcess == 'createMetadata'){
-					this.disabledButton = false;
-				}*/
-
 				if(this.objectsRecordTypesMatrix.size() > 0){
 					this.launchRecordTypeCreation();
 				}
@@ -982,10 +1028,6 @@ public with sharing class WaveDataManagerController {
 
 									if(this.selectedInstallationProcess == 'loadObjects'){
 										this.launchObjectsLoading();
-									}
-									else if(this.selectedInstallationProcess == 'fullInstallation') {
-										// Now we configure step to begin loading the edgemarts
-										this.installationStep = 'LoadEdgemarts';
 									}
 								}
 								else{
@@ -1082,18 +1124,20 @@ public with sharing class WaveDataManagerController {
 									this.currentFieldIndex = 0;
 									this.objectsAndFieldsMatrix.clear();
 									this.processingObjectsAndFieldsMetadata = false;
-									this.disabledButton = false;
-									this.logMessage('All needed metadata was created successfully.');
 									
-									this.launchRecordTypeCreation();
-
-									/*if(this.selectedInstallationProcess == 'loadObjects'){
-										this.launchObjectsLoading();
+									if(this.selectedInstallationProcess == 'loadObjects'){
+										if(this.objectsRecordTypesMatrix.size() > 0){
+											this.launchRecordTypeCreation();
+										} 
+										else{
+											this.launchObjectsLoading();
+										}
 									}
-									else if(this.selectedInstallationProcess == 'fullInstallation') {
-										// Now we configure step to begin loading the edgemarts
-										this.installationStep = 'LoadEdgemarts';
-									}*/
+									else if(this.selectedInstallationProcess == 'createMetadata'){
+										this.logMessage('All needed metadata was created successfully.');
+										this.disabledButton = false;
+									}
+
 								}
 								else{
 									this.currentFieldIndex = this.currentFieldIndex + 1;
