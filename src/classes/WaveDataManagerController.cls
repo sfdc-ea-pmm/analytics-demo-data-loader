@@ -215,12 +215,8 @@ public with sharing class WaveDataManagerController {
 		// We process the fields metadata
 		IMockarooHelper iMockHelper = MockarooHelperFactory.getIMockarooHelper();
 		
-		System.debug(this.genericAppConfiguration.baseUrl + wmaObj.metadataUrl);
+		List<List<String>> csvMetadata = iMockHelper.getData(this.genericAppConfiguration.baseUrl + wmaObj.metadataUrl, false);
     	
-    	List<List<String>> csvMetadata = iMockHelper.getData(this.genericAppConfiguration.baseUrl + wmaObj.metadataUrl, false);
-    	
-    	System.debug(csvMetadata);
-
     	if(csvMetadata.size() > 0){
 			// Will extract headers
 			List<String> headers = csvMetadata.remove(0);
@@ -234,9 +230,6 @@ public with sharing class WaveDataManagerController {
 			rootObj.fields = new List<WaveApplicationObjectField>();
 
 			for(List<String> metadataRow: csvMetadata) {
-
-				System.debug(fieldPositions.get('Label'));
-				System.debug(metadataRow.get(fieldPositions.get('Label')));
 
 				WaveApplicationObjectField fieldMetadata = new WaveApplicationObjectField();
 				fieldMetadata.Label = metadataRow.get(fieldPositions.get('Label')).trim();
@@ -895,7 +888,7 @@ public with sharing class WaveDataManagerController {
 			List<FieldPermissions> result = [SELECT SobjectType, Field, PermissionsRead FROM FieldPermissions 
 							WHERE SobjectType IN :objects
 							AND Field IN :fields
-							AND parentid IN (SELECT id FROM PermissionSet WHERE
+							AND ParentId IN (SELECT Id FROM PermissionSet WHERE
 							PermissionSet.Profile.Name = 'Analytics Cloud Integration User' AND IsOwnedByProfile = true)
 			];
 
@@ -914,9 +907,7 @@ public with sharing class WaveDataManagerController {
 
 				fieldPermissions.put(fPermissions.Field.toUpperCase(), fPermissions.PermissionsRead);
 				
-			}
-
-			System.debug(objectsAndFieldsPermissions);
+			}			
 
 			// Objects and fields Setup
 			for(WaveApplicationObject waObj: lstObjects) {
@@ -925,9 +916,6 @@ public with sharing class WaveDataManagerController {
 				// Check fields existence using waObj.fields property
 				for(WaveApplicationObjectField field: waObj.fields) {
 					
-					System.debug(waObj.name.toUpperCase() + '.' + field.Name.toUpperCase());
-					System.debug(objectsAndFieldsPermissions.get(waObj.name));
-
 					// If field doesn't exist, create it using field properties
 					if((field.Name.endsWithIgnoreCase('__c') && !SF_MetadataUtils.fieldExists(waObj.name, field.Name)) || 
 						(field.Name.endsWithIgnoreCase('__c') && SF_MetadataUtils.fieldExists(waObj.name, field.Name) 
