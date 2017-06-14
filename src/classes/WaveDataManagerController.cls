@@ -919,7 +919,8 @@ public with sharing class WaveDataManagerController {
 					// If field doesn't exist, create it using field properties
 					if((field.Name.endsWithIgnoreCase('__c') && !SF_MetadataUtils.fieldExists(waObj.name, field.Name)) || 
 						(field.Name.endsWithIgnoreCase('__c') && SF_MetadataUtils.fieldExists(waObj.name, field.Name) 
-						&& !objectsAndFieldsPermissions.get(waObj.name).get(waObj.name.toUpperCase() + '.' + field.Name.toUpperCase())))
+						&& !objectsAndFieldsPermissions.get(waObj.name).get(waObj.name.toUpperCase() + '.' + field.Name.toUpperCase()))
+					)
 					{
 						SF_MetadataUtils.CustomFieldSpecification fieldSpec = new SF_MetadataUtils.CustomFieldSpecification();
 						fieldSpec.ObjectName = waObj.name;
