@@ -783,7 +783,8 @@ public with sharing class WaveDataManagerController {
 					}
 
 					this.objectsNodes = lstObjects;
-					createObjectsAndFields(this.objectsNodes);
+					//createObjectsAndFields(this.objectsNodes); UNCOMMENT
+					this.launchObjectsLoading(); // COMMENT
 				}
 			}
 		} 

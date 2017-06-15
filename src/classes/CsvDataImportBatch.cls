@@ -136,39 +136,86 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
 
 			if(objectsBatch.size() > 0) {
 				
-				// We must determine which objects to insert, and which to update
-				String genQuery = 'SELECT Id, External_Id__c FROM ' + this.objectType.getDescribe().getName() + ' WHERE External_Id__c IN :lstExternalIds';
-                
-                // only add All Rows and IsDeleted when Tasks and Events
-                if(this.objectType.getDescribe().getName() == 'Task' || this.objectType.getDescribe().getName() == 'Event')
-                    genQuery += ' AND IsDeleted = False ALL ROWS';
-                
-		        List<SObject> alreadyThere = Database.query(genQuery);
-		        Map<String, String> sfIdsByExternalId = new Map<String, String>();
-		        
-		        for(SObject sObj: alreadyThere) {
-		        	sfIdsByExternalId.put(String.valueOf(sObj.get('External_Id__c')), String.valueOf(sObj.get('Id')));
-		        }
+				// UserRole has a distinct management
+				if(this.objectType.getDescribe().getName() == 'UserRole'){
+					List<UserRole> lstRoles = (List<UserRole>)objectsBatch;
+					Set<String> setNames = new Set<String>();
+					
+					// Retrieve names
+					for(UserRole role : lstRoles){
+						if(String.isNotBlank(role.Name)){
+							setNames.add(role.Name);
+						}
+					}
 
-		        List<SObject> lstToInsert = new List<SObject>();
-		        List<SObject> lstToUpdate = new List<SObject>();
+					Map<String, String> roleIdByName = new Map<String, String>();
+					List<UserRole> existingRoles = [SELECT Id, Name FROM UserRole WHERE Name IN :setNames];
 
-		        for(SObject sObj: objectsBatch) {
-		        	if(sfIdsByExternalId.containsKey(String.valueOf(sObj.get('External_Id__c')))){
-		        		sObj.put('Id', sfIdsByExternalId.get(String.valueOf(sObj.get('External_Id__c'))));
-		        		lstToUpdate.add(sObj);
-		        	}
-		        	else {
-		        		lstToInsert.add(sObj);
-		        	}
-		        }
+					// We fill the Ids map
+					for(UserRole exRole : existingRoles){
+						roleIdByName.put(exRole.Name, exRole.Id);
+					}
 
-		        System.debug(lstToInsert.size() + ' objects to insert.');
-		        System.debug(lstToUpdate.size() + ' objects to update.');
+					// New list for allow DML
+					List<UserRole> rolesToUpsert = new List<UserRole>();
 
-		        // DML
-		        update lstToUpdate; // For now, only inserts
-				insert lstToInsert;
+					// Set Ids
+					for(UserRole role : lstRoles){
+						UserRole newRole = new UserRole();
+						
+						if(String.isNotBlank(role.Name)){
+							
+							if(roleIdByName.containsKey(role.Name)){
+								newRole.Id = roleIdByName.get(role.Name);
+							}
+							
+							newRole.Name = role.Name;
+
+							if(String.isNotBlank(role.ParentRoleId)){
+								newRole.ParentRoleId = role.ParentRoleId;
+							}
+
+							rolesToUpsert.add(newRole);
+						}
+					}
+
+					upsert rolesToUpsert;
+				}
+				else {
+					// We must determine which objects to insert, and which to update
+					String genQuery = 'SELECT Id, External_Id__c FROM ' + this.objectType.getDescribe().getName() + ' WHERE External_Id__c IN :lstExternalIds';
+	                
+	                // only add All Rows and IsDeleted when Tasks and Events
+	                if(this.objectType.getDescribe().getName() == 'Task' || this.objectType.getDescribe().getName() == 'Event')
+	                    genQuery += ' AND IsDeleted = False ALL ROWS';
+	                
+			        List<SObject> alreadyThere = Database.query(genQuery);
+			        Map<String, String> sfIdsByExternalId = new Map<String, String>();
+			        
+			        for(SObject sObj: alreadyThere) {
+			        	sfIdsByExternalId.put(String.valueOf(sObj.get('External_Id__c')), String.valueOf(sObj.get('Id')));
+			        }
+
+			        List<SObject> lstToInsert = new List<SObject>();
+			        List<SObject> lstToUpdate = new List<SObject>();
+
+			        for(SObject sObj: objectsBatch) {
+			        	if(sfIdsByExternalId.containsKey(String.valueOf(sObj.get('External_Id__c')))){
+			        		sObj.put('Id', sfIdsByExternalId.get(String.valueOf(sObj.get('External_Id__c'))));
+			        		lstToUpdate.add(sObj);
+			        	}
+			        	else {
+			        		lstToInsert.add(sObj);
+			        	}
+			        }
+
+			        System.debug(lstToInsert.size() + ' objects to insert.');
+			        System.debug(lstToUpdate.size() + ' objects to update.');
+
+			        // DML
+			        update lstToUpdate; // For now, only inserts
+					insert lstToInsert;
+				}				
 			}
 
 		} 
