@@ -180,12 +180,21 @@ public with sharing class SF_MetadataUtils {
         return errors;
     }
 
+    public static List<String> assignAccessToField(String objName, String fieldName, String sessionId){
+        MetadataService.MetadataPort service = createService(sessionId);
+        return SF_MetadataUtils.assignAccessToFieldAux(objName, fieldName, service);
+    }
+    
     public static List<String> assignAccessToField(String objName, String fieldName){
+        MetadataService.MetadataPort service = createService();
+        return SF_MetadataUtils.assignAccessToFieldAux(objName, fieldName, service);
+    }
+
+    public static List<String> assignAccessToFieldAux(String objName, String fieldName, MetadataService.MetadataPort service){
 
         List<String> errors = new List<String>();
         List<MetadataService.UpsertResult> results;
         String fieldFullName = '';
-        MetadataService.MetadataPort service = createService();
 
         if(objName.equalsIgnoreCase('Task') || objName.equalsIgnoreCase('Event'))
         {

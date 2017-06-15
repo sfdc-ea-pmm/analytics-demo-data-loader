@@ -872,57 +872,15 @@ public with sharing class WaveDataManagerController {
 		// Check if there are objects data to load
 		if(lstObjects.size() > 0){
 
-			Set<String> objects = new Set<String>();
-			Set<String> fields = new Set<String>();
-
-			for(WaveApplicationObject waObj: lstObjects) {
-				objects.add(waObj.Name);
-				System.debug(waObj.Name);
-
-				for(WaveApplicationObjectField field: waObj.fields) {
-					if(field.Name.endsWithIgnoreCase('__c')){
-						fields.add(waObj.Name + '.' + field.Name);
-					}
-				}			
-			}
-
-			List<FieldPermissions> result = [SELECT SobjectType, Field, PermissionsRead FROM FieldPermissions 
-							WHERE SobjectType IN :objects
-							AND Field IN :fields
-							AND ParentId IN (SELECT Id FROM PermissionSet WHERE
-							PermissionSet.Profile.Name = 'Analytics Cloud Integration User' AND IsOwnedByProfile = true)
-			];
-
-			Map<String,Map<String,Boolean>> objectsAndFieldsPermissions = new Map<String,Map<String,Boolean>>();
-			
-			for(FieldPermissions fPermissions: result){
-				Map<String,Boolean> fieldPermissions;
-
-				if(objectsAndFieldsPermissions.containsKey(fPermissions.SobjectType)){
-					fieldPermissions = objectsAndFieldsPermissions.get(fPermissions.SobjectType);
-				}
-				else{
-					fieldPermissions = new Map<String,Boolean>();
-					objectsAndFieldsPermissions.put(fPermissions.SobjectType, fieldPermissions);
-				}
-
-				fieldPermissions.put(fPermissions.Field.toUpperCase(), fPermissions.PermissionsRead);
-			}			
-
 			// Objects and fields Setup
+
 			for(WaveApplicationObject waObj: lstObjects) {
 				List<SF_MetadataUtils.CustomFieldSpecification> fieldsToCreate = new List<SF_MetadataUtils.CustomFieldSpecification>();
 
 				// Check fields existence using waObj.fields property
-				for(WaveApplicationObjectField field: waObj.fields) {
-
-					String fieldFullName = waObj.name.toUpperCase() + '.' + field.Name.toUpperCase();					
+				for(WaveApplicationObjectField field: waObj.fields) {			
 					
-					// If field doesn't exist, create it using field properties
-					if((field.Name.endsWithIgnoreCase('__c') && !SF_MetadataUtils.fieldExists(waObj.name, field.Name)) || 
-						(field.Name.endsWithIgnoreCase('__c') && SF_MetadataUtils.fieldExists(waObj.name, field.Name) 
-						&& objectsAndFieldsPermissions.get(waObj.name).containsKey(fieldFullName) && !objectsAndFieldsPermissions.get(waObj.name).get(fieldFullName))
-					)
+					if(field.Name.endsWithIgnoreCase('__c'))
 					{
 						SF_MetadataUtils.CustomFieldSpecification fieldSpec = new SF_MetadataUtils.CustomFieldSpecification();
 						fieldSpec.ObjectName = waObj.name;
@@ -939,7 +897,7 @@ public with sharing class WaveDataManagerController {
 						
 						fieldsToCreate.add(fieldSpec);
 					}
-				}				
+				}			
 
 				if(fieldsToCreate.size() > 0){
 					this.objectsAndFieldsMatrix.add(fieldsToCreate);

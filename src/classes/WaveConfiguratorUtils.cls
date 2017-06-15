@@ -210,17 +210,20 @@ public with sharing class WaveConfiguratorUtils {
 			}
 		}
 
-		List<User> users = [SELECT Id, External_Id__c FROM User WHERE External_Id__c IN :photosToQuery.keyset()];
+		List<String> lstNames = new List<String>();
+		lstNames.addAll(photosToQuery.keyset());
+		String soqlQuery = 'SELECT Id, External_Id__c FROM User WHERE External_Id__c IN (' + String.join(lstNames, ',') + ')';
+		List<sObject> users = Database.query(soqlQuery);
 
 		if(users.size() > 0){
-			for(User u: users){
-				String fileName = u.External_Id__c;
+			for(sObject u: users){
+				String fileName = (String) u.get('External_Id__c');
 
 				Blob blobFile = photosToQuery.get(fileName);
 				String imageName = fileName + imagesType.get(fileName);
 				String extension = 'image/' + imagesType.get(fileName);
 
-				ConnectApi.UserProfiles.setPhoto(null, u.Id, new ConnectApi.BinaryInput(blobFile, extension, imageName));
+				ConnectApi.UserProfiles.setPhoto(null, (String) u.get('Id'), new ConnectApi.BinaryInput(blobFile, extension, imageName));
 			}
 		}
 	}

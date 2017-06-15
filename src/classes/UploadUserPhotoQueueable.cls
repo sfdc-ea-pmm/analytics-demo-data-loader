@@ -14,18 +14,19 @@ public class UploadUserPhotoQueueable implements Queueable, Database.AllowsCallo
         
         Blob file = new WaveConfiguratorUtils().getUsersPhotosZipBlob(zipFileUrl);
 		Zippex zipHandler = new Zippex(file);
-        String nameToSave = this.fileBaseName.substringBeforeLast('.');
+        String nameToSave = String.escapeSingleQuotes(this.fileBaseName.substringBeforeLast('.'));
 
 		if(String.isNotBlank(nameToSave)){
 
-			List<User> users = [SELECT Id, External_Id__c FROM User WHERE External_Id__c = :nameToSave];
+			String soqlQuery = 'SELECT Id FROM User WHERE External_Id__c = \'' + nameToSave + '\'';
+			List<sObject> users = Database.query(soqlQuery);
 
 			if(users.size() > 0){
-				User usr = users.get(0);
+				sObject usr = users.get(0);
 				Blob blobFile = zipHandler.getFile(this.fileNameToExtract);
 				String mimeType = 'image/' + this.fileBaseName.substringAfterLast('.');
 
-				ConnectApi.UserProfiles.setPhoto(null, usr.Id, new ConnectApi.BinaryInput(blobFile, mimeType, this.fileBaseName));
+				ConnectApi.UserProfiles.setPhoto(null, (String) usr.get('Id'), new ConnectApi.BinaryInput(blobFile, mimeType, this.fileBaseName));
 			}
 		}
 	}
