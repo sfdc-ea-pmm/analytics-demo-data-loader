@@ -182,6 +182,11 @@ public with sharing class WaveConfiguratorUtils {
         req.setMethod('GET');
 
         HTTPResponse res = http.send(req);
+        
+        if(!WaveConfiguratorUtils.checkStatus(res)){
+			throw new WaveConfiguratorException('Error ' + res.getStatusCode() + ' - ' + res.getStatus() + ' in the attempt to get user profile photos.');
+		}
+
         return res.getBodyAsBlob();
 	}
 
