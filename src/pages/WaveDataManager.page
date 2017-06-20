@@ -57,75 +57,86 @@
 
 	<vs:importvisualstrap theme="paper" />
 
-	<apex:sectionHeader title="SEA Demo Data Loader" subtitle="Saleforce Einstein Analytics Demo Data Loader"/>
+	<apex:sectionHeader title="Analytics Demo Data Tool" subtitle="Saleforce Einstein Analytics Demo Data Loader"/>
 	<apex:form style="margin-top: 50px;" styleClass="standardText" rendered="{!pageRendered}">
+		
 		<apex:panelGrid columns="2" columnClasses="valignTop">
 			<apex:panelGrid columns="1" id="appSelection">
 				<apex:outputLabel >Please select an App to Load</apex:outputLabel>
 		        <apex:selectList value="{!selectedWaveApp}" multiselect="false" size="10" style="width:200px">
 		   			<apex:selectOptions value="{!waveApps}"/>
-		   			<apex:actionSupport reRender="appDescription,vsbButton,folderName,folderGroup" event="onchange" action="{!waveAppSelected}" />
+		   			<apex:actionSupport reRender="appDescription,vsbButton,folderName,timeShiftingValue" event="onchange" action="{!waveAppSelected}" />
 		   		</apex:selectList>
 			</apex:panelGrid>   		
 	   		<apex:panelGrid columns="1" width="200px">
 	   			<apex:outputText value="Description" style="font-weight: bold" />
 	   			<apex:outputText value="{!appDescription}" id="appDescription" />
 	   		</apex:panelGrid>
-	   		<apex:panelGrid columns="1" width="200px" id="controls">
-	   			
-	   			<apex:outputPanel id="appSettings">
-		   			<apex:outputPanel >
-		   				<apex:commandLink value="{!IF(advancedOption, 'Hide Advanced Settings', 'Show Advanced Settings')}" action="{!handleAdvancedSetting}" reRender="appSettings" />
-					</apex:outputPanel>
-					
-					<apex:panelGrid columns="1" rendered="{!advancedOption}" >
-						
-						<apex:outputLabel >Api Version:</apex:outputLabel>
-						<apex:inputText value="{!genericAppConfiguration.apiVersion}" />
-						
-						<apex:outputLabel >Base URL:</apex:outputLabel>
-						<apex:inputText value="{!genericAppConfiguration.baseUrl}" style="width:400px;">
-							<apex:actionSupport action="{!getWaveApplications}" event="onchange" rerender="appSelection,appDescription,form1"/>
-						</apex:inputText>
+	   	</apex:panelGrid>
 
-						<apex:outputLabel >Application List URI (relative to Base URL):</apex:outputLabel>
-						<apex:inputText value="{!genericAppConfiguration.waveApplicationsUrl}" style="width:400px;">
-							<apex:actionSupport action="{!getWaveApplications}" event="onchange" rerender="appSelection,appDescription,form1"/>
-						</apex:inputText>
-
-						<apex:outputLabel >Objects Load Batch Size:</apex:outputLabel>
-						<apex:inputText value="{!genericAppConfiguration.objectLoadingBatchSize}"/>
-
-						<apex:outputLabel >Time Shifting Batch Size:</apex:outputLabel>
-						<apex:inputText value="{!genericAppConfiguration.timeShiftingBatchSize}"/>
-						
-					</apex:panelGrid>
+   		<apex:panelGrid columns="1" width="200px" id="controls">
+ 
+   			<apex:outputPanel id="appSettings">
+	   			<apex:outputPanel >
+	   				<apex:commandLink value="{!IF(advancedOption, 'Hide Advanced Settings', 'Show Advanced Settings')}" action="{!handleAdvancedSetting}" reRender="appSettings" />
 				</apex:outputPanel>
+				
+				<apex:panelGrid columns="1" rendered="{!advancedOption}" >
+					
+					<apex:outputLabel >Api Version:</apex:outputLabel>
+					<apex:inputText value="{!genericAppConfiguration.apiVersion}" />
+					
+					<apex:outputLabel >Base URL:</apex:outputLabel>
+					<apex:inputText value="{!genericAppConfiguration.baseUrl}" style="width:400px;">
+						<apex:actionSupport action="{!getWaveApplications}" event="onchange" rerender="appSelection,appDescription,form1"/>
+					</apex:inputText>
 
-	   			<apex:outputLabel for="processType">Specify the process:</apex:outputLabel>
-	   			<apex:selectList value="{!selectedInstallationProcess}" size="1" id="processType">
-	   				<apex:selectOption itemValue="loadObjects" itemLabel="Prep Core Data"/>
-	   				<apex:selectOption itemValue="createMetadata" itemLabel="Create Objects and Fields"/>
-	   				<apex:selectOption itemValue="timeShifting" itemLabel="Time shifting"/>
-	   				<apex:actionSupport event="onchange" rerender="folderGroup,emailNotification"/>
-	   			</apex:selectList>
+					<apex:outputLabel >Application List URI (relative to Base URL):</apex:outputLabel>
+					<apex:inputText value="{!genericAppConfiguration.waveApplicationsUrl}" style="width:400px;">
+						<apex:actionSupport action="{!getWaveApplications}" event="onchange" rerender="appSelection,appDescription,form1"/>
+					</apex:inputText>
 
-				<apex:outputPanel id="emailNotification" >
-					<apex:panelGrid columns="1" rendered="{!selectedInstallationProcess != 'createMetadata'}">
-			   			<apex:outputLabel >Notify this email when complete:</apex:outputLabel>
-			   			<apex:inputText value="{!emailAddress}" id="emailAddress" />
-		   			</apex:panelGrid>
-	   			</apex:outputPanel>
+					<apex:outputLabel >Objects Load Batch Size:</apex:outputLabel>
+					<apex:inputText value="{!genericAppConfiguration.objectLoadingBatchSize}"/>
 
-	   		</apex:panelGrid><br />
-	   		<vs:visualstrapblock id="vsbButton" style="padding-top: 20px;">
-	   			<apex:commandButton value="Run" styleClass="{!IF(disabledButton, 'disabled','')} btn-primary btn-lg" action="{!executeSelectedProcess}" rendered="{!selectedWaveApp != ''}" id="btnInstallApp" style="text-transform: none;" />
-	   			<apex:outputPanel style="margin-left: 15px;" rendered="{!disabledButton}">
-	   				<apex:image value="{!$Resource.LoadingGif}"/>
-	   			</apex:outputPanel>
-	   		</vs:visualstrapblock>
-		</apex:panelGrid>
-	</apex:form>	
+					<apex:outputLabel >Time Shifting Batch Size:</apex:outputLabel>
+					<apex:inputText value="{!genericAppConfiguration.timeShiftingBatchSize}"/>
+					
+				</apex:panelGrid>
+			</apex:outputPanel>
+
+   			<apex:outputLabel for="processType">Specify the process:</apex:outputLabel>
+   			<apex:selectList value="{!selectedInstallationProcess}" size="1" id="processType">
+   				<apex:selectOption itemValue="loadObjects" itemLabel="Prep Core Data"/>
+   				<apex:selectOption itemValue="createMetadata" itemLabel="Create Objects and Fields"/>
+   				<apex:selectOption itemValue="timeShifting" itemLabel="Time shifting"/>
+   				<apex:actionSupport event="onchange" rerender="emailNotification,timeShiftingValue,form1"/>
+   			</apex:selectList>
+			
+			<apex:outputPanel id="timeShiftingValue" >
+				<apex:panelGrid style="width:450px;" columns="1" rendered="{!selectedInstallationProcess = 'timeShifting' && (selectedWaveApp = 'Wave_for_Sales' || selectedWaveApp = 'Wave_for_Services') }">
+		   			<apex:outputText rendered="{!daysToShift > 0}" value="{!timeShiftingcalculatedDateLabel}"/>
+		   			<apex:outputLabel >Number of days to shift records:</apex:outputLabel>
+		   			<apex:inputText value="{!daysToShift}" />
+	   			</apex:panelGrid>
+   			</apex:outputPanel>
+
+			<apex:outputPanel id="emailNotification" >
+				<apex:panelGrid columns="1" rendered="{!selectedInstallationProcess != 'createMetadata'}">
+		   			<apex:outputLabel >Notify this email when complete:</apex:outputLabel>
+		   			<apex:inputText value="{!emailAddress}" id="emailAddress" />
+	   			</apex:panelGrid>
+   			</apex:outputPanel>
+   		</apex:panelGrid>
+
+   		<vs:visualstrapblock id="vsbButton" style="padding-top: 20px;">
+   			<apex:commandButton value="Run" styleClass="{!IF(disabledButton, 'disabled','')} btn-primary btn-lg" action="{!executeSelectedProcess}" rendered="{!selectedWaveApp != ''}" id="btnInstallApp" style="text-transform: none;" />
+   			<apex:outputPanel style="margin-left: 15px;" rendered="{!disabledButton}">
+   				<apex:image value="{!$Resource.LoadingGif}"/>
+   			</apex:outputPanel>
+   		</vs:visualstrapblock>
+	</apex:form>
+
 	<apex:form id="form2">
 		<apex:actionFunction name="displayMetadataResponse" action="{!displayMetadataResponse}" rerender="form1,form2">
 			<apex:param name="metadataResponse" assignTo="{!metadataResponse}" value="{!metadataResponse}"/>

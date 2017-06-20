@@ -55,74 +55,22 @@ private class WaveDataManager_test {
 	private static MultiStaticResourceCalloutMock createStaticResources(){
 		MultiStaticResourceCalloutMock multimock = new MultiStaticResourceCalloutMock();
 		
-		String appsMetadataUrl = 'https://s3-us-west-2.amazonaws.com/ac-sdo-repo/WaveApplications.csv';
-		String usersMetadataUrl = 'https://s3-us-west-2.amazonaws.com/ac-sdo-repo/sales/metadata/User_metadata.csv';
-		String usersDataUrl = 'https://s3-us-west-2.amazonaws.com/ac-sdo-repo/sales/data/output/latest/User.csv';
-		String accountsMetadataUrl = 'https://s3-us-west-2.amazonaws.com/ac-sdo-repo/sales/metadata/Account_metadata.csv';
-		String accountsDataUrl = 'https://s3-us-west-2.amazonaws.com/ac-sdo-repo/sales/data/output/latest/Account.csv';
-
-		String oppMetadataUrl = 'https://s3-us-west-2.amazonaws.com/ac-sdo-repo/sales/metadata/Opportunity_metadata.csv';
-		String oppDataUrl = 'https://s3-us-west-2.amazonaws.com/ac-sdo-repo/sales/data/output/latest/Opportunity.csv';
+		String appsMetadataUrl = 'https://s3-us-west-2.amazonaws.com/ac-sdo-repo-dev/WaveApplications.csv';
+		String simpleAppJsonUrl = 'https://s3-us-west-2.amazonaws.com/ac-sdo-repo-dev/simple/Simple.json';
+		String accountsMetadataUrl = 'https://s3-us-west-2.amazonaws.com/ac-sdo-repo-dev/simple/Account_metadata.csv';
+		String accountsDataUrl = 'https://s3-us-west-2.amazonaws.com/ac-sdo-repo-dev/simple/Account.csv';
+		String oppMetadataUrl = 'https://s3-us-west-2.amazonaws.com/ac-sdo-repo-dev/simple/Opportunity_metadata.csv';
+		String oppDataUrl = 'https://s3-us-west-2.amazonaws.com/ac-sdo-repo-dev/simple/Opportunity.csv';
+		
 		String waveForSalesJsonUrl = 'https://s3-us-west-2.amazonaws.com/ac-sdo-repo/sales/WaveForSales.json';
-		String waveForSalesDataflowUrl = 'https://s3-us-west-2.amazonaws.com/ac-sdo-repo/sales/dataflows/Wave_For_Sales_Dataflow.json';
-		String metadataJsonFriendsUrl = 'https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/Simple/FriendsMetadata.json';
-		String dataCsvFriendsUrl = 'https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/Simple/Friends.csv';
-		String metadataJsonSimpleUsersUrl = 'https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/Simple/SimpleUsersMetadata.json';
-		String metadataJsonUsersFriendsUrl = 'https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/Simple/UsersAndFriendsMetadata.json';
-		String simpleAppJsonUrl = 'https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/Simple/Simple.json';
-		String dataCsvSimpleUsersUrl = 'https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/Simple/SimpleUsers.csv';
-		String dataCsvUsersFriendsUrl = 'https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/Simple/UsersAndFriends.csv';
-		String dataflowLocationUrl = 'https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/Simple/SimpleDataflow.json';
-		String filteredFriendShiDashboardpUrl = 'https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/Simple/dashboards/FilteredFriendship.json';
-		String donutByGenderDashboardUrl = 'https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/Simple/dashboards/DonutByGender.json';
-		String usersFriendsTableDashboardUrl = 'https://raw.githubusercontent.com/rodrigom-oktana-io/wave-tooling/master/Simple/dashboards/UserFriendsTable.json';
-
-		String salesforceHost = System.Url.getSalesforceBaseURL().toExternalForm();
-		String newFolderUrl = salesforceHost + '/services/data/v40.0/wave/folders';
-		String datasetsResponse = salesforceHost + '/services/data/v40.0/wave/datasets?pageSize=200';
-		String insertFolderResponse = salesforceHost + '/services/data/v40.0/wave/folders';
-		String insertDataflowResponse = salesforceHost + '/services/data/v40.0/sobjects/Dataflow';
-		String insightsExternalDataResponse = salesforceHost + '/services/data/v40.0/sobjects/InsightsExternalData';
-		String insightsExternalDataPartResponse = salesforceHost + '/services/data/v40.0/sobjects/InsightsExternalDataPart';
-		String updateInsightsExternalDataResponse = salesforceHost + '/services/data/v40.0/sobjects/InsightsExternalData/06V360000009sKjEAI?_HttpMethod=PATCH';
-		String dataflowVersionResponse = salesforceHost + '/services/data/v40.0/sobjects/DataflowVersion';
-		String updateDataflowResponse = salesforceHost + '/services/data/v40.0/sobjects/Dataflow/02K36000000E0XDEA0?_HttpMethod=PATCH';
-		String deleteDataflowResponse = salesforceHost + '/services/data/v40.0/sobjects/Dataflow/02K36000000E0XDEA0';
-		String insertDashboardResponse = salesforceHost + '/services/data/v40.0/wave/dashboards';
-		String updateDashboardResponse = salesforceHost + '/services/data/v40.0/wave/dashboards/02K36000000E0XDEA0?_HttpMethod=PATCH';
 
 		multimock.setStaticResource(appsMetadataUrl, 'WaveAppsMetadataCSV');
-		multimock.setStaticResource(usersMetadataUrl, 'UserMetadataCSV');
-		multimock.setStaticResource(usersDataUrl, 'UsersDataCSV');
 		multimock.setStaticResource(accountsMetadataUrl, 'AccountMetadataCSV');
 		multimock.setStaticResource(accountsDataUrl, 'AccountsDataCSV');
 		multimock.setStaticResource(oppMetadataUrl, 'OpportunityMetadataCSV');
 		multimock.setStaticResource(oppDataUrl, 'OpportunitiesDataCSV');
 		multimock.setStaticResource(waveForSalesJsonUrl, 'WaveForSalesJson');
-		multimock.setStaticResource(waveForSalesDataflowUrl, 'WaveForSalesDataflowUrl');
-		multimock.setStaticResource(newFolderUrl, 'BlankResponseBody');
-		multimock.setStaticResource(datasetsResponse, 'DatasetsResponse');
-		multimock.setStaticResource(insertFolderResponse, 'InsertFolderResponse');
-		multimock.setStaticResource(insertDataflowResponse, 'InsertDataflowResponse');
-		multimock.setStaticResource(metadataJsonFriendsUrl, 'MetadataJsonFriends');
-		multimock.setStaticResource(dataCsvFriendsUrl, 'DataCsvFriends');
-		multimock.setStaticResource(metadataJsonSimpleUsersUrl, 'MetadataJsonSimpleUsers');
-		multimock.setStaticResource(metadataJsonUsersFriendsUrl, 'MetadataJsonUsersFriends');
-		multimock.setStaticResource(insightsExternalDataResponse, 'InsightsExternalDataResponse');
-		multimock.setStaticResource(insightsExternalDataPartResponse, 'InsightsExternalDataPartResponse');
 		multimock.setStaticResource(simpleAppJsonUrl, 'SimpleAppJson');
-		multimock.setStaticResource(dataCsvSimpleUsersUrl, 'DataCsvSimpleUsers');
-		multimock.setStaticResource(dataCsvUsersFriendsUrl, 'DataCsvUsersFriends');
-		multimock.setStaticResource(updateInsightsExternalDataResponse, 'BlankResponseBodyIED');
-		multimock.setStaticResource(dataflowLocationUrl, 'DataflowLocation');
-		multimock.setStaticResource(dataflowVersionResponse, 'DataflowVersionResponse');
-		multimock.setStaticResource(updateDataflowResponse, 'BlankResponseBody');
-		multimock.setStaticResource(insertDashboardResponse, 'DataflowVersionResponse');
-		multimock.setStaticResource(filteredFriendShiDashboardpUrl, 'FilteredFriendshipDashboard');
-		multimock.setStaticResource(donutByGenderDashboardUrl, 'DonutByGenderDashboard');
-		multimock.setStaticResource(usersFriendsTableDashboardUrl, 'UserFriendsTableDashboard');
-		multimock.setStaticResource(updateDashboardResponse, 'DataflowVersionResponse');
-		multimock.setStaticResource(deleteDataflowResponse, 'DataflowVersionResponse');
 
 		multimock.setStatusCode(200);
 		multimock.setHeader('Content-Type', 'text/plain');
@@ -149,7 +97,7 @@ private class WaveDataManager_test {
 
 		cnt.checkObjectLoadingStatus();
 		List<SelectOption> options = cnt.getWaveApps();
-		cnt.waveAppSelected();
+		//cnt.waveAppSelected();
 		cnt.getAppDescription();
 
 		System.assert(options.size() > 0);
@@ -163,10 +111,6 @@ private class WaveDataManager_test {
 		Test.setMock(HttpCalloutMock.class, multimock);
 		cnt.pageLoad();
 
-		cnt.dataflowName = 'TestingDataflowName';
-		cnt.dataflowLabel = 'Testing Dataflow Label';
-		cnt.folderName = 'TestingFolder';
-		cnt.folderLabel = 'Testing Folder';
 		cnt.selectedWaveApp = 'Simple';
 
 		cnt.installationStep = 'LoadObjects';
@@ -195,7 +139,7 @@ private class WaveDataManager_test {
         insert caseToTest;
 
 		Test.startTest();
-		TimeShiftingBatch batchProcess = new TimeShiftingBatch('Case', dateFieldNames, 'Services');
+		TimeShiftingBatch batchProcess = new TimeShiftingBatch('Case', dateFieldNames, 0);
 		ID batchId = Database.executeBatch(batchProcess);
 		Test.stopTest();
 	}
@@ -224,7 +168,7 @@ private class WaveDataManager_test {
 		insert opptyToTest;
 
 		Test.startTest();
-		TimeShiftingBatch batchProcess = new TimeShiftingBatch('Opportunity', dateFieldNames, 'Sales');
+		TimeShiftingBatch batchProcess = new TimeShiftingBatch('Opportunity', dateFieldNames, 0);
 		ID batchId = Database.executeBatch(batchProcess);
 		Test.stopTest();
 	}
@@ -269,10 +213,7 @@ private class WaveDataManager_test {
 		cnt.executeSelectedProcess();
 
 		cnt.selectedInstallationProcess = 'createWaveApp';
-		cnt.dataflowName = 'TestingDataflowName';
-		cnt.dataflowLabel = 'Testing Dataflow Label';
-		cnt.folderName = 'TestingFolder';
-		cnt.folderLabel = 'Testing Folder';
+
 		cnt.executeSelectedProcess();
 
 		cnt.selectedInstallationProcess = 'timeShifting';

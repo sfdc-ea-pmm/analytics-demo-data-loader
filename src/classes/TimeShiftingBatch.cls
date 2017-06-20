@@ -6,46 +6,21 @@ global class TimeShiftingBatch implements Database.Batchable<sObject>, Database.
 	String query;
 	
 	// Constructor
-	global TimeShiftingBatch(String objectTypeName, List<String> dateFieldNames, String waveTypeApplication) {
+	global TimeShiftingBatch(String objectTypeName, List<String> dateFieldNames, Integer daysToShift) {
 		try{
 			this.objectType = Schema.getGlobalDescribe().get(objectTypeName);
 			this.dateFieldNames = dateFieldNames;
 			this.query = 'SELECT ' + String.join(dateFieldNames, ',') + ' FROM ' + objectTypeName;
+			this.daysToShift = daysToShift;
 
-			// We get the days to shift from the baseline object
-			String dateField = '';
-			String whereCond = '';
-			String baselineObjectName = '';
-
-			if(waveTypeApplication == 'Sales'){
-				dateField = 'CloseDate';
-				baselineObjectName = 'Opportunity';
-				whereCond = 'StageName = \'Closed Won\' AND CloseDate < TODAY';
-			}
-			else if(waveTypeApplication == 'Services'){
-				dateField = 'ClosedDate';
-				baselineObjectName = 'Case';
-			}
-
-			String dynamicSoql = 'SELECT ' + dateField + ' FROM ' + baselineObjectName;
-			if(String.isNotBlank(whereCond)){
-				dynamicSoql += ' WHERE ' + whereCond;
-			}
-
-			dynamicSoql += ' ORDER BY ' + dateField + ' DESC NULLS LAST';
-			dynamicSoql += ' LIMIT 1';
-
-			List<sObject> sobjList = Database.query(dynamicSoql);
-			if(sobjList.size() > 0){
-				sObject s = sobjList.get(0);
-				DateTime foundDate = (DateTime)s.get(dateField);
-				this.daysToShift = Date.newInstance(foundDate.year(), foundDate.month(), foundDate.day()).daysBetween(Date.today());
-			}
-			else {
+			if(this.daysToShift == 0){
 				// No time shifting possible
 				// This is for executing only one batch of one record, some hack to finish the batch process at the beginning
 				this.query += ' LIMIT 1';
 			}
+			
+			System.debug('Query: ' + this.query);
+
 		}
 		catch(Exception e) {
 			System.debug(e.getMessage());

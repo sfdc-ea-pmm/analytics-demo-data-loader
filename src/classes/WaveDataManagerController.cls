@@ -21,22 +21,13 @@ public with sharing class WaveDataManagerController {
 	public Integer currentTimeShiftingNodeIndex { get; set; }
 	public String currentObjectProcessing { get; set; }
 	public List<WaveApplicationObject> objectsNodes { get; set; }
-	public List<Edgemart> edgemarts { get; set; }
 	public boolean disabledButton { get; set; }
 	private WaveMetadata metadata;
 	private Map<String, String> appDescriptions; // <appName, appDesc>
 	private Map<String, Integer> appIndexes; // <appName, appIndex in this.metadata.waveApplications>
-	private Map<String, String> edgemartNamesToSave; // <edgemart name as it comes from JSON, unique edgemart name to store>
-	private Map<String, String> dashboardsIdsByName;
-	public String folderName { get; set; }
-	public String folderLabel { get; set; }
-	public String folderId { get; set; }
-	public String dataflowName { get; set; }
-	public String dataflowLabel { get; set; }
 	public String emailAddress { get; set; }
 	public List<WaveApplicationRow> applicationRows;
 	public WaveMetadataApplication selectedAppMetadata { get; set; }
-	public String dataflowDefinitionJson { get; set; }
 	public GenericAppConfiguration genericAppConfiguration { get; set; }
 	public static final String genericAppConfigurationFileName = 'SEADemoDataLoaderConfig';
 	public Boolean pageRendered { get; set; }
@@ -49,8 +40,6 @@ public with sharing class WaveDataManagerController {
 	public Integer currentObjectIndex;
 	public Integer currentFieldIndex;
 	public Boolean processingObjectsAndFieldsMetadata { get; set; }
-	public Boolean processingEdgemarts { get; set; }
-	public Map<String, Boolean> edgeMartsChecked;
 	public List<List<SF_MetadataUtils.RecordTypeSpecification>> objectsRecordTypesMatrix;
 	public Integer currentRecordTypeIndex;
 	public Boolean processingRecordTypes { get; set; }
@@ -59,6 +48,8 @@ public with sharing class WaveDataManagerController {
 	public Boolean uploadingUserPhotos { get; set; }
 	public Boolean advancedOption { get; set; }
 	public String selectedOptionToOverride { get; set; }
+	public Integer daysToShift { get; set; }
+	public String timeShiftingcalculatedDateLabel { get; set; }
 
 	// Secuence control
 	public String installationStep { get; set; }
@@ -84,11 +75,10 @@ public with sharing class WaveDataManagerController {
 		this.enableTimeShiftingCheck = false;
 		this.enableObjectProcessingCheck = false;
 		this.processingObjectsAndFieldsMetadata = false;
-		this.processingEdgemarts = false;
-		this.edgeMartsChecked = new Map<String, Boolean>();
 		this.selectedInstallationProcess = 'fullInstallation';
 		this.userPhotoNodes = new List<UserPhotoInfo>();
 		this.advancedOption = false;
+		this.daysToShift = 0;
 	}
 
 	public PageReference pageLoad()
@@ -175,12 +165,53 @@ public with sharing class WaveDataManagerController {
 
     public PageReference waveAppSelected(){
 
-    	this.folderName = this.selectedWaveApp;
-
     	Integer appIndex = this.appIndexes.get(this.selectedWaveApp);
 		WaveApplicationRow appRow = this.applicationRows.get(appIndex);
-    	this.folderLabel = appRow.Label;
-    	
+		
+		String dateField = '';
+		String whereCond = '';
+		String baselineObjectName = '';
+		Boolean waveApp = false;
+
+		if(appRow.Name == 'Wave_for_Sales'){
+			dateField = 'CloseDate';
+			baselineObjectName = 'Opportunity';
+			whereCond = 'StageName = \'Closed Won\' AND CloseDate < TODAY';
+			this.timeShiftingcalculatedDateLabel = 'Date of the latest Won opportunity: ';
+			waveApp = true;
+		}
+		else if(appRow.Name == 'Wave_for_Services'){
+			dateField = 'ClosedDate';
+			baselineObjectName = 'Case';
+			this.timeShiftingcalculatedDateLabel = 'Date of the latest Closed case: ';
+			waveApp = true;
+		}
+
+		if(waveApp){
+			String dynamicSoql = 'SELECT ' + dateField + ' FROM ' + baselineObjectName;
+			
+			if(String.isNotBlank(whereCond)){
+				dynamicSoql += ' WHERE ' + whereCond;
+			}
+
+			dynamicSoql += ' ORDER BY ' + dateField + ' DESC NULLS LAST';
+			dynamicSoql += ' LIMIT 1';
+				
+			List<sObject> sobjList = Database.query(dynamicSoql);
+
+			if(sobjList.size() > 0){				
+				sObject s = sobjList.get(0);
+				DateTime foundDate = (DateTime)s.get(dateField);
+				String formattedDate = foundDate.formatGmt('MM/dd/yyyy');
+
+				this.timeShiftingcalculatedDateLabel += formattedDate;
+				this.daysToShift = foundDate.dateGMT().daysBetween(Date.today());
+			}
+			else{
+				this.daysToShift = 0;
+			}
+		}
+
     	return null;
     }
 
@@ -341,7 +372,7 @@ public with sharing class WaveDataManagerController {
 			this.logMessage('Loading ' + currentNode.fieldsToTimeShift.size() + ' fields for time shifting for ' + currentNode.objectTypeName + ' object...');
 
 			// Start the batch process
-			TimeShiftingBatch batchProcess = new TimeShiftingBatch(currentNode.objectTypeName, currentNode.fieldsToTimeShift, currentNode.appType);
+			TimeShiftingBatch batchProcess = new TimeShiftingBatch(currentNode.objectTypeName, currentNode.fieldsToTimeShift, this.daysToShift);
 			this.batchProcessId = Database.executeBatch(batchProcess, this.genericAppConfiguration.timeShiftingBatchSize);
 
 		} 
