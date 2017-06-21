@@ -154,7 +154,7 @@ public with sharing class WaveConfiguratorUtils {
 	// Retrieves asset JSON through WAVE REST API, only works within the ORG in which this code executes
 	// @param waveAssets: Type of asset to retrieve [folders, datasets, lenses, dashboards]
 	// @param requestUrl: If not null, uses this URL to request data
-	public String getWaveAssetsJSON(String waveAssets, String requestUrl){
+	/*public String getWaveAssetsJSON(String waveAssets, String requestUrl){
         HttpRequest req = new HttpRequest();
         String salesforceHost = System.Url.getSalesforceBaseURL().toExternalForm();
         String url = salesforceHost + (requestUrl != null ? requestUrl : '/services/data/' + apiVersion + '/wave/' + waveAssets + '?pageSize=200');
@@ -166,7 +166,7 @@ public with sharing class WaveConfiguratorUtils {
         HTTPResponse res = httpMgr.send(req);
 
         return res.getBody();
-    }
+    }*/
 
     public Blob getUsersPhotosZipBlob(String zipFileUrl){
 		Http http = new Http();

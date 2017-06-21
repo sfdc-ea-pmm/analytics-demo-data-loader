@@ -113,13 +113,12 @@ private class WaveDataManager_test {
 
 		cnt.selectedWaveApp = 'Simple';
 
-		cnt.installationStep = 'LoadObjects';
+		cnt.selectedInstallationProcess = 'timeShifting';
 
 		Test.startTest();
-		cnt.loadAllObjects();
+		cnt.executeSelectedProcess();
 		Test.stopTest();
 
-		cnt.currentTimeShiftingNodeIndex = 0;
 		cnt.checkTimeShiftingStatus();
 	}
 	

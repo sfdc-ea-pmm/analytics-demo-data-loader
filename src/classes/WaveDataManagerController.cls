@@ -11,11 +11,6 @@ public with sharing class WaveDataManagerController {
 	public String warningMessage  { get; set; }
 	public Id batchProcessId { get; set; }
 	public Id queueProcessId { get; set; }
-	public Boolean monitorJobExecution { get; set; }
-	public Boolean showJobStatistics { get; set; }
-	public Integer batchesProcessed { get; set; }
-	public Integer totalBatches { get; set; }
-	public String jobStatusDsc { get; set; }
 	public List<String> processingLog { get; set; }
 	public Integer currentNodeIndex { get; set; }
 	public Integer currentTimeShiftingNodeIndex { get; set; }
@@ -47,7 +42,6 @@ public with sharing class WaveDataManagerController {
 	public Integer currentUserPhotoNodeIndex;
 	public Boolean uploadingUserPhotos { get; set; }
 	public Boolean advancedOption { get; set; }
-	public String selectedOptionToOverride { get; set; }
 	public Integer daysToShift { get; set; }
 	public String timeShiftingcalculatedDateLabel { get; set; }
 
@@ -90,7 +84,6 @@ public with sharing class WaveDataManagerController {
 
 			//Get App Configuration File
 			this.genericAppConfiguration = utils.getAppConfiguration(genericAppConfigurationFileName);
-			//this.selectedOptionToOverride = this.genericAppConfiguration.apiVersion;
 			this.pageRendered = true;
 
 			// Attempt to connect to the Metadata API
@@ -176,13 +169,14 @@ public with sharing class WaveDataManagerController {
 		if(appRow.Name == 'Wave_for_Sales'){
 			dateField = 'CloseDate';
 			baselineObjectName = 'Opportunity';
-			whereCond = 'StageName = \'Closed Won\' AND CloseDate < TODAY';
+			whereCond = 'StageName = \'Closed Won\' AND CloseDate <= TODAY';
 			this.timeShiftingcalculatedDateLabel = 'Date of the latest Won opportunity: ';
 			waveApp = true;
 		}
 		else if(appRow.Name == 'Wave_for_Services'){
 			dateField = 'ClosedDate';
 			baselineObjectName = 'Case';
+			whereCond = 'ClosedDate <= TODAY';
 			this.timeShiftingcalculatedDateLabel = 'Date of the latest Closed case: ';
 			waveApp = true;
 		}
@@ -231,7 +225,6 @@ public with sharing class WaveDataManagerController {
 		this.errorMessage = '';
 		this.successMessage = '';
 		this.warningMessage = '';
-		this.jobStatusDsc = '';
 		this.processingLog.clear();
 	}
 
@@ -344,13 +337,6 @@ public with sharing class WaveDataManagerController {
 					CsvDataImportBatch batchProcess = new CsvDataImportBatch(Schema.getGlobalDescribe().get(currentNode.name), csvData, currentNode.fieldPositions, currentNode.relations);
 					this.batchProcessId = Database.executeBatch(batchProcess, this.genericAppConfiguration.objectLoadingBatchSize);
 					this.enableObjectProcessingCheck = true;
-
-					// Now monitor job execution
-					this.monitorJobExecution = true;
-					AsyncApexJob asyncJob = [SELECT CompletedDate, JobItemsProcessed, NumberOfErrors, Status, TotalJobItems FROM AsyncApexJob WHERE Id = :this.batchProcessId];			
-					this.totalBatches = asyncJob.TotalJobItems;
-					this.batchesProcessed = asyncJob.JobItemsProcessed;
-					this.showJobStatistics = true;
 				}
 			}	
 		} 
@@ -413,7 +399,6 @@ public with sharing class WaveDataManagerController {
 							this.currentNodeIndex = 0;
 							currentNode.currentDataIndex = 0;
 							this.objectsNodes.clear();
-							this.jobStatusDsc = '';
 							this.disabledButton = false;
 
 							// Rollback
@@ -490,7 +475,6 @@ public with sharing class WaveDataManagerController {
 						this.currentNodeIndex = 0;
 						this.disabledButton = false;
 						this.objectsNodes.clear();
-						this.jobStatusDsc = '';
 
 						// Rollback
 						this.rollbackProcess(this.errorMessage, '');
@@ -500,7 +484,6 @@ public with sharing class WaveDataManagerController {
 						this.currentNodeIndex = 0;
 						this.disabledButton = false;
 						this.objectsNodes.clear();
-						this.jobStatusDsc = '';
 
 						// Rollback
 						this.rollbackProcess(this.errorMessage, '');
@@ -513,7 +496,6 @@ public with sharing class WaveDataManagerController {
 			System.debug(e.getMessage());
 			System.debug(e.getStackTraceString());
 
-			this.jobStatusDsc = '';
 			this.objectsNodes.clear();
 			this.currentNodeIndex = 0;
 			this.disabledButton = false;
@@ -548,7 +530,6 @@ public with sharing class WaveDataManagerController {
 							this.errorMessage = 'The process was interrupted due to errors while uploading ' + this.userPhotoNodes.get(this.currentUserPhotoNodeIndex).fileBaseName + ' photo. See logs for details.';
 							this.currentUserPhotoNodeIndex = 0;
 							this.userPhotoNodes.clear();
-							this.jobStatusDsc = '';
 							this.disabledButton = false;
 							this.uploadingUserPhotos = false;
 						}
@@ -568,7 +549,6 @@ public with sharing class WaveDataManagerController {
 						this.errorMessage = 'The process was aborted while uploading ' + this.userPhotoNodes.get(this.currentUserPhotoNodeIndex).fileBaseName + ' photo. See logs for details.';
 						this.currentUserPhotoNodeIndex = 0;
 						this.userPhotoNodes.clear();
-						this.jobStatusDsc = '';
 						this.disabledButton = false;
 						this.uploadingUserPhotos = false;
 					}
@@ -576,7 +556,6 @@ public with sharing class WaveDataManagerController {
 						this.errorMessage = 'The process failed while uploading ' + this.userPhotoNodes.get(this.currentUserPhotoNodeIndex).fileBaseName + ' photo. See logs for details.';
 						this.currentUserPhotoNodeIndex = 0;
 						this.userPhotoNodes.clear();
-						this.jobStatusDsc = '';
 						this.disabledButton = false;
 						this.uploadingUserPhotos = false;
 					}
@@ -588,7 +567,6 @@ public with sharing class WaveDataManagerController {
 			System.debug(e.getMessage());
 			System.debug(e.getStackTraceString());
 			
-			this.jobStatusDsc = '';
 			this.userPhotoNodes.clear();
 			this.currentUserPhotoNodeIndex = 0;
 			this.disabledButton = false;
@@ -624,7 +602,6 @@ public with sharing class WaveDataManagerController {
 							this.errorMessage = 'The process was interrupted due to errors while time shifting data for the ' + this.timeShiftingItems.get(this.currentTimeShiftingNodeIndex).objectTypeName + ' object. See logs for details.';
 							this.currentTimeShiftingNodeIndex = 0;
 							this.timeShiftingItems.clear();
-							this.jobStatusDsc = '';
 							this.disabledButton = false;
 
 							// Rollback
@@ -646,7 +623,6 @@ public with sharing class WaveDataManagerController {
 						this.errorMessage = 'The process was aborted while time shifting data for the ' + this.timeShiftingItems.get(this.currentTimeShiftingNodeIndex).objectTypeName + ' object.';
 						this.currentTimeShiftingNodeIndex = 0;
 						this.timeShiftingItems.clear();
-						this.jobStatusDsc = '';
 						this.disabledButton = false;
 
 						// Rollback
@@ -656,7 +632,6 @@ public with sharing class WaveDataManagerController {
 						this.errorMessage = 'The process failed while time shifting data for the ' + this.timeShiftingItems.get(this.currentTimeShiftingNodeIndex).objectTypeName + ' object.';
 						this.currentTimeShiftingNodeIndex = 0;
 						this.timeShiftingItems.clear();
-						this.jobStatusDsc = '';
 						this.disabledButton = false;
 
 						// Rollback
@@ -670,7 +645,6 @@ public with sharing class WaveDataManagerController {
 			System.debug(e.getMessage());
 			System.debug(e.getStackTraceString());
 			
-			this.jobStatusDsc = '';
 			this.timeShiftingItems.clear();
 			this.currentTimeShiftingNodeIndex = 0;
 			this.disabledButton = false;
