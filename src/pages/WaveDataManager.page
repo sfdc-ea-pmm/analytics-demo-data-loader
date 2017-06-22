@@ -57,7 +57,7 @@
 
 	<vs:importvisualstrap theme="paper" />
 
-	<apex:sectionHeader title="Analytics Demo Data Tool" subtitle="Saleforce Einstein Analytics Demo Data Loader"/>
+	<apex:sectionHeader title="Analytics Demo Data Tool" subtitle="Data Loader"/>
 	<apex:form style="margin-top: 50px;" styleClass="standardText" rendered="{!pageRendered}">
 		
 		<apex:panelGrid columns="2" columnClasses="valignTop">
@@ -115,7 +115,7 @@
 			
 			<apex:outputPanel id="timeShiftingValue" >
 				<apex:panelGrid style="width:450px;" columns="1" rendered="{!selectedInstallationProcess = 'timeShifting' && (selectedWaveApp = 'Wave_for_Sales' || selectedWaveApp = 'Wave_for_Services') }">
-		   			<apex:outputText rendered="{!daysToShift > 0}" value="{!timeShiftingcalculatedDateLabel}"/>
+		   			<apex:outputText value="{!timeShiftingcalculatedDateLabel}"/>
 		   			<apex:outputLabel >Number of days to shift records:</apex:outputLabel>
 		   			<apex:inputText value="{!daysToShift}" />
 	   			</apex:panelGrid>
