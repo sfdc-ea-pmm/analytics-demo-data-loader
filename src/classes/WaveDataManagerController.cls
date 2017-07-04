@@ -44,6 +44,12 @@ public with sharing class WaveDataManagerController {
 	public Boolean advancedOption { get; set; }
 	public Integer daysToShift { get; set; }
 	public String timeShiftingcalculatedDateLabel { get; set; }
+	public Map<String,Map<String,String>> operationsStatusTable { get; set; }
+	public String timeShiftingWhereClause { get; set; }
+	public Boolean advancedTimeShifting { get; set; }
+	public Boolean overrideDefaultSettingTS { get; set; }
+	public List<AnalyticsDemoFAQ> analyticsDemoFAQ { get; set; }
+	public String baseUrl { get; set; } 
 
 	// Secuence control
 	public String installationStep { get; set; }
@@ -72,7 +78,11 @@ public with sharing class WaveDataManagerController {
 		this.selectedInstallationProcess = 'fullInstallation';
 		this.userPhotoNodes = new List<UserPhotoInfo>();
 		this.advancedOption = false;
+		this.advancedTimeShifting = false;
 		this.daysToShift = 0;
+		this.overrideDefaultSettingTS = false;
+		this.operationsStatusTable = new Map<String,Map<String,String>>();
+		this.analyticsDemoFAQ = new List<AnalyticsDemoFAQ>();
 	}
 
 	public PageReference pageLoad()
@@ -85,7 +95,14 @@ public with sharing class WaveDataManagerController {
 			//Get App Configuration File
 			this.genericAppConfiguration = utils.getAppConfiguration(genericAppConfigurationFileName);
 			this.pageRendered = true;
+			this.baseUrl = this.genericAppConfiguration.baseUrl;
 
+			if(Test.isRunningTest()){
+				this.baseUrl = this.genericAppConfiguration.baseDevUrl;
+			}
+
+			this.getFaqJson();
+			
 			// Attempt to connect to the Metadata API
 			MetadataConnectionWarning = false;
 			if(!Test.isRunningTest() && !SF_MetadataUtils.checkMetadataAPIConnection())
@@ -100,7 +117,7 @@ public with sharing class WaveDataManagerController {
 			}
 
 			if(applicationRows == null){
-				applicationRows = WaveConfiguratorUtils.getWaveApplications(this.genericAppConfiguration.baseUrl + this.genericAppConfiguration.waveApplicationsUrl);
+				applicationRows = WaveConfiguratorUtils.getWaveApplications(this.baseUrl + this.genericAppConfiguration.waveApplicationsUrl);
 				if(this.applicationRows != null){
 					Integer index = 0;
 		        	for(WaveApplicationRow genericApp: this.applicationRows) {
@@ -110,7 +127,6 @@ public with sharing class WaveDataManagerController {
 					}
 		        }
 			}
-
 		} 
 		catch(WaveConfiguratorException ex){
 			this.errorMessage = ex.getMessage();			
@@ -119,8 +135,39 @@ public with sharing class WaveDataManagerController {
 		return null;
 	}
 
+	public void getFaqJson(){
+		try{
+			if(String.isNotBlank(genericAppConfiguration.faqJsonUrl)){
+				Http http = new Http();
+				HttpRequest req = new HttpRequest();
+
+				req.setEndpoint(this.baseUrl + genericAppConfiguration.faqJsonUrl);
+		        req.setMethod('GET');
+
+		        HTTPResponse res = http.send(req);
+		        
+		        if(WaveConfiguratorUtils.checkStatus(res)){
+		        	this.analyticsDemoFAQ = (List<AnalyticsDemoFAQ>)JSON.deserialize(res.getBody(), List<AnalyticsDemoFAQ>.class);
+		        }
+		        else { 
+		        	throw new WaveConfiguratorException('Error ' + res.getStatusCode() + ' - ' + res.getStatus() + ' in the attempt to get the FAQ file. Please make sure that it is pointing to a proper url');
+		        }
+			} 
+			else {
+				throw new WaveConfiguratorException('The FAQ file could not be retrieved. Please make sure that it is specified in the configuration file pointing to a proper url.');
+			}    
+    	} 
+    	catch(Exception ex){
+    		this.errorMessage = ex.getMessage();
+    	}
+	}
+
 	public void handleAdvancedSetting(){
 		this.advancedOption = !this.advancedOption;
+	}
+
+	public void handleAdvancedTimeShifting(){
+		this.advancedTimeShifting = !this.advancedTimeShifting;
 	}
 
 	public void getWaveApplications(){
@@ -128,7 +175,7 @@ public with sharing class WaveDataManagerController {
 		this.applicationRows = null;
 		
 		try{
-			applicationRows = WaveConfiguratorUtils.getWaveApplications(this.genericAppConfiguration.baseUrl + this.genericAppConfiguration.waveApplicationsUrl);			
+			applicationRows = WaveConfiguratorUtils.getWaveApplications(this.baseUrl + this.genericAppConfiguration.waveApplicationsUrl);			
 			if(this.applicationRows != null){
 				Integer index = 0;
 	        	for(WaveApplicationRow genericApp: this.applicationRows) {
@@ -139,7 +186,7 @@ public with sharing class WaveDataManagerController {
 	        }
         }
         catch(Exception ex){
-        	this.errorMessage = 'The ' + this.genericAppConfiguration.baseUrl + this.genericAppConfiguration.waveApplicationsUrl + ' URL doesn\'t point to a valid wave applications list resource. Try changing Base URL and/or Application List URI.';
+        	this.errorMessage = 'The ' + this.baseUrl + this.genericAppConfiguration.waveApplicationsUrl + ' URL doesn\'t point to a valid wave applications list resource. Try changing Base URL and/or Application List URI.';
         }
 	}
 
@@ -156,57 +203,73 @@ public with sharing class WaveDataManagerController {
         return options;
     }
 
-    public PageReference waveAppSelected(){
+    public void saveSetting(){
+    	this.overrideDefaultSettingTS = true;
+    	this.calculateDaysToShift();
+    }
 
-    	Integer appIndex = this.appIndexes.get(this.selectedWaveApp);
-		WaveApplicationRow appRow = this.applicationRows.get(appIndex);
+    public void calculateDaysToShift(){
 		
-		String dateField = '';
-		String whereCond = '';
-		String baselineObjectName = '';
-		Boolean waveApp = false;
+		if(this.selectedInstallationProcess == 'timeShifting'){
+			try{
+				String dateField = '';
+				String baselineObjectName = '';
+				Boolean waveApp = false;
 
-		if(appRow.Name == 'Wave_for_Sales'){
-			dateField = 'CloseDate';
-			baselineObjectName = 'Opportunity';
-			whereCond = 'StageName = \'Closed Won\' AND CloseDate <= TODAY';
-			this.timeShiftingcalculatedDateLabel = 'Date of the latest Won opportunity: ';
-			waveApp = true;
-		}
-		else if(appRow.Name == 'Wave_for_Services'){
-			dateField = 'ClosedDate';
-			baselineObjectName = 'Case';
-			whereCond = 'ClosedDate <= TODAY';
-			this.timeShiftingcalculatedDateLabel = 'Date of the latest Closed case: ';
-			waveApp = true;
-		}
-
-		if(waveApp){
-			String dynamicSoql = 'SELECT ' + dateField + ' FROM ' + baselineObjectName;
-			
-			if(String.isNotBlank(whereCond)){
-				dynamicSoql += ' WHERE ' + whereCond;
-			}
-
-			dynamicSoql += ' ORDER BY ' + dateField + ' DESC NULLS LAST';
-			dynamicSoql += ' LIMIT 1';
+				if(this.selectedWaveApp == 'Wave_for_Sales'){
+					dateField = 'CloseDate';
+					baselineObjectName = 'Opportunity';
 				
-			List<sObject> sobjList = Database.query(dynamicSoql);
+					if(!this.overrideDefaultSettingTS){
+						this.timeShiftingWhereClause = 'External_Id__c LIKE \'W_Opportunity%\' AND StageName = \'Closed Won\'';
+					}
 
-			if(sobjList.size() > 0){				
-				sObject s = sobjList.get(0);
-				DateTime foundDate = (DateTime)s.get(dateField);
-				String formattedDate = foundDate.formatGmt('MM/dd/yyyy');
+					this.timeShiftingcalculatedDateLabel = 'Date of the latest Won opportunity: ';
+					waveApp = true;
+				}
+				else if(this.selectedWaveApp == 'Wave_for_Services'){
+					dateField = 'ClosedDate';
+					baselineObjectName = 'Case';
+					
+					if(!this.overrideDefaultSettingTS){
+						this.timeShiftingWhereClause = 'External_Id__c LIKE \'W_Case%\'';
+					}
 
-				this.timeShiftingcalculatedDateLabel += formattedDate;
-				this.daysToShift = foundDate.dateGMT().daysBetween(Date.today());
+					this.timeShiftingcalculatedDateLabel = 'Date of the latest Closed case: ';
+					waveApp = true;
+				}
+
+				if(waveApp){
+					String dynamicSoql = 'SELECT ' + dateField + ' FROM ' + baselineObjectName;
+					
+					if(String.isNotBlank(this.timeShiftingWhereClause)){
+						dynamicSoql += ' WHERE ' + this.timeShiftingWhereClause;
+					}
+
+					dynamicSoql += ' ORDER BY ' + dateField + ' DESC NULLS LAST';
+					dynamicSoql += ' LIMIT 1';
+				
+					System.debug('SOQL: ' + dynamicSoql);
+
+					List<sObject> sobjList = Database.query(dynamicSoql);
+
+					if(sobjList.size() > 0){				
+						sObject s = sobjList.get(0);
+						DateTime foundDate = (DateTime)s.get(dateField);
+						String formattedDate = foundDate.formatGmt('MM/dd/yyyy');
+
+						this.timeShiftingcalculatedDateLabel += formattedDate;
+						this.daysToShift = foundDate.dateGMT().daysBetween(Date.today());
+					}
+					else{
+						this.daysToShift = 0;
+					}
+				}
 			}
-			else{
-				this.daysToShift = 0;
+			catch(Exception e){
+				this.errorMessage = 'There was an error trying to calculate the days to shift. Check the where clause. Error detail: ' + e.getMessage();
 			}
 		}
-
-    	return null;
     }
 
 
@@ -232,14 +295,14 @@ public with sharing class WaveDataManagerController {
 		List<WaveApplicationObject> listToProcess = new List<WaveApplicationObject>();
 		WaveApplicationObject rootObj = new WaveApplicationObject();
 		rootObj.name = wmaObj.name;
-		rootObj.url = this.genericAppConfiguration.baseUrl + wmaObj.url;
+		rootObj.url = this.baseUrl + wmaObj.url;
 		rootObj.additionalDataFiles = wmaObj.additionalDataFiles;
 		listToProcess.add(rootObj);
 
 		// We process the fields metadata
 		IMockarooHelper iMockHelper = MockarooHelperFactory.getIMockarooHelper();
 		
-		List<List<String>> csvMetadata = iMockHelper.getData(this.genericAppConfiguration.baseUrl + wmaObj.metadataUrl, false);
+		List<List<String>> csvMetadata = iMockHelper.getData(this.baseUrl + wmaObj.metadataUrl, false);
     	
     	if(csvMetadata.size() > 0){
 			// Will extract headers
@@ -303,6 +366,7 @@ public with sharing class WaveDataManagerController {
 		
 		try{
 			WaveApplicationObject currentNode = this.objectsNodes.get(this.currentNodeIndex);
+			this.operationsStatusTable.get(currentNode.Name).put('LoadData','In progress');
 			this.logMessage('Loading records for ' + currentNode.name + ' object...');
             
 			HttpResponse res = WaveConfiguratorUtils.httpGetCallout(currentNode.url);
@@ -355,6 +419,7 @@ public with sharing class WaveDataManagerController {
 		if(this.timeShiftingItems.size() > 0){
 			WaveTimeShiftingItem currentNode = this.timeShiftingItems.get(this.currentTimeShiftingNodeIndex);
 
+			this.operationsStatusTable.get(currentNode.objectTypeName).put('TimeShifting','In progress');
 			this.logMessage('Loading ' + currentNode.fieldsToTimeShift.size() + ' fields for time shifting for ' + currentNode.objectTypeName + ' object...');
 
 			// Start the batch process
@@ -423,7 +488,7 @@ public with sharing class WaveDataManagerController {
 
 									if(String.isNotBlank(this.selectedAppMetadata.userProfilePicturesUrl)){
 										// Build upload photos nodes
-										String zipFileUrl = this.genericAppConfiguration.baseUrl + this.selectedAppMetadata.userProfilePicturesUrl;
+										String zipFileUrl = this.baseUrl + this.selectedAppMetadata.userProfilePicturesUrl;
 										Blob file = this.utils.getUsersPhotosZipBlob(zipFileUrl);
 										Zippex zip = new Zippex(file);
 										
@@ -464,6 +529,7 @@ public with sharing class WaveDataManagerController {
 								else {
 									// There are more nodes to process, increment index and reset
 									// currentNode.currentDataIndex
+									this.operationsStatusTable.get(currentNode.Name).put('LoadData','Done');
 									this.currentNodeIndex = this.currentNodeIndex + 1;
 									this.processCurrentObjectLoadNode();
 								}
@@ -475,6 +541,7 @@ public with sharing class WaveDataManagerController {
 						this.currentNodeIndex = 0;
 						this.disabledButton = false;
 						this.objectsNodes.clear();
+						System.debug('Table status: ' + this.operationsStatusTable);
 
 						// Rollback
 						this.rollbackProcess(this.errorMessage, '');
@@ -614,6 +681,7 @@ public with sharing class WaveDataManagerController {
 							}
 							else {
 								// There are more nodes to process, increment index and reset
+								this.operationsStatusTable.get(currentNode.objectTypeName).put('TimeShifting','Done');
 								this.currentTimeShiftingNodeIndex = this.currentTimeShiftingNodeIndex + 1;
 								this.processTimeShiftingObjects();
 							}
@@ -743,6 +811,7 @@ public with sharing class WaveDataManagerController {
 					// Retrieve objects to process
 
 					for(WaveMetadataApplicationObject wmaObj: this.selectedAppMetadata.objects) {
+						this.operationsStatusTable.get(wmaObj.Name).put('CreateObjectsAndFields','Pending');
 						List<WaveApplicationObject> objs = this.getObjectsToProcess(wmaObj);
 						lstObjects.addAll(objs);
 						this.addRecordTypeNodes(wmaObj);
@@ -760,6 +829,7 @@ public with sharing class WaveDataManagerController {
 					this.timeShiftingItems.clear();
 				
 					for(WaveMetadataApplicationObject wmaObj: this.selectedAppMetadata.objects) {
+						this.operationsStatusTable.get(wmaObj.Name).put('TimeShifting','Pending');
 						this.addTimeShiftingNode(wmaObj);
 					}
 
@@ -782,6 +852,7 @@ public with sharing class WaveDataManagerController {
 					List<WaveApplicationObject> lstObjects = new List<WaveApplicationObject>();
 					// Retrieve objects to process
 					for(WaveMetadataApplicationObject wmaObj: this.selectedAppMetadata.objects) {
+						this.operationsStatusTable.get(wmaObj.Name).put('LoadData','Pending');
 						List<WaveApplicationObject> objs = this.getObjectsToProcess(wmaObj);
 						lstObjects.addAll(objs);
 						this.addRecordTypeNodes(wmaObj);
@@ -792,6 +863,8 @@ public with sharing class WaveDataManagerController {
 					this.launchObjectsLoading(); // COMMENT
 				}
 			}
+
+			System.debug('Status table: ' + this.operationsStatusTable);
 		} 
 		catch(Exception e) {
 			System.debug(e.getMessage());
@@ -849,6 +922,16 @@ public with sharing class WaveDataManagerController {
 
 		String jsonMetadata = res.getBody();
 		this.selectedAppMetadata = (WaveMetadataApplication)JSON.deserialize(jsonMetadata, WaveMetadataApplication.class);
+		
+		for(WaveMetadataApplicationObject wmaObj: this.selectedAppMetadata.objects) {
+			Map<String,String> operationMap = new Map<String,String>();
+			operationMap.put('CreateObjectsAndFields','N/A');
+			operationMap.put('LoadData','N/A');
+			operationMap.put('TimeShifting','N/A');
+
+			this.operationsStatusTable.put(wmaObj.Name, operationMap);
+		}
+
 		return appRow;
 	}
 
@@ -920,6 +1003,10 @@ public with sharing class WaveDataManagerController {
 			else {
 				// We DON'T have metadata to process
 				this.logMessage('No need to create new objects and fields.');
+				
+				for(WaveMetadataApplicationObject wmaObj: this.selectedAppMetadata.objects) {
+					this.operationsStatusTable.get(wmaObj.Name).put('CreateObjectsAndFields','Done');
+				}
 				
 				if(this.objectsRecordTypesMatrix.size() > 0){
 					this.launchRecordTypeCreation();
@@ -1039,6 +1126,7 @@ public with sharing class WaveDataManagerController {
 		SF_MetadataUtils.CustomFieldSpecification initialField = this.objectsAndFieldsMatrix.get(this.currentObjectIndex).get(this.currentFieldIndex);
 		
 		if(startingWithObject){
+			this.operationsStatusTable.get(initialField.ObjectName).put('CreateObjectsAndFields','In progress');
 			this.logMessage('Processing ' + initialField.ObjectName + ' object metadata...');
 		}
 
@@ -1103,6 +1191,11 @@ public with sharing class WaveDataManagerController {
 								if(this.currentFieldIndex == currentFieldList.size() - 1){
 									this.currentObjectIndex = this.currentObjectIndex + 1;
 									this.currentFieldIndex = 0;
+
+									if(this.operationsStatusTable.containsKey(currentField.ObjectName)){
+										this.operationsStatusTable.get(currentField.ObjectName).put('CreateObjectsAndFields','Done');
+									}
+								
 									this.processCurrentObjectAndFieldsMetadata(true);
 								}
 								else{
@@ -1147,4 +1240,6 @@ public with sharing class WaveDataManagerController {
 		DateTime dtNow = DateTime.now();
 		this.processingLog.add(String.format('[{0}] {1}', new String[]{ dtNow.format('yyyyMMdd HH:mm:ss') , msg }));
 	}
+
+
 }

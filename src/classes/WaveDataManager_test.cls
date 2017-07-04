@@ -63,6 +63,7 @@ private class WaveDataManager_test {
 		String oppDataUrl = 'https://s3-us-west-2.amazonaws.com/ac-sdo-repo-dev/simple/Opportunity.csv';
 		
 		String waveForSalesJsonUrl = 'https://s3-us-west-2.amazonaws.com/ac-sdo-repo/sales/WaveForSales.json';
+		String faqUrl = 'https://s3-us-west-2.amazonaws.com/ac-sdo-repo-dev/AnalyticsDemoFAQ.json';
 
 		multimock.setStaticResource(appsMetadataUrl, 'WaveAppsMetadataCSV');
 		multimock.setStaticResource(accountsMetadataUrl, 'AccountMetadataCSV');
@@ -71,6 +72,7 @@ private class WaveDataManager_test {
 		multimock.setStaticResource(oppDataUrl, 'OpportunitiesDataCSV');
 		multimock.setStaticResource(waveForSalesJsonUrl, 'WaveForSalesJson');
 		multimock.setStaticResource(simpleAppJsonUrl, 'SimpleAppJson');
+		multimock.setStaticResource(faqUrl, 'AnalyticsFAQDemo');
 
 		multimock.setStatusCode(200);
 		multimock.setHeader('Content-Type', 'text/plain');
@@ -97,7 +99,6 @@ private class WaveDataManager_test {
 
 		cnt.checkObjectLoadingStatus();
 		List<SelectOption> options = cnt.getWaveApps();
-		//cnt.waveAppSelected();
 		cnt.getAppDescription();
 
 		System.assert(options.size() > 0);
@@ -229,5 +230,40 @@ private class WaveDataManager_test {
 		cnt.selectedWaveApp = 'Simple';
 		cnt.selectedInstallationProcess = 'loadObjects';
 		cnt.executeSelectedProcess();
+	}
+
+	@isTest static void handlerSectionMethodsTest(){
+		WaveDataManagerController cnt = new WaveDataManagerController();
+		cnt.advancedTimeShifting = false;
+		cnt.advancedOption = false;
+
+		cnt.handleAdvancedSetting();
+		cnt.handleAdvancedTimeShifting();
+	}
+
+	@isTest static void calculateDaysToShift(){
+		Account acc = new Account(Name = 'TestAccount', Description = 'Test Account Desc');
+		insert acc;
+
+		Opportunity opp = new Opportunity();
+		SObject opptyToTest = opp.getSObjectType().newSObject();
+
+		opptyToTest.put('AccountId', acc.Id);
+		opptyToTest.put('External_Id__c', 'W_Opportunity.Test');
+		opptyToTest.put('Name', 'TestOpportunity');
+		opptyToTest.put('StageName', 'Closed Won');
+		opptyToTest.put('CloseDate', Date.today());
+		insert opptyToTest;
+
+		WaveDataManagerController cnt = new WaveDataManagerController();
+		cnt.selectedInstallationProcess = 'timeShifting';
+		cnt.selectedWaveApp = 'Wave_for_Sales';
+		cnt.overrideDefaultSettingTS = false;
+
+		cnt.calculateDaysToShift();
+
+		cnt.selectedWaveApp = 'Wave_for_Services';	
+		cnt.calculateDaysToShift();
+
 	}
 }
