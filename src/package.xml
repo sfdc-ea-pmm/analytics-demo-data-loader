@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
+        <members>AnalyticsDemoFAQ</members>
         <members>CSVReader</members>
         <members>CheckTimeShiftingQueue</members>
         <members>CreateObjectsAndFieldsQueueable</members>
@@ -52,5 +53,5 @@
         <members>WaveDataManagerSLDS</members>
         <name>ApexPage</name>
     </types>
-    <version>39.0</version>
+    <version>40.0</version>
 </Package>

@@ -225,4 +225,13 @@ public with sharing class WaveConfiguratorUtils {
 			}
 		}
 	}
+
+	@future(callout=true)
+	public static void getTimeShiftingJson(String url){
+		HttpRequest req = new HttpRequest();
+		req.setEndpoint(url);
+        req.setMethod('GET');
+		Http http = new Http();
+        HTTPResponse res = http.send(req);
+	}
 }

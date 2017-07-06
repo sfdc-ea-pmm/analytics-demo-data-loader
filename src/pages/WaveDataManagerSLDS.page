@@ -110,8 +110,8 @@
 	        	<!-- Main grid -->
 	        	<div class="slds-grid slds-wrap slds-m-top_medium slds-m-left_large">
 	        		<!--Intro section -->
-	        		<div class="slds-col slds-box slds-m-bottom_large slds-m-right_large">
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	        		<div class="slds-col slds-size_1-of-1 slds-box slds-m-bottom_large slds-m-right_large">
+						<p>{!genericAppConfiguration.homeHeaderDescription}</p>
 					</div>
 	        		<!-- Left column -->
 					<div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-right_large">
