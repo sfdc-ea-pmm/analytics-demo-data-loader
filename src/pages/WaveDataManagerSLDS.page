@@ -187,9 +187,7 @@
 									</div>	
 								</apex:outputPanel>
 							</apex:outputPanel>
-						</apex:form>
-
-						<apex:form styleClass="slds-m-vertical_medium slds-form-element">
+				
 							<div class="slds-grid slds-m-vertical_medium">
 								<div class="slds-col slds-size_1-of-2 slds-m-right_large">
 									<label class="slds-form-element__label" for="processType">Specify the process:</label>
