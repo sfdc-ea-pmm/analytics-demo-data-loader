@@ -285,9 +285,9 @@
 							<!-- Log Panel -->
 							<apex:outputPanel rendered="{!processingLog.size > 0}" id="processingLogPanel">
 								<apex:outputText styleClass="slds-form-element__label" value="Progress" id="processingStatus" />
-								<apex:panelGrid columns="1" width="600px" style="border: 1px solid #000;">
+								<apex:panelGrid columns="1" width="600px" style="border: 1px solid #000; display: block; padding: 5px">
 									<apex:repeat value="{!processingLog}" var="logEntry" id="processingLogConsole">
-										<apex:outputText value="{!logEntry}" /><br />
+										<apex:outputText value="{!logEntry}"/><br />
 									</apex:repeat>
 								</apex:panelGrid>
 							</apex:outputPanel>
