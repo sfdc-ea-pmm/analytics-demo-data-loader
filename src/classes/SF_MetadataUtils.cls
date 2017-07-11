@@ -120,6 +120,7 @@ public with sharing class SF_MetadataUtils {
             }
             else if(fieldSpec.Type.equalsIgnoreCase('Checkbox')){
                 // Checkbox
+                cField.required = null;
                 if(String.isBlank(cField.defaultValue)){
                     cField.defaultValue = 'false';
                 }
