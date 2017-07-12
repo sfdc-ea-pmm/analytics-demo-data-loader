@@ -110,7 +110,7 @@
 	        	<!-- Main grid -->
 	        	<div class="slds-grid slds-wrap slds-m-top_medium slds-m-left_large">
 	        		<!--Intro section -->
-	        		<div class="slds-col slds-size_1-of-1 slds-box slds-m-bottom_large slds-m-right_large">
+	        		<div class="slds-col slds-size_1-of-1 slds-m-bottom_large slds-m-right_large">
 						<p>{!genericAppConfiguration.homeHeaderDescription}</p>
 					</div>
 	        		<!-- Left column -->
@@ -118,7 +118,7 @@
 						<div class="slds-grid">
 							<apex:outputPanel styleClass="slds-col" id="appSelection">
 								<apex:form styleClass="slds-form-element">
-									<label class="slds-form-element__label">Please select an App to Load</label>
+									<label class="slds-form-element__label">Please select an App to configure:</label>
 									<div class="slds-form-element__control">
 								        <apex:selectList styleClass="slds-select" value="{!selectedWaveApp}" multiselect="false" size="5" style="width:200px">
 								   			<apex:selectOptions value="{!waveApps}"/>
@@ -128,69 +128,17 @@
 						   		</apex:form>
 							</apex:outputPanel>
 				  			<div class="slds-col slds-size_2-of-2 slds-m-left_small">
-				  				<label class="slds-form-element__label">Description</label>
+				  				<label class="slds-form-element__label">Description:</label>
 								<div class="slds-form-element__control">
 									<apex:outputText value="{!appDescription}" id="appDescription" />
 								</div>			   		
 				  			</div>
 						</div>
 		  				<apex:form styleClass="slds-m-vertical_medium slds-form-element">
-							<apex:outputPanel id="appSettings">
-								
-				   				<apex:commandLink value="{!IF(advancedOption, 'Hide Advanced Settings', 'Show Advanced Settings')}" action="{!handleAdvancedSetting}" reRender="appSettings" />
-									
-								<apex:outputPanel styleClass="slds-grid" rendered="{!advancedOption}" >
-									
-									<div class="slds-col slds-size_1-of-2 slds-m-right_large">
-										
-										<div class="slds-m-top_small">
-											<label class="slds-form-element__label">Api Version:</label>
-											<div class="slds-form-element__control">
-										    	<apex:inputText styleClass="slds-input" value="{!genericAppConfiguration.apiVersion}" />
-										  	</div>
-										</div>
-
-										<div class="slds-m-top_small">
-											<label class="slds-form-element__label">Base URL:</label>
-											<div class="slds-form-element__control">
-												<apex:inputText styleClass="slds-input" value="{!baseUrl}">
-													<apex:actionSupport action="{!getWaveApplications}" event="onchange" rerender="appSelection,appDescription,form1"/>
-												</apex:inputText>
-											</div>
-										</div>
-										
-										<div class="slds-m-top_small">
-											<label class="slds-form-element__label">Application List URI (relative to Base URL):</label>
-											<div class="slds-form-element__control">
-												<apex:inputText styleClass="slds-input" value="{!genericAppConfiguration.waveApplicationsUrl}">
-													<apex:actionSupport action="{!getWaveApplications}" event="onchange" rerender="appSelection,appDescription,form1"/>
-												</apex:inputText>
-											</div>
-										</div>
-									
-									</div>
-									
-									<div class="slds-col slds-size_1-of-2">
-										<div class="slds-m-top_small">
-											<label class="slds-form-element__label">Objects Load Batch Size:</label>
-											<div class="slds-form-element__control">
-												<apex:inputText styleClass="slds-input" value="{!genericAppConfiguration.objectLoadingBatchSize}"/>
-											</div>
-										</div>
-										
-										<div class="slds-m-top_small">
-											<label class="slds-form-element__label">Time Shifting Batch Size:</label>
-											<div class="slds-form-element__control">
-												<apex:inputText styleClass="slds-input" value="{!genericAppConfiguration.timeShiftingBatchSize}"/>
-											</div>
-										</div>
-									</div>	
-								</apex:outputPanel>
-							</apex:outputPanel>
 				
 							<div class="slds-grid slds-m-vertical_medium">
 								<div class="slds-col slds-size_1-of-2 slds-m-right_large">
-									<label class="slds-form-element__label" for="processType">Specify the process:</label>
+									<label class="slds-form-element__label" for="processType">Specify Process:</label>
 						   			<div class="slds-form-element__control ">
 						   				<div class="slds-select_container">
 								   			<apex:selectList styleClass="slds-select processType" value="{!selectedInstallationProcess}" size="1" id="processType">
@@ -201,33 +149,25 @@
 								   			</apex:selectList>
 							   			</div>
 						   			</div>
-						   			<div class="slds-m-top_small">
-										<apex:outputPanel id="emailNotification" >
-											<apex:outputPanel rendered="{!selectedInstallationProcess != 'createMetadata'}">
-												<label class="slds-form-element__label">Notify this email when complete:</label>
-												<div class="slds-form-element__control">
-									   				<apex:inputText styleClass="slds-input" value="{!emailAddress}"/>
-									   			</div>
-								   			</apex:outputPanel>
-							   			</apex:outputPanel>
-						   			</div>
-
-						   			<vs:visualstrapblock id="vsbButton" style="padding-top: 20px;">
-							   			<apex:commandButton value="Run" styleClass="{!IF(disabledButton, 'disabled','')} btn-primary btn-lg" rendered="{!selectedWaveApp != ''}" onclick="return displayConfirmation()" id="btnInstallApp" style="text-transform: none;" />
-
-							   			<apex:actionFunction name="executeSelectedProcess" action="{!executeSelectedProcess}" />
-
-							   			<apex:outputPanel style="margin-left: 15px;" rendered="{!disabledButton}">
-							   				<apex:image value="{!$Resource.LoadingGif}"/>
-							   			</apex:outputPanel>
-							   		</vs:visualstrapblock>
-
 								</div>
-								<div class="slds-col slds-size_1-of-2" style="margin-top: .3rem">
+
+								<div class="slds-col slds-size_1-of-2">
+									<apex:outputPanel id="emailNotification" >
+										<apex:outputPanel rendered="{!selectedInstallationProcess != 'createMetadata'}">
+											<label class="slds-form-element__label">Notify this email when complete:</label>
+											<div class="slds-form-element__control">
+								   				<apex:inputText styleClass="slds-input" value="{!emailAddress}"/>
+								   			</div>
+							   			</apex:outputPanel>
+						   			</apex:outputPanel>
+								</div>
+							</div>
+							<div class="slds-grid slds-m-vertical_medium">
+								<div class="slds-col slds-size_1-of-1">
 									<apex:outputPanel id="timeShiftingValue" >
 										<apex:outputPanel rendered="{!selectedInstallationProcess = 'timeShifting' && (selectedWaveApp = 'Wave_for_Sales' || selectedWaveApp = 'Wave_for_Services') }">
 
-											<apex:commandLink value="{!IF(advancedTimeShifting, 'Hide Advanced Time Shifting Setting', 'Show Advanced Time Shifting Setting')}" action="{!handleAdvancedTimeShifting}" reRender="timeShiftingValue" />
+											<apex:commandLink value="{!IF(advancedTimeShifting, 'Hide Advanced Process Options', 'Show Advanced Process Options')}" action="{!handleAdvancedTimeShifting}" reRender="timeShiftingValue" />
 
 											<apex:outputLabel rendered="{!advancedTimeShifting}">
 												<div class="slds-m-top_small">
@@ -253,6 +193,72 @@
 
 							   			</apex:outputPanel>
 						   			</apex:outputPanel>
+									
+									<div class="slds-m-vertical_medium">
+							   			<vs:visualstrapblock id="vsbButton">
+								   			<apex:commandButton value="Run" styleClass="{!IF(disabledButton, 'disabled','')} btn-primary btn-lg" onclick="return displayConfirmation()" id="btnInstallApp" style="text-transform: none;" />
+
+								   			<apex:actionFunction name="executeSelectedProcess" action="{!executeSelectedProcess}" />
+
+								   			<apex:outputPanel style="margin-left: 15px;" rendered="{!disabledButton}">
+								   				<apex:image value="{!$Resource.LoadingGif}"/>
+								   			</apex:outputPanel>
+								   		</vs:visualstrapblock>
+							   		</div>
+									
+									<apex:outputPanel id="appSettings">
+									    
+						   				<apex:commandLink value="{!IF(advancedOption, 'Hide Advanced Options', 'Show Advanced Options')}" action="{!handleAdvancedSetting}" reRender="appSettings" />
+											
+										<apex:outputPanel styleClass="slds-grid" rendered="{!advancedOption}" >
+											
+											<div class="slds-col slds-size_1-of-2 slds-m-right_large">
+												
+												<div class="slds-m-top_small">
+													<label class="slds-form-element__label">Api Version:</label>
+													<div class="slds-form-element__control">
+												    	<apex:inputText styleClass="slds-input" value="{!genericAppConfiguration.apiVersion}" />
+												  	</div>
+												</div>
+
+												<div class="slds-m-top_small">
+													<label class="slds-form-element__label">Base URL:</label>
+													<div class="slds-form-element__control">
+														<apex:inputText styleClass="slds-input" value="{!baseUrl}">
+															<apex:actionSupport action="{!getWaveApplications}" event="onchange" rerender="appSelection,appDescription,form1"/>
+														</apex:inputText>
+													</div>
+												</div>
+												
+												<div class="slds-m-top_small">
+													<label class="slds-form-element__label">Application List URI (relative to Base URL):</label>
+													<div class="slds-form-element__control">
+														<apex:inputText styleClass="slds-input" value="{!genericAppConfiguration.waveApplicationsUrl}">
+															<apex:actionSupport action="{!getWaveApplications}" event="onchange" rerender="appSelection,appDescription,form1"/>
+														</apex:inputText>
+													</div>
+												</div>
+											
+											</div>
+											
+											<div class="slds-col slds-size_1-of-2">
+												<div class="slds-m-top_small">
+													<label class="slds-form-element__label">Objects Load Batch Size:</label>
+													<div class="slds-form-element__control">
+														<apex:inputText styleClass="slds-input" value="{!genericAppConfiguration.objectLoadingBatchSize}"/>
+													</div>
+												</div>
+												
+												<div class="slds-m-top_small">
+													<label class="slds-form-element__label">Time Shifting Batch Size:</label>
+													<div class="slds-form-element__control">
+														<apex:inputText styleClass="slds-input" value="{!genericAppConfiguration.timeShiftingBatchSize}"/>
+													</div>
+												</div>
+											</div>	
+										</apex:outputPanel>
+									</apex:outputPanel>
+
 								</div>
 							</div>
 						</apex:form>

@@ -801,6 +801,11 @@ public with sharing class WaveDataManagerController {
 		this.getWaveApplications();
 
 		try{
+			
+			if(String.isBlank(this.selectedWaveApp)){
+				throw new WaveConfiguratorException('Please select an app to configure first');
+			}
+
 			if(this.selectedInstallationProcess == 'createMetadata'){
 				this.disabledButton = true;
 				this.selectAppMetadata();

@@ -10,7 +10,7 @@ global class TimeShiftingBatch implements Database.Batchable<sObject>, Database.
 		try{
 			this.objectType = Schema.getGlobalDescribe().get(objectTypeName);
 			this.dateFieldNames = dateFieldNames;
-			this.query = 'SELECT ' + String.join(dateFieldNames, ',') + ' FROM ' + objectTypeName;
+			this.query = 'SELECT ' + String.join(dateFieldNames, ',') + ' FROM ' + objectTypeName + ' WHERE External_Id__c != null';
 			this.daysToShift = daysToShift;
 
 			if(this.daysToShift == 0){
@@ -91,7 +91,7 @@ global class TimeShiftingBatch implements Database.Batchable<sObject>, Database.
 		catch(Exception e) {
 			System.debug(e.getMessage());
 			System.debug(e.getStackTraceString());
-			throw new WaveConfiguratorException('There were some errors during the time shifting process. Cause: ' + e.getMessage());	
+			throw e;
 		}
 	}
 }
