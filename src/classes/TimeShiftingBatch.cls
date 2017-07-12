@@ -91,6 +91,7 @@ global class TimeShiftingBatch implements Database.Batchable<sObject>, Database.
 		catch(Exception e) {
 			System.debug(e.getMessage());
 			System.debug(e.getStackTraceString());
+			throw new WaveConfiguratorException('There were some errors during the time shifting process. Cause: ' + e.getMessage());	
 		}
 	}
 }
