@@ -803,7 +803,7 @@ public with sharing class WaveDataManagerController {
 		try{
 			
 			if(String.isBlank(this.selectedWaveApp)){
-				throw new WaveConfiguratorException('Please select an app to configure first');
+				throw new WaveConfiguratorException('Please select an App to configure.');
 			}
 
 			if(this.selectedInstallationProcess == 'createMetadata'){
