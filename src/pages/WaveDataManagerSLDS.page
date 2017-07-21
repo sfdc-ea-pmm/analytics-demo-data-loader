@@ -177,6 +177,19 @@
 												  	</div>
 
 												  	<apex:commandButton value="Save Setting" styleClass="slds-m-top_xx-small slds-button slds-button_neutral" action="{!saveSetting}" />
+												  	<br /><br />
+													
+													<label class="slds-form-element__label">Objects to time shift:</label>
+													<apex:repeat value="{!selectedObjectsToTimeShift}" var="objectKey">
+														<div class="slds-form-element__control">
+															<label class="slds-checkbox">
+														    	<apex:inputCheckbox value="{!selectedObjectsToTimeShift[objectKey]}"/>
+														        <span class="slds-checkbox_faux"></span>
+														        <span class="slds-form-element__label">{!objectKey}</span>
+														    </label>
+														</div>
+													</apex:repeat>
+
 												</div>
 											</apex:outputLabel>
 								   			
@@ -445,7 +458,7 @@
 					}
 				}
 			}
-			
+
 		</script>
 
 	</body>

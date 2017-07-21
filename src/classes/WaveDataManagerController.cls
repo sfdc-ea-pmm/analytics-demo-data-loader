@@ -50,6 +50,7 @@ public with sharing class WaveDataManagerController {
 	public Boolean overrideDefaultSettingTS { get; set; }
 	public List<AnalyticsDemoFAQ> analyticsDemoFAQ { get; set; }
 	public String baseUrl { get; set; } 
+	public Map<String, Boolean> selectedObjectsToTimeShift { get; set; }
 
 	// Secuence control
 	public String installationStep { get; set; }
@@ -83,6 +84,7 @@ public with sharing class WaveDataManagerController {
 		this.overrideDefaultSettingTS = false;
 		this.operationsStatusTable = new Map<String,Map<String,String>>();
 		this.analyticsDemoFAQ = new List<AnalyticsDemoFAQ>();
+		this.selectedObjectsToTimeShift = new Map<String, Boolean>();
 	}
 
 	public PageReference pageLoad()
@@ -212,6 +214,9 @@ public with sharing class WaveDataManagerController {
 		
 		if(this.selectedInstallationProcess == 'timeShifting'){
 			try{
+				
+				this.getObjectsToTimeShift();
+
 				String dateField = '';
 				String baselineObjectName = '';
 				Boolean waveApp = false;
@@ -272,6 +277,16 @@ public with sharing class WaveDataManagerController {
 		}
     }
 
+    public void getObjectsToTimeShift(){
+    	this.selectAppMetadata();
+    	this.selectedObjectsToTimeShift.clear();
+
+    	for(WaveMetadataApplicationObject wmaObj: this.selectedAppMetadata.objects) {
+    		if(wmaObj.dateFieldsToShift != null && wmaObj.dateFieldsToShift.size() > 0){
+    			this.selectedObjectsToTimeShift.put(wmaObj.Name, true);
+    		}
+    	}
+    }
 
     public String getAppDescription(){
     	
@@ -827,21 +842,21 @@ public with sharing class WaveDataManagerController {
 				}
 			}
 			else if(this.selectedInstallationProcess == 'timeShifting'){
-				this.disabledButton = true;
-				this.selectAppMetadata();
-				
-				if(this.selectedAppMetadata.objects != null){	
-					this.timeShiftingItems.clear();
-				
-					for(WaveMetadataApplicationObject wmaObj: this.selectedAppMetadata.objects) {
-						this.operationsStatusTable.get(wmaObj.Name).put('TimeShifting','Pending');
-						this.addTimeShiftingNode(wmaObj);
+				this.timeShiftingItems.clear();
+			
+				for(WaveMetadataApplicationObject wmaObj: this.selectedAppMetadata.objects) {
+					//If object is selected in UI
+					if(this.selectedObjectsToTimeShift.containsKey(wmaObj.Name)){
+						if(this.selectedObjectsToTimeShift.get(wmaObj.Name)){
+							this.addTimeShiftingNode(wmaObj);
+						}
 					}
-
-					this.currentTimeShiftingNodeIndex = 0;
-					this.enableTimeShiftingCheck = true;
-					this.processTimeShiftingObjects();
 				}
+				
+				this.disabledButton = true;
+				this.currentTimeShiftingNodeIndex = 0;
+				this.enableTimeShiftingCheck = true;
+				this.processTimeShiftingObjects();
 			}
 			else if(this.selectedInstallationProcess == 'loadObjects'){
 				this.disabledButton = true;
@@ -911,6 +926,7 @@ public with sharing class WaveDataManagerController {
 			timeShiftingItem.objectTypeName = wmaObj.Name;
 			timeShiftingItem.fieldsToTimeShift = wmaObj.dateFieldsToShift;
 
+			this.selectedObjectsToTimeShift.put(wmaObj.Name, true);
 			this.timeShiftingItems.add(timeShiftingItem);
 		}
 	}
