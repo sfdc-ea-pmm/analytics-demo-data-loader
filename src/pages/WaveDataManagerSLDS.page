@@ -182,7 +182,7 @@
 													<label class="slds-form-element__label">Objects to time shift:</label>
 													<apex:repeat value="{!selectedObjectsToTimeShift}" var="objectKey">
 														<div class="slds-form-element__control">
-															<label class="slds-checkbox">
+															<label class="slds-checkbox" style="display: inline;">
 														    	<apex:inputCheckbox value="{!selectedObjectsToTimeShift[objectKey]}"/>
 														        <span class="slds-checkbox_faux"></span>
 														        <span class="slds-form-element__label">{!objectKey}</span>
