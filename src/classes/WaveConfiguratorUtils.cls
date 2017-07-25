@@ -1,6 +1,6 @@
 public with sharing class WaveConfiguratorUtils {
 	
-	private String apiVersion;
+	private Double apiVersion;
 
 	public WaveConfiguratorUtils() {
 		

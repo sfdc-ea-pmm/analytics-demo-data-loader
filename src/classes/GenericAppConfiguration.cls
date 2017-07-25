@@ -1,5 +1,5 @@
 public class GenericAppConfiguration {
-	public String apiVersion { get; set; }
+	public Double apiVersion { get; set; }
 	public String baseUrl { get; set; }
 	public String baseDevUrl { get; set; }
 	public String waveApplicationsUrl { get; set; }

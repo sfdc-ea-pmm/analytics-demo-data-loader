@@ -51,6 +51,7 @@ public with sharing class WaveDataManagerController {
 	public List<AnalyticsDemoFAQ> analyticsDemoFAQ { get; set; }
 	public String baseUrl { get; set; } 
 	public Map<String, Boolean> selectedObjectsToTimeShift { get; set; }
+	public CustomModalConfirmation modalMessage { get; set; }
 
 	// Secuence control
 	public String installationStep { get; set; }
@@ -76,7 +77,7 @@ public with sharing class WaveDataManagerController {
 		this.enableTimeShiftingCheck = false;
 		this.enableObjectProcessingCheck = false;
 		this.processingObjectsAndFieldsMetadata = false;
-		this.selectedInstallationProcess = 'fullInstallation';
+		this.selectedInstallationProcess = 'loadObjects';
 		this.userPhotoNodes = new List<UserPhotoInfo>();
 		this.advancedOption = false;
 		this.advancedTimeShifting = false;
@@ -85,6 +86,7 @@ public with sharing class WaveDataManagerController {
 		this.operationsStatusTable = new Map<String,Map<String,String>>();
 		this.analyticsDemoFAQ = new List<AnalyticsDemoFAQ>();
 		this.selectedObjectsToTimeShift = new Map<String, Boolean>();
+		this.modalMessage = new CustomModalConfirmation();
 	}
 
 	public PageReference pageLoad()
@@ -207,74 +209,118 @@ public with sharing class WaveDataManagerController {
 
     public void saveSetting(){
     	this.overrideDefaultSettingTS = true;
-    	this.calculateDaysToShift();
+    	this.selectedApp();
     }
 
-    public void calculateDaysToShift(){
-		
-		if(this.selectedInstallationProcess == 'timeShifting'){
-			try{
-				
-				this.getObjectsToTimeShift();
+    public void selectedApp(){
 
-				String dateField = '';
-				String baselineObjectName = '';
-				Boolean waveApp = false;
+    	try{
+			if(this.selectedInstallationProcess == 'timeShifting'){
 
-				if(this.selectedWaveApp == 'Wave_for_Sales'){
-					dateField = 'CloseDate';
-					baselineObjectName = 'Opportunity';
-				
-					if(!this.overrideDefaultSettingTS){
-						this.timeShiftingWhereClause = 'External_Id__c LIKE \'W_Opportunity%\' AND StageName = \'Closed Won\'';
-					}
-
-					this.timeShiftingcalculatedDateLabel = 'Date of the latest Won opportunity: ';
-					waveApp = true;
-				}
-				else if(this.selectedWaveApp == 'Wave_for_Services'){
-					dateField = 'ClosedDate';
-					baselineObjectName = 'Case';
+				if(String.isNotBlank(this.selectedWaveApp)){
+					this.getObjectsToTimeShift();
 					
-					if(!this.overrideDefaultSettingTS){
-						this.timeShiftingWhereClause = 'External_Id__c LIKE \'W_Case%\'';
+					List<String> objNames = new List<String>();
+
+					for(String selectedObjs: this.selectedObjectsToTimeShift.keySet()){
+						if(this.selectedObjectsToTimeShift.get(selectedObjs)){
+							objNames.add(selectedObjs);
+						}
 					}
 
-					this.timeShiftingcalculatedDateLabel = 'Date of the latest Closed case: ';
-					waveApp = true;
+					this.checkForTriggersAndRules(objNames, true);
 				}
-
-				if(waveApp){
-					String dynamicSoql = 'SELECT ' + dateField + ' FROM ' + baselineObjectName;
-					
-					if(String.isNotBlank(this.timeShiftingWhereClause)){
-						dynamicSoql += ' WHERE ' + this.timeShiftingWhereClause;
-					}
-
-					dynamicSoql += ' ORDER BY ' + dateField + ' DESC NULLS LAST';
-					dynamicSoql += ' LIMIT 1';
+				this.calculateDaysToShift();
+			} 
+			else if(this.selectedInstallationProcess == 'loadObjects'){
 				
-					System.debug('SOQL: ' + dynamicSoql);
+				this.selectAppMetadata();
+				List<String> objNames = new List<String>();
 
-					List<sObject> sobjList = Database.query(dynamicSoql);
-
-					if(sobjList.size() > 0){				
-						sObject s = sobjList.get(0);
-						DateTime foundDate = (DateTime)s.get(dateField);
-						String formattedDate = foundDate.formatGmt('MM/dd/yyyy');
-
-						this.timeShiftingcalculatedDateLabel += formattedDate;
-						this.daysToShift = foundDate.dateGMT().daysBetween(Date.today());
-					}
-					else{
-						this.daysToShift = 0;
-					}
+				for(WaveMetadataApplicationObject wmaObj: this.selectedAppMetadata.objects) {
+					objNames.add(wmaObj.name);
 				}
-			}
-			catch(Exception e){
-				this.errorMessage = 'There was an error trying to calculate the days to shift. Check the where clause. Error detail: ' + e.getMessage();
+
+				this.checkForTriggersAndRules(objNames, false);
 			}
 		}
+		catch(Exception e){
+			this.errorMessage = e.getMessage();
+		}
+    }
+
+    public void checkForTriggersAndRules(List<String> objNames, Boolean timeShifting){
+
+    	List<ApexTrigger> triggers = [SELECT Status, TableEnumOrId FROM ApexTrigger WHERE TableEnumOrId IN :objNames];
+    	
+    	//Set that will contain the objects with triggers/wk/rules if found.
+    	Set<String> objectsToWarn = new Set<String>(); 
+
+    	if(triggers.size() > 0){
+    		for(ApexTrigger tr: triggers){
+    			if(tr.Status.equalsIgnoreCase('Active')){
+    				objectsToWarn.add(tr.TableEnumOrId);
+    			}
+    		}
+    	}
+
+    	//Won't be necessary to search for Workflows/Rules in objects that already have triggers.
+    	List<String> objWithoutTriggers = new List<String>();
+
+    	for(String obj: objNames){
+    		if(!objectsToWarn.contains(obj)){
+    			objWithoutTriggers.add(obj);
+    		}
+    	}
+
+    	List<String> objWithRulesOrWorkflows = SF_MetadataUtils.getObjectsWithRulesAndOrWorkflows(objWithoutTriggers, genericAppConfiguration.apiVersion);
+    	this.buildConfirmationModal(objWithRulesOrWorkflows, objectsToWarn, timeShifting);
+    }
+
+
+    public void buildConfirmationModal(List<String> objNames, Set<String> objToDisplay, Boolean timeShifting){
+    	
+    	this.clearModal();
+
+    	//If there are workflows and/or validation rules, we added it to the main list.
+    	if(objNames.size() > 0){
+    		objToDisplay.addAll(objNames);
+    	}
+
+    	//If we have elements in list, we build the string to display in modal.
+    	if(objToDisplay.size() > 0){
+			String objectsDetected = '';
+
+			Integer i = 0;
+			for(String obj: objToDisplay){
+				objectsDetected += obj;
+
+				if(i < objToDisplay.size() - 1){
+					objectsDetected += ', ';
+				}
+
+				i++;
+			}
+		
+			modalMessage.body = 'Triggers, Workflow Rules and/or Validation Rules detected on [' + objectsDetected + ']. Make sure they are inactive or process may fail.';
+		}
+		
+		//If time shifting, the modal will be displayed anyway.
+    	if(timeShifting){
+    		modalMessage.header = 'Process Confirmation';
+    		modalMessage.body += ' All records will be time-shifted. Are you sure you want to continue?';
+    	}
+    	else {
+    		//If not time shifting , we make appear confirmation only when there're Triggers/Workflows/Rules
+    		if(objToDisplay.size() > 0){
+    			modalMessage.header = 'Process Confirmation';	
+    		}
+    	}
+    }
+
+    public void clearModal(){
+    	modalMessage.header = '';
+    	modalMessage.body = '';
     }
 
     public void getObjectsToTimeShift(){
@@ -286,6 +332,83 @@ public with sharing class WaveDataManagerController {
     			this.selectedObjectsToTimeShift.put(wmaObj.Name, true);
     		}
     	}
+    }
+
+    public void calculateDaysToShift(){
+		String dateField = '';
+		String baselineObjectName = '';
+		Boolean waveApp = false;
+
+		if(this.selectedWaveApp == 'Wave_for_Sales'){
+			dateField = 'CloseDate';
+			baselineObjectName = 'Opportunity';
+		
+			if(!this.overrideDefaultSettingTS){
+				this.timeShiftingWhereClause = 'External_Id__c LIKE \'W_Opportunity%\' AND StageName = \'Closed Won\'';
+			}
+
+			this.timeShiftingcalculatedDateLabel = 'Date of the latest Won opportunity: ';
+			waveApp = true;
+		}
+		else if(this.selectedWaveApp == 'Wave_for_Services'){
+			dateField = 'ClosedDate';
+			baselineObjectName = 'Case';
+			
+			if(!this.overrideDefaultSettingTS){
+				this.timeShiftingWhereClause = 'External_Id__c LIKE \'W_Case%\'';
+			}
+
+			this.timeShiftingcalculatedDateLabel = 'Date of the latest Closed case: ';
+			waveApp = true;
+		}
+
+		if(waveApp){
+			String dynamicSoql = 'SELECT ' + dateField + ' FROM ' + baselineObjectName;
+			
+			if(String.isNotBlank(this.timeShiftingWhereClause)){
+				dynamicSoql += ' WHERE ' + this.timeShiftingWhereClause;
+			}
+
+			dynamicSoql += ' ORDER BY ' + dateField + ' DESC NULLS LAST';
+			dynamicSoql += ' LIMIT 1';
+
+			try{
+				List<sObject> sobjList = Database.query(dynamicSoql);
+				if(sobjList.size() > 0){				
+					sObject s = sobjList.get(0);
+					DateTime foundDate = (DateTime)s.get(dateField);
+					String formattedDate = foundDate.formatGmt('MM/dd/yyyy');
+
+					this.timeShiftingcalculatedDateLabel += formattedDate;
+					this.daysToShift = foundDate.dateGMT().daysBetween(Date.today());
+				}
+				else{
+					this.daysToShift = 0;
+				}
+			}
+			catch(Exception e){
+				this.errorMessage = 'There was an error trying to calculate the days to shift. Check the where clause. Error detail: ' + e.getMessage();
+			}
+		}
+    }
+
+    public void updateSelectedObjectsToTimeShift(){
+    	this.timeShiftingItems.clear();
+		this.selectAppMetadata();
+
+		List<String> objToCheck = new List<String>();
+
+		for(WaveMetadataApplicationObject wmaObj: this.selectedAppMetadata.objects) {
+			//If object is selected in UI
+			if(this.selectedObjectsToTimeShift.containsKey(wmaObj.Name)){
+				if(this.selectedObjectsToTimeShift.get(wmaObj.Name)){
+					this.addTimeShiftingNode(wmaObj);
+					objToCheck.add(wmaObj.Name);
+				}
+			}
+		}
+
+		this.checkForTriggersAndRules(objToCheck, true);
     }
 
     public String getAppDescription(){
@@ -842,17 +965,6 @@ public with sharing class WaveDataManagerController {
 				}
 			}
 			else if(this.selectedInstallationProcess == 'timeShifting'){
-				this.timeShiftingItems.clear();
-			
-				for(WaveMetadataApplicationObject wmaObj: this.selectedAppMetadata.objects) {
-					//If object is selected in UI
-					if(this.selectedObjectsToTimeShift.containsKey(wmaObj.Name)){
-						if(this.selectedObjectsToTimeShift.get(wmaObj.Name)){
-							this.addTimeShiftingNode(wmaObj);
-						}
-					}
-				}
-				
 				this.disabledButton = true;
 				this.currentTimeShiftingNodeIndex = 0;
 				this.enableTimeShiftingCheck = true;

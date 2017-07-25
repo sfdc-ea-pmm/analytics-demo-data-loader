@@ -122,7 +122,7 @@
 									<div class="slds-form-element__control">
 								        <apex:selectList styleClass="slds-select" value="{!selectedWaveApp}" multiselect="false" size="5" style="width:200px">
 								   			<apex:selectOptions value="{!waveApps}"/>
-								   			<apex:actionSupport reRender="appDescription,vsbButton,folderName,timeShiftingValue" event="onchange" action="{!calculateDaysToShift}" />
+								   			<apex:actionSupport reRender="appDescription,vsbButton,folderName,timeShiftingValue,modalHeader,modalBody" event="onchange" action="{!selectedApp}" />
 								   		</apex:selectList>
 							   		</div>
 						   		</apex:form>
@@ -142,10 +142,10 @@
 						   			<div class="slds-form-element__control ">
 						   				<div class="slds-select_container">
 								   			<apex:selectList styleClass="slds-select processType" value="{!selectedInstallationProcess}" size="1" id="processType">
-								   				<apex:selectOption itemValue="loadObjects" itemLabel="Prep Core Data"/>
+								   				<apex:selectOption itemValue="loadObjects" itemLabel="Load Data into Core"/>
 								   				<apex:selectOption itemValue="createMetadata" itemLabel="Create Objects and Fields"/>
 								   				<apex:selectOption itemValue="timeShifting" itemLabel="Time shifting"/>
-								   				<apex:actionSupport event="onchange" rerender="emailNotification,timeShiftingValue,form1" action="{!calculateDaysToShift}"/>
+								   				<apex:actionSupport event="onchange" rerender="emailNotification,timeShiftingValue,form1,modalHeader,modalBody" action="{!selectedApp}"/>
 								   			</apex:selectList>
 							   			</div>
 						   			</div>
@@ -179,17 +179,18 @@
 												  	<apex:commandButton value="Save Setting" styleClass="slds-m-top_xx-small slds-button slds-button_neutral" action="{!saveSetting}" />
 												  	<br /><br />
 													
-													<label class="slds-form-element__label">Objects to time shift:</label>
+													<label class="slds-form-element__label slds-show">Objects to time shift:</label>
 													<apex:repeat value="{!selectedObjectsToTimeShift}" var="objectKey">
-														<div class="slds-form-element__control">
+														<div class="slds-form-element__control slds-show_inline-block" style= "width: 50%">
 															<label class="slds-checkbox" style="display: inline;">
-														    	<apex:inputCheckbox value="{!selectedObjectsToTimeShift[objectKey]}"/>
+														    	<apex:inputCheckbox value="{!selectedObjectsToTimeShift[objectKey]}">
+														    		<apex:actionSupport event="onchange" reRender="timeShiftingValue,modalHeader,modalBody" action="{!updateSelectedObjectsToTimeShift}"/>
+														    	</apex:inputCheckbox>
 														        <span class="slds-checkbox_faux"></span>
 														        <span class="slds-form-element__label">{!objectKey}</span>
 														    </label>
 														</div>
 													</apex:repeat>
-
 												</div>
 											</apex:outputLabel>
 								   			
@@ -376,7 +377,7 @@
 	        </div>
 	    
 	    </div>		
-		<apex:form >
+		<apex:form>
 			<div data-reactroot="" class="demo-only" style="height: 640px;">
 				<section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-describedby="modal-content-id-1" class="slds-modal" id="modal">
 				    <div class="slds-modal__container">
@@ -388,11 +389,13 @@
 				                <span class="slds-assistive-text" onclick="return closeModal()">Close</span>
 				            </button>
 				            <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">
-				            	Time Shifting Confirmation
+				            	<!--Time Shifting Confirmation-->
+				            	<apex:outputText id="modalHeader" value="{!modalMessage.header}" />
 				            </h2>
 				        </header>
 				        <div class="slds-modal__content slds-p-around_medium slds-text-align_center" id="modal-content-id-1">
-				            <p>All records will be time-shifted. Are you sure you want to continue?</p>
+				            <!--<p>All records will be time-shifted. Are you sure you want to continue?</p>-->
+				            <apex:outputText id="modalBody" value="{!modalMessage.body}" />
 				        </div>
 				        <footer class="slds-modal__footer">
 				            <button class="slds-button slds-button_neutral" onclick="return closeModal()">No</button>
@@ -411,12 +414,21 @@
 			var backdrop = document.getElementById("backdrop");
 
 			function displayConfirmation(){
-			
+
 				var elements = document.getElementsByClassName('processType');
 				
-				if(elements[0].value == "timeShifting"){
-					modal.classList.add("slds-fade-in-open");
-					backdrop.classList.add("slds-backdrop--open");
+				if(elements[0].value == "timeShifting" || elements[0].value == "loadObjects"){
+
+					var modalHeader = document.getElementById('modal-heading-01');
+
+					//If modal header is populated, we make appear the dialog
+					if(modalHeader.childNodes[0].innerHTML != ''){
+						modal.classList.add("slds-fade-in-open");
+						backdrop.classList.add("slds-backdrop--open");
+					}
+					else {
+						executeSelectedProcess();
+					}
 				}
 				else{
 					executeSelectedProcess();
