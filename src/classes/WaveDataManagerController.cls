@@ -213,6 +213,8 @@ public with sharing class WaveDataManagerController {
     }
 
     public void selectedApp(){
+    	
+    	this.errorMessage = '';
 
     	try{
 			if(this.selectedInstallationProcess == 'timeShifting'){
@@ -302,13 +304,13 @@ public with sharing class WaveDataManagerController {
 				i++;
 			}
 		
-			modalMessage.body = 'Triggers, Workflow Rules and/or Validation Rules detected on [' + objectsDetected + ']. Make sure they are inactive or process may fail.';
+			modalMessage.body = 'Triggers, Workflow Rules and/or Validation Rules detected on the following objects: ' + objectsDetected + '. Make sure they are inactive or process may fail.';
 		}
 		
 		//If time shifting, the modal will be displayed anyway.
     	if(timeShifting){
     		modalMessage.header = 'Process Confirmation';
-    		modalMessage.body += ' All records will be time-shifted. Are you sure you want to continue?';
+    		modalMessage.body += ' All records will be time-shifted.';
     	}
     	else {
     		//If not time shifting , we make appear confirmation only when there're Triggers/Workflows/Rules
@@ -316,6 +318,8 @@ public with sharing class WaveDataManagerController {
     			modalMessage.header = 'Process Confirmation';	
     		}
     	}
+        
+        modalMessage.body += ' Are you sure you want to continue?';
     }
 
     public void clearModal(){

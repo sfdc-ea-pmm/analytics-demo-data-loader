@@ -122,7 +122,7 @@
 									<div class="slds-form-element__control">
 								        <apex:selectList styleClass="slds-select" value="{!selectedWaveApp}" multiselect="false" size="5" style="width:200px">
 								   			<apex:selectOptions value="{!waveApps}"/>
-								   			<apex:actionSupport reRender="appDescription,vsbButton,folderName,timeShiftingValue,modalHeader,modalBody" event="onchange" action="{!selectedApp}" />
+								   			<apex:actionSupport reRender="appDescription,vsbButton,folderName,timeShiftingValue,modalHeader,modalBody,form1" event="onchange" action="{!selectedApp}" onsubmit="disableRunButton()" />
 								   		</apex:selectList>
 							   		</div>
 						   		</apex:form>
@@ -134,7 +134,7 @@
 								</div>			   		
 				  			</div>
 						</div>
-		  				<apex:form styleClass="slds-m-vertical_medium slds-form-element">
+		  				<apex:form id="form4" styleClass="slds-m-vertical_medium slds-form-element">
 				
 							<div class="slds-grid slds-m-vertical_medium">
 								<div class="slds-col slds-size_1-of-2 slds-m-right_large">
@@ -145,7 +145,7 @@
 								   				<apex:selectOption itemValue="loadObjects" itemLabel="Load Data into Core"/>
 								   				<apex:selectOption itemValue="createMetadata" itemLabel="Create Objects and Fields"/>
 								   				<apex:selectOption itemValue="timeShifting" itemLabel="Time shifting"/>
-								   				<apex:actionSupport event="onchange" rerender="emailNotification,timeShiftingValue,form1,modalHeader,modalBody" action="{!selectedApp}"/>
+								   				<apex:actionSupport event="onchange" rerender="vsbButton,emailNotification,timeShiftingValue,form1,modalHeader,modalBody" action="{!selectedApp}" onsubmit="disableRunButton()"/>
 								   			</apex:selectList>
 							   			</div>
 						   			</div>
@@ -184,7 +184,7 @@
 														<div class="slds-form-element__control slds-show_inline-block" style= "width: 50%">
 															<label class="slds-checkbox" style="display: inline;">
 														    	<apex:inputCheckbox value="{!selectedObjectsToTimeShift[objectKey]}">
-														    		<apex:actionSupport event="onchange" reRender="timeShiftingValue,modalHeader,modalBody" action="{!updateSelectedObjectsToTimeShift}"/>
+														    		<apex:actionSupport event="onchange" reRender="vsbButton,timeShiftingValue,modalHeader,modalBody" action="{!updateSelectedObjectsToTimeShift}" onsubmit="disableRunButton()"/>
 														    	</apex:inputCheckbox>
 														        <span class="slds-checkbox_faux"></span>
 														        <span class="slds-form-element__label">{!objectKey}</span>
@@ -210,7 +210,7 @@
 									
 									<div class="slds-m-vertical_medium">
 							   			<vs:visualstrapblock id="vsbButton">
-								   			<apex:commandButton value="Run" styleClass="{!IF(disabledButton, 'disabled','')} btn-primary btn-lg" onclick="return displayConfirmation()" id="btnInstallApp" style="text-transform: none;" />
+								   			<apex:commandButton value="Run" styleClass="{!IF(disabledButton, 'disabled','')} btn btn-primary btn-lg btnInstallApp" onclick="return displayConfirmation(this)" style="text-transform: none;" />
 
 								   			<apex:actionFunction name="executeSelectedProcess" action="{!executeSelectedProcess}" />
 
@@ -239,7 +239,7 @@
 													<label class="slds-form-element__label">Base URL:</label>
 													<div class="slds-form-element__control">
 														<apex:inputText styleClass="slds-input" value="{!baseUrl}">
-															<apex:actionSupport action="{!getWaveApplications}" event="onchange" rerender="appSelection,appDescription,form1"/>
+															<apex:actionSupport action="{!getWaveApplications}" event="onchange" rerender="vsbButton,appSelection,appDescription,form1" onsubmit="disableRunButton()"/>
 														</apex:inputText>
 													</div>
 												</div>
@@ -248,7 +248,7 @@
 													<label class="slds-form-element__label">Application List URI (relative to Base URL):</label>
 													<div class="slds-form-element__control">
 														<apex:inputText styleClass="slds-input" value="{!genericAppConfiguration.waveApplicationsUrl}">
-															<apex:actionSupport action="{!getWaveApplications}" event="onchange" rerender="appSelection,appDescription,form1"/>
+															<apex:actionSupport action="{!getWaveApplications}" event="onchange" rerender="vsbButton,appSelection,appDescription,form1" onsubmit="disableRunButton()"/>
 														</apex:inputText>
 													</div>
 												</div>
@@ -377,7 +377,7 @@
 	        </div>
 	    
 	    </div>		
-		<apex:form>
+		<apex:form >
 			<div data-reactroot="" class="demo-only" style="height: 640px;">
 				<section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-describedby="modal-content-id-1" class="slds-modal" id="modal">
 				    <div class="slds-modal__container">
@@ -413,28 +413,31 @@
 			var modal = document.getElementById("modal");
 			var backdrop = document.getElementById("backdrop");
 
-			function displayConfirmation(){
+			function displayConfirmation(e){
 
-				var elements = document.getElementsByClassName('processType');
+				if(!e.classList.contains('disabled')){
+
+					var elements = document.getElementsByClassName('processType');
 				
-				if(elements[0].value == "timeShifting" || elements[0].value == "loadObjects"){
+					if(elements[0].value == "timeShifting" || elements[0].value == "loadObjects"){
 
-					var modalHeader = document.getElementById('modal-heading-01');
+						var modalHeader = document.getElementById('modal-heading-01');
 
-					//If modal header is populated, we make appear the dialog
-					if(modalHeader.childNodes[0].innerHTML != ''){
-						modal.classList.add("slds-fade-in-open");
-						backdrop.classList.add("slds-backdrop--open");
+						//If modal header is populated, we make appear the dialog
+						if(modalHeader.childNodes[0].innerHTML != ''){
+							modal.classList.add("slds-fade-in-open");
+							backdrop.classList.add("slds-backdrop--open");
+						}
+						else {
+							executeSelectedProcess();
+						}
 					}
-					else {
+					else{
 						executeSelectedProcess();
 					}
 				}
-				else{
-					executeSelectedProcess();
-				}
 
-				return false;
+				return false;	
 			}
 
 			function closeModal(){
@@ -469,6 +472,12 @@
 						contents[i].classList.add('slds-hide');
 					}
 				}
+			}
+
+			function disableRunButton(){
+				//var runButton = document.getElementById('{!$Component.form4.vsbButton.btnInstallApp}');
+				var runButton = document.getElementsByClassName('btnInstallApp')[0];
+				runButton.classList.add('disabled');
 			}
 
 		</script>

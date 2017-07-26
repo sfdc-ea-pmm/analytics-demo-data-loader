@@ -180,7 +180,7 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
 					}
 
 					upsert rolesToUpsert;
-				}
+				} 
 				else {
 					// We must determine which objects to insert, and which to update
 					String genQuery = 'SELECT Id, External_Id__c FROM ' + this.objectType.getDescribe().getName() + ' WHERE External_Id__c IN :lstExternalIds';
