@@ -21,7 +21,7 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
 		for(Integer columnNumber: this.fieldPositions.keySet()) {
     		
     		// Gets the column name
-    		String headerValue = this.fieldPositions.get(columnNumber);
+    		String headerValue = this.fieldPositions.get(columnNumber).replace('"','');
 
     		this.fieldIndexes.put(headerValue, columnNumber);
     	}
@@ -181,6 +181,99 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
 
 					upsert rolesToUpsert;
 				} 
+				else if(this.objectType.getDescribe().getName() == 'Group'){
+					List<Group> lstGroups = (List<Group>)objectsBatch;
+					Set<String> setNames = new Set<String>();
+					
+					// Retrieve names
+					for(Group g : lstGroups){
+						if(String.isNotBlank(g.Name)){
+							setNames.add(g.Name);
+						}
+					}
+
+					Map<String, String> groupIdByName = new Map<String, String>();
+					List<Group> existingGroups = [SELECT Id, Name FROM Group WHERE Name IN :setNames];
+
+					// We fill the Ids map
+					for(Group exGroup : existingGroups){
+						groupIdByName.put(exGroup.Name, exGroup.Id);
+					}
+
+					// New list for allow DML
+					List<Group> groupsToUpsert = new List<Group>();
+
+					// Set Ids
+					for(Group g : lstGroups){
+						Group newGroup = new Group();
+						
+						if(String.isNotBlank(g.Name)){
+							
+							if(groupIdByName.containsKey(g.Name)){
+								newGroup.Id = groupIdByName.get(g.Name);
+							}
+							
+							newGroup.Name = g.Name;
+							newGroup.DeveloperName = g.DeveloperName;
+							newGroup.Email = g.Email;
+							newGroup.QueueRoutingConfigId = g.QueueRoutingConfigId;
+							newGroup.DoesSendEmailToMembers = g.DoesSendEmailToMembers;
+							newGroup.DoesIncludeBosses = g.DoesIncludeBosses;
+
+							groupsToUpsert.add(newGroup);
+						}
+					}
+
+					upsert groupsToUpsert;
+				}
+				else if(this.objectType.getDescribe().getName() == 'QueueSobject'){
+					List<QueueSobject> lstQueueSobject = (List<QueueSobject>)objectsBatch;
+					Set<String> setQueueId = new Set<String>();
+					Set<String> setSObjectName = new Set<String>();
+
+					// Retrieve names
+					for(QueueSobject q : lstQueueSobject){
+						if(String.isNotBlank(q.QueueId)){
+							setQueueId.add(q.QueueId);
+						}
+
+						if(String.isNotBlank(q.SobjectType)){
+							setSObjectName.add(q.SobjectType);
+						}
+					}
+
+					Map<String, String> auxMap = new Map<String, String>();
+					List<QueueSobject> existingSObjects = [SELECT Id, QueueId, SobjectType FROM QueueSobject WHERE QueueId IN :setQueueId OR SobjectType IN :setSObjectName];
+
+					// We fill the Ids map
+					for(QueueSobject exSObjectQueue : existingSObjects){
+						auxMap.put(exSObjectQueue.QueueId + '-' + exSObjectQueue.SobjectType, exSObjectQueue.Id);
+					}
+
+					// New list for allow DML
+					List<QueueSobject> sObjectsToUpsert = new List<QueueSobject>();
+
+					// Set Ids
+					for(QueueSobject q : lstQueueSobject){
+						QueueSobject newQueueSobject = new QueueSobject();
+						
+						if(String.isNotBlank(q.QueueId) && String.isNotBlank(q.SobjectType)){
+							
+							String key = q.QueueId + '-' + q.SobjectType;
+
+							if(auxMap.containsKey(key)){
+								newQueueSobject.Id = auxMap.get(key);
+							}
+							
+							newQueueSobject.QueueId = q.QueueId;
+							newQueueSobject.SobjectType = q.SobjectType;
+
+							sObjectsToUpsert.add(newQueueSobject);
+						}
+					}
+
+					upsert sObjectsToUpsert;
+				}
 				else {
 					// We must determine which objects to insert, and which to update
 					String genQuery = 'SELECT Id, External_Id__c FROM ' + this.objectType.getDescribe().getName() + ' WHERE External_Id__c IN :lstExternalIds';
@@ -277,6 +370,7 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
 	        for (SmartLookup s : this.smartLookups) {	        	
 	            
 	            List<String> relevantValues = new List<String>(s.plainTextValues);
+	            
 	            String sObjToQuery = s.SObjectType;
 	            String sFieldToQuery = s.targetField;
 				String generatedQuery = 'SELECT Id, ' + sFieldToQuery + ' FROM ' + sObjToQuery + ' WHERE ' + sFieldToQuery + ' IN :relevantValues';
