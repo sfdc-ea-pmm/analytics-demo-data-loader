@@ -1,4 +1,4 @@
-global class CsvDataImportBatch implements Database.Batchable<String>, Database.Stateful {
+global class CsvDataImportBatch implements Database.Batchable<String>, Database.Stateful, Database.AllowsCallouts {
 	
 	private String csvData;
 	private Map<Integer, String> fieldPositions;
@@ -7,13 +7,17 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
 	private SObjectType objectType;
 	private List<SmartLookup> smartLookups;
 	private List<String> errorMessages;
-	
-	global CsvDataImportBatch(SObjectType objectType, String csvData, Map<Integer, String> fieldPositions, List<WaveApplicationObjectRelation> relations) {
+	private Double apiVersion;
+	private String sessionId;
+
+	global CsvDataImportBatch(SObjectType objectType, String csvData, Map<Integer, String> fieldPositions, List<WaveApplicationObjectRelation> relations, Double apiVersion) {
 		this.objectType = objectType;
 		this.csvData = csvData;
 		this.fieldPositions = fieldPositions;
 		this.relations = relations;
 		this.errorMessages = new List<String>();
+		this.apiVersion = apiVersion;
+		this.sessionId = UserInfo.getSessionId();
 
 		// Then we get the table of <fieldName, columnIndexInCSV
 		this.fieldIndexes = new Map<String, Integer>();
@@ -62,7 +66,9 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
 	            lines.add(row);
 	        }
 
-	        List<List<String>> rowsBatch = CSVReader.Parse(String.join(lines, '\n'));
+	        String joinedContents = String.join(lines, '\n');
+	        String csvContentsToParse = joinedContents + '\n';
+	        List<List<String>> rowsBatch = CSVReader.Parse(csvContentsToParse);
 
 	        System.debug('About to process ' + rowsBatch.size() + ' objects of type ' + this.objectType.getDescribe().getName());
 
@@ -187,17 +193,17 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
 					
 					// Retrieve names
 					for(Group g : lstGroups){
-						if(String.isNotBlank(g.Name)){
-							setNames.add(g.Name);
+						if(String.isNotBlank(g.DeveloperName)){
+							setNames.add(g.DeveloperName);
 						}
 					}
 
 					Map<String, String> groupIdByName = new Map<String, String>();
-					List<Group> existingGroups = [SELECT Id, Name FROM Group WHERE Name IN :setNames];
+					List<Group> existingGroups = [SELECT Id, DeveloperName FROM Group WHERE DeveloperName IN :setNames];
 
 					// We fill the Ids map
 					for(Group exGroup : existingGroups){
-						groupIdByName.put(exGroup.Name, exGroup.Id);
+						groupIdByName.put(exGroup.DeveloperName, exGroup.Id);
 					}
 
 					// New list for allow DML
@@ -207,10 +213,13 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
 					for(Group g : lstGroups){
 						Group newGroup = new Group();
 						
-						if(String.isNotBlank(g.Name)){
+						if(String.isNotBlank(g.DeveloperName)){
 							
-							if(groupIdByName.containsKey(g.Name)){
-								newGroup.Id = groupIdByName.get(g.Name);
+							if(groupIdByName.containsKey(g.DeveloperName)){
+								newGroup.Id = groupIdByName.get(g.DeveloperName);
+							}
+							else {
+								newGroup.Type = g.Type;
 							}
 							
 							newGroup.Name = g.Name;
@@ -251,7 +260,7 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
 					}
 
 					// New list for allow DML
-					List<QueueSobject> sObjectsToUpsert = new List<QueueSobject>();
+					List<QueueSobject> sObjectsToInsert = new List<QueueSobject>();
 
 					// Set Ids
 					for(QueueSobject q : lstQueueSobject){
@@ -261,18 +270,95 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
 							
 							String key = q.QueueId + '-' + q.SobjectType;
 
-							if(auxMap.containsKey(key)){
-								newQueueSobject.Id = auxMap.get(key);
+							if(!auxMap.containsKey(key)){
+								newQueueSobject.QueueId = q.QueueId;	
+								newQueueSobject.SobjectType = q.SobjectType;
+								sObjectsToInsert.add(newQueueSobject);
 							}
-							
-							newQueueSobject.QueueId = q.QueueId;
-							newQueueSobject.SobjectType = q.SobjectType;
 
-							sObjectsToUpsert.add(newQueueSobject);
 						}
 					}
 
-					upsert sObjectsToUpsert;
+					insert sObjectsToInsert;
+				} 
+				else if(this.objectType.getDescribe().getName() == 'LiveChatButton' || this.objectType.getDescribe().getName() == 'ServiceChannel' ||
+					this.objectType.getDescribe().getName() == 'Skill'){
+
+					String objType = this.objectType.getDescribe().getName();
+					Set<String> setNames = new Set<String>();
+
+					for(SObject s: objectsBatch){
+						String value = String.valueOf(s.get('DeveloperName'));
+						if(String.isNotBlank(value)){
+							setNames.add(value);
+						}
+					}
+
+					String genQuery = 'SELECT DeveloperName FROM ' + objType + ' WHERE DeveloperName IN :setNames';
+					List<SObject> alreadyThere = Database.query(genQuery);
+					Set<String> existingDevNames = new Set<String>();
+					
+					for(SObject sObj: alreadyThere) {
+			        	existingDevNames.add(String.valueOf(sObj.get('DeveloperName')));
+			        }
+
+			        List<SObject> lstToInsert = new List<SObject>();
+
+			        for(SObject sObj: objectsBatch){
+			        	if(!existingDevNames.contains(String.valueOf(sObj.get('DeveloperName')))){
+			        		lstToInsert.add(sObj);
+			        	}
+			        }
+
+			        if(lstToInsert.size() <= 200){
+			        	String requestJSON = '{ "records": [';
+			        	List<String> lstObjJson = new List<String>();
+
+			        	Integer i = 0;
+
+			        	//This will iterate over objects and generate one object for "records" array.
+			        	for(SObject sObj: lstToInsert){
+
+			        		String objJson = '{';
+			        		
+			        		List<String> subProps = new List<String>();
+			        		subProps.add('"attributes" : { "type" : "'+ objType + '", "referenceId" : "ref' + i + '" }');
+
+			        		Map<String, Object> fieldsToValue = sObj.getPopulatedFieldsAsMap();
+
+			        		for(String fieldName: fieldsToValue.keySet()){
+			        			subProps.add('"' + fieldName + '" : "' + fieldsToValue.get(fieldName) + '"');
+			        		}
+
+			        		objJson += String.join(subProps, ',') + '}';
+			        		
+			        		lstObjJson.add(objJson);
+			        		
+			        		i++;
+			        	}
+
+			        	requestJSON += String.join(lstObjJson, ',') + ']}';
+			       		
+			       		String salesforceHost = System.Url.getSalesforceBaseURL().toExternalForm();
+			       		String url = salesforceHost + '/services/data/v' + this.apiVersion + '/composite/tree/' + objectType;
+			       		
+			       		HttpRequest req = new HttpRequest();
+						req.setEndpoint(url);
+				        req.setMethod('POST');
+				        req.setBody(requestJSON);
+				        req.setHeader('Content-type', 'application/json');
+						req.setHeader('Authorization', 'OAuth ' + sessionId);
+
+						Http http = new Http();
+				        HTTPResponse res = http.send(req);
+			       		
+			       		RestApiCompositeTreeResponse apiRes = (RestApiCompositeTreeResponse)JSON.deserialize(res.getBody(), RestApiCompositeTreeResponse.class);
+
+			       		if(apiRes.hasErrors || !WaveConfiguratorUtils.checkStatus(res)){
+			       			throw new RestApiResponseException(res.getBody());
+			       		}
+			       	}
+
 				}
 				else {
 					// We must determine which objects to insert, and which to update
@@ -359,7 +445,7 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
 
 	        	// For each row we collect the values in the set
 	            for (List<String> row : scope) {
-	            	String val = row[smLookUp.columnNumber];
+	            	String val = row.get(smLookUp.columnNumber);
 	            	if(String.isNotBlank(val)){
 	            		smLookUp.plainTextValues.add(val.trim());
 	            	}
@@ -407,6 +493,10 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
 	}
 
 	global class CsvDataImportException extends Exception {
+		
+	}
+
+	global class RestApiResponseException extends Exception {
 		
 	}
 }

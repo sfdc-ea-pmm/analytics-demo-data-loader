@@ -16,6 +16,7 @@
         <members>MetadataServiceTest</members>
         <members>MockarooHelperFactory</members>
         <members>Puff</members>
+        <members>RestApiCompositeTreeResponse</members>
         <members>RestApiErrorResponse</members>
         <members>RestApiFolderErrorResponse</members>
         <members>RestApiResponseBody</members>

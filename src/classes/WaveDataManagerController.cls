@@ -540,7 +540,7 @@ public with sharing class WaveDataManagerController {
 					this.currentObjectProcessing = currentNode.name;
 
 					// Start the batch process
-					CsvDataImportBatch batchProcess = new CsvDataImportBatch(Schema.getGlobalDescribe().get(currentNode.name), csvData, currentNode.fieldPositions, currentNode.relations);
+					CsvDataImportBatch batchProcess = new CsvDataImportBatch(Schema.getGlobalDescribe().get(currentNode.name), csvData, currentNode.fieldPositions, currentNode.relations, genericAppConfiguration.apiVersion);
 					this.batchProcessId = Database.executeBatch(batchProcess, this.genericAppConfiguration.objectLoadingBatchSize);
 					this.enableObjectProcessingCheck = true;
 				}
