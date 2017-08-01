@@ -1,7 +1,7 @@
 public with sharing class WaveDataManagerController {
 	
 	public String Host {get;set;}
-	public String RemoteSiteName { get { return 'WaveDataManager_mdapi'; } }
+	public String RemoteSiteName { get { return 'InstanceHost'; } }
 	public String MetadataResponse {get;set;}
 	public Boolean MetadataConnectionWarning {get;set;}
 	public String MetadataApiException {get;set;}
@@ -9,6 +9,7 @@ public with sharing class WaveDataManagerController {
 	public String errorMessage { get; set; }
 	public String successMessage  { get; set; }
 	public String warningMessage  { get; set; }
+	public String infoMessage  { get; set; }
 	public Id batchProcessId { get; set; }
 	public Id queueProcessId { get; set; }
 	public List<String> processingLog { get; set; }
@@ -92,7 +93,7 @@ public with sharing class WaveDataManagerController {
 	public PageReference pageLoad()
 	{
 		// Get Host Domain
-		Host = ApexPages.currentPage().getHeaders().get('Host');
+		Host = URL.getSalesforceBaseUrl().toExternalForm();
 		
 		try{
 
@@ -111,9 +112,7 @@ public with sharing class WaveDataManagerController {
 			MetadataConnectionWarning = false;
 			if(!Test.isRunningTest() && !SF_MetadataUtils.checkMetadataAPIConnection())
 			{
-				ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.Warning, 'Unable to connect to the Salesforce Metadata API.'));
-				ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.Warning, 'A Remote Site Setting must be created in your org before you can use this tool.'));
-				ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.Warning, 'Press the Create Remote Site Setting button to perform this step or refer to the post install step below to perform this manually.'));
+				this.warningMessage = 'Current Salesforce Instance URL not found in Remote Sites. See details below:';
 				MetadataConnectionWarning = true;
 				MetadataApiException = '';
 				/*if(RollupService.LastMetadataAPIConnectionException!=null)
@@ -214,7 +213,7 @@ public with sharing class WaveDataManagerController {
 
     public void selectedApp(){
     	
-    	this.errorMessage = '';
+    	this.resetMessages();
 
     	try{
 			if(this.selectedInstallationProcess == 'timeShifting'){
@@ -430,6 +429,7 @@ public with sharing class WaveDataManagerController {
 		this.errorMessage = '';
 		this.successMessage = '';
 		this.warningMessage = '';
+		this.infoMessage = '';
 		this.processingLog.clear();
 	}
 
@@ -871,12 +871,14 @@ public with sharing class WaveDataManagerController {
 		// Display the response from the client side Metadata API callout
 		if(this.MetadataResponse.length()==0)
 		{
-			ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.Info, 'Remote Site Setting ' + RemoteSiteName + ' has been created. Now you can continue with Wave Apps instalation.' ));
+			this.warningMessage = '';
+			this.successMessage = 'Remote Site Setting ' + RemoteSiteName + ' has been created. Now you can continue using Analytics Demo Data Tool.';
 			MetadataConnectionWarning = false;
 		}
 		else
 		{
-			ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.Error, this.MetadataResponse));
+			this.warningMessage = '';
+			this.errorMessage = this.MetadataResponse;
 			MetadataConnectionWarning = true;
 		}
 		return null;

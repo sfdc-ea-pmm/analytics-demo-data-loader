@@ -5,79 +5,32 @@
 		<meta http-equiv="x-ua-compatible" content="ie=edge" />
 		<title>Analytics Demo Data Tool</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		
-		<script>
-			function createRemoteSite()
-			{
-			    // Disable button
-			    document.getElementById('createremotesitebtn').disabled = true;
-			    
-			    // Calls the Metdata API from JavaScript to create the Remote Site Setting to permit Apex callouts
-			    var binding = new XMLHttpRequest();
-			    var request =
-			        '<?xml version="1.0" encoding="utf-8"?>' +
-			        '<env:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">'+
-			            '<env:Header>' +
-			                '<urn:SessionHeader xmlns:urn="http://soap.sforce.com/2006/04/metadata">' +
-			                    '<urn:sessionId>{!$Api.Session_ID}</urn:sessionId>' +
-			                '</urn:SessionHeader>' +
-			            '</env:Header>' +
-			            '<env:Body>' +
-			                '<createMetadata xmlns="http://soap.sforce.com/2006/04/metadata">' +
-			                    '<metadata xsi:type="RemoteSiteSetting">' +
-			                        '<fullName>wavedatamanager_mdapi</fullName>' +
-			                        '<description>Metadata API Remote Site Setting for Wave Data Manager</description>' +
-			                        '<disableProtocolSecurity>false</disableProtocolSecurity>' +
-			                        '<isActive>true</isActive>' +
-			                        '<url>https://{!Host}</url>' +
-			                    '</metadata>' +
-			                '</createMetadata>' +
-			            '</env:Body>' +
-			        '</env:Envelope>';
-			    binding.open('POST', 'https://{!Host}/services/Soap/m/31.0');
-			    binding.setRequestHeader('SOAPAction','""');
-			    binding.setRequestHeader('Content-Type', 'text/xml');
-			    binding.onreadystatechange =
-			        function() {
-			        	if(this.readyState==4) {
-			                var parser = new DOMParser();
-			                var doc  = parser.parseFromString(this.response, 'application/xml');
-			                var errors = doc.getElementsByTagName('errors');
-			                var messageText = '';
-			                for(var errorIdx = 0; errorIdx < errors.length; errorIdx++)
-			                    messageText+= errors.item(errorIdx).getElementsByTagName('message').item(0).innerHTML + '\n';
-			                displayMetadataResponse(messageText);
-			            }
-			        }
-			    binding.send(request);
+
+		<style type="text/css">
+			.standardText {
+				font-size: 13px;
+				line-height: 25px;
 			}
-			</script>
-			<style type="text/css">
-				.standardText {
-					font-size: 13px;
-					line-height: 25px;
-				}
-				
-				#tab-default-faq{
-					margin: 0 auto;
-					width: 75%;
-				}
-				
-				#tab-default-faq .slds-text-heading_large { 
-					font-size: 1.5rem;
-				}
-				
-				#tab-default-faq .slds-text-heading_large + p {
-					font-size: .9rem;
-				}
-			</style>
+			
+			#tab-default-faq{
+				margin: 0 auto;
+				width: 75%;
+			}
+			
+			#tab-default-faq .slds-text-heading_large { 
+				font-size: 1.5rem;
+			}
+			
+			#tab-default-faq .slds-text-heading_large + p {
+				font-size: .9rem;
+			}
+		</style>
 
 		<!-- Import the Design System style sheet -->
 		<apex:slds />
 	</head>
 	<body class="slds-scope">
 		
-		<vs:importvisualstrap theme="paper" />
 		<div class="slds-page-header">
 		    <div class="slds-media">
 		        <div class="slds-media__figure">
@@ -108,9 +61,79 @@
 			<!--Tab 1-->
 	        <div id="tab-default-home" class="slds-tabs_default__content slds-show" role="tabpanel" aria-labelledby="tab-default-home__item">
 	        	<!-- Main grid -->
-	        	<div class="slds-grid slds-wrap slds-m-top_medium slds-m-left_large">
+	        	<div class="slds-grid slds-wrap slds-m-left_large">
+	        		<!--Message Panel -->
+	        		<div class="slds-col slds-size_1-of-1 slds-m-right_large">
+						<apex:form id="form1">
+							<apex:outputPanel rendered="{!errorMessage != ''}">
+								<div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_error" role="alert" style="margin:0;">
+								    <span class="slds-assistive-text">error</span>
+								    <span class="slds-icon_container slds-icon-utility-error slds-m-right_small slds-no-flex slds-align-top">
+								    	<svg class="slds-icon slds-icon_small" aria-hidden="true">
+								        	<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#error')}"></use>
+								        </svg>
+								    </span>
+								    <h2 class="slds-text-heading_small ">{!errorMessage}</h2>
+								</div>
+							</apex:outputPanel>
+
+							<apex:outputPanel rendered="{!successMessage != ''}">
+								<div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_success" role="alert" style="margin:0;">
+								    <span class="slds-assistive-text">success</span>
+								    <span class="slds-icon_container slds-icon-utility-success slds-m-right_small slds-no-flex slds-align-top">
+								    	<svg class="slds-icon slds-icon_small" aria-hidden="true">
+								        	<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#success')}"></use>
+								        </svg>
+								    </span>
+								    <h2 class="slds-text-heading_small ">{!successMessage}</h2>
+								</div>
+							</apex:outputPanel>
+
+							<apex:outputPanel rendered="{!warningMessage != ''}">
+								<div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_warning" role="alert" style="margin:0;">
+								    <span class="slds-assistive-text">warning</span>
+								    <span class="slds-icon_container slds-icon-utility-warning slds-m-right_small slds-no-flex slds-align-top">
+								    	<svg class="slds-icon slds-icon_small" aria-hidden="true">
+								        	<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#warning')}"></use>
+								        </svg>
+								    </span>
+								    <h2 class="slds-text-heading_small ">{!warningMessage}</h2>
+								</div>
+							</apex:outputPanel>
+
+							<apex:outputPanel rendered="{!infoMessage != ''}">
+								<div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_info" role="alert" style="margin:0;">
+								    <span class="slds-assistive-text">info</span>
+								    <span class="slds-icon_container slds-icon-utility-info slds-m-right_small slds-no-flex slds-align-top">
+								    	<svg class="slds-icon slds-icon_small" aria-hidden="true">
+								        	<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#info')}"></use>
+								        </svg>
+								    </span>
+								    <h2 class="slds-text-heading_small ">{!infoMessage}</h2>
+								</div>
+							</apex:outputPanel>
+
+						</apex:form>
+					</div>
+
+					<apex:form id="form2" style="width: 100%" styleClass="slds-m-right_large">
+						<apex:actionFunction name="displayMetadataResponse" action="{!displayMetadataResponse}" rerender="form1,form2">
+							<apex:param name="metadataResponse" assignTo="{!metadataResponse}" value="{!metadataResponse}"/>
+						</apex:actionFunction>		
+						
+						<apex:outputPanel rendered="{!MetadataConnectionWarning}">
+							<div class="slds-box slds-m-vertical_medium">
+								<h1 class="slds-text-title_caps">Important Pre Install Step:</h1>
+								<p>In order to utilize the features of this tool you need to add a <a target="_new" href="http://na1.salesforce.com/help/doc/en/configuring_remoteproxy.htm">Remote Site Setting</a> for this Salesforce Server URL <b>{!Host}</b></p>
+								<p>Click the <b>Create Remote Site Setting</b> button to have the tool perform this step for you.</p> 
+							</div>
+							
+							<button id="createremotesitebtn" class="slds-button slds-button_neutral" onclick="createRemoteSite();">Create Remote Site Setting</button>
+						</apex:outputPanel>
+					</apex:form>
+
 	        		<!--Intro section -->
-	        		<div class="slds-col slds-size_1-of-1 slds-m-bottom_large slds-m-right_large">
+	        		<div class="slds-col slds-size_1-of-1 slds-m-top_medium slds-m-bottom_large slds-m-right_large">
 						<p>{!genericAppConfiguration.homeHeaderDescription}</p>
 					</div>
 	        		<!-- Left column -->
@@ -134,6 +157,7 @@
 								</div>			   		
 				  			</div>
 						</div>
+
 		  				<apex:form id="form4" styleClass="slds-m-vertical_medium slds-form-element">
 				
 							<div class="slds-grid slds-m-vertical_medium">
@@ -209,15 +233,15 @@
 						   			</apex:outputPanel>
 									
 									<div class="slds-m-vertical_medium">
-							   			<vs:visualstrapblock id="vsbButton">
-								   			<apex:commandButton value="Run" styleClass="{!IF(disabledButton, 'disabled','')} btn btn-primary btn-lg btnInstallApp" onclick="return displayConfirmation(this)" style="text-transform: none;" />
+							   			<apex:outputPanel id="vsbButton">
+								   			<apex:commandButton value="Run" disabled="{!disabledButton}" styleClass="slds-button slds-button_brand btnInstallApp" onclick="return displayConfirmation(this)" />
 
 								   			<apex:actionFunction name="executeSelectedProcess" action="{!executeSelectedProcess}" />
 
 								   			<apex:outputPanel style="margin-left: 15px;" rendered="{!disabledButton}">
 								   				<apex:image value="{!$Resource.LoadingGif}"/>
 								   			</apex:outputPanel>
-								   		</vs:visualstrapblock>
+								   		</apex:outputPanel>
 							   		</div>
 									
 									<apex:outputPanel id="appSettings">
@@ -327,38 +351,6 @@
 						</apex:form>
 					</div> <!-- End Right column -->
 				</div> <!-- End Main grid -->
-
-				<div class="slds-m-horizontal_medium">
-					<apex:form id="form2">
-						<apex:actionFunction name="displayMetadataResponse" action="{!displayMetadataResponse}" rerender="form1,form2">
-							<apex:param name="metadataResponse" assignTo="{!metadataResponse}" value="{!metadataResponse}"/>
-						</apex:actionFunction>		
-						<apex:pageMessages />
-						<apex:outputPanel rendered="{!MetadataConnectionWarning}">
-							<h1>Important Pre Install Step:</h1> 
-							<p>In order to utilize the features of this tool you need to permit it to access the Salesforce Metadata API of your organization by adding a <a target="_new" href="http://na1.salesforce.com/help/doc/en/configuring_remoteproxy.htm">Remote Site Setting</a> with this Salesforce Server URL <b>https://{!Host}</b></p>
-							<p> Click the <b>Create Remote Site Setting</b> button to have the tool perform this step for you.</p>
-							<input id="createremotesitebtn" type="button" onclick="createRemoteSite();" value="Create Remote Site Setting"/>
-						</apex:outputPanel>
-					</apex:form>
-				</div>
-				
-				<div class="slds-m-horizontal_medium">
-					<vs:visualstrapblock id="form1">	   		   	
-					   	<!--All the  Visualstrap content and Visualforce content here -->
-					   	<apex:form rendered="{!!MetadataConnectionWarning}" style="margin-top: 20px;">
-					   		<vs:alert type="success" rendered="{!successMessage != ''}">
-				    			<apex:outputText value="{!successMessage}" />
-							</vs:alert>
-							<vs:alert type="danger" rendered="{!errorMessage != ''}">
-				    			<apex:outputText value="{!errorMessage}" />
-							</vs:alert>
-							<vs:alert type="warning" rendered="{!warningMessage != ''}">
-				    			<apex:outputText value="{!warningMessage}" />
-							</vs:alert>
-					   	</apex:form>
-					</vs:visualstrapblock>
-				</div>
 	        </div> <!-- End Tab 1 -->
 	       
 	        <div id="tab-default-faq" class="slds-tabs_default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-faq__item">
@@ -415,7 +407,7 @@
 
 			function displayConfirmation(e){
 
-				if(!e.classList.contains('disabled')){
+				if(!e.disabled){
 
 					var elements = document.getElementsByClassName('processType');
 				
@@ -475,9 +467,54 @@
 			}
 
 			function disableRunButton(){
-				//var runButton = document.getElementById('{!$Component.form4.vsbButton.btnInstallApp}');
 				var runButton = document.getElementsByClassName('btnInstallApp')[0];
-				runButton.classList.add('disabled');
+				runButton.disabled = true;
+			}
+
+			function createRemoteSite()
+			{
+			    // Disable button
+			    document.getElementById('createremotesitebtn').disabled = true;
+			    
+			    // Calls the Metdata API from JavaScript to create the Remote Site Setting to permit Apex callouts
+			    var binding = new XMLHttpRequest();
+			    var request =
+			        '<?xml version="1.0" encoding="utf-8"?>' +
+			        '<env:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">'+
+			            '<env:Header>' +
+			                '<urn:SessionHeader xmlns:urn="http://soap.sforce.com/2006/04/metadata">' +
+			                    '<urn:sessionId>{!$Api.Session_ID}</urn:sessionId>' +
+			                '</urn:SessionHeader>' +
+			            '</env:Header>' +
+			            '<env:Body>' +
+			                '<createMetadata xmlns="http://soap.sforce.com/2006/04/metadata">' +
+			                    '<metadata xsi:type="RemoteSiteSetting">' +
+			                        '<fullName>InstanceHost</fullName>' +
+			                        '<description>ORG Instance Remote Site Setting</description>' +
+			                        '<disableProtocolSecurity>false</disableProtocolSecurity>' +
+			                        '<isActive>true</isActive>' +
+			                        '<url>{!Host}</url>' +
+			                    '</metadata>' +
+			                '</createMetadata>' +
+			            '</env:Body>' +
+			        '</env:Envelope>';
+			    binding.open('POST', '{!Host}/services/Soap/m/31.0');
+			    binding.setRequestHeader('SOAPAction','""');
+			    binding.setRequestHeader('Content-Type', 'text/xml');
+			    binding.onreadystatechange =
+			        function() {
+                    	
+			        	if(this.readyState==4) {
+			                var parser = new DOMParser();
+			                var doc  = parser.parseFromString(this.response, 'application/xml');
+			                var errors = doc.getElementsByTagName('errors');
+			                var messageText = '';
+			                for(var errorIdx = 0; errorIdx < errors.length; errorIdx++)
+			                    messageText+= errors.item(errorIdx).getElementsByTagName('message').item(0).innerHTML + '\n';
+			                displayMetadataResponse(messageText);
+			            }
+			        }
+			    binding.send(request);
 			}
 
 		</script>
