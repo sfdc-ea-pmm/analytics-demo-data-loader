@@ -1282,10 +1282,10 @@ public with sharing class WaveDataManagerController {
 		if(startingWithObject){
 			this.operationsStatusTable.get(initialField.ObjectName).put('CreateObjectsAndFields','In progress');
 			this.logMessage('Processing ' + initialField.ObjectName + ' object metadata...');
-		}
-
-		if(!SF_MetadataUtils.objectExists(initialField.ObjectName)){
-			this.logMessage(initialField.ObjectName + ' doesn\'t exists. Attempting to create it...');										
+			
+			if(!SF_MetadataUtils.objectExists(initialField.ObjectName)){
+				this.logMessage(initialField.ObjectName + ' doesn\'t exists. Attempting to create it...');										
+			}
 		}
 
 		CreateObjectsAndFieldsQueueable metadataCreationQueue = new CreateObjectsAndFieldsQueueable(initialField, UserInfo.getSessionId());
