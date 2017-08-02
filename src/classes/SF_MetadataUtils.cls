@@ -28,6 +28,9 @@ public with sharing class SF_MetadataUtils {
     }
 
     public static List<String> getObjectsWithRulesAndOrWorkflows(List<String> objectsNames, Double apiVersion){
+        List<String> listWithObjects = new List<String>();
+        Set<String> objWithRulesOrWorkflows = new Set<String>();
+        
         MetadataService.MetadataPort service = createService();
         List<MetadataService.ListMetadataQuery> queries = new List<MetadataService.ListMetadataQuery>();
         MetadataService.ListMetadataQuery queryWorkflow = new MetadataService.ListMetadataQuery();
@@ -36,21 +39,22 @@ public with sharing class SF_MetadataUtils {
         MetadataService.ListMetadataQuery queryValidationRule = new MetadataService.ListMetadataQuery();
         queryValidationRule.type_x = 'ValidationRule';
         queries.add(queryValidationRule);
-        MetadataService.FileProperties[] fileProperties = service.listMetadata(queries, apiVersion);
-
-        List<String> listWithObjects = new List<String>();
-        Set<String> objWithRulesOrWorkflows = new Set<String>();
-
-        for(MetadataService.FileProperties fileProperty: fileProperties){
-            objWithRulesOrWorkflows.add(fileProperty.fullName.substringBefore('.'));    
-        }
-
-        for(String obj: objectsNames){
-            if(objWithRulesOrWorkflows.contains(obj)){
-                listWithObjects.add(obj);
+        
+        MetadataService.FileProperties[] fileProperties = service.listMetadata(queries, apiVersion);        
+		
+        // If there are Workflow Rules and/or Validation Rules in the ORG...
+        if(fileProperties != null){
+            for(MetadataService.FileProperties fileProperty: fileProperties){
+                objWithRulesOrWorkflows.add(fileProperty.fullName.substringBefore('.'));    
             }
-        }
-
+    
+            for(String obj: objectsNames){
+                if(objWithRulesOrWorkflows.contains(obj)){
+                    listWithObjects.add(obj);
+                }
+            }
+		}
+        
         return listWithObjects;
     }
 

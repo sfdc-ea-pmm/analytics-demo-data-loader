@@ -28,6 +28,8 @@
 
 		<!-- Import the Design System style sheet -->
 		<apex:slds />
+        
+        <apex:includeScript value="{!$Resource.jQuery}"/>
 	</head>
 	<body class="slds-scope">
 		
@@ -124,8 +126,8 @@
 						<apex:outputPanel rendered="{!MetadataConnectionWarning}">
 							<div class="slds-box slds-m-vertical_medium">
 								<h1 class="slds-text-title_caps">Important Pre Install Step:</h1>
-								<p>In order to utilize the features of this tool you need to add a <a target="_new" href="http://na1.salesforce.com/help/doc/en/configuring_remoteproxy.htm">Remote Site Setting</a> for this Salesforce Server URL <b>{!Host}</b></p>
-								<p>Click the <b>Create Remote Site Setting</b> button to have the tool perform this step for you.</p> 
+								<p>In order to utilize the features of this tool you need to add a <a target="_new" href="http://na1.salesforce.com/help/doc/en/configuring_remoteproxy.htm">Remote Site Setting</a> for each of these Salesforce Server URLs: <b>{!Host}</b> and <b>{!VisualforceContextHost}</b></p>
+								<p>Click the <b>Create Remote Site Settings</b> button to have the tool perform this step for you.</p> 
 							</div>
 							
 							<button id="createremotesitebtn" class="slds-button slds-button_neutral" onclick="createRemoteSite();">Create Remote Site Setting</button>
@@ -470,15 +472,9 @@
 				var runButton = document.getElementsByClassName('btnInstallApp')[0];
 				runButton.disabled = true;
 			}
-
-			function createRemoteSite()
-			{
-			    // Disable button
-			    document.getElementById('createremotesitebtn').disabled = true;
-			    
-			    // Calls the Metdata API from JavaScript to create the Remote Site Setting to permit Apex callouts
-			    var binding = new XMLHttpRequest();
-			    var request =
+        
+        	function generateRemoteSiteRequestXML(rssName, rssDsc, rssURL){
+            	var requestXML =
 			        '<?xml version="1.0" encoding="utf-8"?>' +
 			        '<env:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">'+
 			            '<env:Header>' +
@@ -489,33 +485,86 @@
 			            '<env:Body>' +
 			                '<createMetadata xmlns="http://soap.sforce.com/2006/04/metadata">' +
 			                    '<metadata xsi:type="RemoteSiteSetting">' +
-			                        '<fullName>InstanceHost</fullName>' +
-			                        '<description>ORG Instance Remote Site Setting</description>' +
+			                        '<fullName>' + rssName + '</fullName>' +
+			                        '<description>' + rssDsc + '</description>' +
 			                        '<disableProtocolSecurity>false</disableProtocolSecurity>' +
 			                        '<isActive>true</isActive>' +
-			                        '<url>{!Host}</url>' +
+			                        '<url>' + rssURL + '</url>' +
 			                    '</metadata>' +
 			                '</createMetadata>' +
 			            '</env:Body>' +
 			        '</env:Envelope>';
-			    binding.open('POST', '{!Host}/services/Soap/m/31.0');
-			    binding.setRequestHeader('SOAPAction','""');
-			    binding.setRequestHeader('Content-Type', 'text/xml');
-			    binding.onreadystatechange =
-			        function() {
-                    	
-			        	if(this.readyState==4) {
-			                var parser = new DOMParser();
-			                var doc  = parser.parseFromString(this.response, 'application/xml');
-			                var errors = doc.getElementsByTagName('errors');
-			                var messageText = '';
-			                for(var errorIdx = 0; errorIdx < errors.length; errorIdx++)
-			                    messageText+= errors.item(errorIdx).getElementsByTagName('message').item(0).innerHTML + '\n';
-			                displayMetadataResponse(messageText);
-			            }
-			        }
-			    binding.send(request);
-			}
+                
+                return requestXML;
+            }
+        
+        	function handleXmlResponse(xmlDoc){
+            	var successElems = xmlDoc.getElementsByTagName('success');
+                if(successElems.length > 0 && successElems[0].innerHTML == "true"){
+                    displayMetadataResponse("");
+                }
+                else {
+                    var errors = xmlDoc.getElementsByTagName('errors');
+                    var messageText = '';
+                    for(var errorIdx = 0; errorIdx < errors.length; errorIdx++)
+                        messageText += errors[errorIdx].getElementsByTagName('message').item(0).innerHTML + '\n';
+                    displayMetadataResponse(messageText);
+                }
+            }
+
+			function createRemoteSite()
+			{
+			    // Disable button
+			    document.getElementById('createremotesitebtn').disabled = true;
+			    
+			    // Calls the Metdata API from JavaScript to create the Remote Site Setting to permit Apex callouts
+			    var request = generateRemoteSiteRequestXML('InstanceHost', 'ORG Instance Remote Site Setting', '{!JSENCODE(Host)}');
+                var serviceUrl = '{!JSENCODE(VisualforceContextHost)}/services/Soap/m/31.0';
+                
+                $.ajax({
+               		url: serviceUrl,
+                    method: 'POST',
+                    contentType: 'text/xml',
+                    data: request,
+                    dataType: 'xml',
+                    headers: {
+                    	SOAPAction: '""'
+                    },
+                    success: function(xmlDoc){
+                        handleXmlResponse(xmlDoc);
+
+                        var newRequest = generateRemoteSiteRequestXML('VisualforceContextHost', 'Visualforce Context Host Remote Site Setting', '{!JSENCODE(VisualforceContextHost)}');
+
+                        $.ajax({
+                            url: serviceUrl,
+                            method: 'POST',
+                            contentType: 'text/xml',
+                            data: newRequest,
+                            dataType: 'xml',
+                            headers: {
+                                SOAPAction: '""'
+                            },
+                            success: function(xmlDoc2){
+                                handleXmlResponse(xmlDoc2);
+                            },
+                            error: function(jqXHR, textStatus, errorThrown){
+                                console.log('Error');
+                                console.log(jqXHR);
+                                console.log(textStatus);
+                                console.log(errorThrown);
+                                displayMetadataResponse("Error creating needed VisualforceContextHost Remote Site Setting: " + errorThrown);
+                            }
+                        });
+                    },
+                    error: function(jqXHR, textStatus, errorThrown){
+                        console.log('Error');
+						console.log(jqXHR);
+                        console.log(textStatus);
+                        console.log(errorThrown);
+                        displayMetadataResponse("Error creating needed InstanceHost Remote Site Settings: " + errorThrown);
+                    }
+                });
+			}        	
 
 		</script>
 

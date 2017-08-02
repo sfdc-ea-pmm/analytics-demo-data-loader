@@ -6,7 +6,7 @@
     <label>WaveDataManagerSLDS</label>
     <packageVersions>
         <majorNumber>1</majorNumber>
-        <minorNumber>634</minorNumber>
-        <namespace>vs</namespace>
+        <minorNumber>7</minorNumber>
+        <namespace>sf_com_apps</namespace>
     </packageVersions>
 </ApexPage>

@@ -1,6 +1,7 @@
 public with sharing class WaveDataManagerController {
 	
-	public String Host {get;set;}
+	public String VisualforceContextHost { get;set; }
+    public String Host { get;set; }
 	public String RemoteSiteName { get { return 'InstanceHost'; } }
 	public String MetadataResponse {get;set;}
 	public Boolean MetadataConnectionWarning {get;set;}
@@ -93,7 +94,20 @@ public with sharing class WaveDataManagerController {
 	public PageReference pageLoad()
 	{
 		// Get Host Domain
-		Host = URL.getSalesforceBaseUrl().toExternalForm();
+		String result = null;
+		List<String> fragments = URL.getSalesforceBaseUrl().getHost().split('\\.');
+
+        if(fragments.size() == 3) {
+        	result = fragments[0]; // Note: Apex URL: NA14.salesforce.com
+    	}
+	    else if(fragments.size() == 5) {
+        	result = fragments[1]; // Note: Visualforce URL: mydomain.NA14.visual.force.com
+    	}
+        
+		Host = 'https://' + result + '.salesforce.com';
+       	VisualforceContextHost = URL.getSalesforceBaseUrl().toExternalForm();
+
+        System.debug(Host);
 		
 		try{
 
@@ -246,6 +260,7 @@ public with sharing class WaveDataManagerController {
 			}
 		}
 		catch(Exception e){
+            System.debug(e.getStackTraceString());
 			this.errorMessage = e.getMessage();
 		}
     }
@@ -869,10 +884,10 @@ public with sharing class WaveDataManagerController {
 	public PageReference displayMetadataResponse()
 	{
 		// Display the response from the client side Metadata API callout
-		if(this.MetadataResponse.length()==0)
+		if(this.MetadataResponse.length() == 0)
 		{
 			this.warningMessage = '';
-			this.successMessage = 'Remote Site Setting ' + RemoteSiteName + ' has been created. Now you can continue using Analytics Demo Data Tool.';
+			this.successMessage = 'Remote Site Settings have been created. Now you can continue using Analytics Demo Data Tool.';
 			MetadataConnectionWarning = false;
 		}
 		else

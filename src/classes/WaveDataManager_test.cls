@@ -73,7 +73,7 @@ private class WaveDataManager_test {
 		multimock.setStaticResource(waveForSalesJsonUrl, 'WaveForSalesJson');
 		multimock.setStaticResource(simpleAppJsonUrl, 'SimpleAppJson');
 		multimock.setStaticResource(faqUrl, 'AnalyticsFAQDemo');
-
+		multimock.setStaticResource(URL.getSalesforceBaseUrl().toExternalForm() + '/services/Soap/m/38.0', 'UpsertMetadaResponse');
 		multimock.setStatusCode(200);
 		multimock.setHeader('Content-Type', 'text/plain');
 
@@ -207,15 +207,11 @@ private class WaveDataManager_test {
 
 		Test.setMock(HttpCalloutMock.class, multimock);
 		cnt.pageLoad();
-
-		cnt.selectedInstallationProcess = 'createMetadata';
 		cnt.selectedWaveApp = 'Simple';
+        
+		cnt.selectedInstallationProcess = 'createMetadata';
 		cnt.executeSelectedProcess();
-
-		cnt.selectedInstallationProcess = 'createWaveApp';
-
-		cnt.executeSelectedProcess();
-
+	
 		cnt.selectedInstallationProcess = 'timeShifting';
 		cnt.executeSelectedProcess();
 	}
