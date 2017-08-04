@@ -74,6 +74,7 @@ private class WaveDataManager_test {
 		multimock.setStaticResource(simpleAppJsonUrl, 'SimpleAppJson');
 		multimock.setStaticResource(faqUrl, 'AnalyticsFAQDemo');
 		multimock.setStaticResource(URL.getSalesforceBaseUrl().toExternalForm() + '/services/Soap/m/38.0', 'UpsertMetadaResponse');
+		multimock.setStaticResource('http://soap.sforce.com/2006/04/metadata', 'UpsertMetadaResponse');
 		multimock.setStatusCode(200);
 		multimock.setHeader('Content-Type', 'text/plain');
 
@@ -211,7 +212,7 @@ private class WaveDataManager_test {
         
 		cnt.selectedInstallationProcess = 'createMetadata';
 		cnt.executeSelectedProcess();
-	
+		
 		cnt.selectedInstallationProcess = 'timeShifting';
 		cnt.executeSelectedProcess();
 	}

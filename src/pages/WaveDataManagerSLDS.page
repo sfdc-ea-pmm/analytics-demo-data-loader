@@ -29,7 +29,7 @@
 		<!-- Import the Design System style sheet -->
 		<apex:slds />
         
-        <apex:includeScript value="{!$Resource.jQuery}"/>
+        <apex:includeScript value="{!$Resource.jQuery321}"/>
 	</head>
 	<body class="slds-scope">
 		
@@ -517,9 +517,12 @@
 			    // Disable button
 			    document.getElementById('createremotesitebtn').disabled = true;
 			    
+			    var vfContext = '{!JSENCODE(VisualforceContextHost)}';
+			    var host = '{!JSENCODE(Host)}';
+
 			    // Calls the Metdata API from JavaScript to create the Remote Site Setting to permit Apex callouts
-			    var request = generateRemoteSiteRequestXML('InstanceHost', 'ORG Instance Remote Site Setting', '{!JSENCODE(Host)}');
-                var serviceUrl = '{!JSENCODE(VisualforceContextHost)}/services/Soap/m/31.0';
+			    var request = generateRemoteSiteRequestXML('InstanceHost', 'ORG Instance Remote Site Setting', host);
+                var serviceUrl = vfContext + '/services/Soap/m/31.0';
                 
                 $.ajax({
                		url: serviceUrl,
@@ -533,28 +536,30 @@
                     success: function(xmlDoc){
                         handleXmlResponse(xmlDoc);
 
-                        var newRequest = generateRemoteSiteRequestXML('VisualforceContextHost', 'Visualforce Context Host Remote Site Setting', '{!JSENCODE(VisualforceContextHost)}');
+                        if(vfContext != host){
+                        	var newRequest = generateRemoteSiteRequestXML('VisualforceContextHost', 'Visualforce Context Host Remote Site Setting', '{!JSENCODE(VisualforceContextHost)}');
 
-                        $.ajax({
-                            url: serviceUrl,
-                            method: 'POST',
-                            contentType: 'text/xml',
-                            data: newRequest,
-                            dataType: 'xml',
-                            headers: {
-                                SOAPAction: '""'
-                            },
-                            success: function(xmlDoc2){
-                                handleXmlResponse(xmlDoc2);
-                            },
-                            error: function(jqXHR, textStatus, errorThrown){
-                                console.log('Error');
-                                console.log(jqXHR);
-                                console.log(textStatus);
-                                console.log(errorThrown);
-                                displayMetadataResponse("Error creating needed VisualforceContextHost Remote Site Setting: " + errorThrown);
-                            }
-                        });
+	                        $.ajax({
+	                            url: serviceUrl,
+	                            type: 'POST',
+	                            method: 'text/xml',
+	                            data: newRequest,
+	                            dataType: 'xml',
+	                            headers: {
+	                                SOAPAction: '""'
+	                            },
+	                            success: function(xmlDoc2){
+	                                handleXmlResponse(xmlDoc2);
+	                            },
+	                            error: function(jqXHR, textStatus, errorThrown){
+	                                console.log('Error');
+	                                console.log(jqXHR);
+	                                console.log(textStatus);
+	                                console.log(errorThrown);
+	                                displayMetadataResponse("Error creating needed VisualforceContextHost Remote Site Setting: " + errorThrown);
+	                            }
+	                        });
+                        }
                     },
                     error: function(jqXHR, textStatus, errorThrown){
                         console.log('Error');

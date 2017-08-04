@@ -106,8 +106,6 @@ public with sharing class WaveDataManagerController {
         
 		Host = 'https://' + result + '.salesforce.com';
        	VisualforceContextHost = URL.getSalesforceBaseUrl().toExternalForm();
-
-        System.debug(Host);
 		
 		try{
 
@@ -698,7 +696,6 @@ public with sharing class WaveDataManagerController {
 						this.currentNodeIndex = 0;
 						this.disabledButton = false;
 						this.objectsNodes.clear();
-						System.debug('Table status: ' + this.operationsStatusTable);
 
 						// Rollback
 						this.rollbackProcess(this.errorMessage, '');
@@ -1016,8 +1013,6 @@ public with sharing class WaveDataManagerController {
 					this.launchObjectsLoading(); // COMMENT
 				}
 			}
-
-			System.debug('Status table: ' + this.operationsStatusTable);
 		} 
 		catch(Exception e) {
 			System.debug(e.getMessage());
