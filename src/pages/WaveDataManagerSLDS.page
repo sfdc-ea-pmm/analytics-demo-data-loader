@@ -24,6 +24,9 @@
 			#tab-default-faq .slds-text-heading_large + p {
 				font-size: .9rem;
 			}
+			.slds-checkbox {
+				cursor: pointer;
+			}
 		</style>
 
 		<!-- Import the Design System style sheet -->
@@ -205,12 +208,22 @@
 												  	<apex:commandButton value="Save Setting" styleClass="slds-m-top_xx-small slds-button slds-button_neutral" action="{!saveSetting}" />
 												  	<br /><br />
 													
+													
+													<div class="slds-form-element__control slds-show_inline-block">
+														<label class="slds-checkbox">
+													    	<apex:inputCheckbox value="{!shiftOnlyOfApp}"/>
+													        <span class="slds-checkbox_faux"></span>
+													        <span class="slds-form-element__label">Shift only records of selected app</span>
+													    </label>
+													</div>
+													<br /><br />
+
 													<label class="slds-form-element__label slds-show">Objects to time shift:</label>
 													<apex:repeat value="{!selectedObjectsToTimeShift}" var="objectKey">
 														<div class="slds-form-element__control slds-show_inline-block" style= "width: 50%">
 															<label class="slds-checkbox" style="display: inline;">
-														    	<apex:inputCheckbox value="{!selectedObjectsToTimeShift[objectKey]}">
-														    		<apex:actionSupport event="onchange" reRender="vsbButton,timeShiftingValue,modalHeader,modalBody" action="{!updateSelectedObjectsToTimeShift}" onsubmit="disableRunButton()"/>
+														    	<apex:inputCheckbox value="{!selectedObjectsToTimeShift[objectKey]}" styleClass="objToSelect">
+														    		<apex:actionSupport event="onchange" reRender="timeShiftingValue,vsbButton,modalHeader,modalBody" action="{!updateSelectedObjectsToTimeShift}" onsubmit="disableRunButton(); disableCheckbox();"/>
 														    	</apex:inputCheckbox>
 														        <span class="slds-checkbox_faux"></span>
 														        <span class="slds-form-element__label">{!objectKey}</span>
@@ -569,6 +582,10 @@
                         displayMetadataResponse("Error creating needed InstanceHost Remote Site Settings: " + errorThrown);
                     }
                 });
+			}
+
+			function disableCheckbox(){
+				$(".objToSelect").attr("disabled", true);
 			}        	
 
 		</script>

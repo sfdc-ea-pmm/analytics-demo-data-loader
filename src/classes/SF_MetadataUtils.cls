@@ -41,7 +41,7 @@ public with sharing class SF_MetadataUtils {
         queries.add(queryValidationRule);
         
         MetadataService.FileProperties[] fileProperties = service.listMetadata(queries, apiVersion);        
-		
+        
         // If there are Workflow Rules and/or Validation Rules in the ORG...
         if(fileProperties != null){
             for(MetadataService.FileProperties fileProperty: fileProperties){
@@ -53,7 +53,7 @@ public with sharing class SF_MetadataUtils {
                     listWithObjects.add(obj);
                 }
             }
-		}
+        }
         
         return listWithObjects;
     }

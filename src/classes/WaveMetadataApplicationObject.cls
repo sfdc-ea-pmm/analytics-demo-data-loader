@@ -2,6 +2,7 @@ public class WaveMetadataApplicationObject {
 	public String name;
 	public String url;
 	public Integer additionalDataFiles;
+    public String externalIdPrefix;
 	public String metadataUrl;
 	public List<String> dateFieldsToShift;
 	public List<WaveMetadataApplicationObject> children;

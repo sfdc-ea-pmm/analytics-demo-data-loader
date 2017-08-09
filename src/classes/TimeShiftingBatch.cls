@@ -6,11 +6,18 @@ global class TimeShiftingBatch implements Database.Batchable<sObject>, Database.
 	String query;
 	
 	// Constructor
-	global TimeShiftingBatch(String objectTypeName, List<String> dateFieldNames, Integer daysToShift) {
+	global TimeShiftingBatch(String objectTypeName, List<String> dateFieldNames, Integer daysToShift, String externalIdPrefix) {
 		try{
 			this.objectType = Schema.getGlobalDescribe().get(objectTypeName);
 			this.dateFieldNames = dateFieldNames;
-			this.query = 'SELECT ' + String.join(dateFieldNames, ',') + ' FROM ' + objectTypeName + ' WHERE External_Id__c != null';
+			
+			String whereClause = ' WHERE External_Id__c != null';
+
+			if(String.isNotBlank(externalIdPrefix)){
+				whereClause = ' WHERE External_ID__c LIKE \'' + externalIdPrefix + '%\'';
+			}
+			
+			this.query = 'SELECT ' + String.join(dateFieldNames, ',') + ' FROM ' + objectTypeName + whereClause;			
 			this.daysToShift = daysToShift;
 
 			if(this.daysToShift == 0){

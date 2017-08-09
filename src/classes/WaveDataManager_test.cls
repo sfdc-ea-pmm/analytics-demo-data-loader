@@ -140,7 +140,7 @@ private class WaveDataManager_test {
         insert caseToTest;
 
 		Test.startTest();
-		TimeShiftingBatch batchProcess = new TimeShiftingBatch('Case', dateFieldNames, 0);
+		TimeShiftingBatch batchProcess = new TimeShiftingBatch('Case', dateFieldNames, 0, '');
 		ID batchId = Database.executeBatch(batchProcess);
 		Test.stopTest();
 	}
@@ -169,7 +169,7 @@ private class WaveDataManager_test {
 		insert opptyToTest;
 
 		Test.startTest();
-		TimeShiftingBatch batchProcess = new TimeShiftingBatch('Opportunity', dateFieldNames, 0);
+		TimeShiftingBatch batchProcess = new TimeShiftingBatch('Opportunity', dateFieldNames, 0, '');
 		ID batchId = Database.executeBatch(batchProcess);
 		Test.stopTest();
 	}

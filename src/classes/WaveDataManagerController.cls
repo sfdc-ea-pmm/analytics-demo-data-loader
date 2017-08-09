@@ -54,7 +54,8 @@ public with sharing class WaveDataManagerController {
 	public String baseUrl { get; set; } 
 	public Map<String, Boolean> selectedObjectsToTimeShift { get; set; }
 	public CustomModalConfirmation modalMessage { get; set; }
-
+	public Boolean shiftOnlyOfApp { get; set; }
+	
 	// Secuence control
 	public String installationStep { get; set; }
 
@@ -85,6 +86,7 @@ public with sharing class WaveDataManagerController {
 		this.advancedTimeShifting = false;
 		this.daysToShift = 0;
 		this.overrideDefaultSettingTS = false;
+		this.shiftOnlyOfApp = true;
 		this.operationsStatusTable = new Map<String,Map<String,String>>();
 		this.analyticsDemoFAQ = new List<AnalyticsDemoFAQ>();
 		this.selectedObjectsToTimeShift = new Map<String, Boolean>();
@@ -424,6 +426,8 @@ public with sharing class WaveDataManagerController {
 			}
 		}
 
+		System.debug(this.timeShiftingItems);
+
 		this.checkForTriggersAndRules(objToCheck, true);
     }
 
@@ -524,9 +528,21 @@ public with sharing class WaveDataManagerController {
 			this.operationsStatusTable.get(currentNode.Name).put('LoadData','In progress');
 			this.logMessage('Loading records for ' + currentNode.name + ' object...');
             
-			HttpResponse res = WaveConfiguratorUtils.httpGetCallout(currentNode.url);
-			String csvDataWithHeaders = res.getBody();
-			
+            String csvDataWithHeaders;
+            
+            // Check whether we are in the initial chunk of CSV data or not
+            if(currentNode.currentDataIndex == 0){
+    
+                // We start processing the initial chunk of data
+				HttpResponse res = WaveConfiguratorUtils.httpGetCallout(currentNode.url);
+                csvDataWithHeaders = res.getBody();
+            }
+            else {
+                String newUrl = currentNode.url.substringBeforeLast('.csv') + '-' + currentNode.currentDataIndex + '.csv';
+                HttpResponse res = WaveConfiguratorUtils.httpGetCallout(newUrl);
+                csvDataWithHeaders = res.getBody();
+            }
+
 			// We search for \n
 			Integer indexOfLF = csvDataWithHeaders.indexOf('\n');
 			if(indexOfLF != -1){
@@ -573,12 +589,17 @@ public with sharing class WaveDataManagerController {
 		
 		if(this.timeShiftingItems.size() > 0){
 			WaveTimeShiftingItem currentNode = this.timeShiftingItems.get(this.currentTimeShiftingNodeIndex);
-
 			this.operationsStatusTable.get(currentNode.objectTypeName).put('TimeShifting','In progress');
 			this.logMessage('Loading ' + currentNode.fieldsToTimeShift.size() + ' fields for time shifting for ' + currentNode.objectTypeName + ' object...');
 
+			String externalIdPrefix = '';
+
+			if(this.shiftOnlyOfApp){
+				externalIdPrefix = currentNode.externalIdObjectPrefix;
+			}
+
 			// Start the batch process
-			TimeShiftingBatch batchProcess = new TimeShiftingBatch(currentNode.objectTypeName, currentNode.fieldsToTimeShift, this.daysToShift);
+			TimeShiftingBatch batchProcess = new TimeShiftingBatch(currentNode.objectTypeName, currentNode.fieldsToTimeShift, this.daysToShift, externalIdPrefix);
 			this.batchProcessId = Database.executeBatch(batchProcess, this.genericAppConfiguration.timeShiftingBatchSize);
 
 		} 
@@ -986,6 +1007,17 @@ public with sharing class WaveDataManagerController {
 				this.disabledButton = true;
 				this.currentTimeShiftingNodeIndex = 0;
 				this.enableTimeShiftingCheck = true;
+				this.timeShiftingItems.clear();
+
+				for(WaveMetadataApplicationObject wmaObj: this.selectedAppMetadata.objects) {
+					//If object is selected in UI
+					if(this.selectedObjectsToTimeShift.containsKey(wmaObj.Name)){
+						if(this.selectedObjectsToTimeShift.get(wmaObj.Name)){
+							this.addTimeShiftingNode(wmaObj);
+						}
+					}
+				}
+
 				this.processTimeShiftingObjects();
 			}
 			else if(this.selectedInstallationProcess == 'loadObjects'){
@@ -1053,6 +1085,7 @@ public with sharing class WaveDataManagerController {
 			timeShiftingItem.appType = this.selectedAppMetadata.appType;
 			timeShiftingItem.objectTypeName = wmaObj.Name;
 			timeShiftingItem.fieldsToTimeShift = wmaObj.dateFieldsToShift;
+			timeShiftingItem.externalIdObjectPrefix = wmaObj.externalIdPrefix;
 
 			this.selectedObjectsToTimeShift.put(wmaObj.Name, true);
 			this.timeShiftingItems.add(timeShiftingItem);
@@ -1077,7 +1110,6 @@ public with sharing class WaveDataManagerController {
 			operationMap.put('CreateObjectsAndFields','N/A');
 			operationMap.put('LoadData','N/A');
 			operationMap.put('TimeShifting','N/A');
-
 			this.operationsStatusTable.put(wmaObj.Name, operationMap);
 		}
 
