@@ -180,6 +180,10 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
 							if(String.isNotBlank(role.ParentRoleId)){
 								newRole.ParentRoleId = role.ParentRoleId;
 							}
+                            
+                            if(String.isNotBlank(role.ForecastUserId)){
+								newRole.ForecastUserId = role.ForecastUserId;
+							}
 
 							rolesToUpsert.add(newRole);
 						}
@@ -359,6 +363,61 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
 			       		}
 			       	}
 
+				}
+                else if(this.objectType.getDescribe().getName() == 'ForecastingQuota'){
+					List<ForecastingQuota> lstForecastingQuota = (List<ForecastingQuota>)objectsBatch;
+					Set<String> setForecastingTypeId = new Set<String>();
+					Set<Date> setStartDate = new Set<Date>();
+                    Set<String> setQuotaOwnerId = new Set<String>();
+
+					// Retrieve fields
+					for(ForecastingQuota fq : lstForecastingQuota){
+						
+                        if(String.isNotBlank(fq.ForecastingTypeId)){
+							setForecastingTypeId.add(fq.ForecastingTypeId);
+						}
+
+						if(fq.StartDate != null){
+							setStartDate.add(fq.StartDate);
+						}
+                        
+                        if(String.isNotBlank(fq.QuotaOwnerId)){
+							setQuotaOwnerId.add(fq.QuotaOwnerId);
+						}
+					}
+
+					Map<String, String> auxMap = new Map<String, String>();
+					List<ForecastingQuota> existingFQ = [SELECT Id, ForecastingTypeId, StartDate, QuotaOwnerId FROM ForecastingQuota WHERE ForecastingTypeId IN :setForecastingTypeId OR StartDate IN :setStartDate OR QuotaOwnerId IN :setQuotaOwnerId];
+
+					// We fill the Ids map
+					for(ForecastingQuota exFQ : existingFQ){
+						auxMap.put(exFQ.ForecastingTypeId + '-' + exFQ.QuotaOwnerId + '-' + String.valueOf(exFQ.StartDate), exFQ.Id);
+					}
+
+					// New list for insert
+					List<ForecastingQuota> sObjectsToInsert = new List<ForecastingQuota>();
+
+					// Set Ids
+					for(ForecastingQuota fq : lstForecastingQuota){
+						ForecastingQuota newFQ = new ForecastingQuota();
+						
+						if(String.isNotBlank(fq.ForecastingTypeId) && fq.StartDate != null && String.isNotBlank(fq.QuotaOwnerId)){
+							
+							String key = fq.ForecastingTypeId + '-' + fq.QuotaOwnerId + '-' + String.valueOf(fq.StartDate);
+
+							if(!auxMap.containsKey(key)){
+								newFQ.ForecastingTypeId = fq.ForecastingTypeId;	
+								newFQ.QuotaOwnerId = fq.QuotaOwnerId;
+                                newFQ.StartDate = fq.StartDate;
+                                newFQ.QuotaAmount = fq.QuotaAmount;                                
+                                
+								sObjectsToInsert.add(newFQ);
+							}
+
+						}
+					}
+
+					insert sObjectsToInsert;
 				}
 				else {
 					// We must determine which objects to insert, and which to update

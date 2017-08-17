@@ -14,6 +14,7 @@ public with sharing class WaveDataManagerController {
 	public Id batchProcessId { get; set; }
 	public Id queueProcessId { get; set; }
 	public List<String> processingLog { get; set; }
+	public Set<String> processingLogWithoutTime { get; set; }
 	public Integer currentNodeIndex { get; set; }
 	public Integer currentTimeShiftingNodeIndex { get; set; }
 	public String currentObjectProcessing { get; set; }
@@ -69,6 +70,7 @@ public with sharing class WaveDataManagerController {
 		this.objectsNodes = new List<WaveApplicationObject>();
 		this.timeShiftingItems = new List<WaveTimeShiftingItem>();
 		this.processingLog = new List<String>();
+		this.processingLogWithoutTime = new Set<String>();
 		this.appDescriptions = new Map<String, String>();
 		this.appIndexes = new Map<String, Integer>();
 		this.emailAddress = UserInfo.getUserEmail();
@@ -448,6 +450,7 @@ public with sharing class WaveDataManagerController {
 		this.warningMessage = '';
 		this.infoMessage = '';
 		this.processingLog.clear();
+		this.processingLogWithoutTime.clear();
 	}
 
 	public List<WaveApplicationObject> getObjectsToProcess(WaveMetadataApplicationObject wmaObj){
@@ -1418,8 +1421,13 @@ public with sharing class WaveDataManagerController {
 	}
 
 	private void logMessage(String msg){
-		DateTime dtNow = DateTime.now();
-		this.processingLog.add(String.format('[{0}] {1}', new String[]{ dtNow.format('yyyyMMdd HH:mm:ss') , msg }));
+
+		if(!this.processingLogWithoutTime.contains(msg)){
+			DateTime dtNow = DateTime.now();
+			this.processingLog.add(String.format('[{0}] {1}', new String[]{ dtNow.format('yyyyMMdd HH:mm:ss') , msg }));
+		}
+
+		this.processingLogWithoutTime.add(msg);
 	}
 
 
