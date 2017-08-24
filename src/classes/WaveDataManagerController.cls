@@ -104,6 +104,9 @@ public with sharing class WaveDataManagerController {
         if(fragments.size() == 3) {
         	result = fragments[0]; // Note: Apex URL: NA14.salesforce.com
     	}
+    	else if(fragments.size() == 4){
+            result = fragments[0] + '.' + fragments[1]; // Note: Apex URL: pmm-test-org.my.salesforce.com
+        }
 	    else if(fragments.size() == 5) {
         	result = fragments[1]; // Note: Visualforce URL: mydomain.NA14.visual.force.com
     	}
