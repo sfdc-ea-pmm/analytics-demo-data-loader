@@ -106,7 +106,7 @@
 								</div>
 							</apex:outputPanel>
 
-							<apex:outputPanel rendered="{!infoMessage != ''}">
+							<apex:outputPanel rendered="{!disabledButton}">
 								<div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_info" role="alert" style="margin:0;">
 								    <span class="slds-assistive-text">info</span>
 								    <span class="slds-icon_container slds-icon-utility-info slds-m-right_small slds-no-flex slds-align-top">
@@ -114,7 +114,7 @@
 								        	<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#info')}"></use>
 								        </svg>
 								    </span>
-								    <h2 class="slds-text-heading_small ">{!infoMessage}</h2>
+								    <h2 class="slds-text-heading_small ">Do not close or navigate away from the page. Otherwise, the process that is currently running will be stopped.</h2>
 								</div>
 							</apex:outputPanel>
 
@@ -131,15 +131,14 @@
 								<h1 class="slds-text-title_caps">Important Pre Install Step:</h1>
 								<p>In order to utilize the features of this tool you need to add a <a target="_new" href="http://na1.salesforce.com/help/doc/en/configuring_remoteproxy.htm">Remote Site Setting</a> for each of these Salesforce Server URLs: <b>{!Host}</b> and <b>{!VisualforceContextHost}</b></p>
 								<p>Click the <b>Create Remote Site Settings</b> button to have the tool perform this step for you.</p> 
+								<button id="createremotesitebtn" class="slds-button slds-button_neutral slds-m-top_small" onclick="createRemoteSite();">Create Remote Site Setting</button>
 							</div>
-							
-							<button id="createremotesitebtn" class="slds-button slds-button_neutral" onclick="createRemoteSite();">Create Remote Site Setting</button>
 						</apex:outputPanel>
 					</apex:form>
 
 	        		<!--Intro section -->
 	        		<div class="slds-col slds-size_1-of-1 slds-m-top_medium slds-m-bottom_large slds-m-right_large">
-						<p>{!genericAppConfiguration.homeHeaderDescription}</p>
+						<apex:outputText value="{!genericAppConfiguration.homeHeaderDescription}" escape="false"/>
 					</div>
 	        		<!-- Left column -->
 					<div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-right_large">

@@ -10,7 +10,6 @@ public with sharing class WaveDataManagerController {
 	public String errorMessage { get; set; }
 	public String successMessage  { get; set; }
 	public String warningMessage  { get; set; }
-	public String infoMessage  { get; set; }
 	public Id batchProcessId { get; set; }
 	public Id queueProcessId { get; set; }
 	public List<String> processingLog { get; set; }
@@ -451,7 +450,6 @@ public with sharing class WaveDataManagerController {
 		this.errorMessage = '';
 		this.successMessage = '';
 		this.warningMessage = '';
-		this.infoMessage = '';
 		this.processingLog.clear();
 		this.processingLogWithoutTime.clear();
 	}
@@ -1124,7 +1122,7 @@ public with sharing class WaveDataManagerController {
 
 	public void createObjectsAndFields(List<WaveApplicationObject> lstObjects){
 		
-		List<String> taskFieldErrors = SF_MetadataUtils.assignAccessToField('Task', 'WhatId');
+		/*List<String> taskFieldErrors = SF_MetadataUtils.assignAccessToField('Task', 'WhatId');
 		String errors = '';
 
 		if(taskFieldErrors.size() > 0){
@@ -1143,7 +1141,7 @@ public with sharing class WaveDataManagerController {
 			}
 
 			throw new WaveConfiguratorException('WhatId field in Event object could not be granted. Cause: ' + errors);
-		}
+		}*/
 
 		// Check if there are objects data to load
 		if(lstObjects.size() > 0){
@@ -1354,7 +1352,8 @@ public with sharing class WaveDataManagerController {
 									this.currentFieldIndex = 0;
 									this.objectsAndFieldsMatrix.clear();
 									this.processingObjectsAndFieldsMetadata = false;
-									
+									this.createPermissionSet();
+
 									if(this.selectedInstallationProcess == 'loadObjects'){
 										if(this.objectsRecordTypesMatrix.size() > 0){
 											this.launchRecordTypeCreation();
@@ -1421,6 +1420,160 @@ public with sharing class WaveDataManagerController {
 		}
 
 		return null;
+	}
+
+	private void createPermissionSet(){
+		List<PermissionSet> pr = [SELECT Id, Name, Label FROM PermissionSet WHERE Name = 'Analytics_Demo_Integration'];
+		
+		Id pSetId;
+		
+		if(pr.size() == 0){
+			PermissionSet newPr = new PermissionSet();
+		    newPr.Label = 'Analytics Demo Integration';
+			newPr.Name = 'Analytics_Demo_Integration';
+
+			insert newPr;
+			pSetId = newPr.Id;
+		} 
+		else {
+			pSetId = pr.get(0).Id;
+		}
+
+		List<String> existentFields = getFieldsFromTaskAndEvent();
+
+		Set<FieldPermissions> fieldPermissions = new Set<FieldPermissions>();
+
+		for(String field: existentFields){
+			if(!field.substringAfter('.').equalsIgnoreCase('Id') && 
+		       !field.substringAfter('.').equalsIgnoreCase('Subject') &&
+		       !field.substringAfter('.').equalsIgnoreCase('Status') &&
+		       !field.substringAfter('.').equalsIgnoreCase('Priority') &&
+		       !field.substringAfter('.').equalsIgnoreCase('IsHighPriority') && 
+		       !field.substringAfter('.').equalsIgnoreCase('OwnerId') && 
+		       !field.substringAfter('.').equalsIgnoreCase('IsDeleted') && 
+		       !field.substringAfter('.').equalsIgnoreCase('AccountId') && 
+		       !field.substringAfter('.').equalsIgnoreCase('IsClosed') && 
+		       !field.substringAfter('.').equalsIgnoreCase('CreatedDate') && 
+		       !field.substringAfter('.').equalsIgnoreCase('CreatedById') && 
+		       !field.substringAfter('.').equalsIgnoreCase('LastModifiedById') &&
+		       !field.substringAfter('.').equalsIgnoreCase('LastModifiedDate') && 
+		       !field.substringAfter('.').equalsIgnoreCase('SystemModstamp') &&
+		       !field.substringAfter('.').equalsIgnoreCase('IsArchived') &&
+		       !field.substringAfter('.').equalsIgnoreCase('CallDurationInSeconds') &&
+		       !field.substringAfter('.').equalsIgnoreCase('CallType') &&
+		       !field.substringAfter('.').equalsIgnoreCase('CallDisposition') && 
+		       !field.substringAfter('.').equalsIgnoreCase('CallObject') &&
+		       !field.substringAfter('.').equalsIgnoreCase('ReminderDateTime') &&
+		       !field.substringAfter('.').equalsIgnoreCase('IsReminderSet') &&
+		       !field.substringAfter('.').equalsIgnoreCase('ConnectionReceivedId') &&
+		       !field.substringAfter('.').equalsIgnoreCase('ConnectionSentId') &&
+		       !field.substringAfter('.').equalsIgnoreCase('RecurrenceActivityId') &&
+		       !field.substringAfter('.').equalsIgnoreCase('IsRecurrence') &&
+		       !field.substringAfter('.').equalsIgnoreCase('RecurrenceStartDateOnly') &&
+		       !field.substringAfter('.').equalsIgnoreCase('RecurrenceEndDateOnly') &&
+		       !field.substringAfter('.').equalsIgnoreCase('RecurrenceTimeZoneSidKey') &&
+		       !field.substringAfter('.').equalsIgnoreCase('RecurrenceType') &&
+		       !field.substringAfter('.').equalsIgnoreCase('RecurrenceInterval') &&
+		       !field.substringAfter('.').equalsIgnoreCase('RecurrenceDayOfWeekMask') &&
+		       !field.substringAfter('.').equalsIgnoreCase('RecurrenceDayOfMonth') &&
+		       !field.substringAfter('.').equalsIgnoreCase('RecurrenceInstance') &&
+		       !field.substringAfter('.').equalsIgnoreCase('RecurrenceMonthOfYear') &&
+		       !field.substringAfter('.').equalsIgnoreCase('RecurrenceRegeneratedType') &&
+		       !field.substringAfter('.').equalsIgnoreCase('TaskSubtype') &&
+		       !field.substringAfter('.').equalsIgnoreCase('ActivityDateTime') &&
+		       !field.substringAfter('.').equalsIgnoreCase('ActivityDate') &&
+		       !field.substringAfter('.').equalsIgnoreCase('DurationInMinutes') &&
+		       !field.substringAfter('.').equalsIgnoreCase('StartDateTime') &&
+		       !field.substringAfter('.').equalsIgnoreCase('EndDateTime') &&
+		       !field.substringAfter('.').equalsIgnoreCase('IsPrivate') &&
+		       !field.substringAfter('.').equalsIgnoreCase('ShowAs') &&
+		       !field.substringAfter('.').equalsIgnoreCase('IsChild') && 
+		       !field.substringAfter('.').equalsIgnoreCase('IsGroupEvent') &&
+		       !field.substringAfter('.').equalsIgnoreCase('GroupEventType') &&
+		       !field.substringAfter('.').equalsIgnoreCase('RecurrenceStartDateTime') &&
+		       !field.substringAfter('.').equalsIgnoreCase('EventSubtype')){
+				
+				FieldPermissions fp = new FieldPermissions();
+				
+				if(field.containsIgnoreCase('WhoId') || field.containsIgnoreCase('WhoCount')){
+					fp.Field = field.replace(field.substringAfter('.'), 'Who');
+				}
+				else if(field.containsIgnoreCase('WhatId') || field.containsIgnoreCase('WhatCount')){
+					fp.Field = field.replace(field.substringAfter('.'), 'What');
+				}
+				else {
+					fp.Field = field;
+				}
+
+				fp.ParentId = pSetId;
+				fp.PermissionsRead = true;
+				fp.SobjectType = field.substringBefore('.');
+
+				fieldPermissions.add(fp);
+			}
+		}
+		
+		List<FieldPermissions> alreadyThere = [SELECT Field, PermissionsRead FROM FieldPermissions WHERE ParentId = :pSetId];
+		Map<String, Boolean> mapFieldPermissions = new Map<String, Boolean>();
+		
+		for(FieldPermissions existentField: alreadyThere){
+		    mapFieldPermissions.put(existentField.Field, existentField.PermissionsRead);
+		}
+
+		List<FieldPermissions> fpToUpsert = new List<FieldPermissions>();
+
+		for(FieldPermissions fp: fieldPermissions){
+			//If permission field not exists for that parent
+		    if(!mapFieldPermissions.containsKey(fp.Field)){
+		        fpToUpsert.add(fp);
+		    }
+		    //If permissionRead is false
+		    else if(!mapFieldPermissions.get(fp.Field)){
+		    	fpToUpsert.add(fp);
+		    }
+		}
+
+		if(fpToUpsert.size() > 0){
+			upsert fpToUpsert;
+		}
+		
+		List<User> analyticsCloudUsers = [SELECT Id FROM User WHERE ProfileId IN (SELECT Id FROM Profile WHERE Name = 'Analytics Cloud Integration User')];
+		List<PermissionSetAssignment> pSetAlreadyThere = [SELECT AssigneeId, PermissionSetId FROM PermissionSetAssignment WHERE AssigneeId IN :analyticsCloudUsers AND PermissionSetId = :pSetId];
+
+		if(pSetAlreadyThere.size() == 0){
+
+			if(analyticsCloudUsers.size() > 0){
+				List<PermissionSetAssignment> pAssignments = new List<PermissionSetAssignment>();
+
+				for(User u: analyticsCloudUsers){
+					PermissionSetAssignment pAssignment = new PermissionSetAssignment();
+					pAssignment.AssigneeId = u.Id;
+					pAssignment.PermissionSetId = pSetId;
+
+					pAssignments.add(pAssignment);
+				}
+			
+				insert pAssignments;
+			}
+		}
+	}
+
+	private List<String> getFieldsFromTaskAndEvent(){
+		
+		Map<String, Schema.SObjectField> taskMap = Schema.getGlobalDescribe().get('Task').getDescribe().fields.getMap();
+		Map<String, Schema.SObjectField> eventMap = Schema.getGlobalDescribe().get('Event').getDescribe().fields.getMap();
+
+		List<String> fields = new List<String>();
+
+		for(String tField: taskMap.keySet()){
+			fields.add('Task.' + String.valueOf(taskMap.get(tField)));
+		}
+
+		for(String eField: eventMap.keySet()){
+			fields.add('Event.' + String.valueOf(eventMap.get(eField)));
+		}
+
+		return fields;
 	}
 
 	private void logMessage(String msg){

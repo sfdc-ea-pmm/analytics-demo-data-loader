@@ -254,8 +254,8 @@ public with sharing class SF_MetadataUtils {
         aciuProfile.tabVisibilities = aciuTvs;
         MetadataService.ProfileFieldLevelSecurity aciuFLS = new MetadataService.ProfileFieldLevelSecurity();
         aciuFLS.field = fieldFullName;
-        aciuFLS.readable = true;
-        aciuFLS.editable = false;
+        //aciuFLS.readable = true;
+        aciuFLS.editable = true;
         aciuProfile.FieldPermissions = new MetadataService.ProfileFieldLevelSecurity[] { aciuFLS } ;
 
         results = service.upsertMetadata(

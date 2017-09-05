@@ -16,7 +16,7 @@ global class TimeShiftingBatch implements Database.Batchable<sObject>, Database.
 			if(String.isNotBlank(externalIdPrefix)){
 				whereClause = ' WHERE External_ID__c LIKE \'' + externalIdPrefix + '%\'';
 			}
-			
+			           
 			this.query = 'SELECT ' + String.join(dateFieldNames, ',') + ' FROM ' + objectTypeName + whereClause;			
 			this.daysToShift = daysToShift;
 

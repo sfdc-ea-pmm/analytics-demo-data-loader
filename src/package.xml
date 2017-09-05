@@ -3,6 +3,7 @@
     <types>
         <members>AnalyticsDemoFAQ</members>
         <members>CSVReader</members>
+        <members>CheckTimeShiftingQueue</members>
         <members>CreateObjectsAndFieldsQueueable</members>
         <members>CreateRecordTypesQueueable</members>
         <members>CsvDataImportBatch</members>
@@ -16,6 +17,7 @@
         <members>Puff</members>
         <members>RestApiCompositeTreeResponse</members>
         <members>SF_MetadataUtils</members>
+        <members>ScheduledTimeShifting</members>
         <members>SmartLookup</members>
         <members>TimeShiftingBatch</members>
         <members>UploadUserPhotoQueueable</members>
