@@ -61,9 +61,10 @@ private class WaveDataManager_test {
 		String accountsDataUrl = 'https://s3-us-west-2.amazonaws.com/ac-sdo-repo-dev/simple/Account.csv';
 		String oppMetadataUrl = 'https://s3-us-west-2.amazonaws.com/ac-sdo-repo-dev/simple/Opportunity_metadata.csv';
 		String oppDataUrl = 'https://s3-us-west-2.amazonaws.com/ac-sdo-repo-dev/simple/Opportunity.csv';
-		
+		String userDataurl = 'https://s3-us-west-2.amazonaws.com/ac-sdo-repo-dev/simple/User.csv';
+		String userMetadataUrl = 'https://s3-us-west-2.amazonaws.com/ac-sdo-repo-dev/simple/User_metadata.csv';
 		String waveForSalesJsonUrl = 'https://s3-us-west-2.amazonaws.com/ac-sdo-repo/sales/WaveForSales.json';
-		String faqUrl = 'https://s3-us-west-2.amazonaws.com/ac-sdo-repo-dev/AnalyticsDemoFAQ.json';
+		String analyticsFaqDemoUrl = 'https://s3-us-west-2.amazonaws.com/ac-sdo-repo-dev/AnalyticsDemoFAQ.json';
 
 		multimock.setStaticResource(appsMetadataUrl, 'WaveAppsMetadataCSV');
 		multimock.setStaticResource(accountsMetadataUrl, 'AccountMetadataCSV');
@@ -72,9 +73,9 @@ private class WaveDataManager_test {
 		multimock.setStaticResource(oppDataUrl, 'OpportunitiesDataCSV');
 		multimock.setStaticResource(waveForSalesJsonUrl, 'WaveForSalesJson');
 		multimock.setStaticResource(simpleAppJsonUrl, 'SimpleAppJson');
-		multimock.setStaticResource(faqUrl, 'AnalyticsFAQDemo');
-		multimock.setStaticResource(URL.getSalesforceBaseUrl().toExternalForm() + '/services/Soap/m/38.0', 'UpsertMetadaResponse');
-		multimock.setStaticResource('http://soap.sforce.com/2006/04/metadata', 'UpsertMetadaResponse');
+		multimock.setStaticResource(userDataurl, 'UsersDataCSV');
+		multimock.setStaticResource(userMetadataUrl, 'UserMetadataCSV');
+		multimock.setStaticResource(analyticsFaqDemoUrl, 'AnalyticsFAQDemo');
 		multimock.setStatusCode(200);
 		multimock.setHeader('Content-Type', 'text/plain');
 

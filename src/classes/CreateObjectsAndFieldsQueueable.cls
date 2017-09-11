@@ -25,7 +25,7 @@ public with sharing class CreateObjectsAndFieldsQueueable implements Queueable, 
 			}
 		}
 
-		if(SF_MetadataUtils.fieldExists(fieldToCreate.ObjectName, fieldToCreate.Name)){
+		/*if(SF_MetadataUtils.fieldExists(fieldToCreate.ObjectName, fieldToCreate.Name)){
 			
 			if(!fieldToCreate.IsRequired){
 				List<String> assignmentAccessErrors = SF_MetadataUtils.assignAccessToField(fieldToCreate.ObjectName, fieldToCreate.Name, this.sessionId);
@@ -42,8 +42,8 @@ public with sharing class CreateObjectsAndFieldsQueueable implements Queueable, 
 				}	
 			}
 			
-		}
-		else{
+		}*/
+		if(!SF_MetadataUtils.fieldExists(fieldToCreate.ObjectName, fieldToCreate.Name)){
 			List<String> fieldCreationErrors = SF_MetadataUtils.createField(fieldToCreate, this.sessionId);
 			
 			if(fieldCreationErrors.size() > 0){

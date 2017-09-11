@@ -7,6 +7,7 @@ public class WaveApplicationObject {
 	public List<WaveApplicationObjectRelation> relations { get; set; }
 	public List<WaveApplicationObjectField> fields { get; set; }
 	public Map<Integer, String> fieldPositions { get; set; }
+	public List<String> stdFieldsForPermissionSet { get; set; }
 
 	public WaveApplicationObject(){
 		this.currentDataIndex = 0;

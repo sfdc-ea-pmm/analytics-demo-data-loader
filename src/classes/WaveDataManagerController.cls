@@ -55,7 +55,7 @@ public with sharing class WaveDataManagerController {
 	public Map<String, Boolean> selectedObjectsToTimeShift { get; set; }
 	public CustomModalConfirmation modalMessage { get; set; }
 	public Boolean shiftOnlyOfApp { get; set; }
-	
+
 	// Secuence control
 	public String installationStep { get; set; }
 
@@ -460,6 +460,8 @@ public with sharing class WaveDataManagerController {
 		rootObj.name = wmaObj.name;
 		rootObj.url = this.baseUrl + wmaObj.url;
 		rootObj.additionalDataFiles = wmaObj.additionalDataFiles;
+		rootObj.stdFieldsForPermissionSet = wmaObj.stdFieldsForPermissionSet;
+
 		listToProcess.add(rootObj);
 
 		// We process the fields metadata
@@ -1439,78 +1441,36 @@ public with sharing class WaveDataManagerController {
 			pSetId = pr.get(0).Id;
 		}
 
-		List<String> existentFields = getFieldsFromTaskAndEvent();
 
 		Set<FieldPermissions> fieldPermissions = new Set<FieldPermissions>();
+		
+		List<String> fieldsToPermissionSet = new List<String>();
 
-		for(String field: existentFields){
-			if(!field.substringAfter('.').equalsIgnoreCase('Id') && 
-		       !field.substringAfter('.').equalsIgnoreCase('Subject') &&
-		       !field.substringAfter('.').equalsIgnoreCase('Status') &&
-		       !field.substringAfter('.').equalsIgnoreCase('Priority') &&
-		       !field.substringAfter('.').equalsIgnoreCase('IsHighPriority') && 
-		       !field.substringAfter('.').equalsIgnoreCase('OwnerId') && 
-		       !field.substringAfter('.').equalsIgnoreCase('IsDeleted') && 
-		       !field.substringAfter('.').equalsIgnoreCase('AccountId') && 
-		       !field.substringAfter('.').equalsIgnoreCase('IsClosed') && 
-		       !field.substringAfter('.').equalsIgnoreCase('CreatedDate') && 
-		       !field.substringAfter('.').equalsIgnoreCase('CreatedById') && 
-		       !field.substringAfter('.').equalsIgnoreCase('LastModifiedById') &&
-		       !field.substringAfter('.').equalsIgnoreCase('LastModifiedDate') && 
-		       !field.substringAfter('.').equalsIgnoreCase('SystemModstamp') &&
-		       !field.substringAfter('.').equalsIgnoreCase('IsArchived') &&
-		       !field.substringAfter('.').equalsIgnoreCase('CallDurationInSeconds') &&
-		       !field.substringAfter('.').equalsIgnoreCase('CallType') &&
-		       !field.substringAfter('.').equalsIgnoreCase('CallDisposition') && 
-		       !field.substringAfter('.').equalsIgnoreCase('CallObject') &&
-		       !field.substringAfter('.').equalsIgnoreCase('ReminderDateTime') &&
-		       !field.substringAfter('.').equalsIgnoreCase('IsReminderSet') &&
-		       !field.substringAfter('.').equalsIgnoreCase('ConnectionReceivedId') &&
-		       !field.substringAfter('.').equalsIgnoreCase('ConnectionSentId') &&
-		       !field.substringAfter('.').equalsIgnoreCase('RecurrenceActivityId') &&
-		       !field.substringAfter('.').equalsIgnoreCase('IsRecurrence') &&
-		       !field.substringAfter('.').equalsIgnoreCase('RecurrenceStartDateOnly') &&
-		       !field.substringAfter('.').equalsIgnoreCase('RecurrenceEndDateOnly') &&
-		       !field.substringAfter('.').equalsIgnoreCase('RecurrenceTimeZoneSidKey') &&
-		       !field.substringAfter('.').equalsIgnoreCase('RecurrenceType') &&
-		       !field.substringAfter('.').equalsIgnoreCase('RecurrenceInterval') &&
-		       !field.substringAfter('.').equalsIgnoreCase('RecurrenceDayOfWeekMask') &&
-		       !field.substringAfter('.').equalsIgnoreCase('RecurrenceDayOfMonth') &&
-		       !field.substringAfter('.').equalsIgnoreCase('RecurrenceInstance') &&
-		       !field.substringAfter('.').equalsIgnoreCase('RecurrenceMonthOfYear') &&
-		       !field.substringAfter('.').equalsIgnoreCase('RecurrenceRegeneratedType') &&
-		       !field.substringAfter('.').equalsIgnoreCase('TaskSubtype') &&
-		       !field.substringAfter('.').equalsIgnoreCase('ActivityDateTime') &&
-		       !field.substringAfter('.').equalsIgnoreCase('ActivityDate') &&
-		       !field.substringAfter('.').equalsIgnoreCase('DurationInMinutes') &&
-		       !field.substringAfter('.').equalsIgnoreCase('StartDateTime') &&
-		       !field.substringAfter('.').equalsIgnoreCase('EndDateTime') &&
-		       !field.substringAfter('.').equalsIgnoreCase('IsPrivate') &&
-		       !field.substringAfter('.').equalsIgnoreCase('ShowAs') &&
-		       !field.substringAfter('.').equalsIgnoreCase('IsChild') && 
-		       !field.substringAfter('.').equalsIgnoreCase('IsGroupEvent') &&
-		       !field.substringAfter('.').equalsIgnoreCase('GroupEventType') &&
-		       !field.substringAfter('.').equalsIgnoreCase('RecurrenceStartDateTime') &&
-		       !field.substringAfter('.').equalsIgnoreCase('EventSubtype')){
-				
-				FieldPermissions fp = new FieldPermissions();
-				
-				if(field.containsIgnoreCase('WhoId') || field.containsIgnoreCase('WhoCount')){
-					fp.Field = field.replace(field.substringAfter('.'), 'Who');
+		for(WaveApplicationObject obj: this.objectsNodes){
+			//Add to list the objects that were put in JSON
+			if(obj.stdFieldsForPermissionSet != null){
+				for(String field: obj.stdFieldsForPermissionSet){
+					fieldsToPermissionSet.add(obj.Name + '.' + field);
 				}
-				else if(field.containsIgnoreCase('WhatId') || field.containsIgnoreCase('WhatCount')){
-					fp.Field = field.replace(field.substringAfter('.'), 'What');
-				}
-				else {
-					fp.Field = field;
-				}
-
-				fp.ParentId = pSetId;
-				fp.PermissionsRead = true;
-				fp.SobjectType = field.substringBefore('.');
-
-				fieldPermissions.add(fp);
 			}
+			
+			List<String> customFields = this.getCustomFieldsForPermissionSet(obj.Name);
+			//Add to list the custom objects in org.
+			for(String cField: customFields){
+				fieldsToPermissionSet.add(cField);
+			}
+		}
+
+
+		for(String field: fieldsToPermissionSet){
+			
+			FieldPermissions fp = new FieldPermissions();
+			fp.Field = field;
+			fp.ParentId = pSetId;
+			fp.PermissionsRead = true;
+			fp.SobjectType = field.substringBefore('.');
+
+			fieldPermissions.add(fp);
 		}
 		
 		List<FieldPermissions> alreadyThere = [SELECT Field, PermissionsRead FROM FieldPermissions WHERE ParentId = :pSetId];
@@ -1558,19 +1518,16 @@ public with sharing class WaveDataManagerController {
 		}
 	}
 
-	private List<String> getFieldsFromTaskAndEvent(){
+	private List<String> getCustomFieldsForPermissionSet(String obj){
 		
-		Map<String, Schema.SObjectField> taskMap = Schema.getGlobalDescribe().get('Task').getDescribe().fields.getMap();
-		Map<String, Schema.SObjectField> eventMap = Schema.getGlobalDescribe().get('Event').getDescribe().fields.getMap();
+		Map<String, Schema.SObjectField> objectMap = Schema.getGlobalDescribe().get(obj).getDescribe().fields.getMap();
 
 		List<String> fields = new List<String>();
 
-		for(String tField: taskMap.keySet()){
-			fields.add('Task.' + String.valueOf(taskMap.get(tField)));
-		}
-
-		for(String eField: eventMap.keySet()){
-			fields.add('Event.' + String.valueOf(eventMap.get(eField)));
+		for(String f: objectMap.keySet()){
+			if(f.endsWithIgnoreCase('__c')){
+				fields.add(obj + '.' + String.valueOf(objectMap.get(f)));
+			}
 		}
 
 		return fields;
