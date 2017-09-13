@@ -81,7 +81,7 @@ public with sharing class WaveDataManagerController {
 		this.enableTimeShiftingCheck = false;
 		this.enableObjectProcessingCheck = false;
 		this.processingObjectsAndFieldsMetadata = false;
-		this.selectedInstallationProcess = 'loadObjects';
+		this.selectedInstallationProcess = 'timeShifting';
 		this.userPhotoNodes = new List<UserPhotoInfo>();
 		this.advancedOption = false;
 		this.advancedTimeShifting = false;
@@ -253,14 +253,16 @@ public with sharing class WaveDataManagerController {
 			} 
 			else if(this.selectedInstallationProcess == 'loadObjects'){
 				
-				this.selectAppMetadata();
-				List<String> objNames = new List<String>();
+				if(String.isNotBlank(this.selectedWaveApp)){
+					this.selectAppMetadata();
+					List<String> objNames = new List<String>();
 
-				for(WaveMetadataApplicationObject wmaObj: this.selectedAppMetadata.objects) {
-					objNames.add(wmaObj.name);
+					for(WaveMetadataApplicationObject wmaObj: this.selectedAppMetadata.objects) {
+						objNames.add(wmaObj.name);
+					}
+
+					this.checkForTriggersAndRules(objNames, false);
 				}
-
-				this.checkForTriggersAndRules(objNames, false);
 			}
 		}
 		catch(Exception e){
@@ -1124,27 +1126,6 @@ public with sharing class WaveDataManagerController {
 
 	public void createObjectsAndFields(List<WaveApplicationObject> lstObjects){
 		
-		/*List<String> taskFieldErrors = SF_MetadataUtils.assignAccessToField('Task', 'WhatId');
-		String errors = '';
-
-		if(taskFieldErrors.size() > 0){
-			for(String error: taskFieldErrors){
-				errors += error;
-			}
-
-			throw new WaveConfiguratorException('WhatId field in Task object could not be granted. Cause: ' + errors);
-		}
-
-		List<String> eventFieldErrors = SF_MetadataUtils.assignAccessToField('Event', 'WhatId');
-		
-		if(eventFieldErrors.size() > 0){
-			for(String error: eventFieldErrors){
-				errors += error;
-			}
-
-			throw new WaveConfiguratorException('WhatId field in Event object could not be granted. Cause: ' + errors);
-		}*/
-
 		// Check if there are objects data to load
 		if(lstObjects.size() > 0){
 
