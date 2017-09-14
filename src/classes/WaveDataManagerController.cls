@@ -1434,12 +1434,10 @@ public with sharing class WaveDataManagerController {
 					fieldsToPermissionSet.add(obj.Name + '.' + field);
 				}
 			}
-			
-			List<String> customFields = this.getCustomFieldsForPermissionSet(obj.Name);
+
 			//Add to list the custom objects in org.
-			for(String cField: customFields){
-				fieldsToPermissionSet.add(cField);
-			}
+			List<String> customFields = this.getCustomFieldsForPermissionSet(obj.Name);
+			fieldsToPermissionSet.addAll(customFields);
 		}
 
 
@@ -1506,7 +1504,9 @@ public with sharing class WaveDataManagerController {
 		List<String> fields = new List<String>();
 
 		for(String f: objectMap.keySet()){
-			if(f.endsWithIgnoreCase('__c')){
+			Schema.DescribeFieldResult fieldDetails = objectMap.get(f).getDescribe();
+
+			if(fieldDetails.isPermissionable() && f.endsWithIgnoreCase('__c')){
 				fields.add(obj + '.' + String.valueOf(objectMap.get(f)));
 			}
 		}
