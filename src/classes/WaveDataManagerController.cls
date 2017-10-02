@@ -359,60 +359,57 @@ public with sharing class WaveDataManagerController {
     }
 
     public void calculateDaysToShift(){
-		String dateField = '';
-		String baselineObjectName = '';
-		Boolean waveApp = false;
-
-		if(this.selectedWaveApp == 'Wave_for_Sales'){
-			dateField = 'CloseDate';
-			baselineObjectName = 'Opportunity';
 		
-			if(!this.overrideDefaultSettingTS){
-				this.timeShiftingWhereClause = 'External_Id__c LIKE \'W_Opportunity%\' AND StageName = \'Closed Won\'';
-			}
+		TimeShiftSettings tsSettings = this.selectedAppMetadata.timeShift;
 
-			this.timeShiftingcalculatedDateLabel = 'Date of the latest Won opportunity: ';
-			waveApp = true;
+		if(tsSettings == null){
+			throw new WaveConfiguratorException('TimeShift object not found in metadata JSON');
 		}
-		else if(this.selectedWaveApp == 'Wave_for_Services'){
-			dateField = 'ClosedDate';
-			baselineObjectName = 'Case';
-			
-			if(!this.overrideDefaultSettingTS){
-				this.timeShiftingWhereClause = 'External_Id__c LIKE \'W_Case%\'';
-			}
-
-			this.timeShiftingcalculatedDateLabel = 'Date of the latest Closed case: ';
-			waveApp = true;
+		
+		if(String.isBlank(tsSettings.tObject) || String.isBlank(tsSettings.dateField) || String.isBlank(tsSettings.displayText)){
+			throw new WaveConfiguratorException('Required fields in timeShift object are empty.');
+		}
+		
+		String dateField = tsSettings.dateField;
+		String baselineObjectName = tsSettings.tObject;
+		this.timeShiftingcalculatedDateLabel = tsSettings.displayText;
+	
+		if(!this.overrideDefaultSettingTS){
+			this.timeShiftingWhereClause = tsSettings.filter;
+		}
+		
+		String dynamicSoql = 'SELECT ' + dateField + ' FROM ' + baselineObjectName;
+		
+		if(String.isNotBlank(this.timeShiftingWhereClause)){
+			dynamicSoql += ' WHERE ' + this.timeShiftingWhereClause;
 		}
 
-		if(waveApp){
-			String dynamicSoql = 'SELECT ' + dateField + ' FROM ' + baselineObjectName;
-			
-			if(String.isNotBlank(this.timeShiftingWhereClause)){
-				dynamicSoql += ' WHERE ' + this.timeShiftingWhereClause;
-			}
+		dynamicSoql += ' ORDER BY ' + dateField + ' DESC NULLS LAST';
+		dynamicSoql += ' LIMIT 1';
 
-			dynamicSoql += ' ORDER BY ' + dateField + ' DESC NULLS LAST';
-			dynamicSoql += ' LIMIT 1';
+		try{
+			List<sObject> sobjList = Database.query(dynamicSoql);
+			if(sobjList.size() > 0){				
+				sObject s = sobjList.get(0);
+				DateTime foundDate = (DateTime)s.get(dateField);
+				String formattedDate = foundDate.formatGmt('MM/dd/yyyy');
 
-			try{
-				List<sObject> sobjList = Database.query(dynamicSoql);
-				if(sobjList.size() > 0){				
-					sObject s = sobjList.get(0);
-					DateTime foundDate = (DateTime)s.get(dateField);
-					String formattedDate = foundDate.formatGmt('MM/dd/yyyy');
+				Date compareDate = Date.today();
 
-					this.timeShiftingcalculatedDateLabel += formattedDate;
-					this.daysToShift = foundDate.dateGMT().daysBetween(Date.today());
+				if(String.isNotBlank(tsSettings.compareDate)){
+					compareDate = Date.valueOf(tsSettings.compareDate);	
 				}
-				else{
-					this.daysToShift = 0;
-				}
+
+				Datetime dtCompareDate = (DateTime)compareDate;
+				this.timeShiftingcalculatedDateLabel += ': ' + formattedDate + ' compared to ' + dtCompareDate.formatGmt('MM/dd/yyyy');
+				this.daysToShift = foundDate.dateGMT().daysBetween(compareDate);
 			}
-			catch(Exception e){
-				this.errorMessage = 'There was an error trying to calculate the days to shift. Check the where clause. Error detail: ' + e.getMessage();
+			else{
+				this.daysToShift = 0;
 			}
+		}
+		catch(Exception e){
+			this.errorMessage = 'There was an error trying to calculate the days to shift. Check the where clause. Error detail: ' + e.getMessage();
 		}
     }
 
@@ -431,8 +428,6 @@ public with sharing class WaveDataManagerController {
 				}
 			}
 		}
-
-		System.debug(this.timeShiftingItems);
 
 		this.checkForTriggersAndRules(objToCheck, true);
     }
@@ -496,6 +491,7 @@ public with sharing class WaveDataManagerController {
 				fieldMetadata.IsExternalId = Boolean.valueOf(metadataRow.get(fieldPositions.get('IsExternalId')));
 				fieldMetadata.IsRequired = Boolean.valueOf(metadataRow.get(fieldPositions.get('IsRequired')));
 				fieldMetadata.DefaultValue = metadataRow.get(fieldPositions.get('DefaultValue')).trim();
+				fieldMetadata.Formula = metadataRow.get(fieldPositions.get('Formula')).trim();
 
 				rootObj.fields.add(fieldMetadata);
 			}
@@ -1151,7 +1147,8 @@ public with sharing class WaveDataManagerController {
 						fieldSpec.IsExternalId = field.IsExternalId;
 						fieldSpec.IsRequired = field.IsRequired;
 						fieldSpec.DefaultValue = field.DefaultValue;
-						
+						fieldSpec.Formula = field.Formula;
+
 						fieldsToCreate.add(fieldSpec);
 					}
 				}			

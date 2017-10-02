@@ -9,4 +9,5 @@ public class WaveApplicationObjectField {
 	public Boolean IsExternalId {get; set;}
 	public Boolean IsRequired {get; set;}
 	public String DefaultValue {get; set;}
+	public String Formula {get; set;}
 }

@@ -19,6 +19,7 @@
         <members>SF_MetadataUtils</members>
         <members>ScheduledTimeShifting</members>
         <members>SmartLookup</members>
+        <members>TimeShiftSettings</members>
         <members>TimeShiftingBatch</members>
         <members>UploadUserPhotoQueueable</members>
         <members>Utility_RowIterator</members>

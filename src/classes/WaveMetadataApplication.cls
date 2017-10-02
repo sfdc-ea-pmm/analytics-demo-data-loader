@@ -5,4 +5,5 @@ public virtual class WaveMetadataApplication {
 	public String dataflowLocation;
 	public String userProfilePicturesUrl;
 	public List<WaveMetadataApplicationObject> objects;
+	public TimeShiftSettings timeShift; 
 }

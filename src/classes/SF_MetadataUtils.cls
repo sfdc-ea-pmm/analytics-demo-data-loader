@@ -172,6 +172,11 @@ public with sharing class SF_MetadataUtils {
                 cField.visibleLines = 3;
             }
 
+            if(String.isNotBlank(fieldSpec.Formula)){
+                cField.formula = fieldSpec.Formula;
+                cField.length = 0;
+            }
+
             // Field level security for Admin
             MetadataService.Profile admProfile = new MetadataService.Profile();
             admProfile.fullName = 'Admin';
@@ -355,6 +360,7 @@ public with sharing class SF_MetadataUtils {
         public Boolean IsExternalId;
         public Boolean IsRequired;
         public String DefaultValue;
+        public String Formula;
     }
 
     public class RecordTypeSpecification {

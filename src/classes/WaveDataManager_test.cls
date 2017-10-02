@@ -119,6 +119,7 @@ private class WaveDataManager_test {
 		cnt.selectedInstallationProcess = 'timeShifting';
 
 		Test.startTest();
+        //cnt.selectAppMetadata();
 		cnt.executeSelectedProcess();
 		Test.stopTest();
 
@@ -253,15 +254,17 @@ private class WaveDataManager_test {
 		opptyToTest.put('CloseDate', Date.today());
 		insert opptyToTest;
 
+		MultiStaticResourceCalloutMock multimock = createStaticResources(); 
+		Test.setMock(HttpCalloutMock.class, multimock);
 		WaveDataManagerController cnt = new WaveDataManagerController();
+        
+        Test.startTest();
+        cnt.pageLoad();
+		cnt.selectedWaveApp = 'Simple';
+        cnt.selectAppMetadata();
 		cnt.selectedInstallationProcess = 'timeShifting';
-		cnt.selectedWaveApp = 'Wave_for_Sales';
 		cnt.overrideDefaultSettingTS = false;
-
 		cnt.calculateDaysToShift();
-
-		cnt.selectedWaveApp = 'Wave_for_Services';	
-		cnt.calculateDaysToShift();
-
+        Test.stopTest();
 	}
 }

@@ -199,14 +199,17 @@
 
 											<apex:outputLabel rendered="{!advancedTimeShifting}">
 												<div class="slds-m-top_small">
-													<label class="slds-form-element__label">Where clause:</label>
-													<div class="slds-form-element__control">
-												    	<apex:inputText styleClass="slds-input" value="{!timeShiftingWhereClause}" />
-												  	</div>
-
-												  	<apex:commandButton value="Save Setting" styleClass="slds-m-top_xx-small slds-button slds-button_neutral" action="{!saveSetting}" />
-												  	<br /><br />
 													
+													<apex:outputLabel rendered="false">
+														<label class="slds-form-element__label">Where clause:</label>
+														<div class="slds-form-element__control">
+													    	<apex:inputText styleClass="slds-input" value="{!timeShiftingWhereClause}" />
+													  	</div>
+
+													  	<apex:commandButton value="Save Setting" styleClass="slds-m-top_xx-small slds-button slds-button_neutral" action="{!saveSetting}" />
+													  	<br /><br />
+														
+													</apex:outputLabel>
 													
 													<div class="slds-form-element__control slds-show_inline-block">
 														<label class="slds-checkbox">
