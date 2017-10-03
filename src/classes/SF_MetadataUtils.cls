@@ -171,6 +171,24 @@ public with sharing class SF_MetadataUtils {
                 cField.length = fieldSpec.Length;
                 cField.visibleLines = 3;
             }
+            else if(fieldSpec.Type.equalsIgnoreCase('Picklist')){
+                Metadataservice.Picklist picklist = new metadataservice.Picklist();
+                picklist.sorted = false;
+
+                List<String> pickListValues = fieldSpec.PickListValues.trim().split(',');
+                List<Metadataservice.PicklistValue> allValues = new List<Metadataservice.PicklistValue>();
+
+                for(String pValue: pickListValues){
+                    Metadataservice.PicklistValue newValue = new metadataservice.PicklistValue();
+                    newValue.fullName = pValue;
+                    newValue.default_x = false;
+
+                    allValues.add(newValue);
+                }
+
+                picklist.picklistValues = allValues;
+                cField.pickList = picklist;
+            }
 
             if(String.isNotBlank(fieldSpec.Formula)){
                 cField.formula = fieldSpec.Formula;
@@ -353,6 +371,7 @@ public with sharing class SF_MetadataUtils {
         public String Name;
         public String Label;
         public String Type;
+        public String PickListValues;
         public String ReferenceTo;
         public Integer Length;
         public Integer Precision;

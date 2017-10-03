@@ -2,6 +2,7 @@ public class WaveApplicationObjectField {
 	public String Label {get; set;}
 	public String Name {get; set;}
 	public String Type {get; set;}
+	public String PickListValues {get; set;}
 	public String ReferenceTo {get; set;}
 	public Integer Length {get; set;}
 	public Integer Precision {get; set;}

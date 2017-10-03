@@ -362,56 +362,57 @@ public with sharing class WaveDataManagerController {
 		
 		TimeShiftSettings tsSettings = this.selectedAppMetadata.timeShift;
 
-		if(tsSettings == null){
-			throw new WaveConfiguratorException('TimeShift object not found in metadata JSON');
-		}
+		if(tsSettings != null && (String.isNotBlank(tsSettings.tObject) 
+			&& String.isNotBlank(tsSettings.dateField) 
+			&& String.isNotBlank(tsSettings.displayText))){
+			
+			String dateField = tsSettings.dateField;
+			String baselineObjectName = tsSettings.tObject;
+			this.timeShiftingcalculatedDateLabel = tsSettings.displayText;
 		
-		if(String.isBlank(tsSettings.tObject) || String.isBlank(tsSettings.dateField) || String.isBlank(tsSettings.displayText)){
-			throw new WaveConfiguratorException('Required fields in timeShift object are empty.');
-		}
-		
-		String dateField = tsSettings.dateField;
-		String baselineObjectName = tsSettings.tObject;
-		this.timeShiftingcalculatedDateLabel = tsSettings.displayText;
-	
-		if(!this.overrideDefaultSettingTS){
-			this.timeShiftingWhereClause = tsSettings.filter;
-		}
-		
-		String dynamicSoql = 'SELECT ' + dateField + ' FROM ' + baselineObjectName;
-		
-		if(String.isNotBlank(this.timeShiftingWhereClause)){
-			dynamicSoql += ' WHERE ' + this.timeShiftingWhereClause;
-		}
+			if(!this.overrideDefaultSettingTS){
+				this.timeShiftingWhereClause = tsSettings.filter;
+			}
+			
+			String dynamicSoql = 'SELECT ' + dateField + ' FROM ' + baselineObjectName;
+			
+			if(String.isNotBlank(this.timeShiftingWhereClause)){
+				dynamicSoql += ' WHERE ' + this.timeShiftingWhereClause;
+			}
 
-		dynamicSoql += ' ORDER BY ' + dateField + ' DESC NULLS LAST';
-		dynamicSoql += ' LIMIT 1';
+			dynamicSoql += ' ORDER BY ' + dateField + ' DESC NULLS LAST';
+			dynamicSoql += ' LIMIT 1';
 
-		try{
-			List<sObject> sobjList = Database.query(dynamicSoql);
-			if(sobjList.size() > 0){				
-				sObject s = sobjList.get(0);
-				DateTime foundDate = (DateTime)s.get(dateField);
-				String formattedDate = foundDate.formatGmt('MM/dd/yyyy');
+			try{
+				List<sObject> sobjList = Database.query(dynamicSoql);
+				if(sobjList.size() > 0){				
+					sObject s = sobjList.get(0);
+					DateTime foundDate = (DateTime)s.get(dateField);
+					String formattedDate = foundDate.formatGmt('MM/dd/yyyy');
 
-				Date compareDate = Date.today();
+					Date compareDate = Date.today();
 
-				if(String.isNotBlank(tsSettings.compareDate)){
-					compareDate = Date.valueOf(tsSettings.compareDate);	
+					if(String.isNotBlank(tsSettings.compareDate)){
+						compareDate = Date.valueOf(tsSettings.compareDate);	
+					}
+
+					Datetime dtCompareDate = (DateTime)compareDate;
+					this.timeShiftingcalculatedDateLabel += ': ' + formattedDate + ' compared to ' + dtCompareDate.formatGmt('MM/dd/yyyy');
+					this.daysToShift = foundDate.dateGMT().daysBetween(compareDate);
 				}
-
-				Datetime dtCompareDate = (DateTime)compareDate;
-				this.timeShiftingcalculatedDateLabel += ': ' + formattedDate + ' compared to ' + dtCompareDate.formatGmt('MM/dd/yyyy');
-				this.daysToShift = foundDate.dateGMT().daysBetween(compareDate);
+				else{
+					this.daysToShift = 0;
+				}
 			}
-			else{
-				this.daysToShift = 0;
+			catch(Exception e){
+				this.errorMessage = 'There was an error trying to calculate the days to shift. Check the where clause. Error detail: ' + e.getMessage();
 			}
+		} else {
+			this.daysToShift = 0;
+			this.warningMessage = 'Unable to calculate the Number of Days to Shift Records. Please enter it manually.';
 		}
-		catch(Exception e){
-			this.errorMessage = 'There was an error trying to calculate the days to shift. Check the where clause. Error detail: ' + e.getMessage();
-		}
-    }
+	}
+		
 
     public void updateSelectedObjectsToTimeShift(){
     	this.timeShiftingItems.clear();
@@ -484,6 +485,7 @@ public with sharing class WaveDataManagerController {
 				fieldMetadata.Label = metadataRow.get(fieldPositions.get('Label')).trim();
 				fieldMetadata.Name = metadataRow.get(fieldPositions.get('Name')).trim();
 				fieldMetadata.Type = metadataRow.get(fieldPositions.get('Type')).trim();
+				fieldMetadata.PickListValues = metadataRow.get(fieldPositions.get('PickListValues')).trim();
 				fieldMetadata.ReferenceTo = metadataRow.get(fieldPositions.get('ReferenceTo')).trim();
 				fieldMetadata.Length = Integer.valueOf(metadataRow.get(fieldPositions.get('Length')));
 				fieldMetadata.Precision = Integer.valueOf(metadataRow.get(fieldPositions.get('Precision')));
@@ -1140,6 +1142,7 @@ public with sharing class WaveDataManagerController {
 						fieldSpec.Name = field.Name;
 				    	fieldSpec.Label = field.Label;
 				    	fieldSpec.Type = field.Type;
+				    	fieldSpec.PickListValues = field.PickListValues;
 						fieldSpec.ReferenceTo = field.ReferenceTo;
 						fieldSpec.Length = field.Length;
 						fieldSpec.Precision = field.Precision;
