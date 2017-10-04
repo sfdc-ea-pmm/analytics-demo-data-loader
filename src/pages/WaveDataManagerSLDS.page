@@ -193,7 +193,7 @@
 							<div class="slds-grid slds-m-vertical_medium">
 								<div class="slds-col slds-size_1-of-1">
 									<apex:outputPanel id="timeShiftingValue" >
-										<apex:outputPanel rendered="{!selectedInstallationProcess = 'timeShifting' && (selectedWaveApp = 'Wave_for_Sales' || selectedWaveApp = 'Wave_for_Services') }">
+										<apex:outputPanel rendered="{!selectedInstallationProcess = 'timeShifting'}">
 
 											<apex:commandLink value="{!IF(advancedTimeShifting, 'Hide Advanced Process Options', 'Show Advanced Process Options')}" action="{!handleAdvancedTimeShifting}" reRender="timeShiftingValue" />
 
