@@ -471,7 +471,7 @@ public with sharing class WaveDataManagerController {
 		IMockarooHelper iMockHelper = MockarooHelperFactory.getIMockarooHelper();
 		
 		List<List<String>> csvMetadata = iMockHelper.getData(this.baseUrl + wmaObj.metadataUrl, false);
-    	
+
     	if(csvMetadata.size() > 0){
 			// Will extract headers
 			List<String> headers = csvMetadata.remove(0);
@@ -554,6 +554,8 @@ public with sharing class WaveDataManagerController {
                 csvDataWithHeaders = res.getBody();
             }
 
+            System.debug('csvDataWithHeaders: ' + csvDataWithHeaders);
+
 			// We search for \n
 			Integer indexOfLF = csvDataWithHeaders.indexOf('\n');
 			if(indexOfLF != -1){
@@ -574,7 +576,6 @@ public with sharing class WaveDataManagerController {
 				}
 
 				String csvData = csvDataWithHeaders.substringAfter('\n');
-
 				if(csvData.length() > 0){
 
 					this.currentObjectProcessing = currentNode.name;
@@ -1103,7 +1104,7 @@ public with sharing class WaveDataManagerController {
 		}
 	}
 
-	public WaveApplicationRow selectAppMetadata(){
+	public void selectAppMetadata(){
 		Integer appIndex = this.appIndexes.get(this.selectedWaveApp);
 		WaveApplicationRow appRow = this.applicationRows.get(appIndex);
 		// Retrieve and parse metadata
@@ -1113,6 +1114,10 @@ public with sharing class WaveDataManagerController {
 		Http http = new Http();
         HTTPResponse res = http.send(req);
 
+        if(res.getStatusCode() != 200){
+        	throw new WaveConfiguratorException('Unexpected error trying to get the metadata JSON file. Make sure to be pointing the ' + appRow.Label + ' app to a valid url address in ' + genericAppConfiguration.waveApplicationsUrl + '.');
+        }
+		
 		String jsonMetadata = res.getBody();
 		this.selectedAppMetadata = (WaveMetadataApplication)JSON.deserialize(jsonMetadata, WaveMetadataApplication.class);
 		
@@ -1123,8 +1128,6 @@ public with sharing class WaveDataManagerController {
 			operationMap.put('TimeShifting','N/A');
 			this.operationsStatusTable.put(wmaObj.Name, operationMap);
 		}
-
-		return appRow;
 	}
 
 	public void createObjectsAndFields(List<WaveApplicationObject> lstObjects){
