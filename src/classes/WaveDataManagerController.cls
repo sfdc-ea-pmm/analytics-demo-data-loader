@@ -388,24 +388,29 @@ public with sharing class WaveDataManagerController {
 				if(sobjList.size() > 0){				
 					sObject s = sobjList.get(0);
 					DateTime foundDate = (DateTime)s.get(dateField);
-					String formattedDate = foundDate.formatGmt('MM/dd/yyyy');
+					if(foundDate != null) {
+						String formattedDate = foundDate.formatGmt('MM/dd/yyyy');
 
-					Date compareDate = Date.today();
+						Date compareDate = Date.today();
 
-					if(String.isNotBlank(tsSettings.compareDate)){
-						compareDate = Date.valueOf(tsSettings.compareDate);	
+						if(String.isNotBlank(tsSettings.compareDate)){
+							compareDate = Date.valueOf(tsSettings.compareDate);	
+						}
+
+						Datetime dtCompareDate = (DateTime)compareDate;
+						this.timeShiftingcalculatedDateLabel += ': ' + formattedDate + ' compared to ' + dtCompareDate.formatGmt('MM/dd/yyyy');
+						this.daysToShift = foundDate.dateGMT().daysBetween(compareDate);
 					}
-
-					Datetime dtCompareDate = (DateTime)compareDate;
-					this.timeShiftingcalculatedDateLabel += ': ' + formattedDate + ' compared to ' + dtCompareDate.formatGmt('MM/dd/yyyy');
-					this.daysToShift = foundDate.dateGMT().daysBetween(compareDate);
+					else {
+						this.daysToShift = 0;
+					}
 				}
 				else{
 					this.daysToShift = 0;
 				}
 			}
 			catch(Exception e){
-				this.errorMessage = 'There was an error trying to calculate the days to shift. Check the where clause. Error detail: ' + e.getMessage();
+				this.errorMessage = 'There was an error trying to calculate the days to shift. Error detail: ' + e.getMessage();
 			}
 		} else {
 			this.daysToShift = 0;
@@ -1055,7 +1060,7 @@ public with sharing class WaveDataManagerController {
 		catch(Exception e) {
 			System.debug(e.getMessage());
 			System.debug(e.getStackTraceString());
-			this.errorMessage = e.getMessage();
+			this.errorMessage = e.getMessage() + e.getStackTraceString();
 			this.disabledButton = false;
 			this.installationStep = '';
 			this.rollbackProcess(e.getMessage(), e.getStackTraceString());
