@@ -470,8 +470,9 @@ public with sharing class WaveDataManagerController {
 		// We process the fields metadata
 		IMockarooHelper iMockHelper = MockarooHelperFactory.getIMockarooHelper();
 		
-		List<List<String>> csvMetadata = iMockHelper.getData(this.baseUrl + wmaObj.metadataUrl, false);
+		String metadataUrl = this.baseUrl + wmaObj.metadataUrl;
 
+		List<List<String>> csvMetadata = iMockHelper.getData(metadataUrl, false);
     	if(csvMetadata.size() > 0){
 			// Will extract headers
 			List<String> headers = csvMetadata.remove(0);
@@ -502,6 +503,9 @@ public with sharing class WaveDataManagerController {
 
 				rootObj.fields.add(fieldMetadata);
 			}
+		}
+		else {
+			throw new WaveConfiguratorException('There is a configuration error. No metadata csv found at ' + metadataUrl + ' URL.');
 		}
 
 		// We process the relations
@@ -540,18 +544,24 @@ public with sharing class WaveDataManagerController {
 			this.logMessage('Loading records for ' + currentNode.name + ' object...');
             
             String csvDataWithHeaders;
-            
+            HttpResponse res;
+            String url;
+
             // Check whether we are in the initial chunk of CSV data or not
             if(currentNode.currentDataIndex == 0){
-    
                 // We start processing the initial chunk of data
-				HttpResponse res = WaveConfiguratorUtils.httpGetCallout(currentNode.url);
+                url = currentNode.url;
+				res = WaveConfiguratorUtils.httpGetCallout(url);
                 csvDataWithHeaders = res.getBody();
             }
             else {
-                String newUrl = currentNode.url.substringBeforeLast('.csv') + '-' + currentNode.currentDataIndex + '.csv';
-                HttpResponse res = WaveConfiguratorUtils.httpGetCallout(newUrl);
+                url = currentNode.url.substringBeforeLast('.csv') + '-' + currentNode.currentDataIndex + '.csv';
+                res = WaveConfiguratorUtils.httpGetCallout(url);
                 csvDataWithHeaders = res.getBody();
+            }
+
+            if(res.getStatusCode() != 200) {
+				throw new WaveConfiguratorException('There is a configuration error. No data csv found at ' + url + ' URL.');            	
             }
 
             System.debug('csvDataWithHeaders: ' + csvDataWithHeaders);
@@ -1061,7 +1071,7 @@ public with sharing class WaveDataManagerController {
 		catch(Exception e) {
 			System.debug(e.getMessage());
 			System.debug(e.getStackTraceString());
-			this.errorMessage = e.getMessage() + e.getStackTraceString();
+			this.errorMessage = e.getMessage();
 			this.disabledButton = false;
 			this.installationStep = '';
 			this.rollbackProcess(e.getMessage(), e.getStackTraceString());
@@ -1115,7 +1125,7 @@ public with sharing class WaveDataManagerController {
         HTTPResponse res = http.send(req);
 
         if(res.getStatusCode() != 200){
-        	throw new WaveConfiguratorException('Unexpected error trying to get the metadata JSON file. Make sure to be pointing the ' + appRow.Label + ' app to a valid url address in ' + genericAppConfiguration.waveApplicationsUrl + '.');
+        	throw new WaveConfiguratorException('There is a configuration error. No app configuration was found at the ' + appRow.MetadataUrl + ' URL.');
         }
 		
 		String jsonMetadata = res.getBody();
