@@ -485,24 +485,30 @@ public with sharing class WaveDataManagerController {
 			// For each row of data in the CSV
 			rootObj.fields = new List<WaveApplicationObjectField>();
 
-			for(List<String> metadataRow: csvMetadata) {
+			try{
+				for(List<String> metadataRow: csvMetadata) {
 
-				WaveApplicationObjectField fieldMetadata = new WaveApplicationObjectField();
-				fieldMetadata.Label = metadataRow.get(fieldPositions.get('Label')).trim();
-				fieldMetadata.Name = metadataRow.get(fieldPositions.get('Name')).trim();
-				fieldMetadata.Type = metadataRow.get(fieldPositions.get('Type')).trim();
-				fieldMetadata.PickListValues = metadataRow.get(fieldPositions.get('PickListValues')).trim();
-				fieldMetadata.ReferenceTo = metadataRow.get(fieldPositions.get('ReferenceTo')).trim();
-				fieldMetadata.Length = Integer.valueOf(metadataRow.get(fieldPositions.get('Length')));
-				fieldMetadata.Precision = Integer.valueOf(metadataRow.get(fieldPositions.get('Precision')));
-				fieldMetadata.Scale = Integer.valueOf(metadataRow.get(fieldPositions.get('Scale')));
-				fieldMetadata.IsExternalId = Boolean.valueOf(metadataRow.get(fieldPositions.get('IsExternalId')));
-				fieldMetadata.IsRequired = Boolean.valueOf(metadataRow.get(fieldPositions.get('IsRequired')));
-				fieldMetadata.DefaultValue = metadataRow.get(fieldPositions.get('DefaultValue')).trim();
-				fieldMetadata.Formula = metadataRow.get(fieldPositions.get('Formula')).trim();
+					WaveApplicationObjectField fieldMetadata = new WaveApplicationObjectField();
+					fieldMetadata.Label = metadataRow.get(fieldPositions.get('Label')).trim();
+					fieldMetadata.Name = metadataRow.get(fieldPositions.get('Name')).trim();
+					fieldMetadata.Type = metadataRow.get(fieldPositions.get('Type')).trim();
+					fieldMetadata.PickListValues = metadataRow.get(fieldPositions.get('PickListValues')).trim();
+					fieldMetadata.ReferenceTo = metadataRow.get(fieldPositions.get('ReferenceTo')).trim();
+					fieldMetadata.Length = Integer.valueOf(metadataRow.get(fieldPositions.get('Length')));
+					fieldMetadata.Precision = Integer.valueOf(metadataRow.get(fieldPositions.get('Precision')));
+					fieldMetadata.Scale = Integer.valueOf(metadataRow.get(fieldPositions.get('Scale')));
+					fieldMetadata.IsExternalId = Boolean.valueOf(metadataRow.get(fieldPositions.get('IsExternalId')));
+					fieldMetadata.IsRequired = Boolean.valueOf(metadataRow.get(fieldPositions.get('IsRequired')));
+					fieldMetadata.DefaultValue = metadataRow.get(fieldPositions.get('DefaultValue')).trim();
+					fieldMetadata.Formula = metadataRow.get(fieldPositions.get('Formula')).trim();
 
-				rootObj.fields.add(fieldMetadata);
+					rootObj.fields.add(fieldMetadata);
+				}	
+			} 
+			catch(Exception ex){
+				throw new WaveConfiguratorException('There is a configuration error. Missing csv columns at ' + metadataUrl);
 			}
+			
 		}
 		else {
 			throw new WaveConfiguratorException('There is a configuration error. No metadata csv found at ' + metadataUrl + ' URL.');
