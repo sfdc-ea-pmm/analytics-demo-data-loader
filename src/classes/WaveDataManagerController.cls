@@ -1523,19 +1523,24 @@ public with sharing class WaveDataManagerController {
 
 	private List<String> getCustomFieldsForPermissionSet(String obj){
 		
-		Map<String, Schema.SObjectField> objectMap = Schema.getGlobalDescribe().get(obj).getDescribe().fields.getMap();
+		if(Schema.getGlobalDescribe().containsKey(obj)){		
+			Map<String, Schema.SObjectField> objectMap = Schema.getGlobalDescribe().get(obj).getDescribe().fields.getMap();
 
-		List<String> fields = new List<String>();
+			List<String> fields = new List<String>();
 
-		for(String f: objectMap.keySet()){
-			Schema.DescribeFieldResult fieldDetails = objectMap.get(f).getDescribe();
+			for(String f: objectMap.keySet()){
+				Schema.DescribeFieldResult fieldDetails = objectMap.get(f).getDescribe();
 
-			if(fieldDetails.isPermissionable() && f.endsWithIgnoreCase('__c')){
-				fields.add(obj + '.' + String.valueOf(objectMap.get(f)));
+				if(fieldDetails.isPermissionable() && f.endsWithIgnoreCase('__c')){
+					fields.add(obj + '.' + String.valueOf(objectMap.get(f)));
+				}
 			}
-		}
 
-		return fields;
+			return fields;
+		} 
+		else {
+			throw new WaveConfiguratorException(obj + ' object not supported.');
+		}
 	}
 
 	private void logMessage(String msg){
