@@ -505,7 +505,7 @@ public with sharing class WaveDataManagerController {
 					rootObj.fields.add(fieldMetadata);
 				}	
 			} 
-			catch(Exception ex){
+			catch(Exception ex){				
 				throw new WaveConfiguratorException('There is a configuration error. Missing csv columns at ' + metadataUrl);
 			}
 			
@@ -570,8 +570,6 @@ public with sharing class WaveDataManagerController {
 				throw new WaveConfiguratorException('There is a configuration error. No data csv found at ' + url + ' URL.');            	
             }
 
-            System.debug('csvDataWithHeaders: ' + csvDataWithHeaders);
-
 			// We search for \n
 			Integer indexOfLF = csvDataWithHeaders.indexOf('\n');
 			if(indexOfLF != -1){
@@ -597,9 +595,18 @@ public with sharing class WaveDataManagerController {
 					this.currentObjectProcessing = currentNode.name;
 
 					// Start the batch process
-					CsvDataImportBatch batchProcess = new CsvDataImportBatch(Schema.getGlobalDescribe().get(currentNode.name), csvData, currentNode.fieldPositions, currentNode.relations, genericAppConfiguration.apiVersion);
+					CsvDataImportBatch batchProcess = null;
+					/*if(currentNode.name == 'WorkType') {
+						batchProcess = new CsvDataImportBatch(csvData, currentNode.fieldPositions, currentNode.relations, genericAppConfiguration.apiVersion);						
+					}
+					else {
+						batchProcess = new CsvDataImportBatch(Schema.getGlobalDescribe().get(currentNode.name), csvData, currentNode.fieldPositions, currentNode.relations, genericAppConfiguration.apiVersion);
+					}*/
+					System.debug('Creating batch for ' + Schema.getGlobalDescribe().get(currentNode.name).getDescribe().getName());					
+					batchProcess = new CsvDataImportBatch(Schema.getGlobalDescribe().get(currentNode.name), csvData, currentNode.fieldPositions, currentNode.relations, genericAppConfiguration.apiVersion);
 					this.batchProcessId = Database.executeBatch(batchProcess, this.genericAppConfiguration.objectLoadingBatchSize);
 					this.enableObjectProcessingCheck = true;
+					System.debug('Starting batch for ' + Schema.getGlobalDescribe().get(currentNode.name).getDescribe().getName());
 				}
 			}	
 		} 

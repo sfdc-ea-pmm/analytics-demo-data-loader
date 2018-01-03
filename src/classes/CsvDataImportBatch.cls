@@ -8,34 +8,42 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
 	private List<SmartLookup> smartLookups;
 	private List<String> errorMessages;
 	private Double apiVersion;
-	private String sessionId;
+	private String sessionId;	
 
 	global CsvDataImportBatch(SObjectType objectType, String csvData, Map<Integer, String> fieldPositions, List<WaveApplicationObjectRelation> relations, Double apiVersion) {
-		this.objectType = objectType;
-		this.csvData = csvData;
-		this.fieldPositions = fieldPositions;
-		this.relations = relations;
-		this.errorMessages = new List<String>();
-		this.apiVersion = apiVersion;
-		this.sessionId = UserInfo.getSessionId();
+		try {
+			this.objectType = objectType;
+			this.csvData = csvData;
+			this.fieldPositions = fieldPositions;
+			this.relations = relations;
+			this.errorMessages = new List<String>();
+			this.apiVersion = apiVersion;
+			this.sessionId = UserInfo.getSessionId();
 
-		// Then we get the table of <fieldName, columnIndexInCSV
-		this.fieldIndexes = new Map<String, Integer>();
+			// Then we get the table of <fieldName, columnIndexInCSV
+			this.fieldIndexes = new Map<String, Integer>();
 
-		for(Integer columnNumber: this.fieldPositions.keySet()) {
-    		
-    		// Gets the column name
-    		String headerValue = this.fieldPositions.get(columnNumber).replace('"','');
+			for(Integer columnNumber: this.fieldPositions.keySet()) {
+	    		
+	    		// Gets the column name
+	    		String headerValue = this.fieldPositions.get(columnNumber).replace('"','');
 
-    		this.fieldIndexes.put(headerValue, columnNumber);
-    	}
+	    		this.fieldIndexes.put(headerValue, columnNumber);
+	    	}
 
-    	for(WaveApplicationObjectRelation wAppObjectRelation: relations){
-    		String columnName = wAppObjectRelation.csvColumnName;
-    		if(!this.fieldIndexes.containsKey(columnName)){
-    			throw new WaveConfiguratorException('Error with relation. The CSV dataset is required to contain a column named ' + columnName + '.');
-    		}
-    	}		
+	    	for(WaveApplicationObjectRelation wAppObjectRelation: relations){
+	    		String columnName = wAppObjectRelation.csvColumnName;
+	    		if(!this.fieldIndexes.containsKey(columnName)){
+	    			throw new WaveConfiguratorException('Error with relation. The CSV dataset is required to contain a column named ' + columnName + '.');
+	    		}
+	    	}	
+		} 
+		catch(Exception e) {
+			System.debug('Exception in CsvDataImportBatch constructor!');
+			System.debug(e.getMessage());
+			System.debug(e.getStackTraceString());
+			WaveConfiguratorUtils.sendEmail(UserInfo.getUserEmail(), 'Exception in CsvDataImportBatch constructor!', e.getMessage());
+		}
 	}
 	
 	global Iterable<String> start(Database.BatchableContext BC) {
@@ -51,8 +59,12 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
 			System.debug(ex.getMessage());
 			System.debug(ex.getStackTraceString());
 
+			WaveConfiguratorUtils.sendEmail(UserInfo.getUserEmail(), 'Exception in CsvDataImportBatch start!', ex.getMessage());
+
 			return new List<String>();
 		}
+
+		return new List<String>();
 	}
 
    	global void execute(Database.BatchableContext BC, List<String> scope) {
@@ -68,8 +80,8 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
 
 	        String joinedContents = String.join(lines, '\n');
 	        String csvContentsToParse = joinedContents + '\n';
-	        List<List<String>> rowsBatch = CSVReader.Parse(csvContentsToParse);
-
+	        List<List<String>> rowsBatch = CSVReader.Parse(csvContentsToParse);	        
+	        		        
 	        System.debug('About to process ' + rowsBatch.size() + ' objects of type ' + this.objectType.getDescribe().getName());
 
 	   		// First handle smart lookups
@@ -86,6 +98,7 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
 				SObject objToCreate = this.objectType.newSObject();
 
 				// For each column in the CSV row
+
 				for(Integer i = 0; i < sObjRow.size(); i++) {
 					
 					// We get the name using the position and then its value
@@ -118,6 +131,10 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
 							// Datetime
 							objToCreate.put(fieldName, DateTime.valueOf(fieldValue));
 						}
+						else if (fieldType == Schema.DisplayType.Time) {
+							// Datetime
+							objToCreate.put(fieldName, DateTime.valueOf(fieldValue).time());
+						}
 						else {
 							// String
 							if(!(this.objectType.getDescribe().getName() == 'User' && (fieldName.equalsIgnoreCase('Name') || fieldName.equalsIgnoreCase('Username') || fieldName.equalsIgnoreCase('CommunityNickname')))){
@@ -127,7 +144,7 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
 							if(this.objectType.getDescribe().getName() == 'User' && fieldName.equalsIgnoreCase('Alias')){
 								String nick = fieldValue + DateTime.now().getTime();
 								objToCreate.put('CommunityNickname', nick);
-								objToCreate.put('Username', nick + '@demo.user');	
+								objToCreate.put('Username', nick + '@demo.user');
 							}
 						}
 
@@ -448,14 +465,13 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
 			        }
 
 			        System.debug(lstToInsert.size() + ' objects to insert.');
-			        System.debug(lstToUpdate.size() + ' objects to update.');
+			        System.debug(lstToUpdate.size() + ' objects to update.');			        
 
 			        // DML
 			        update lstToUpdate; // For now, only inserts
 					insert lstToInsert;
 				}				
 			}
-
 		} 
 		catch(Exception ex){
 			

@@ -498,7 +498,7 @@
 			                '</urn:SessionHeader>' +
 			            '</env:Header>' +
 			            '<env:Body>' +
-			                '<createMetadata xmlns="http://soap.sforce.com/2006/04/metadata">' +
+			                '<upsertMetadata xmlns="http://soap.sforce.com/2006/04/metadata">' +
 			                    '<metadata xsi:type="RemoteSiteSetting">' +
 			                        '<fullName>' + rssName + '</fullName>' +
 			                        '<description>' + rssDsc + '</description>' +
@@ -506,7 +506,7 @@
 			                        '<isActive>true</isActive>' +
 			                        '<url>' + rssURL + '</url>' +
 			                    '</metadata>' +
-			                '</createMetadata>' +
+			                '</upsertMetadata>' +
 			            '</env:Body>' +
 			        '</env:Envelope>';
                 

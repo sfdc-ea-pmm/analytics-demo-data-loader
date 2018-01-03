@@ -46,5 +46,38 @@
         <members>WaveDataManagerSLDS</members>
         <name>ApexPage</name>
     </types>
+    <types>
+        <members>AnalyticsDemoDataTool</members>
+        <name>CustomApplication</name>
+    </types>
+    <types>
+        <members>ScheduledTSDetails__c</members>
+        <name>CustomObject</name>
+    </types>
+    <types>
+        <members>AnalyticsDemoDataTool</members>
+        <name>CustomTab</name>
+    </types>
+    <types>
+        <members>ScheduledTSDetails__c-ScheduledTSDetails Layout</members>
+        <name>Layout</name>
+    </types>
+    <types>
+        <members>AccountMetadataCSV</members>
+        <members>AccountsDataCSV</members>
+        <members>BlankResponseBody</members>
+        <members>BlankResponseBodyIED</members>
+        <members>LoadingGif</members>
+        <members>OpportunitiesDataCSV</members>
+        <members>OpportunityMetadataCSV</members>
+        <members>SEADemoDataLoaderConfig</members>
+        <members>SimpleAppJson</members>
+        <members>UserMetadataCSV</members>
+        <members>UsersDataCSV</members>
+        <members>UsersDataCsvWithDBLQ</members>
+        <members>WaveForSalesJson</members>
+        <members>jQuery321</members>
+        <name>StaticResource</name>
+    </types>
     <version>40.0</version>
 </Package>
