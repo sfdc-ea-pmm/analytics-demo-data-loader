@@ -1,0 +1,597 @@
+<apex:page showHeader="true" standardStylesheets="false" sidebar="false" applyHtmlTag="true" applyBodyTag="false" controller="WaveDataManagerController" action="{!pageLoad}" docType="html-5.0">
+	<html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="x-ua-compatible" content="ie=edge" />
+		<title>Analytics Demo Data Tool</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<style type="text/css">
+			.standardText {
+				font-size: 13px;
+				line-height: 25px;
+			}
+			
+			#tab-default-faq{
+				margin: 0 auto;
+				width: 75%;
+			}
+			
+			#tab-default-faq .slds-text-heading_large { 
+				font-size: 1.5rem;
+			}
+			
+			#tab-default-faq .slds-text-heading_large + p {
+				font-size: .9rem;
+			}
+			.slds-checkbox {
+				cursor: pointer;
+			}
+		</style>
+
+		<!-- Import the Design System style sheet -->
+		<apex:slds />
+        
+        <apex:includeScript value="{!$Resource.jQuery321}"/>
+	</head>
+	<body class="slds-scope">
+		
+		<div class="slds-page-header">
+		    <div class="slds-media">
+		        <div class="slds-media__figure">
+		        	<span class="slds-icon_container slds-icon-standard-opportunity">
+						<svg class="slds-icon" aria-hidden="true">
+					    	<use xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/standard-sprite/svg/symbols.svg#opportunity')}"></use>
+					  	</svg>
+					</span>
+		        </div>
+		        <div class="slds-media__body">
+		            <h1 class="slds-page-header__title slds-truncate slds-align-middle" title="Rohde Corp - 80,000 Widgets">Analytics Demo Data Tool</h1>
+		            <p class="slds-text-body_small slds-line-height_reset">Saleforce Einstein Analytics Demo Data Loader</p>
+		        </div>
+		    </div>
+		</div>
+		
+	    <div class="slds-tabs_default">
+	        <ul class="slds-tabs_default__nav" role="tablist">
+	            <li class="slds-tabs_default__item slds-is-active slds-has-focus" title="Home" role="presentation">
+	           		<a class="slds-tabs_default__link" href="javascript:void(0);" role="tab" tabindex="0" aria-selected="true" aria-controls="tab-default-home" id="tab-default-home__item">Home</a>
+	            </li>
+
+	            <li class="slds-tabs_default__item" title="FAQ" role="presentation">
+	            	<a class="slds-tabs_default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-faq" id="tab-default-faq__item">FAQ</a>
+	            </li>
+	        </ul>
+			
+			<!--Tab 1-->
+	        <div id="tab-default-home" class="slds-tabs_default__content slds-show" role="tabpanel" aria-labelledby="tab-default-home__item">
+	        	<!-- Main grid -->
+	        	<div class="slds-grid slds-wrap slds-m-left_large">
+	        		<!--Message Panel -->
+	        		<div class="slds-col slds-size_1-of-1 slds-m-right_large">
+						<apex:form id="form1">
+							<apex:outputPanel rendered="{!errorMessage != ''}">
+								<div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_error" role="alert" style="margin:0;">
+								    <span class="slds-assistive-text">error</span>
+								    <span class="slds-icon_container slds-icon-utility-error slds-m-right_small slds-no-flex slds-align-top">
+								    	<svg class="slds-icon slds-icon_small" aria-hidden="true">
+								        	<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#error')}"></use>
+								        </svg>
+								    </span>
+								    <h2 class="slds-text-heading_small ">{!errorMessage}</h2>
+								</div>
+							</apex:outputPanel>
+
+							<apex:outputPanel rendered="{!successMessage != ''}">
+								<div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_success" role="alert" style="margin:0;">
+								    <span class="slds-assistive-text">success</span>
+								    <span class="slds-icon_container slds-icon-utility-success slds-m-right_small slds-no-flex slds-align-top">
+								    	<svg class="slds-icon slds-icon_small" aria-hidden="true">
+								        	<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#success')}"></use>
+								        </svg>
+								    </span>
+								    <h2 class="slds-text-heading_small ">{!successMessage}</h2>
+								</div>
+							</apex:outputPanel>
+
+							<apex:outputPanel rendered="{!warningMessage != ''}">
+								<div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_warning" role="alert" style="margin:0;">
+								    <span class="slds-assistive-text">warning</span>
+								    <span class="slds-icon_container slds-icon-utility-warning slds-m-right_small slds-no-flex slds-align-top">
+								    	<svg class="slds-icon slds-icon_small" aria-hidden="true">
+								        	<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#warning')}"></use>
+								        </svg>
+								    </span>
+								    <h2 class="slds-text-heading_small ">{!warningMessage}</h2>
+								</div>
+							</apex:outputPanel>
+
+							<apex:outputPanel rendered="{!disabledButton}">
+								<div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_info" role="alert" style="margin:0;">
+								    <span class="slds-assistive-text">info</span>
+								    <span class="slds-icon_container slds-icon-utility-info slds-m-right_small slds-no-flex slds-align-top">
+								    	<svg class="slds-icon slds-icon_small" aria-hidden="true">
+								        	<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#info')}"></use>
+								        </svg>
+								    </span>
+								    <h2 class="slds-text-heading_small ">Do not close or navigate away from the page. Otherwise, the process that is currently running will be stopped.</h2>
+								</div>
+							</apex:outputPanel>
+
+						</apex:form>
+					</div>
+
+					<apex:form id="form2" style="width: 100%" styleClass="slds-m-right_large">
+						<apex:actionFunction name="displayMetadataResponse" action="{!displayMetadataResponse}" rerender="form1,form2">
+							<apex:param name="metadataResponse" assignTo="{!metadataResponse}" value="{!metadataResponse}"/>
+						</apex:actionFunction>		
+						
+						<apex:outputPanel rendered="{!MetadataConnectionWarning}">
+							<div class="slds-box slds-m-vertical_medium">
+								<h1 class="slds-text-title_caps">Important Pre Install Step:</h1>
+								<p>In order to utilize the features of this tool you need to add a <a target="_new" href="http://na1.salesforce.com/help/doc/en/configuring_remoteproxy.htm">Remote Site Setting</a> for each of these Salesforce Server URLs: <b>{!Host}</b> and <b>{!VisualforceContextHost}</b></p>
+								<p>Click the <b>Create Remote Site Settings</b> button to have the tool perform this step for you.</p> 
+								<button id="createremotesitebtn" class="slds-button slds-button_neutral slds-m-top_small" onclick="createRemoteSite();">Create Remote Site Setting</button>
+							</div>
+						</apex:outputPanel>
+					</apex:form>
+
+	        		<!--Intro section -->
+	        		<div class="slds-col slds-size_1-of-1 slds-m-top_medium slds-m-bottom_large slds-m-right_large">
+						<apex:outputText value="{!genericAppConfiguration.homeHeaderDescription}" escape="false"/>
+					</div>
+	        		<!-- Left column -->
+					<div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-right_large">
+						<div class="slds-grid">
+							<apex:outputPanel styleClass="slds-col" id="appSelection">
+								<apex:form styleClass="slds-form-element">
+									<label class="slds-form-element__label">Please select an App to configure:</label>
+									<div class="slds-form-element__control">
+								        <apex:selectList styleClass="slds-select" value="{!selectedWaveApp}" multiselect="false" size="5" style="width:200px">
+								   			<apex:selectOptions value="{!waveApps}"/>
+								   			<apex:actionSupport reRender="appDescription,vsbButton,folderName,timeShiftingValue,modalHeader,modalBody,form1" event="onchange" action="{!selectedApp}" onsubmit="disableRunButton()" />
+								   		</apex:selectList>
+							   		</div>
+						   		</apex:form>
+							</apex:outputPanel>
+				  			<div class="slds-col slds-size_2-of-2 slds-m-left_small">
+				  				<label class="slds-form-element__label">Description:</label>
+								<div class="slds-form-element__control">
+									<apex:outputText value="{!appDescription}" id="appDescription" />
+								</div>			   		
+				  			</div>
+						</div>
+
+		  				<apex:form id="form4" styleClass="slds-m-vertical_medium slds-form-element">
+				
+							<div class="slds-grid slds-m-vertical_medium">
+								<div class="slds-col slds-size_1-of-2 slds-m-right_large">
+									<label class="slds-form-element__label" for="processType">Specify Process:</label>
+						   			<div class="slds-form-element__control ">
+						   				<div class="slds-select_container">
+								   			<apex:selectList styleClass="slds-select processType" value="{!selectedInstallationProcess}" size="1" id="processType">
+								   				<apex:selectOption itemValue="loadObjects" itemLabel="Load Data into Core"/>
+								   				<apex:selectOption itemValue="createMetadata" itemLabel="Create Objects and Fields"/>
+								   				<apex:selectOption itemValue="timeShifting" itemLabel="Time shifting"/>
+								   				<apex:actionSupport event="onchange" rerender="vsbButton,emailNotification,timeShiftingValue,form1,modalHeader,modalBody" action="{!selectedApp}" onsubmit="disableRunButton()"/>
+								   			</apex:selectList>
+							   			</div>
+						   			</div>
+								</div>
+
+								<div class="slds-col slds-size_1-of-2">
+									<apex:outputPanel id="emailNotification" >
+										<apex:outputPanel rendered="{!selectedInstallationProcess != 'createMetadata'}">
+											<label class="slds-form-element__label">Notify this email when complete:</label>
+											<div class="slds-form-element__control">
+								   				<apex:inputText styleClass="slds-input" value="{!emailAddress}"/>
+								   			</div>
+							   			</apex:outputPanel>
+						   			</apex:outputPanel>
+								</div>
+							</div>
+							<div class="slds-grid slds-m-vertical_medium">
+								<div class="slds-col slds-size_1-of-1">
+									<apex:outputPanel id="timeShiftingValue" >
+										<apex:outputPanel rendered="{!selectedInstallationProcess = 'timeShifting'}">
+
+											<apex:commandLink value="{!IF(advancedTimeShifting, 'Hide Advanced Process Options', 'Show Advanced Process Options')}" action="{!handleAdvancedTimeShifting}" reRender="timeShiftingValue" />
+
+											<apex:outputLabel rendered="{!advancedTimeShifting}">
+												<div class="slds-m-top_small">
+													
+													<apex:outputLabel rendered="false">
+														<label class="slds-form-element__label">Where clause:</label>
+														<div class="slds-form-element__control">
+													    	<apex:inputText styleClass="slds-input" value="{!timeShiftingWhereClause}" />
+													  	</div>
+
+													  	<apex:commandButton value="Save Setting" styleClass="slds-m-top_xx-small slds-button slds-button_neutral" action="{!saveSetting}" />
+													  	<br /><br />
+														
+													</apex:outputLabel>
+													
+													<div class="slds-form-element__control slds-show_inline-block">
+														<label class="slds-checkbox">
+													    	<apex:inputCheckbox value="{!shiftOnlyOfApp}"/>
+													        <span class="slds-checkbox_faux"></span>
+													        <span class="slds-form-element__label">Shift only records of selected app</span>
+													    </label>
+													</div>
+													<br /><br />
+
+													<label class="slds-form-element__label slds-show">Objects to time shift:</label>
+													<apex:repeat value="{!selectedObjectsToTimeShift}" var="objectKey">
+														<div class="slds-form-element__control slds-show_inline-block" style= "width: 50%">
+															<label class="slds-checkbox" style="display: inline;">
+														    	<apex:inputCheckbox value="{!selectedObjectsToTimeShift[objectKey]}" styleClass="objToSelect">
+														    		<apex:actionSupport event="onchange" reRender="timeShiftingValue,vsbButton,modalHeader,modalBody" action="{!updateSelectedObjectsToTimeShift}" onsubmit="disableRunButton(); disableCheckbox();"/>
+														    	</apex:inputCheckbox>
+														        <span class="slds-checkbox_faux"></span>
+														        <span class="slds-form-element__label">{!objectKey}</span>
+														    </label>
+														</div>
+													</apex:repeat>
+												</div>
+											</apex:outputLabel>
+								   			
+								   			<div class="slds-m-top_small">
+								   				<apex:outputText styleClass="slds-text-body_regular" value="{!timeShiftingcalculatedDateLabel}"/>
+								   			</div>
+
+								   			<div class="slds-m-top_small">
+									   			<label class="slds-form-element__label" for="processType">Number of days to shift records:</label>
+									   			<div class="slds-form-element__control">
+									   				<apex:inputText styleClass="slds-input" value="{!daysToShift}" />
+									   			</div>
+								   			</div>
+
+							   			</apex:outputPanel>
+						   			</apex:outputPanel>
+									
+									<div class="slds-m-vertical_medium">
+							   			<apex:outputPanel id="vsbButton">
+								   			<apex:commandButton value="Run" disabled="{!disabledButton}" styleClass="slds-button slds-button_brand btnInstallApp" onclick="return displayConfirmation(this)" />
+
+								   			<apex:actionFunction name="executeSelectedProcess" action="{!executeSelectedProcess}" />
+
+								   			<apex:outputPanel style="margin-left: 15px;" rendered="{!disabledButton}">
+								   				<apex:image value="{!$Resource.LoadingGif}"/>
+								   			</apex:outputPanel>
+								   		</apex:outputPanel>
+							   		</div>
+									
+									<apex:outputPanel id="appSettings">
+									    
+						   				<apex:commandLink value="{!IF(advancedOption, 'Hide Advanced Options', 'Show Advanced Options')}" action="{!handleAdvancedSetting}" reRender="appSettings" />
+											
+										<apex:outputPanel styleClass="slds-grid" rendered="{!advancedOption}" >
+											
+											<div class="slds-col slds-size_1-of-2 slds-m-right_large">
+												
+												<div class="slds-m-top_small">
+													<label class="slds-form-element__label">Api Version:</label>
+													<div class="slds-form-element__control">
+												    	<apex:inputText styleClass="slds-input" value="{!genericAppConfiguration.apiVersion}" />
+												  	</div>
+												</div>
+
+												<div class="slds-m-top_small">
+													<label class="slds-form-element__label">Base URL:</label>
+													<div class="slds-form-element__control">
+														<apex:inputText styleClass="slds-input" value="{!baseUrl}">
+															<apex:actionSupport action="{!getWaveApplications}" event="onchange" rerender="vsbButton,appSelection,appDescription,form1" onsubmit="disableRunButton()"/>
+														</apex:inputText>
+													</div>
+												</div>
+												
+												<div class="slds-m-top_small">
+													<label class="slds-form-element__label">Application List URI (relative to Base URL):</label>
+													<div class="slds-form-element__control">
+														<apex:inputText styleClass="slds-input" value="{!genericAppConfiguration.waveApplicationsUrl}">
+															<apex:actionSupport action="{!getWaveApplications}" event="onchange" rerender="vsbButton,appSelection,appDescription,form1" onsubmit="disableRunButton()"/>
+														</apex:inputText>
+													</div>
+												</div>
+											
+											</div>
+											
+											<div class="slds-col slds-size_1-of-2">
+												<div class="slds-m-top_small">
+													<label class="slds-form-element__label">Objects Load Batch Size:</label>
+													<div class="slds-form-element__control">
+														<apex:inputText styleClass="slds-input" value="{!genericAppConfiguration.objectLoadingBatchSize}"/>
+													</div>
+												</div>
+												
+												<div class="slds-m-top_small">
+													<label class="slds-form-element__label">Time Shifting Batch Size:</label>
+													<div class="slds-form-element__control">
+														<apex:inputText styleClass="slds-input" value="{!genericAppConfiguration.timeShiftingBatchSize}"/>
+													</div>
+												</div>
+											</div>	
+										</apex:outputPanel>
+									</apex:outputPanel>
+
+								</div>
+							</div>
+						</apex:form>
+					</div> <!-- End Left column -->
+					<!-- Right column -->
+					<div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-right_large">
+						<apex:form id="form3" styleClass="standardText">
+							
+							<apex:actionPoller action="{!checkObjectLoadingStatus}" reRender="processingStatus,processingLogConsole,messages,form1,form3,vsbButton,operationStatus" interval="5" enabled="{!enableObjectProcessingCheck}" id="checkFunction"/>
+							
+							<apex:actionPoller action="{!checkTimeShiftingStatus}" reRender="processingStatus,processingLogConsole,messages,form1,form3,vsbButton" interval="5" enabled="{!timeShiftingItems.size > 0 && enableTimeShiftingCheck}" id="checkTimeShiftingFunction"/>
+							
+							<apex:actionPoller action="{!checkMetadataCreationStatus}" reRender="processingStatus,processingLogConsole,messages,form1,form3,vsbButton" enabled="{!processingObjectsAndFieldsMetadata}" interval="5" id="checkMetadataFunction"/>
+
+							<apex:actionPoller action="{!checkRecordTypeCreationStatus}" reRender="processingStatus,processingLogConsole,messages,form1,form3,vsbButton" enabled="{!processingRecordTypes}" interval="5"/>
+							
+							<apex:actionPoller action="{!checkUserPhotoUploadStatus}" reRender="processingStatus,processingLogConsole,messages,form1,form3,vsbButton" enabled="{!uploadingUserPhotos}" interval="5"/>
+
+							<!-- Objects Load Panel/Function -->
+							<apex:outputPanel id="loadObjectsPanel">
+								<apex:actionFunction name="loadObjects" action="{!loadAllObjects}" reRender="loadObjectsPanel,form3,processingLogPanel,form1,vsbButton" />
+
+								<apex:outputPanel rendered="{!installationStep = 'LoadObjects'}">
+									<script type="text/javascript">
+										loadObjects();
+									</script>
+								</apex:outputPanel>
+							</apex:outputPanel>
+
+							<!-- Log Panel -->
+							<apex:outputPanel rendered="{!processingLog.size > 0}" id="processingLogPanel">
+								<apex:outputText styleClass="slds-form-element__label" value="Progress" id="processingStatus" />
+								<apex:panelGrid columns="1" width="600px" style="border: 1px solid #000; display: block; padding: 5px">
+									<apex:repeat value="{!processingLog}" var="logEntry" id="processingLogConsole">
+										<apex:outputText value="{!logEntry}"/><br />
+									</apex:repeat>
+								</apex:panelGrid>
+							</apex:outputPanel>
+
+							<!--<apex:outputPanel id="operationStatus">
+								<apex:repeat value="{!operationsStatusTable}" var="objectKey">
+				                	<apex:outputText value="{!objectKey}"/>
+									<br/>
+				                	<apex:repeat value="{!operationsStatusTable[objectKey]}" var="operationKey">
+					                	<apex:outputText value="{!operationKey}"/>:
+					                	<apex:outputText value="{!operationsStatusTable[objectKey][operationKey]}"/><br/>
+				                	</apex:repeat>
+				                	<br/>
+			            		</apex:repeat>
+							</apex:outputPanel>-->
+
+						</apex:form>
+					</div> <!-- End Right column -->
+				</div> <!-- End Main grid -->
+	        </div> <!-- End Tab 1 -->
+	       
+	        <div id="tab-default-faq" class="slds-tabs_default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-faq__item">
+	        	<div class="slds-grid slds-wrap slds-m-around_medium">
+					<div class="slds-col">
+						<ol class="slds-has-dividers_bottom-space slds-list_ordered">
+							<apex:repeat value="{!analyticsDemoFAQ}" var="faqKey">
+								<li class="slds-item">
+									<p class="slds-text-heading_large slds-m-vertical_x-small">{!faqKey.question}</p>
+									<p>{!faqKey.answer}</p>
+								</li>
+							</apex:repeat>
+						</ol>
+					</div>
+	        	</div>
+	        </div>
+	    
+	    </div>		
+		<apex:form >
+			<div data-reactroot="" class="demo-only" style="height: 640px;">
+				<section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-describedby="modal-content-id-1" class="slds-modal" id="modal">
+				    <div class="slds-modal__container">
+				        <header class="slds-modal__header">
+				            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+				                <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+				                    <use xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#close')}"></use>
+				                </svg>
+				                <span class="slds-assistive-text" onclick="return closeModal()">Close</span>
+				            </button>
+				            <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">
+				            	<!--Time Shifting Confirmation-->
+				            	<apex:outputText id="modalHeader" value="{!modalMessage.header}" />
+				            </h2>
+				        </header>
+				        <div class="slds-modal__content slds-p-around_medium slds-text-align_center" id="modal-content-id-1">
+				            <!--<p>All records will be time-shifted. Are you sure you want to continue?</p>-->
+				            <apex:outputText id="modalBody" value="{!modalMessage.body}" />
+				        </div>
+				        <footer class="slds-modal__footer">
+				            <button class="slds-button slds-button_neutral" onclick="return closeModal()">No</button>
+				            <button class="slds-button slds-button_brand" onclick="return executeSelectedProcess()">Yes</button>
+				        </footer>
+				    </div>
+				</section>
+				<div class="slds-backdrop" id="backdrop"></div>
+			</div>
+		</apex:form>
+		
+
+		<script type="text/javascript">
+			
+			var modal = document.getElementById("modal");
+			var backdrop = document.getElementById("backdrop");
+
+			function displayConfirmation(e){
+
+				if(!e.disabled){
+
+					var elements = document.getElementsByClassName('processType');
+				
+					if(elements[0].value == "timeShifting" || elements[0].value == "loadObjects"){
+
+						var modalHeader = document.getElementById('modal-heading-01');
+
+						//If modal header is populated, we make appear the dialog
+						if(modalHeader.childNodes[0].innerHTML != ''){
+							modal.classList.add("slds-fade-in-open");
+							backdrop.classList.add("slds-backdrop--open");
+						}
+						else {
+							executeSelectedProcess();
+						}
+					}
+					else{
+						executeSelectedProcess();
+					}
+				}
+
+				return false;	
+			}
+
+			function closeModal(){
+				modal.classList.remove("slds-fade-in-open");
+				backdrop.classList.remove("slds-backdrop--open");
+
+				return false;
+			}
+
+			var tabLinks = document.getElementsByClassName('slds-tabs_default__link');
+			
+			for(var i=0; i < tabLinks.length; i++){
+				tabLinks[i].onclick = tabChanged;
+			}
+
+			function tabChanged(){
+
+				/* Change active tab */
+				var tabs = document.getElementsByClassName('slds-is-active');
+				tabs[0].classList.remove("slds-is-active","slds-has-focus");
+				this.parentNode.classList.add("slds-is-active","slds-has-focus");
+
+				/* Change body content */
+				var contents = document.getElementsByClassName('slds-tabs_default__content');
+				for(var i=0; i < contents.length; i++){
+					if(contents[i].id == this.getAttribute("aria-controls")){
+						contents[i].classList.remove('slds-hide');
+						contents[i].classList.add('slds-show');
+					} 
+					else{
+						contents[i].classList.remove('slds-show');
+						contents[i].classList.add('slds-hide');
+					}
+				}
+			}
+
+			function disableRunButton(){
+				var runButton = document.getElementsByClassName('btnInstallApp')[0];
+				runButton.disabled = true;
+			}
+        
+        	function generateRemoteSiteRequestXML(rssName, rssDsc, rssURL){
+            	var requestXML =
+			        '<?xml version="1.0" encoding="utf-8"?>' +
+			        '<env:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">'+
+			            '<env:Header>' +
+			                '<urn:SessionHeader xmlns:urn="http://soap.sforce.com/2006/04/metadata">' +
+			                    '<urn:sessionId>{!$Api.Session_ID}</urn:sessionId>' +
+			                '</urn:SessionHeader>' +
+			            '</env:Header>' +
+			            '<env:Body>' +
+			                '<upsertMetadata xmlns="http://soap.sforce.com/2006/04/metadata">' +
+			                    '<metadata xsi:type="RemoteSiteSetting">' +
+			                        '<fullName>' + rssName + '</fullName>' +
+			                        '<description>' + rssDsc + '</description>' +
+			                        '<disableProtocolSecurity>false</disableProtocolSecurity>' +
+			                        '<isActive>true</isActive>' +
+			                        '<url>' + rssURL + '</url>' +
+			                    '</metadata>' +
+			                '</upsertMetadata>' +
+			            '</env:Body>' +
+			        '</env:Envelope>';
+                
+                return requestXML;
+            }
+        
+        	function handleXmlResponse(xmlDoc){
+            	var successElems = xmlDoc.getElementsByTagName('success');
+                if(successElems.length > 0 && successElems[0].innerHTML == "true"){
+                    displayMetadataResponse("");
+                }
+                else {
+                    var errors = xmlDoc.getElementsByTagName('errors');
+                    var messageText = '';
+                    for(var errorIdx = 0; errorIdx < errors.length; errorIdx++)
+                        messageText += errors[errorIdx].getElementsByTagName('message').item(0).innerHTML + '\n';
+                    displayMetadataResponse(messageText);
+                }
+            }
+
+			function createRemoteSite()
+			{
+			    // Disable button
+			    document.getElementById('createremotesitebtn').disabled = true;
+			    
+			    var vfContext = '{!JSENCODE(VisualforceContextHost)}';
+			    var host = '{!JSENCODE(Host)}';
+
+			    // Calls the Metdata API from JavaScript to create the Remote Site Setting to permit Apex callouts
+			    var request = generateRemoteSiteRequestXML('InstanceHost', 'ORG Instance Remote Site Setting', host);
+                var serviceUrl = vfContext + '/services/Soap/m/31.0';
+                
+                $.ajax({
+               		url: serviceUrl,
+                    method: 'POST',
+                    contentType: 'text/xml',
+                    data: request,
+                    dataType: 'xml',
+                    headers: {
+                    	SOAPAction: '""'
+                    },
+                    success: function(xmlDoc){
+                        handleXmlResponse(xmlDoc);
+
+                        if(vfContext != host){
+                        	var newRequest = generateRemoteSiteRequestXML('VisualforceContextHost', 'Visualforce Context Host Remote Site Setting', '{!JSENCODE(VisualforceContextHost)}');
+
+	                        $.ajax({
+	                            url: serviceUrl,
+	                            type: 'POST',
+	                            method: 'text/xml',
+	                            data: newRequest,
+	                            dataType: 'xml',
+	                            headers: {
+	                                SOAPAction: '""'
+	                            },
+	                            success: function(xmlDoc2){
+	                                handleXmlResponse(xmlDoc2);
+	                            },
+	                            error: function(jqXHR, textStatus, errorThrown){
+	                                console.log('Error');
+	                                console.log(jqXHR);
+	                                console.log(textStatus);
+	                                console.log(errorThrown);
+	                                displayMetadataResponse("Error creating needed VisualforceContextHost Remote Site Setting: " + errorThrown);
+	                            }
+	                        });
+                        }
+                    },
+                    error: function(jqXHR, textStatus, errorThrown){
+                        console.log('Error');
+						console.log(jqXHR);
+                        console.log(textStatus);
+                        console.log(errorThrown);
+                        displayMetadataResponse("Error creating needed InstanceHost Remote Site Settings: " + errorThrown);
+                    }
+                });
+			}
+
+			function disableCheckbox(){
+				$(".objToSelect").attr("disabled", true);
+			}        	
+
+		</script>
+
+	</body>
+	</html>
+</apex:page>

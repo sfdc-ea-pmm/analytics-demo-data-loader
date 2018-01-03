@@ -63,6 +63,10 @@ public with sharing virtual class WaveCsvDataRetriever implements IMockarooHelpe
 		Http http = new Http();
         HTTPResponse res = http.send(req);
 
-		return res.getBody();
+        if(res.getStatusCode() == 200){
+        	return res.getBody();
+        }
+
+        return '';
 	}
 }
