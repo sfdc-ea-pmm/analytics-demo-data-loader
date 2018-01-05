@@ -595,18 +595,9 @@ public with sharing class WaveDataManagerController {
 					this.currentObjectProcessing = currentNode.name;
 
 					// Start the batch process
-					CsvDataImportBatch batchProcess = null;
-					/*if(currentNode.name == 'WorkType') {
-						batchProcess = new CsvDataImportBatch(csvData, currentNode.fieldPositions, currentNode.relations, genericAppConfiguration.apiVersion);						
-					}
-					else {
-						batchProcess = new CsvDataImportBatch(Schema.getGlobalDescribe().get(currentNode.name), csvData, currentNode.fieldPositions, currentNode.relations, genericAppConfiguration.apiVersion);
-					}*/
-					System.debug('Creating batch for ' + Schema.getGlobalDescribe().get(currentNode.name).getDescribe().getName());					
-					batchProcess = new CsvDataImportBatch(Schema.getGlobalDescribe().get(currentNode.name), csvData, currentNode.fieldPositions, currentNode.relations, genericAppConfiguration.apiVersion);
+					CsvDataImportBatch batchProcess = new CsvDataImportBatch(Schema.getGlobalDescribe().get(currentNode.name), csvData, currentNode.fieldPositions, currentNode.relations, genericAppConfiguration.apiVersion);
 					this.batchProcessId = Database.executeBatch(batchProcess, this.genericAppConfiguration.objectLoadingBatchSize);
-					this.enableObjectProcessingCheck = true;
-					System.debug('Starting batch for ' + Schema.getGlobalDescribe().get(currentNode.name).getDescribe().getName());
+					this.enableObjectProcessingCheck = true;					
 				}
 			}	
 		} 
