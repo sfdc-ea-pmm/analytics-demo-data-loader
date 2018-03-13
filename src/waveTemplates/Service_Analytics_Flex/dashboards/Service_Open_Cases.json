@@ -1,0 +1,3215 @@
+{
+  "name" : "Service_By_OpenCases",
+  "label" : "Service Open Cases",
+  "folder" : {
+    "id" : "${App.Folder.Id}"
+  },
+  "mobileDisabled" : false,
+  "state" : {
+    "dataSourceLinks" : [ ],
+    "filters" : [ ],
+    "gridLayouts" : [
+  {
+        "maxWidth" : 1360,
+        "name" : "Default",
+        "numColumns" : 48,
+        "pages" : [
+  {
+            "name" : "Default",
+            "widgets" : [
+  {
+                "colspan" : 15,
+                "column" : 1,
+                "name" : "text_Prioritize_Open_Cases",
+                "row" : 3,
+                "rowspan" : 8,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#C5D3E0",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 3,
+                "column" : 34,
+                "name" : "link_Home",
+                "row" : 8,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#C5D3E0",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 5,
+                "column" : 38,
+                "name" : "link_Prioritize_Open_Cases",
+                "row" : 8,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#634F95",
+                  "borderEdges" : [
+  "bottom"
+  ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 2
+                }
+              },
+  {
+                "colspan" : 3,
+                "column" : 44,
+                "name" : "link_Backlog",
+                "row" : 8,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#C5D3E0",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 48,
+                "column" : 0,
+                "name" : "container_1",
+                "row" : 3,
+                "rowspan" : 8,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#9271E8",
+                  "borderEdges" : [
+  "bottom"
+  ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 4,
+                "column" : 1,
+                "name" : "listselector_Role_Name_1",
+                "row" : 13,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "backgroundColor" : "#E6ECF2",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 4,
+                "column" : 6,
+                "name" : "listselector_Type_1",
+                "row" : 13,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "backgroundColor" : "#E6ECF2",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 4,
+                "column" : 43,
+                "name" : "listselector_filter_forecast_category",
+                "row" : 86,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 4,
+                "column" : 11,
+                "name" : "listselector_Origin_2",
+                "row" : 13,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "backgroundColor" : "#E6ECF2",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 48,
+                "column" : 0,
+                "name" : "container_2",
+                "row" : 11,
+                "rowspan" : 8,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgb(230, 236, 242)",
+                  "borderColor" : "rgb(230, 236, 242)",
+                  "borderEdges" : [
+  "top"
+  ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 8,
+                "column" : 1,
+                "name" : "text_Case_Breakdown",
+                "row" : 21,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#FFFFFF",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 8,
+                "column" : 1,
+                "name" : "text_Click_charts_to_filter_dashboard",
+                "row" : 23,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#FFFFFF",
+                  "borderEdges" : [
+  "bottom"
+  ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 9,
+                "column" : 0,
+                "name" : "chart_Priority_1",
+                "row" : 29,
+                "rowspan" : 17,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 9,
+                "column" : 0,
+                "name" : "chart_Status_1",
+                "row" : 49,
+                "rowspan" : 17,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 9,
+                "column" : 0,
+                "name" : "chart_count_case_by_sla",
+                "row" : 92,
+                "rowspan" : 17,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 9,
+                "column" : 0,
+                "name" : "container_3",
+                "row" : 19,
+                "rowspan" : 90,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [
+  "right"
+  ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 15,
+                "column" : 10,
+                "name" : "text_Cases_with_long_duration_and_no_activity",
+                "row" : 21,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "backgroundColor" : "#091A3E",
+                  "borderColor" : "#FFFFFF",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 29,
+                "column" : 10,
+                "name" : "chart_Id_2",
+                "row" : 26,
+                "rowspan" : 31,
+                "widgetStyle" : {
+                  "backgroundColor" : "#091A3E",
+                  "borderColor" : "#091A3E",
+                  "borderEdges" : [ ],
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 39,
+                "column" : 9,
+                "name" : "container_4",
+                "row" : 19,
+                "rowspan" : 40,
+                "widgetStyle" : {
+                  "backgroundColor" : "#091A3E",
+                  "borderColor" : "#FFFFFF",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 7,
+                "column" : 41,
+                "name" : "number_kpi_case_count",
+                "row" : 26,
+                "rowspan" : 5,
+                "widgetStyle" : {
+                  "backgroundColor" : "#091A3E",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 7,
+                "column" : 41,
+                "name" : "number_DurationCalculatedFi_1",
+                "row" : 34,
+                "rowspan" : 5,
+                "widgetStyle" : {
+                  "backgroundColor" : "#091A3E",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 7,
+                "column" : 41,
+                "name" : "number_kpi_escalation_percent",
+                "row" : 42,
+                "rowspan" : 5,
+                "widgetStyle" : {
+                  "backgroundColor" : "#091A3E",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 7,
+                "column" : 41,
+                "name" : "number_kpi_owner_count",
+                "row" : 50,
+                "rowspan" : 5,
+                "widgetStyle" : {
+                  "backgroundColor" : "#091A3E",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 12,
+                "column" : 10,
+                "name" : "text_Case_Segmentation",
+                "row" : 61,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#FFFFFF",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 7,
+                "column" : 40,
+                "name" : "pillbox_static_1",
+                "row" : 61,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#FFFFFF",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 4,
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 11,
+                "column" : 11,
+                "name" : "text_By_Product_Family",
+                "row" : 66,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 8,
+                "column" : 30,
+                "name" : "text_By_Constants_CaseReasonLabel",
+                "row" : 66,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 16,
+                "column" : 11,
+                "name" : "chart_case_count_by_product",
+                "row" : 70,
+                "rowspan" : 14,
+                "widgetStyle" : {
+                  "borderColor" : "#FFFFFF",
+                  "borderEdges" : [
+  "bottom"
+  ],
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 16,
+                "column" : 30,
+                "name" : "chart_case_count_by_reason",
+                "row" : 70,
+                "rowspan" : 14,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 15,
+                "column" : 11,
+                "name" : "text_By_Agent",
+                "row" : 86,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 30,
+                "name" : "text_By_Account",
+                "row" : 86,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 7,
+                "column" : 35,
+                "name" : "pillbox_Field_Select",
+                "row" : 107,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#FFFFFF",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 4,
+                  "borderWidth" : 4
+                }
+              },
+  {
+                "colspan" : 16,
+                "column" : 11,
+                "name" : "chart_case_count_by_agent",
+                "row" : 94,
+                "rowspan" : 14,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 16,
+                "column" : 30,
+                "name" : "chart_case_count_by_account_withoppty",
+                "row" : 90,
+                "rowspan" : 15,
+                "widgetStyle" : {
+                  "borderColor" : "#FFFFFF",
+                  "borderEdges" : [
+  "top"
+  ],
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 46,
+                "column" : 1,
+                "name" : "table_lens_1",
+                "row" : 115,
+                "rowspan" : 25,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 48,
+                "column" : 0,
+                "name" : "container_7",
+                "row" : 109,
+                "rowspan" : 33,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [
+  "top"
+  ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 12,
+                "column" : 1,
+                "name" : "text_Case_Details",
+                "row" : 110,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 8,
+                "column" : 1,
+                "name" : "text_Open_Case_by_Priority1",
+                "row" : 26,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#FFFFFF",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 8,
+                "column" : 1,
+                "name" : "text_Open_Cases_by_Constants_CaseStatusLabel",
+                "row" : 46,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#FFFFFF",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 8,
+                "column" : 1,
+                "name" : "text_Open_Cases_by_Constants_CaseSLALabel",
+                "row" : 89,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#FFFFFF",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 4,
+                "column" : 16,
+                "name" : "listselector_filter_recordtype",
+                "row" : 13,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "backgroundColor" : "#E6ECF2",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 39,
+                "column" : 9,
+                "name" : "container_10",
+                "row" : 59,
+                "rowspan" : 6,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 39,
+                "column" : 9,
+                "name" : "container_14",
+                "row" : 65,
+                "rowspan" : 44,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 21,
+                "column" : 10,
+                "name" : "text_100untouched_info",
+                "row" : 23,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "backgroundColor" : "#091A3E",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 8,
+                "column" : 1,
+                "name" : "text_Open_Cases_by_Constants_AccountGeography",
+                "row" : 68,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#FFFFFF",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 9,
+                "column" : 0,
+                "name" : "chart_Geography",
+                "row" : 71,
+                "rowspan" : 17,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              }
+  ]
+          }
+  ],
+        "rowHeight" : "fine",
+        "selectors" : [ ],
+        "style" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "backgroundColor" : "rgb(202, 212, 222)",
+          "cellSpacingX" : 0,
+          "cellSpacingY" : 0,
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "version" : 1.0
+      },
+  {
+        "name" : "iPhone",
+        "numColumns" : 6,
+        "pages" : [
+  {
+            "name" : "iPhone",
+            "widgets" : [
+  {
+                "colspan" : 6,
+                "column" : 0,
+                "name" : "text_Case_Breakdown",
+                "row" : 49,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#FFFFFF",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 0,
+                "name" : "text_Open_Case_by_Priority1",
+                "row" : 52,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#FFFFFF",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 0,
+                "name" : "chart_Priority_1",
+                "row" : 55,
+                "rowspan" : 15,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 0,
+                "name" : "text_Open_Cases_by_Constants_CaseStatusLabel",
+                "row" : 70,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#FFFFFF",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 0,
+                "name" : "chart_Status_1",
+                "row" : 73,
+                "rowspan" : 15,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 3,
+                "column" : 0,
+                "name" : "text_Open_Cases_by_Constants_CaseSLALabel",
+                "row" : 105,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#FFFFFF",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 0,
+                "name" : "chart_count_case_by_sla",
+                "row" : 109,
+                "rowspan" : 15,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 0,
+                "name" : "container_3",
+                "row" : 49,
+                "rowspan" : 76,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [
+  "all"
+  ],
+                  "borderRadius" : 8,
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 3,
+                "column" : 0,
+                "name" : "number_kpi_case_count",
+                "row" : 10,
+                "rowspan" : 6,
+                "widgetStyle" : {
+                  "backgroundColor" : "#091A3E",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 3,
+                "column" : 3,
+                "name" : "number_DurationCalculatedFi_1",
+                "row" : 10,
+                "rowspan" : 6,
+                "widgetStyle" : {
+                  "backgroundColor" : "#091A3E",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 3,
+                "column" : 0,
+                "name" : "number_kpi_escalation_percent",
+                "row" : 19,
+                "rowspan" : 6,
+                "widgetStyle" : {
+                  "backgroundColor" : "#091A3E",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 3,
+                "column" : 3,
+                "name" : "number_kpi_owner_count",
+                "row" : 19,
+                "rowspan" : 6,
+                "widgetStyle" : {
+                  "backgroundColor" : "#091A3E",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 0,
+                "name" : "container_4",
+                "row" : 10,
+                "rowspan" : 18,
+                "widgetStyle" : {
+                  "backgroundColor" : "#091A3E",
+                  "borderColor" : "#091A3E",
+                  "borderEdges" : [
+  "all"
+  ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 0,
+                "name" : "text_Case_Segmentation",
+                "row" : 125,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#FFFFFF",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 0,
+                "name" : "pillbox_static_1",
+                "row" : 128,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#7D98B3",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 4,
+                  "borderWidth" : 4
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 0,
+                "name" : "text_By_Product_Family",
+                "row" : 131,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 0,
+                "name" : "text_By_Constants_CaseReasonLabel",
+                "row" : 146,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 0,
+                "name" : "chart_case_count_by_product",
+                "row" : 134,
+                "rowspan" : 12,
+                "widgetStyle" : {
+                  "borderColor" : "#FFFFFF",
+                  "borderEdges" : [
+  "bottom"
+  ],
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 0,
+                "name" : "chart_case_count_by_reason",
+                "row" : 149,
+                "rowspan" : 12,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 0,
+                "name" : "text_By_Agent",
+                "row" : 161,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 0,
+                "name" : "text_By_Account",
+                "row" : 176,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 0,
+                "name" : "chart_case_count_by_account_withoppty",
+                "row" : 182,
+                "rowspan" : 15,
+                "widgetStyle" : {
+                  "borderColor" : "#FFFFFF",
+                  "borderEdges" : [
+  "top"
+  ],
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 0,
+                "name" : "chart_case_count_by_agent",
+                "row" : 164,
+                "rowspan" : 12,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 0,
+                "name" : "container_14",
+                "row" : 125,
+                "rowspan" : 72,
+                "widgetStyle" : {
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [
+  "all"
+  ],
+                  "borderRadius" : 8,
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 0,
+                "name" : "text_Case_Details",
+                "row" : 197,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 0,
+                "name" : "table_lens_1",
+                "row" : 200,
+                "rowspan" : 24,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 0,
+                "name" : "container_7",
+                "row" : 197,
+                "rowspan" : 27,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [
+  "all"
+  ],
+                  "borderRadius" : 8,
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 0,
+                "name" : "text_iphone_Prioritize_Open_Cases",
+                "row" : 0,
+                "rowspan" : 6,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#634F95",
+                  "borderEdges" : [
+  "bottom"
+  ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 0,
+                "name" : "container_23",
+                "row" : 28,
+                "rowspan" : 21,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [
+  "all"
+  ],
+                  "borderRadius" : 8,
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 0,
+                "name" : "chart_2",
+                "row" : 34,
+                "rowspan" : 15,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 0,
+                "name" : "text_iphone_longduration_info",
+                "row" : 28,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 0,
+                "name" : "text_iphone_100untouched_info",
+                "row" : 31,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 4,
+                "column" : 1,
+                "name" : "listselector_filter_forecast_category",
+                "row" : 179,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 0,
+                "name" : "text_Open_Cases_by_Constants_AccountGeography",
+                "row" : 88,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 0,
+                "name" : "chart_Geography",
+                "row" : 90,
+                "rowspan" : 15,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              }
+  ]
+          }
+  ],
+        "rowHeight" : "fine",
+        "selectors" : [
+  "maxWidth(599)"
+  ],
+        "style" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "backgroundColor" : "#E6ECF2",
+          "cellSpacingX" : 0,
+          "cellSpacingY" : 0,
+          "fit" : "original",
+          "gutterColor" : "#C5D3E0"
+        },
+        "version" : 1.0
+      }
+  ],
+    "layouts" : [ ],
+    "steps" : {
+      "Role_Name_1" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "groups" : [
+  "Role.Name"
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "multi",
+        "type" : "aggregateflex",
+        "useGlobal" : false,
+        "visualizationParameters" : { }
+      },
+      "Id_2" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "Number",
+  "Days Since Last Activity",
+  null,
+  {
+                  "display" : "Days Since Last Activity"
+                }
+  ],
+  [
+  "Total",
+  "Duration",
+  null,
+  {
+                  "display" : "Duration"
+                }
+  ]
+  ],
+            "pigql" : "q = load \"${App.EdgeMarts.ServiceCase.Alias}\";q = filter q by 'IsClosed' ==\"false\";q = group q by 'CaseNumber'; q = foreach q generate 'CaseNumber' as 'CaseNumber', sum('{{column(Static_Duration.selection, [\"pigql_value\"]).asObject()}}') as 'Total_Duration', sum('sum_last_activity') as 'Number_Days Since Last Activity';q = order q by ('Total_Duration' desc,'Number_Days Since Last Activity' desc);q = limit q 100",
+            "autoFilter" : true,
+            "groups" : [
+  "CaseNumber"
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "multi",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "scatter"
+        }
+      },
+      "filter_sla" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "groups" : [
+  "${Constants.CaseSLA}"
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "multi",
+        "type" : "aggregateflex",
+        "useGlobal" : false,
+        "visualizationParameters" : { }
+      },
+      "Priority_1" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "groups" : [
+  "${Constants.CaseSeverityLevel}"
+  ],
+            "filters" : [
+  [
+  "IsClosed",
+  [
+  "false"
+  ],
+  "in"
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "pie"
+        }
+      },
+      "count_case_by_sla" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "groups" : [
+  "${Constants.CaseSLA}"
+  ],
+            "filters" : [
+  [
+  "IsClosed",
+  [
+  "false"
+  ],
+  "in"
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "single",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "pie"
+        }
+      },
+      "kpi_owner_count" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "unique",
+  "OwnerId"
+  ]
+  ],
+            "filters" : [
+  [
+  "IsClosed",
+  [
+  "false"
+  ],
+  "in"
+  ]
+  ],
+            "order" : [
+  [
+  -1,
+  {
+                  "ascending" : false
+                }
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "case_count_by_account_withoppty" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          },
+  {
+            "name" : "${App.EdgeMarts.ServiceOpportunity.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ],
+  [
+  "sum",
+  "Amount"
+  ]
+  ],
+            "pigql" : "q = load \"${App.EdgeMarts.ServiceCase.Alias}\"; q = filter q by 'IsClosed' == \"false\"; r = load \"${App.EdgeMarts.ServiceOpportunity.Alias}\"; r = filter r by {{column(filter_forecast_category.selection, [\"ForecastCategory\"]).asEquality(\"ForecastCategory\")}}; s = group q by 'Account.Name' left, r by 'Account.Name'; s = foreach s generate q.'Account.Name' as 'Account.Name', count(q) as 'count', coalesce(sum(r.'Amount'),0) as 'sum_Amount'; s = order s by {{cell(Field_Select.selection, 0, \"value\").asString()}} {{cell(static_1.selection, 0, \"value\").asString()}};s = limit s 100;",
+            "autoFilter" : true,
+            "groups" : [
+  "Account.Name"
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "multi",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "Geography_1" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "groups" : [
+  "${Constants.CaseGeography}"
+  ],
+            "filters" : [
+  [
+  "IsClosed",
+  [
+  "false"
+  ],
+  "in"
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "pie"
+        }
+      },
+      "case_count_by_account" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "groups" : [
+  "Account.Name"
+  ],
+            "filters" : [
+  [
+  "IsClosed",
+  [
+  "false"
+  ],
+  "in"
+  ]
+  ],
+            "order" : [
+  [
+  -1,
+  {
+                  "ascending" : "{{cell(static_1.selection, 0, \"compact_value\").asObject()}}"
+                }
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "single",
+        "start" : [ ],
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "Field_Select" : {
+        "broadcastFacet" : false,
+        "datasets" : [ ],
+        "dimensions" : [ ],
+        "groups" : [ ],
+        "isGlobal" : false,
+        "numbers" : [ ],
+        "selectMode" : "singlerequired",
+        "strings" : [ ],
+        "type" : "staticflex",
+        "useGlobal" : false,
+        "values" : [
+  {
+            "display" : "Cases",
+            "value" : "count"
+          },
+  {
+            "display" : "Amount",
+            "value" : "sum_Amount"
+          }
+  ],
+        "visualizationParameters" : { }
+      },
+      "Support_Type__c_1" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "groups" : [
+  "${Constants.CaseSupportLevel}"
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "multi",
+        "type" : "aggregateflex",
+        "useGlobal" : false,
+        "visualizationParameters" : { }
+      },
+      "case_count_by_product" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "groups" : [
+  "${Constants.CaseProduct}"
+  ],
+            "filters" : [
+  [
+  "IsClosed",
+  [
+  "false"
+  ],
+  "in"
+  ]
+  ],
+            "order" : [
+  [
+  -1,
+  {
+                  "ascending" : "{{cell(static_1.selection, 0, \"compact_value\").asObject()}}"
+                }
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "multi",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "DurationCalculatedFi_1" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "avg",
+  "Duration"
+  ]
+  ],
+            "pigql" : "q = load \"${App.EdgeMarts.ServiceCase.Alias}\"; q = filter q by 'IsClosed' == \"false\"; q = group q by all; q = foreach q generate avg('{{column(Static_Duration.selection, [\"pigql_value\"]).asObject()}}') as 'avg_Duration';",
+            "autoFilter" : true
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "filter_recordtype" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "groups" : [
+  "${Constants.CaseRecordTypeField}"
+  ],
+            "filters" : [
+  [
+  "IsClosed",
+  [
+  "false"
+  ],
+  "in"
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "multi",
+        "type" : "aggregateflex",
+        "useGlobal" : false,
+        "visualizationParameters" : { }
+      },
+      "case_count_by_reason" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "groups" : [
+  "${Constants.CaseReason}"
+  ],
+            "filters" : [
+  [
+  "IsClosed",
+  [
+  "false"
+  ],
+  "in"
+  ]
+  ],
+            "order" : [
+  [
+  -1,
+  {
+                  "ascending" : "{{cell(static_1.selection, 0, \"compact_value\").asObject()}}"
+                }
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "multi",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "filter_forecast_category" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceOpportunity.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "groups" : [
+  "ForecastCategory"
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "multi",
+        "type" : "aggregateflex",
+        "useGlobal" : false,
+        "visualizationParameters" : { }
+      },
+      "case_count_by_agent" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "groups" : [
+  "Owner.Name"
+  ],
+            "filters" : [
+  [
+  "IsClosed",
+  [
+  "false"
+  ],
+  "in"
+  ]
+  ],
+            "order" : [
+  [
+  -1,
+  {
+                  "ascending" : "{{cell(static_1.selection, 0, \"compact_value\").asObject()}}"
+                }
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "multi",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "kpi_case_count" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "filters" : [
+  [
+  "IsClosed",
+  [
+  "false"
+  ],
+  "in"
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "Status_1" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "groups" : [
+  "${Constants.CaseStatus}"
+  ],
+            "filters" : [
+  [
+  "IsClosed",
+  [
+  "false"
+  ],
+  "in"
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "pie"
+        }
+      },
+      "static_1" : {
+        "broadcastFacet" : false,
+        "datasets" : [ ],
+        "dimensions" : [ ],
+        "groups" : [ ],
+        "isGlobal" : false,
+        "numbers" : [ ],
+        "selectMode" : "singlerequired",
+        "start" : {
+          "display" : [
+  "Desc"
+  ]
+        },
+        "strings" : [ ],
+        "type" : "staticflex",
+        "useGlobal" : false,
+        "values" : [
+  {
+            "display" : "Asc",
+            "value" : "asc",
+            "compact_value" : true
+          },
+  {
+            "display" : "Desc",
+            "value" : "desc",
+            "compact_value" : false
+          }
+  ],
+        "visualizationParameters" : { }
+      },
+      "Origin_1" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "groups" : [
+  "${Constants.CaseOrigin}"
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "Origin_2" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "groups" : [
+  "${Constants.CaseOrigin}"
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "multi",
+        "type" : "aggregateflex",
+        "useGlobal" : false,
+        "visualizationParameters" : { }
+      },
+      "Type_1" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "groups" : [
+  "${Constants.CaseType}"
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "multi",
+        "type" : "aggregateflex",
+        "useGlobal" : false,
+        "visualizationParameters" : { }
+      },
+      "kpi_escalation_percent" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "perc",
+  "Percent"
+  ]
+  ],
+            "pigql" : "q = load \"${App.EdgeMarts.ServiceCase.Alias}\"; q = filter q by 'IsClosed' == \"false\"; q = group q by 'IsEscalated'; q = foreach q generate 'IsEscalated' as 'IsEscalated', count() as 'count', (count()) / sum(count()) over([..] partition by all)*100 as 'perc_Percent'; q = filter q by 'IsEscalated' == \"true\"; ",
+            "autoFilter" : true
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "Static_Duration" : {
+        "broadcastFacet" : true,
+        "datasets" : [ ],
+        "dimensions" : [ ],
+        "groups" : [ ],
+        "isGlobal" : false,
+        "numbers" : [ ],
+        "selectMode" : "singlerequired",
+        "start" : {
+          "display" : [
+  "${Constants.CaseDurationLabel}"
+  ]
+        },
+        "strings" : [ ],
+        "type" : "staticflex",
+        "useGlobal" : true,
+        "values" : [
+  {
+            "display" : "${Constants.CaseDurationLabel}",
+            "value" : [
+  "avg",
+  "${Constants.CaseDuration}"
+  ],
+            "pigql_value" : "${Constants.CaseDuration}",
+            "measure_field" : "avg_${Constants.CaseDuration}"
+          }
+  ],
+        "visualizationParameters" : { }
+      },
+      "lens_1" : {
+        "broadcastFacet" : true,
+        "groups" : [ ],
+        "numbers" : [ ],
+        "query" : "q = load \"${App.EdgeMarts.ServiceCase.Alias}\"; q = filter q by 'IsClosed' == \"false\"; q = foreach q generate first('CaseNumber') as 'CaseNumber', first('Account.Name') as 'Account.Name', first('Owner.Name') as 'Owner.Name', first('${Constants.CaseType}') as '${Constants.CaseType}', first('${Constants.CaseSeverityLevel}') as '${Constants.CaseSeverityLevel}', first('IsEscalated') as 'Escalated',avg('{{column(Static_Duration.selection, [\"pigql_value\"]).asObject()}}') as '{{column(Static_Duration.selection, [\"measure_field\"]).asObject()}}', first('${Constants.CaseStatus}') as '${Constants.CaseStatus}', ${Constants.CaseSLAQuery} ${Constants.CaseSupportLevelQuery} first('${Constants.CaseOrigin}') as '${Constants.CaseOrigin}';q = limit q 100;",
+        "receiveFacet" : true,
+        "selectMode" : "single",
+        "strings" : [ ],
+        "type" : "saql",
+        "useGlobal" : false
+      }
+    },
+    "widgetStyle" : {
+      "backgroundColor" : "#FFFFFF",
+      "borderColor" : "#E6ECF2",
+      "borderEdges" : [ ],
+      "borderRadius" : 0,
+      "borderWidth" : 1
+    },
+    "widgets" : {
+      "container_19" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_18" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_17" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_16" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_15" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "listselector_filter_recordtype" : {
+        "parameters" : {
+          "compact" : false,
+          "expanded" : true,
+          "exploreLink" : false,
+          "instant" : false,
+          "measureField" : "count",
+          "step" : "filter_recordtype",
+          "title" : "Record Type Name"
+        },
+        "type" : "listselector"
+      },
+      "container_14" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_13" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "text_100untouched_info" : {
+        "parameters" : {
+          "fontSize" : 12,
+          "text" : "Showing oldest 100 untouched cases. Click one cases to view more details\n",
+          "textAlignment" : "left",
+          "textColor" : "#C5D3E0"
+        },
+        "type" : "text"
+      },
+      "listselector_Origin_2" : {
+        "parameters" : {
+          "compact" : false,
+          "expanded" : true,
+          "exploreLink" : false,
+          "instant" : false,
+          "measureField" : "none",
+          "step" : "Origin_2",
+          "title" : "Origin"
+        },
+        "type" : "listselector"
+      },
+      "text_iphone_longduration_info" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "Cases with long duration and no activity",
+          "textAlignment" : "left",
+          "textColor" : "#091A3E"
+        },
+        "type" : "text"
+      },
+      "text_Open_Case_by_Priority" : {
+        "parameters" : {
+          "fontSize" : 14,
+          "text" : "Open Case by Priority",
+          "textAlignment" : "center",
+          "textColor" : "#091A3E"
+        },
+        "type" : "text"
+      },
+      "text_Open_Case_by_Priority1" : {
+        "parameters" : {
+          "fontSize" : 14,
+          "text" : "Open Case by Priority",
+          "textAlignment" : "left",
+          "textColor" : "#335779"
+        },
+        "type" : "text"
+      },
+      "chart_case_count_by_agent" : {
+        "parameters" : {
+          "autoFitMode" : "none",
+          "showValues" : true,
+          "bins" : {
+            "breakpoints" : {
+              "high" : 100,
+              "low" : 0
+            },
+            "bands" : {
+              "high" : {
+                "color" : "#008000",
+                "label" : ""
+              },
+              "low" : {
+                "color" : "#B22222",
+                "label" : ""
+              },
+              "medium" : {
+                "color" : "#ffa500",
+                "label" : ""
+              }
+            }
+          },
+          "legend" : {
+            "showHeader" : true,
+            "show" : false,
+            "customSize" : "auto",
+            "position" : "right-top",
+            "inside" : false
+          },
+          "axisMode" : "multi",
+          "visualizationType" : "hbar",
+          "exploreLink" : true,
+          "title" : {
+            "label" : "",
+            "align" : "left",
+            "subtitleLabel" : ""
+          },
+          "trellis" : {
+            "enable" : false,
+            "type" : "x",
+            "parameters" : { },
+            "chartsPerLine" : 4
+          },
+          "binValues" : false,
+          "measureAxis2" : {
+            "sqrtScale" : false,
+            "showTitle" : true,
+            "showAxis" : true,
+            "title" : ""
+          },
+          "measureAxis1" : {
+            "sqrtScale" : false,
+            "showTitle" : false,
+            "showAxis" : false,
+            "title" : ""
+          },
+          "step" : "case_count_by_agent",
+          "theme" : "light",
+          "dimensionAxis" : {
+            "showTitle" : false,
+            "customSize" : 30,
+            "showAxis" : true,
+            "title" : ""
+          }
+        },
+        "type" : "chart"
+      },
+      "text_By_Account" : {
+        "parameters" : {
+          "fontSize" : 14,
+          "text" : "By Account",
+          "textAlignment" : "left",
+          "textColor" : "#335779"
+        },
+        "type" : "text"
+      },
+      "text_iphone_Prioritize_Open_Cases" : {
+        "parameters" : {
+          "fontSize" : 24,
+          "text" : "Prioritize Open Cases",
+          "textAlignment" : "center",
+          "textColor" : "#091A3E"
+        },
+        "type" : "text"
+      },
+      "container_1" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_2" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_3" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_4" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_5" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_6" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_23" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_7" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "text_Open_Cases_by_Constants_CaseSLALabel" : {
+        "parameters" : {
+          "fontSize" : 14,
+          "text" : "Open Cases by SLA Violation",
+          "textAlignment" : "left",
+          "textColor" : "#335779"
+        },
+        "type" : "text"
+      },
+      "chart_Priority_1" : {
+        "parameters" : {
+          "showMeasureTitle" : false,
+          "legend" : {
+            "showHeader" : false,
+            "show" : true,
+            "customSize" : "auto",
+            "position" : "bottom-center",
+            "inside" : false
+          },
+          "showTotal" : false,
+          "visualizationType" : "pie",
+          "theme" : "light",
+          "step" : "Priority_1",
+          "exploreLink" : true,
+          "title" : {
+            "label" : "",
+            "align" : "center",
+            "subtitleLabel" : ""
+          },
+          "trellis" : {
+            "enable" : false,
+            "type" : "x",
+            "parameters" : { },
+            "chartsPerLine" : 4
+          },
+          "inner" : 70
+        },
+        "type" : "chart"
+      },
+      "container_8" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_21" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "text_Case_Scorecard" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "Case Scorecard",
+          "textAlignment" : "left",
+          "textColor" : "#E6ECF2"
+        },
+        "type" : "text"
+      },
+      "container_20" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_9" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "chart_2" : {
+        "parameters" : {
+          "legend" : {
+            "showHeader" : true,
+            "show" : true,
+            "customSize" : "auto",
+            "position" : "right-top",
+            "inside" : false
+          },
+          "x" : {
+            "sqrtScale" : false,
+            "showZero" : true,
+            "showTitle" : true,
+            "showAxis" : true,
+            "title" : ""
+          },
+          "visualizationType" : "scatter",
+          "y" : {
+            "sqrtScale" : false,
+            "showZero" : true,
+            "showTitle" : true,
+            "showAxis" : true,
+            "title" : ""
+          },
+          "step" : "Id_2",
+          "theme" : "wave",
+          "exploreLink" : false,
+          "title" : {
+            "label" : "",
+            "align" : "center",
+            "subtitleLabel" : ""
+          },
+          "trellis" : {
+            "enable" : false,
+            "type" : "x",
+            "parameters" : { },
+            "chartsPerLine" : 4
+          }
+        },
+        "type" : "chart"
+      },
+      "chart_1" : {
+        "parameters" : {
+          "legend" : {
+            "showHeader" : true,
+            "show" : true,
+            "customSize" : "auto",
+            "position" : "right-top",
+            "inside" : false
+          },
+          "x" : {
+            "sqrtScale" : false,
+            "showZero" : true,
+            "showTitle" : true,
+            "showAxis" : true,
+            "title" : ""
+          },
+          "visualizationType" : "scatter",
+          "y" : {
+            "sqrtScale" : false,
+            "showZero" : true,
+            "showTitle" : true,
+            "showAxis" : true,
+            "title" : ""
+          },
+          "step" : "Id_2",
+          "theme" : "light",
+          "exploreLink" : false,
+          "title" : {
+            "label" : "",
+            "align" : "center",
+            "subtitleLabel" : ""
+          },
+          "trellis" : {
+            "enable" : false,
+            "type" : "x",
+            "parameters" : { },
+            "chartsPerLine" : 4
+          }
+        },
+        "type" : "chart"
+      },
+      "text_iphone_100untouched_info" : {
+        "parameters" : {
+          "fontSize" : 12,
+          "text" : "Showing oldest 100 untouched cases. Click one cases to view more details",
+          "textAlignment" : "left",
+          "textColor" : "#7D98B3"
+        },
+        "type" : "text"
+      },
+      "text_Case_Breakdown" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "Case Breakdown",
+          "textAlignment" : "left",
+          "textColor" : "#091A3E"
+        },
+        "type" : "text"
+      },
+      "number_kpi_case_count" : {
+        "parameters" : {
+          "compact" : false,
+          "exploreLink" : true,
+          "measureField" : "count",
+          "numberColor" : "#FFFFFF",
+          "numberSize" : 24,
+          "step" : "kpi_case_count",
+          "textAlignment" : "left",
+          "title" : "Open Cases (Backlog)",
+          "titleColor" : "#A3B8CC",
+          "titleSize" : 12
+        },
+        "type" : "number"
+      },
+      "listselector_Role_Name_1" : {
+        "parameters" : {
+          "compact" : false,
+          "expanded" : true,
+          "exploreLink" : false,
+          "instant" : false,
+          "measureField" : "count",
+          "step" : "Role_Name_1",
+          "title" : "Role Name"
+        },
+        "type" : "listselector"
+      },
+      "chart_count_case_by_sla1" : {
+        "parameters" : {
+          "showMeasureTitle" : false,
+          "legend" : {
+            "showHeader" : false,
+            "show" : true,
+            "customSize" : "auto",
+            "position" : "bottom-center",
+            "inside" : false
+          },
+          "showTotal" : true,
+          "visualizationType" : "pie",
+          "step" : "count_case_by_sla",
+          "theme" : "wave",
+          "exploreLink" : true,
+          "title" : {
+            "label" : "Open Cases by SLA Violation",
+            "align" : "center",
+            "subtitleLabel" : ""
+          },
+          "trellis" : {
+            "enable" : false,
+            "type" : "x",
+            "parameters" : { },
+            "chartsPerLine" : 4
+          },
+          "inner" : 80
+        },
+        "type" : "chart"
+      },
+      "number_kpi_escalation_percent" : {
+        "parameters" : {
+          "compact" : false,
+          "exploreLink" : true,
+          "measureField" : "perc_Percent",
+          "numberColor" : "#FFFFFF",
+          "numberSize" : 24,
+          "step" : "kpi_escalation_percent",
+          "textAlignment" : "left",
+          "title" : "Escalated Cases",
+          "titleColor" : "#A3B8CC",
+          "titleSize" : 12
+        },
+        "type" : "number"
+      },
+      "text_Prioritize_Open_Cases" : {
+        "parameters" : {
+          "fontSize" : 24,
+          "text" : "Prioritize Open Cases",
+          "textAlignment" : "left",
+          "textColor" : "#091A3E"
+        },
+        "type" : "text"
+      },
+      "number_DurationCalculatedFi_1" : {
+        "parameters" : {
+          "compact" : false,
+          "exploreLink" : true,
+          "measureField" : "avg_Duration",
+          "numberColor" : "#FFFFFF",
+          "numberSize" : 24,
+          "step" : "DurationCalculatedFi_1",
+          "textAlignment" : "left",
+          "title" : "Avg of Case Duration",
+          "titleColor" : "#A3B8CC",
+          "titleSize" : 12
+        },
+        "type" : "number"
+      },
+      "text_Cases_with_long_duration_and_no_activity" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "Cases with long duration and no activity",
+          "textAlignment" : "left",
+          "textColor" : "#FFFFFF"
+        },
+        "type" : "text"
+      },
+      "chart_Id_2" : {
+        "parameters" : {
+          "legend" : {
+            "showHeader" : true,
+            "show" : false,
+            "customSize" : "auto",
+            "position" : "right-top",
+            "inside" : false
+          },
+          "x" : {
+            "sqrtScale" : false,
+            "showZero" : true,
+            "showTitle" : true,
+            "showAxis" : true,
+            "title" : "Days Since Last Activity"
+          },
+          "visualizationType" : "scatter",
+          "y" : {
+            "sqrtScale" : false,
+            "showZero" : true,
+            "showTitle" : true,
+            "showAxis" : true,
+            "title" : "Duration"
+          },
+          "theme" : "dark",
+          "step" : "Id_2",
+          "exploreLink" : true,
+          "title" : {
+            "label" : "",
+            "align" : "center",
+            "subtitleLabel" : ""
+          },
+          "trellis" : {
+            "enable" : false,
+            "type" : "x",
+            "parameters" : { },
+            "chartsPerLine" : 4
+          }
+        },
+        "type" : "chart"
+      },
+      "table_lens_1" : {
+        "parameters" : {
+          "columns" : [ ],
+          "customBulkActions" : [ ],
+          "exploreLink" : true,
+          "step" : "lens_1"
+        },
+        "type" : "table"
+      },
+      "container_12" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "text_Open_Case_by_Status" : {
+        "parameters" : {
+          "fontSize" : 14,
+          "text" : "Open Case by Status",
+          "textAlignment" : "center",
+          "textColor" : "#091A3E"
+        },
+        "type" : "text"
+      },
+      "container_11" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "chart_case_count_by_product" : {
+        "parameters" : {
+          "autoFitMode" : "none",
+          "showValues" : true,
+          "bins" : {
+            "breakpoints" : {
+              "high" : 100,
+              "low" : 0
+            },
+            "bands" : {
+              "high" : {
+                "color" : "#008000",
+                "label" : ""
+              },
+              "low" : {
+                "color" : "#B22222",
+                "label" : ""
+              },
+              "medium" : {
+                "color" : "#ffa500",
+                "label" : ""
+              }
+            }
+          },
+          "legend" : {
+            "showHeader" : true,
+            "show" : false,
+            "customSize" : "auto",
+            "position" : "right-top",
+            "inside" : false
+          },
+          "axisMode" : "multi",
+          "visualizationType" : "hbar",
+          "exploreLink" : true,
+          "title" : {
+            "label" : "",
+            "align" : "left",
+            "subtitleLabel" : ""
+          },
+          "trellis" : {
+            "enable" : false,
+            "type" : "x",
+            "parameters" : { },
+            "chartsPerLine" : 4
+          },
+          "binValues" : false,
+          "measureAxis2" : {
+            "sqrtScale" : false,
+            "showTitle" : true,
+            "showAxis" : true,
+            "title" : ""
+          },
+          "measureAxis1" : {
+            "sqrtScale" : false,
+            "showTitle" : false,
+            "showAxis" : false,
+            "title" : ""
+          },
+          "step" : "case_count_by_product",
+          "theme" : "light",
+          "dimensionAxis" : {
+            "showTitle" : false,
+            "customSize" : 30,
+            "showAxis" : true,
+            "title" : ""
+          }
+        },
+        "type" : "chart"
+      },
+      "pillbox_Field_Select" : {
+        "parameters" : {
+          "compact" : false,
+          "exploreLink" : false,
+          "step" : "Field_Select"
+        },
+        "type" : "pillbox"
+      },
+      "text_Open_Cases_by_Constants_AccountGeography" : {
+        "parameters" : {
+          "fontSize" : 14,
+          "text" : "Open Case by Geography",
+          "textAlignment" : "left",
+          "textColor" : "#335779"
+        },
+        "type" : "text"
+      },
+      "listselector_Support_Type_c_1" : {
+        "parameters" : {
+          "compact" : false,
+          "expanded" : true,
+          "exploreLink" : false,
+          "instant" : false,
+          "measureField" : "none",
+          "step" : "Support_Type__c_1",
+          "title" : "Support Type"
+        },
+        "type" : "listselector"
+      },
+      "container_10" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "chart_case_count_by_account_withoppty" : {
+        "parameters" : {
+          "autoFitMode" : "none",
+          "showValues" : true,
+          "legend" : {
+            "showHeader" : true,
+            "show" : false,
+            "customSize" : "auto",
+            "position" : "right-top",
+            "inside" : false
+          },
+          "showMeasureTitle" : true,
+          "visualizationType" : "pyramid",
+          "exploreLink" : true,
+          "title" : {
+            "label" : "",
+            "align" : "left",
+            "subtitleLabel" : ""
+          },
+          "trellis" : {
+            "enable" : false,
+            "type" : "x",
+            "parameters" : { },
+            "chartsPerLine" : 4
+          },
+          "showMeasure" : true,
+          "measureAxis2" : {
+            "sqrtScale" : false,
+            "title" : "Amount"
+          },
+          "measureAxis1" : {
+            "sqrtScale" : false,
+            "title" : "Number of Cases"
+          },
+          "step" : "case_count_by_account_withoppty",
+          "theme" : "light",
+          "rightColor" : "#e16032",
+          "leftColor" : "rgb(31, 144, 244)",
+          "dimensionAxis" : {
+            "customSize" : 30,
+            "showAxis" : true
+          }
+        },
+        "type" : "chart"
+      },
+      "link_Home" : {
+        "parameters" : {
+          "destination" : "${App.Dashboards['Service Analytics Overview'].Id}",
+          "destinationType" : "dashboard",
+          "fontSize" : 12,
+          "includeState" : false,
+          "text" : "Overview",
+          "textAlignment" : "center",
+          "textColor" : "#091A3E"
+        },
+        "type" : "link"
+      },
+      "text_By_Constants_CaseReasonLabel" : {
+        "parameters" : {
+          "fontSize" : 14,
+          "text" : "By Case Reason",
+          "textAlignment" : "left",
+          "textColor" : "#335779"
+        },
+        "type" : "text"
+      },
+      "chart_Status_1" : {
+        "parameters" : {
+          "showMeasureTitle" : false,
+          "legend" : {
+            "showHeader" : false,
+            "show" : true,
+            "customSize" : "auto",
+            "position" : "bottom-center",
+            "inside" : false
+          },
+          "showTotal" : false,
+          "visualizationType" : "pie",
+          "theme" : "light",
+          "step" : "Status_1",
+          "exploreLink" : true,
+          "title" : {
+            "label" : "",
+            "align" : "center",
+            "subtitleLabel" : ""
+          },
+          "trellis" : {
+            "enable" : false,
+            "type" : "x",
+            "parameters" : { },
+            "chartsPerLine" : 4
+          },
+          "inner" : 70
+        },
+        "type" : "chart"
+      },
+      "text_Case_Details" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "Case Details",
+          "textAlignment" : "left",
+          "textColor" : "#091A3E"
+        },
+        "type" : "text"
+      },
+      "listselector_Static_Duration" : {
+        "parameters" : {
+          "compact" : false,
+          "displayTemplate" : "[]",
+          "expanded" : true,
+          "exploreLink" : false,
+          "instant" : true,
+          "step" : "Static_Duration",
+          "title" : "Duration"
+        },
+        "type" : "listselector"
+      },
+      "chart_Geography" : {
+        "parameters" : {
+          "centerText" : "",
+          "centerValueType" : "none",
+          "showMeasureTitle" : false,
+          "legend" : {
+            "showHeader" : false,
+            "show" : true,
+            "customSize" : "auto",
+            "position" : "bottom-center",
+            "inside" : false
+          },
+          "valueType" : "compactNumber",
+          "visualizationType" : "pie",
+          "theme" : "light",
+          "step" : "Geography_1",
+          "exploreLink" : true,
+          "title" : {
+            "label" : "",
+            "align" : "center",
+            "subtitleLabel" : ""
+          },
+          "trellis" : {
+            "flipLabels" : false,
+            "showGridLines" : true,
+            "enable" : false,
+            "type" : "x",
+            "parameters" : { },
+            "chartsPerLine" : 4
+          },
+          "inner" : 70
+        },
+        "type" : "chart"
+      },
+      "chart_Priority_11" : {
+        "parameters" : {
+          "showMeasureTitle" : false,
+          "legend" : {
+            "showHeader" : false,
+            "show" : true,
+            "customSize" : "auto",
+            "position" : "bottom-center",
+            "inside" : false
+          },
+          "showTotal" : true,
+          "visualizationType" : "pie",
+          "step" : "Priority_1",
+          "theme" : "light",
+          "exploreLink" : true,
+          "title" : {
+            "label" : "Open Case Priority",
+            "align" : "center",
+            "subtitleLabel" : ""
+          },
+          "trellis" : {
+            "enable" : false,
+            "type" : "x",
+            "parameters" : { },
+            "chartsPerLine" : 4
+          },
+          "inner" : 80
+        },
+        "type" : "chart"
+      },
+      "link_Prioritize_Open_Cases" : {
+        "parameters" : {
+          "destination" : "${App.Dashboards['Service Open Cases'].Id}",
+          "destinationType" : "dashboard",
+          "fontSize" : 12,
+          "includeState" : false,
+          "text" : "Prioritize Open Cases",
+          "textAlignment" : "center",
+          "textColor" : "#634F95"
+        },
+        "type" : "link"
+      },
+      "text_Add_text_" : {
+        "parameters" : {
+          "fontSize" : 20,
+          "text" : "Add text.",
+          "textAlignment" : "center",
+          "textColor" : "#091A3E"
+        },
+        "type" : "text"
+      },
+      "chart_case_count_by_reason" : {
+        "parameters" : {
+          "autoFitMode" : "none",
+          "showValues" : true,
+          "bins" : {
+            "breakpoints" : {
+              "high" : 100,
+              "low" : 0
+            },
+            "bands" : {
+              "high" : {
+                "color" : "#008000",
+                "label" : ""
+              },
+              "low" : {
+                "color" : "#B22222",
+                "label" : ""
+              },
+              "medium" : {
+                "color" : "#ffa500",
+                "label" : ""
+              }
+            }
+          },
+          "legend" : {
+            "showHeader" : true,
+            "show" : false,
+            "customSize" : "auto",
+            "position" : "right-top",
+            "inside" : false
+          },
+          "axisMode" : "multi",
+          "visualizationType" : "hbar",
+          "exploreLink" : true,
+          "title" : {
+            "label" : "",
+            "align" : "left",
+            "subtitleLabel" : ""
+          },
+          "trellis" : {
+            "enable" : false,
+            "type" : "x",
+            "parameters" : { },
+            "chartsPerLine" : 4
+          },
+          "binValues" : false,
+          "measureAxis2" : {
+            "sqrtScale" : false,
+            "showTitle" : true,
+            "showAxis" : true,
+            "title" : ""
+          },
+          "measureAxis1" : {
+            "sqrtScale" : false,
+            "showTitle" : false,
+            "showAxis" : false,
+            "title" : ""
+          },
+          "step" : "case_count_by_reason",
+          "theme" : "light",
+          "dimensionAxis" : {
+            "showTitle" : false,
+            "customSize" : 30,
+            "showAxis" : true,
+            "title" : ""
+          }
+        },
+        "type" : "chart"
+      },
+      "listselector_Type_1" : {
+        "parameters" : {
+          "compact" : false,
+          "expanded" : true,
+          "exploreLink" : false,
+          "instant" : false,
+          "measureField" : "count",
+          "step" : "Type_1",
+          "title" : "Type"
+        },
+        "type" : "listselector"
+      },
+      "text_Open_Cases_by_State" : {
+        "parameters" : {
+          "fontSize" : 14,
+          "text" : "Open Cases by State",
+          "textAlignment" : "center",
+          "textColor" : "#091A3E"
+        },
+        "type" : "text"
+      },
+      "chart_count_case_by_sla" : {
+        "parameters" : {
+          "showMeasureTitle" : false,
+          "legend" : {
+            "showHeader" : false,
+            "show" : true,
+            "customSize" : "auto",
+            "position" : "bottom-center",
+            "inside" : false
+          },
+          "showTotal" : false,
+          "visualizationType" : "pie",
+          "theme" : "light",
+          "step" : "count_case_by_sla",
+          "exploreLink" : true,
+          "title" : {
+            "label" : "",
+            "align" : "center",
+            "subtitleLabel" : ""
+          },
+          "trellis" : {
+            "enable" : false,
+            "type" : "x",
+            "parameters" : { },
+            "chartsPerLine" : 4
+          },
+          "inner" : 70
+        },
+        "type" : "chart"
+      },
+      "number_kpi_owner_count" : {
+        "parameters" : {
+          "compact" : false,
+          "exploreLink" : true,
+          "measureField" : "unique_OwnerId",
+          "numberColor" : "#FFFFFF",
+          "numberSize" : 24,
+          "step" : "kpi_owner_count",
+          "textAlignment" : "left",
+          "title" : "Agents",
+          "titleColor" : "#A3B8CC",
+          "titleSize" : 12
+        },
+        "type" : "number"
+      },
+      "text_Prioritized_Open_Cases" : {
+        "parameters" : {
+          "fontSize" : 20,
+          "text" : "Prioritize Open Cases",
+          "textAlignment" : "left",
+          "textColor" : "#091A3E"
+        },
+        "type" : "text"
+      },
+      "link_Backlog" : {
+        "parameters" : {
+          "destination" : "${App.Dashboards['Service Backlog'].Id}",
+          "destinationType" : "dashboard",
+          "fontSize" : 12,
+          "includeState" : false,
+          "text" : "Backlog",
+          "textAlignment" : "center",
+          "textColor" : "#091A3E"
+        },
+        "type" : "link"
+      },
+      "chart_Status_11" : {
+        "parameters" : {
+          "showMeasureTitle" : false,
+          "legend" : {
+            "showHeader" : false,
+            "show" : true,
+            "customSize" : "auto",
+            "position" : "bottom-center",
+            "inside" : false
+          },
+          "showTotal" : true,
+          "visualizationType" : "pie",
+          "step" : "Status_1",
+          "theme" : "light",
+          "exploreLink" : true,
+          "title" : {
+            "label" : "Open Cases by Status",
+            "align" : "center",
+            "subtitleLabel" : ""
+          },
+          "trellis" : {
+            "enable" : false,
+            "type" : "x",
+            "parameters" : { },
+            "chartsPerLine" : 4
+          },
+          "inner" : 80
+        },
+        "type" : "chart"
+      },
+      "text_Case_Segmentation" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "Case Segmentation",
+          "textAlignment" : "left",
+          "textColor" : "#091A3E"
+        },
+        "type" : "text"
+      },
+      "text_Open_Cases_by_Constants_CaseSLALabel1" : {
+        "parameters" : {
+          "fontSize" : 14,
+          "text" : "Open Cases by SLA Violation",
+          "textAlignment" : "center",
+          "textColor" : "#091A3E"
+        },
+        "type" : "text"
+      },
+      "listselector_filter_forecast_category" : {
+        "parameters" : {
+          "compact" : false,
+          "expanded" : true,
+          "exploreLink" : false,
+          "instant" : false,
+          "measureField" : "none",
+          "step" : "filter_forecast_category",
+          "title" : "Forecast Category"
+        },
+        "type" : "listselector"
+      },
+      "text_Open_Cases_by_Constants_CaseStatusLabel" : {
+        "parameters" : {
+          "fontSize" : 14,
+          "text" : "Open Cases by Status",
+          "textAlignment" : "left",
+          "textColor" : "#335779"
+        },
+        "type" : "text"
+      },
+      "text_Click_charts_to_filter_dashboard" : {
+        "parameters" : {
+          "fontSize" : 12,
+          "text" : "Click charts to filter dashboard",
+          "textAlignment" : "left",
+          "textColor" : "#7D98B3"
+        },
+        "type" : "text"
+      },
+      "pillbox_static_1" : {
+        "parameters" : {
+          "compact" : false,
+          "exploreLink" : false,
+          "step" : "static_1"
+        },
+        "type" : "pillbox"
+      },
+      "text_By_Product_Family" : {
+        "parameters" : {
+          "fontSize" : 14,
+          "text" : "By Product Family",
+          "textAlignment" : "left",
+          "textColor" : "#335779"
+        },
+        "type" : "text"
+      },
+      "text_By_Agent" : {
+        "parameters" : {
+          "fontSize" : 14,
+          "text" : "By Agent",
+          "textAlignment" : "left",
+          "textColor" : "#335779"
+        },
+        "type" : "text"
+      }
+    }
+  }
+}

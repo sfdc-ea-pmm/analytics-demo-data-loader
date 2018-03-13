@@ -1,0 +1,2786 @@
+{
+  "name" : "Sales_Wave_Pipe_Review_NoQuota",
+  "label" : "Sales Wave - Pipe Review_NoQuota",
+  "folder" : {
+    "id" : "${App.Folder.Id}"
+  },
+  "mobileDisabled" : false,
+  "state" : {
+    "dataSourceLinks" : [ ],
+    "filters" : [ ],
+    "gridLayouts" : [ ],
+    "layouts" : [
+  {
+        "device" : "default",
+        "pages" : [
+  {
+            "rows" : [
+  "box_Mob0 {colspan=6, rowspan=6, zIndex=-1, vpad=-10, hpad=-15} | row: {height=15}",
+  "text_26{colspan=6}",
+  "dimfilter_12 {colspan=3} | dimfilter_9{colspan=3}",
+  "dimfilter_13 {colspan=3} | dimfilter_7 {colspan=3}",
+  "dimfilter_5 {colspan=3} | dimfilter_8 {colspan=3}",
+  "datefilter_1 {colspan=6}",
+  "row : {height=10}",
+  "meafilter_1 {colspan=6, vpad=10}",
+  "text_22 {colspan=3, fontSize=24} | number_26 {colspan=3}",
+  "number_34 {colspan=3} | number_35 {colspan=3}",
+  "row : {height=10}",
+  "box_NewLine1 {colspan=6} | row: {height=1}",
+  "row : {height=5}",
+  "text_5 {colspan=3, fontSize=24} | number_23 {colspan=3}",
+  "number_17 {colspan=3} | number_19 {colspan=3}",
+  "row : {height=10}",
+  "box_NewLine2 {colspan=6} | row: {height=1}",
+  "row : {height=5}",
+  "text_9 {colspan=3, fontSize=24} | number_24 {colspan=3}",
+  "number_21 {colspan=3} | number_31 {colspan=3}",
+  "row : {height=10}",
+  "box_NewLine3 {colspan=6} | row: {height=1}",
+  "row : {height=5}",
+  "text_18 {colspan=3, fontSize=24} | number_25 {colspan=3}",
+  "number_32 {colspan=3} | number_33 {colspan=3}"
+  ]
+          },
+  {
+            "rows" : [
+  "sel_group3 {colspan=6}",
+  "row : {height=10}",
+  "text_28 {colspan=6, fontSize=20}",
+  "row : {height=10}",
+  "sel_hbar_time {colspan=6}",
+  "row : {height=10}",
+  "chart_4 {colspan=6}",
+  "row : {height=10}",
+  "row : {height=15}",
+  "box_NewLine21 {colspan=6} | row: {height=1}",
+  "row : {height=15}",
+  "text_21 {colspan=3, fontSize=20}",
+  "row : {height=10}",
+  "sel_hbar_forecast {colspan=6}",
+  "row : {height=10}",
+  "chart_11 {colspan=6, vAxisWidth=100}",
+  "row : {height=10}",
+  "text_13 {colspan=6, fontSize=20}",
+  "sel_hbar_cust {colspan=6}",
+  "row : {height=10}",
+  "chart_6 {colspan=6, vAxisWidth=100}",
+  "row : {height=10}",
+  "text_19 {colspan=6, fontSize=20, vpad=5}",
+  "sel_hbar_source {colspan=6}",
+  "row : {height=10}",
+  "chart_source {colspan=6, vAxisWidth=100}",
+  "row : {height=10}",
+  "text_14 {colspan=6, fontSize=20, vpad=5}",
+  "sel_hbar_geo {colspan=6}",
+  "row : {height=10}",
+  "chart_geo {colspan=6, vAxisWidth=100}",
+  "row : {height=10}",
+  "text_23 {colspan=6, fontSize=20, vpad=5}",
+  "sel_hbar_owner {colspan=6}",
+  "row : {height=10}",
+  "chart_owner {colspan=6, vAxisWidth=100}"
+  ]
+          },
+  {
+            "rows" : [
+  "text_31  {colspan=6, fontSize=20}",
+  "row : {height=10}",
+  "valuestable_3 {colspan=6}"
+  ]
+          }
+  ],
+        "version" : 1.0
+      }
+  ],
+    "steps" : {
+      "ForecastCategoryName_36" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.opportunity.Alias}"
+          }
+  ],
+        "isFacet" : true,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : "{{ selection(step_group3) }}",
+            "groups" : "{{selection(step_hbar_forecast)}}",
+            "filters" : [
+  [
+  "ForecastCategory",
+  [
+  "BestCase",
+  "Forecast",
+  "Pipeline"
+  ],
+  "in"
+  ],
+  [
+  "CloseDate",
+  [
+  "{{ value(selection(CloseDate_Year_CloseDate_Month_CloseDate_Day_64)) }}"
+  ]
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "pie"
+        }
+      },
+      "lens_52" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.opportunity.Alias}"
+          }
+  ],
+        "isFacet" : true,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "values" : [
+  "Account.Name",
+  "Name",
+  "Owner.Name",
+  "${Variables.Opportunity_Amount.fieldName}",
+  "CloseDate",
+  "ForecastCategory",
+  "StageName",
+  "${Variables.Customer_L2.sobjectName}.${Variables.Customer_L2.fieldName}",
+  "${Variables.Source_L2.fieldName}",
+  "${Variables.Geography_L2.sobjectName}.${Variables.Geography_L2.fieldName}"
+  ],
+            "filters" : [
+  [
+  "ForecastCategoryName",
+  [
+  "Closed",
+  "Omitted"
+  ],
+  "not in"
+  ],
+  [
+  "CloseDate",
+  [
+  "{{ value(selection(CloseDate_Year_CloseDate_Month_CloseDate_Day_64)) }}"
+  ]
+  ]
+  ],
+            "order" : [
+  [
+  "${Variables.Opportunity_Amount.fieldName}",
+  {
+                  "ascending" : false
+                }
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "grain",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "valuestable"
+        }
+      },
+      "Owner_Name_65" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.opportunity.Alias}"
+          }
+  ],
+        "isFacet" : true,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "sum",
+  "${Variables.Opportunity_Amount.fieldName}"
+  ]
+  ],
+            "groups" : [
+  "Owner.Name"
+  ],
+            "filters" : [
+  [
+  "CloseDate",
+  [
+  [
+  [
+  "${Constants.Fiscal_Prefix}quarter",
+  0
+  ],
+  [
+  "${Constants.Fiscal_Prefix}quarter",
+  0
+  ]
+  ]
+  ]
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "multi",
+        "start" : [ ],
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "Owner_Role_Name_66" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.opportunity.Alias}"
+          }
+  ],
+        "isFacet" : true,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "sum",
+  "${Variables.Opportunity_Amount.fieldName}"
+  ]
+  ],
+            "groups" : [
+  "Owner.Role.Name"
+  ],
+            "filters" : [
+  [
+  "CloseDate",
+  [
+  [
+  [
+  "${Constants.Fiscal_Prefix}quarter",
+  0
+  ],
+  [
+  "${Constants.Fiscal_Prefix}quarter",
+  0
+  ]
+  ]
+  ]
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "multi",
+        "start" : [ ],
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "step_oppty_source_58" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.opportunity.Alias}"
+          }
+  ],
+        "isFacet" : true,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : "{{ selection(step_group3) }}",
+            "values" : [ ],
+            "groups" : [
+  "{{ value(selection(step_hbar_source)) }}",
+  "{{ value(selection(step_hbar_forecast)) }}"
+  ],
+            "filters" : [
+  [
+  "ForecastCategory",
+  [
+  "BestCase",
+  "Forecast",
+  "Pipeline"
+  ]
+  ],
+  [
+  "CloseDate",
+  [
+  "{{ value(selection(CloseDate_Year_CloseDate_Month_CloseDate_Day_64)) }}"
+  ]
+  ]
+  ],
+            "aggregateFilters" : [ ],
+            "dimensions" : [
+  "${Variables.Source.sobjectName}.${Variables.Source.fieldName}",
+  "ForecastCategoryName"
+  ],
+            "order" : [
+  [
+  -1,
+  {
+                  "ascending" : false
+                }
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "options" : {
+            "legend" : false,
+            "legendHideHeader" : false,
+            "legendWidth" : 145,
+            "maxColumnWidth" : 200,
+            "minColumnWidth" : 30,
+            "miniBars" : 0,
+            "normalize" : false,
+            "sqrt" : false
+          },
+          "visualizationType" : "stackhbar"
+        }
+      },
+      "step_32" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.opportunity.Alias}"
+          }
+  ],
+        "isFacet" : true,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "avg",
+  "${Variables.Opportunity_Amount.fieldName}"
+  ]
+  ],
+            "values" : [ ],
+            "groups" : [ ],
+            "filters" : [
+  [
+  "ForecastCategory",
+  [
+  "Forecast"
+  ]
+  ],
+  [
+  "CloseDate",
+  [
+  "{{ value(selection(CloseDate_Year_CloseDate_Month_CloseDate_Day_64)) }}"
+  ]
+  ]
+  ],
+            "aggregateFilters" : [ ],
+            "dimensions" : [ ],
+            "order" : [ ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "options" : {
+            "legend" : true,
+            "legendHideHeader" : false,
+            "legendWidth" : 145,
+            "maxColumnWidth" : 200,
+            "minColumnWidth" : 30,
+            "miniBars" : 0,
+            "multiMetrics" : false,
+            "splitAxis" : false,
+            "sqrt" : false,
+            "trellis" : false
+          },
+          "visualizationType" : "hbar"
+        }
+      },
+      "step_hbar_source" : {
+        "datasets" : [ ],
+        "dimensions" : [ ],
+        "isFacet" : false,
+        "isGlobal" : false,
+        "selectMode" : "singlerequired",
+        "start" : [
+  [
+  "${Variables.Source_L2.fieldName}"
+  ]
+  ],
+        "type" : "static",
+        "useGlobal" : false,
+        "values" : [
+  {
+            "display" : "${Variables.Source.fieldLabel}",
+            "value" : [
+  "${Variables.Source.sobjectName}.${Variables.Source.fieldName}"
+  ]
+          },
+  {
+            "display" : "${Variables.Source_L2.fieldLabel}",
+            "value" : [
+  "${Variables.Source_L2.fieldName}"
+  ]
+          }
+  ]
+      },
+      "step_33" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.opportunity.Alias}"
+          }
+  ],
+        "isFacet" : true,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "sum",
+  "${Variables.Opportunity_Amount.fieldName}"
+  ]
+  ],
+            "values" : [ ],
+            "groups" : [ ],
+            "filters" : [
+  [
+  "ForecastCategory",
+  [
+  "BestCase"
+  ]
+  ],
+  [
+  "CloseDate",
+  [
+  "{{ value(selection(CloseDate_Year_CloseDate_Month_CloseDate_Day_64))}}"
+  ]
+  ]
+  ],
+            "aggregateFilters" : [ ],
+            "dimensions" : [ ],
+            "order" : [ ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "options" : {
+            "legend" : true,
+            "legendHideHeader" : false,
+            "legendWidth" : 145,
+            "maxColumnWidth" : 200,
+            "minColumnWidth" : 30,
+            "miniBars" : 0,
+            "multiMetrics" : false,
+            "splitAxis" : false,
+            "sqrt" : false,
+            "trellis" : false
+          },
+          "visualizationType" : "hbar"
+        }
+      },
+      "step_31" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.opportunity.Alias}"
+          }
+  ],
+        "isFacet" : true,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "sum",
+  "${Variables.Opportunity_Amount.fieldName}"
+  ]
+  ],
+            "values" : [ ],
+            "groups" : [ ],
+            "filters" : [
+  [
+  "ForecastCategory",
+  [
+  "Forecast"
+  ]
+  ],
+  [
+  "CloseDate",
+  [
+  "{{ value(selection(CloseDate_Year_CloseDate_Month_CloseDate_Day_64)) }}"
+  ]
+  ]
+  ],
+            "aggregateFilters" : [ ],
+            "dimensions" : [ ],
+            "order" : [ ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "options" : {
+            "legend" : true,
+            "legendHideHeader" : false,
+            "legendWidth" : 145,
+            "maxColumnWidth" : 200,
+            "minColumnWidth" : 30,
+            "miniBars" : 0,
+            "multiMetrics" : false,
+            "splitAxis" : false,
+            "sqrt" : false,
+            "trellis" : false
+          },
+          "visualizationType" : "hbar"
+        }
+      },
+      "step_group3" : {
+        "datasets" : [ ],
+        "dimensions" : [ ],
+        "isFacet" : false,
+        "isGlobal" : false,
+        "selectMode" : "singlerequired",
+        "start" : [
+  [
+  [
+  "sum",
+  "${Variables.Opportunity_Amount.fieldName}"
+  ]
+  ]
+  ],
+        "type" : "static",
+        "useGlobal" : false,
+        "values" : [
+  {
+            "display" : "$",
+            "value" : [
+  [
+  "sum",
+  "${Variables.Opportunity_Amount.fieldName}"
+  ]
+  ]
+          },
+  {
+            "display" : "#",
+            "value" : [
+  [
+  "count",
+  "*"
+  ]
+  ]
+          },
+  {
+            "display" : "AVG",
+            "value" : [
+  [
+  "avg",
+  "${Variables.Opportunity_Amount.fieldName}"
+  ]
+  ]
+          }
+  ]
+      },
+      "step_36" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.opportunity.Alias}"
+          }
+  ],
+        "isFacet" : true,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "avg",
+  "${Variables.Opportunity_Amount.fieldName}"
+  ]
+  ],
+            "values" : [ ],
+            "groups" : [ ],
+            "filters" : [
+  [
+  "ForecastCategory",
+  [
+  "Pipeline"
+  ]
+  ],
+  [
+  "CloseDate",
+  [
+  "{{ value(selection(CloseDate_Year_CloseDate_Month_CloseDate_Day_64)) }}"
+  ]
+  ]
+  ],
+            "aggregateFilters" : [ ],
+            "dimensions" : [ ],
+            "order" : [ ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "options" : {
+            "legend" : true,
+            "legendHideHeader" : false,
+            "legendWidth" : 145,
+            "maxColumnWidth" : 200,
+            "minColumnWidth" : 30,
+            "miniBars" : 0,
+            "multiMetrics" : false,
+            "splitAxis" : false,
+            "sqrt" : false,
+            "trellis" : false
+          },
+          "visualizationType" : "hbar"
+        }
+      },
+      "step_37" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.opportunity.Alias}"
+          }
+  ],
+        "isFacet" : true,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "sum",
+  "${Variables.Opportunity_Amount.fieldName}"
+  ]
+  ],
+            "values" : [ ],
+            "groups" : [ ],
+            "filters" : [
+  [
+  "ForecastCategory",
+  [
+  "BestCase",
+  "Forecast",
+  "Pipeline"
+  ]
+  ],
+  [
+  "CloseDate",
+  [
+  "{{ value(selection(CloseDate_Year_CloseDate_Month_CloseDate_Day_64)) }}"
+  ]
+  ]
+  ],
+            "aggregateFilters" : [ ],
+            "dimensions" : [ ],
+            "order" : [ ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "options" : {
+            "legend" : true,
+            "legendHideHeader" : false,
+            "legendWidth" : 145,
+            "maxColumnWidth" : 200,
+            "minColumnWidth" : 30,
+            "miniBars" : 0,
+            "multiMetrics" : false,
+            "splitAxis" : false,
+            "sqrt" : false,
+            "trellis" : false
+          },
+          "visualizationType" : "hbar"
+        }
+      },
+      "step_34" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.opportunity.Alias}"
+          }
+  ],
+        "isFacet" : true,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "avg",
+  "${Variables.Opportunity_Amount.fieldName}"
+  ]
+  ],
+            "values" : [ ],
+            "groups" : [ ],
+            "filters" : [
+  [
+  "ForecastCategory",
+  [
+  "BestCase"
+  ]
+  ],
+  [
+  "CloseDate",
+  [
+  "{{ value(selection(CloseDate_Year_CloseDate_Month_CloseDate_Day_64)) }}"
+  ]
+  ]
+  ],
+            "aggregateFilters" : [ ],
+            "dimensions" : [ ],
+            "order" : [ ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "options" : {
+            "legend" : true,
+            "legendHideHeader" : false,
+            "legendWidth" : 145,
+            "maxColumnWidth" : 200,
+            "minColumnWidth" : 30,
+            "miniBars" : 0,
+            "multiMetrics" : false,
+            "splitAxis" : false,
+            "sqrt" : false,
+            "trellis" : false
+          },
+          "visualizationType" : "hbar"
+        }
+      },
+      "step_35" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.opportunity.Alias}"
+          }
+  ],
+        "isFacet" : true,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "sum",
+  "${Variables.Opportunity_Amount.fieldName}"
+  ]
+  ],
+            "values" : [ ],
+            "groups" : [ ],
+            "filters" : [
+  [
+  "ForecastCategory",
+  [
+  "Pipeline"
+  ]
+  ],
+  [
+  "CloseDate",
+  [
+  "{{ value(selection(CloseDate_Year_CloseDate_Month_CloseDate_Day_64)) }}"
+  ]
+  ]
+  ],
+            "aggregateFilters" : [ ],
+            "dimensions" : [ ],
+            "order" : [ ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "options" : {
+            "legend" : true,
+            "legendHideHeader" : false,
+            "legendWidth" : 145,
+            "maxColumnWidth" : 200,
+            "minColumnWidth" : 30,
+            "miniBars" : 0,
+            "multiMetrics" : false,
+            "splitAxis" : false,
+            "sqrt" : false,
+            "trellis" : false
+          },
+          "visualizationType" : "hbar"
+        }
+      },
+      "step_38" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.opportunity.Alias}"
+          }
+  ],
+        "isFacet" : true,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "avg",
+  "${Variables.Opportunity_Amount.fieldName}"
+  ]
+  ],
+            "values" : [ ],
+            "groups" : [ ],
+            "filters" : [
+  [
+  "ForecastCategory",
+  [
+  "BestCase",
+  "Forecast",
+  "Pipeline"
+  ]
+  ],
+  [
+  "CloseDate",
+  [
+  "{{ value(selection(CloseDate_Year_CloseDate_Month_CloseDate_Day_64)) }}"
+  ]
+  ]
+  ],
+            "aggregateFilters" : [ ],
+            "dimensions" : [ ],
+            "order" : [ ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "options" : {
+            "legend" : true,
+            "legendHideHeader" : false,
+            "legendWidth" : 145,
+            "maxColumnWidth" : 200,
+            "minColumnWidth" : 30,
+            "miniBars" : 0,
+            "multiMetrics" : false,
+            "splitAxis" : false,
+            "sqrt" : false,
+            "trellis" : false
+          },
+          "visualizationType" : "hbar"
+        }
+      },
+      "step_hbar_owner" : {
+        "datasets" : [ ],
+        "dimensions" : [ ],
+        "isFacet" : false,
+        "isGlobal" : false,
+        "selectMode" : "singlerequired",
+        "start" : [
+  [
+  "Owner.Name"
+  ]
+  ],
+        "type" : "static",
+        "useGlobal" : false,
+        "values" : [
+  {
+            "display" : "Owner Role",
+            "value" : [
+  "Owner.Role.Name"
+  ]
+          },
+  {
+            "display" : "Owner Name",
+            "value" : [
+  "Owner.Name"
+  ]
+          }
+  ]
+      },
+      "step_hbar_cust" : {
+        "datasets" : [ ],
+        "dimensions" : [ ],
+        "isFacet" : false,
+        "isGlobal" : false,
+        "selectMode" : "singlerequired",
+        "start" : [
+  [
+  "${Variables.Customer_L2.sobjectName}.${Variables.Customer_L2.fieldName}"
+  ]
+  ],
+        "type" : "static",
+        "useGlobal" : false,
+        "values" : [
+  {
+            "display" : "${Variables.Customer.fieldLabel}",
+            "value" : [
+  "${Variables.Customer.sobjectName}.${Variables.Customer.fieldName}"
+  ]
+          },
+  {
+            "display" : "${Variables.Customer_L2.fieldLabel}",
+            "value" : [
+  "${Variables.Customer_L2.sobjectName}.${Variables.Customer_L2.fieldName}"
+  ]
+          }
+  ]
+      },
+      "step_hbar_geo" : {
+        "datasets" : [ ],
+        "dimensions" : [ ],
+        "isFacet" : false,
+        "isGlobal" : false,
+        "selectMode" : "singlerequired",
+        "start" : [
+  [
+  "${Variables.Geography.sobjectName}.${Variables.Geography.fieldName}"
+  ]
+  ],
+        "type" : "static",
+        "useGlobal" : false,
+        "values" : [
+  {
+            "display" : "${Variables.Geography.fieldLabel}",
+            "value" : [
+  "${Variables.Geography.sobjectName}.${Variables.Geography.fieldName}"
+  ]
+          },
+  {
+            "display" : "${Variables.Geography_L2.fieldLabel}",
+            "value" : [
+  "${Variables.Geography_L2.sobjectName}.${Variables.Geography_L2.fieldName}"
+  ]
+          }
+  ]
+      },
+      "CloseDate_Year_CloseDate_Month_37" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.opportunity.Alias}"
+          }
+  ],
+        "isFacet" : true,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : "{{ selection(step_group3) }}",
+            "groups" : "{{(selection(step_hbar_time)) }}",
+            "filters" : [
+  [
+  "ForecastCategory",
+  [
+  "BestCase",
+  "Forecast",
+  "Pipeline"
+  ],
+  "in"
+  ],
+  [
+  "CloseDate",
+  [
+  "{{ value(selection(CloseDate_Year_CloseDate_Month_CloseDate_Day_64)) }}"
+  ]
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "time"
+        }
+      },
+      "step_Opportunity_Account_Name_30" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.opportunity.Alias}"
+          }
+  ],
+        "isFacet" : true,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "sum",
+  "${Variables.Opportunity_Amount.fieldName}"
+  ]
+  ],
+            "values" : [ ],
+            "groups" : [
+  "Account.Name"
+  ],
+            "filters" : [
+  [
+  "ForecastCategory",
+  [
+  "BestCase",
+  "Forecast",
+  "Pipeline"
+  ]
+  ]
+  ],
+            "aggregateFilters" : [ ],
+            "dimensions" : [
+  "Account.Name"
+  ],
+            "order" : [ ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "multi",
+        "start" : [ ],
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "options" : {
+            "legend" : true,
+            "legendHideHeader" : false,
+            "legendWidth" : 145,
+            "maxColumnWidth" : 200,
+            "minColumnWidth" : 30,
+            "miniBars" : 0,
+            "multiMetrics" : false,
+            "splitAxis" : false,
+            "sqrt" : false,
+            "trellis" : false
+          },
+          "visualizationType" : "hbar"
+        }
+      },
+      "step_oppty_geo_59" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.opportunity.Alias}"
+          }
+  ],
+        "isFacet" : true,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : "{{ selection(step_group3) }}",
+            "values" : [ ],
+            "groups" : [
+  "{{ value(selection(step_hbar_geo)) }}",
+  "{{ value(selection(step_hbar_forecast)) }}"
+  ],
+            "filters" : [
+  [
+  "ForecastCategory",
+  [
+  "BestCase",
+  "Forecast",
+  "Pipeline"
+  ]
+  ],
+  [
+  "CloseDate",
+  [
+  "{{ value(selection(CloseDate_Year_CloseDate_Month_CloseDate_Day_64)) }}"
+  ]
+  ]
+  ],
+            "aggregateFilters" : [ ],
+            "dimensions" : [
+  "${Variables.Geography.sobjectName}.${Variables.Geography.fieldName}",
+  "ForecastCategoryName"
+  ],
+            "order" : [
+  [
+  -1,
+  {
+                  "ascending" : false
+                }
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "options" : {
+            "legend" : false,
+            "legendHideHeader" : false,
+            "legendWidth" : 145,
+            "maxColumnWidth" : 200,
+            "minColumnWidth" : 30,
+            "miniBars" : 0,
+            "normalize" : false,
+            "sqrt" : false
+          },
+          "visualizationType" : "stackhbar"
+        }
+      },
+      "CloseDate_Year_CloseDate_Month_CloseDate_Day_64" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.opportunity.Alias}"
+          }
+  ],
+        "isFacet" : true,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "sum",
+  "${Variables.Opportunity_Amount.fieldName}"
+  ]
+  ],
+            "groups" : [
+  [
+  "CloseDate_Year${Constants.Fiscal_Postfix}",
+  "CloseDate_Month",
+  "CloseDate_Day"
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "start" : [
+  [
+  [
+  "day",
+  0
+  ],
+  [
+  "day",
+  90
+  ]
+  ]
+  ],
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "step_44" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.opportunity.Alias}"
+          }
+  ],
+        "isFacet" : true,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "values" : [ ],
+            "groups" : [ ],
+            "filters" : [
+  [
+  "ForecastCategory",
+  [
+  "Forecast"
+  ]
+  ],
+  [
+  "CloseDate",
+  [
+  "{{ value(selection(CloseDate_Year_CloseDate_Month_CloseDate_Day_64)) }}"
+  ]
+  ]
+  ],
+            "aggregateFilters" : [ ],
+            "dimensions" : [ ],
+            "order" : [ ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "options" : {
+            "legend" : true,
+            "legendHideHeader" : false,
+            "legendWidth" : 145,
+            "maxColumnWidth" : 200,
+            "minColumnWidth" : 30,
+            "miniBars" : 0,
+            "multiMetrics" : false,
+            "splitAxis" : false,
+            "sqrt" : false,
+            "trellis" : false
+          },
+          "visualizationType" : "hbar"
+        }
+      },
+      "step_Opportunity_ForecastCategory_38" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.opportunity.Alias}"
+          }
+  ],
+        "isFacet" : true,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "sum",
+  "${Variables.Opportunity_Amount.fieldName}"
+  ]
+  ],
+            "values" : [ ],
+            "groups" : [
+  "ForecastCategoryName"
+  ],
+            "filters" : [
+  [
+  "ForecastCategory",
+  [
+  "BestCase",
+  "Forecast",
+  "Pipeline"
+  ]
+  ]
+  ],
+            "aggregateFilters" : [ ],
+            "dimensions" : [
+  "ForecastCategoryName"
+  ],
+            "order" : [ ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "multi",
+        "start" : [ ],
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "options" : {
+            "legend" : true,
+            "legendHideHeader" : false,
+            "legendWidth" : 145,
+            "maxColumnWidth" : 200,
+            "minColumnWidth" : 30,
+            "miniBars" : 0,
+            "multiMetrics" : false,
+            "splitAxis" : false,
+            "sqrt" : false,
+            "trellis" : false
+          },
+          "visualizationType" : "hbar"
+        }
+      },
+      "step_hbar_time" : {
+        "datasets" : [ ],
+        "dimensions" : [ ],
+        "isFacet" : false,
+        "isGlobal" : false,
+        "selectMode" : "singlerequired",
+        "start" : [
+  [
+  [
+  "CloseDate_Year",
+  "CloseDate_Month",
+  "CloseDate_Day"
+  ]
+  ]
+  ],
+        "type" : "static",
+        "useGlobal" : false,
+        "values" : [
+  {
+            "display" : "Month",
+            "value" : [
+  [
+  "CloseDate_Year",
+  "CloseDate_Month"
+  ]
+  ]
+          },
+  {
+            "display" : "Week",
+            "value" : [
+  [
+  "CloseDate_Year",
+  "CloseDate_Week"
+  ]
+  ]
+          },
+  {
+            "display" : "Day",
+            "value" : [
+  [
+  "CloseDate_Year",
+  "CloseDate_Month",
+  "CloseDate_Day"
+  ]
+  ]
+          }
+  ]
+      },
+      "Type_39" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.opportunity.Alias}"
+          }
+  ],
+        "isFacet" : true,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "sum",
+  "${Variables.Opportunity_Amount.fieldName}"
+  ]
+  ],
+            "groups" : [
+  "${Variables.Bookings.fieldName}"
+  ],
+            "filters" : [
+  [
+  "ForecastCategory",
+  [
+  "BestCase",
+  "Forecast",
+  "Pipeline"
+  ]
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "multi",
+        "start" : [ ],
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "step_47" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.opportunity.Alias}"
+          }
+  ],
+        "isFacet" : true,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "values" : [ ],
+            "groups" : [ ],
+            "filters" : [
+  [
+  "ForecastCategory",
+  [
+  "BestCase",
+  "Forecast",
+  "Pipeline"
+  ]
+  ],
+  [
+  "CloseDate",
+  [
+  "{{ value(selection(CloseDate_Year_CloseDate_Month_CloseDate_Day_64)) }}"
+  ]
+  ]
+  ],
+            "aggregateFilters" : [ ],
+            "dimensions" : [ ],
+            "order" : [ ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "options" : {
+            "legend" : true,
+            "legendHideHeader" : false,
+            "legendWidth" : 145,
+            "maxColumnWidth" : 200,
+            "minColumnWidth" : 30,
+            "miniBars" : 0,
+            "multiMetrics" : false,
+            "splitAxis" : false,
+            "sqrt" : false,
+            "trellis" : false
+          },
+          "visualizationType" : "hbar"
+        }
+      },
+      "step_hbar_forecast" : {
+        "datasets" : [ ],
+        "dimensions" : [ ],
+        "isFacet" : false,
+        "isGlobal" : false,
+        "selectMode" : "singlerequired",
+        "start" : [
+  [
+  "ForecastCategoryName"
+  ]
+  ],
+        "type" : "static",
+        "useGlobal" : false,
+        "values" : [
+  {
+            "display" : "Forecast",
+            "value" : [
+  "ForecastCategoryName"
+  ]
+          },
+  {
+            "display" : "Stage",
+            "value" : [
+  "StageName"
+  ]
+          }
+  ]
+      },
+      "step_45" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.opportunity.Alias}"
+          }
+  ],
+        "isFacet" : true,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "values" : [ ],
+            "groups" : [ ],
+            "filters" : [
+  [
+  "ForecastCategory",
+  [
+  "BestCase"
+  ]
+  ],
+  [
+  "CloseDate",
+  [
+  "{{ value(selection(CloseDate_Year_CloseDate_Month_CloseDate_Day_64)) }}"
+  ]
+  ]
+  ],
+            "aggregateFilters" : [ ],
+            "dimensions" : [ ],
+            "order" : [ ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "options" : {
+            "legend" : true,
+            "legendHideHeader" : false,
+            "legendWidth" : 145,
+            "maxColumnWidth" : 200,
+            "minColumnWidth" : 30,
+            "miniBars" : 0,
+            "multiMetrics" : false,
+            "splitAxis" : false,
+            "sqrt" : false,
+            "trellis" : false
+          },
+          "visualizationType" : "hbar"
+        }
+      },
+      "step_46" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.opportunity.Alias}"
+          }
+  ],
+        "isFacet" : true,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "values" : [ ],
+            "groups" : [ ],
+            "filters" : [
+  [
+  "ForecastCategory",
+  [
+  "Pipeline"
+  ]
+  ],
+  [
+  "CloseDate",
+  [
+  "{{ value(selection(CloseDate_Year_CloseDate_Month_CloseDate_Day_64)) }}"
+  ]
+  ]
+  ],
+            "aggregateFilters" : [ ],
+            "dimensions" : [ ],
+            "order" : [ ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "options" : {
+            "legend" : true,
+            "legendHideHeader" : false,
+            "legendWidth" : 145,
+            "maxColumnWidth" : 200,
+            "minColumnWidth" : 30,
+            "miniBars" : 0,
+            "multiMetrics" : false,
+            "splitAxis" : false,
+            "sqrt" : false,
+            "trellis" : false
+          },
+          "visualizationType" : "hbar"
+        }
+      },
+      "Amount_53" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.opportunity.Alias}"
+          }
+  ],
+        "isFacet" : true,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "sum",
+  "${Variables.Opportunity_Amount.fieldName}"
+  ]
+  ],
+            "filters" : [
+  [
+  "IsClosed",
+  [
+  "false"
+  ],
+  "in"
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "step_Opportunity_Account_Industry_Opportunity_ForecastCategory_57" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.opportunity.Alias}"
+          }
+  ],
+        "isFacet" : true,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : "{{ selection(step_group3) }}",
+            "values" : [ ],
+            "groups" : [
+  "{{ value(selection(step_hbar_cust)) }}",
+  "{{ value(selection(step_hbar_forecast)) }}"
+  ],
+            "filters" : [
+  [
+  "ForecastCategory",
+  [
+  "BestCase",
+  "Forecast",
+  "Pipeline"
+  ]
+  ],
+  [
+  "CloseDate",
+  [
+  "{{ value(selection(CloseDate_Year_CloseDate_Month_CloseDate_Day_64)) }}"
+  ]
+  ]
+  ],
+            "aggregateFilters" : [ ],
+            "dimensions" : [
+  "${Variables.Customer_L2.sobjectName}.${Variables.Customer_L2.fieldName}",
+  "ForecastCategoryName"
+  ],
+            "order" : [
+  [
+  -1,
+  {
+                  "ascending" : false
+                }
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "options" : {
+            "legend" : false,
+            "legendHideHeader" : false,
+            "legendWidth" : 145,
+            "maxColumnWidth" : 200,
+            "minColumnWidth" : 30,
+            "miniBars" : 0,
+            "normalize" : false,
+            "sqrt" : false
+          },
+          "visualizationType" : "stackhbar"
+        }
+      },
+      "step_Opportunity_StageName_39" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.opportunity.Alias}"
+          }
+  ],
+        "isFacet" : true,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "sum",
+  "${Variables.Opportunity_Amount.fieldName}"
+  ]
+  ],
+            "values" : [ ],
+            "groups" : [
+  "StageName"
+  ],
+            "filters" : [
+  [
+  "ForecastCategory",
+  [
+  "BestCase",
+  "Forecast",
+  "Pipeline"
+  ]
+  ]
+  ],
+            "aggregateFilters" : [ ],
+            "dimensions" : [
+  "StageName"
+  ],
+            "order" : [ ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "multi",
+        "start" : [ ],
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "options" : {
+            "legend" : true,
+            "legendHideHeader" : false,
+            "legendWidth" : 145,
+            "maxColumnWidth" : 200,
+            "minColumnWidth" : 30,
+            "miniBars" : 0,
+            "multiMetrics" : false,
+            "splitAxis" : false,
+            "sqrt" : false,
+            "trellis" : false
+          },
+          "visualizationType" : "hbar"
+        }
+      },
+      "step_oppty_owner_60" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.opportunity.Alias}"
+          }
+  ],
+        "isFacet" : true,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : "{{ selection(step_group3) }}",
+            "values" : [ ],
+            "groups" : [
+  "{{ value(selection(step_hbar_owner)) }}",
+  "{{ value(selection(step_hbar_forecast)) }}"
+  ],
+            "filters" : [
+  [
+  "ForecastCategory",
+  [
+  "BestCase",
+  "Forecast",
+  "Pipeline"
+  ]
+  ],
+  [
+  "CloseDate",
+  [
+  "{{ value(selection(CloseDate_Year_CloseDate_Month_CloseDate_Day_64)) }}"
+  ]
+  ]
+  ],
+            "aggregateFilters" : [ ],
+            "dimensions" : [
+  "Owner.Name",
+  "ForecastCategoryName"
+  ],
+            "order" : [
+  [
+  -1,
+  {
+                  "ascending" : false
+                }
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "options" : {
+            "legend" : false,
+            "legendHideHeader" : false,
+            "legendWidth" : 145,
+            "maxColumnWidth" : 200,
+            "minColumnWidth" : 30,
+            "miniBars" : 0,
+            "normalize" : false,
+            "sqrt" : false
+          },
+          "visualizationType" : "stackhbar"
+        }
+      }
+    },
+    "widgets" : {
+      "text_18" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "Pipeline",
+          "textAlignment" : "left",
+          "textColor" : "rgb(22, 50, 92)"
+        },
+        "position" : {
+          "x" : 700,
+          "y" : 140,
+          "zIndex" : 965
+        },
+        "type" : "text"
+      },
+      "text_17" : {
+        "parameters" : {
+          "fontSize" : 65,
+          "text" : "=",
+          "textAlignment" : "left",
+          "textColor" : "rgb(255, 255, 255)"
+        },
+        "position" : {
+          "x" : 960,
+          "y" : 170,
+          "zIndex" : 969
+        },
+        "type" : "text"
+      },
+      "text_19" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "By Source",
+          "textAlignment" : "left",
+          "textColor" : "rgb(41, 71, 102)"
+        },
+        "position" : {
+          "x" : 680,
+          "y" : 1240,
+          "zIndex" : 997
+        },
+        "type" : "text"
+      },
+      "text_14" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "By Geo",
+          "textAlignment" : "left",
+          "textColor" : "rgb(41, 71, 102)"
+        },
+        "position" : {
+          "x" : 40,
+          "y" : 1240,
+          "zIndex" : 996
+        },
+        "type" : "text"
+      },
+      "number_19" : {
+        "parameters" : {
+          "compact" : true,
+          "fontSize" : 20,
+          "measureField" : "avg_${Variables.Opportunity_Amount.fieldName}",
+          "step" : "step_32",
+          "textAlignment" : "left",
+          "textColor" : "rgb(153, 153, 153)",
+          "title" : "Avg  Selling Price"
+        },
+        "position" : {
+          "w" : "130",
+          "x" : 180,
+          "y" : 250,
+          "zIndex" : 960
+        },
+        "type" : "number"
+      },
+      "text_13" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "By Customer",
+          "textAlignment" : "left",
+          "textColor" : "rgb(41, 71, 102)"
+        },
+        "position" : {
+          "x" : 40,
+          "y" : 940,
+          "zIndex" : 995
+        },
+        "type" : "text"
+      },
+      "number_17" : {
+        "parameters" : {
+          "fontSize" : 26,
+          "measureField" : "sum_${Variables.Opportunity_Amount.fieldName}",
+          "step" : "step_31",
+          "textAlignment" : "left",
+          "title" : "${Variables.Opportunity_Amount.fieldName}"
+        },
+        "position" : {
+          "w" : "220",
+          "x" : 40,
+          "y" : 180,
+          "zIndex" : 958
+        },
+        "type" : "number"
+      },
+      "text_12" : {
+        "parameters" : {
+          "fontSize" : 65,
+          "text" : "+",
+          "textAlignment" : "left",
+          "textColor" : "rgb(255, 255, 255)"
+        },
+        "position" : {
+          "x" : 300,
+          "y" : 170,
+          "zIndex" : 962
+        },
+        "type" : "text"
+      },
+      "datefilter_1" : {
+        "parameters" : {
+          "expanded" : false,
+          "step" : "CloseDate_Year_CloseDate_Month_CloseDate_Day_64",
+          "title" : "Calendar Close Date"
+        },
+        "position" : {
+          "h" : "50",
+          "w" : "150",
+          "x" : 30,
+          "y" : 390,
+          "zIndex" : 100009
+        },
+        "type" : "dateselector"
+      },
+      "text_11" : {
+        "parameters" : {
+          "fontSize" : 65,
+          "text" : "+",
+          "textAlignment" : "left",
+          "textColor" : "rgb(255, 255, 255)"
+        },
+        "position" : {
+          "x" : 630,
+          "y" : 170,
+          "zIndex" : 963
+        },
+        "type" : "text"
+      },
+      "box_Pipe_Details_by" : {
+        "parameters" : {
+          "backgroundColor" : "rgb(255, 255, 255)",
+          "borderColor" : "rgb(163, 184, 204)"
+        },
+        "position" : {
+          "h" : "800",
+          "w" : "1300",
+          "x" : 30,
+          "y" : 780,
+          "zIndex" : 26
+        },
+        "type" : "box"
+      },
+      "chart_6" : {
+        "parameters" : {
+          "visualizationType" : "stackhbar",
+          "step" : "step_Opportunity_Account_Industry_Opportunity_ForecastCategory_57"
+        },
+        "position" : {
+          "h" : "210",
+          "w" : "620",
+          "x" : 50,
+          "y" : 1010,
+          "zIndex" : 949
+        },
+        "type" : "chart"
+      },
+      "box_13" : {
+        "parameters" : {
+          "backgroundColor" : "rgb(255, 255, 255)",
+          "borderColor" : "rgb(92, 122, 153)"
+        },
+        "position" : {
+          "h" : "180",
+          "w" : "310",
+          "x" : 1020,
+          "y" : 130,
+          "zIndex" : 98
+        },
+        "type" : "box"
+      },
+      "box_12" : {
+        "parameters" : {
+          "backgroundColor" : "rgb(92, 122, 153)",
+          "borderColor" : "rgba(0, 0, 0, 0)"
+        },
+        "position" : {
+          "h" : "240",
+          "w" : "1370",
+          "x" : 0,
+          "y" : 100,
+          "zIndex" : 58
+        },
+        "type" : "box"
+      },
+      "text_5" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "Commit",
+          "textAlignment" : "left",
+          "textColor" : "rgb(22, 50, 92)"
+        },
+        "position" : {
+          "x" : 40,
+          "y" : 140,
+          "zIndex" : 957
+        },
+        "type" : "text"
+      },
+      "box_10" : {
+        "parameters" : {
+          "backgroundColor" : "rgb(255, 255, 255)"
+        },
+        "position" : {
+          "h" : "200",
+          "w" : "300",
+          "x" : 1050,
+          "y" : 130,
+          "zIndex" : 56
+        },
+        "type" : "box"
+      },
+      "chart_4" : {
+        "parameters" : {
+          "visualizationType" : "time",
+          "step" : "CloseDate_Year_CloseDate_Month_37"
+        },
+        "position" : {
+          "h" : "230",
+          "w" : "1060",
+          "x" : 250,
+          "y" : 520,
+          "zIndex" : 990
+        },
+        "type" : "chart"
+      },
+      "text_9" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "Best Case",
+          "textAlignment" : "left",
+          "textColor" : "rgb(22, 50, 92)"
+        },
+        "position" : {
+          "x" : 370,
+          "y" : 140,
+          "zIndex" : 952
+        },
+        "type" : "text"
+      },
+      "sel_hbar_cust" : {
+        "parameters" : {
+          "step" : "step_hbar_cust",
+          "title" : ""
+        },
+        "position" : {
+          "w" : "370",
+          "x" : 60,
+          "y" : 960,
+          "zIndex" : 935
+        },
+        "type" : "pillbox"
+      },
+      "number_23" : {
+        "parameters" : {
+          "fontSize" : 20,
+          "measureField" : "count",
+          "step" : "step_44",
+          "textAlignment" : "left",
+          "textColor" : "rgb(153, 153, 153)",
+          "title" : "Oppty"
+        },
+        "position" : {
+          "w" : "130",
+          "x" : 40,
+          "y" : 250,
+          "zIndex" : 959
+        },
+        "type" : "number"
+      },
+      "number_21" : {
+        "parameters" : {
+          "fontSize" : 26,
+          "measureField" : "sum_${Variables.Opportunity_Amount.fieldName}",
+          "step" : "step_33",
+          "textAlignment" : "left",
+          "title" : "${Variables.Opportunity_Amount.fieldName}"
+        },
+        "position" : {
+          "w" : "240",
+          "x" : 370,
+          "y" : 180,
+          "zIndex" : 953
+        },
+        "type" : "number"
+      },
+      "dimfilter_7" : {
+        "parameters" : {
+          "expanded" : false,
+          "instant" : false,
+          "step" : "step_Opportunity_ForecastCategory_38",
+          "title" : "Forecast Category"
+        },
+        "position" : {
+          "h" : "50",
+          "w" : "150",
+          "x" : 190,
+          "y" : 390,
+          "zIndex" : 100016
+        },
+        "type" : "listselector"
+      },
+      "dimfilter_8" : {
+        "parameters" : {
+          "expanded" : false,
+          "instant" : false,
+          "step" : "step_Opportunity_StageName_39",
+          "title" : "Stage Name"
+        },
+        "position" : {
+          "h" : "50",
+          "w" : "150",
+          "x" : 350,
+          "y" : 390,
+          "zIndex" : 100015
+        },
+        "type" : "listselector"
+      },
+      "dimfilter_9" : {
+        "parameters" : {
+          "expanded" : false,
+          "instant" : false,
+          "step" : "Type_39",
+          "title" : "Opportunity Type"
+        },
+        "position" : {
+          "h" : "50",
+          "w" : "150",
+          "x" : 510,
+          "y" : 390,
+          "zIndex" : 100019
+        },
+        "type" : "listselector"
+      },
+      "dimfilter_5" : {
+        "parameters" : {
+          "expanded" : false,
+          "instant" : false,
+          "measureField" : "sum_${Variables.Opportunity_Amount.fieldName}",
+          "step" : "step_Opportunity_Account_Name_30"
+        },
+        "position" : {
+          "h" : "50",
+          "w" : "160",
+          "x" : 990,
+          "y" : 390,
+          "zIndex" : 100017
+        },
+        "type" : "listselector"
+      },
+      "chart_owner" : {
+        "parameters" : {
+          "visualizationType" : "stackhbar",
+          "step" : "step_oppty_owner_60"
+        },
+        "position" : {
+          "h" : "210",
+          "w" : "620",
+          "x" : 690,
+          "y" : 1010,
+          "zIndex" : 949
+        },
+        "type" : "chart"
+      },
+      "box_Pipe_Expected_to_Close" : {
+        "parameters" : {
+          "backgroundColor" : "rgb(255, 255, 255)",
+          "borderColor" : "rgb(163, 184, 204)"
+        },
+        "position" : {
+          "h" : "300",
+          "w" : "1300",
+          "x" : 30,
+          "y" : 460,
+          "zIndex" : 989
+        },
+        "type" : "box"
+      },
+      "number_26" : {
+        "parameters" : {
+          "fontSize" : 20,
+          "measureField" : "count",
+          "step" : "step_47",
+          "textAlignment" : "left",
+          "textColor" : "rgb(153, 153, 153)",
+          "title" : "Oppty"
+        },
+        "position" : {
+          "w" : "130",
+          "x" : 1030,
+          "y" : 250,
+          "zIndex" : 973
+        },
+        "type" : "number"
+      },
+      "box_commit" : {
+        "parameters" : {
+          "backgroundColor" : "rgb(255, 255, 255)",
+          "borderColor" : "rgb(92, 122, 153)"
+        },
+        "position" : {
+          "h" : "180",
+          "w" : "290",
+          "x" : 30,
+          "y" : 130,
+          "zIndex" : 956
+        },
+        "type" : "box"
+      },
+      "dimfilter_12" : {
+        "parameters" : {
+          "expanded" : false,
+          "instant" : false,
+          "step" : "Owner_Name_65"
+        },
+        "position" : {
+          "h" : "50",
+          "w" : "150",
+          "x" : 830,
+          "y" : 390,
+          "zIndex" : 100009
+        },
+        "type" : "listselector"
+      },
+      "number_25" : {
+        "parameters" : {
+          "fontSize" : 20,
+          "measureField" : "count",
+          "step" : "step_46",
+          "textAlignment" : "left",
+          "textColor" : "rgb(153, 153, 153)",
+          "title" : "Oppty"
+        },
+        "position" : {
+          "w" : "130",
+          "x" : 700,
+          "y" : 250,
+          "zIndex" : 967
+        },
+        "type" : "number"
+      },
+      "box_white" : {
+        "parameters" : {
+          "backgroundColor" : "rgb(255, 255, 255)",
+          "borderColor" : "rgb(217, 218, 223)"
+        },
+        "position" : {
+          "h" : "680",
+          "w" : "1120",
+          "x" : 220,
+          "y" : 440,
+          "zIndex" : 2
+        },
+        "type" : "box"
+      },
+      "dimfilter_13" : {
+        "parameters" : {
+          "expanded" : false,
+          "instant" : false,
+          "step" : "Owner_Role_Name_66"
+        },
+        "position" : {
+          "h" : "50",
+          "w" : "150",
+          "x" : 670,
+          "y" : 390,
+          "zIndex" : 100010
+        },
+        "type" : "listselector"
+      },
+      "number_24" : {
+        "parameters" : {
+          "fontSize" : 20,
+          "measureField" : "count",
+          "step" : "step_45",
+          "textAlignment" : "left",
+          "textColor" : "rgb(153, 153, 153)",
+          "title" : "Oppty"
+        },
+        "position" : {
+          "w" : "130",
+          "x" : 370,
+          "y" : 250,
+          "zIndex" : 954
+        },
+        "type" : "number"
+      },
+      "sel_group3" : {
+        "parameters" : {
+          "step" : "step_group3",
+          "title" : ""
+        },
+        "position" : {
+          "w" : "130",
+          "x" : 1210,
+          "y" : 390,
+          "zIndex" : 16
+        },
+        "type" : "pillbox"
+      },
+      "sel_hbar_source" : {
+        "parameters" : {
+          "step" : "step_hbar_source",
+          "title" : ""
+        },
+        "position" : {
+          "w" : "370",
+          "x" : 700,
+          "y" : 1270,
+          "zIndex" : 935
+        },
+        "type" : "pillbox"
+      },
+      "chart_geo" : {
+        "parameters" : {
+          "visualizationType" : "stackhbar",
+          "step" : "step_oppty_geo_59"
+        },
+        "position" : {
+          "h" : "210",
+          "w" : "620",
+          "x" : 50,
+          "y" : 1320,
+          "zIndex" : 949
+        },
+        "type" : "chart"
+      },
+      "meafilter_1" : {
+        "parameters" : {
+          "step" : "Amount_53"
+        },
+        "position" : {
+          "h" : "120",
+          "w" : "170",
+          "x" : 60,
+          "y" : 590,
+          "zIndex" : 100005
+        },
+        "type" : "rangeselector"
+      },
+      "chart_11" : {
+        "parameters" : {
+          "legend" : true,
+          "visualizationType" : "stackhbar",
+          "step" : "ForecastCategoryName_36"
+        },
+        "position" : {
+          "h" : "160",
+          "w" : "1070",
+          "x" : 240,
+          "y" : 800,
+          "zIndex" : 51
+        },
+        "type" : "chart"
+      },
+      "number_34" : {
+        "parameters" : {
+          "fontSize" : 26,
+          "measureField" : "sum_${Variables.Opportunity_Amount.fieldName}",
+          "step" : "step_37",
+          "textAlignment" : "left",
+          "title" : "${Variables.Opportunity_Amount.fieldName}"
+        },
+        "position" : {
+          "w" : "260",
+          "x" : 1030,
+          "y" : 180,
+          "zIndex" : 972
+        },
+        "type" : "number"
+      },
+      "number_33" : {
+        "parameters" : {
+          "compact" : true,
+          "fontSize" : 20,
+          "measureField" : "avg_${Variables.Opportunity_Amount.fieldName}",
+          "step" : "step_36",
+          "textAlignment" : "left",
+          "textColor" : "rgb(153, 153, 153)",
+          "title" : "Avg Selling Price"
+        },
+        "position" : {
+          "w" : "130",
+          "x" : 840,
+          "y" : 250,
+          "zIndex" : 968
+        },
+        "type" : "number"
+      },
+      "box_best_case" : {
+        "parameters" : {
+          "backgroundColor" : "rgb(255, 255, 255)",
+          "borderColor" : "rgb(92, 122, 153)"
+        },
+        "position" : {
+          "h" : "180",
+          "w" : "290",
+          "x" : 360,
+          "y" : 130,
+          "zIndex" : 951
+        },
+        "type" : "box"
+      },
+      "number_32" : {
+        "parameters" : {
+          "fontSize" : 26,
+          "measureField" : "sum_${Variables.Opportunity_Amount.fieldName}",
+          "step" : "step_35",
+          "textAlignment" : "left",
+          "title" : "${Variables.Opportunity_Amount.fieldName}"
+        },
+        "position" : {
+          "w" : "250",
+          "x" : 700,
+          "y" : 180,
+          "zIndex" : 966
+        },
+        "type" : "number"
+      },
+      "number_31" : {
+        "parameters" : {
+          "compact" : true,
+          "fontSize" : 20,
+          "measureField" : "avg_${Variables.Opportunity_Amount.fieldName}",
+          "step" : "step_34",
+          "textAlignment" : "left",
+          "textColor" : "rgb(153, 153, 153)",
+          "title" : "Avg Selling Price"
+        },
+        "position" : {
+          "w" : "130",
+          "x" : 510,
+          "y" : 250,
+          "zIndex" : 955
+        },
+        "type" : "number"
+      },
+      "box_NewLine4" : {
+        "parameters" : {
+          "backgroundColor" : "rgb(240,240,244)",
+          "borderColor" : "rgba(0, 0, 0, 0)"
+        },
+        "position" : {
+          "h" : "40",
+          "w" : "260",
+          "x" : 310,
+          "y" : 0,
+          "zIndex" : -1
+        },
+        "type" : "box"
+      },
+      "box_NewLine3" : {
+        "parameters" : {
+          "backgroundColor" : "rgb(240,240,244)",
+          "borderColor" : "rgba(0, 0, 0, 0)"
+        },
+        "position" : {
+          "h" : "40",
+          "w" : "260",
+          "x" : 310,
+          "y" : 0,
+          "zIndex" : -1
+        },
+        "type" : "box"
+      },
+      "box_NewLine2" : {
+        "parameters" : {
+          "backgroundColor" : "rgb(240,240,244)",
+          "borderColor" : "rgba(0, 0, 0, 0)"
+        },
+        "position" : {
+          "h" : "40",
+          "w" : "260",
+          "x" : 310,
+          "y" : 0,
+          "zIndex" : -1
+        },
+        "type" : "box"
+      },
+      "text_31" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "Top Open Opportunities",
+          "textAlignment" : "left",
+          "textColor" : "rgb(41, 71, 102)"
+        },
+        "position" : {
+          "x" : 40,
+          "y" : 1620,
+          "zIndex" : 994
+        },
+        "type" : "text"
+      },
+      "box_NewLine1" : {
+        "parameters" : {
+          "backgroundColor" : "rgb(240,240,244)",
+          "borderColor" : "rgba(0, 0, 0, 0)"
+        },
+        "position" : {
+          "h" : "40",
+          "w" : "260",
+          "x" : 310,
+          "y" : 0,
+          "zIndex" : -1
+        },
+        "type" : "box"
+      },
+      "box_Top_Open_Opportunities" : {
+        "parameters" : {
+          "backgroundColor" : "rgb(255, 255, 255)",
+          "borderColor" : "rgb(163, 184, 204)"
+        },
+        "position" : {
+          "h" : "540",
+          "w" : "1300",
+          "x" : 30,
+          "y" : 1600,
+          "zIndex" : 50
+        },
+        "type" : "box"
+      },
+      "number_35" : {
+        "parameters" : {
+          "compact" : true,
+          "fontSize" : 20,
+          "measureField" : "avg_${Variables.Opportunity_Amount.fieldName}",
+          "step" : "step_38",
+          "textAlignment" : "left",
+          "textColor" : "rgb(153, 153, 153)",
+          "title" : "Avg Selling Price"
+        },
+        "position" : {
+          "w" : "130",
+          "x" : 1170,
+          "y" : 250,
+          "zIndex" : 974
+        },
+        "type" : "number"
+      },
+      "sel_hbar_owner" : {
+        "parameters" : {
+          "step" : "step_hbar_owner",
+          "title" : ""
+        },
+        "position" : {
+          "w" : "410",
+          "x" : 700,
+          "y" : 960,
+          "zIndex" : 935
+        },
+        "type" : "pillbox"
+      },
+      "sel_hbar_time" : {
+        "parameters" : {
+          "step" : "step_hbar_time",
+          "title" : ""
+        },
+        "position" : {
+          "w" : "200",
+          "x" : 60,
+          "y" : 530,
+          "zIndex" : 991
+        },
+        "type" : "pillbox"
+      },
+      "box_pipeline" : {
+        "parameters" : {
+          "backgroundColor" : "rgb(255, 255, 255)",
+          "borderColor" : "rgb(92, 122, 153)"
+        },
+        "position" : {
+          "h" : "180",
+          "w" : "290",
+          "x" : 690,
+          "y" : 130,
+          "zIndex" : 964
+        },
+        "type" : "box"
+      },
+      "box_NewLine21" : {
+        "parameters" : {
+          "backgroundColor" : "rgb(240,240,244)",
+          "borderColor" : "rgba(0, 0, 0, 0)"
+        },
+        "position" : {
+          "h" : "40",
+          "w" : "260",
+          "x" : 310,
+          "y" : 0,
+          "zIndex" : -1
+        },
+        "type" : "box"
+      },
+      "sel_hbar_forecast" : {
+        "parameters" : {
+          "step" : "step_hbar_forecast",
+          "title" : ""
+        },
+        "position" : {
+          "w" : "170",
+          "x" : 60,
+          "y" : 840,
+          "zIndex" : 935
+        },
+        "type" : "pillbox"
+      },
+      "big_background_box" : {
+        "parameters" : {
+          "backgroundColor" : "rgb(242, 246, 250)",
+          "borderColor" : "rgba(146, 103, 194, 0)"
+        },
+        "position" : {
+          "h" : "2180",
+          "w" : "1370",
+          "x" : 0,
+          "y" : 0,
+          "zIndex" : 2
+        },
+        "type" : "box"
+      },
+      "text_28" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "Pipe Expected to Close",
+          "textAlignment" : "left",
+          "textColor" : "rgb(41, 71, 102)"
+        },
+        "position" : {
+          "x" : 40,
+          "y" : 480,
+          "zIndex" : 992
+        },
+        "type" : "text"
+      },
+      "link_1" : {
+        "parameters" : {
+          "destination" : "${App.Dashboards['Sales Wave - Pipe Activity'].Id}",
+          "destinationType" : "dashboard",
+          "fontSize" : 14,
+          "includeState" : true,
+          "text" : "MANAGE PIPE ACTIVITY",
+          "textColor" : "rgb(92, 122, 153)",
+          "visualizationType" : "hbar"
+        },
+        "position" : {
+          "x" : 1120,
+          "y" : 1620,
+          "zIndex" : 999
+        },
+        "type" : "link"
+      },
+      "text_26" : {
+        "parameters" : {
+          "fontSize" : 36,
+          "text" : "Pipe Review",
+          "textAlignment" : "left",
+          "textColor" : "rgb(41, 71, 102)"
+        },
+        "position" : {
+          "x" : 10,
+          "y" : 20,
+          "zIndex" : 961
+        },
+        "type" : "text"
+      },
+      "text_21" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "Pipe Details",
+          "textAlignment" : "left",
+          "textColor" : "rgb(41, 71, 102)"
+        },
+        "position" : {
+          "x" : 40,
+          "y" : 800,
+          "zIndex" : 41
+        },
+        "type" : "text"
+      },
+      "chart_source" : {
+        "parameters" : {
+          "visualizationType" : "stackhbar",
+          "step" : "step_oppty_source_58"
+        },
+        "position" : {
+          "h" : "210",
+          "w" : "620",
+          "x" : 690,
+          "y" : 1320,
+          "zIndex" : 949
+        },
+        "type" : "chart"
+      },
+      "text_23" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "By Owner",
+          "textAlignment" : "left",
+          "textColor" : "rgb(41, 71, 102)"
+        },
+        "position" : {
+          "x" : 680,
+          "y" : 940,
+          "zIndex" : 998
+        },
+        "type" : "text"
+      },
+      "box_Mob0" : {
+        "parameters" : {
+          "backgroundColor" : "rgb(240, 240, 244)",
+          "borderColor" : "rgba(0, 0, 0, 0)"
+        },
+        "position" : {
+          "h" : "390",
+          "w" : "1370",
+          "x" : 0,
+          "y" : 90,
+          "zIndex" : -1
+        },
+        "type" : "box"
+      },
+      "text_22" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "Open Pipe",
+          "textAlignment" : "left",
+          "textColor" : "rgb(52, 74, 95)"
+        },
+        "position" : {
+          "x" : 1030,
+          "y" : 140,
+          "zIndex" : 971
+        },
+        "type" : "text"
+      },
+      "valuestable_3" : {
+        "parameters" : {
+          "step" : "lens_52"
+        },
+        "position" : {
+          "h" : "450",
+          "w" : "1270",
+          "x" : 40,
+          "y" : 1670,
+          "zIndex" : 993
+        },
+        "type" : "valuestable"
+      },
+      "sel_hbar_geo" : {
+        "parameters" : {
+          "step" : "step_hbar_geo",
+          "title" : ""
+        },
+        "position" : {
+          "w" : "410",
+          "x" : 60,
+          "y" : 1270,
+          "zIndex" : 935
+        },
+        "type" : "pillbox"
+      }
+    }
+  }
+}

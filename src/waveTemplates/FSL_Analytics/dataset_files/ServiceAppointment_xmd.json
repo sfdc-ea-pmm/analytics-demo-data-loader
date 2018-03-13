@@ -1,0 +1,138 @@
+{"dataset":{},"dates":[],"derivedDimensions":[],"derivedMeasures":[
+	{
+      "field": "perc_Percent",
+      "format": {
+        "customFormat": "[\"#,###%\",1]"
+      },
+      "label": "perc_Percent",
+      "showInExplorer": false
+    },
+    {
+      "field": "perc_mean_time_to_repair",
+      "format": {
+        "customFormat": "[\"#,###%\",1]"
+      },
+      "label": "perc_mean_time_to_repair",
+      "showInExplorer": false
+    },
+        {
+      "field": "perc_first_time_fix",
+      "format": {
+        "customFormat": "[\"#,###%\",1]"
+      },
+      "label": "perc_first_time_fix",
+      "showInExplorer": false
+    },
+            {
+      "field": "perc_jobs_per_agent_period_over_period",
+      "format": {
+        "customFormat": "[\"#,###%\",1]"
+      },
+      "label": "perc_jobs_per_agent_period_over_period",
+      "showInExplorer": false
+    },
+     {
+      "field": "perc_util_compare",
+      "format": {
+        "customFormat": "[\"#,###%\",1]"
+      },
+      "label": "perc_util_compare",
+      "showInExplorer": false
+    },
+    {
+      "field": "perc_sla_violations",
+      "format": {
+        "customFormat": "[\"#,###%\",1]"
+      },
+      "label": "perc_sla_violations",
+      "showInExplorer": false
+    },
+     {
+      "field": "perc_violations_compare",
+      "format": {
+        "customFormat": "[\"#,###%\",1]"
+      },
+      "label": "perc_violations_compare",
+      "showInExplorer": false
+    },
+     {
+      "field": "sum_first_time_fix",
+      "format": {
+        "customFormat": "[\"#,###%\",1]"
+      },
+      "label": "First Time Fix Rate",
+      "showInExplorer": false
+    }
+],"dimensions":[
+{
+       "label": "Priority",
+       "field": "ParentRecordId.Priority"
+},
+{
+       "label": "Product",
+       "field": "ProductConsumed.ProductName",
+       "linkTemplate": "/{{row.ProductConsumed.Id}}",
+       "linkTooltip": "View Product"
+},
+{
+       "label": "Due Date",
+       "field": "DueDate"
+},
+{
+       "label": "Account Name",
+       "field": "ParentRecordId.AccountId.Name",
+       "linkTemplate": "/{{row.ParentRecordId.AccountId}}",
+       "linkTooltip": "View Account"
+},
+{
+      "label": "Assigned Resource",
+       "field": "AssignedResource.User.User.Name",
+       "linkTemplate": "/{{row.AssignedResource.User.Id}}",
+       "linkTooltip": "View Resource"
+},
+{
+       "label": "Case Id",
+       "field": "ParentRecordId.CaseId",
+       "linkTemplate": "/{{row.ParentRecordId.CaseId}}",
+       "linkTooltip": "View Case"
+},
+{
+       "label": "Work Order #",
+       "field": "ParentRecordId.WorkOrderNumber",
+       "linkTemplate": "/{{row.ParentRecordId}}",
+       "linkTooltip": "View Work Order"
+},
+{
+       "label": "Appointment #",
+       "field": "AppointmentNumber",
+       "linkTemplate": "/{{row.Id}}",
+       "linkTooltip": "View Service Appointment Number"
+},
+{
+       "label": "Work Type",
+       "field": "ParentRecordId.WorkTypeId.Name",
+       "linkTemplate": "/{{row.ParentRecordId.WorkTypeId}}",
+       "linkTooltip": "View Work Type"
+},
+{
+       "label": "Territory",
+       "field": "ServiceTerritoryId.Name",
+       "linkTemplate": "/{{row.ServiceTerritoryId}}",
+       "linkTooltip": "View Territory"
+}
+],"measures":[
+    {
+      "label": "Actual Duration",
+      "field": "ActualDuration"
+    },
+    {
+      "field": "DurationInMinutes",
+      "format": {},
+      "label": "Estimated Duration"
+    }
+],
+"organizations":[],"showDetailsDefaultFields":[]}
+
+
+
+

@@ -74,12 +74,12 @@
 			],
 			"recordTypes": [
 				{
-					"developerName": "RecordTypeA",
-					"label": "Record Type A"
+					"developerName": "SimpleOpportunity",
+					"label": "Simple Opportunity"
 				},
 				{
-					"developerName": "RecordTypeB",
-					"label": "Record Type B"
+					"developerName": "ChannelPartner",
+					"label": "Channel Partner"
 				}
 			]
 		}

@@ -1,0 +1,254 @@
+{
+  "constants": [
+    {
+      "name": "Fiscal_Month_Offset",
+      "value": "${Variables.FY_Month_Offset_Map[Variables.Fiscal_Month]}"
+    },
+    {
+      "name": "Fiscal_Prefix",
+      "value": "${Variables.FY_Month_Offset_Map[Variables.Fiscal_Month] == '0' ? '' : 'fiscal_'}"
+    },
+    {
+      "name": "Fiscal_Postfix",
+      "value": "${Variables.FY_Month_Offset_Map[Variables.Fiscal_Month] == '0' ? '' : '_Fiscal'}"
+    }
+  ],
+  "rules": [
+    {
+      "name": "FiscalDataflowRule",
+      "appliesTo": [
+        {
+          "type": "workflow",
+          "name": "*"
+        }
+      ],
+      "actions": [
+        {
+          "action": "put",
+          "description": "put a month offset to all dates in dataflow",
+          "path": "$.workflowDefinition..[?(@.action=='sfdcDigest')].parameters.fields[?(@.name=='CreatedDate'||@.name=='CloseDate'||@.name=='LastModifiedDate'||@.name=='ActivityDate')]",
+          "key": "fiscalMonthOffset",
+          "value": "${Constants.Fiscal_Month_Offset}"
+        }
+      ]
+    },
+    {
+      "name": "SetPipeReviewLink",
+      "appliesTo": [
+        {
+          "type": "dashboard",
+          "name": "Sales_Wave_Forecast_Review"
+        }
+      ],
+      "actions": [
+        {
+          "action": "set",
+          "description": "set link to pipe review with product if product should be used",
+          "path": "$.state.widgets.link_pipe_review.parameters.destination",
+          "value": "${Variables.Has_Product == 'Yes' ? App.Dashboards['Sales Wave - Pipe Review w/ Product'].Id : App.Dashboards['Sales Wave - Pipe Review'].Id}"
+        }
+      ]
+    },
+    {
+      "name": "SetPipeReviewNoQuotaLink",
+      "appliesTo": [
+        {
+          "type": "dashboard",
+          "name": "Sales_Wave_Overview_NoQuota"
+        }
+      ],
+      "actions": [
+        {
+          "action": "set",
+          "description": "set link to pipe review no quota with product if product should be used",
+          "path": "$.state.widgets.link_pipe_review_no_quota.parameters.destination",
+          "value": "${Variables.Has_Product == 'Yes' ? App.Dashboards['Sales Wave - Pipe Review_NoQuota w/ Product'].Id : App.Dashboards['Sales Wave - Pipe Review_NoQuota'].Id}"
+        }
+      ]
+    },
+    {
+      "name": "SetBusinessReviewLink",
+      "appliesTo": [
+        {
+          "type": "dashboard",
+          "name": "Sales_Wave_Overview_NoQuota"
+        },
+        {
+          "type": "dashboard",
+          "name": "Sales_Wave_Overview"
+        }
+      ],
+      "actions": [
+        {
+          "action": "set",
+          "description": "set link to business review with product if product should be used",
+          "path": "$.state.widgets.link_business_review.parameters.destination",
+          "value": "${Variables.Has_Product == 'Yes' ? App.Dashboards['Sales Wave - Business Review w/ Product'].Id : App.Dashboards['Sales Wave - Business Review'].Id}"
+        }
+      ]
+    },
+    {
+      "name": "SetPipeActivityLink",
+      "appliesTo": [
+        {
+          "type": "dashboard",
+          "name": "Sales_Wave_Overview_NoQuota"
+        },
+        {
+          "type": "dashboard",
+          "name": "Sales_Wave_Overview"
+        }
+      ],
+      "actions": [
+        {
+          "action": "set",
+          "description": "set link to pipe activity with product if product should be used",
+          "path": "$.state.widgets.link_pipe_activity.parameters.destination",
+          "value": "${Variables.Has_Product == 'Yes' ? App.Dashboards['Sales Wave - Pipe Activity w/ Product'].Id : App.Dashboards['Sales Wave - Pipe Activity'].Id}"
+        }
+      ]
+    },
+    {
+      "name": "SetPipeReviewLink",
+      "appliesTo": [
+        {
+          "type": "dashboard",
+          "name": "Sales_Wave_Overview"
+        }
+      ],
+      "actions": [
+        {
+          "action": "set",
+          "description": "set link to pipe review with product if product should be used",
+          "path": "$.state.widgets.link_pipe_review.parameters.destination",
+          "value": "${Variables.Has_Product == 'Yes' ? App.Dashboards['Sales Wave - Pipe Review w/ Product'].Id : App.Dashboards['Sales Wave - Pipe Review'].Id}"
+        }
+      ]
+    },
+    {
+      "name": "RemoveQuotaFromLeaderboard",
+      "condition": "${Variables.Has_Quota == 'No'}",
+      "appliesTo": [
+        {
+          "type": "dashboard",
+          "name": "Sales_Wave_Leaderboard"
+        }
+      ],
+      "actions": [
+        {
+          "action": "delete",
+          "description": "delete quota references - mobile layout",
+          "path": "$.state.layouts[?(@.device=='default')].pages[*].rows[?(@=~/^text_hitting_quota[ {].*/)]"
+        },
+        {
+          "action": "delete",
+          "description": "delete quota references - mobile layout",
+          "path": "$.state.layouts[?(@.device=='default')].pages[*].rows[?(@=~/^chart_quota_attainment[ {].*/)]"
+        },
+        {
+          "action": "delete",
+          "description": "delete quota references - mobile layout",
+          "path": "$.state.layouts[?(@.device=='default')].pages[*].rows[?(@=~/^text_total_quota_attainment[ {].*/)]"
+        },
+        {
+          "action": "delete",
+          "description": "delete quota references if quota is not selected",
+          "path": "$.state.widgets.text_total_quota_attainment"
+        },
+        {
+          "action": "delete",
+          "description": "delete quota references if quota is not selected",
+          "path": "$.state.widgets.text_hitting_quota"
+        },
+        {
+          "action": "delete",
+          "description": "delete quota references if quota is not selected",
+          "path": "$.state.widgets.number_sum_target_completed"
+        },
+        {
+          "action": "delete",
+          "description": "delete quota references if quota is not selected",
+          "path": "$.state.widgets.chart_quota_attainment"
+        },
+        {
+          "action": "delete",
+          "description": "delete quota references if quota is not selected",
+          "path": "$.state.widgets.box_quota"
+        },
+        {
+          "action": "delete",
+          "description": "delete quota references if quota is not selected",
+          "path": "$.state.steps.step_quota_attainment"
+        },
+        {
+          "action": "delete",
+          "description": "delete quota references if quota is not selected",
+          "path": "$.state.steps.step_sum_target_completed"
+        }
+      ]
+    },
+    {
+      "name": "RemoveQuotaFromPlayerStats",
+      "condition": "${Variables.Has_Quota == 'No'}",
+      "appliesTo": [
+        {
+          "type": "dashboard",
+          "name": "Sales_Wave_Player_Stats"
+        }
+      ],
+      "actions": [
+        {
+          "action": "delete",
+          "description": "delete quota references - mobile layout",
+          "path": "$.state.layouts[?(@.device=='default')].pages[*].rows[?(@=~/^text_quota[ {].*/)]"
+        },
+        {
+          "action": "delete",
+          "description": "delete quota references - mobile layout",
+          "path": "$.state.layouts[?(@.device=='default')].pages[*].rows[?(@=~/^chart_quota[ {].*/)]"
+        },
+        {
+          "action": "delete",
+          "description": "delete quota references if quota is not selected",
+          "path": "$.state.widgets.text_quota"
+        },
+        {
+          "action": "delete",
+          "description": "delete quota references if quota is not selected",
+          "path": "$.state.widgets.chart_quota"
+        },
+        {
+          "action": "delete",
+          "description": "delete quota references if quota is not selected",
+          "path": "$.state.steps.compare_player_stats.columns[?(@.header=='Quota')]"
+        },
+        {
+          "action": "delete",
+          "description": "delete quota references if quota is not selected",
+          "path": "$.state.steps.compare_player_stats.columns[?(@.header=='Quota Attainment %')]"
+        }  
+      ]
+    },
+    {
+      "name": "SetOverviewLink",
+      "appliesTo": [
+        {
+          "type": "dashboard",
+          "name": "Sales_Wave_Opportunity_Summary"
+        },
+        {
+          "type": "dashboard",
+          "name": "Sales_Wave_Opportunity_Summary_w_Product"
+        }
+      ],
+      "actions": [
+        {
+          "action": "set",
+          "description": "set link to overview or overview no quota depending on the quota variable",
+          "path": "$.state.widgets.link_overview.parameters.destination",
+          "value": "${Variables.Has_Quota == 'Yes' ? App.Dashboards['Sales Wave - Overview'].Id : App.Dashboards['Sales Wave - Overview_NoQuota'].Id}"
+        }
+      ]
+    }
+  ]
+}

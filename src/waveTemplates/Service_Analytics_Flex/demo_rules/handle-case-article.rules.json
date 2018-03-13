@@ -1,0 +1,164 @@
+{
+	"constants": [
+            {
+	           "name": "Join_CaseArticleKnowledge_User_params_left",
+	           "value": "${Variables.isDemoApplication == 'Yes' ? 'Extract_CaseArticleKnowledge_merge' : 'Extract_CaseArticleKnowledge'}"
+            }
+	],
+	"rules": [
+		{
+      		"name": "HandleCaseArticleKnowledgeExtraction",
+      		"condition": "${Variables.isDemoApplication == 'Yes'}",
+      		"actions": [
+      			{
+      				"action": "put",
+      				"description": "Extract data from CaseArticle__c custom object.",
+      				"key": "Extract_Demo_CaseArticleKnowledge",
+      				"path": "$.workflowDefinition",
+      				"value": {
+      					"action": "sfdcDigest",
+                                    "parameters": {
+                                          "fields": [
+                                                {
+                                                      "name": "ArticleVersionNumber__c",
+                                                      "type": "Text"
+                                                },
+                                                {
+                                                      "firstDayOfWeek": 0,
+                                                      "fiscalMonthOffset": 10,
+                                                      "isYearEndFiscalYear": false,
+                                                      "name": "CreatedDate__c"
+                                                },
+                                                {
+                                                      "name": "CaseId__c"
+                                                },
+                                                {
+                                                      "name": "CreatedById__c"
+                                                },
+                                                {
+                                                      "name": "KnowledgeArticleId__c"
+                                                },
+                                                {
+                                                      "name": "IsSharedByEmail__c"
+                                                }
+                                          ],
+                                          "object": "CaseArticle__c"
+                                    }
+      				}
+      			},
+      			{
+      				"action": "put",
+      				"description": "Rename custom fields after Extract_Demo_CaseArticleKnowledge",
+      				"key": "Extract_Demo_CaseArticleKnowledge_rename_fields",
+      				"path": "$.workflowDefinition",
+      				"value": {
+      					"action": "computeExpression",
+						"parameters": {            
+							"source": "Extract_Demo_CaseArticleKnowledge",
+							"mergeWithSource": true,
+							"computedFields": [
+								{
+									"name": "CreatedDate",
+									"type": "Date",
+									"label": "CreatedDate",
+									"saqlExpression": "toDate(CreatedDate__c, \"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\")",
+									"default":"",
+									"format":"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+								},
+                                                {
+                                                      "name":"ArticleVersionNumber",
+                                                      "type":"Text",
+                                                      "saqlExpression":"ArticleVersionNumber__c",
+                                                      "default": ""
+                                                },
+                                                {
+                                                      "name":"CaseId",
+                                                      "type":"Text",
+                                                      "saqlExpression":"CaseId__c",
+                                                      "default":""
+                                                },
+                                                {
+                                                      "name":"CreatedById",
+                                                      "type":"Text",
+                                                      "saqlExpression":"CreatedById__c",
+                                                      "default":""
+                                                },
+                                                {
+                                                      "name":"KnowledgeArticleId",
+                                                      "type":"Text",
+                                                      "saqlExpression":"KnowledgeArticleId__c",
+                                                      "default":""
+                                                },
+                                                {
+                                                      "name":"IsSharedByEmail",
+                                                      "type":"Text",
+                                                      "saqlExpression":"IsSharedByEmail__c",
+                                                      "default":""
+                                                }
+							]
+						}
+      				}
+      			},
+                        {
+                              "action": "put",
+                              "key": "Extract_Demo_CaseArticleKnowledge_drop_custom",
+                              "path": "$.workflowDefinition",
+                              "value": {
+                                    "action": "sliceDataset",
+                                    "parameters": {
+                                          "mode": "drop",
+                                          "fields": [
+                                                {
+                                                      "name": "ArticleVersionNumber__c"
+                                                },
+                                                {
+                                                      "name": "CreatedDate__c"
+                                                },
+                                                {
+                                                      "name": "CaseId__c"
+                                                },
+                                                {
+                                                      "name": "CreatedById__c"
+                                                },
+                                                {
+                                                      "name": "IsSharedByEmail__c"
+                                                },
+                                                {
+                                                      "name": "KnowledgeArticleId__c"
+                                                }
+                                          ],
+                                          "source": "Extract_Demo_CaseArticleKnowledge_rename_fields"
+                                    }
+                              }
+                        },
+      			{
+      				"action": "put",
+      				"description": "Final merge of user and demo data for CaseArticle.",
+      				"key": "Extract_CaseArticleKnowledge_merge",
+      				"path": "$.workflowDefinition",
+      				"value": {
+      					"action": "append",
+						"parameters": {            
+							"sources": [
+								"Extract_Demo_CaseArticleKnowledge_drop_custom",
+								"Extract_CaseArticleKnowledge"
+							]
+						}
+      				}
+      			},
+      			{
+      				"action": "set",
+      				"description": "Set the left property of Join_CaseArticleKnowledge_User.parameters based on Demo App or not.",
+      				"path": "$.workflowDefinition.Join_CaseArticleKnowledge_User.parameters['left']",
+      				"value": "${Constants.Join_CaseArticleKnowledge_User_params_left}"
+      			}
+			],						
+			"appliesTo": [
+                        {
+                              "type": "workflow",
+                              "name": "*"
+                        }
+      		]
+		}
+	]
+}

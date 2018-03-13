@@ -1,0 +1,3043 @@
+{
+  "name" : "Service_Backlog_Analysis",
+  "label" : "Service Backlog",
+  "folder" : {
+    "id" : "${App.Folder.Id}"
+  },
+  "mobileDisabled" : false,
+  "state" : {
+    "dataSourceLinks" : [ ],
+    "filters" : [ ],
+    "gridLayouts" : [
+  {
+        "maxWidth" : 1360,
+        "name" : "Default",
+        "numColumns" : 48,
+        "pages" : [
+  {
+            "name" : "Default",
+            "widgets" : [
+  {
+                "colspan" : 10,
+                "column" : 1,
+                "name" : "text_Backlog",
+                "row" : 3,
+                "rowspan" : 8,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 3,
+                "column" : 44,
+                "name" : "link_Backlog",
+                "row" : 8,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#634F95",
+                  "borderEdges" : [
+  "bottom"
+  ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 2
+                }
+              },
+  {
+                "colspan" : 48,
+                "column" : 0,
+                "name" : "container_6",
+                "row" : 3,
+                "rowspan" : 8,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#9271E8",
+                  "borderEdges" : [
+  "bottom"
+  ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 4,
+                "column" : 16,
+                "name" : "listselector_Support_Type_c_1",
+                "row" : 13,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "backgroundColor" : "#E6ECF2",
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 4,
+                "column" : 1,
+                "name" : "listselector_Product_c_1",
+                "row" : 13,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "backgroundColor" : "#E6ECF2",
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 4,
+                "column" : 6,
+                "name" : "listselector_Type_1",
+                "row" : 13,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "backgroundColor" : "#E6ECF2",
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 4,
+                "column" : 11,
+                "name" : "listselector_RecordType_Name_1",
+                "row" : 13,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "backgroundColor" : "#E6ECF2",
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 5,
+                "column" : 42,
+                "name" : "listselector_Time_Selection",
+                "row" : 13,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "backgroundColor" : "#E6ECF2",
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 48,
+                "column" : 0,
+                "name" : "container_7",
+                "row" : 11,
+                "rowspan" : 8,
+                "widgetStyle" : {
+                  "backgroundColor" : "#E6ECF2",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [
+  "top"
+  ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 16,
+                "column" : 1,
+                "name" : "text_Backlog_Changes",
+                "row" : 21,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "borderColor" : "#FFFFFF",
+                  "borderEdges" : [ ],
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 7,
+                "column" : 24,
+                "name" : "listselector_Backlog_Trend_Group_Select",
+                "row" : 20,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 14,
+                "column" : 33,
+                "name" : "text_Backlog_Trend",
+                "row" : 21,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgb(9, 27, 61)",
+                  "borderColor" : "rgba(51, 87, 121, 0.5)",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 30,
+                "column" : 1,
+                "name" : "chart_waterfall_chart",
+                "row" : 26,
+                "rowspan" : 26,
+                "widgetStyle" : {
+                  "borderColor" : "#FFFFFF",
+                  "borderEdges" : [ ],
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 32,
+                "column" : 0,
+                "name" : "container_3",
+                "row" : 19,
+                "rowspan" : 35,
+                "widgetStyle" : {
+                  "borderEdges" : [
+  "bottom"
+  ]
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 33,
+                "name" : "number_Open_Case_Count",
+                "row" : 26,
+                "rowspan" : 6,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgb(9, 27, 61)",
+                  "borderColor" : "#FFFFFF",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 2
+                }
+              },
+  {
+                "colspan" : 7,
+                "column" : 40,
+                "name" : "number_Compare_Backlog",
+                "row" : 28,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "backgroundColor" : "{{cell(Compare_Backlog.result, 0, \"color\").asString()}}",
+                  "borderColor" : "{{cell(Compare_Backlog.result, 0, \"color\").asString()}}",
+                  "borderEdges" : [
+  "right"
+  ],
+                  "borderRadius" : 4,
+                  "borderWidth" : 4
+                }
+              },
+  {
+                "colspan" : 14,
+                "column" : 33,
+                "name" : "number_days_to_close",
+                "row" : 48,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "backgroundColor" : "#335779",
+                  "borderColor" : "#091A3E",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 4,
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 14,
+                "column" : 1,
+                "name" : "text_Cases_Created_This_Year_vs_Last_Year",
+                "row" : 56,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "borderColor" : "#FFFFFF",
+                  "borderEdges" : [ ],
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 14,
+                "column" : 33,
+                "name" : "text_Case_Trend",
+                "row" : 56,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgb(9, 26, 62)",
+                  "borderColor" : "rgba(51, 87, 121, 0.5)",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 30,
+                "column" : 1,
+                "name" : "chart_Created_Cases_Over_Time",
+                "row" : 60,
+                "rowspan" : 29,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 32,
+                "column" : 0,
+                "name" : "container_4",
+                "row" : 54,
+                "rowspan" : 37,
+                "widgetStyle" : {
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderWidth" : 4
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 33,
+                "name" : "number_new_case_count_this_week",
+                "row" : 61,
+                "rowspan" : 6,
+                "widgetStyle" : {
+                  "backgroundColor" : "#091A3E",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 7,
+                "column" : 40,
+                "name" : "number_allcases_Prev_Period",
+                "row" : 63,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "backgroundColor" : "{{cell(allcases_Prev_Period.result, 0, \"color\").asString()}}",
+                  "borderColor" : "{{cell(allcases_Prev_Period.result, 0, \"color\").asString()}}",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 4,
+                  "borderWidth" : 4
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 33,
+                "name" : "number_Closed_Case_Count_this_week",
+                "row" : 70,
+                "rowspan" : 6,
+                "widgetStyle" : {
+                  "backgroundColor" : "#091A3E",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 7,
+                "column" : 40,
+                "name" : "number_closedcases_Prev_Period",
+                "row" : 72,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "backgroundColor" : "{{cell(closedcases_Prev_Period.result, 0, \"color\").asString()}}",
+                  "borderColor" : "{{cell(closedcases_Prev_Period.result, 0, \"color\").asString()}}",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 4,
+                  "borderWidth" : 4
+                }
+              },
+  {
+                "colspan" : 15,
+                "column" : 32,
+                "name" : "chart_CreatedDate_Year_Cre_3",
+                "row" : 77,
+                "rowspan" : 13,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgb(9, 26, 62)",
+                  "borderColor" : "#091A3E",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 46,
+                "column" : 1,
+                "name" : "table_lens_1",
+                "row" : 97,
+                "rowspan" : 25,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 48,
+                "column" : 0,
+                "name" : "container_5",
+                "row" : 91,
+                "rowspan" : 33,
+                "widgetStyle" : {
+                  "borderEdges" : [
+  "top"
+  ],
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 37,
+                "name" : "link_Prioritized_Open_Cases",
+                "row" : 8,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 3,
+                "column" : 34,
+                "name" : "link_Home",
+                "row" : 8,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 9,
+                "column" : 1,
+                "name" : "text_Case_Details",
+                "row" : 92,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 15,
+                "column" : 32,
+                "name" : "chart_Backlog_Trend_OverTime",
+                "row" : 32,
+                "rowspan" : 11,
+                "widgetStyle" : {
+                  "backgroundColor" : "#091A3E",
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 16,
+                "column" : 32,
+                "name" : "container_27",
+                "row" : 19,
+                "rowspan" : 35,
+                "widgetStyle" : {
+                  "backgroundColor" : "#091A3E",
+                  "borderColor" : "rgba(51, 87, 121, 0.5)",
+                  "borderEdges" : [
+  "bottom"
+  ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 16,
+                "column" : 32,
+                "name" : "container_28",
+                "row" : 54,
+                "rowspan" : 37,
+                "widgetStyle" : {
+                  "backgroundColor" : "#091A3E",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 48,
+                "column" : 0,
+                "name" : "text_backlogTrend_info",
+                "row" : 124,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              }
+  ]
+          }
+  ],
+        "rowHeight" : "fine",
+        "selectors" : [ ],
+        "style" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "backgroundColor" : "rgb(197, 211, 224)",
+          "cellSpacingX" : 0,
+          "cellSpacingY" : 0,
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "version" : 1.0
+      },
+  {
+        "name" : "iPhone",
+        "numColumns" : 8,
+        "pages" : [
+  {
+            "name" : "iPhone",
+            "widgets" : [
+  {
+                "colspan" : 8,
+                "column" : 0,
+                "name" : "text_iphone_Backlog_Title",
+                "row" : 0,
+                "rowspan" : 1,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#634F95",
+                  "borderEdges" : [
+  "bottom"
+  ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 4,
+                "column" : 0,
+                "name" : "listselector_Product_c_1",
+                "row" : 1,
+                "rowspan" : 1,
+                "widgetStyle" : {
+                  "backgroundColor" : "#E6ECF2",
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 4,
+                "column" : 4,
+                "name" : "listselector_RecordType_Name_1",
+                "row" : 1,
+                "rowspan" : 1,
+                "widgetStyle" : {
+                  "backgroundColor" : "#E6ECF2",
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 8,
+                "column" : 0,
+                "name" : "listselector_Time_Selection",
+                "row" : 2,
+                "rowspan" : 1,
+                "widgetStyle" : {
+                  "backgroundColor" : "#E6ECF2",
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 8,
+                "column" : 0,
+                "name" : "container_7",
+                "row" : 1,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "backgroundColor" : "#E6ECF2",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 3,
+                "column" : 0,
+                "name" : "number_Open_Case_Count",
+                "row" : 3,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgb(9, 27, 61)",
+                  "borderColor" : "#FFFFFF",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 2
+                }
+              },
+  {
+                "colspan" : 5,
+                "column" : 3,
+                "name" : "number_days_to_close",
+                "row" : 3,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "backgroundColor" : "#091A3E",
+                  "borderColor" : "#091A3E",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 8,
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 3,
+                "column" : 0,
+                "name" : "number_Compare_Backlog",
+                "row" : 5,
+                "rowspan" : 1,
+                "widgetStyle" : {
+                  "backgroundColor" : "{{cell(Compare_Backlog.result, 0, \"color\").asString()}}",
+                  "borderColor" : "{{cell(Compare_Backlog.result, 0, \"color\").asString()}}",
+                  "borderEdges" : [
+  "all"
+  ],
+                  "borderRadius" : 4,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 8,
+                "column" : 0,
+                "name" : "container_27",
+                "row" : 3,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "backgroundColor" : "#091A3E",
+                  "borderColor" : "#091A3E",
+                  "borderEdges" : [
+  "all"
+  ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 5,
+                "column" : 0,
+                "name" : "text_Backlog_Trend",
+                "row" : 7,
+                "rowspan" : 1,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 8,
+                "column" : 0,
+                "name" : "chart_Backlog_Trend_OverTime",
+                "row" : 8,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#F2F6FA",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0
+                }
+              },
+  {
+                "colspan" : 8,
+                "column" : 0,
+                "name" : "container_29",
+                "row" : 7,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [
+  "all"
+  ],
+                  "borderRadius" : 8,
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 0,
+                "name" : "text_Case_Trend",
+                "row" : 11,
+                "rowspan" : 1,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgb(9, 26, 62)",
+                  "borderColor" : "rgba(51, 87, 121, 0.5)",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 3,
+                "column" : 0,
+                "name" : "number_new_case_count_this_week",
+                "row" : 12,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "backgroundColor" : "#091A3E",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 3,
+                "column" : 5,
+                "name" : "number_Closed_Case_Count_this_week",
+                "row" : 12,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "backgroundColor" : "#091A3E",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 3,
+                "column" : 0,
+                "name" : "number_allcases_Prev_Period",
+                "row" : 14,
+                "rowspan" : 1,
+                "widgetStyle" : {
+                  "backgroundColor" : "{{cell(allcases_Prev_Period.result, 0, \"color\").asString()}}",
+                  "borderColor" : "{{cell(allcases_Prev_Period.result, 0, \"color\").asString()}}",
+                  "borderEdges" : [
+  "all"
+  ],
+                  "borderRadius" : 4,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 3,
+                "column" : 5,
+                "name" : "number_closedcases_Prev_Period",
+                "row" : 14,
+                "rowspan" : 1,
+                "widgetStyle" : {
+                  "backgroundColor" : "{{cell(closedcases_Prev_Period.result, 0, \"color\").asString()}}",
+                  "borderColor" : "{{cell(closedcases_Prev_Period.result, 0, \"color\").asString()}}",
+                  "borderEdges" : [
+  "all"
+  ],
+                  "borderRadius" : 4,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 8,
+                "column" : 0,
+                "name" : "container_28",
+                "row" : 11,
+                "rowspan" : 5,
+                "widgetStyle" : {
+                  "backgroundColor" : "#091A3E",
+                  "borderColor" : "#091A3E",
+                  "borderEdges" : [
+  "all"
+  ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 5,
+                "column" : 0,
+                "name" : "text_CaseTrend",
+                "row" : 16,
+                "rowspan" : 1,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 8,
+                "column" : 0,
+                "name" : "chart_CreatedDate_Year_Cre_3",
+                "row" : 17,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#091A3E",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 8,
+                "column" : 0,
+                "name" : "container_31",
+                "row" : 16,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [
+  "all"
+  ],
+                  "borderRadius" : 8,
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 8,
+                "column" : 0,
+                "name" : "text_Cases_Created_This_Year_vs_Last_Year",
+                "row" : 20,
+                "rowspan" : 1,
+                "widgetStyle" : {
+                  "borderColor" : "#FFFFFF",
+                  "borderEdges" : [ ],
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 8,
+                "column" : 0,
+                "name" : "chart_Created_Cases_Over_Time",
+                "row" : 21,
+                "rowspan" : 5,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 8,
+                "column" : 0,
+                "name" : "container_4",
+                "row" : 20,
+                "rowspan" : 6,
+                "widgetStyle" : {
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [
+  "all"
+  ],
+                  "borderRadius" : 8,
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 5,
+                "column" : 0,
+                "name" : "text_Case_Details",
+                "row" : 26,
+                "rowspan" : 1,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 8,
+                "column" : 0,
+                "name" : "table_lens_1",
+                "row" : 27,
+                "rowspan" : 10,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 8,
+                "column" : 0,
+                "name" : "container_5",
+                "row" : 26,
+                "rowspan" : 11,
+                "widgetStyle" : {
+                  "borderEdges" : [
+  "all"
+  ],
+                  "borderRadius" : 8,
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 8,
+                "column" : 0,
+                "name" : "text_backlogTrend_info",
+                "row" : 37,
+                "rowspan" : 1,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              }
+  ]
+          }
+  ],
+        "rowHeight" : "normal",
+        "selectors" : [
+  "maxWidth(599)"
+  ],
+        "style" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "backgroundColor" : "#E6ECF2",
+          "cellSpacingX" : 0,
+          "cellSpacingY" : 8,
+          "fit" : "original",
+          "gutterColor" : "#C5D3E0"
+        },
+        "version" : 1.0
+      }
+  ],
+    "layouts" : [ ],
+    "steps" : {
+      "new_case_count_this_week" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "filters" : [
+  [
+  "CreatedDate",
+  "{{column(Time_Selection.selection, [\"Compact\"]).asObject()}}"
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "compare_backlog_Last_Year" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "unique",
+  "Percent"
+  ]
+  ],
+            "pigql" : "q = load \"${App.EdgeMarts.ServiceCase.Alias}\";ENDTOTAL = filter q by 'IsClosed' == \"false\";updcreatedTOTAL = filter q by date('CreatedDate_Year','CreatedDate_Month','CreatedDate_Day') in [\"current day - 1 year\"..\"current day\"]; updclosedTOTAL = filter q by date('${Constants.ClosedDate}_Year','${Constants.ClosedDate}_Month','${Constants.ClosedDate}_Day') in [\"current day - 1 year\"..\"current day\"];compare = group updcreatedTOTAL by all full, updclosedTOTAL by all full, ENDTOTAL by all; compare = foreach compare generate (count(ENDTOTAL)-(count(ENDTOTAL)+count(updclosedTOTAL)-count(updcreatedTOTAL)))/(count(ENDTOTAL)+count(updclosedTOTAL)-count(updcreatedTOTAL)) *100  as 'unique_Percent', (case when (count(ENDTOTAL)-(count(ENDTOTAL)+count(updclosedTOTAL)-count(updcreatedTOTAL)))/(count(ENDTOTAL)+count(updclosedTOTAL)-count(updcreatedTOTAL)) *100 < 0 then \"#3CAF6D\" when (count(ENDTOTAL)-(count(ENDTOTAL)+count(updclosedTOTAL)-count(updcreatedTOTAL)))/(count(ENDTOTAL)+count(updclosedTOTAL)-count(updcreatedTOTAL)) *100 > 0 then \"#f2536d\" else \"#7D98B3\" end) as 'color';",
+            "autoFilter" : true
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "RecordType_Name_1" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "groups" : [
+  "${Constants.CaseRecordTypeField}"
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "multi",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "Created_Cases_Over_Time" : {
+        "broadcastFacet" : false,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "pigql" : "q = load \"${App.EdgeMarts.ServiceCase.Alias}\"; ThisYear = filter q by {{cell(Time_Selection.selection, 0, \"Current\").asDateRange(\"date('CreatedDate_Year','CreatedDate_Month','CreatedDate_Day')\")}}; LastYear = filter q by {{cell(Time_Selection.selection, 0, \"LastYearCompare\").asDateRange(\"date('CreatedDate_Year','CreatedDate_Month','CreatedDate_Day')\")}}; LastYearGroup = cogroup ThisYear by {{cell(Time_Selection.selection, 0, \"CoGroup\").asObject()}} left , LastYear by {{cell(Time_Selection.selection, 0, \"CoGroup\").asObject()}}; ThisYearGroup = group ThisYear by {{cell(Time_Selection.selection, 0, \"CoGroup\").asObject()}}; ThisYearGroup = foreach ThisYearGroup generate \"This Year\" as 'Date', {{cell(Time_Selection.selection, 0, \"CreatedField\").asObject()}} as {{cell(Time_Selection.selection, 0, \"CreatedField\").asObject()}}, count() as count; LastYearGroup = foreach LastYearGroup generate \"Last Year\" as 'Date', ThisYear.{{cell(Time_Selection.selection, 0, \"CreatedField\").asObject()}} as {{cell(Time_Selection.selection, 0, \"CreatedField\").asObject()}}, count(LastYear) as count; c = union ThisYearGroup,LastYearGroup; c = order c by {{cell(Time_Selection.selection, 0, \"CreatedField\").asObject()}} desc",
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "autoFilter" : true,
+            "groups" : [
+  "{{cell(Time_Selection.selection, 0, \"compactGroup\").asObject()}}",
+  "Date"
+  ],
+            "filters" : [ ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "single",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "vbar"
+        }
+      },
+      "days_to_close" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "tot",
+  "backlogdays"
+  ]
+  ],
+            "pigql" : "q = load \"${App.EdgeMarts.ServiceCase.Alias}\";r = filter q by IsClosed == \"false\"; s = filter q by date('${Constants.ClosedDate}_Year','${Constants.ClosedDate}_Month','${Constants.ClosedDate}_Day') in [\"30 days ago\"..\"current day\"];b = cogroup r by all, s by all; b = foreach b generate count(r)/(count(s)/21) as 'tot_backlogdays';",
+            "autoFilter" : true
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "single",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "Backlog_Trend_Group_Select" : {
+        "broadcastFacet" : false,
+        "datasets" : [ ],
+        "dimensions" : [ ],
+        "groups" : [ ],
+        "isGlobal" : false,
+        "numbers" : [ ],
+        "selectMode" : "singlerequired",
+        "start" : {
+          "display" : [
+  "${Constants.CaseProductLabel}"
+  ]
+        },
+        "strings" : [ ],
+        "type" : "staticflex",
+        "useGlobal" : false,
+        "values" : [
+  {
+            "display" : "${Constants.CaseProductLabel}",
+            "value" : "${Constants.CaseProduct}"
+          },
+  {
+            "display" : "Support Type",
+            "value" : "${Constants.CaseSupportLevel}"
+          },
+  {
+            "display" : "${Constants.CaseType}",
+            "value" : "${Constants.CaseType}"
+          },
+  {
+            "display" : "${Constants.CaseOrigin}",
+            "value" : "${Constants.CaseOrigin}"
+          }
+  ],
+        "visualizationParameters" : { }
+      },
+      "closedcases_Last_Year" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "unique",
+  "Percent"
+  ]
+  ],
+            "pigql" : "q = load \"${App.EdgeMarts.ServiceCase.Alias}\"; q = filter q by 'IsClosed' == \"true\"; curYear = filter q by {{cell(Time_Selection.selection, 0, \"Current\").asDateRange(\"date('CreatedDate_Year','CreatedDate_Month','CreatedDate_Day')\")}}; comparePeriod = filter q by {{cell(Time_Selection.selection, 0, \"LastYearCompare\").asDateRange(\"date('CreatedDate_Year','CreatedDate_Month','CreatedDate_Day')\")}};  b = cogroup curYear by all, comparePeriod by all; b = foreach b generate (count(curYear) - count(comparePeriod))/count(comparePeriod) *100 as 'unique_Percent', (case when (count(curYear) - count(comparePeriod))/count(comparePeriod) *100 < 0 then \"#f2536d\" when (count(curYear) - count(comparePeriod))/count(comparePeriod) *100 > 0 then \"#3CAF6D\" else \"#7D98B3\" end) as 'color';",
+            "autoFilter" : true
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "avg_Backlog" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : "{{column(Time_Selection.selection, [\"Measure\"]).asObject()}}",
+            "pigql" : "q = load \"${App.EdgeMarts.ServiceCase.Alias}\"; created = filter q by {{cell(Time_Selection.selection, 0, \"Current\").asDateRange(\"date('CreatedDate_Year','CreatedDate_Month','CreatedDate_Day')\")}}; closed = filter q by {{cell(Time_Selection.selection, 0, \"Current\").asDateRange(\"date('${Constants.ClosedDate}_Year','${Constants.ClosedDate}_Month','${Constants.ClosedDate}_Day')\")}}; current = filter q by 'IsClosed' == \"false\"; current = group current by all;current = foreach current generate \"Today\" as 'time', {{cell(Time_Selection.selection, 0, \"trendProjection\").asObject()}} as {{cell(Time_Selection.selection, 0, \"FullGroup\").asObject()}}, count() as backlog;diff = group created by ('CreatedDate_Year', {{cell(Time_Selection.selection, 0, \"CreatedField\").asObject()}}) full, closed by ('${Constants.ClosedDate}_Year', {{cell(Time_Selection.selection, 0, \"ClosedField\").asObject()}});diff = foreach diff generate \"Begining\" as 'time', {{cell(Time_Selection.selection, 0, \"CreatedProjection\").asObject()}} as {{cell(Time_Selection.selection, 0, \"FullGroup\").asObject()}}, count(closed) - count(created) as backlog;combined = union current, diff;combined = group combined by ({{cell(Time_Selection.selection, 0, \"FullGroup\").asObject()}},'time');combined = foreach combined generate 'time' as 'time', {{cell(Time_Selection.selection, 0, \"FullGroup\").asObject()}} as {{cell(Time_Selection.selection, 0, \"FullGroup\").asObject()}}, sum(sum(backlog)) over([0 ..] partition by all order by ({{cell(Time_Selection.selection, 0, \"FullGroup\").asObject()}})) as Backlog_Count; combined = filter combined by 'time' == \"Begining\";final = group combined by all; final = foreach final generate avg('Backlog_Count') as 'Backlog_Count'",
+            "autoFilter" : true
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "single",
+        "start" : [ ],
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "time"
+        }
+      },
+      "waterfall_chart" : {
+        "broadcastFacet" : false,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "pigql" : "q = load \"${App.EdgeMarts.ServiceCase.Alias}\";ENDTOTAL = filter q by 'IsClosed' == \"false\";END_FAKE = group q by {{cell(Backlog_Trend_Group_Select.selection,0,\"value\").asObject()}}; END_FAKE = foreach END_FAKE generate {{cell(Backlog_Trend_Group_Select.selection,0,\"value\").asObject()}} as {{cell(Backlog_Trend_Group_Select.selection,0,\"value\").asObject()}}, \"Current Backlog\" as 'Bucket', 0 as 'sum_Backlog'; END_REAL = group ENDTOTAL by {{cell(Backlog_Trend_Group_Select.selection,0,\"value\").asObject()}};END_REAL = foreach END_REAL generate {{cell(Backlog_Trend_Group_Select.selection,0,\"value\").asObject()}} as {{cell(Backlog_Trend_Group_Select.selection,0,\"value\").asObject()}}, \"Current Backlog\" as 'Bucket', count() as 'sum_Backlog'; END = union END_FAKE,END_REAL; END = group END by {{cell(Backlog_Trend_Group_Select.selection,0,\"value\").asObject()}}; END = foreach END generate {{cell(Backlog_Trend_Group_Select.selection,0,\"value\").asObject()}} as {{cell(Backlog_Trend_Group_Select.selection,0,\"value\").asObject()}}, \"Current Backlog\" as 'Bucket', sum('sum_Backlog') as 'sum_Backlog'; upcreatedTotal = filter q by {{cell(Time_Selection.selection, 0, \"BacklogCompare\").asDateRange(\"date('CreatedDate_Year','CreatedDate_Month','CreatedDate_Day')\")}}; upcreated = group upcreatedTotal by {{cell(Backlog_Trend_Group_Select.selection,0,\"value\").asObject()}}; upcreated = foreach upcreated generate {{cell(Backlog_Trend_Group_Select.selection,0,\"value\").asObject()}} as {{cell(Backlog_Trend_Group_Select.selection,0,\"value\").asObject()}}, \"Cases Created\" as 'Bucket', count() as 'sum_Backlog';dnclosedTotal = filter q by {{cell(Time_Selection.selection, 0, \"BacklogCompare\").asDateRange(\"date('${Constants.ClosedDate}_Year','${Constants.ClosedDate}_Month','${Constants.ClosedDate}_Day')\")}};dnclosed = group dnclosedTotal by {{cell(Backlog_Trend_Group_Select.selection,0,\"value\").asObject()}};dnclosed = foreach dnclosed generate {{cell(Backlog_Trend_Group_Select.selection,0,\"value\").asObject()}} as {{cell(Backlog_Trend_Group_Select.selection,0,\"value\").asObject()}}, \"Cases Closed\" as 'Bucket', -count() as 'sum_Backlog';START = group upcreatedTotal by {{cell(Backlog_Trend_Group_Select.selection,0,\"value\").asObject()}} full, dnclosedTotal by {{cell(Backlog_Trend_Group_Select.selection,0,\"value\").asObject()}} full, ENDTOTAL by {{cell(Backlog_Trend_Group_Select.selection,0,\"value\").asObject()}};START = foreach START generate upcreatedTotal.{{cell(Backlog_Trend_Group_Select.selection,0,\"value\").asObject()}} as {{cell(Backlog_Trend_Group_Select.selection,0,\"value\").asObject()}}, \"{{cell(Time_Selection.selection, 0, \"BacklogLabel\").asString()}}\" as 'Bucket', count(ENDTOTAL)+count(dnclosedTotal)-count(upcreatedTotal) as 'sum_Backlog';WATERFALL = union START, upcreated,dnclosed, END;",
+            "measures" : [
+  [
+  "sum",
+  "Backlog"
+  ]
+  ],
+            "groups" : [
+  "Bucket",
+  "{{cell(Backlog_Trend_Group_Select.selection,0,\"value\").asObject()}}"
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : false,
+        "selectMode" : "single",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "Measure_Select" : {
+        "broadcastFacet" : false,
+        "datasets" : [ ],
+        "dimensions" : [ ],
+        "groups" : [ ],
+        "isGlobal" : false,
+        "numbers" : [ ],
+        "selectMode" : "singlerequired",
+        "start" : {
+          "display" : [
+  "Avg Duration"
+  ]
+        },
+        "strings" : [ ],
+        "type" : "staticflex",
+        "useGlobal" : false,
+        "values" : [
+  {
+            "display" : "Avg Duration",
+            "SAQL" : "coalesce((avg(ThisYear['${Constants.CaseDuration}'])-avg(LastYear['${Constants.CaseDuration}']))/avg(LastYear['${Constants.CaseDuration}']),0)*100 as sum_Percent",
+            "compact" : [
+  "sum",
+  "Percent",
+  null,
+  {
+                "display" : "% Change in Avg Duration Y/Y"
+              }
+  ]
+          },
+  {
+            "display" : "Volume",
+            "SAQL" : "coalesce((count(ThisYear)-count(LastYear))/count(LastYear),0)*100 as sum_Percent",
+            "compact" : [
+  "sum",
+  "Percent",
+  null,
+  {
+                "display" : "% Change in Volume Y/Y"
+              }
+  ]
+          }
+  ],
+        "visualizationParameters" : { }
+      },
+      "Time_Selection" : {
+        "broadcastFacet" : false,
+        "datasets" : [ ],
+        "dimensions" : [ ],
+        "groups" : [ ],
+        "isGlobal" : false,
+        "numbers" : [ ],
+        "selectMode" : "singlerequired",
+        "start" : {
+          "display" : [
+  "MTD"
+  ]
+        },
+        "strings" : [ ],
+        "type" : "staticflex",
+        "useGlobal" : false,
+        "values" : [
+  {
+            "display" : "YTD",
+            "text_display" : "vs Prior YTD",
+            "Backlog30DayClose" : "[\"current day - 395 days\"..\"current day - 1 year\"]",
+            "BacklogCompare" : [
+  "current day - 1 year",
+  "current day"
+  ],
+            "BacklogLabel" : "Backlog Last Year",
+            "ClosedField" : "'${Constants.ClosedDate}_Month'",
+            "CoGroup" : "('CreatedDate_Month')",
+            "Compact" : [
+  [
+  "${Constants.Fiscal_Prefix}year",
+  0
+  ],
+  [
+  "${Constants.Fiscal_Prefix}year",
+  0
+  ]
+  ],
+            "CreatedField" : "'CreatedDate_Month'",
+            "CreatedField2" : "'CreatedDate_Month'",
+            "CreatedProjection" : "(case when count(created) >0 then created['CreatedDate_Year']+\"~~~\"+created['CreatedDate_Month'] else  closed['${Constants.ClosedDate}_Year']+\"~~~\"+closed['${Constants.ClosedDate}_Month'] end)",
+            "Current" : [
+  "current ${Constants.Fiscal_Prefix}year",
+  "current day"
+  ],
+            "FullGroup" : "'CreatedDate_Year~~~CreatedDate_Month'",
+            "GenerateClosedDate" : "'${Constants.ClosedDate}_Year'+\"~~~\"+'${Constants.ClosedDate}_Month' as 'CreatedDate_Year~~~CreatedDate_Month'",
+            "GenerateCoGroupDate" : "created['CreatedDate_Year']+\"~~~\"+created['CreatedDate_Month'] as 'CreatedDate_Year~~~CreatedDate_Month'",
+            "GenerateCreatedDate" : "'CreatedDate_Year'+\"~~~\"+'CreatedDate_Month' as 'CreatedDate_Year~~~CreatedDate_Month'",
+            "GroupbyClosedDate" : "('${Constants.ClosedDate}_Year','${Constants.ClosedDate}_Month')",
+            "GroupbyCreatedDate" : "('CreatedDate_Year','CreatedDate_Month')",
+            "Grouping" : "CreatedDate_Year~~~CreatedDate_Month",
+            "LastPeriodCompare" : [
+  "current ${Constants.Fiscal_Prefix}year - 1 year",
+  "current day - 1 year"
+  ],
+            "LastYearCompare" : [
+  "current ${Constants.Fiscal_Prefix}year - 1 year",
+  "current day - 1 year"
+  ],
+            "Measure" : [
+  "Backlog",
+  "Count"
+  ],
+            "compactGroup" : [
+  "CreatedDate_Month"
+  ],
+            "compactGroupTrend" : [
+  "CreatedDate_Year",
+  "CreatedDate_Month"
+  ],
+            "filter" : "${Constants.Fiscal_Prefix}year",
+            "queryCogroupNew" : "first(ThisYear['CreatedDate_Year'])+\"~~~\"+ThisYear['CreatedDate_Month'] as 'CreatedDate_Year~~~CreatedDate_Month'",
+            "SAQL" : "coalesce((avg(ThisYear['${Constants.CaseDuration}'])-avg(LastYear['${Constants.CaseDuration}']))/avg(LastYear['${Constants.CaseDuration}']),0)*100 as sum_Percent",
+            "trendProjection" : "toString(now(), \"yyyy\")+\"~~~\"+toString(now(), \"99\")"
+          },
+  {
+            "display" : "QTD",
+            "text_display" : "vs Prior QTD",
+            "Backlog30DayClose" : "[\"current day - 120 days\"..\"current day - 1 quarter\"]",
+            "BacklogCompare" : [
+  "current day - 1 quarter",
+  "current day"
+  ],
+            "BacklogLabel" : "Backlog Last Quarter",
+            "ClosedField" : "'${Constants.ClosedDate}_Week'",
+            "CoGroup" : "('CreatedDate_Week')",
+            "Compact" : [
+  [
+  "${Constants.Fiscal_Prefix}quarter",
+  0
+  ],
+  [
+  "${Constants.Fiscal_Prefix}quarter",
+  0
+  ]
+  ],
+            "CreatedField" : "'CreatedDate_Week'",
+            "CreatedField2" : "'CreatedDate_Week'",
+            "CreatedProjection" : "(case when count(created) >0 then created['CreatedDate_Year']+\"~~~\"+created['CreatedDate_Week'] else  closed['${Constants.ClosedDate}_Year']+\"~~~\"+closed['${Constants.ClosedDate}_Week'] end)",
+            "Current" : [
+  "current ${Constants.Fiscal_Prefix}quarter",
+  "current day"
+  ],
+            "FullGroup" : "'CreatedDate_Year~~~CreatedDate_Week'",
+            "GenerateClosedDate" : "'${Constants.ClosedDate}_Year'+\"~~~\"+'${Constants.ClosedDate}_Week' as 'CreatedDate_Year~~~CreatedDate_Week'",
+            "GenerateCoGroupDate" : "created['CreatedDate_Year']+\"~~~\"+created['CreatedDate_Week'] as 'CreatedDate_Year~~~CreatedDate_Week'",
+            "GenerateCreatedDate" : "'CreatedDate_Year'+\"~~~\"+'CreatedDate_Week' as 'CreatedDate_Year~~~CreatedDate_Week'",
+            "GroupbyClosedDate" : "('${Constants.ClosedDate}_Year','${Constants.ClosedDate}_Week')",
+            "GroupbyCreatedDate" : "('CreatedDate_Year','CreatedDate_Week')",
+            "Grouping" : "CreatedDate_Year~~~CreatedDate_Week",
+            "LastPeriodCompare" : [
+  "current ${Constants.Fiscal_Prefix}quarter - 1 quarter",
+  "current day - 1 quarter"
+  ],
+            "LastYearCompare" : [
+  "current ${Constants.Fiscal_Prefix}quarter - 1 year",
+  "current day - 1 year"
+  ],
+            "Measure" : [
+  "Backlog",
+  "Count"
+  ],
+            "compactGroup" : [
+  "CreatedDate_Week"
+  ],
+            "compactGroupTrend" : [
+  "CreatedDate_Year",
+  "CreatedDate_Week"
+  ],
+            "filter" : "${Constants.Fiscal_Prefix}quarter",
+            "queryCogroupNew" : "first(ThisYear['CreatedDate_Year'])+\"~~~\"+ThisYear['CreatedDate_Week'] as 'CreatedDate_Year~~~CreatedDate_Week'",
+            "SAQL" : "coalesce((avg(ThisYear['${Constants.CaseDuration}'])-avg(LastYear['${Constants.CaseDuration}']))/avg(LastYear['${Constants.CaseDuration}']),0)*100 as sum_Percent",
+            "trendProjection" : "toString(now(), \"yyyy\")+\"~~~\"+toString(now(), \"99\")"
+          },
+  {
+            "display" : "MTD",
+            "text_display" : "vs Prior MTD",
+            "Backlog30DayClose" : "[\"current day - 60 days\"..\"current day - 1 month\"]",
+            "BacklogCompare" : [
+  "current day - 1 month",
+  "current day"
+  ],
+            "BacklogLabel" : "Backlog Last Month",
+            "ClosedField" : "'${Constants.ClosedDate}_Month','${Constants.ClosedDate}_Day'",
+            "CoGroup" : "('CreatedDate_Month','CreatedDate_Day')",
+            "Compact" : [
+  [
+  "month",
+  0
+  ],
+  [
+  "month",
+  0
+  ]
+  ],
+            "CreatedField" : "'CreatedDate_Day'",
+            "CreatedField2" : "'CreatedDate_Month','CreatedDate_Day'",
+            "CreatedProjection" : "(case when count(created) >0 then created['CreatedDate_Year']+\"~~~\"+created['CreatedDate_Month']+\"~~~\"+created['CreatedDate_Day'] else  closed['${Constants.ClosedDate}_Year']+\"~~~\"+closed['${Constants.ClosedDate}_Month']+\"~~~\"+closed['${Constants.ClosedDate}_Day'] end)",
+            "Current" : [
+  "current month",
+  "current month"
+  ],
+            "FullGroup" : "'CreatedDate_Year~~~CreatedDate_Month~~~CreatedDate_Day'",
+            "GenerateClosedDate" : "'${Constants.ClosedDate}_Year'+\"~~~\"+'${Constants.ClosedDate}_Month'+\"~~~\"+'${Constants.ClosedDate}_Day' as 'CreatedDate_Year~~~CreatedDate_Month~~~CreatedDate_Day'",
+            "GenerateCoGroupDate" : "created['CreatedDate_Year']+\"~~~\"+created['CreatedDate_Month']+\"~~~\"+created['CreatedDate_Day'] as 'CreatedDate_Year~~~CreatedDate_Month~~~CreatedDate_Day'",
+            "GenerateCreatedDate" : "'CreatedDate_Year'+\"~~~\"+'CreatedDate_Month'+\"~~~\"+'CreatedDate_Day' as 'CreatedDate_Year~~~CreatedDate_Month~~~CreatedDate_Day'",
+            "GroupbyClosedDate" : "('${Constants.ClosedDate}_Year','${Constants.ClosedDate}_Month','${Constants.ClosedDate}_Day')",
+            "GroupbyCreatedDate" : "('CreatedDate_Year','CreatedDate_Month','CreatedDate_Day')",
+            "Grouping" : "CreatedDate_Year~~~CreatedDate_Month~~~CreatedDate_Day",
+            "LastPeriodCompare" : [
+  "current month - 1 month",
+  "current day - 1 month"
+  ],
+            "LastYearCompare" : [
+  "current month - 1 year",
+  "current day - 1 year"
+  ],
+            "Measure" : [
+  "Backlog",
+  "Count"
+  ],
+            "compactGroup" : [
+  "CreatedDate_Day"
+  ],
+            "compactGroupTrend" : [
+  "CreatedDate_Year",
+  "CreatedDate_Month",
+  "CreatedDate_Day"
+  ],
+            "filter" : "month",
+            "queryCogroupNew" : "first(ThisYear['CreatedDate_Year'])+\"~~~\"+ThisYear['CreatedDate_Month']+\"~~~\"+ThisYear['CreatedDate_Day'] as 'CreatedDate_Year~~~CreatedDate_Month~~~CreatedDate_Day'",
+            "trendProjection" : "toString(now(), \"yyyy~~~MM\")+\"~~~\"+toString(now(), \"99\")"
+          },
+  {
+            "display" : "Last 7 Days",
+            "text_display" : "vs Prior 7 days",
+            "Backlog30DayClose" : "[\"current day - 37 days\"..\"current day - 7 days\"]",
+            "BacklogCompare" : [
+  "current day - 1 week",
+  "current day"
+  ],
+            "BacklogLabel" : "Backlog Last 7 Days",
+            "ClosedField" : "'${Constants.ClosedDate}_Month','${Constants.ClosedDate}_Day'",
+            "CoGroup" : "('CreatedDate_Month','CreatedDate_Day')",
+            "Compact" : [
+  [
+  "day",
+  -7
+  ],
+  [
+  "day",
+  0
+  ]
+  ],
+            "CreatedField" : "'CreatedDate_Day'",
+            "CreatedField2" : "'CreatedDate_Month','CreatedDate_Day'",
+            "CreatedProjection" : "(case when count(created) >0 then created['CreatedDate_Year']+\"~~~\"+created['CreatedDate_Month']+\"~~~\"+created['CreatedDate_Day'] else  closed['${Constants.ClosedDate}_Year']+\"~~~\"+closed['${Constants.ClosedDate}_Month']+\"~~~\"+closed['${Constants.ClosedDate}_Day'] end)",
+            "Current" : [
+  "7 days ago",
+  "current day"
+  ],
+            "FullGroup" : "'CreatedDate_Year~~~CreatedDate_Month~~~CreatedDate_Day'",
+            "GenerateClosedDate" : "'${Constants.ClosedDate}_Year'+\"~~~\"+'${Constants.ClosedDate}_Month'+\"~~~\"+'${Constants.ClosedDate}_Day' as 'CreatedDate_Year~~~CreatedDate_Month~~~CreatedDate_Day'",
+            "GenerateCoGroupDate" : "created['CreatedDate_Year']+\"~~~\"+created['CreatedDate_Month']+\"~~~\"+created['CreatedDate_Day'] as 'CreatedDate_Year~~~CreatedDate_Month~~~CreatedDate_Day'",
+            "GenerateCreatedDate" : "'CreatedDate_Year'+\"~~~\"+'CreatedDate_Month'+\"~~~\"+'CreatedDate_Day' as 'CreatedDate_Year~~~CreatedDate_Month~~~CreatedDate_Day'",
+            "GroupbyClosedDate" : "('${Constants.ClosedDate}_Year','${Constants.ClosedDate}_Month','${Constants.ClosedDate}_Day')",
+            "GroupbyCreatedDate" : "('CreatedDate_Year','CreatedDate_Month','CreatedDate_Day')",
+            "Grouping" : "CreatedDate_Year~~~CreatedDate_Month~~~CreatedDate_Day",
+            "LastPeriodCompare" : [
+  "7 days ago - 1 week",
+  "current day - 1 week"
+  ],
+            "LastYearCompare" : [
+  "7 days ago - 1 year",
+  "current day - 1 year"
+  ],
+            "Measure" : [
+  "Backlog",
+  "Count"
+  ],
+            "compactGroup" : [
+  "CreatedDate_Day"
+  ],
+            "compactGroupTrend" : [
+  "CreatedDate_Year",
+  "CreatedDate_Month",
+  "CreatedDate_Day"
+  ],
+            "filter" : "week",
+            "queryCogroupNew" : "first(ThisYear['CreatedDate_Year'])+\"~~~\"+ThisYear['CreatedDate_Month']+\"~~~\"+ThisYear['CreatedDate_Day'] as 'CreatedDate_Year~~~CreatedDate_Month~~~CreatedDate_Day'",
+            "trendProjection" : "toString(now(), \"yyyy~~~MM\")+\"~~~\"+toString(now(), \"99\")"
+          },
+  {
+            "display" : "Last 30 Days",
+            "text_display" : "vs Prior 30 Days",
+            "Backlog30DayClose" : "[\"current day - 60 days\"..\"current day - 30 days\"]",
+            "BacklogCompare" : [
+  "current day - 30 days",
+  "current day"
+  ],
+            "BacklogLabel" : "Backlog Last 30 Days",
+            "ClosedField" : "'${Constants.ClosedDate}_Week'",
+            "CoGroup" : "('CreatedDate_Week')",
+            "Compact" : [
+  [
+  "day",
+  -30
+  ],
+  [
+  "day",
+  0
+  ]
+  ],
+            "CreatedField" : "'CreatedDate_Week'",
+            "CreatedField2" : "'CreatedDate_Week'",
+            "CreatedProjection" : "(case when count(created) >0 then created['CreatedDate_Year']+\"~~~\"+created['CreatedDate_Week'] else  closed['${Constants.ClosedDate}_Year']+\"~~~\"+closed['${Constants.ClosedDate}_Week'] end)",
+            "Current" : [
+  "30 days ago",
+  "current day"
+  ],
+            "FullGroup" : "'CreatedDate_Year~~~CreatedDate_Week'",
+            "GenerateClosedDate" : "'${Constants.ClosedDate}_Year'+\"~~~\"+'${Constants.ClosedDate}_Week' as 'CreatedDate_Year~~~CreatedDate_Week'",
+            "GenerateCoGroupDate" : "created['CreatedDate_Year']+\"~~~\"+created['CreatedDate_Week'] as 'CreatedDate_Year~~~CreatedDate_Week'",
+            "GenerateCreatedDate" : "'CreatedDate_Year'+\"~~~\"+'CreatedDate_Week' as 'CreatedDate_Year~~~CreatedDate_Week'",
+            "GroupbyClosedDate" : "('${Constants.ClosedDate}_Year','${Constants.ClosedDate}_Week')",
+            "GroupbyCreatedDate" : "('CreatedDate_Year','CreatedDate_Week')",
+            "Grouping" : "CreatedDate_Year~~~CreatedDate_Week",
+            "LastPeriodCompare" : [
+  "30 days ago - 30 days",
+  "current day - 30 days"
+  ],
+            "LastYearCompare" : [
+  "30 days ago - 1 year",
+  "current day - 1 year"
+  ],
+            "Measure" : [
+  "Backlog",
+  "Count"
+  ],
+            "compactGroup" : [
+  "CreatedDate_Week"
+  ],
+            "compactGroupTrend" : [
+  "CreatedDate_Year",
+  "CreatedDate_Week"
+  ],
+            "filter" : "month",
+            "queryCogroupNew" : "first(ThisYear['CreatedDate_Year'])+\"~~~\"+ThisYear['CreatedDate_Week'] as 'CreatedDate_Year~~~CreatedDate_Week'",
+            "trendProjection" : "toString(now(), \"yyyy~~~MM\")+\"~~~\"+toString(now(), \"99\")"
+          },
+  {
+            "display" : "Last 180 Days",
+            "text_display" : "vs Prior 180 days",
+            "Backlog30DayClose" : "[\"current day - 240 days\"..\"current day - 180 days\"]",
+            "BacklogCompare" : [
+  "current day - 180 days",
+  "current day"
+  ],
+            "BacklogLabel" : "Backlog Last 180 Days",
+            "ClosedField" : "'${Constants.ClosedDate}_Month'",
+            "CoGroup" : "('CreatedDate_Month')",
+            "Compact" : [
+  [
+  "day",
+  -180
+  ],
+  [
+  "day",
+  0
+  ]
+  ],
+            "CreatedField" : "'CreatedDate_Month'",
+            "CreatedField2" : "'CreatedDate_Month'",
+            "CreatedProjection" : "(case when count(created) >0 then created['CreatedDate_Year']+\"~~~\"+created['CreatedDate_Month'] else  closed['${Constants.ClosedDate}_Year']+\"~~~\"+closed['${Constants.ClosedDate}_Month'] end)",
+            "Current" : [
+  "180 days ago",
+  "current day"
+  ],
+            "FullGroup" : "'CreatedDate_Year~~~CreatedDate_Month'",
+            "GenerateClosedDate" : "'${Constants.ClosedDate}_Year'+\"~~~\"+'${Constants.ClosedDate}_Month' as 'CreatedDate_Year~~~CreatedDate_Month'",
+            "GenerateCoGroupDate" : "created['CreatedDate_Year']+\"~~~\"+created['CreatedDate_Month'] as 'CreatedDate_Year~~~CreatedDate_Month'",
+            "GenerateCreatedDate" : "'CreatedDate_Year'+\"~~~\"+'CreatedDate_Month' as 'CreatedDate_Year~~~CreatedDate_Month'",
+            "GroupbyClosedDate" : "('${Constants.ClosedDate}_Year','${Constants.ClosedDate}_Month')",
+            "GroupbyCreatedDate" : "('CreatedDate_Year','CreatedDate_Month')",
+            "Grouping" : "CreatedDate_Year~~~CreatedDate_Month",
+            "LastPeriodCompare" : [
+  "180 days ago - 180 days",
+  "current day - 180 days"
+  ],
+            "LastYearCompare" : [
+  "180 days ago - 1 year",
+  "current day - 1 year"
+  ],
+            "Measure" : [
+  "Backlog",
+  "Count"
+  ],
+            "compactGroup" : [
+  "CreatedDate_Month"
+  ],
+            "compactGroupTrend" : [
+  "CreatedDate_Year",
+  "CreatedDate_Month"
+  ],
+            "filter" : "month",
+            "queryCogroupNew" : "first(ThisYear['CreatedDate_Year'])+\"~~~\"+ThisYear['CreatedDate_Month'] as 'CreatedDate_Year~~~CreatedDate_Month'",
+            "trendProjection" : "toString(now(), \"yyyy\")+\"~~~\"+toString(now(), \"99\")"
+          }
+  ],
+        "visualizationParameters" : { }
+      },
+      "Waterfall_Group_Select" : {
+        "datasets" : [ ],
+        "dimensions" : [ ],
+        "isFacet" : false,
+        "isGlobal" : false,
+        "selectMode" : "singlerequired",
+        "start" : [
+  [
+  "${Constants.CaseSupportLevel}"
+  ]
+  ],
+        "type" : "static",
+        "useGlobal" : false,
+        "values" : [
+  {
+            "display" : "Support Type",
+            "value" : [
+  "${Constants.CaseSupportLevel}"
+  ]
+          },
+  {
+            "display" : "${Constants.CaseProductLabel}",
+            "value" : [
+  "${Constants.CaseProduct}"
+  ]
+          },
+  {
+            "display" : "${Constants.CaseType}",
+            "value" : [
+  "${Constants.CaseType}"
+  ]
+          },
+  {
+            "display" : "${Constants.CaseOrigin}",
+            "value" : [
+  "${Constants.CaseOrigin}"
+  ]
+          }
+  ],
+        "visualizationParameters" : { }
+      },
+      "Support_Type__c_1" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "groups" : [
+  "${Constants.CaseSupportLevel}"
+  ],
+            "order" : [
+  [
+  -1,
+  {
+                  "ascending" : false
+                }
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "multi",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "CreatedDate_Year_Cre_1" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "groups" : [
+  [
+  "CreatedDate_Year",
+  "CreatedDate_Month",
+  "CreatedDate_Day"
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "single",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "time"
+        }
+      },
+      "Compare_Backlog" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "unique",
+  "Percent"
+  ]
+  ],
+            "pigql" : "q = load \"${App.EdgeMarts.ServiceCase.Alias}\";ENDTOTAL = filter q by 'IsClosed' == \"false\"; updcreatedTOTAL = filter q by {{cell(Time_Selection.selection, 0, \"BacklogCompare\").asDateRange(\"date('CreatedDate_Year','CreatedDate_Month','CreatedDate_Day')\")}}; updclosedTOTAL = filter q by {{cell(Time_Selection.selection, 0, \"BacklogCompare\").asDateRange(\"date('${Constants.ClosedDate}_Year','${Constants.ClosedDate}_Month','${Constants.ClosedDate}_Day')\")}};compare = group updcreatedTOTAL by all full, updclosedTOTAL by all full, ENDTOTAL by all; compare = foreach compare generate (count(ENDTOTAL)-(count(ENDTOTAL)+count(updclosedTOTAL)-count(updcreatedTOTAL)))/(count(ENDTOTAL)+count(updclosedTOTAL)-count(updcreatedTOTAL)) *100 as 'unique_Percent', (case when (count(ENDTOTAL)-(count(ENDTOTAL)+count(updclosedTOTAL)-count(updcreatedTOTAL)))/(count(ENDTOTAL)+count(updclosedTOTAL)-count(updcreatedTOTAL)) *100 < 0 then \"#3CAF6D\" when (count(ENDTOTAL)-(count(ENDTOTAL)+count(updclosedTOTAL)-count(updcreatedTOTAL)))/(count(ENDTOTAL)+count(updclosedTOTAL)-count(updcreatedTOTAL)) *100 > 0 then \"#f2536d\" else \"#7D98B3\" end) as 'color';",
+            "autoFilter" : true
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "single",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "allcases_Prev_Period" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "unique",
+  "Percent"
+  ]
+  ],
+            "pigql" : "q = load \"${App.EdgeMarts.ServiceCase.Alias}\"; curYear = filter q by {{cell(Time_Selection.selection, 0, \"Current\").asDateRange(\"date('CreatedDate_Year','CreatedDate_Month','CreatedDate_Day')\")}}; comparePeriod = filter q by {{cell(Time_Selection.selection, 0, \"LastPeriodCompare\").asDateRange(\"date('CreatedDate_Year','CreatedDate_Month','CreatedDate_Day')\")}};  b = cogroup curYear by all, comparePeriod by all; b = foreach b generate (count(curYear) - count(comparePeriod))/count(comparePeriod) *100 as 'unique_Percent', (case when (count(curYear) - count(comparePeriod))/count(comparePeriod) *100 < 0 then \"#3CAF6D\" when (count(curYear) - count(comparePeriod))/count(comparePeriod) *100 > 0 then \"#f2536d\"  else \"#7D98B3\" end) as 'color';",
+            "autoFilter" : true
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "test_step" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "pigql" : "q = load \"${App.EdgeMarts.ServiceCase.Alias}\";q = filter q by {{cell(Time_Selection.selection, 0, \"BacklogCompare\").asDateRange(\"date('CreatedDate_Year','CreatedDate_Month','CreatedDate_Day')\")}}; q = group q by all; q = foreach q generate count() as 'count';",
+            "autoFilter" : true
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "single",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "static_2" : {
+        "broadcastFacet" : false,
+        "datasets" : [ ],
+        "dimensions" : [ ],
+        "groups" : [ ],
+        "isGlobal" : false,
+        "numbers" : [ ],
+        "selectMode" : "single",
+        "strings" : [ ],
+        "type" : "staticflex",
+        "useGlobal" : false,
+        "values" : [
+  {
+            "display" : "This Month",
+            "value" : [
+  "current month",
+  "current month"
+  ]
+          },
+  {
+            "display" : "This year",
+            "value" : [
+  "current ${Constants.Fiscal_Prefix}year",
+  "current ${Constants.Fiscal_Prefix}year"
+  ]
+          }
+  ],
+        "visualizationParameters" : { }
+      },
+      "Open_Case_Count" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "filters" : [
+  [
+  "IsClosed",
+  [
+  "false"
+  ],
+  "in"
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "single",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "CreatedDate_Year_Cre_3" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "pigql" : "q = load \"${App.EdgeMarts.ServiceCase.Alias}\";closed = filter q by {{cell(Time_Selection.selection, 0, \"Current\").asDateRange(\"date('${Constants.ClosedDate}_Year','${Constants.ClosedDate}_Month','${Constants.ClosedDate}_Day')\")}}; created = filter q by {{cell(Time_Selection.selection, 0, \"Current\").asDateRange(\"date('CreatedDate_Year','CreatedDate_Month','CreatedDate_Day')\")}};createdGroup = group created by {{cell(Time_Selection.selection, 0, \"GroupbyCreatedDate\").asObject()}}; createdGroup = foreach createdGroup generate {{cell(Time_Selection.selection, 0, \"GenerateCreatedDate\").asObject()}}, \"Created\" as '${Constants.CaseType}', count() as count; closedGroup = group closed by {{cell(Time_Selection.selection, 0, \"GroupbyClosedDate\").asObject()}}; closedGroup = foreach closedGroup generate {{cell(Time_Selection.selection, 0, \"GenerateClosedDate\").asObject()}}, \"Closed\" as '${Constants.CaseType}', count() as count; impact = cogroup created by {{cell(Time_Selection.selection, 0, \"GroupbyCreatedDate\").asObject()}}, closed by {{cell(Time_Selection.selection, 0, \"GroupbyClosedDate\").asObject()}}; impact = foreach impact generate {{cell(Time_Selection.selection, 0, \"GenerateCoGroupDate\").asObject()}}, \"Backlog Impact\" as '${Constants.CaseType}', count(created)-count(closed) as count;final = union closedGroup,createdGroup,impact; final = filter final by '${Constants.CaseType}' in [\"Closed\",\"Created\"];  final = order final by '{{cell(Time_Selection.selection, 0, \"Grouping\").asObject()}}';",
+            "autoFilter" : true,
+            "groups" : [
+  "{{cell(Time_Selection.selection,0,\"Grouping\").asObject()}}",
+  "${Constants.CaseType}"
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "single",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "time"
+        }
+      },
+      "Closed_Case_Count_this_week" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "filters" : [
+  [
+  "IsClosed",
+  [
+  "true"
+  ],
+  "in"
+  ],
+  [
+  "${Constants.ClosedDate}",
+  "{{column(Time_Selection.selection, [\"Compact\"]).asObject()}}"
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "single",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "closedcases_Prev_Period" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "unique",
+  "Percent"
+  ]
+  ],
+            "pigql" : "q = load \"${App.EdgeMarts.ServiceCase.Alias}\"; q = filter q by 'IsClosed' == \"true\"; curYear = filter q by {{cell(Time_Selection.selection, 0, \"Current\").asDateRange(\"date('CreatedDate_Year','CreatedDate_Month','CreatedDate_Day')\")}}; comparePeriod = filter q by {{cell(Time_Selection.selection, 0, \"LastPeriodCompare\").asDateRange(\"date('CreatedDate_Year','CreatedDate_Month','CreatedDate_Day')\")}};  b = cogroup curYear by all, comparePeriod by all; b = foreach b generate (count(curYear) - count(comparePeriod))/count(comparePeriod) *100 as 'unique_Percent', (case when (count(curYear) - count(comparePeriod))/count(comparePeriod) *100 < 0 then \"#f2536d\" when (count(curYear) - count(comparePeriod))/count(comparePeriod) *100 > 0 then \"#3CAF6D\" else \"#7D98B3\" end) as 'color';",
+            "autoFilter" : true
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "Type_1" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "groups" : [
+  "${Constants.CaseType}"
+  ],
+            "order" : [
+  [
+  -1,
+  {
+                  "ascending" : false
+                }
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "multi",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "${Constants.CaseDuration}_1" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "sum",
+  "${Constants.CaseDuration}"
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "single",
+        "type" : "aggregateflex",
+        "useGlobal" : false,
+        "visualizationParameters" : { }
+      },
+      "allcases_Last_Year" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "unique",
+  "Percent"
+  ]
+  ],
+            "pigql" : "q = load \"${App.EdgeMarts.ServiceCase.Alias}\"; curYear = filter q by {{cell(Time_Selection.selection, 0, \"Current\").asDateRange(\"date('CreatedDate_Year','CreatedDate_Month','CreatedDate_Day')\")}}; comparePeriod = filter q by {{cell(Time_Selection.selection, 0, \"LastYearCompare\").asDateRange(\"date('CreatedDate_Year','CreatedDate_Month','CreatedDate_Day')\")}};  b = cogroup curYear by all, comparePeriod by all; b = foreach b generate (count(curYear) - count(comparePeriod))/count(comparePeriod) *100 as 'unique_Percent', (case when (count(curYear) - count(comparePeriod))/count(comparePeriod) *100 < 0 then \"#3CAF6D\" when (count(curYear) - count(comparePeriod))/count(comparePeriod) *100 > 0 then \"#f2536d\" else \"#7D98B3\" end) as 'color';",
+            "autoFilter" : true
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "Backlog_Trend_OverTime" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : "{{column(Time_Selection.selection, [\"Measure\"]).asObject()}}",
+            "pigql" : "q = load \"${App.EdgeMarts.ServiceCase.Alias}\"; created = filter q by {{cell(Time_Selection.selection, 0, \"Current\").asDateRange(\"date('CreatedDate_Year','CreatedDate_Month','CreatedDate_Day')\")}}; closed = filter q by {{cell(Time_Selection.selection, 0, \"Current\").asDateRange(\"date('${Constants.ClosedDate}_Year','${Constants.ClosedDate}_Month','${Constants.ClosedDate}_Day')\")}}; current = filter q by 'IsClosed' == \"false\"; current = group current by all;current = foreach current generate \"Today\" as 'time', {{cell(Time_Selection.selection, 0, \"trendProjection\").asObject()}} as {{cell(Time_Selection.selection, 0, \"FullGroup\").asObject()}}, count() as backlog;diff = group created by ('CreatedDate_Year', {{cell(Time_Selection.selection, 0, \"CreatedField2\").asObject()}}) full, closed by ('${Constants.ClosedDate}_Year', {{cell(Time_Selection.selection, 0, \"ClosedField\").asObject()}});diff = foreach diff generate \"Begining\" as 'time', {{cell(Time_Selection.selection, 0, \"CreatedProjection\").asObject()}} as {{cell(Time_Selection.selection, 0, \"FullGroup\").asObject()}}, count(closed) - count(created) as backlog;combined = union current, diff;combined = group combined by ({{cell(Time_Selection.selection, 0, \"FullGroup\").asObject()}},'time');combined = foreach combined generate 'time' as 'time', {{cell(Time_Selection.selection, 0, \"FullGroup\").asObject()}} as {{cell(Time_Selection.selection, 0, \"FullGroup\").asObject()}}, sum(sum(backlog)) over([0 ..] partition by all order by ({{cell(Time_Selection.selection, 0, \"FullGroup\").asObject()}})) as Backlog_Count; combined = filter combined by 'time' == \"Begining\"; f1 = foreach combined generate 'Backlog_Count' as 'Backlog_Count',{{cell(Time_Selection.selection, 0, \"FullGroup\").asObject()}} as {{cell(Time_Selection.selection, 0, \"FullGroup\").asObject()}}, \"{{cell(Time_Selection.selection, 0, \"filter\").asObject()}}\" as 'Grouping'; f2 = foreach combined generate {{coalesce(cell(avg_Backlog.result, 0, \"Backlog_Count\"),0).asObject()}} as 'Backlog_Count', {{cell(Time_Selection.selection, 0, \"FullGroup\").asObject()}} as {{cell(Time_Selection.selection, 0, \"FullGroup\").asObject()}}, \"Overall Average for Period\" as 'Grouping'; final = union f1, f2 ",
+            "autoFilter" : true,
+            "groups" : [
+  "{{cell(Time_Selection.selection,0,\"compactGroupTrend\").asObject()}}",
+  "Grouping"
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "none",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "time"
+        }
+      },
+      "Product__c_1" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "groups" : [
+  "${Constants.CaseProduct}"
+  ],
+            "order" : [
+  [
+  -1,
+  {
+                  "ascending" : false
+                }
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "multi",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "lens_1" : {
+        "broadcastFacet" : true,
+        "groups" : [ ],
+        "numbers" : [ ],
+        "query" : "q = load \"${App.EdgeMarts.ServiceCase.Alias}\";q = filter q by {{cell(Time_Selection.selection, 0, \"BacklogCompare\").asDateRange(\"date('CreatedDate_Year','CreatedDate_Month','CreatedDate_Day')\")}};q = foreach q generate 'CaseNumber' as 'CaseNumber','Account.Name' as 'Account.Name', 'Owner.Name'as 'Owner.Name','${Constants.CaseType}' as '${Constants.CaseType}',  '${Constants.CaseDuration}' as '${Constants.CaseDuration}','${Constants.CaseSeverityLevel}' as '${Constants.CaseSeverityLevel}','IsEscalated' as 'Escalated', '${Constants.CaseOrigin}' as '${Constants.CaseOrigin}', '${Constants.CaseStatus}' as '${Constants.CaseStatus}',  ${Constants.CaseSLAQuery} ${Constants.CaseSupportLevelQuery} '${Constants.CaseProduct}' as '${Constants.CaseProduct}';q = limit q 100;",
+        "receiveFacet" : true,
+        "selectMode" : "single",
+        "strings" : [ ],
+        "type" : "saql",
+        "useGlobal" : false
+      }
+    },
+    "widgetStyle" : {
+      "backgroundColor" : "#FFFFFF",
+      "borderColor" : "#E6ECF2",
+      "borderEdges" : [ ],
+      "borderRadius" : 0,
+      "borderWidth" : 1
+    },
+    "widgets" : {
+      "container_19" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "text_Backlog_Trend" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "Backlog Trend",
+          "textAlignment" : "left",
+          "textColor" : "#091A3E"
+        },
+        "type" : "text"
+      },
+      "container_18" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_17" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_16" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_15" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "link_Prioritized_Open_Cases" : {
+        "parameters" : {
+          "destination" : "${App.Dashboards['Service Open Cases'].Id}",
+          "destinationType" : "dashboard",
+          "fontSize" : 12,
+          "includeState" : false,
+          "text" : "Prioritize Open Cases",
+          "textAlignment" : "center",
+          "textColor" : "#091A3E"
+        },
+        "type" : "link"
+      },
+      "container_14" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_13" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "listselector_Product_c_1" : {
+        "parameters" : {
+          "compact" : false,
+          "expanded" : true,
+          "exploreLink" : false,
+          "instant" : false,
+          "measureField" : "none",
+          "step" : "Product__c_1",
+          "title" : "Case Product"
+        },
+        "type" : "listselector"
+      },
+      "number_closedcases_Prev_Period" : {
+        "parameters" : {
+          "compact" : true,
+          "exploreLink" : true,
+          "measureField" : "unique_Percent",
+          "numberColor" : "#FFFFFF",
+          "numberSize" : 12,
+          "step" : "closedcases_Prev_Period",
+          "textAlignment" : "center",
+          "title" : "{{cell(Time_Selection.selection, 0, \"text_display\").asString()}}",
+          "titleColor" : "#FFFFFF",
+          "titleSize" : 12
+        },
+        "type" : "number"
+      },
+      "number_Compare_Backlog" : {
+        "parameters" : {
+          "compact" : false,
+          "exploreLink" : true,
+          "measureField" : "unique_Percent",
+          "numberColor" : "#FFFFFF",
+          "numberSize" : 12,
+          "step" : "Compare_Backlog",
+          "textAlignment" : "center",
+          "title" : "{{cell(Time_Selection.selection, 0, \"text_display\").asString()}}",
+          "titleColor" : "#FFFFFF",
+          "titleSize" : 12
+        },
+        "type" : "number"
+      },
+      "text_Backlog_Changes" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "Backlog Changes",
+          "textAlignment" : "left",
+          "textColor" : "#091A3E"
+        },
+        "type" : "text"
+      },
+      "number_days_to_close" : {
+        "parameters" : {
+          "compact" : false,
+          "exploreLink" : true,
+          "measureField" : "tot_backlogdays",
+          "numberColor" : "#FFFFFF",
+          "numberSize" : 32,
+          "step" : "days_to_close",
+          "textAlignment" : "left",
+          "title" : "Projected days to clear backlog",
+          "titleColor" : "#C5D3E0",
+          "titleSize" : 14
+        },
+        "type" : "number"
+      },
+      "container_1" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_2" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_3" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_4" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_5" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_6" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_23" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "text_test1" : {
+        "parameters" : {
+          "fontSize" : 10,
+          "text" : "test",
+          "textAlignment" : "center",
+          "textColor" : "#091A3E"
+        },
+        "type" : "text"
+      },
+      "container_7" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_22" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_8" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_21" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_9" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_20" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "number_allcases_Last_Year" : {
+        "parameters" : {
+          "compact" : true,
+          "exploreLink" : true,
+          "measureField" : "unique_Percent",
+          "numberColor" : "{{coalesce(cell(allcases_Last_Year.result, 0, \"color\"),\"#000000\").asString()}}",
+          "numberSize" : 12,
+          "step" : "allcases_Last_Year",
+          "textAlignment" : "right",
+          "title" : "vs Last Year",
+          "titleColor" : "#FFFFFF",
+          "titleSize" : 12
+        },
+        "type" : "number"
+      },
+      "chart_Created_Cases_Over_Time" : {
+        "parameters" : {
+          "autoFitMode" : "fit",
+          "showValues" : true,
+          "bins" : {
+            "breakpoints" : {
+              "high" : 100,
+              "low" : 0
+            },
+            "bands" : {
+              "high" : {
+                "color" : "#008000",
+                "label" : ""
+              },
+              "low" : {
+                "color" : "#B22222",
+                "label" : ""
+              },
+              "medium" : {
+                "color" : "#ffa500",
+                "label" : ""
+              }
+            }
+          },
+          "legend" : {
+            "showHeader" : false,
+            "show" : false,
+            "customSize" : "auto",
+            "position" : "bottom-center",
+            "inside" : false
+          },
+          "axisMode" : "multi",
+          "visualizationType" : "vbar",
+          "exploreLink" : true,
+          "title" : {
+            "label" : "",
+            "align" : "center",
+            "subtitleLabel" : ""
+          },
+          "trellis" : {
+            "enable" : false,
+            "type" : "x",
+            "parameters" : { },
+            "chartsPerLine" : 4
+          },
+          "binValues" : false,
+          "measureAxis2" : {
+            "sqrtScale" : false,
+            "showTitle" : true,
+            "showAxis" : true,
+            "title" : ""
+          },
+          "measureAxis1" : {
+            "sqrtScale" : false,
+            "showTitle" : false,
+            "showAxis" : true,
+            "title" : ""
+          },
+          "step" : "Created_Cases_Over_Time",
+          "theme" : "light",
+          "dimensionAxis" : {
+            "showTitle" : false,
+            "customSize" : "auto",
+            "showAxis" : true,
+            "title" : ""
+          }
+        },
+        "type" : "chart"
+      },
+      "number_Open_Case_Count" : {
+        "parameters" : {
+          "compact" : false,
+          "exploreLink" : true,
+          "measureField" : "count",
+          "numberColor" : "#FFFFFF",
+          "numberSize" : 32,
+          "step" : "Open_Case_Count",
+          "textAlignment" : "left",
+          "title" : "Backlog",
+          "titleColor" : "#C5D3E0",
+          "titleSize" : 14
+        },
+        "type" : "number"
+      },
+      "number_compare_backlog_Last_Year" : {
+        "parameters" : {
+          "compact" : false,
+          "exploreLink" : true,
+          "measureField" : "unique_Percent",
+          "numberColor" : "{{coalesce(cell(compare_backlog_Last_Year.result, 0, \"color\"),\"#000000\").asString()}}",
+          "numberSize" : 12,
+          "step" : "compare_backlog_Last_Year",
+          "textAlignment" : "right",
+          "title" : "vs Last Year",
+          "titleColor" : "#FFFFFF",
+          "titleSize" : 12
+        },
+        "type" : "number"
+      },
+      "number_closedcases_Last_Year" : {
+        "parameters" : {
+          "compact" : true,
+          "exploreLink" : true,
+          "measureField" : "unique_Percent",
+          "numberColor" : "{{coalesce(cell(closedcases_Last_Year.result, 0, \"color\"),\"#000000\").asString()}}",
+          "numberSize" : 12,
+          "step" : "closedcases_Last_Year",
+          "textAlignment" : "right",
+          "title" : "vs Last Year",
+          "titleColor" : "#FFFFFF",
+          "titleSize" : 12
+        },
+        "type" : "number"
+      },
+      "chart_CreatedDate_Year_Cre_3" : {
+        "parameters" : {
+          "showPoints" : true,
+          "legend" : {
+            "showHeader" : false,
+            "show" : true,
+            "customSize" : "auto",
+            "position" : "bottom-center",
+            "inside" : false
+          },
+          "axisMode" : "multi",
+          "visualizationType" : "time",
+          "missingValue" : "connect",
+          "timeAxis" : {
+            "showTitle" : false,
+            "showAxis" : true,
+            "title" : ""
+          },
+          "exploreLink" : true,
+          "title" : {
+            "label" : "",
+            "align" : "center",
+            "subtitleLabel" : ""
+          },
+          "trellis" : {
+            "enable" : false,
+            "type" : "x",
+            "parameters" : { },
+            "chartsPerLine" : 4
+          },
+          "fillArea" : true,
+          "showZero" : true,
+          "measureAxis2" : {
+            "sqrtScale" : false,
+            "showTitle" : true,
+            "showAxis" : true,
+            "title" : ""
+          },
+          "measureAxis1" : {
+            "sqrtScale" : false,
+            "showTitle" : false,
+            "showAxis" : true,
+            "title" : ""
+          },
+          "theme" : "dark",
+          "step" : "CreatedDate_Year_Cre_3"
+        },
+        "type" : "chart"
+      },
+      "chart_CreatedDate_Year_Cre_1" : {
+        "parameters" : {
+          "showPoints" : false,
+          "legend" : {
+            "showHeader" : true,
+            "show" : true,
+            "customSize" : "auto",
+            "position" : "right-top",
+            "inside" : false
+          },
+          "axisMode" : "multi",
+          "visualizationType" : "time",
+          "missingValue" : "connect",
+          "timeAxis" : {
+            "showTitle" : false,
+            "showAxis" : true,
+            "title" : ""
+          },
+          "exploreLink" : true,
+          "title" : {
+            "label" : "",
+            "align" : "center",
+            "subtitleLabel" : ""
+          },
+          "trellis" : {
+            "enable" : false,
+            "type" : "x",
+            "parameters" : { },
+            "chartsPerLine" : 4
+          },
+          "textColor" : "#FFFFFF",
+          "fillArea" : false,
+          "showZero" : true,
+          "measureAxis2" : {
+            "sqrtScale" : false,
+            "showTitle" : true,
+            "showAxis" : true,
+            "title" : ""
+          },
+          "measureAxis1" : {
+            "sqrtScale" : false,
+            "showTitle" : false,
+            "showAxis" : true,
+            "title" : "Backlog Trend"
+          },
+          "theme" : "dark",
+          "step" : "CreatedDate_Year_Cre_1"
+        },
+        "type" : "chart"
+      },
+      "text_CaseTrend" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "Case Trend",
+          "textAlignment" : "left",
+          "textColor" : "#091A3E"
+        },
+        "type" : "text"
+      },
+      "table_lens_1" : {
+        "parameters" : {
+          "columns" : [ ],
+          "customBulkActions" : [ ],
+          "exploreLink" : true,
+          "step" : "lens_1"
+        },
+        "type" : "table"
+      },
+      "container_12" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_11" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_10" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "listselector_Support_Type_c_1" : {
+        "parameters" : {
+          "compact" : false,
+          "expanded" : true,
+          "exploreLink" : false,
+          "instant" : false,
+          "measureField" : "none",
+          "step" : "Support_Type__c_1",
+          "title" : "Case Support Level"
+        },
+        "type" : "listselector"
+      },
+      "chart_Backlog_Trend_OverTime" : {
+        "parameters" : {
+          "showPoints" : true,
+          "legend" : {
+            "showHeader" : true,
+            "show" : false,
+            "customSize" : "auto",
+            "position" : "right-top",
+            "inside" : false
+          },
+          "axisMode" : "multi",
+          "visualizationType" : "time",
+          "missingValue" : "connect",
+          "timeAxis" : {
+            "showTitle" : false,
+            "showAxis" : true,
+            "title" : ""
+          },
+          "exploreLink" : false,
+          "title" : {
+            "label" : "",
+            "align" : "center",
+            "subtitleLabel" : ""
+          },
+          "trellis" : {
+            "enable" : false,
+            "type" : "x",
+            "parameters" : { },
+            "chartsPerLine" : 4
+          },
+          "fillArea" : true,
+          "showZero" : true,
+          "measureAxis2" : {
+            "sqrtScale" : false,
+            "showTitle" : true,
+            "showAxis" : true,
+            "title" : ""
+          },
+          "measureAxis1" : {
+            "sqrtScale" : false,
+            "showTitle" : false,
+            "referenceLines" : [
+  {
+                "color" : "rgb(0, 161, 224)",
+                "label" : "Avg",
+                "value" : "{{coalesce(cell(avg_Backlog.result, 0, \"Backlog_Count\"),0).asObject()}}"
+              }
+  ],
+            "showAxis" : true,
+            "title" : ""
+          },
+          "step" : "Backlog_Trend_OverTime",
+          "theme" : "dark"
+        },
+        "type" : "chart"
+      },
+      "number_Closed_Case_Count_this_week" : {
+        "parameters" : {
+          "compact" : true,
+          "exploreLink" : true,
+          "measureField" : "count",
+          "numberColor" : "#FFFFFF",
+          "numberSize" : 32,
+          "step" : "Closed_Case_Count_this_week",
+          "textAlignment" : "left",
+          "title" : "Cases Closed",
+          "titleColor" : "#C5D3E0",
+          "titleSize" : 14
+        },
+        "type" : "number"
+      },
+      "link_Home" : {
+        "parameters" : {
+          "destination" : "${App.Dashboards['Service Analytics Overview'].Id}",
+          "destinationType" : "dashboard",
+          "fontSize" : 12,
+          "includeState" : false,
+          "text" : "Overview",
+          "textAlignment" : "center",
+          "textColor" : "#091A3E"
+        },
+        "type" : "link"
+      },
+      "text_test" : {
+        "parameters" : {
+          "fontSize" : 20,
+          "text" : "test",
+          "textAlignment" : "center",
+          "textColor" : "#091A3E"
+        },
+        "type" : "text"
+      },
+      "text_iphone_Backlog_Title" : {
+        "parameters" : {
+          "fontSize" : 24,
+          "text" : "Backlog",
+          "textAlignment" : "center",
+          "textColor" : "#091A3E"
+        },
+        "type" : "text"
+      },
+      "text_Case_Details" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "Case Details",
+          "textAlignment" : "left",
+          "textColor" : "#091A3E"
+        },
+        "type" : "text"
+      },
+      "text_Cases_Created_This_Year_vs_Last_Year" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "Cases Created This Year vs Last Year",
+          "textAlignment" : "left",
+          "textColor" : "#091A3E"
+        },
+        "type" : "text"
+      },
+      "listselector_Type_1" : {
+        "parameters" : {
+          "compact" : false,
+          "expanded" : true,
+          "exploreLink" : false,
+          "instant" : false,
+          "measureField" : "none",
+          "step" : "Type_1",
+          "title" : "Case Type"
+        },
+        "type" : "listselector"
+      },
+      "listselector_Time_Selection" : {
+        "parameters" : {
+          "compact" : false,
+          "expanded" : true,
+          "exploreLink" : false,
+          "instant" : true,
+          "step" : "Time_Selection",
+          "title" : "Date Range"
+        },
+        "type" : "listselector"
+      },
+      "listselector_Backlog_Trend_Group_Select" : {
+        "parameters" : {
+          "compact" : false,
+          "expanded" : true,
+          "exploreLink" : false,
+          "instant" : true,
+          "step" : "Backlog_Trend_Group_Select",
+          "title" : ""
+        },
+        "type" : "listselector"
+      },
+      "container_29" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "text_Backlog1" : {
+        "parameters" : {
+          "fontSize" : 20,
+          "text" : "Backlog",
+          "textAlignment" : "left",
+          "textColor" : "#091A3E"
+        },
+        "type" : "text"
+      },
+      "container_28" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_27" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_26" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "listselector_2" : {
+        "parameters" : {
+          "compact" : false,
+          "exploreLink" : false,
+          "instant" : true,
+          "measureField" : "count",
+          "step" : "Product__c_1",
+          "title" : "Product"
+        },
+        "type" : "listselector"
+      },
+      "container_25" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "link_Backlog" : {
+        "parameters" : {
+          "destination" : "${App.Dashboards['Service Backlog'].Id}",
+          "destinationType" : "dashboard",
+          "fontSize" : 12,
+          "includeState" : false,
+          "text" : "Backlog",
+          "textAlignment" : "center",
+          "textColor" : "#634F95"
+        },
+        "type" : "link"
+      },
+      "container_24" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "text_Case_Trend" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "Created/Closed Case Trend",
+          "textAlignment" : "left",
+          "textColor" : "#C5D3E0"
+        },
+        "type" : "text"
+      },
+      "text_backlogTrend_info" : {
+        "parameters" : {
+          "fontSize" : 10,
+          "text" : "Backlog Trend does not take into account cases that have been re-opened",
+          "textAlignment" : "left",
+          "textColor" : "#091A3E"
+        },
+        "type" : "text"
+      },
+      "text_Backlog" : {
+        "parameters" : {
+          "fontSize" : 24,
+          "text" : "Backlog",
+          "textAlignment" : "left",
+          "textColor" : "rgb(9, 26, 62)"
+        },
+        "type" : "text"
+      },
+      "number_allcases_Prev_Period" : {
+        "parameters" : {
+          "compact" : true,
+          "exploreLink" : true,
+          "measureField" : "unique_Percent",
+          "numberColor" : "#FFFFFF",
+          "numberSize" : 12,
+          "step" : "allcases_Prev_Period",
+          "textAlignment" : "center",
+          "title" : "{{cell(Time_Selection.selection, 0, \"text_display\").asString()}}",
+          "titleColor" : "#FFFFFF",
+          "titleSize" : 12
+        },
+        "type" : "number"
+      },
+      "number_new_case_count_this_week" : {
+        "parameters" : {
+          "compact" : true,
+          "exploreLink" : true,
+          "measureField" : "count",
+          "numberColor" : "#FFFFFF",
+          "numberSize" : 32,
+          "step" : "new_case_count_this_week",
+          "textAlignment" : "left",
+          "title" : "Cases Created",
+          "titleColor" : "#C5D3E0",
+          "titleSize" : 14
+        },
+        "type" : "number"
+      },
+      "listselector_1" : {
+        "parameters" : {
+          "compact" : false,
+          "exploreLink" : false,
+          "instant" : true,
+          "measureField" : "count",
+          "step" : "RecordType_Name_1",
+          "title" : "Record Type"
+        },
+        "type" : "listselector"
+      },
+      "chart_waterfall_chart" : {
+        "parameters" : {
+          "showValues" : true,
+          "computeTotal" : false,
+          "legend" : {
+            "showHeader" : false,
+            "show" : true,
+            "customSize" : "auto",
+            "position" : "right-top",
+            "inside" : false
+          },
+          "measureAxis1" : {
+            "sqrtScale" : false,
+            "showTitle" : false,
+            "showAxis" : true,
+            "title" : ""
+          },
+          "visualizationType" : "stackwaterfall",
+          "step" : "waterfall_chart",
+          "theme" : "light",
+          "exploreLink" : true,
+          "title" : {
+            "label" : "",
+            "align" : "center",
+            "subtitleLabel" : ""
+          },
+          "trellis" : {
+            "enable" : false,
+            "type" : "xy",
+            "parameters" : { },
+            "chartsPerLine" : 4
+          },
+          "dimensionAxis" : {
+            "showTitle" : false,
+            "showAxis" : true,
+            "title" : ""
+          }
+        },
+        "type" : "chart"
+      },
+      "container_31" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_30" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "listselector_RecordType_Name_1" : {
+        "parameters" : {
+          "compact" : false,
+          "expanded" : true,
+          "exploreLink" : false,
+          "instant" : false,
+          "measureField" : "none",
+          "step" : "RecordType_Name_1",
+          "title" : "Case Record Type"
+        },
+        "type" : "listselector"
+      }
+    }
+  }
+}

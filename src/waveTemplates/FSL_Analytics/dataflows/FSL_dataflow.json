@@ -1,0 +1,641 @@
+{
+    "_type": "workflow",
+    "description": "Dataflow for the Service Analytics Application.",
+    "name": "ServiceAnalyticsDataflow",
+    "workflowDefinition": {
+        "FSL_digest_ServiceAppointment": {
+            "action": "sfdcDigest",
+            "parameters": {
+                "object": "ServiceAppointment",
+                "fields": [
+                    {
+                        "name": "ParentRecordId"
+                    },
+                    {
+                        "name": "ServiceTerritoryId"
+                    },
+                    {
+                        "name": "ActualDuration"
+                    },
+                    {
+                        "name": "CreatedDate"
+                    },
+                    {
+                        "name": "EarliestStartTime"
+                    },
+                    {
+                        "name": "Duration"
+                    },
+                    {
+                        "name": "DurationInMinutes"
+                    },
+                    {
+                        "name": "DurationType"
+                    },
+                    {
+                        "name": "ParentRecordType"
+                    },
+                    {
+                        "name": "Id"
+                    },
+                    {
+                        "name": "Status"
+                    },
+                    {
+                        "name": "StatusCategory"
+                    },
+                    {
+                        "name": "DueDate"
+                    },
+                    {
+                        "name": "AppointmentNumber"
+                    },
+                    {
+                        "name": "ActualEndTime"
+                    },
+                    {
+                        "name": "ArrivalWindowEndTime"
+                    },
+                    {
+                        "name": "ArrivalWindowStartTime"
+                    },
+                    {
+                        "name": "ActualStartTime"
+                    }
+                ]
+            }
+        },
+        "FSL_digest_WorkOrder": {
+            "action": "sfdcDigest",
+            "parameters": {
+                "object": "WorkOrder",
+                "fields": [
+                    {
+                        "name": "WorkTypeId"
+                    },
+                    {
+                        "name": "AccountId"
+                    },
+                    {
+                        "name": "CaseId"
+                    },
+                    {
+                        "name": "Id"
+                    },
+                    {
+                        "name": "Status"
+                    },
+                    {
+                        "name": "Priority"
+                    },
+                    {
+                        "name": "CreatedDate"
+                    },
+                    {
+                        "name": "WorkOrderNumber"
+                    }
+                ]
+            }
+        },
+        "FSL_digest_WorkType": {
+            "action": "sfdcDigest",
+            "parameters": {
+                "object": "WorkType",
+                "fields": [
+                    {
+                        "name": "Name"
+                    },
+                    {
+                        "name": "Id"
+                    }
+                ]
+            }
+        },
+        "FSL_digest_Account": {
+            "action": "sfdcDigest",
+            "parameters": {
+                "object": "Account",
+                "fields": [
+                    {
+                        "name": "Name"
+                    },
+                    {
+                        "name": "Id"
+                    }
+                ]
+            }
+        },
+        "FSL_digest_ServiceTerritory": {
+            "action": "sfdcDigest",
+            "parameters": {
+                "object": "ServiceTerritory",
+                "fields": [
+                    {
+                        "name": "Id"
+                    },
+                    {
+                        "name": "Name"
+                    },
+                    {
+                        "name": "Country"
+                    },
+                    {
+                        "name": "City"
+                    },
+                    {
+                        "name": "State"
+                    },
+                    {
+                        "name": "OperatingHoursId"
+                    }
+                ]
+            }
+        },
+        "FSL_digest_AssignedResource": {
+            "action": "sfdcDigest",
+            "parameters": {
+                "object": "AssignedResource",
+                "fields": [
+                    {
+                        "name": "ServiceResourceId"
+                    },
+                    {
+                        "name": "ServiceAppointmentId"
+                    },
+                    {
+                        "name": "ActualTravelTime"
+                    },
+                    {
+                        "name": "Id"
+                    },
+                    {
+                        "name": "CreatedDate"
+                    },
+                    {
+                        "name": "EstimatedTravelTime"
+                    }
+                ]
+            }
+        },
+        "FSL_digest_ServiceResource": {
+            "action": "sfdcDigest",
+            "parameters": {
+                "object": "ServiceResource",
+                "fields": [
+                    {
+                        "name": "RelatedRecordId"
+                    },
+                    {
+                        "name": "Id"
+                    }
+                ]
+            }
+        },
+        "FSL_digest_User": {
+            "action": "sfdcDigest",
+            "parameters": {
+                "object": "User",
+                "fields": [
+                    {
+                        "name": "Username"
+                    },
+                    {
+                        "name": "Name"
+                    },
+                    {
+                        "name": "Email"
+                    },
+                    {
+                        "name": "Id"
+                    }
+                ]
+            }
+        },
+        "FSL_digest_ProductConsumed": {
+            "action": "sfdcDigest",
+            "parameters": {
+                "object": "ProductConsumed",
+                "fields": [
+                    {
+                        "name": "WorkOrderId"
+                    },
+                    {
+                        "name": "ProductName"
+                    },
+                    {
+                        "name": "QuantityConsumed"
+                    },
+                    {
+                        "name": "QuantityUnitOfMeasure"
+                    },
+                    {
+                        "name": "ProductConsumedNumber"
+                    },
+                    {
+                        "name": "Id"
+                    }
+                ]
+            }
+        },
+        "FSL_digest_ResourceAbsence": {
+            "action": "sfdcDigest",
+            "parameters": {
+                "object": "ResourceAbsence",
+                "fields": [
+                    {
+                        "name": "Start"
+                    },
+                    {
+                        "name": "End"
+                    },
+                    {
+                        "name": "Type"
+                    },
+                    {
+                        "name": "CreatedDate"
+                    },
+                    {
+                        "name": "Id"
+                    },
+                    {
+                        "name": "State"
+                    },
+                    {
+                        "name": "Country"
+                    },
+                    {
+                        "name": "City"
+                    },
+                    {
+                        "name": "ResourceId"
+                    }
+                ]
+            }
+        },
+        "FSL_digest_TimeSlot": {
+            "action": "sfdcDigest",
+            "parameters": {
+                "object": "TimeSlot",
+                "fields": [
+                    {
+                        "name": "OperatingHoursId"
+                    },
+                    {
+                        "name": "StartTime"
+                    },
+                    {
+                        "name": "EndTime"
+                    },
+                    {
+                        "name": "Id"
+                    }
+                ]
+            }
+        },
+        "FSL_digest_OperatingHours": {
+            "action": "sfdcDigest",
+            "parameters": {
+                "object": "OperatingHours",
+                "fields": [
+                    {
+                        "name": "Id"
+                    },
+                    {
+                        "name": "Name"
+                    }
+                ]
+            }
+        },
+        "FSL_augment_WO_onto_SA": {
+            "action": "augment",
+            "parameters": {
+                "left": "FSL_digest_ServiceAppointment",
+                "left_key": [
+                    "ParentRecordId"
+                ],
+                "relationship": "ParentRecordId",
+                "right": "FSL_digest_WorkOrder",
+                "right_key": [
+                    "Id"
+                ],
+                "right_select": [
+                    "WorkTypeId",
+                    "AccountId",
+                    "CaseId",
+                    "Id",
+                    "Status",
+                    "Priority",
+                    "CreatedDate",
+                    "WorkOrderNumber"
+                ]
+            }
+        },
+        "FSL_augment_WorkType_onto_SA": {
+            "action": "augment",
+            "parameters": {
+                "left": "FSL_augment_ProductConsumed_onto_SA",
+                "left_key": [
+                    "ParentRecordId.WorkTypeId"
+                ],
+                "relationship": "ParentRecordId.WorkTypeId",
+                "right": "FSL_digest_WorkType",
+                "right_key": [
+                    "Id"
+                ],
+                "right_select": [
+                    "Name",
+                    "Id"
+                ]
+            }
+        },
+        "FSL_augment_Account_onto_SA": {
+            "action": "augment",
+            "parameters": {
+                "left": "FSL_augment_WorkType_onto_SA",
+                "left_key": [
+                    "ParentRecordId.AccountId"
+                ],
+                "relationship": "ParentRecordId.AccountId",
+                "right": "FSL_digest_Account",
+                "right_key": [
+                    "Id"
+                ],
+                "right_select": [
+                    "Name"
+                ]
+            }
+        },
+        "FSL_augment_ServiceTerritory_onto_SA": {
+            "action": "augment",
+            "parameters": {
+                "left": "FSL_augment_Account_onto_SA",
+                "left_key": [
+                    "ServiceTerritoryId"
+                ],
+                "relationship": "ServiceTerritoryId",
+                "right": "FSL_digest_ServiceTerritory",
+                "right_key": [
+                    "Id"
+                ],
+                "right_select": [
+                    "Id",
+                    "Name",
+                    "Country",
+                    "City",
+                    "State",
+                    "OperatingHoursId"
+                ]
+            }
+        },
+        "FSL_augment_AssignedResource_onto_SA": {
+            "action": "augment",
+            "parameters": {
+                "left": "FSL_augment_ServiceTerritory_onto_SA",
+                "left_key": [
+                    "Id"
+                ],
+                "relationship": "AssignedResource",
+                "right": "FSL_augment_ServiceResource_onto_AssignedResource",
+                "right_key": [
+                    "ServiceAppointmentId"
+                ],
+                "right_select": [
+                    "User.User.Id",
+                    "User.User.Name",
+                    "User.User.Email",
+                    "User.User.Username",
+                    "User.Id",
+                    "ServiceResourceId"
+                ]
+            }
+        },
+        "FSL_augment_User_onto_ServiceResource": {
+            "action": "augment",
+            "parameters": {
+                "left": "FSL_digest_ServiceResource",
+                "left_key": [
+                    "RelatedRecordId"
+                ],
+                "relationship": "User",
+                "right": "FSL_digest_User",
+                "right_key": [
+                    "Id"
+                ],
+                "right_select": [
+                    "Username",
+                    "Name",
+                    "Email",
+                    "Id"
+                ]
+            }
+        },
+        "FSL_augment_ServiceResource_onto_AssignedResource": {
+            "action": "augment",
+            "parameters": {
+                "left": "FSL_digest_AssignedResource",
+                "left_key": [
+                    "ServiceResourceId"
+                ],
+                "relationship": "User",
+                "right": "FSL_augment_User_onto_ServiceResource",
+                "right_key": [
+                    "Id"
+                ],
+                "right_select": [
+                    "User.Name",
+                    "User.Username",
+                    "User.Email",
+                    "User.Id",
+                    "Id"
+                ]
+            }
+        },
+        "FSL_augment_SA_onto_AssignedResource": {
+            "action": "augment",
+            "parameters": {
+                "left": "FSL_augment_ServiceResource_onto_AssignedResource",
+                "left_key": [
+                    "ServiceAppointmentId"
+                ],
+                "relationship": "SA",
+                "right": "FSL_augment_ServiceTerritory_onto_SA",
+                "right_key": [
+                    "Id"
+                ],
+                "right_select": [
+                    "Id",
+                    "ParentRecordId.AccountId.Name",
+                    "ParentRecordId.CaseId",
+                    "ParentRecordId.WorkTypeId.Name",
+                    "ParentRecordId.Priority",
+                    "ParentRecordId.CreatedDate",
+                    "Status",
+                    "StatusCategory",
+                    "CreatedDate",
+                    "EarliestStartTime",
+                    "ServiceTerritoryId.Name",
+                    "ServiceTerritoryId.State",
+                    "ProductConsumed.ProductName"
+                ]
+            }
+        },
+        "FSL_register_AssignedResource": {
+            "action": "sfdcRegister",
+            "parameters": {
+                "SFDCtoken": "SFDCtoken",
+                "source": "FSL_augment_SA_onto_AssignedResource",
+                "alias": "${App.EdgeMarts.AssignedResource.Alias}",
+                "name": "AssignedResource"
+            }
+        },
+        "FSL_augment_ProductConsumed_onto_SA": {
+            "action": "augment",
+            "parameters": {
+                "left": "FSL_augment_WO_onto_SA",
+                "left_key": [
+                    "ParentRecordId.Id"
+                ],
+                "relationship": "ProductConsumed",
+                "right": "FSL_digest_ProductConsumed",
+                "right_key": [
+                    "WorkOrderId"
+                ],
+                "right_select": [
+                    "ProductName",
+                    "Id",
+                    "ProductConsumedNumber"
+                ]
+            }
+        },
+        "FSL_register_ServiceAppointment": {
+            "action": "sfdcRegister",
+            "parameters": {
+                "SFDCtoken": "SFDCtoken",
+                "source": "FSL_augment_AssignedResource_onto_SA",
+                "alias": "${App.EdgeMarts.ServiceAppointment.Alias}",
+                "name": "ServiceAppointment"
+            }
+        },
+        "FSL_register_ProductConsumed": {
+            "action": "sfdcRegister",
+            "parameters": {
+                "SFDCtoken": "SFDCtoken",
+                "source": "FSL_digest_ProductConsumed",
+                "alias": "${App.EdgeMarts.ProductConsumed.Alias}",
+                "name": "ProductConsumed"
+            }
+        },
+        "FSL_compute_expression_ResourceAbsence_End_minus_Start": {
+            "action": "computeExpression",
+            "parameters": {
+                "source": "FSL_digest_ResourceAbsence",
+                "mergeWithSource": true,
+                "computedFields": [
+                    {
+                        "name": "AbsenceMinutes",
+                        "type": "Numeric",
+                        "precision": 10,
+                        "scale": 0,
+                        "label": "AbsenceMinutes",
+                        "saqlExpression": "(End_sec_epoch - Start_sec_epoch)/60"
+                    }
+                ]
+            }
+        },
+        "FSL_augment_ServiceResource_onto_ResourceAbsence": {
+            "action": "augment",
+            "parameters": {
+                "left": "FSL_compute_expression_ResourceAbsence_End_minus_Start",
+                "left_key": [
+                    "ResourceId"
+                ],
+                "relationship": "ResourceAbsence",
+                "right": "FSL_augment_User_onto_ServiceResource",
+                "right_key": [
+                    "Id"
+                ],
+                "right_select": [
+                    "User.Username",
+                    "User.Name",
+                    "User.Email",
+                    "User.Id"
+                ]
+            }
+        },
+        "FSL_register_ResourceAbsence": {
+            "action": "sfdcRegister",
+            "parameters": {
+                "SFDCtoken": "SFDCtoken",
+                "source": "FSL_augment_ServiceResource_onto_ResourceAbsence",
+                "alias": "${App.EdgeMarts.ResourceAbsence.Alias}",
+                "name": "ResourceAbsence"
+            }
+        },
+        "FSL_compute_expression_TimeSlot_toDate": {
+            "action": "computeExpression",
+            "parameters": {
+                "source": "FSL_digest_TimeSlot",
+                "mergeWithSource": true,
+                "computedFields": [
+                    {
+                        "name": "StartTime_date",
+                        "type": "Date",
+                        "format": "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+                        "label": "StartTime_date",
+                        "saqlExpression": "toDate(\"2000-01-01T\"+'StartTime',\"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\")"
+                    },
+                    {
+                        "name": "EndTime_date",
+                        "type": "Date",
+                        "format": "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+                        "label": "EndTime_date",
+                        "saqlExpression": "toDate(\"2000-01-01T\"+'EndTime',\"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\")"
+                    }
+                ]
+            }
+        },
+        "FSL_compute_expression_TimeSlot_EndTime_minus_StartTime": {
+            "action": "computeExpression",
+            "parameters": {
+                "source": "FSL_compute_expression_TimeSlot_toDate",
+                "mergeWithSource": true,
+                "computedFields": [
+                    {
+                        "name": "AvailableTime",
+                        "type": "Numeric",
+                        "precision": 10,
+                        "scale": 0,
+                        "label": "AvailableTime",
+                        "saqlExpression": "(EndTime_date_sec_epoch - StartTime_date_sec_epoch)/60"
+                    }
+                ]
+            }
+        },
+        "FSL_augment_OperatingHours_onto_TimeSlot": {
+            "action": "augment",
+            "parameters": {
+                "left": "FSL_compute_expression_TimeSlot_EndTime_minus_StartTime",
+                "left_key": [
+                    "OperatingHoursId"
+                ],
+                "relationship": "OperatingHoursId",
+                "right": "FSL_digest_OperatingHours",
+                "right_key": [
+                    "Id"
+                ],
+                "right_select": [
+                    "Id"
+                ]
+            }
+        },
+        "FSL_register_TimeSlot": {
+            "action": "sfdcRegister",
+            "parameters": {
+                "source": "FSL_augment_OperatingHours_onto_TimeSlot",
+                "SFDCtoken": "SFDCtoken",
+                "alias": "${App.EdgeMarts.TimeSlot.Alias}",
+                "name": "TimeSlot"
+            }
+        }
+    }
+}

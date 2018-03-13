@@ -1,0 +1,165 @@
+{
+  "derivedDimensions": [
+  ],
+  "derivedMeasures": [
+    {
+      "field": "changeTeamActivity",
+      "label": "changeTeamActivity",
+      "showInExplorer": false
+    },
+    {
+      "field": "CallsPerCase",
+      "format": {
+        "customFormat": "[\"0.#\",\"1\"]"
+      },
+      "label": "CallsPerCase",
+      "showInExplorer": false
+    },
+    {
+      "field": "Percent",
+      "format": {
+        "customFormat": "[\"#,###.#%\",1]"
+      },
+      "label": "Percent",
+      "showInExplorer": false
+    },
+    {
+      "field": "completed_activity_pct",
+      "format": {
+        "customFormat": "[\"#,###.#%\",\"1\"]"
+      },
+      "label": "completed_activity_pct",
+      "showInExplorer": false
+    }
+  ],
+  "dimensions": [
+    {
+      "field": "Case.${Constants.CaseType}",
+      "label": "${Constants.CaseTypeLabel}"
+    },
+    {
+      "field": "Case.${Constants.CaseSupportLevel}",
+      "label": "${Constants.CaseSupportLevelLabel}"
+    },
+    {
+      "field": "Case.${Constants.CaseSeverityLevel}",
+      "label": "${Constants.CaseSeverityLevelLabel}"
+    },
+    {
+      "field": "Case.${Constants.CaseReason}",
+      "label": "${Constants.CaseReasonLabel}"
+    },
+
+    {
+      "field": "Case.${Constants.CaseOrigin}",
+      "label": "${Constants.CaseOriginLabel}"
+    },
+    {
+      "field": "Case.${Constants.CaseProduct}",
+      "label": "${Constants.CaseProductLabel}"
+    },
+    {
+      "field": "Case.${Constants.CaseRecordTypeField}",
+      "label": "${Constants.CaseRecordTypeLabel}"
+    },
+    {
+      "field": "Case.${Constants.CaseStatus}",
+      "label": "${Constants.CaseStatusLabel}"
+    },
+    {
+      "field": "Case.Role.Name",
+      "label": "Role"
+    },
+
+    {
+      "field": "Owner.Id",
+      "label": "Owner ID"
+    },
+    {
+      "field": "Id",
+      "label": "Activity ID",
+      "linkTemplate": "/{{row.Id}}",
+      "linkTooltip": "Open Record",
+      "recordIdField": "Id"
+    },
+    {
+      "field": "Case.CaseNumber",
+      "label": "Case Number",
+      "linkTemplate": "/{{row.Case.Id}}",
+      "linkTooltip": "Open Record",
+      "recordIdField": "Case.Id"
+    },
+    {
+      "field": "Case.Account.Name",
+      "label": "Account Name",
+      "linkTemplate": "/{{row.Case.Account.Id}}",
+      "linkTooltip": "Open Account",
+      "recordIdField": "Case.Account.Id"
+    },
+    {
+      "field": "Owner.Name",
+      "label": "Agent",
+      "linkTemplate": "/{{row.OwnerId}}",
+      "linkTooltip": "Open Record",
+      "recordIdField": "OwnerId"
+    },
+    {
+      "field": "CallObject",
+      "label": "Call Object Identifier",
+      "linkTemplate": "/{{row.CallObject}}",
+      "linkTooltip": "Open Record",
+      "recordIdField": "CallObject"
+    },
+    {
+      "field": "CreatedDate",
+      "label": "Created Date"
+    },
+    {
+      "field": "ActivityType",
+      "members": [
+        {
+          "label": "Meeting",
+          "member": "Event"
+        }
+      ]
+    },
+    {
+      "field": "IsClosed",
+      "label": "Is Activity Closed",
+      "members": [
+        {
+          "label": "Open",
+          "member": "false"
+        },
+        {
+          "label": "Completed",
+          "member": "true"
+        }
+      ]
+    },
+    {
+      "field": "Case.IsClosed",
+      "label": "Is Case Closed",
+      "members": [
+        {
+          "label": "Closed",
+          "member": "true"
+        },
+        {
+          "label": "Open",
+          "member": "false"
+        }
+      ]
+    }
+  ],
+  "measures": [
+    {
+      "field": "Case.${Constants.CaseDuration}",
+      "format": {
+        "customFormat": "[\"0.# days\",1]"
+      },
+      "label": "Case.${Constants.CaseDuration}",
+      "showInExplorer": false
+    }
+  ]
+}

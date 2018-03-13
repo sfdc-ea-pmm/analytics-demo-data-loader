@@ -1,0 +1,430 @@
+{
+  "derivedDimensions": [
+  ],
+  "dimensions": [
+    {
+      "customActionsEnabled": true,
+      "field": "Case.${Constants.CaseSeverityLevel}",
+      "label": "${Constants.CaseSeverityLevelLabel}",
+      "linkTemplateEnabled": true,
+      "salesforceActionsEnabled": true,
+      "showInExplorer": false
+    },
+    {
+      "customActionsEnabled": true,
+      "field": "Case.${Constants.CaseSLA}",
+      "label": "${Constants.CaseSLALabel}",
+      "linkTemplateEnabled": true,
+      "salesforceActionsEnabled": true,
+      "showInExplorer": false
+    },
+    {
+      "customActionsEnabled": true,
+      "field": "Case.${Constants.CaseOrigin}",
+      "label": "${Constants.CaseOriginLabel}",
+      "linkTemplateEnabled": true,
+      "salesforceActionsEnabled": true,
+      "showInExplorer": false
+    },
+    {
+      "customActionsEnabled": true,
+      "field": "Case.${Constants.CaseType}",
+      "label": "${Constants.CaseTypeLabel}",
+      "linkTemplateEnabled": true,
+      "salesforceActionsEnabled": true,
+      "showInExplorer": false
+    },
+    {
+      "customActionsEnabled": true,
+      "field": "Case.${Constants.CaseRecordTypeField}",
+      "label": "${Constants.CaseRecordTypeLabel}",
+      "linkTemplateEnabled": true,
+      "salesforceActionsEnabled": true,
+      "showInExplorer": false
+    },
+    {
+      "customActionsEnabled": true,
+      "field": "Case.${Constants.CaseReason}",
+      "label": "${Constants.CaseReasonLabel}",
+      "linkTemplateEnabled": true,
+      "salesforceActionsEnabled": true,
+      "showInExplorer": false
+    },
+    {
+      "customActionsEnabled": true,
+      "field": "Case.${Constants.CaseSupportLevel}",
+      "label": "${Constants.CaseSupportLevelLabel}",
+      "linkTemplateEnabled": true,
+      "salesforceActionsEnabled": true,
+      "showInExplorer": false
+    },
+    {
+      "customActionsEnabled": true,
+      "field": "Case.${Constants.CaseProduct}",
+      "label": "${Constants.CaseProductLabel}",
+      "linkTemplateEnabled": true,
+      "salesforceActionsEnabled": true,
+      "showInExplorer": false
+    },
+    {
+      "customActionsEnabled": true,
+      "field": "Case.CaseNumber",
+      "label": "Case Number",
+      "linkTemplate": "/{{row.CaseId}}",
+      "linkTemplateEnabled": true,
+      "linkTooltip": "Open Case",
+      "recordIdField": "CaseId",
+      "salesforceActionsEnabled": true,
+      "showInExplorer": false
+    },
+    {
+      "field": "NewOwner",
+      "label": "New Owner"
+    },
+    {
+      "field": "IsLastChange",
+      "label": "Last Change"
+    },
+    {
+      "field": "ValidToDate_Week",
+      "label": "ValidToDate_Week"
+    },
+    {
+      "field": "ValidToDate_Quarter",
+      "label": "ValidToDate_Quarter"
+    },
+    {
+      "field": "Case.ClosedDate",
+      "label": "Case Closed Date"
+    },
+    {
+      "field": "CreatedDate_Day",
+      "label": "CreatedDate_Day"
+    },
+    {
+      "field": "CreatedDate_Month",
+      "label": "CreatedDate_Month"
+    },
+    {
+      "field": "Case.CreatedDate_Quarter",
+      "label": "Case.CreatedDate_Quarter"
+    },
+    {
+      "field": "ValidToDate_Minute",
+      "label": "ValidToDate_Minute"
+    },
+    {
+      "field": "CreatedDate_Second",
+      "label": "CreatedDate_Second"
+    },
+    {
+      "field": "CurrentDate_Second",
+      "label": "CurrentDate_Second"
+    },
+    {
+      "field": "CreatedDate_Year",
+      "label": "CreatedDate_Year"
+    },
+    {
+      "field": "NewOwner.Name",
+      "label": "New Owner Name"
+    },
+    {
+      "field": "OldOwner.Id",
+      "label": "Old Owner Id"
+    },
+    {
+      "field": "Id",
+      "label": "Case History ID"
+    },
+    {
+      "field": "OldOwner",
+      "label": "Old Owner"
+    },
+    {
+      "field": "Case.CreatedDate",
+      "label": "Case Created Date"
+    },
+    {
+      "field": "CaseId",
+      "label": "Case ID"
+    },
+    {
+      "field": "NewStatus",
+      "label": "New ${Constants.CaseStatusLabel}"
+    },
+    {
+      "field": "ValidToDate_Hour",
+      "label": "ValidToDate_Hour"
+    },
+    {
+      "field": "NewOwner.Id",
+      "label": "New Owner Id"
+    },
+    {
+      "field": "ValidToDate_Second",
+      "label": "ValidToDate_Second"
+    },
+    {
+      "field": "OldValue",
+      "label": "Old Value"
+    },
+    {
+      "field": "CreatedDate_Week",
+      "label": "CreatedDate_Week"
+    },
+    {
+      "field": "ChangeAfterCloseDate",
+      "label": "Change After CloseDate"
+    },
+    {
+      "field": "Case.IsClosed",
+      "label": "Is Case Closed"
+    },
+    {
+      "field": "OldOwner.Name",
+      "label": "Owner",
+      "linkTemplate": "/{{row.OldOwner.Id}}",
+      "linkTooltip": "Open User Record",
+      "recordIdField": "OldOwner.Id"
+    },
+    {
+      "field": "CreatedById",
+      "label": "Created By ID"
+    },
+    {
+      "field": "CurrentDate",
+      "label": "Current Date"
+    },
+    {
+      "field": "Case.Account.Name",
+      "label": "Account Name"
+    },
+    {
+      "field": "ValidToDate",
+      "label": "ValidToDate"
+    },
+    {
+      "field": "ValidToDate_Day",
+      "label": "ValidToDate_Day"
+    },
+    {
+      "field": "CreatedDate",
+      "label": "Created Date"
+    },
+    {
+      "field": "NewValue",
+      "label": "New Value"
+    },
+    {
+      "field": "NewOwner.Type",
+      "label": "New Owner Type"
+    },
+    {
+      "field": "Field",
+      "label": "Changed Field"
+    },
+    {
+      "field": "CreatedDatePrev",
+      "label": "Previous CreatedDate"
+    },
+    {
+      "field": "ValidToDate_Year",
+      "label": "ValidToDate_Year"
+    },
+    {
+      "field": "OldOwner.Type",
+      "label": "Old Owner Type"
+    },
+    {
+      "field": "OldStatus",
+      "label": "Old ${Constants.CaseStatusLabel}"
+    },
+    {
+      "field": "Case.BusinessHoursId",
+      "showInExplorer": false
+    }
+  ],
+  "measures": [
+    {
+      "field": "DateDiffNew",
+      "format": {
+        "customFormat": "[\"\",1]",
+        "decimalDigits": 2
+      },
+      "label": "Date Diff New"
+    },
+    {
+      "field": "Case.${Constants.CaseDuration}",
+      "format": {
+        "customFormat": "[\"0.# days\",1]",
+        "decimalDigits": 2
+      },
+      "label": "Case.${Constants.CaseDuration}"
+    },
+    {
+      "field": "DateDiffOld",
+      "format": {
+        "customFormat": "[\"\",1]",
+        "decimalDigits": 2
+      },
+      "label": "Date Diff Old"
+    },
+    {
+      "field": "BH.FridayDuration",
+      "showInExplorer": false
+    },
+    {
+      "field": "BH.MondayDuration",
+      "showInExplorer": false
+    },
+    {
+      "field": "BH.SaturdayDuration",
+      "showInExplorer": false
+    },
+    {
+      "field": "BH.SundayDuration",
+      "showInExplorer": false
+    },
+    {
+      "field": "BH.ThursdayDuration",
+      "showInExplorer": false
+    },
+    {
+      "field": "BH.TuesdayDuration",
+      "showInExplorer": false
+    },
+    {
+      "field": "BH.WednesdayDuration",
+      "showInExplorer": false
+    },
+    {
+      "field": "BH.SundayStartTime_sec",
+      "showInExplorer": false
+    },
+    {
+      "field": "BH.MondayStartTime_sec",
+      "showInExplorer": false
+    },
+    {
+      "field": "BH.TuesdayStartTime_sec",
+      "showInExplorer": false
+    },
+    {
+      "field": "BH.WednesdayStartTime_sec",
+      "showInExplorer": false
+    },
+    {
+      "field": "BH.ThursdayStartTime_sec",
+      "showInExplorer": false
+    },
+    {
+      "field": "BH.FridayStartTime_sec",
+      "showInExplorer": false
+    },
+    {
+      "field": "BH.SaturdayStartTime_sec",
+      "showInExplorer": false
+    },
+    {
+      "field": "BH.SundayEndTime_sec",
+      "showInExplorer": false
+    },
+    {
+      "field": "BH.MondayEndTime_sec",
+      "showInExplorer": false
+    },
+    {
+      "field": "BH.TuesdayEndTime_sec",
+      "showInExplorer": false
+    },
+    {
+      "field": "BH.WednesdayEndTime_sec",
+      "showInExplorer": false
+    },
+    {
+      "field": "BH.ThursdayEndTime_sec",
+      "showInExplorer": false
+    },
+    {
+      "field": "BH.FridayEndTime_sec",
+      "showInExplorer": false
+    },
+    {
+      "field": "BH.SaturdayEndTime_sec",
+      "showInExplorer": false
+    },
+    {
+      "field": "NumWeeks",
+      "showInExplorer": false
+    },
+    {
+      "field": "StartWeekDay",
+      "showInExplorer": false
+    },
+    {
+      "field": "EndWeekDay",
+      "showInExplorer": false
+    },
+    {
+      "field": "TotalThursdayDuration",
+      "showInExplorer": false
+    },
+    {
+      "field": "TotalFridayDuration",
+      "showInExplorer": false
+    },
+    {
+      "field": "TotalSaturdayDuration",
+      "showInExplorer": false
+    },
+    {
+      "field": "TotalSundayDuration",
+      "showInExplorer": false
+    },
+    {
+      "field": "TotalMondayDuration",
+      "showInExplorer": false
+    },
+    {
+      "field": "TotalTuesdayDuration",
+      "showInExplorer": false
+    },
+    {
+      "field": "TotalWednesdayDuration",
+      "showInExplorer": false
+    },
+    {
+      "field": "BusinessCreateDateStartTimeInSeconds",
+      "showInExplorer": false
+    },
+    {
+      "field": "BusinessCreateDateEndTimeInSeconds",
+      "showInExplorer": false
+    },
+    {
+      "field": "BusinessValidToStartTimeInSeconds",
+      "showInExplorer": false
+    },
+    {
+      "field": "BusinessValidToEndTimeInSeconds",
+      "showInExplorer": false
+    },
+    {
+      "field": "StartTimeAdjusted",
+      "showInExplorer": false
+    },
+    {
+      "field": "EndTimeAdjusted",
+      "showInExplorer": false
+    },
+    {
+      "field": "PartialDaysDurationStart",
+      "showInExplorer": false
+    },
+    {
+      "field": "PartialDaysDurationEnd",
+      "showInExplorer": false
+    }
+  ]
+}

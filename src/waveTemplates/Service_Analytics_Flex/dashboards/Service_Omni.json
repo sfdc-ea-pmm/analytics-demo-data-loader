@@ -1,0 +1,3269 @@
+{
+  "name" : "Service_Omni",
+  "label" : "Service Omni",
+  "folder" : {
+    "id" : "${App.Folder.Id}"
+  },
+  "mobileDisabled" : false,
+  "state" : {
+    "dataSourceLinks" : [ ],
+    "filters" : [ ],
+    "gridLayouts" : [
+  {
+        "maxWidth" : 1360,
+        "name" : "Default",
+        "numColumns" : 48,
+        "pages" : [
+  {
+            "name" : "Default",
+            "widgets" : [
+  {
+                "colspan" : 4,
+                "column" : 1,
+                "name" : "text_Dashboard_Title",
+                "row" : 3,
+                "rowspan" : 5,
+                "widgetStyle" : {
+                  "borderColor" : "#9271E8",
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 4,
+                "column" : 19,
+                "name" : "link_Home",
+                "row" : 6,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "borderColor" : "#9271E8",
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 4,
+                "column" : 23,
+                "name" : "link_Channel_Review",
+                "row" : 6,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#9271E8",
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 4,
+                "column" : 27,
+                "name" : "link_Omni",
+                "row" : 6,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "rgb(99, 79, 149)",
+                  "borderEdges" : [
+  "bottom"
+  ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 2
+                }
+              },
+  {
+                "colspan" : 4,
+                "column" : 31,
+                "name" : "link_Chat",
+                "row" : 6,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#9271E8",
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 4,
+                "column" : 35,
+                "name" : "link_Telephony",
+                "row" : 6,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "borderColor" : "#9271E8",
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 4,
+                "column" : 39,
+                "name" : "link_Knowledge_Efficiency",
+                "row" : 6,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 4,
+                "column" : 43,
+                "name" : "link_Knowledge_Usage",
+                "row" : 6,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "borderColor" : "#FFFFFF",
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 48,
+                "column" : 0,
+                "name" : "container_1",
+                "row" : 1,
+                "rowspan" : 8,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "rgb(146, 113, 232)",
+                  "borderEdges" : [
+  "bottom"
+  ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 41,
+                "name" : "listselector_Time_Selection",
+                "row" : 12,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "backgroundColor" : "#E6ECF2",
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 48,
+                "column" : 0,
+                "name" : "container_12",
+                "row" : 9,
+                "rowspan" : 8,
+                "widgetStyle" : {
+                  "backgroundColor" : "#E6ECF2",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 14,
+                "column" : 1,
+                "name" : "text_Daily_Call_Volume",
+                "row" : 25,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgb(6, 28, 63)",
+                  "borderColor" : "rgb(6, 28, 63)",
+                  "borderEdges" : [
+  "top"
+  ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 4
+                }
+              },
+  {
+                "colspan" : 14,
+                "column" : 1,
+                "name" : "text_Hourly_Breakdown_Subtitle",
+                "row" : 28,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgb(6, 28, 63)",
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 31,
+                "column" : 1,
+                "name" : "chart_incoming_vol_timeline",
+                "row" : 30,
+                "rowspan" : 27,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgb(6, 28, 63)",
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 32,
+                "column" : 0,
+                "name" : "container_2",
+                "row" : 25,
+                "rowspan" : 33,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgb(6, 28, 63)",
+                  "borderColor" : "#091A3E",
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 3,
+                "column" : 1,
+                "name" : "number_Metric_Avg_Wait_Time",
+                "row" : 20,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgb(2, 10, 26)",
+                  "borderColor" : "rgba(51, 87, 121, 0.5)",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 16,
+                "column" : 32,
+                "name" : "container_4",
+                "row" : 25,
+                "rowspan" : 33,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgb(6, 28, 63)",
+                  "borderColor" : "rgb(6, 28, 63)",
+                  "borderEdges" : [
+  "right"
+  ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 11,
+                "column" : 1,
+                "name" : "text_Hourly_Breakdown_Title",
+                "row" : 59,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 22,
+                "column" : 14,
+                "name" : "text_Agent_Performance",
+                "row" : 88,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#FFFFFF",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 4
+                }
+              },
+  {
+                "colspan" : 48,
+                "column" : 0,
+                "name" : "container_8",
+                "row" : 58,
+                "rowspan" : 29,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgb(255, 255, 255)",
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 48,
+                "column" : 0,
+                "name" : "container_14",
+                "row" : 87,
+                "rowspan" : 39,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#C5D3E0",
+                  "borderEdges" : [
+  "bottom",
+  "top"
+  ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 10,
+                "column" : 1,
+                "name" : "chart_Agent_By_Volume",
+                "row" : 91,
+                "rowspan" : 33,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 48,
+                "column" : 0,
+                "name" : "container_17",
+                "row" : 126,
+                "rowspan" : 42,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 13,
+                "column" : 34,
+                "name" : "chart_Agent_Work_By_Types",
+                "row" : 46,
+                "rowspan" : 11,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgb(6, 28, 63)",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 2,
+                "column" : 4,
+                "name" : "number_KPI_Incoming_Volume_Prev_Period",
+                "row" : 21,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "backgroundColor" : "{{cell(step_KPI_Incoming_Volume_Prev_Period.result, 0, \"color\").asString()}}",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 4,
+                  "borderWidth" : 4
+                }
+              },
+  {
+                "colspan" : 31,
+                "column" : 16,
+                "name" : "chart_Scatter_Plot",
+                "row" : 92,
+                "rowspan" : 31,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 48,
+                "column" : 0,
+                "name" : "container_6",
+                "row" : 17,
+                "rowspan" : 8,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgb(2, 10, 26)",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 13,
+                "column" : 34,
+                "name" : "chart_Agent_Work_by_Queue",
+                "row" : 28,
+                "rowspan" : 16,
+                "widgetStyle" : {
+                  "backgroundColor" : "#091A3E",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 46,
+                "column" : 1,
+                "name" : "table_valuesTable",
+                "row" : 127,
+                "rowspan" : 39,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 4,
+                "column" : 16,
+                "name" : "listselector_Product_Selection",
+                "row" : 12,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "backgroundColor" : "#E6ECF2",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 4,
+                "column" : 6,
+                "name" : "listselector_Agent_Selection",
+                "row" : 12,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "backgroundColor" : "#E6ECF2",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 4,
+                "column" : 1,
+                "name" : "listselector_Account_Selection",
+                "row" : 12,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "backgroundColor" : "#E6ECF2",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 9,
+                "column" : 1,
+                "name" : "text_Incoming_Volume",
+                "row" : 18,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgb(2, 10, 26)",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 3,
+                "column" : 13,
+                "name" : "number_KPI_Avg_Speed_to_Answer",
+                "row" : 20,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgb(2, 10, 26)",
+                  "borderColor" : "rgb(2, 10, 26)",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 9,
+                "column" : 13,
+                "name" : "text_KPI_Avg_Speed_to_Answer",
+                "row" : 18,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgb(2, 10, 26)",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 2,
+                "column" : 17,
+                "name" : "number_KPI_Avg_Speed_to_Answer_Prev_Period",
+                "row" : 21,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "backgroundColor" : "{{cell(step_KPI_Avg_Speed_to_Answer_Prev_Period.result, 0, \"color\").asString()}}",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 4,
+                  "borderWidth" : 4
+                }
+              },
+  {
+                "colspan" : 8,
+                "column" : 26,
+                "name" : "text_Average_Handle_Time",
+                "row" : 18,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgb(2, 10, 26)",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 3,
+                "column" : 26,
+                "name" : "number_KPI_Average_Handle_Time",
+                "row" : 20,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgb(2, 10, 26)",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 2,
+                "column" : 30,
+                "name" : "number_KPI_Avg_HandleTime_Prev_Period",
+                "row" : 21,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "backgroundColor" : "{{cell(step_KPI_Avg_HandleTime_Prev_Period.result, 0, \"color\").asString()}}",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 4,
+                  "borderWidth" : 4
+                }
+              },
+  {
+                "colspan" : 9,
+                "column" : 38,
+                "name" : "text_Average_Active_Time",
+                "row" : 18,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgb(2, 10, 26)",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 3,
+                "column" : 38,
+                "name" : "number_KPI_Average_Active_Time",
+                "row" : 20,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgb(2, 10, 26)",
+                  "borderColor" : "rgb(2, 10, 26)",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 2,
+                "column" : 42,
+                "name" : "number_KPI_Avg_ActiveTime_Prev_Period",
+                "row" : 21,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "backgroundColor" : "{{cell(step_KPI_Avg_ActiveTime_Prev_Period.result, 0, \"color\").asString()}}",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 4,
+                  "borderWidth" : 4
+                }
+              },
+  {
+                "colspan" : 4,
+                "column" : 11,
+                "name" : "listselector_Origin_Selection",
+                "row" : 12,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "backgroundColor" : "#E6ECF2",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 4,
+                "column" : 26,
+                "name" : "listselector_RecordType_Selection",
+                "row" : 12,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "backgroundColor" : "#E6ECF2",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 4,
+                "column" : 21,
+                "name" : "listselector_Role_Selection",
+                "row" : 12,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "backgroundColor" : "#E6ECF2",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 46,
+                "column" : 1,
+                "name" : "chart_Hourly_Breakdown_Vol_Capacity",
+                "row" : 62,
+                "rowspan" : 24,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 5,
+                "column" : 34,
+                "name" : "text_ByQueue",
+                "row" : 26,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "backgroundColor" : "#091A3E",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 5,
+                "column" : 34,
+                "name" : "text_ByChannel",
+                "row" : 44,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "backgroundColor" : "#091A3E",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 8,
+                "column" : 1,
+                "name" : "text_Agents_by_Volume",
+                "row" : 88,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              }
+  ]
+          }
+  ],
+        "rowHeight" : "fine",
+        "selectors" : [ ],
+        "style" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "backgroundColor" : "rgb(202, 212, 222)",
+          "cellSpacingX" : 0,
+          "cellSpacingY" : 0,
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "version" : 1.0
+      },
+  {
+        "name" : "iphone",
+        "numColumns" : 12,
+        "pages" : [
+  {
+            "name" : "iphone",
+            "widgets" : [
+  {
+                "colspan" : 10,
+                "column" : 1,
+                "name" : "text_Title_iphone",
+                "row" : 2,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 12,
+                "column" : 0,
+                "name" : "container_1",
+                "row" : 0,
+                "rowspan" : 6,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "rgb(146, 113, 232)",
+                  "borderEdges" : [
+  "bottom"
+  ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 0,
+                "name" : "listselector_Origin_Selection",
+                "row" : 8,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "backgroundColor" : "#E6ECF2",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 6,
+                "name" : "listselector_Time_Selection",
+                "row" : 8,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "backgroundColor" : "#E6ECF2",
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 12,
+                "column" : 0,
+                "name" : "container_12",
+                "row" : 6,
+                "rowspan" : 9,
+                "widgetStyle" : {
+                  "backgroundColor" : "#E6ECF2",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [
+  "top"
+  ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 5,
+                "column" : 1,
+                "name" : "text_Incoming_Volume",
+                "row" : 17,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgb(2, 10, 26)",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 5,
+                "column" : 7,
+                "name" : "text_KPI_Avg_Speed_to_Answer",
+                "row" : 17,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgb(2, 10, 26)",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 5,
+                "column" : 1,
+                "name" : "text_Average_Handle_Time",
+                "row" : 27,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgb(2, 10, 26)",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 4,
+                "column" : 7,
+                "name" : "text_Average_Active_Time",
+                "row" : 27,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgb(2, 10, 26)",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 4,
+                "column" : 1,
+                "name" : "number_Metric_Avg_Wait_Time",
+                "row" : 19,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgb(2, 10, 26)",
+                  "borderColor" : "rgba(51, 87, 121, 0.5)",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 4,
+                "column" : 7,
+                "name" : "number_KPI_Avg_Speed_to_Answer",
+                "row" : 19,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgb(2, 10, 26)",
+                  "borderColor" : "rgb(2, 10, 26)",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 4,
+                "column" : 1,
+                "name" : "number_KPI_Average_Handle_Time",
+                "row" : 29,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgb(2, 10, 26)",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 4,
+                "column" : 7,
+                "name" : "number_KPI_Average_Active_Time",
+                "row" : 29,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgb(2, 10, 26)",
+                  "borderColor" : "rgb(2, 10, 26)",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 2,
+                "column" : 1,
+                "name" : "number_KPI_Incoming_Volume_Prev_Period",
+                "row" : 23,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "backgroundColor" : "{{cell(step_KPI_Incoming_Volume_Prev_Period.result, 0, \"color\").asString()}}",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 4,
+                  "borderWidth" : 4
+                }
+              },
+  {
+                "colspan" : 2,
+                "column" : 7,
+                "name" : "number_KPI_Avg_Speed_to_Answer_Prev_Period",
+                "row" : 23,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "backgroundColor" : "{{cell(step_KPI_Avg_Speed_to_Answer_Prev_Period.result, 0, \"color\").asString()}}",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 4,
+                  "borderWidth" : 4
+                }
+              },
+  {
+                "colspan" : 2,
+                "column" : 1,
+                "name" : "number_KPI_Avg_HandleTime_Prev_Period",
+                "row" : 33,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "backgroundColor" : "{{cell(step_KPI_Avg_HandleTime_Prev_Period.result, 0, \"color\").asString()}}",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 4,
+                  "borderWidth" : 4
+                }
+              },
+  {
+                "colspan" : 2,
+                "column" : 7,
+                "name" : "number_KPI_Avg_ActiveTime_Prev_Period",
+                "row" : 33,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "backgroundColor" : "{{cell(step_KPI_Avg_ActiveTime_Prev_Period.result, 0, \"color\").asString()}}",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 4,
+                  "borderWidth" : 4
+                }
+              },
+  {
+                "colspan" : 12,
+                "column" : 0,
+                "name" : "container_6",
+                "row" : 15,
+                "rowspan" : 22,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgb(2, 10, 26)",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 7,
+                "column" : 1,
+                "name" : "text_Daily_Call_Volume",
+                "row" : 37,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgb(6, 28, 63)",
+                  "borderColor" : "rgb(6, 28, 63)",
+                  "borderEdges" : [
+  "top"
+  ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 4
+                }
+              },
+  {
+                "colspan" : 9,
+                "column" : 1,
+                "name" : "text_Hourly_Breakdown_Subtitle",
+                "row" : 40,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgb(6, 28, 63)",
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 10,
+                "column" : 1,
+                "name" : "chart_incoming_vol_timeline",
+                "row" : 42,
+                "rowspan" : 25,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgb(6, 28, 63)",
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 12,
+                "column" : 0,
+                "name" : "container_2",
+                "row" : 37,
+                "rowspan" : 32,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgb(6, 28, 63)",
+                  "borderColor" : "#091A3E",
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 10,
+                "column" : 1,
+                "name" : "chart_Agent_Work_by_Queue",
+                "row" : 72,
+                "rowspan" : 16,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 10,
+                "column" : 1,
+                "name" : "chart_Agent_Work_By_Types",
+                "row" : 91,
+                "rowspan" : 10,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 12,
+                "column" : 0,
+                "name" : "container_4",
+                "row" : 69,
+                "rowspan" : 33,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [
+  "all"
+  ],
+                  "borderRadius" : 8,
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 10,
+                "column" : 1,
+                "name" : "text_Hourly_Breakdown_Title",
+                "row" : 103,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 10,
+                "column" : 1,
+                "name" : "chart_Hourly_Breakdown_Vol_Capacity",
+                "row" : 106,
+                "rowspan" : 22,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 12,
+                "column" : 0,
+                "name" : "container_8",
+                "row" : 102,
+                "rowspan" : 28,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgb(255, 255, 255)",
+                  "borderEdges" : [
+  "all"
+  ],
+                  "borderRadius" : 8,
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 10,
+                "column" : 1,
+                "name" : "text_Agent_Performance",
+                "row" : 131,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#FFFFFF",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 4
+                }
+              },
+  {
+                "colspan" : 10,
+                "column" : 1,
+                "name" : "chart_Agent_By_Volume",
+                "row" : 166,
+                "rowspan" : 29,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 10,
+                "column" : 1,
+                "name" : "chart_Scatter_Plot",
+                "row" : 136,
+                "rowspan" : 26,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 12,
+                "column" : 0,
+                "name" : "container_14",
+                "row" : 130,
+                "rowspan" : 69,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [
+  "all"
+  ],
+                  "borderRadius" : 8,
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 10,
+                "column" : 1,
+                "name" : "table_valuesTable",
+                "row" : 204,
+                "rowspan" : 34,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 12,
+                "column" : 0,
+                "name" : "container_17",
+                "row" : 199,
+                "rowspan" : 40,
+                "widgetStyle" : {
+                  "borderEdges" : [
+  "all"
+  ],
+                  "borderRadius" : 8,
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 10,
+                "column" : 1,
+                "name" : "text_CaseDetails_iphone",
+                "row" : 200,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 1,
+                "name" : "text_ByQueue_iphone",
+                "row" : 69,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 7,
+                "column" : 1,
+                "name" : "text_ByChannel_iphone",
+                "row" : 88,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 10,
+                "column" : 1,
+                "name" : "text_Agents_by_Volume",
+                "row" : 163,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              }
+  ]
+          }
+  ],
+        "rowHeight" : "fine",
+        "selectors" : [
+  "maxWidth(599)"
+  ],
+        "style" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "backgroundColor" : "rgb(202, 212, 222)",
+          "cellSpacingX" : 0,
+          "cellSpacingY" : 0,
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "version" : 1.0
+      }
+  ],
+    "layouts" : [ ],
+    "steps" : {
+      "step_Agent_By_Volume" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceOmniAgentWork.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "groups" : [
+  "UserId.Name"
+  ],
+            "filters" : [
+  [
+  "RequestDateTime",
+  "{{column(step_Selection_Time.selection, [\"Compact\"]).asObject()}}"
+  ],
+  [
+  "Status",
+  [
+  "Canceled",
+  "Closed"
+  ],
+  "in"
+  ]
+  ],
+            "order" : [
+  [
+  -1,
+  {
+                  "ascending" : false
+                }
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "single",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "step_KPI_Avg_Speed_to_Answer_Prev_Period" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceOmniAgentWork.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "label" : "",
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "unique",
+  "Percent"
+  ]
+  ],
+            "pigql" : "q = load \"${App.EdgeMarts.ServiceOmniAgentWork.Alias}\"; q = filter q by 'Status' in [\"Canceled\", \"Closed\"];curYear = filter q by {{cell(step_Selection_Time.selection, 0, \"Current\").asDateRange(\"date('RequestDateTime_Year','RequestDateTime_Month','RequestDateTime_Day')\")}}; comparePeriod = filter q by {{cell(step_Selection_Time.selection, 0, \"LastPeriodCompare\").asDateRange(\"date('RequestDateTime_Year','RequestDateTime_Month','RequestDateTime_Day')\")}};  b = cogroup curYear by all, comparePeriod by all; b = foreach b generate (avg(curYear.'SpeedToAnswer') - avg(comparePeriod.'SpeedToAnswer'))/avg(comparePeriod.'SpeedToAnswer') *100 as 'unique_Percent', (case when (avg(curYear.'SpeedToAnswer') - avg(comparePeriod.'SpeedToAnswer'))/avg(comparePeriod.'SpeedToAnswer') *100 < 0 then \"#3CAF6D\" when (avg(curYear.'SpeedToAnswer') - avg(comparePeriod.'SpeedToAnswer'))/avg(comparePeriod.'SpeedToAnswer') *100 > 0 then \"#f2536d\" else \"#7D98B3\" end) as 'color';",
+            "autoFilter" : true
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "single",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "step_Incoming_Vol_Timeline" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceOmniAgentWork.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "groups" : [
+  [
+  "RequestDateTime_Year",
+  "RequestDateTime_Month",
+  "RequestDateTime_Day"
+  ],
+  "Case.Origin"
+  ],
+            "filters" : [
+  [
+  "RequestDateTime",
+  "{{column(step_Selection_Time.selection, [\"Compact\"]).asObject()}}"
+  ],
+  [
+  "Status",
+  [
+  "Canceled",
+  "Closed"
+  ],
+  "in"
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "single",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "time"
+        }
+      },
+      "step_Selection_Role" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceOmniAgentWork.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "label" : "",
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "groups" : [
+  "Case.Role.Name"
+  ],
+            "filters" : [
+  [
+  "RequestDateTime",
+  "{{column(step_Selection_Time.selection, [\"Compact\"]).asObject()}}"
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "multi",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "step_Agent_Work_By_Types" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceOmniAgentWork.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "label" : "",
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "groups" : [
+  "Case.Origin"
+  ],
+            "filters" : [
+  [
+  "RequestDateTime",
+  "{{column(step_Selection_Time.selection, [\"Compact\"]).asObject()}}"
+  ],
+  [
+  "Status",
+  [
+  "Canceled",
+  "Closed"
+  ],
+  "in"
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "single",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "pie"
+        }
+      },
+      "step_KPI_Incoming_Volume" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceOmniAgentWork.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "label" : "",
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "filters" : [
+  [
+  "RequestDateTime",
+  "{{column(step_Selection_Time.selection, [\"Compact\"]).asObject()}}"
+  ],
+  [
+  "Status",
+  [
+  "Canceled",
+  "Closed"
+  ],
+  "in"
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "single",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "step_Selection_Account" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceOmniAgentWork.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "label" : "",
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "groups" : [
+  "Case.Account.Name"
+  ],
+            "filters" : [
+  [
+  "RequestDateTime",
+  "{{column(step_Selection_Time.selection, [\"Compact\"]).asObject()}}"
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "multi",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "step_KPI_Average_Active_Time" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceOmniAgentWork.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "label" : "",
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "avg",
+  "ActiveTime"
+  ]
+  ],
+            "filters" : [
+  [
+  "Status",
+  [
+  "Canceled",
+  "Closed"
+  ],
+  "in"
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "single",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "step_Hourly_Breakdown_Vol_Capacity" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceOmniAgentWork.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "pigql" : "a = load \"${App.EdgeMarts.ServiceOmniAgentWork.Alias}\";a = filter a by 'Status' in [\"Canceled\", \"Closed\"];a = filter a by {{cell(step_Selection_Time.selection, 0, \"Current\").asDateRange(\"date('RequestDateTime_Year','RequestDateTime_Month','RequestDateTime_Day')\")}};a = group a by ('RequestDateTime_Year','RequestDateTime_Month','RequestDateTime_Day','RequestDateTime_Hour');a = foreach a generate 'RequestDateTime_Year'+\"~~~\"+'RequestDateTime_Month'+\"~~~\"+'RequestDateTime_Day' as 'each_date', 'RequestDateTime_Hour' as 'RequestDateTime_Hour', count() as 'date_hour_volume', unique('UserId.Name') as 'date_hour_agents_working' ;a= group a by 'RequestDateTime_Hour';a = foreach a generate 'RequestDateTime_Hour' as 'RequestDateTime_Hour', round(sum('date_hour_volume')/unique('each_date'),0) as 'Request Volume', round(sum('date_hour_agents_working')/unique('each_date'),0) as '# Agents Working';a = order a by ('RequestDateTime_Hour' asc)",
+            "measures" : [
+  [
+  null,
+  null,
+  "Request Volume"
+  ],
+  [
+  null,
+  null,
+  "# Agents Working"
+  ]
+  ],
+            "autoFilter" : true,
+            "groups" : [
+  "RequestDateTime_Hour"
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "single",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : { }
+      },
+      "step_Scatter_Plot_No_CSAT" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceOmniAgentWork.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "label" : "",
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "avg",
+  "HandleTime",
+  "Average Handle Time"
+  ],
+  [
+  "count",
+  "*",
+  "Request Volume"
+  ]
+  ],
+            "groups" : [
+  "UserId.Name"
+  ],
+            "filters" : [
+  [
+  "RequestDateTime",
+  "{{column(step_Selection_Time.selection, [\"Compact\"]).asObject()}}"
+  ],
+  [
+  "Status",
+  [
+  "Canceled",
+  "Closed"
+  ],
+  "in"
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "single",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "scatter"
+        }
+      },
+      "step_Selection_Product" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceOmniAgentWork.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "label" : "",
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "groups" : [
+  "Case.${Constants.CaseProduct}"
+  ],
+            "filters" : [
+  [
+  "RequestDateTime",
+  "{{column(step_Selection_Time.selection, [\"Compact\"]).asObject()}}"
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "multi",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "step_Selection_Time" : {
+        "broadcastFacet" : false,
+        "datasets" : [ ],
+        "dimensions" : [ ],
+        "groups" : [ ],
+        "isGlobal" : false,
+        "label" : "",
+        "numbers" : [ ],
+        "selectMode" : "singlerequired",
+        "start" : {
+          "display" : [
+  "Last 180 Days"
+  ]
+        },
+        "strings" : [ ],
+        "type" : "staticflex",
+        "useGlobal" : false,
+        "values" : [
+  {
+            "display" : "YTD",
+            "Backlog30DayClose" : "[\"current day - 395 days\"..\"current day - 1 year\"]",
+            "BacklogCompare" : [
+  "current day - 1 year",
+  "current day"
+  ],
+            "BacklogLabel" : "Backlog Last Year",
+            "ClosedField" : "'ClosedDate_Month'",
+            "CoGroup" : "('RequestTime_Month')",
+            "Compact" : [
+  [
+  "year",
+  0
+  ],
+  [
+  "year",
+  0
+  ]
+  ],
+            "CreatedField" : "'RequestTime_Month'",
+            "CreatedProjection" : "created['RequestTime_Month']",
+            "Current" : [
+  "current year",
+  "current day"
+  ],
+            "FullGroup" : "RequestTime_Year~~~RequestTime_Month",
+            "GenerateClosedDate" : "'ClosedDate_Year'+\"~~~\"+'ClosedDate_Month' as 'RequestTime_Year~~~RequestTime_Month'",
+            "GenerateCoGroupDate" : "created['RequestTime_Year']+\"~~~\"+created['RequestTime_Month'] as 'RequestTime_Year~~~RequestTime_Month'",
+            "GenerateRequestTime" : "'RequestTime_Year'+\"~~~\"+'RequestTime_Month' as 'RequestTime_Year~~~RequestTime_Month'",
+            "GroupbyClosedDate" : "('ClosedDate_Year','ClosedDate_Month')",
+            "GroupbyRequestTime" : "('RequestTime_Year','RequestTime_Month')",
+            "Grouping" : "RequestTime_Year~~~RequestTime_Month",
+            "LastPeriodCompare" : [
+  "current year - 1 year",
+  "current day - 1 year"
+  ],
+            "LastYearCompare" : [
+  "current year - 1 year",
+  "current day - 1 year"
+  ],
+            "Measure" : [
+  "Backlog",
+  "Count",
+  null,
+  {
+                "display" : "Backlog Count at Start of Month"
+              }
+  ],
+            "compactGroup" : [
+  "RequestTime_Year",
+  "RequestTime_Month"
+  ],
+            "filter" : "year",
+            "queryCogroupNew" : "first(ThisYear['RequestTime_Year'])+\"~~~\"+ThisYear['RequestTime_Month'] as 'RequestTime_Year~~~RequestTime_Month'",
+            "SAQL" : "coalesce((avg(ThisYear['Resolution_Time__c'])-avg(LastYear['Resolution_Time__c']))/avg(LastYear['Resolution_Time__c']),0)*100 as sum_Percent",
+            "trendProjection" : "toString(now(), \"yyyy\")+\"~~~\"+toString(now(), \"99\")"
+          },
+  {
+            "display" : "QTD",
+            "Backlog30DayClose" : "[\"current day - 120 days\"..\"current day - 1 quarter\"]",
+            "BacklogCompare" : [
+  "current day - 1 quarter",
+  "current day"
+  ],
+            "BacklogLabel" : "Backlog Last Quarter",
+            "ClosedField" : "'ClosedDate_Week'",
+            "CoGroup" : "('RequestTime_Week')",
+            "Compact" : [
+  [
+  "quarter",
+  0
+  ],
+  [
+  "quarter",
+  0
+  ]
+  ],
+            "CreatedField" : "'RequestTime_Week'",
+            "CreatedProjection" : "created['RequestTime_Week']",
+            "Current" : [
+  "current quarter",
+  "current day"
+  ],
+            "FullGroup" : "RequestTime_Year~~~RequestTime_Week",
+            "GenerateClosedDate" : "'ClosedDate_Year'+\"~~~\"+'ClosedDate_Week' as 'RequestTime_Year~~~RequestTime_Week'",
+            "GenerateCoGroupDate" : "created['RequestTime_Year']+\"~~~\"+created['RequestTime_Week'] as 'RequestTime_Year~~~RequestTime_Week'",
+            "GenerateRequestTime" : "'RequestTime_Year'+\"~~~\"+'RequestTime_Week' as 'RequestTime_Year~~~RequestTime_Week'",
+            "GroupbyClosedDate" : "('ClosedDate_Year','ClosedDate_Week')",
+            "GroupbyRequestTime" : "('RequestTime_Year','RequestTime_Week')",
+            "Grouping" : "RequestTime_Year~~~RequestTime_Week",
+            "LastPeriodCompare" : [
+  "current quarter - 1 quarter",
+  "current day - 1 quarter"
+  ],
+            "LastYearCompare" : [
+  "current quarter - 1 year",
+  "current day - 1 year"
+  ],
+            "Measure" : [
+  "Backlog",
+  "Count",
+  null,
+  {
+                "display" : "Backlog Count at Start of Week"
+              }
+  ],
+            "compactGroup" : [
+  "RequestTime_Year",
+  "RequestTime_Week"
+  ],
+            "filter" : "quarter",
+            "queryCogroupNew" : "first(ThisYear['RequestTime_Year'])+\"~~~\"+ThisYear['RequestTime_Week'] as 'RequestTime_Year~~~RequestTime_Week'",
+            "SAQL" : "coalesce((avg(ThisYear['Resolution_Time__c'])-avg(LastYear['Resolution_Time__c']))/avg(LastYear['Resolution_Time__c']),0)*100 as sum_Percent",
+            "trendProjection" : "toString(now(), \"yyyy\")+\"~~~\"+toString(now(), \"99\")"
+          },
+  {
+            "display" : "MTD",
+            "Backlog30DayClose" : "[\"current day - 60 days\"..\"current day - 1 month\"]",
+            "BacklogCompare" : [
+  "current day - 1 month",
+  "current day"
+  ],
+            "BacklogLabel" : "Backlog Last Month",
+            "ClosedField" : "'ClosedDate_Month','ClosedDate_Day'",
+            "CoGroup" : "('RequestTime_Month','RequestTime_Day')",
+            "Compact" : [
+  [
+  "month",
+  0
+  ],
+  [
+  "month",
+  0
+  ]
+  ],
+            "CreatedField" : "'RequestTime_Month','RequestTime_Day'",
+            "CreatedProjection" : "created['RequestTime_Month'] +\"~~~\" + created['RequestTime_Day']",
+            "Current" : [
+  "current month",
+  "current month"
+  ],
+            "FullGroup" : "RequestTime_Year~~~RequestTime_Month~~~RequestTime_Day",
+            "GenerateClosedDate" : "'ClosedDate_Year'+\"~~~\"+'ClosedDate_Month'+\"~~~\"+'ClosedDate_Day' as 'RequestTime_Year~~~RequestTime_Month~~~RequestTime_Day'",
+            "GenerateCoGroupDate" : "created['RequestTime_Year']+\"~~~\"+created['RequestTime_Month']+\"~~~\"+created['RequestTime_Day'] as 'RequestTime_Year~~~RequestTime_Month~~~RequestTime_Day'",
+            "GenerateRequestTime" : "'RequestTime_Year'+\"~~~\"+'RequestTime_Month'+\"~~~\"+'RequestTime_Day' as 'RequestTime_Year~~~RequestTime_Month~~~RequestTime_Day'",
+            "GroupbyClosedDate" : "('ClosedDate_Year','ClosedDate_Month','ClosedDate_Day')",
+            "GroupbyRequestTime" : "('RequestTime_Year','RequestTime_Month','RequestTime_Day')",
+            "Grouping" : "RequestTime_Year~~~RequestTime_Month~~~RequestTime_Day",
+            "LastPeriodCompare" : [
+  "current month - 1 month",
+  "current day - 1 month"
+  ],
+            "LastYearCompare" : [
+  "current month - 1 year",
+  "current day - 1 year"
+  ],
+            "Measure" : [
+  "Backlog",
+  "Count",
+  null,
+  {
+                "display" : "Backlog Count at Start of Day"
+              }
+  ],
+            "compactGroup" : [
+  "RequestTime_Year",
+  "RequestTime_Month",
+  "RequestTime_Day"
+  ],
+            "filter" : "month",
+            "queryCogroupNew" : "first(ThisYear['RequestTime_Year'])+\"~~~\"+ThisYear['RequestTime_Month']+\"~~~\"+ThisYear['RequestTime_Day'] as 'RequestTime_Year~~~RequestTime_Month~~~RequestTime_Day'",
+            "trendProjection" : "toString(now(), \"yyyy~~~MM\")+\"~~~\"+toString(now(), \"99\")"
+          },
+  {
+            "display" : "Last 7 Days",
+            "Backlog30DayClose" : "[\"current day - 37 days\"..\"current day - 7 days\"]",
+            "BacklogCompare" : [
+  "current day - 1 week",
+  "current day"
+  ],
+            "BacklogLabel" : "Backlog Last 7 Days",
+            "ClosedField" : "'ClosedDate_Month','ClosedDate_Day'",
+            "CoGroup" : "('RequestTime_Month','RequestTime_Day')",
+            "Compact" : [
+  [
+  "day",
+  -7
+  ],
+  [
+  "day",
+  0
+  ]
+  ],
+            "CreatedField" : "'RequestTime_Month','RequestTime_Day'",
+            "CreatedProjection" : "created['RequestTime_Month'] +\"~~~\" + created['RequestTime_Day']",
+            "Current" : [
+  "7 days ago",
+  "current day"
+  ],
+            "FullGroup" : "RequestTime_Year~~~RequestTime_Month~~~RequestTime_Day",
+            "GenerateClosedDate" : "'ClosedDate_Year'+\"~~~\"+'ClosedDate_Month'+\"~~~\"+'ClosedDate_Day' as 'RequestTime_Year~~~RequestTime_Month~~~RequestTime_Day'",
+            "GenerateCoGroupDate" : "created['RequestTime_Year']+\"~~~\"+created['RequestTime_Month']+\"~~~\"+created['RequestTime_Day'] as 'RequestTime_Year~~~RequestTime_Month~~~RequestTime_Day'",
+            "GenerateRequestTime" : "'RequestTime_Year'+\"~~~\"+'RequestTime_Month'+\"~~~\"+'RequestTime_Day' as 'RequestTime_Year~~~RequestTime_Month~~~RequestTime_Day'",
+            "GroupbyClosedDate" : "('ClosedDate_Year','ClosedDate_Month','ClosedDate_Day')",
+            "GroupbyRequestTime" : "('RequestTime_Year','RequestTime_Month','RequestTime_Day')",
+            "Grouping" : "RequestTime_Year~~~RequestTime_Month~~~RequestTime_Day",
+            "LastPeriodCompare" : [
+  "7 days ago - 1 week",
+  "current day - 1 week"
+  ],
+            "LastYearCompare" : [
+  "7 days ago - 1 year",
+  "current day - 1 year"
+  ],
+            "Measure" : [
+  "Backlog",
+  "Count",
+  null,
+  {
+                "display" : "Backlog Count at Start of Day"
+              }
+  ],
+            "compactGroup" : [
+  "RequestTime_Year",
+  "RequestTime_Month",
+  "RequestTime_Day"
+  ],
+            "filter" : "week",
+            "queryCogroupNew" : "first(ThisYear['RequestTime_Year'])+\"~~~\"+ThisYear['RequestTime_Month']+\"~~~\"+ThisYear['RequestTime_Day'] as 'RequestTime_Year~~~RequestTime_Month~~~RequestTime_Day'",
+            "trendProjection" : "toString(now(), \"yyyy~~~MM\")+\"~~~\"+toString(now(), \"99\")"
+          },
+  {
+            "display" : "Last 2 weeks",
+            "Backlog30DayClose" : "[\"current day - 14 days\"..\"current day - 14 days\"]",
+            "BacklogCompare" : [
+  "current day - 14 days",
+  "current day"
+  ],
+            "BacklogLabel" : "Backlog Last 14 Days",
+            "ClosedField" : "'ClosedDate_Week'",
+            "CoGroup" : "('RequestTime_Week')",
+            "Compact" : [
+  [
+  "day",
+  -14
+  ],
+  [
+  "day",
+  0
+  ]
+  ],
+            "CreatedField" : "'RequestTime_Week'",
+            "CreatedProjection" : "created['RequestTime_Week']",
+            "Current" : [
+  "14 days ago",
+  "current day"
+  ],
+            "FullGroup" : "RequestTime_Year~~~RequestTime_Week",
+            "GenerateClosedDate" : "'ClosedDate_Year'+\"~~~\"+'ClosedDate_Week' as 'RequestTime_Year~~~RequestTime_Week'",
+            "GenerateCoGroupDate" : "created['RequestTime_Year']+\"~~~\"+created['RequestTime_Week'] as 'RequestTime_Year~~~RequestTime_Week'",
+            "GenerateRequestTime" : "'RequestTime_Year'+\"~~~\"+'RequestTime_Week' as 'RequestTime_Year~~~RequestTime_Week'",
+            "GroupbyClosedDate" : "('ClosedDate_Year','ClosedDate_Week')",
+            "GroupbyRequestTime" : "('RequestTime_Year','RequestTime_Week')",
+            "Grouping" : "RequestTime_Year~~~RequestTime_Week",
+            "LastPeriodCompare" : [
+  "14 days ago - 14 days",
+  "current day - 14 days"
+  ],
+            "LastYearCompare" : [
+  "14 days ago - 1 year",
+  "current day - 1 year"
+  ],
+            "Measure" : [
+  "Backlog",
+  "Count",
+  null,
+  {
+                "display" : "Backlog Count at Start of Week"
+              }
+  ],
+            "compactGroup" : [
+  "RequestTime_Year",
+  "RequestTime_Week"
+  ],
+            "filter" : "month",
+            "queryCogroupNew" : "first(ThisYear['RequestTime_Year'])+\"~~~\"+ThisYear['RequestTime_Week'] as 'RequestTime_Year~~~RequestTime_Week'",
+            "trendProjection" : "toString(now(), \"yyyy~~~MM\")+\"~~~\"+toString(now(), \"99\")"
+          },
+  {
+            "display" : "Last 30 Days",
+            "Backlog30DayClose" : "[\"current day - 60 days\"..\"current day - 30 days\"]",
+            "BacklogCompare" : [
+  "current day - 30 days",
+  "current day"
+  ],
+            "BacklogLabel" : "Backlog Last 30 Days",
+            "ClosedField" : "'ClosedDate_Week'",
+            "CoGroup" : "('RequestTime_Week')",
+            "Compact" : [
+  [
+  "day",
+  -30
+  ],
+  [
+  "day",
+  0
+  ]
+  ],
+            "CreatedField" : "'RequestTime_Week'",
+            "CreatedProjection" : "created['RequestTime_Week']",
+            "Current" : [
+  "30 days ago",
+  "current day"
+  ],
+            "FullGroup" : "RequestTime_Year~~~RequestTime_Week",
+            "GenerateClosedDate" : "'ClosedDate_Year'+\"~~~\"+'ClosedDate_Week' as 'RequestTime_Year~~~RequestTime_Week'",
+            "GenerateCoGroupDate" : "created['RequestTime_Year']+\"~~~\"+created['RequestTime_Week'] as 'RequestTime_Year~~~RequestTime_Week'",
+            "GenerateRequestTime" : "'RequestTime_Year'+\"~~~\"+'RequestTime_Week' as 'RequestTime_Year~~~RequestTime_Week'",
+            "GroupbyClosedDate" : "('ClosedDate_Year','ClosedDate_Week')",
+            "GroupbyRequestTime" : "('RequestTime_Year','RequestTime_Week')",
+            "Grouping" : "RequestTime_Year~~~RequestTime_Week",
+            "LastPeriodCompare" : [
+  "30 days ago - 30 days",
+  "current day - 30 days"
+  ],
+            "LastYearCompare" : [
+  "30 days ago - 1 year",
+  "current day - 1 year"
+  ],
+            "Measure" : [
+  "Backlog",
+  "Count",
+  null,
+  {
+                "display" : "Backlog Count at Start of Week"
+              }
+  ],
+            "compactGroup" : [
+  "RequestTime_Year",
+  "RequestTime_Week"
+  ],
+            "filter" : "month",
+            "queryCogroupNew" : "first(ThisYear['RequestTime_Year'])+\"~~~\"+ThisYear['RequestTime_Week'] as 'RequestTime_Year~~~RequestTime_Week'",
+            "trendProjection" : "toString(now(), \"yyyy~~~MM\")+\"~~~\"+toString(now(), \"99\")"
+          },
+  {
+            "display" : "Last 180 Days",
+            "Backlog30DayClose" : "[\"current day - 240 days\"..\"current day - 180 days\"]",
+            "BacklogCompare" : [
+  "current day - 180 days",
+  "current day"
+  ],
+            "BacklogLabel" : "Backlog Last 180 Days",
+            "ClosedField" : "'ClosedDate_Month'",
+            "CoGroup" : "('RequestTime_Month')",
+            "Compact" : [
+  [
+  "day",
+  -180
+  ],
+  [
+  "day",
+  0
+  ]
+  ],
+            "CreatedField" : "'RequestTime_Month'",
+            "CreatedProjection" : "created['RequestTime_Month']",
+            "Current" : [
+  "180 days ago",
+  "current day"
+  ],
+            "FullGroup" : "RequestTime_Year~~~RequestTime_Month",
+            "GenerateClosedDate" : "'ClosedDate_Year'+\"~~~\"+'ClosedDate_Month' as 'RequestTime_Year~~~RequestTime_Month'",
+            "GenerateCoGroupDate" : "created['RequestTime_Year']+\"~~~\"+created['RequestTime_Month'] as 'RequestTime_Year~~~RequestTime_Month'",
+            "GenerateRequestTime" : "'RequestTime_Year'+\"~~~\"+'RequestTime_Month' as 'RequestTime_Year~~~RequestTime_Month'",
+            "GroupbyClosedDate" : "('ClosedDate_Year','ClosedDate_Month')",
+            "GroupbyRequestTime" : "('RequestTime_Year','RequestTime_Month')",
+            "Grouping" : "RequestTime_Year~~~RequestTime_Month",
+            "LastPeriodCompare" : [
+  "180 days ago - 180 days",
+  "current day - 180 days"
+  ],
+            "LastYearCompare" : [
+  "180 days ago - 1 year",
+  "current day - 1 year"
+  ],
+            "Measure" : [
+  "Backlog",
+  "Count",
+  null,
+  {
+                "display" : "Backlog Count at Start of Month"
+              }
+  ],
+            "compactGroup" : [
+  "RequestTime_Year",
+  "RequestTime_Month"
+  ],
+            "filter" : "month",
+            "queryCogroupNew" : "first(ThisYear['RequestTime_Year'])+\"~~~\"+ThisYear['RequestTime_Month'] as 'RequestTime_Year~~~RequestTime_Month'",
+            "trendProjection" : "toString(now(), \"yyyy\")+\"~~~\"+toString(now(), \"99\")"
+          }
+  ]
+      },
+      "step_KPI_Avg_Speed_to_Answer" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceOmniAgentWork.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "label" : "",
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "avg",
+  "SpeedToAnswer"
+  ]
+  ],
+            "filters" : [
+  [
+  "Status",
+  [
+  "Canceled",
+  "Closed"
+  ],
+  "in"
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "single",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "step_Scatter_Plot" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceOmniAgentWork.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "label" : "",
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "avg",
+  "HandleTime",
+  "Average Handle Time"
+  ],
+  [
+  "avg",
+  "CSAT",
+  "Average CSAT"
+  ],
+  [
+  "count",
+  "*",
+  "Request Volume"
+  ]
+  ],
+            "groups" : [
+  "UserId.Name"
+  ],
+            "filters" : [
+  [
+  "RequestDateTime",
+  "{{column(step_Selection_Time.selection, [\"Compact\"]).asObject()}}"
+  ],
+  [
+  "Status",
+  [
+  "Canceled",
+  "Closed"
+  ],
+  "in"
+  ],
+  [
+  "CSAT",
+  [
+  [
+  -10
+  ]
+  ],
+  ">"
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "single",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "scatter"
+        }
+      },
+      "step_KPI_Average_Handle_Time" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceOmniAgentWork.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "label" : "",
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "avg",
+  "HandleTime"
+  ]
+  ],
+            "filters" : [
+  [
+  "Status",
+  [
+  "Canceled",
+  "Closed"
+  ],
+  "in"
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "single",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "step_KPI_Incoming_Volume_Prev_Period" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceOmniAgentWork.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "label" : "",
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "unique",
+  "Percent"
+  ]
+  ],
+            "pigql" : "q = load \"${App.EdgeMarts.ServiceOmniAgentWork.Alias}\"; q = filter q by 'Status' in [\"Canceled\", \"Closed\"];curYear = filter q by {{cell(step_Selection_Time.selection, 0, \"Current\").asDateRange(\"date('RequestDateTime_Year','RequestDateTime_Month','RequestDateTime_Day')\")}}; comparePeriod = filter q by {{cell(step_Selection_Time.selection, 0, \"LastPeriodCompare\").asDateRange(\"date('RequestDateTime_Year','RequestDateTime_Month','RequestDateTime_Day')\")}};  b = cogroup curYear by all, comparePeriod by all; b = foreach b generate (count(curYear) - count(comparePeriod))/count(comparePeriod) *100 as 'unique_Percent', (case when (count(curYear) - count(comparePeriod))/count(comparePeriod) *100 < 0 then \"#3CAF6D\" when (count(curYear) - count(comparePeriod))/count(comparePeriod) *100 > 0 then \"#f2536d\" else \"#7D98B3\" end) as 'color';",
+            "autoFilter" : true
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "single",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "step_KPI_Avg_HandleTime_Prev_Period" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceOmniAgentWork.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "label" : "",
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "unique",
+  "Percent"
+  ]
+  ],
+            "pigql" : "q = load \"${App.EdgeMarts.ServiceOmniAgentWork.Alias}\"; q = filter q by 'Status' in [\"Canceled\", \"Closed\"];curYear = filter q by {{cell(step_Selection_Time.selection, 0, \"Current\").asDateRange(\"date('RequestDateTime_Year','RequestDateTime_Month','RequestDateTime_Day')\")}}; comparePeriod = filter q by {{cell(step_Selection_Time.selection, 0, \"LastPeriodCompare\").asDateRange(\"date('RequestDateTime_Year','RequestDateTime_Month','RequestDateTime_Day')\")}};  b = cogroup curYear by all, comparePeriod by all; b = foreach b generate (avg(curYear.'HandleTime') - avg(comparePeriod.'HandleTime'))/avg(comparePeriod.'HandleTime') *100 as 'unique_Percent', (case when (avg(curYear.'HandleTime') - avg(comparePeriod.'HandleTime'))/avg(comparePeriod.'HandleTime') *100 < 0 then \"#3CAF6D\" when (avg(curYear.'HandleTime') - avg(comparePeriod.'HandleTime'))/avg(comparePeriod.'HandleTime') *100 > 0 then \"#f2536d\" else \"#7D98B3\" end) as 'color';",
+            "autoFilter" : true
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "single",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "step_Selection_Origin" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceOmniAgentWork.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "label" : "",
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "groups" : [
+  "Case.Origin"
+  ],
+            "filters" : [
+  [
+  "RequestDateTime",
+  "{{column(step_Selection_Time.selection, [\"Compact\"]).asObject()}}"
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "multi",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "step_ValuesTable" : {
+        "broadcastFacet" : true,
+        "groups" : [ ],
+        "numbers" : [ ],
+        "query" : "q = load \"${App.EdgeMarts.ServiceOmniAgentWork.Alias}\"; q = filter q by 'Status' in [\"Canceled\", \"Closed\"]; q = filter q by {{cell(step_Selection_Time.selection, 0, \"Current\").asDateRange(\"date('RequestDateTime_Year','RequestDateTime_Month','RequestDateTime_Day')\")}};q = foreach q generate 'Name' as 'Name','Case.CaseNumber' as 'Case.CaseNumber', 'Case.Account.Name' as 'Case.Account.Name','UserId.Name' as 'UserId.Name','SpeedToAnswer' as 'SpeedToAnswer', 'HandleTime' as 'HandleTime','ActiveTime' as 'ActiveTime','Case.Origin' as 'Case.Origin','Group.Name' as 'Group.Name','Status' as 'Status', 'Case.${Constants.CaseProduct}' as 'Case.${Constants.CaseProduct}';q = limit q 100;",
+        "receiveFacet" : true,
+        "selectMode" : "single",
+        "strings" : [ ],
+        "type" : "saql",
+        "useGlobal" : false
+      },
+      "step_Selection_Agent" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceOmniAgentWork.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "label" : "",
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "groups" : [
+  "UserId.Name"
+  ],
+            "filters" : [
+  [
+  "RequestDateTime",
+  "{{column(step_Selection_Time.selection, [\"Compact\"]).asObject()}}"
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "multi",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "step_Agent_Work_by_Queue" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceOmniAgentWork.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "label" : "",
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "groups" : [
+  "Group.Name"
+  ],
+            "filters" : [
+  [
+  "RequestDateTime",
+  "{{column(step_Selection_Time.selection, [\"Compact\"]).asObject()}}"
+  ],
+  [
+  "Status",
+  [
+  "Canceled",
+  "Closed"
+  ],
+  "in"
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "single",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "pie"
+        }
+      },
+      "step_Selection_RecordType" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceOmniAgentWork.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "label" : "",
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "groups" : [
+  "Case.RecordType.Name"
+  ],
+            "filters" : [
+  [
+  "RequestDateTime",
+  "{{column(step_Selection_Time.selection, [\"Compact\"]).asObject()}}"
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "multi",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "step_KPI_Avg_ActiveTime_Prev_Period" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceOmniAgentWork.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "label" : "",
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "unique",
+  "Percent"
+  ]
+  ],
+            "pigql" : "q = load \"${App.EdgeMarts.ServiceOmniAgentWork.Alias}\"; q = filter q by 'Status' in [\"Canceled\", \"Closed\"];curYear = filter q by {{cell(step_Selection_Time.selection, 0, \"Current\").asDateRange(\"date('RequestDateTime_Year','RequestDateTime_Month','RequestDateTime_Day')\")}}; comparePeriod = filter q by {{cell(step_Selection_Time.selection, 0, \"LastPeriodCompare\").asDateRange(\"date('RequestDateTime_Year','RequestDateTime_Month','RequestDateTime_Day')\")}};  b = cogroup curYear by all, comparePeriod by all; b = foreach b generate (avg(curYear.'ActiveTime') - avg(comparePeriod.'ActiveTime'))/avg(comparePeriod.'ActiveTime') *100 as 'unique_Percent', (case when (avg(curYear.'ActiveTime') - avg(comparePeriod.'ActiveTime'))/avg(comparePeriod.'ActiveTime') *100 < 0 then \"#3CAF6D\" when (avg(curYear.'ActiveTime') - avg(comparePeriod.'ActiveTime'))/avg(comparePeriod.'ActiveTime') *100 > 0 then \"#f2536d\" else \"#7D98B3\" end) as 'color';",
+            "autoFilter" : true
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "single",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      }
+    },
+    "widgetStyle" : {
+      "backgroundColor" : "#FFFFFF",
+      "borderColor" : "#E6ECF2",
+      "borderEdges" : [ ],
+      "borderRadius" : 0,
+      "borderWidth" : 1
+    },
+    "widgets" : {
+      "listselector_Agent_Selection" : {
+        "parameters" : {
+          "compact" : false,
+          "exploreLink" : false,
+          "instant" : false,
+          "measureField" : "count",
+          "step" : "step_Selection_Agent",
+          "title" : "Agent"
+        },
+        "type" : "listselector"
+      },
+      "listselector_RecordType_Selection" : {
+        "parameters" : {
+          "compact" : false,
+          "exploreLink" : false,
+          "instant" : false,
+          "measureField" : "count",
+          "step" : "step_Selection_RecordType",
+          "title" : "Record Type"
+        },
+        "type" : "listselector"
+      },
+      "container_17" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "text_CaseDetails_iphone" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "Case Details",
+          "textAlignment" : "left",
+          "textColor" : "#091A3E"
+        },
+        "type" : "text"
+      },
+      "number_KPI_Incoming_Volume_Prev_Period" : {
+        "parameters" : {
+          "compact" : true,
+          "exploreLink" : true,
+          "measureField" : "unique_Percent",
+          "numberColor" : "#FFFFFF",
+          "numberSize" : 14,
+          "step" : "step_KPI_Incoming_Volume_Prev_Period",
+          "textAlignment" : "center",
+          "title" : "",
+          "titleColor" : "#335779",
+          "titleSize" : 16
+        },
+        "type" : "number"
+      },
+      "link_Chat" : {
+        "parameters" : {
+          "destination" : "${App.Dashboards['Service Live Agent Chat'].Id}",
+          "destinationType" : "dashboard",
+          "fontSize" : 12,
+          "includeState" : false,
+          "text" : "Chat",
+          "textAlignment" : "center",
+          "textColor" : "#091A3E"
+        },
+        "type" : "link"
+      },
+      "container_14" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "number_Metric_Avg_Wait_Time" : {
+        "parameters" : {
+          "compact" : true,
+          "exploreLink" : false,
+          "measureField" : "count",
+          "numberColor" : "#FFFFFF",
+          "numberSize" : 24,
+          "step" : "step_KPI_Incoming_Volume",
+          "textAlignment" : "left",
+          "title" : "",
+          "titleColor" : "rgb(2, 10, 26)",
+          "titleSize" : 14
+        },
+        "type" : "number"
+      },
+      "table_valuesTable" : {
+        "parameters" : {
+          "columns" : [ ],
+          "customBulkActions" : [ ],
+          "exploreLink" : false,
+          "pivoted" : false,
+          "step" : "step_ValuesTable"
+        },
+        "type" : "table"
+      },
+      "link_Knowledge_Usage" : {
+        "parameters" : {
+          "destination" : "${App.Dashboards['Service Knowledge Usage'].Id}",
+          "destinationType" : "dashboard",
+          "fontSize" : 12,
+          "includeState" : false,
+          "text" : "Knowledge Usage",
+          "textAlignment" : "center",
+          "textColor" : "#091A3E"
+        },
+        "type" : "link"
+      },
+      "listselector_Origin_Selection" : {
+        "parameters" : {
+          "compact" : false,
+          "exploreLink" : false,
+          "instant" : false,
+          "measureField" : "count",
+          "step" : "step_Selection_Origin",
+          "title" : "Origin"
+        },
+        "type" : "listselector"
+      },
+      "chart_incoming_vol_timeline" : {
+        "parameters" : {
+          "showPoints" : true,
+          "legend" : {
+            "showHeader" : true,
+            "show" : true,
+            "customSize" : "auto",
+            "position" : "right-top",
+            "inside" : false
+          },
+          "axisMode" : "sync",
+          "visualizationType" : "time",
+          "missingValue" : "connect",
+          "timeAxis" : {
+            "showTitle" : false,
+            "showAxis" : true,
+            "title" : " "
+          },
+          "exploreLink" : true,
+          "title" : {
+            "label" : "",
+            "align" : "center",
+            "subtitleLabel" : ""
+          },
+          "trellis" : {
+            "enable" : false,
+            "type" : "x",
+            "parameters" : { },
+            "chartsPerLine" : 4
+          },
+          "fillArea" : true,
+          "showZero" : true,
+          "measureAxis2" : {
+            "sqrtScale" : false,
+            "showTitle" : true,
+            "showAxis" : true,
+            "title" : ""
+          },
+          "measureAxis1" : {
+            "sqrtScale" : false,
+            "showTitle" : true,
+            "showAxis" : true,
+            "title" : "Request Volume"
+          },
+          "step" : "step_Incoming_Vol_Timeline",
+          "theme" : "dark"
+        },
+        "type" : "chart"
+      },
+      "text_Hourly_Breakdown_Subtitle" : {
+        "parameters" : {
+          "fontSize" : 12,
+          "text" : "Click on a day to view hourly volume breakdown below ",
+          "textAlignment" : "left",
+          "textColor" : "#FFFFFF"
+        },
+        "type" : "text"
+      },
+      "chart_Agent_Work_By_Types" : {
+        "parameters" : {
+          "showValues" : true,
+          "legend" : {
+            "showHeader" : false,
+            "show" : false,
+            "customSize" : "auto",
+            "position" : "right-top",
+            "inside" : false
+          },
+          "visualizationType" : "treemap",
+          "step" : "step_Agent_Work_By_Types",
+          "theme" : "dark",
+          "exploreLink" : true,
+          "title" : {
+            "label" : "",
+            "align" : "left",
+            "subtitleLabel" : ""
+          },
+          "trellis" : {
+            "enable" : false,
+            "type" : "y",
+            "parameters" : { },
+            "chartsPerLine" : 4
+          }
+        },
+        "type" : "chart"
+      },
+      "container_1" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_2" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "number_KPI_Avg_Speed_to_Answer" : {
+        "parameters" : {
+          "compact" : true,
+          "exploreLink" : true,
+          "measureField" : "avg_SpeedToAnswer",
+          "numberColor" : "#FFFFFF",
+          "numberSize" : 24,
+          "step" : "step_KPI_Avg_Speed_to_Answer",
+          "textAlignment" : "left",
+          "title" : "",
+          "titleColor" : "rgb(2, 10, 26)",
+          "titleSize" : 16
+        },
+        "type" : "number"
+      },
+      "container_4" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_6" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_8" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "text_Average_Handle_Time" : {
+        "parameters" : {
+          "fontSize" : 14,
+          "text" : "Avg Handle Time",
+          "textAlignment" : "left",
+          "textColor" : "#FFFFFF"
+        },
+        "type" : "text"
+      },
+      "link_Channel_Review" : {
+        "parameters" : {
+          "destination" : "${App.Dashboards['Service Channel Review'].Id}",
+          "destinationType" : "dashboard",
+          "fontSize" : 12,
+          "includeState" : false,
+          "text" : "Channel Review",
+          "textAlignment" : "center",
+          "textColor" : "#091A3E"
+        },
+        "type" : "link"
+      },
+      "listselector_Role_Selection" : {
+        "parameters" : {
+          "compact" : false,
+          "exploreLink" : false,
+          "instant" : false,
+          "measureField" : "count",
+          "step" : "step_Selection_Role",
+          "title" : "Role"
+        },
+        "type" : "listselector"
+      },
+      "chart_Agent_Work_by_Queue" : {
+        "parameters" : {
+          "showValues" : true,
+          "legend" : {
+            "showHeader" : true,
+            "show" : false,
+            "customSize" : "auto",
+            "position" : "right-top",
+            "inside" : false
+          },
+          "visualizationType" : "treemap",
+          "theme" : "dark",
+          "step" : "step_Agent_Work_by_Queue",
+          "exploreLink" : true,
+          "title" : {
+            "label" : "",
+            "align" : "left",
+            "subtitleLabel" : ""
+          },
+          "trellis" : {
+            "enable" : false,
+            "type" : "x",
+            "parameters" : { },
+            "chartsPerLine" : 4
+          }
+        },
+        "type" : "chart"
+      },
+      "text_ByQueue_iphone" : {
+        "parameters" : {
+          "fontSize" : 14,
+          "text" : "By Queue",
+          "textAlignment" : "left",
+          "textColor" : "#091A3E"
+        },
+        "type" : "text"
+      },
+      "chart_Agent_By_Volume" : {
+        "parameters" : {
+          "autoFitMode" : "none",
+          "showValues" : true,
+          "bins" : {
+            "breakpoints" : {
+              "high" : 100,
+              "low" : 0
+            },
+            "bands" : {
+              "high" : {
+                "color" : "#008000",
+                "label" : ""
+              },
+              "low" : {
+                "color" : "#B22222",
+                "label" : ""
+              },
+              "medium" : {
+                "color" : "#ffa500",
+                "label" : ""
+              }
+            }
+          },
+          "legend" : {
+            "showHeader" : false,
+            "show" : false,
+            "customSize" : "auto",
+            "position" : "right-top",
+            "inside" : false
+          },
+          "axisMode" : "sync",
+          "visualizationType" : "hbar",
+          "exploreLink" : true,
+          "title" : {
+            "label" : "",
+            "align" : "left",
+            "subtitleLabel" : ""
+          },
+          "binValues" : false,
+          "trellis" : {
+            "enable" : false,
+            "type" : "x",
+            "parameters" : { },
+            "chartsPerLine" : 4
+          },
+          "measureAxis2" : {
+            "sqrtScale" : false,
+            "showTitle" : true,
+            "showAxis" : true,
+            "title" : ""
+          },
+          "measureAxis1" : {
+            "sqrtScale" : false,
+            "showTitle" : false,
+            "showAxis" : true,
+            "title" : ""
+          },
+          "step" : "step_Agent_By_Volume",
+          "theme" : "light",
+          "dimensionAxis" : {
+            "showTitle" : false,
+            "customSize" : "auto",
+            "showAxis" : true,
+            "title" : ""
+          }
+        },
+        "type" : "chart"
+      },
+      "container_12" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "number_KPI_Avg_HandleTime_Prev_Period" : {
+        "parameters" : {
+          "compact" : true,
+          "exploreLink" : true,
+          "measureField" : "unique_Percent",
+          "numberColor" : "#FFFFFF",
+          "numberSize" : 14,
+          "step" : "step_KPI_Avg_HandleTime_Prev_Period",
+          "textAlignment" : "center",
+          "title" : "",
+          "titleColor" : "#335779",
+          "titleSize" : 16
+        },
+        "type" : "number"
+      },
+      "text_Daily_Call_Volume" : {
+        "parameters" : {
+          "fontSize" : 18,
+          "text" : "Incoming Volume",
+          "textAlignment" : "left",
+          "textColor" : "#FFFFFF"
+        },
+        "type" : "text"
+      },
+      "link_Home" : {
+        "parameters" : {
+          "destination" : "${App.Dashboards['Service Analytics Overview'].Id}",
+          "destinationType" : "dashboard",
+          "fontSize" : 12,
+          "includeState" : false,
+          "text" : "Overview",
+          "textAlignment" : "center",
+          "textColor" : "#091A3E"
+        },
+        "type" : "link"
+      },
+      "number_KPI_Avg_Speed_to_Answer_Prev_Period" : {
+        "parameters" : {
+          "compact" : true,
+          "exploreLink" : true,
+          "measureField" : "unique_Percent",
+          "numberColor" : "#FFFFFF",
+          "numberSize" : 14,
+          "step" : "step_KPI_Avg_Speed_to_Answer_Prev_Period",
+          "textAlignment" : "center",
+          "title" : "",
+          "titleColor" : "#335779",
+          "titleSize" : 16
+        },
+        "type" : "number"
+      },
+      "link_Omni" : {
+        "parameters" : {
+          "destination" : "${App.Dashboards['Service Omni'].Id}",
+          "destinationType" : "dashboard",
+          "fontSize" : 12,
+          "includeState" : false,
+          "text" : "Omni",
+          "textAlignment" : "center",
+          "textColor" : "rgb(99, 79, 149)"
+        },
+        "type" : "link"
+      },
+      "text_Agents_by_Volume" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "Agents by Volume ",
+          "textAlignment" : "left",
+          "textColor" : "#091A3E"
+        },
+        "type" : "text"
+      },
+      "number_KPI_Average_Active_Time" : {
+        "parameters" : {
+          "compact" : true,
+          "exploreLink" : true,
+          "measureField" : "avg_ActiveTime",
+          "numberColor" : "#FFFFFF",
+          "numberSize" : 24,
+          "step" : "step_KPI_Average_Active_Time",
+          "textAlignment" : "left",
+          "title" : "",
+          "titleColor" : "#FFFFFF",
+          "titleSize" : 16
+        },
+        "type" : "number"
+      },
+      "chart_Hourly_Breakdown_Vol_Capacity" : {
+        "parameters" : {
+          "autoFitMode" : "fit",
+          "showValues" : true,
+          "showPoints" : true,
+          "legend" : {
+            "showHeader" : false,
+            "show" : true,
+            "customSize" : "auto",
+            "position" : "bottom-center",
+            "inside" : false
+          },
+          "axisMode" : "dual",
+          "visualizationType" : "combo",
+          "missingValue" : "connect",
+          "exploreLink" : false,
+          "title" : {
+            "label" : "",
+            "align" : "center",
+            "subtitleLabel" : ""
+          },
+          "trellis" : {
+            "flipLabels" : false,
+            "showGridLines" : true,
+            "enable" : false,
+            "type" : "x",
+            "parameters" : { },
+            "chartsPerLine" : 4
+          },
+          "measureAxis2" : {
+            "sqrtScale" : false,
+            "showTitle" : true,
+            "showAxis" : true,
+            "title" : "# Agents Working",
+            "customDomain" : {
+              "showDomain" : false
+            }
+          },
+          "measureAxis1" : {
+            "sqrtScale" : false,
+            "showTitle" : true,
+            "showAxis" : true,
+            "title" : "Request Volume",
+            "customDomain" : {
+              "showDomain" : false
+            }
+          },
+          "step" : "step_Hourly_Breakdown_Vol_Capacity",
+          "theme" : "wave",
+          "dimensionAxis" : {
+            "showTitle" : true,
+            "customSize" : "auto",
+            "showAxis" : true,
+            "title" : "Hourly Breakdown",
+            "icons" : {
+              "useIcons" : false,
+              "iconProps" : {
+                "fit" : "cover",
+                "column" : "",
+                "type" : "round"
+              }
+            }
+          }
+        },
+        "type" : "chart"
+      },
+      "number_KPI_Avg_ActiveTime_Prev_Period" : {
+        "parameters" : {
+          "compact" : true,
+          "exploreLink" : true,
+          "measureField" : "unique_Percent",
+          "numberColor" : "#FFFFFF",
+          "numberSize" : 14,
+          "step" : "step_KPI_Avg_ActiveTime_Prev_Period",
+          "textAlignment" : "center",
+          "title" : "",
+          "titleColor" : "#335779",
+          "titleSize" : 16
+        },
+        "type" : "number"
+      },
+      "text_Dashboard_Title" : {
+        "parameters" : {
+          "fontSize" : 24,
+          "text" : "Omni",
+          "textAlignment" : "left",
+          "textColor" : "#091A3E"
+        },
+        "type" : "text"
+      },
+      "text_ByChannel_iphone" : {
+        "parameters" : {
+          "fontSize" : 14,
+          "text" : "By Channel",
+          "textAlignment" : "left",
+          "textColor" : "#091A3E"
+        },
+        "type" : "text"
+      },
+      "text_Title_iphone" : {
+        "parameters" : {
+          "fontSize" : 20,
+          "text" : "Omni",
+          "textAlignment" : "center",
+          "textColor" : "#091A3E"
+        },
+        "type" : "text"
+      },
+      "text_ByChannel" : {
+        "parameters" : {
+          "fontSize" : 14,
+          "text" : "By Channel",
+          "textAlignment" : "left",
+          "textColor" : "#FFFFFF"
+        },
+        "type" : "text"
+      },
+      "listselector_Account_Selection" : {
+        "parameters" : {
+          "compact" : false,
+          "exploreLink" : false,
+          "instant" : false,
+          "measureField" : "count",
+          "step" : "step_Selection_Account",
+          "title" : "Account"
+        },
+        "type" : "listselector"
+      },
+      "text_Incoming_Volume" : {
+        "parameters" : {
+          "fontSize" : 14,
+          "text" : "Incoming Volume",
+          "textAlignment" : "left",
+          "textColor" : "#FFFFFF"
+        },
+        "type" : "text"
+      },
+      "text_Hourly_Breakdown_Title" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "Hourly Breakdown",
+          "textAlignment" : "left",
+          "textColor" : "#091A3E"
+        },
+        "type" : "text"
+      },
+      "text_desktop_only" : {
+        "parameters" : {
+          "fontSize" : 20,
+          "text" : "This dashboard is designed for \n desktop viewing only",
+          "textAlignment" : "center",
+          "textColor" : "#091A3E"
+        },
+        "type" : "text"
+      },
+      "text_KPI_Avg_Speed_to_Answer" : {
+        "parameters" : {
+          "fontSize" : 14,
+          "text" : "Avg Speed to Answer",
+          "textAlignment" : "left",
+          "textColor" : "#FFFFFF"
+        },
+        "type" : "text"
+      },
+      "listselector_Time_Selection" : {
+        "parameters" : {
+          "compact" : false,
+          "expanded" : true,
+          "exploreLink" : false,
+          "instant" : true,
+          "step" : "step_Selection_Time",
+          "title" : "Time Period"
+        },
+        "type" : "listselector"
+      },
+      "text_Agent_Performance" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "Agent Performance",
+          "textAlignment" : "left",
+          "textColor" : "#091A3E"
+        },
+        "type" : "text"
+      },
+      "text_Average_Active_Time" : {
+        "parameters" : {
+          "fontSize" : 14,
+          "text" : "Avg Active Time",
+          "textAlignment" : "left",
+          "textColor" : "#FFFFFF"
+        },
+        "type" : "text"
+      },
+      "link_Telephony" : {
+        "parameters" : {
+          "destination" : "${App.Dashboards['Service Telephony'].Id}",
+          "destinationType" : "dashboard",
+          "fontSize" : 12,
+          "includeState" : false,
+          "text" : "Telephony",
+          "textAlignment" : "center",
+          "textColor" : "#091A3E"
+        },
+        "type" : "link"
+      },
+      "chart_Scatter_Plot" : {
+        "parameters" : {
+          "legend" : {
+            "showHeader" : true,
+            "show" : true,
+            "customSize" : "auto",
+            "position" : "right-top",
+            "inside" : false
+          },
+          "x" : {
+            "sqrtScale" : false,
+            "showZero" : true,
+            "showTitle" : true,
+            "showAxis" : true,
+            "title" : ""
+          },
+          "visualizationType" : "scatter",
+          "y" : {
+            "sqrtScale" : false,
+            "showZero" : true,
+            "showTitle" : true,
+            "showAxis" : true,
+            "title" : ""
+          },
+          "theme" : "wave",
+          "step" : "step_Scatter_Plot",
+          "exploreLink" : true,
+          "title" : {
+            "label" : "",
+            "align" : "center",
+            "subtitleLabel" : ""
+          },
+          "trellis" : {
+            "enable" : false,
+            "type" : "x",
+            "parameters" : { },
+            "chartsPerLine" : 4
+          }
+        },
+        "type" : "chart"
+      },
+      "text_ByQueue" : {
+        "parameters" : {
+          "fontSize" : 14,
+          "text" : "By Queue",
+          "textAlignment" : "left",
+          "textColor" : "#FFFFFF"
+        },
+        "type" : "text"
+      },
+      "link_Knowledge_Efficiency" : {
+        "parameters" : {
+          "destination" : "${App.Dashboards['Service Knowledge Efficiency'].Id}",
+          "destinationType" : "dashboard",
+          "fontSize" : 12,
+          "includeState" : false,
+          "text" : "Knowledge Efficiency",
+          "textColor" : "#091A3E"
+        },
+        "type" : "link"
+      },
+      "listselector_Product_Selection" : {
+        "parameters" : {
+          "compact" : false,
+          "exploreLink" : false,
+          "instant" : false,
+          "measureField" : "count",
+          "step" : "step_Selection_Product",
+          "title" : "Product"
+        },
+        "type" : "listselector"
+      },
+      "number_KPI_Average_Handle_Time" : {
+        "parameters" : {
+          "compact" : true,
+          "exploreLink" : true,
+          "measureField" : "avg_HandleTime",
+          "numberColor" : "#FFFFFF",
+          "numberSize" : 24,
+          "step" : "step_KPI_Average_Handle_Time",
+          "textAlignment" : "left",
+          "title" : "",
+          "titleColor" : "#FFFFFF",
+          "titleSize" : 16
+        },
+        "type" : "number"
+      }
+    }
+  }
+}

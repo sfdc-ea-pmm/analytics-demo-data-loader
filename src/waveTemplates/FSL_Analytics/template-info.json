@@ -1,0 +1,89 @@
+{
+  "name" : "FSL_Analytics",
+  "label" : "Field Service Analytics Demo",
+  "description" : "Only for orgs with Field Service Lightning, Field Service Analytics empowers service managers to help their technicians deliver personalized, actionable customer service v1.0 #060.",
+  "assetIcon" : "10.png",
+  "templateIcon" : "default.png",
+  "assetVersion" : 41.0,
+  "releaseInfo" : {
+    "templateVersion" : "1.0",
+    "notesFile" : "releasenotes.html"
+  },
+  "rules" : [
+  {
+      "type" : "templateToApp",
+      "file" : "demo_rules/handle-service-appointment.rules.json"
+    },
+  {
+      "type" : "templateToApp",
+      "file" : "demo_rules/handle-work-order.rules.json"
+    },
+  {
+      "type" : "templateToApp",
+      "file" : "demo_rules/handle-assigned-resource.rules.json"
+    },
+  {
+      "type" : "templateToApp",
+      "file" : "demo_rules/handle-resource-absence.rules.json"
+    }
+  ],
+  "templateType" : "app",
+  "uiDefinition" : "ui.json",
+  "variableDefinition" : "variables.json",
+  "dashboards" : [
+  {
+      "name" : "Service_Resource_Page",
+      "file" : "dashboards/Service_Resource_Page.json",
+      "label" : "Service Resource Page"
+    },
+  {
+      "name" : "Service_Territory_Page",
+      "file" : "dashboards/Service_Territory_Page.json",
+      "label" : "Service Territory Page"
+    },
+  {
+      "name" : "Technician_Performance",
+      "file" : "dashboards/Technician_Performance.json",
+      "label" : "Technician Performance"
+    },
+  {
+      "name" : "Work_Order_Overview",
+      "file" : "dashboards/Work_Order_Overview.json",
+      "label" : "Work Order Overview"
+    }
+  ],
+  "lenses" : [ ],
+  "eltDataflows" : [
+  {
+      "file" : "dataflows/FSL_dataflow.json"
+    }
+  ],
+  "externalFiles" : [ ],
+  "datasetFiles" : [
+  {
+      "name" : "ServiceAppointment",
+      "label" : "ServiceAppointment",
+      "userXmd" : "dataset_files/ServiceAppointment_xmd.json"
+    },
+  {
+      "name" : "AssignedResource",
+      "label" : "AssignedResource",
+      "userXmd" : "dataset_files/AssignedResource_xmd.json"
+    },
+  {
+      "name" : "ProductConsumed",
+      "label" : "ProductConsumed",
+      "userXmd" : "dataset_files/ProductConsumed_XMD_20_template.json"
+    },
+  {
+      "name" : "TimeSlot",
+      "label" : "TimeSlot",
+      "userXmd" : "dataset_files/TimeSlot_XMD_20_template.json"
+    },
+  {
+      "name" : "ResourceAbsence",
+      "label" : "ResourceAbsence",
+      "userXmd" : "dataset_files/ResourceAbsence_XMD_20_template.json"
+    }
+  ]
+}

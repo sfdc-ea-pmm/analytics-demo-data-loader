@@ -1,0 +1,551 @@
+{
+  "name" : "Sales_Wave_Pipeline_Trending",
+  "label" : "Sales Wave - Pipeline Trending",
+  "folder" : {
+    "id" : "${App.Folder.Id}"
+  },
+  "mobileDisabled" : false,
+  "state" : {
+    "dataSourceLinks" : [ ],
+    "filters" : [ ],
+    "gridLayouts" : [ ],
+    "layouts" : [
+  {
+        "device" : "default",
+        "pages" : [
+  {
+            "rows" : [
+  "box_Mob0 {colspan=6, rowspan=5, zIndex=-1, vpad=-10, hpad=-15} | row: {height=15}",
+  "text_2{colspan=6}",
+  "row : {height=10}",
+  "dimfilter_2 {colspan=6}",
+  "dimfilter_7{colspan=3} | dimfilter_8 {colspan=3}",
+  "| row : {height=10}",
+  "row : {height=10}",
+  "chart_2 {colspan=6, vpad=10}",
+  "row : {height=10}",
+  "valuestable_2 {colspan=6}"
+  ]
+          },
+  {
+            "rows" : [
+  "row : {height=10}",
+  "text_22 {colspan=6, fontSize=20}",
+  "chart_8 {colspan=6}",
+  "row : {height=10}",
+  "text_21 {colspan=6, fontSize=20}",
+  "chart_7 {colspan=6}",
+  "row : {height=10}"
+  ]
+          }
+  ],
+        "version" : 1.0
+      }
+  ],
+    "steps" : {
+      "Account_BillingCountry_11" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.pipeline_trending.Alias}"
+          }
+  ],
+        "isFacet" : false,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "sum",
+  "Opportunity.Amount"
+  ]
+  ],
+            "pigql" : "pie = load \"${App.EdgeMarts.pipeline_trending.Alias}\"; pie = filter pie by 'Opportunity.Owner.Name' in {{ selection(Opportunity_Owner_Name_3) }}; pie = filter pie by 'Opportunity.Owner.Role.Name' in {{ selection(Opportunity_Owner_Role_3) }}; pie = filter pie by 'Opportunity.${Variables.Customer_L2.sobjectName}.${Variables.Customer_L2.fieldName}' in {{ selection(Account_Industry_12) }}; pie = filter pie by date('ValidFromDate_Year', 'ValidFromDate_Month', 'ValidFromDate_Day') in [{{ no_quote(value(field(selection(step_time),'End_ValidFrom'))) }}]; pie = filter pie by date('ValidToDate_Year', 'ValidToDate_Month', 'ValidToDate_Day') in [{{ no_quote(value(field(selection(step_time),'End_ValidTo'))) }}]; pie = filter pie by 'Stage.IsClosed' == \"false\"; pie = filter pie by date('CloseDate_Year', 'CloseDate_Month', 'CloseDate_Day') in [{{ no_quote(value(field(selection(step_time), 'CloseDate_1'))) }}]; pie = group pie by 'Opportunity.${Variables.Geography.sobjectName}.${Variables.Geography.fieldName}'; pie = foreach pie generate 'Opportunity.${Variables.Geography.sobjectName}.${Variables.Geography.fieldName}', sum('Opportunity.Amount') as 'sum_Opportunity.Amount'; pie = order pie by 'sum_Opportunity.Amount' desc;",
+            "groups" : [
+  "Opportunity.${Variables.Geography.sobjectName}.${Variables.Geography.fieldName}"
+  ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "Account_Industry_12" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.pipeline_trending.Alias}"
+          }
+  ],
+        "isFacet" : false,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "sum",
+  "Opportunity.Amount"
+  ]
+  ],
+            "pigql" : "pie = load \"${App.EdgeMarts.pipeline_trending.Alias}\"; pie = filter pie by 'Opportunity.Owner.Name' in {{ selection(Opportunity_Owner_Name_3) }}; pie = filter pie by 'Opportunity.Owner.Role.Name' in {{ selection(Opportunity_Owner_Role_3) }}; pie = filter pie by 'Opportunity.${Variables.Geography.sobjectName}.${Variables.Geography.fieldName}' in {{ selection(Account_BillingCountry_11) }}; pie = filter pie by date('ValidFromDate_Year', 'ValidFromDate_Month', 'ValidFromDate_Day') in [{{ no_quote(value(field(selection(step_time),'End_ValidFrom'))) }}]; pie = filter pie by date('ValidToDate_Year', 'ValidToDate_Month', 'ValidToDate_Day') in [{{ no_quote(value(field(selection(step_time),'End_ValidTo'))) }}]; pie = filter pie by 'Stage.IsClosed' == \"false\"; pie = filter pie by date('CloseDate_Year', 'CloseDate_Month', 'CloseDate_Day') in [{{ no_quote(value(field(selection(step_time), 'CloseDate_1'))) }}]; pie = group pie by 'Opportunity.${Variables.Customer_L2.sobjectName}.${Variables.Customer_L2.fieldName}'; pie = foreach pie generate 'Opportunity.${Variables.Customer_L2.sobjectName}.${Variables.Customer_L2.fieldName}', sum('Opportunity.Amount') as 'sum_Opportunity.Amount'; pie = order pie by 'sum_Opportunity.Amount' desc; ",
+            "groups" : [
+  "Opportunity.${Variables.Customer_L2.sobjectName}.${Variables.Customer_L2.fieldName}"
+  ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "waterfall_chart" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.pipeline_trending.Alias}"
+          }
+  ],
+        "isFacet" : false,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "sum",
+  "Amount"
+  ]
+  ],
+            "pigql" : "x1 = load \"${App.EdgeMarts.pipeline_trending.Alias}\"; x1 = filter x1 by 'Opportunity.Owner.Name' in {{ selection(Opportunity_Owner_Name_3) }}; x1 = filter x1 by 'Opportunity.Owner.Role.Name' in {{ selection(Opportunity_Owner_Role_3) }}; x1 = filter x1 by 'Opportunity.${Variables.Customer_L2.sobjectName}.${Variables.Customer_L2.fieldName}' in {{ selection(Account_Industry_12) }}; x1 = filter x1 by 'Opportunity.${Variables.Geography.sobjectName}.${Variables.Geography.fieldName}' in {{ selection(Account_BillingCountry_11) }}; START_REAL = filter x1 by date('ValidFromDate_Year', 'ValidFromDate_Month', 'ValidFromDate_Day') in [{{ no_quote(value(field(selection(step_time),'Start_ValidFrom'))) }}]; START_REAL = filter START_REAL by date('ValidToDate_Year', 'ValidToDate_Month', 'ValidToDate_Day') in [{{ no_quote(value(field(selection(step_time),'Start_ValidTo'))) }}]; START_REAL = filter START_REAL by 'Stage.IsClosed' == \"false\"; START_REAL = filter START_REAL by date('CloseDate_Year', 'CloseDate_Month', 'CloseDate_Day') in [{{ no_quote(value(field(selection(step_time), 'CloseDate_1'))) }}]; START_REAL = group START_REAL by all; START_REAL = foreach START_REAL generate \"0_START\" as 'Bucket', sum('Amount') as 'sum_Amount'; START_FAKE = group x1 by all; START_FAKE = foreach START_FAKE generate \"0_START\" as 'Bucket', (count() - count()) as 'sum_Amount'; START = union START_FAKE, START_REAL; START = group START by all; START = foreach START generate last('Bucket') as 'Bucket', last('sum_Amount') as 'sum_Amount'; END_REAL = filter x1 by date('ValidFromDate_Year', 'ValidFromDate_Month', 'ValidFromDate_Day') in [{{ no_quote(value(field(selection(step_time),'End_ValidFrom'))) }}]; END_REAL = filter END_REAL by date('ValidToDate_Year', 'ValidToDate_Month', 'ValidToDate_Day') in [{{ no_quote(value(field(selection(step_time),'End_ValidTo'))) }}]; END_REAL = filter END_REAL by 'Stage.IsClosed' == \"false\"; END_REAL = filter END_REAL by date('CloseDate_Year', 'CloseDate_Month', 'CloseDate_Day') in [{{ no_quote(value(field(selection(step_time), 'CloseDate_1'))) }}]; END_REAL = group END_REAL by all; END_REAL = foreach END_REAL generate \"9_END\" as 'Bucket', sum('Amount') as 'sum_Amount'; END_FAKE = group x1 by all; END_FAKE = foreach END_FAKE generate \"9_END\" as 'Bucket', (count() - count()) as 'sum_Amount'; END = union END_FAKE, END_REAL; END = group END by all; END = foreach END generate last('Bucket') as 'Bucket', last('sum_Amount') as 'sum_Amount'; upd_start = filter x1 by date('ValidFromDate_Year', 'ValidFromDate_Month', 'ValidFromDate_Day') in [{{ no_quote(value(field(selection(step_time),'Update_ValidFrom'))) }}]; upd_start = filter upd_start by date('ValidToDate_Year', 'ValidToDate_Month', 'ValidToDate_Day') in [{{ no_quote(value(field(selection(step_time),'Update_ValidTo'))) }}]; upd_end = filter x1 by date('ValidFromDate_Year', 'ValidFromDate_Month', 'ValidFromDate_Day') in [{{ no_quote(value(field(selection(step_time),'Update_End_ValidFrom'))) }}]; upd_end = filter upd_end by date('ValidToDate_Year', 'ValidToDate_Month', 'ValidToDate_Day') in [{{ no_quote(value(field(selection(step_time),'Update_End_ValidTo'))) }}]; upd = group upd_start by OpportunityId right, upd_end by OpportunityId; upd = foreach upd generate upd_end.'OpportunityId' as OpportunityId, upd_start.'OpportunityId' is null as 'New', first(upd_start.'Amount') as 'AmountStart', first(upd_start.'Stage.IsClosed') as 'Stage.IsClosedStart', first(upd_start.'Stage.IsWon') as 'Stage.IsWonStart', first(upd_start.'CloseDate_sec_epoch') as 'CloseDateStart', last(upd_end.'Amount') as 'AmountEnd', last(upd_end.'Stage.IsClosed') as 'Stage.IsClosedEnd', last(upd_end.'Stage.IsWon') as 'Stage.IsWonEnd', last(upd_end.'CloseDate_sec_epoch') as 'CloseDateEnd', last(upd_end.'Opportunity.Owner.Name') as 'Opportunity.Owner.Name', last(upd_end.'Opportunity.Owner.Role.Name') as 'Opportunity.Owner.Role.Name', last(upd_end.'Opportunity.${Variables.Customer_L2.sobjectName}.${Variables.Customer_L2.fieldName}') as 'Opportunity.${Variables.Customer_L2.sobjectName}.${Variables.Customer_L2.fieldName}', last(upd_end.'Opportunity.${Variables.Geography.sobjectName}.${Variables.Geography.fieldName}') as 'Opportunity.${Variables.Geography.sobjectName}.${Variables.Geography.fieldName}'; upd_full_closed = foreach upd generate ( case when ( toDate('CloseDateEnd') in [{{ no_quote(value(field(selection(step_time), 'CloseDate_2'))) }}] and 'Stage.IsClosedEnd' == \"true\" and 'Stage.IsWonEnd' == \"false\" ) then \"8_CLOSED_LOST\" when ( toDate('CloseDateEnd') in [{{ no_quote(value(field(selection(step_time), 'CloseDate_2'))) }}] and 'Stage.IsClosedEnd' == \"true\" and 'Stage.IsWonEnd' == \"true\" ) then \"7_CLOSED_WON\" else \"OTHER\" end ) as 'Bucket', 'AmountStart', 'AmountEnd'; upd_full_closed = filter upd_full_closed by 'Bucket' != \"OTHER\"; upd_full_closed = group upd_full_closed by 'Bucket'; upd_full_closed = foreach upd_full_closed generate 'Bucket', ( case 'Bucket' when \"8_CLOSED_LOST\" then -sum('AmountEnd') when \"7_CLOSED_WON\" then -sum('AmountEnd') end ) as 'sum_Amount'; upd_full_notinperiod = foreach upd generate ( case when ( not 'New' and 'Stage.IsClosedStart' == \"false\" and toDate('CloseDateStart') in [{{ no_quote(value(field(selection(step_time), 'CloseDate_2'))) }}] and not(toDate('CloseDateEnd') in [{{ no_quote(value(field(selection(step_time), 'CloseDate_2'))) }}]) ) then \"5_MOVED_OUT\" when ( 'New' and toDate('CloseDateEnd') in [{{ no_quote(value(field(selection(step_time), 'CloseDate_2'))) }}] ) then \"1_NEW\" when ( not 'New' and 'Stage.IsClosedStart' == \"true\" and toDate('CloseDateEnd') in [{{ no_quote(value(field(selection(step_time), 'CloseDate_2'))) }}] ) then \"2_REOPEN\" when ( not 'New' and toDate('CloseDateEnd') in [{{ no_quote(value(field(selection(step_time), 'CloseDate_2'))) }}] and (('Stage.IsClosedStart' == \"false\" and not(toDate('CloseDateStart') in [{{ no_quote(value(field(selection(step_time), 'CloseDate_2'))) }}])) or ('Stage.IsClosedStart' == \"true\")) ) then \"4_MOVED_IN\" else \"OTHER\" end ) as 'Bucket', 'AmountStart', 'AmountEnd'; upd_full_notinperiod = filter upd_full_notinperiod by 'Bucket' != \"OTHER\"; upd_full_notinperiod = group upd_full_notinperiod by 'Bucket'; upd_full_notinperiod = foreach upd_full_notinperiod generate 'Bucket', ( case 'Bucket' when \"5_MOVED_OUT\" then -sum('AmountEnd') when \"1_NEW\" then sum('AmountEnd') when \"2_REOPEN\" then sum('AmountEnd') when \"4_MOVED_IN\" then sum('AmountEnd') end ) as 'sum_Amount'; upd_delta = foreach upd generate ( case when ( not 'New' and 'Stage.IsClosedStart' == \"false\" and toDate('CloseDateStart') in [{{ no_quote(value(field(selection(step_time), 'CloseDate_2'))) }}] and 'AmountStart' > 'AmountEnd' ) then \"6_REDUCE\" when ( not 'New' and 'Stage.IsClosedStart' == \"false\" and toDate('CloseDateStart') in [{{ no_quote(value(field(selection(step_time), 'CloseDate_2'))) }}] and 'AmountStart' < 'AmountEnd' ) then \"3_EXPAND\" else \"OTHER\" end ) as 'Bucket', 'AmountStart', 'AmountEnd'; upd_delta = filter upd_delta by 'Bucket' != \"OTHER\"; upd_delta = group upd_delta by 'Bucket'; upd_delta = foreach upd_delta generate 'Bucket', ( case 'Bucket' when \"6_REDUCE\" then sum('AmountEnd') - sum('AmountStart') when \"3_EXPAND\" then sum('AmountEnd') - sum('AmountStart') end ) as 'sum_Amount'; WATERFALL = union START,upd_full_notinperiod,upd_delta,upd_full_closed, END; WATERFALL = order WATERFALL by 'Bucket' asc;",
+            "groups" : [
+  "Bucket"
+  ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "Opportunity_Owner_Role_3" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.opportunity.Alias}"
+          }
+  ],
+        "isFacet" : true,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "groups" : [
+  "Owner.Role.Name"
+  ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "waterfall_detail" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.pipeline_trending.Alias}"
+          }
+  ],
+        "isFacet" : true,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "pigql" : "x1 = load \"${App.EdgeMarts.pipeline_trending.Alias}\"; x1 = filter x1 by 'Opportunity.Owner.Name' in {{ selection(Opportunity_Owner_Name_3) }}; x1 = filter x1 by 'Opportunity.Owner.Role.Name' in {{ selection(Opportunity_Owner_Role_3) }}; x1 = filter x1 by 'Opportunity.${Variables.Customer_L2.sobjectName}.${Variables.Customer_L2.fieldName}' in {{ selection(Account_Industry_12) }}; x1 = filter x1 by 'Opportunity.${Variables.Geography.sobjectName}.${Variables.Geography.fieldName}' in {{ selection(Account_BillingCountry_11) }}; START = filter x1 by date('ValidFromDate_Year', 'ValidFromDate_Month', 'ValidFromDate_Day') in [{{ no_quote(value(field(selection(step_time),'Start_ValidFrom'))) }}]; START = filter START by date('ValidToDate_Year', 'ValidToDate_Month', 'ValidToDate_Day') in [{{ no_quote(value(field(selection(step_time),'Start_ValidTo'))) }}]; START = filter START by 'Stage.IsClosed' == \"false\"; START = filter START by date('CloseDate_Year', 'CloseDate_Month', 'CloseDate_Day') in [{{ no_quote(value(field(selection(step_time), 'CloseDate_1'))) }}]; START = foreach START generate \"0_START\" as 'Bucket', 'Amount' as 'Amount', 'OpportunityId' as 'OpportunityId', 'Opportunity.Account.Name' as 'Opportunity.Account.Name', 'Opportunity.Name' as 'Opportunity.Name', 'Opportunity.Owner.Name' as 'Opportunity.Owner.Name', 'Opportunity.Amount' as 'Opportunity.Amount', 'Opportunity.CloseDate' as 'Opportunity.CloseDate', 'Opportunity.ForecastCategoryName' as 'Opportunity.ForecastCategoryName', 'Opportunity.StageName' as 'Opportunity.StageName'; END = filter x1 by date('ValidFromDate_Year', 'ValidFromDate_Month', 'ValidFromDate_Day') in [{{ no_quote(value(field(selection(step_time),'End_ValidFrom'))) }}]; END = filter END by date('ValidToDate_Year', 'ValidToDate_Month', 'ValidToDate_Day') in [{{ no_quote(value(field(selection(step_time),'End_ValidTo'))) }}]; END = filter END by 'Stage.IsClosed' == \"false\"; END = filter END by date('CloseDate_Year', 'CloseDate_Month', 'CloseDate_Day') in [{{ no_quote(value(field(selection(step_time), 'CloseDate_1'))) }}]; END = foreach END generate \"9_END\" as 'Bucket', 'Amount' as 'Amount', 'OpportunityId' as 'OpportunityId', 'Opportunity.Account.Name' as 'Opportunity.Account.Name', 'Opportunity.Name' as 'Opportunity.Name', 'Opportunity.Owner.Name' as 'Opportunity.Owner.Name', 'Opportunity.Amount' as 'Opportunity.Amount', 'Opportunity.CloseDate' as 'Opportunity.CloseDate', 'Opportunity.ForecastCategoryName' as 'Opportunity.ForecastCategoryName', 'Opportunity.StageName' as 'Opportunity.StageName'; upd_start = filter x1 by date('ValidFromDate_Year', 'ValidFromDate_Month', 'ValidFromDate_Day') in [{{ no_quote(value(field(selection(step_time),'Update_ValidFrom'))) }}]; upd_start = filter upd_start by date('ValidToDate_Year', 'ValidToDate_Month', 'ValidToDate_Day') in [{{ no_quote(value(field(selection(step_time),'Update_ValidTo'))) }}]; upd_end = filter x1 by date('ValidFromDate_Year', 'ValidFromDate_Month', 'ValidFromDate_Day') in [{{ no_quote(value(field(selection(step_time),'Update_End_ValidFrom'))) }}]; upd_end = filter upd_end by date('ValidToDate_Year', 'ValidToDate_Month', 'ValidToDate_Day') in [{{ no_quote(value(field(selection(step_time),'Update_End_ValidTo'))) }}]; upd = group upd_start by OpportunityId right, upd_end by OpportunityId; upd = foreach upd generate upd_end.'OpportunityId' as 'OpportunityId', upd_start.'OpportunityId' is null as 'New', first(upd_start.'Amount') as 'AmountStart', first(upd_start.'Stage.IsClosed') as 'Stage.IsClosedStart', first(upd_start.'Stage.IsWon') as 'Stage.IsWonStart', first(upd_start.'CloseDate_sec_epoch') as 'CloseDateStart', last(upd_end.'Amount') as 'AmountEnd', last(upd_end.'Stage.IsClosed') as 'Stage.IsClosedEnd', last(upd_end.'Stage.IsWon') as 'Stage.IsWonEnd', last(upd_end.'CloseDate_sec_epoch') as 'CloseDateEnd', last(upd_end.'Opportunity.Account.Name') as 'Opportunity.Account.Name', last(upd_end.'Opportunity.Name') as 'Opportunity.Name', last(upd_end.'Opportunity.Owner.Name') as 'Opportunity.Owner.Name', last(upd_end.'Opportunity.Amount') as 'Opportunity.Amount', last(upd_end.'Opportunity.CloseDate') as 'Opportunity.CloseDate', last(upd_end.'Opportunity.ForecastCategoryName') as 'Opportunity.ForecastCategoryName', last(upd_end.'Opportunity.StageName') as 'Opportunity.StageName', last(upd_end.'Opportunity.Owner.Role.Name') as 'Opportunity.Owner.Role.Name', last(upd_end.'Opportunity.${Variables.Customer_L2.sobjectName}.${Variables.Customer_L2.fieldName}') as 'Opportunity.${Variables.Customer_L2.sobjectName}.${Variables.Customer_L2.fieldName}', last(upd_end.'Opportunity.${Variables.Geography.sobjectName}.${Variables.Geography.fieldName}') as 'Opportunity.${Variables.Geography.sobjectName}.${Variables.Geography.fieldName}'; upd_full_closed = foreach upd generate ( case when ( toDate('CloseDateEnd') in [{{ no_quote(value(field(selection(step_time), 'CloseDate_2'))) }}] and 'Stage.IsClosedEnd' == \"true\" and 'Stage.IsWonEnd' == \"false\" ) then \"8_CLOSED_LOST\" when ( toDate('CloseDateEnd') in [{{ no_quote(value(field(selection(step_time), 'CloseDate_2'))) }}] and 'Stage.IsClosedEnd' == \"true\" and 'Stage.IsWonEnd' == \"true\" ) then \"7_CLOSED_WON\" else \"OTHER\" end ) as 'Bucket', 'OpportunityId', 'Opportunity.Account.Name', 'Opportunity.Name', 'Opportunity.Owner.Name', 'Opportunity.Amount', 'Opportunity.CloseDate', 'Opportunity.ForecastCategoryName', 'Opportunity.StageName', 'AmountStart', 'AmountEnd'; upd_full_closed = filter upd_full_closed by 'Bucket' != \"OTHER\"; upd_full_closed = foreach upd_full_closed generate 'Bucket', 'OpportunityId', 'Opportunity.Account.Name', 'Opportunity.Name', 'Opportunity.Owner.Name', 'Opportunity.Amount', 'Opportunity.CloseDate', 'Opportunity.ForecastCategoryName', 'Opportunity.StageName', ( case 'Bucket' when \"8_CLOSED_LOST\" then (0 - 'AmountEnd') when \"7_CLOSED_WON\" then (0 - 'AmountEnd') end ) as 'Amount'; upd_full_notinperiod = foreach upd generate ( case when ( not 'New' and 'Stage.IsClosedStart' == \"false\" and toDate('CloseDateStart') in [{{ no_quote(value(field(selection(step_time), 'CloseDate_2'))) }}] and not(toDate('CloseDateEnd') in [{{ no_quote(value(field(selection(step_time), 'CloseDate_2'))) }}]) ) then \"5_MOVED_OUT\" when ( 'New' and toDate('CloseDateEnd') in [{{ no_quote(value(field(selection(step_time), 'CloseDate_2'))) }}] ) then \"1_NEW\" when ( not 'New' and 'Stage.IsClosedStart' == \"true\" and toDate('CloseDateEnd') in [{{ no_quote(value(field(selection(step_time), 'CloseDate_2'))) }}] ) then \"2_REOPEN\" when ( not 'New' and toDate('CloseDateEnd') in [{{ no_quote(value(field(selection(step_time), 'CloseDate_2'))) }}] and (('Stage.IsClosedStart' == \"false\" and not(toDate('CloseDateStart') in [{{ no_quote(value(field(selection(step_time), 'CloseDate_2'))) }}])) or ('Stage.IsClosedStart' == \"true\")) ) then \"4_MOVED_IN\" else \"OTHER\" end ) as 'Bucket', 'OpportunityId', 'Opportunity.Account.Name', 'Opportunity.Name', 'Opportunity.Owner.Name', 'Opportunity.Amount', 'Opportunity.CloseDate', 'Opportunity.ForecastCategoryName', 'Opportunity.StageName', 'AmountStart', 'AmountEnd'; upd_full_notinperiod = filter upd_full_notinperiod by 'Bucket' != \"OTHER\"; upd_full_notinperiod = foreach upd_full_notinperiod generate 'Bucket', ( case 'Bucket' when \"5_MOVED_OUT\" then (0 - 'AmountEnd') when \"1_NEW\" then 'AmountEnd' when \"2_REOPEN\" then 'AmountEnd' when \"4_MOVED_IN\" then 'AmountEnd' end ) as 'Amount', 'OpportunityId', 'Opportunity.Account.Name', 'Opportunity.Name', 'Opportunity.Owner.Name', 'Opportunity.Amount', 'Opportunity.CloseDate', 'Opportunity.ForecastCategoryName', 'Opportunity.StageName'; upd_delta = foreach upd generate ( case when ( not 'New' and 'Stage.IsClosedStart' == \"false\" and toDate('CloseDateStart') in [{{ no_quote(value(field(selection(step_time), 'CloseDate_2'))) }}] and 'AmountStart' > 'AmountEnd' ) then \"6_REDUCE\" when ( not 'New' and 'Stage.IsClosedStart' == \"false\" and toDate('CloseDateStart') in [{{ no_quote(value(field(selection(step_time), 'CloseDate_2'))) }}] and 'AmountStart' < 'AmountEnd' ) then \"3_EXPAND\" else \"OTHER\" end ) as 'Bucket', 'OpportunityId', 'Opportunity.Account.Name', 'Opportunity.Name', 'Opportunity.Owner.Name', 'Opportunity.Amount', 'Opportunity.CloseDate', 'Opportunity.ForecastCategoryName', 'Opportunity.StageName', 'AmountStart', 'AmountEnd'; upd_delta = filter upd_delta by 'Bucket' != \"OTHER\"; upd_delta = foreach upd_delta generate 'Bucket', ( case 'Bucket' when \"6_REDUCE\" then 'AmountEnd' - 'AmountStart' when \"3_EXPAND\" then 'AmountEnd' - 'AmountStart' end ) as 'Amount', 'OpportunityId', 'Opportunity.Account.Name', 'Opportunity.Name', 'Opportunity.Owner.Name', 'Opportunity.Amount', 'Opportunity.CloseDate', 'Opportunity.ForecastCategoryName', 'Opportunity.StageName'; WATERFALL = union START, upd_full_notinperiod, upd_delta, upd_full_closed, END; WATERFALL = filter WATERFALL by 'Bucket' in {{selection(waterfall_chart)}}; WATERFALL = group WATERFALL by 'OpportunityId'; WATERFALL = foreach WATERFALL generate last('OpportunityId') as 'OpportunityId', last('Opportunity.Account.Name') as 'Opportunity.Account.Name', last('Opportunity.Name') as 'Opportunity.Name', last('Opportunity.Owner.Name') as 'Opportunity.Owner.Name', last('Opportunity.Amount') as 'Opportunity.Amount', last('Opportunity.CloseDate') as 'Opportunity.CloseDate', last('Opportunity.ForecastCategoryName') as 'Opportunity.ForecastCategoryName', last('Opportunity.StageName') as 'Opportunity.StageName', last('Amount') as 'Amount'; WATERFALL = foreach WATERFALL generate 'OpportunityId', 'Opportunity.Account.Name', 'Opportunity.Name', 'Opportunity.Owner.Name', 'Opportunity.CloseDate', 'Opportunity.ForecastCategoryName', 'Opportunity.StageName', 'Opportunity.Amount', 'Amount'; WATERFALL = order WATERFALL by 'Amount' desc; WATERFALL = limit WATERFALL 100;",
+            "values" : [
+  "Opportunity.Account.Name",
+  "Opportunity.Name",
+  "Opportunity.Owner.Name",
+  "Opportunity.CloseDate",
+  "Opportunity.ForecastCategoryName",
+  "Opportunity.StageName",
+  "Amount"
+  ]
+          },
+          "version" : -1.0
+        },
+        "type" : "grain",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "valuestable"
+        }
+      },
+      "Opportunity_Owner_Name_3" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.opportunity.Alias}"
+          }
+  ],
+        "isFacet" : true,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "groups" : [
+  "Owner.Name"
+  ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "step_time" : {
+        "datasets" : [ ],
+        "dimensions" : [ ],
+        "isFacet" : false,
+        "isGlobal" : false,
+        "selectMode" : "singlerequired",
+        "start" : [
+  {
+            "CloseDate_1" : "\"current month\"..\"current month\"",
+            "CloseDate_2" : "\"current month\"..\"current month\"",
+            "End_ValidFrom" : "\"current ${Constants.Fiscal_Prefix}year - 5000 years\"..\"current day\"",
+            "End_ValidTo" : "\"1 day ahead\"..\"current ${Constants.Fiscal_Prefix}year + 5000 years\"",
+            "Start_ValidFrom" : "\"current ${Constants.Fiscal_Prefix}year - 5000 years\"..\"8 days ago\"",
+            "Start_ValidTo" : "\"7 days ago\"..\"current ${Constants.Fiscal_Prefix}year + 5000 years\"",
+            "Update_End_ValidFrom" : "\"7 days ago\"..\"current day\"",
+            "Update_End_ValidTo" : "\"1 day ahead\"..\"current ${Constants.Fiscal_Prefix}year + 5000 years\"",
+            "Update_ValidFrom" : "\"current ${Constants.Fiscal_Prefix}year - 5000 years\"..\"8 days ago\"",
+            "Update_ValidTo" : "\"7 days ago\"..\"current day\""
+          }
+  ],
+        "type" : "static",
+        "useGlobal" : false,
+        "values" : [
+  {
+            "display" : "Last 7 days (Month Close)",
+            "value" : {
+              "CloseDate_1" : "\"current month\"..\"current month\"",
+              "CloseDate_2" : "\"current month\"..\"current month\"",
+              "End_ValidFrom" : "\"current ${Constants.Fiscal_Prefix}year - 5000 years\"..\"current day\"",
+              "End_ValidTo" : "\"1 day ahead\"..\"current ${Constants.Fiscal_Prefix}year + 5000 years\"",
+              "Start_ValidFrom" : "\"current ${Constants.Fiscal_Prefix}year - 5000 years\"..\"8 days ago\"",
+              "Start_ValidTo" : "\"7 days ago\"..\"current ${Constants.Fiscal_Prefix}year + 5000 years\"",
+              "Update_End_ValidFrom" : "\"7 days ago\"..\"current day\"",
+              "Update_End_ValidTo" : "\"1 day ahead\"..\"current ${Constants.Fiscal_Prefix}year + 5000 years\"",
+              "Update_ValidFrom" : "\"current ${Constants.Fiscal_Prefix}year - 5000 years\"..\"8 days ago\"",
+              "Update_ValidTo" : "\"7 days ago\"..\"current day\""
+            }
+          },
+  {
+            "display" : "Last 14 days (Month Close)",
+            "value" : {
+              "CloseDate_1" : "\"current month\"..\"current month\"",
+              "CloseDate_2" : "\"current month\"..\"current month\"",
+              "End_ValidFrom" : "\"current ${Constants.Fiscal_Prefix}year - 5000 years\"..\"current day\"",
+              "End_ValidTo" : "\"1 day ahead\"..\"current ${Constants.Fiscal_Prefix}year + 5000 years\"",
+              "Start_ValidFrom" : "\"current ${Constants.Fiscal_Prefix}year - 5000 years\"..\"15 days ago\"",
+              "Start_ValidTo" : "\"14 days ago\"..\"current ${Constants.Fiscal_Prefix}year + 5000 years\"",
+              "Update_End_ValidFrom" : "\"14 days ago\"..\"current day\"",
+              "Update_End_ValidTo" : "\"1 day ahead\"..\"current ${Constants.Fiscal_Prefix}year + 5000 years\"",
+              "Update_ValidFrom" : "\"current ${Constants.Fiscal_Prefix}year - 5000 years\"..\"15 days ago\"",
+              "Update_ValidTo" : "\"14 days ago\"..\"current day\""
+            }
+          },
+  {
+            "display" : "Last 7 days (Quarter Close)",
+            "value" : {
+              "CloseDate_1" : "\"current ${Constants.Fiscal_Prefix}quarter\"..\"current ${Constants.Fiscal_Prefix}quarter\"",
+              "CloseDate_2" : "\"current ${Constants.Fiscal_Prefix}quarter\"..\"current ${Constants.Fiscal_Prefix}quarter\"",
+              "End_ValidFrom" : "\"current ${Constants.Fiscal_Prefix}year - 5000 years\"..\"current day\"",
+              "End_ValidTo" : "\"1 day ahead\"..\"current ${Constants.Fiscal_Prefix}year + 5000 years\"",
+              "Start_ValidFrom" : "\"current ${Constants.Fiscal_Prefix}year - 5000 years\"..\"8 days ago\"",
+              "Start_ValidTo" : "\"7 days ago\"..\"current ${Constants.Fiscal_Prefix}year + 5000 years\"",
+              "Update_End_ValidFrom" : "\"7 days ago\"..\"current day\"",
+              "Update_End_ValidTo" : "\"1 day ahead\"..\"current ${Constants.Fiscal_Prefix}year + 5000 years\"",
+              "Update_ValidFrom" : "\"current ${Constants.Fiscal_Prefix}year - 5000 years\"..\"8 days ago\"",
+              "Update_ValidTo" : "\"7 days ago\"..\"current day\""
+            }
+          },
+  {
+            "display" : "Last 14 days (Quarter Close)",
+            "value" : {
+              "CloseDate_1" : "\"current ${Constants.Fiscal_Prefix}quarter\"..\"current ${Constants.Fiscal_Prefix}quarter\"",
+              "CloseDate_2" : "\"current ${Constants.Fiscal_Prefix}quarter\"..\"current ${Constants.Fiscal_Prefix}quarter\"",
+              "End_ValidFrom" : "\"current ${Constants.Fiscal_Prefix}year - 5000 years\"..\"current day\"",
+              "End_ValidTo" : "\"1 day ahead\"..\"current ${Constants.Fiscal_Prefix}year + 5000 years\"",
+              "Start_ValidFrom" : "\"current ${Constants.Fiscal_Prefix}year - 5000 years\"..\"15 days ago\"",
+              "Start_ValidTo" : "\"14 days ago\"..\"current ${Constants.Fiscal_Prefix}year + 5000 years\"",
+              "Update_End_ValidFrom" : "\"14 days ago\"..\"current day\"",
+              "Update_End_ValidTo" : "\"1 day ahead\"..\"current ${Constants.Fiscal_Prefix}year + 5000 years\"",
+              "Update_ValidFrom" : "\"current ${Constants.Fiscal_Prefix}year - 5000 years\"..\"15 days ago\"",
+              "Update_ValidTo" : "\"14 days ago\"..\"current day\""
+            }
+          },
+  {
+            "display" : "This Month",
+            "value" : {
+              "CloseDate_1" : "\"current month\"..\"current month\"",
+              "CloseDate_2" : "\"current month\"..\"current month\"",
+              "End_ValidFrom" : "\"current ${Constants.Fiscal_Prefix}year - 5000 years\"..\"current day\"",
+              "End_ValidTo" : "\"1 day ahead\"..\"current ${Constants.Fiscal_Prefix}year + 5000 years\"",
+              "Start_ValidFrom" : "\"current ${Constants.Fiscal_Prefix}year - 5000 years\"..\"1 month ago\"",
+              "Start_ValidTo" : "\"current month\"..\"current ${Constants.Fiscal_Prefix}year + 5000 years\"",
+              "Update_End_ValidFrom" : "\"current month\"..\"current day\"",
+              "Update_End_ValidTo" : "\"1 day ahead\"..\"current ${Constants.Fiscal_Prefix}year + 5000 years\"",
+              "Update_ValidFrom" : "\"current ${Constants.Fiscal_Prefix}year - 5000 years\"..\"1 month ago\"",
+              "Update_ValidTo" : "\"current month\"..\"current day\""
+            }
+          },
+  {
+            "display" : "This Quarter",
+            "value" : {
+              "CloseDate_1" : "\"current ${Constants.Fiscal_Prefix}quarter\"..\"current ${Constants.Fiscal_Prefix}quarter\"",
+              "CloseDate_2" : "\"current ${Constants.Fiscal_Prefix}quarter\"..\"current ${Constants.Fiscal_Prefix}quarter\"",
+              "End_ValidFrom" : "\"current ${Constants.Fiscal_Prefix}year - 5000 years\"..\"current day\"",
+              "End_ValidTo" : "\"1 day ahead\"..\"current ${Constants.Fiscal_Prefix}year + 5000 years\"",
+              "Start_ValidFrom" : "\"current ${Constants.Fiscal_Prefix}year - 5000 years\"..\"1 ${Constants.Fiscal_Prefix}quarter ago\"",
+              "Start_ValidTo" : "\"current ${Constants.Fiscal_Prefix}quarter\"..\"current ${Constants.Fiscal_Prefix}year + 5000 years\"",
+              "Update_End_ValidFrom" : "\"current ${Constants.Fiscal_Prefix}quarter\"..\"current day\"",
+              "Update_End_ValidTo" : "\"1 day ahead\"..\"current ${Constants.Fiscal_Prefix}year + 5000 years\"",
+              "Update_ValidFrom" : "\"current ${Constants.Fiscal_Prefix}year - 5000 years\"..\"1 ${Constants.Fiscal_Prefix}quarter ago\"",
+              "Update_ValidTo" : "\"current ${Constants.Fiscal_Prefix}quarter\"..\"current day\""
+            }
+          }
+  ]
+      }
+    },
+    "widgets" : {
+      "dimfilter_7" : {
+        "parameters" : {
+          "expanded" : false,
+          "step" : "Opportunity_Owner_Name_3",
+          "title" : "Owner Name"
+        },
+        "position" : {
+          "h" : "50",
+          "w" : "150",
+          "x" : 1010,
+          "y" : 10,
+          "zIndex" : 100003
+        },
+        "type" : "listselector"
+      },
+      "dimfilter_8" : {
+        "parameters" : {
+          "expanded" : false,
+          "step" : "Opportunity_Owner_Role_3",
+          "title" : "Owner Role"
+        },
+        "position" : {
+          "h" : "50",
+          "w" : "150",
+          "x" : 1180,
+          "y" : 10,
+          "zIndex" : 100003
+        },
+        "type" : "listselector"
+      },
+      "box_3" : {
+        "parameters" : {
+          "backgroundColor" : "rgb(255, 255, 255)",
+          "borderColor" : "rgba(137, 162, 186, 0.75)"
+        },
+        "position" : {
+          "h" : "820",
+          "w" : "1300",
+          "x" : 30,
+          "y" : 90,
+          "zIndex" : 6
+        },
+        "type" : "box"
+      },
+      "valuestable_2" : {
+        "parameters" : {
+          "exploreLink" : false,
+          "step" : "waterfall_detail"
+        },
+        "position" : {
+          "h" : "360",
+          "w" : "1240",
+          "x" : 60,
+          "y" : 530,
+          "zIndex" : 200
+        },
+        "type" : "valuestable"
+      },
+      "text_21" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "By Customer",
+          "textAlignment" : "left",
+          "textColor" : "rgb(41, 71, 102)"
+        },
+        "position" : {
+          "x" : 970,
+          "y" : 330,
+          "zIndex" : 39
+        },
+        "type" : "text"
+      },
+      "box_Mob0" : {
+        "parameters" : {
+          "backgroundColor" : "rgb(240, 240, 244)",
+          "borderColor" : "rgba(0, 0, 0, 0)"
+        },
+        "position" : {
+          "h" : "390",
+          "w" : "1350",
+          "x" : 0,
+          "y" : 90,
+          "zIndex" : -1
+        },
+        "type" : "box"
+      },
+      "dimfilter_2" : {
+        "parameters" : {
+          "expanded" : false,
+          "measureField" : "",
+          "step" : "step_time",
+          "title" : "Date Range"
+        },
+        "position" : {
+          "h" : "50",
+          "w" : "200",
+          "x" : 790,
+          "y" : 10,
+          "zIndex" : 100001
+        },
+        "type" : "listselector"
+      },
+      "text_22" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "By Geo",
+          "textAlignment" : "left",
+          "textColor" : "rgb(41, 71, 102)"
+        },
+        "position" : {
+          "x" : 970,
+          "y" : 140,
+          "zIndex" : 40
+        },
+        "type" : "text"
+      },
+      "box_15" : {
+        "parameters" : {
+          "backgroundColor" : "rgb(242, 246, 250)",
+          "borderColor" : "rgba(146, 103, 194, 0)"
+        },
+        "position" : {
+          "h" : "1010",
+          "w" : "1370",
+          "x" : 0,
+          "y" : 0,
+          "zIndex" : 4
+        },
+        "type" : "box"
+      },
+      "text_2" : {
+        "parameters" : {
+          "fontSize" : 36,
+          "text" : "Pipeline Trending",
+          "textAlignment" : "left",
+          "textColor" : "rgb(22, 50, 92)"
+        },
+        "position" : {
+          "x" : 10,
+          "y" : 20,
+          "zIndex" : 7
+        },
+        "type" : "text"
+      },
+      "chart_8" : {
+        "parameters" : {
+          "legend" : true,
+          "visualizationType" : "pie",
+          "step" : "Account_BillingCountry_11",
+          "exploreLink" : false
+        },
+        "position" : {
+          "h" : "160",
+          "w" : "330",
+          "x" : 970,
+          "y" : 170,
+          "zIndex" : 11001
+        },
+        "type" : "chart"
+      },
+      "chart_7" : {
+        "parameters" : {
+          "legend" : true,
+          "visualizationType" : "pie",
+          "step" : "Account_Industry_12",
+          "exploreLink" : false
+        },
+        "position" : {
+          "h" : "160",
+          "w" : "340",
+          "x" : 970,
+          "y" : 360,
+          "zIndex" : 11000
+        },
+        "type" : "chart"
+      },
+      "text_4" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "Current Open Opportunities",
+          "textAlignment" : "left",
+          "textColor" : "rgb(0, 0, 0)"
+        },
+        "position" : {
+          "x" : 970,
+          "y" : 100,
+          "zIndex" : 11
+        },
+        "type" : "text"
+      },
+      "chart_2" : {
+        "parameters" : {
+          "positiveColor" : "rgb(46, 194, 186)",
+          "computeTotal" : false,
+          "totalColor" : "rgb(68, 162, 245)",
+          "visualizationType" : "waterfall",
+          "step" : "waterfall_chart",
+          "negativeColor" : "rgb(146, 113, 232)",
+          "startColor" : "rgb(68, 162, 245)"
+        },
+        "position" : {
+          "h" : "390",
+          "w" : "900",
+          "x" : 60,
+          "y" : 120,
+          "zIndex" : 199
+        },
+        "type" : "chart"
+      }
+    }
+  }
+}

@@ -1,0 +1,255 @@
+{
+  "macros": [
+
+    {
+  		"namespace": "name_util",
+  		"definitions": [
+			{
+				"name" : "nameFromPath",
+	  			"description": "Given a normalized json path, return the node name.",
+	  			"parameters": [
+	  				"jsonPath"
+				],
+				"returns": "${array:last(string:match(p.jsonPath,'\\\\[\\'(.*?)\\'\\\\]'))}"
+			}
+		]
+  	},
+  	{
+  		"namespace": "widget_util",
+  		"definitions": [
+  			{
+  				"name": "findWidget",
+  				"description": "Finds a widget by name and returns it with additional information.",
+  				"parameters":[
+  					"widgetName",
+  					"widgetType"
+  				],
+  				"actions":[
+	                { "action": "eval", "key": "widgetSearch", "value":"$.state.widgets['${p.widgetName}'][?(@.type=='${p.widgetType}')]"},
+	                { "action": "eval", "key": "widgetResults", "value": "${json:searchPaths(Rules.Eval.widgetSearch)}"},
+	                { "action": "eval", "key": "widgetPath", "value": "${empty Rules.Eval.widgetResults ? null : array:last(Rules.Eval.widgetResults)}"}
+  				],
+  				"returns": {
+  					"name": "${p.widgetName}",
+  					"path": "${Rules.Eval.widgetPath}",
+  					"displayAttributes": "${widget_util:getDisplayProperties(p.widgetName)}"
+  				}
+  			},
+        {
+  				"name": "deleteStep",
+  				"description": "Deletes a Step by name and any references to it.",
+  				"parameters":[
+  					"stepName"
+  				],
+  				"actions":[
+	                {"action": "delete", "path": "$.state.steps['${p.stepName}']"}
+                ]
+  			},
+  			{
+  				"name": "deleteWidget",
+  				"description": "Deletes a widget by name and any references to it.",
+  				"parameters":[
+  					"widgetName"
+  				],
+  				"actions":[
+	                {"action": "delete", "path": "$.state.widgets['${p.widgetName}']"},
+	                {"action": "delete", "path": "$.state.gridLayouts..pages..widgets[?(@.name in [\"${p.widgetName}\"])]]"}
+  				]
+  			},
+        {
+  				"name": "moveWidgetToLeft",
+  				"description": "Movbe a widget to left.",
+  				"parameters":[
+  					"widgetName",
+            "numberOfColumnsToShift"
+  				],
+  				"actions":[
+	                {
+                    "action": "set",
+                    "path": "$.state.gridLayouts..pages..widgets[?(@.name =='${p.widgetName}')].column",
+                    "value" : "${Rules.CurrentNode - p.numberOfColumnsToShift}"
+
+                  }
+  				]
+  			},
+  			{
+  				"name": "getDisplayProperties",
+  				"description": "Finds all references of a widget name.",
+  				"parameters":[
+  					"widgetName"
+  				],
+  				"actions":[
+	                { "action": "eval", "key": "refSearch", "value": "$.state.gridLayouts..pages..widgets[?(@.name in [\"${p.widgetName}\"] && @.column)]"},
+	                { "action": "eval", "key": "refResults", "value": "${json:searchValues(Rules.Eval.refSearch)}"}
+  				],
+  				"returns": "${array:last(Rules.Eval.refResults)}"
+  			},
+  			{
+  				"name": "getWidgetNamesOfType",
+  				"description": "Returns all the widget names of the specified type.",
+  				"parameters":[
+  					"widgetType"
+  				],
+  				"actions":[
+	                { "action": "eval", "key": "widgetSearch", "value":"$.state.widgets..[?(@.type=='${p.widgetType}')]"},
+	                { "action": "eval", "key": "widgetResults", "value": "${json:searchPaths(Rules.Eval.widgetSearch)}"},
+	                { "action": "eval", "key": "results", "value": "${array:forEach(Rules.Eval.widgetResults, '${name_util:nameFromPath(var)}')}"}
+  				],
+  				"returns": "${Rules.Eval.results}"
+  			}
+		]
+  	},
+    {
+      "namespace": "cards",
+      "definitions": [
+
+        {
+  				"name": "deleteCards",
+  				"description": "Removes a set of steps and widgets in a card",
+          "parameters":[
+  					"prefix"
+  				],
+          "actions":[
+            { "action": "eval", "key": "kpi_step_name", "value": "${p.prefix.concat('_step_kpi')}"},
+	          { "action": "eval", "value": "${widget_util:deleteStep(Rules.Eval.kpi_step_name)}"},
+
+            { "action": "eval", "key": "prior_period_step_name", "value": "${p.prefix.concat('_step_prior_period')}"},
+            { "action": "eval", "value": "${widget_util:deleteStep(Rules.Eval.prior_period_step_name)}"},
+
+            { "action": "eval", "key": "teamAvg_step_name", "value": "${p.prefix.concat('_step_teamAvg')}"},
+            { "action": "eval", "value": "${widget_util:deleteStep(Rules.Eval.teamAvg_step_name)}"},
+
+            { "action": "eval", "key": "rank_step_name", "value": "${p.prefix.concat('_step_rank')}"},
+            { "action": "eval", "value": "${widget_util:deleteStep(Rules.Eval.rank_step_name)}"},
+
+            { "action": "eval", "key": "number_kpi_name", "value": "${p.prefix.concat('_number_kpi')}"},
+            { "action": "eval", "value": "${widget_util:deleteWidget(Rules.Eval.number_kpi_name)}"},
+
+            { "action": "eval", "key": "chart_kpi_name", "value": "${p.prefix.concat('_chart_kpi')}"},
+            { "action": "eval", "value": "${widget_util:deleteWidget(Rules.Eval.chart_kpi_name)}"},
+
+            { "action": "eval", "key": "number_prior_period_name", "value": "${p.prefix.concat('_number_prior_period')}"},
+            { "action": "eval", "value": "${widget_util:deleteWidget(Rules.Eval.number_prior_period_name)}"},
+
+            { "action": "eval", "key": "number_teamAvg_name", "value": "${p.prefix.concat('_number_teamAvg')}"},
+            { "action": "eval", "value": "${widget_util:deleteWidget(Rules.Eval.number_teamAvg_name)}"},
+
+            { "action": "eval", "key": "number_rank_name", "value": "${p.prefix.concat('_number_rank')}"},
+            { "action": "eval", "value": "${widget_util:deleteWidget(Rules.Eval.number_rank_name)}"},
+
+            { "action": "eval", "key": "container_name", "value": "${p.prefix.concat('_container')}"},
+            { "action": "eval", "value": "${widget_util:deleteWidget(Rules.Eval.container_name)}"},
+
+            { "action": "eval", "key": "text_title_name", "value": "${p.prefix.concat('_text_title')}"},
+            { "action": "eval", "value": "${widget_util:deleteWidget(Rules.Eval.text_title_name)}"}
+
+
+
+          ]
+        },
+
+
+        {
+          "name": "moveCardstoLeft",
+          "description": "Removes a set of steps and widgets in a card",
+          "parameters":[
+            "prefix",
+            "numberOfColumnsToShift"
+          ],
+          "actions":[
+
+            {"action":  "eval", "key": "numberOfColumns", "value": "${p.numberOfColumnsToShift}"},
+
+
+
+            { "action": "eval", "key": "number_kpi_name", "value": "${p.prefix.concat('_number_kpi')}"},
+            { "action": "eval", "value": "${widget_util:moveWidgetToLeft(Rules.Eval.number_kpi_name,Rules.Eval.numberOfColumns)}"},
+
+            { "action": "eval", "key": "chart_kpi_name", "value": "${p.prefix.concat('_chart_kpi')}"},
+            { "action": "eval", "value": "${widget_util:moveWidgetToLeft(Rules.Eval.chart_kpi_name,Rules.Eval.numberOfColumns)}"},
+
+            { "action": "eval", "key": "number_prior_period_name", "value": "${p.prefix.concat('_number_prior_period')}"},
+            { "action": "eval", "value": "${widget_util:moveWidgetToLeft(Rules.Eval.number_prior_period_name,Rules.Eval.numberOfColumns)}"},
+
+            { "action": "eval", "key": "number_teamAvg_name", "value": "${p.prefix.concat('_number_teamAvg')}"},
+            { "action": "eval", "value": "${widget_util:moveWidgetToLeft(Rules.Eval.number_teamAvg_name,Rules.Eval.numberOfColumns)}"},
+
+            { "action": "eval", "key": "number_rank_name", "value": "${p.prefix.concat('_number_rank')}"},
+            { "action": "eval", "value": "${widget_util:moveWidgetToLeft(Rules.Eval.number_rank_name,Rules.Eval.numberOfColumns)}"},
+
+            { "action": "eval", "key": "container_name", "value": "${p.prefix.concat('_container')}"},
+            { "action": "eval", "value": "${widget_util:moveWidgetToLeft(Rules.Eval.container_name,Rules.Eval.numberOfColumns)}"},
+
+            { "action": "eval", "key": "text_title_name", "value": "${p.prefix.concat('_text_title')}"},
+            { "action": "eval", "value": "${widget_util:moveWidgetToLeft(Rules.Eval.text_title_name,Rules.Eval.numberOfColumns)}"}
+
+
+
+
+          ]
+        }
+      ]
+    },
+  	{
+  		"namespace": "link_macros",
+  		"definitions": [
+  			{
+  				"name": "removeHorizontalLink",
+  				"description": "Removes a link from a dashboard. If autoShift is true, this macro will also shift any links before the said link to the right.",
+  				"parameters":[
+  					"linkWidgetName"
+  				],
+  				"actions":[
+  					       { "action": "eval", "key": "theWidget", "value": "${widget_util:findWidget(p.linkWidgetName, 'link')}"},
+	                { "action": "eval", "value": "${widget_util:deleteWidget(p.linkWidgetName)}"},
+  					      { "action": "eval", "key": "allLinkNames", "value": "${widget_util:getWidgetNamesOfType('link')}"},
+  					      { "action": "eval", "key": "inClause", "value": "@.name in [\"${string:join(Rules.Eval.allLinkNames,'\",\"')}\"]"},
+	                { "action": "eval", "key": "columnRowSelector", "value": "@.row == ${Rules.Eval.theWidget.displayAttributes.row} && @.column < ${Rules.Eval.theWidget.displayAttributes.column}"},
+	                { "action": "eval", "key": "linksToMoveSearch", "value": "$.state.gridLayouts..pages..widgets[?(${Rules.Eval.inClause} && ${Rules.Eval.columnRowSelector})]"},
+ 	                { "action": "eval", "key": "linksToMove", "value": "${json:searchPaths(Rules.Eval.linksToMoveSearch)}"},
+	                { "action": "eval", "value": "${array:forEach(Rules.Eval.linksToMove, '${link_macros:shiftLinksToRight(var, Rules.Eval.theWidget.displayAttributes.colspan)}')}"}
+  				]
+  			},
+        {
+  				"name": "removeVerticalLink",
+  				"description": "Removes a link from a dashboard. If autoShift is true, this macro will also shift any links below the said link to the top.",
+  				"parameters":[
+  					"linkWidgetName1"
+  				],
+  				"actions":[
+  					       { "action": "eval", "key": "theWidget1", "value": "${widget_util:findWidget(p.linkWidgetName1, 'link')}"},
+	                { "action": "eval", "value": "${widget_util:deleteWidget(p.linkWidgetName1)}"},
+  					      { "action": "eval", "key": "allLinkNames1", "value": "${widget_util:getWidgetNamesOfType('link')}"},
+  					      { "action": "eval", "key": "inClause1", "value": "@.name in [\"${string:join(Rules.Eval.allLinkNames1,'\",\"')}\"]"},
+	                { "action": "eval", "key": "columnRowSelector1", "value": "@.column == ${Rules.Eval.theWidget1.displayAttributes.column} && @.row > ${Rules.Eval.theWidget1.displayAttributes.row}"},
+	                { "action": "eval", "key": "linksToMoveSearch1", "value": "$.state.gridLayouts..pages..widgets[?(${Rules.Eval.inClause1} && ${Rules.Eval.columnRowSelector1})]"},
+ 	                { "action": "eval", "key": "linksToMove1", "value": "${json:searchPaths(Rules.Eval.linksToMoveSearch1)}"},
+	                { "action": "eval", "value": "${array:forEach(Rules.Eval.linksToMove1, '${link_macros:shiftLinksToTop(var, Rules.Eval.theWidget1.displayAttributes.rowspan)}')}"}
+  				]
+  			},
+  			{
+  				"name": "shiftLinksToRight",
+  				"description": "Removes a link from a dashboard. If autoShift is true, this macro will also shift any links before the said link to the right.",
+  				"parameters":[
+  					"linkJsonPath",
+  					"numberOfColumnsToShift"
+  				],
+  				"actions":[
+	                {"action": "set", "condition": "${!empty p.linkJsonPath}", "path": "${p.linkJsonPath}.column", "value" : "${Rules.CurrentNode + p.numberOfColumnsToShift}"}
+  				]
+  			},
+        {
+  				"name": "shiftLinksToTop",
+  				"description": "Removes a link from a dashboard. If autoShift is true, this macro will also shift any links below the said link to the top.",
+  				"parameters":[
+  					"linkJsonPath",
+  					"numberOfRowsToShift"
+  				],
+  				"actions":[
+	                {"action": "set", "condition": "${!empty p.linkJsonPath}", "path": "${p.linkJsonPath}.row", "value" : "${Rules.CurrentNode - p.numberOfRowsToShift}"}
+  				]
+  			}
+  		]
+  	}
+  ]
+}

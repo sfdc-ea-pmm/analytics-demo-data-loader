@@ -1,0 +1,3165 @@
+{
+  "name" : "Service_Telephony",
+  "label" : "Service Telephony",
+  "folder" : {
+    "id" : "${App.Folder.Id}"
+  },
+  "mobileDisabled" : false,
+  "state" : {
+    "dataSourceLinks" : [ ],
+    "filters" : [ ],
+    "gridLayouts" : [
+  {
+        "maxWidth" : 1360,
+        "name" : "Default",
+        "numColumns" : 48,
+        "pages" : [
+  {
+            "name" : "Default",
+            "widgets" : [
+  {
+                "colspan" : 12,
+                "column" : 1,
+                "name" : "text_Telephony",
+                "row" : 3,
+                "rowspan" : 8,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 7,
+                "column" : 1,
+                "name" : "chart_filter_call_type",
+                "row" : 31,
+                "rowspan" : 17,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 4,
+                "column" : 1,
+                "name" : "listselector_Case_Type_1",
+                "row" : 13,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "backgroundColor" : "#E6ECF2",
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 5,
+                "column" : 42,
+                "name" : "listselector_Time_Selection",
+                "row" : 13,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "backgroundColor" : "#E6ECF2",
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 4,
+                "column" : 6,
+                "name" : "listselector_Case_RecordType_Name_1",
+                "row" : 13,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "backgroundColor" : "#E6ECF2",
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 7,
+                "column" : 1,
+                "name" : "chart_filter_call_result",
+                "row" : 54,
+                "rowspan" : 17,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 7,
+                "column" : 1,
+                "name" : "chart_filter_call_support",
+                "row" : 123,
+                "rowspan" : 17,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 7,
+                "column" : 1,
+                "name" : "chart_filter_call_priority",
+                "row" : 77,
+                "rowspan" : 17,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 7,
+                "column" : 1,
+                "name" : "chart_filter_case_priority",
+                "row" : 100,
+                "rowspan" : 17,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 4,
+                "column" : 19,
+                "name" : "link_Home",
+                "row" : 8,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "borderColor" : "#9271E8",
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 4,
+                "column" : 23,
+                "name" : "link_Channel_Review",
+                "row" : 8,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#9271E8",
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 4,
+                "column" : 27,
+                "name" : "link_Omni",
+                "row" : 8,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 4,
+                "column" : 31,
+                "name" : "link_Chat",
+                "row" : 8,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 4,
+                "column" : 35,
+                "name" : "link_Telephony",
+                "row" : 8,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "rgb(99, 79, 149)",
+                  "borderEdges" : [
+  "bottom"
+  ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 2
+                }
+              },
+  {
+                "colspan" : 4,
+                "column" : 39,
+                "name" : "link_Knowledge_Efficiency",
+                "row" : 8,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 4,
+                "column" : 43,
+                "name" : "link_Knowledge_Usage",
+                "row" : 8,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "borderColor" : "#FFFFFF",
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 48,
+                "column" : 0,
+                "name" : "container_1",
+                "row" : 3,
+                "rowspan" : 8,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "rgb(146, 113, 232)",
+                  "borderEdges" : [
+  "bottom"
+  ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 14,
+                "column" : 10,
+                "name" : "text_Daily_Call_Volume",
+                "row" : 21,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "backgroundColor" : "#091A3E",
+                  "borderColor" : "#091A3E",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 7,
+                "column" : 41,
+                "name" : "number_all_2",
+                "row" : 26,
+                "rowspan" : 6,
+                "widgetStyle" : {
+                  "backgroundColor" : "#091A3E",
+                  "borderColor" : "#091A3E",
+                  "borderEdges" : [
+  "right"
+  ],
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 30,
+                "column" : 10,
+                "name" : "chart_calls_per_day",
+                "row" : 26,
+                "rowspan" : 27,
+                "widgetStyle" : {
+                  "backgroundColor" : "#091A3E",
+                  "borderColor" : "#091A3E",
+                  "borderEdges" : [ ],
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 39,
+                "column" : 9,
+                "name" : "container_3",
+                "row" : 19,
+                "rowspan" : 37,
+                "widgetStyle" : {
+                  "backgroundColor" : "#091A3E",
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 7,
+                "column" : 41,
+                "name" : "number_all_4",
+                "row" : 33,
+                "rowspan" : 6,
+                "widgetStyle" : {
+                  "backgroundColor" : "#091A3E",
+                  "borderColor" : "#091A3E",
+                  "borderEdges" : [
+  "right"
+  ],
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 20,
+                "column" : 10,
+                "name" : "text_Hourly_Breakdown",
+                "row" : 58,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#FFFFFF",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 23,
+                "column" : 10,
+                "name" : "text_Agent_Performance",
+                "row" : 120,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#FFFFFF",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 5,
+                "column" : 10,
+                "name" : "text_Service_Level",
+                "row" : 68,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "borderColor" : "#FFFFFF",
+                  "borderEdges" : [
+  "top"
+  ],
+                  "borderWidth" : 2
+                }
+              },
+  {
+                "colspan" : 5,
+                "column" : 10,
+                "name" : "text_Probability_To_Wait",
+                "row" : 74,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "borderColor" : "#FFFFFF",
+                  "borderEdges" : [ ],
+                  "borderWidth" : 4
+                }
+              },
+  {
+                "colspan" : 5,
+                "column" : 10,
+                "name" : "text_Agents_Working",
+                "row" : 90,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "borderColor" : "#FFFFFF",
+                  "borderEdges" : [
+  "top"
+  ],
+                  "borderWidth" : 4
+                }
+              },
+  {
+                "colspan" : 5,
+                "column" : 10,
+                "name" : "text_Call_Volume_Average_Duration",
+                "row" : 112,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "borderColor" : "#FFFFFF",
+                  "borderEdges" : [ ],
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 8,
+                "column" : 1,
+                "name" : "text_Case_and_Call_Priority",
+                "row" : 21,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 9,
+                "column" : 0,
+                "name" : "container_9",
+                "row" : 19,
+                "rowspan" : 135,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [
+  "top",
+  "right"
+  ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 32,
+                "column" : 15,
+                "name" : "chart_CreatedDate_Day_2",
+                "row" : 64,
+                "rowspan" : 14,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgba(255, 255, 255, 0)",
+                  "borderColor" : "#FFFFFF",
+                  "borderEdges" : [
+  "bottom"
+  ],
+                  "borderWidth" : 4
+                }
+              },
+  {
+                "colspan" : 32,
+                "column" : 15,
+                "name" : "chart_CreatedDate_Day_4",
+                "row" : 82,
+                "rowspan" : 12,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgba(255, 255, 255, 0)",
+                  "borderColor" : "#FFFFFF",
+                  "borderEdges" : [
+  "bottom"
+  ],
+                  "borderWidth" : 2
+                }
+              },
+  {
+                "colspan" : 32,
+                "column" : 15,
+                "name" : "chart_CreatedDate_Day_1",
+                "row" : 98,
+                "rowspan" : 19,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgba(255, 255, 255, 0)",
+                  "borderColor" : "#F2F6FA",
+                  "borderEdges" : [ ],
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 39,
+                "column" : 9,
+                "name" : "container_8",
+                "row" : 56,
+                "rowspan" : 62,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 46,
+                "column" : 1,
+                "name" : "table_lens_2",
+                "row" : 160,
+                "rowspan" : 25,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 48,
+                "column" : 0,
+                "name" : "container_5",
+                "row" : 154,
+                "rowspan" : 33,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [
+  "top"
+  ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 37,
+                "column" : 10,
+                "name" : "chart_CallType_1",
+                "row" : 124,
+                "rowspan" : 28,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 39,
+                "column" : 9,
+                "name" : "container_6",
+                "row" : 118,
+                "rowspan" : 36,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [
+  "top"
+  ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 48,
+                "column" : 0,
+                "name" : "container_12",
+                "row" : 11,
+                "rowspan" : 8,
+                "widgetStyle" : {
+                  "backgroundColor" : "#E6ECF2",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [
+  "top"
+  ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 9,
+                "column" : 1,
+                "name" : "text_Case_Details",
+                "row" : 155,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 41,
+                "name" : "pillbox_filter_closed",
+                "row" : 156,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "borderEdges" : [ ],
+                  "borderRadius" : 4
+                }
+              },
+  {
+                "colspan" : 4,
+                "column" : 0,
+                "name" : "globalfilters_all_6",
+                "row" : 151,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 7,
+                "column" : 41,
+                "name" : "number_1",
+                "row" : 40,
+                "rowspan" : 6,
+                "widgetStyle" : {
+                  "backgroundColor" : "#091A3E",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 7,
+                "column" : 41,
+                "name" : "number_2",
+                "row" : 47,
+                "rowspan" : 6,
+                "widgetStyle" : {
+                  "backgroundColor" : "#091A3E",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 8,
+                "column" : 1,
+                "name" : "text_filter_info_text",
+                "row" : 23,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 8,
+                "column" : 1,
+                "name" : "text_Call_type",
+                "row" : 28,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 8,
+                "column" : 1,
+                "name" : "text_Call_Result",
+                "row" : 51,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 8,
+                "column" : 1,
+                "name" : "text_Case_Support_Level",
+                "row" : 120,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 8,
+                "column" : 1,
+                "name" : "text_Call_Priority",
+                "row" : 74,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 8,
+                "column" : 1,
+                "name" : "text_Case_Priority",
+                "row" : 97,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              }
+  ]
+          }
+  ],
+        "rowHeight" : "fine",
+        "selectors" : [ ],
+        "style" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "backgroundColor" : "rgb(202, 212, 222)",
+          "cellSpacingX" : 0,
+          "cellSpacingY" : 0,
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "version" : 1.0
+      },
+  {
+        "name" : "iPhone",
+        "numColumns" : 6,
+        "pages" : [
+  {
+            "name" : "iPhone",
+            "widgets" : [
+  {
+                "colspan" : 6,
+                "column" : 0,
+                "name" : "text_iphone_title_Telephony",
+                "row" : 0,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 0,
+                "name" : "container_1",
+                "row" : 0,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "rgb(146, 113, 232)",
+                  "borderEdges" : [
+  "bottom"
+  ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 0,
+                "name" : "listselector_Time_Selection",
+                "row" : 2,
+                "rowspan" : 1,
+                "widgetStyle" : {
+                  "backgroundColor" : "#E6ECF2",
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 0,
+                "name" : "text_Case_and_Call_Priority",
+                "row" : 13,
+                "rowspan" : 1,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 0,
+                "name" : "text_filter_info_text",
+                "row" : 14,
+                "rowspan" : 1,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 0,
+                "name" : "text_Call_type",
+                "row" : 15,
+                "rowspan" : 1,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 0,
+                "name" : "chart_filter_call_type",
+                "row" : 16,
+                "rowspan" : 5,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 0,
+                "name" : "text_Call_Result",
+                "row" : 22,
+                "rowspan" : 1,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 0,
+                "name" : "chart_filter_call_result",
+                "row" : 23,
+                "rowspan" : 5,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 0,
+                "name" : "text_Case_Support_Level",
+                "row" : 29,
+                "rowspan" : 1,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 0,
+                "name" : "chart_filter_call_support",
+                "row" : 30,
+                "rowspan" : 5,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 0,
+                "name" : "text_Call_Priority",
+                "row" : 36,
+                "rowspan" : 1,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 0,
+                "name" : "chart_filter_call_priority",
+                "row" : 37,
+                "rowspan" : 5,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 0,
+                "name" : "text_Case_Priority",
+                "row" : 43,
+                "rowspan" : 1,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 0,
+                "name" : "chart_filter_case_priority",
+                "row" : 44,
+                "rowspan" : 5,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 0,
+                "name" : "container_9",
+                "row" : 13,
+                "rowspan" : 36,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [
+  "all"
+  ],
+                  "borderRadius" : 8,
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 0,
+                "name" : "text_Daily_Call_Volume",
+                "row" : 3,
+                "rowspan" : 1,
+                "widgetStyle" : {
+                  "backgroundColor" : "#091A3E",
+                  "borderColor" : "#091A3E",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 0,
+                "name" : "chart_calls_per_day",
+                "row" : 8,
+                "rowspan" : 5,
+                "widgetStyle" : {
+                  "backgroundColor" : "#091A3E",
+                  "borderColor" : "#091A3E",
+                  "borderEdges" : [ ],
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 3,
+                "column" : 0,
+                "name" : "number_all_2",
+                "row" : 4,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "backgroundColor" : "#091A3E",
+                  "borderColor" : "#091A3E",
+                  "borderEdges" : [
+  "right"
+  ],
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 3,
+                "column" : 3,
+                "name" : "number_all_4",
+                "row" : 4,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "backgroundColor" : "#091A3E",
+                  "borderColor" : "#091A3E",
+                  "borderEdges" : [
+  "right"
+  ],
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 3,
+                "column" : 0,
+                "name" : "number_1",
+                "row" : 6,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "backgroundColor" : "#091A3E",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 3,
+                "column" : 3,
+                "name" : "number_2",
+                "row" : 6,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "backgroundColor" : "#091A3E",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 0,
+                "name" : "container_3",
+                "row" : 3,
+                "rowspan" : 5,
+                "widgetStyle" : {
+                  "backgroundColor" : "#091A3E",
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 0,
+                "name" : "chart_CreatedDate_Day_1",
+                "row" : 50,
+                "rowspan" : 5,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgba(255, 255, 255, 0)",
+                  "borderColor" : "#F2F6FA",
+                  "borderEdges" : [ ],
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 0,
+                "name" : "container_8",
+                "row" : 49,
+                "rowspan" : 6,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [
+  "all"
+  ],
+                  "borderRadius" : 8,
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 0,
+                "name" : "text_Agent_Performance",
+                "row" : 55,
+                "rowspan" : 1,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#FFFFFF",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 0,
+                "name" : "chart_CallType_1",
+                "row" : 56,
+                "rowspan" : 8,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 0,
+                "name" : "container_6",
+                "row" : 55,
+                "rowspan" : 9,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [
+  "all"
+  ],
+                  "borderRadius" : 8,
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 2,
+                "column" : 0,
+                "name" : "text_Case_Details",
+                "row" : 64,
+                "rowspan" : 1,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 3,
+                "column" : 3,
+                "name" : "pillbox_filter_closed",
+                "row" : 64,
+                "rowspan" : 1,
+                "widgetStyle" : {
+                  "borderEdges" : [ ],
+                  "borderRadius" : 4
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 0,
+                "name" : "table_lens_2",
+                "row" : 65,
+                "rowspan" : 11,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 0,
+                "name" : "container_5",
+                "row" : 64,
+                "rowspan" : 12,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [
+  "all"
+  ],
+                  "borderRadius" : 8,
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 0,
+                "name" : "container_14",
+                "row" : 8,
+                "rowspan" : 5,
+                "widgetStyle" : {
+                  "backgroundColor" : "#E6ECF2",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [
+  "all"
+  ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 0,
+                "name" : "text_iphone_Hourly_CallVol_Avg_Duration",
+                "row" : 49,
+                "rowspan" : 1,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              }
+  ]
+          }
+  ],
+        "rowHeight" : "normal",
+        "selectors" : [
+  "maxWidth(599)"
+  ],
+        "style" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "backgroundColor" : "#E6ECF2",
+          "cellSpacingX" : 0,
+          "cellSpacingY" : 8,
+          "fit" : "original",
+          "gutterColor" : "#C5D3E0"
+        },
+        "version" : 1.0
+      }
+  ],
+    "layouts" : [ ],
+    "steps" : {
+      "CreatedDate_Day_1" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceActivity.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "avg",
+  "CallDurationInSeconds"
+  ],
+  [
+  "sum",
+  "TotalCalls"
+  ]
+  ],
+            "pigql" : "a = load \"${App.EdgeMarts.ServiceActivity.Alias}\";a = filter a by {{cell(Time_Selection.selection, 0, \"Current\").asDateRange(\"date('CreatedDate_Year','CreatedDate_Month','CreatedDate_Day')\")}};a = group a by ('CreatedDate_Year','CreatedDate_Month','CreatedDate_Day','CreatedDate_Hour');a = foreach a generate 'CreatedDate_Hour' as 'time_Hour', count() as 'sum_TotalCalls', avg('CallDurationInSeconds') as 'avg_CallDurationInSeconds';a = order a by 'time_Hour' asc;",
+            "autoFilter" : true,
+            "groups" : [
+  [
+  "time_Hour"
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "none",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "CreatedDate_Day_23" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceActivity.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "service",
+  "level"
+  ]
+  ],
+            "pigql" : "a = load \"${App.EdgeMarts.ServiceActivity.Alias}\";a = filter a by {{cell(Time_Selection.selection, 0, \"Current\").asDateRange(\"date('CreatedDate_Year','CreatedDate_Month','CreatedDate_Day')\")}};a = group a by ('CreatedDate_Year','CreatedDate_Month','CreatedDate_Day');a = filter a by 'IsCall' == \"Yes\";a = group a by ('CreatedDate_Year','CreatedDate_Month','CreatedDate_Day','CreatedDate_Hour');a = foreach a generate 'CreatedDate_Hour' as 'time_Hour',(1 - erlang_c(unique('Owner.Id'),(((count() / unique('CreatedDate_Day'))/3600) * avg('CallDurationInSeconds'))) * exp(((((count() / unique('CreatedDate_Day'))/3600) * avg('CallDurationInSeconds')) - unique('Owner.Id')) * ${Constants.IncludeServiceLvl} / avg('CallDurationInSeconds'))) * 100 as 'Service_Level';a = group a by all; a = foreach a generate avg('Service_Level') as 'service_level'",
+            "autoFilter" : true
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "single",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "vbar"
+        }
+      },
+      "CreatedDate_Day_22" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceActivity.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "prob",
+  "waiting"
+  ]
+  ],
+            "pigql" : "a = load \"${App.EdgeMarts.ServiceActivity.Alias}\";a = filter a by {{cell(Time_Selection.selection, 0, \"Current\").asDateRange(\"date('CreatedDate_Year','CreatedDate_Month','CreatedDate_Day')\")}};a = group a by ('CreatedDate_Year','CreatedDate_Month','CreatedDate_Day');a = filter a by 'IsCall' == \"Yes\";a = group a by ('CreatedDate_Year','CreatedDate_Month','CreatedDate_Day','CreatedDate_Hour');a = foreach a generate 'CreatedDate_Hour' as 'time_Hour',erlang_c(unique('Owner.Id'),(((count() / unique('CreatedDate_Day'))/3600) * avg('CallDurationInSeconds'))) as 'er_c',erlang_c(unique('Owner.Id'),(((count() / unique('CreatedDate_Day'))/3600) * avg('CallDurationInSeconds'))) * 100 as 'Probability_of_Waiting';a = group a by all; a = foreach a generate avg('Probability_of_Waiting') as 'prob_waiting'",
+            "autoFilter" : true
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "single",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "vbar"
+        }
+      },
+      "CreatedDate_Day_2" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceActivity.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "Probability",
+  "of_Waiting",
+  null,
+  {
+                  "display" : "Waiting"
+                }
+  ],
+  [
+  "Service",
+  "Level"
+  ]
+  ],
+            "pigql" : "a = load \"${App.EdgeMarts.ServiceActivity.Alias}\";a = filter a by {{cell(Time_Selection.selection, 0, \"Current\").asDateRange(\"date('CreatedDate_Year','CreatedDate_Month','CreatedDate_Day')\")}};a = group a by ('CreatedDate_Year','CreatedDate_Month','CreatedDate_Day');a = filter a by 'IsCall' == \"Yes\";a = group a by ('CreatedDate_Year','CreatedDate_Month','CreatedDate_Day','CreatedDate_Hour');a = foreach a generate 'CreatedDate_Hour' as 'time_Hour',erlang_c(unique('Owner.Id'),(((count() / unique('CreatedDate_Day'))/3600) * avg('CallDurationInSeconds'))) as 'er_c',erlang_c(unique('Owner.Id'),(((count() / unique('CreatedDate_Day'))/3600) * avg('CallDurationInSeconds'))) * 100 as 'Probability_of_Waiting',(1 - erlang_c(unique('Owner.Id'),(((count() / unique('CreatedDate_Day'))/3600) * avg('CallDurationInSeconds'))) * exp(((((count() / unique('CreatedDate_Day'))/3600) * avg('CallDurationInSeconds')) - unique('Owner.Id')) * 50 / avg('CallDurationInSeconds'))) * 100 as 'Service_Level';a = order a by 'time_Hour' asc;",
+            "autoFilter" : true,
+            "groups" : [
+  [
+  "time_Hour"
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "none",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "vbar"
+        }
+      },
+      "filter_case_priority" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceActivity.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "groups" : [
+  "Case.${Constants.CaseSeverityLevel}"
+  ],
+            "filters" : [
+  [
+  "CreatedDate",
+  "{{column(Time_Selection.selection, [\"Compact\"]).asObject()}}"
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "multi",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "pie"
+        }
+      },
+      "filter_closed" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceActivity.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "groups" : [
+  "Case.IsClosed"
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "single",
+        "type" : "aggregateflex",
+        "useGlobal" : false
+      },
+      "CreatedDate_Day_4" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceActivity.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "total",
+  "Agents"
+  ]
+  ],
+            "pigql" : "a = load \"${App.EdgeMarts.ServiceActivity.Alias}\";a = filter a by {{cell(Time_Selection.selection, 0, \"Current\").asDateRange(\"date('CreatedDate_Year','CreatedDate_Month','CreatedDate_Day')\")}};a = group a by ('CreatedDate_Year','CreatedDate_Month','CreatedDate_Day','CreatedDate_Hour');a = foreach a generate 'CreatedDate_Hour' as 'time_Hour',unique('Owner.Id') as 'total_Agents';a = order a by 'time_Hour' asc;",
+            "autoFilter" : true,
+            "groups" : [
+  [
+  "time_Hour"
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "none",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "filter_call_priority" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceActivity.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "groups" : [
+  "${Constants.CaseSeverityLevel}"
+  ],
+            "filters" : [
+  [
+  "CreatedDate",
+  "{{column(Time_Selection.selection, [\"Compact\"]).asObject()}}"
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "pie"
+        }
+      },
+      "all_6" : {
+        "broadcastFacet" : false,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceActivity.Alias}"
+          }
+  ],
+        "isGlobal" : true,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "filters" : [
+  [
+  "IsCall",
+  [
+  "Yes"
+  ],
+  "in"
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : false,
+        "type" : "aggregateflex",
+        "useGlobal" : false,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "CallType_1" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceActivity.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "pigql" : "a = load \"${App.EdgeMarts.ServiceActivity.Alias}\";a = filter a by {{cell(Time_Selection.selection, 0, \"Current\").asDateRange(\"date('CreatedDate_Year','CreatedDate_Month','CreatedDate_Day')\")}}; a = group a by 'Owner.Name';a = foreach a generate avg('CallDurationInSeconds') as 'avg_CallDurationInSeconds', unique('Case.Id') as 'sum_CaseId', 'Owner.Name' as 'Owner.Name', count() / unique('Case.Id') as 'avg_Calls_Per_Case';",
+            "measures" : [
+  [
+  "avg",
+  "CallDurationInSeconds",
+  null,
+  {
+                  "display" : "Avg of Call Duration (Sec)"
+                }
+  ],
+  [
+  "avg",
+  "Calls_Per_Case",
+  null,
+  {
+                  "display" : "Avg of Calls Per Case"
+                }
+  ],
+  [
+  "sum",
+  "CaseId",
+  null,
+  {
+                  "display" : "Number of Cases"
+                }
+  ]
+  ],
+            "autoFilter" : true,
+            "groups" : [
+  "Owner.Name"
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "single",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "scatter"
+        }
+      },
+      "filter_call_support" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceActivity.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "groups" : [
+  "Case.${Constants.CaseSupportLevel}"
+  ],
+            "filters" : [
+  [
+  "Case.${Constants.CaseSupportLevel}",
+  [
+  "N/A"
+  ],
+  "not in"
+  ],
+  [
+  "CreatedDate",
+  "{{column(Time_Selection.selection, [\"Compact\"]).asObject()}}"
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "multi",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "pie"
+        }
+      },
+      "Case_RecordType_Name_1" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceActivity.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "groups" : [
+  "Case.${Constants.CaseRecordTypeField}"
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "multi",
+        "type" : "aggregateflex",
+        "useGlobal" : false,
+        "visualizationParameters" : { }
+      },
+      "calls_per_day" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceActivity.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "pigql" : "q = load \"${App.EdgeMarts.ServiceActivity.Alias}\";q = filter q by {{cell(Time_Selection.selection, 0, \"Current\").asDateRange(\"date('CreatedDate_Year','CreatedDate_Month','CreatedDate_Day')\")}}; q = group q by ('CreatedDate_Year','CreatedDate_Month','CreatedDate_Day');q = foreach q generate 'CreatedDate_Year'+\"~~~\"+'CreatedDate_Month'+\"~~~\"+'CreatedDate_Day' as 'CreatedDate_Year~~~CreatedDate_Month~~~CreatedDate_Day', unique('Id') as 'dailyCalls',avg(unique('Id')) over ([..] partition by all ) as 'avg_dailyCalls',sum(1) over ([..] partition by all) as 'Counter';q = group q by 'CreatedDate_Year~~~CreatedDate_Month~~~CreatedDate_Day';q = foreach q generate 'CreatedDate_Year~~~CreatedDate_Month~~~CreatedDate_Day' as 'CreatedDate_Year~~~CreatedDate_Month~~~CreatedDate_Day', power(first('dailyCalls') - (first('avg_dailyCalls')),2)/first('Counter') as 'sqr_diff_dailyCalls',first('avg_dailyCalls') as 'avg_dailyCalls',first('dailyCalls') as 'dailyCalls';q = group q by 'CreatedDate_Year~~~CreatedDate_Month~~~CreatedDate_Day';q = foreach q generate 'CreatedDate_Year~~~CreatedDate_Month~~~CreatedDate_Day' as 'CreatedDate_Year~~~CreatedDate_Month~~~CreatedDate_Day', first('dailyCalls') as 'total_dailyCalls', first('avg_dailyCalls') as 'avg_dailyCalls',first('avg_dailyCalls') + (3 * sqrt(sum(sum('sqr_diff_dailyCalls')) over ([..] partition by all))) as 'l_UCL',first('avg_dailyCalls') - (3 * sqrt(sum(sum('sqr_diff_dailyCalls')) over ([..] partition by all))) as 'l_LCL';",
+            "measures" : [
+  [
+  "total",
+  "dailyCalls",
+  null,
+  {
+                  "display" : "Daily Calls"
+                }
+  ]
+  ],
+            "autoFilter" : true,
+            "groups" : [
+  [
+  "CreatedDate_Year",
+  "CreatedDate_Month",
+  "CreatedDate_Day"
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "single",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "filter_call_type" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceActivity.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "groups" : [
+  "CallType"
+  ],
+            "filters" : [
+  [
+  "CreatedDate",
+  "{{column(Time_Selection.selection, [\"Compact\"]).asObject()}}"
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "multi",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "pie"
+        }
+      },
+      "Time_Selection" : {
+        "broadcastFacet" : false,
+        "datasets" : [ ],
+        "dimensions" : [ ],
+        "groups" : [ ],
+        "isGlobal" : false,
+        "numbers" : [ ],
+        "selectMode" : "singlerequired",
+        "start" : {
+          "display" : [
+  "Last 30 Days"
+  ]
+        },
+        "strings" : [ ],
+        "type" : "staticflex",
+        "useGlobal" : false,
+        "values" : [
+  {
+            "display" : "YTD",
+            "Backlog30DayClose" : "[\"current day - 395 days\"..\"current day - 1 year\"]",
+            "BacklogCompare" : [
+  "current day - 1 year",
+  "current day"
+  ],
+            "BacklogLabel" : "Backlog Last Year",
+            "ClosedField" : "'${Constants.ClosedDate}_Month'",
+            "CoGroup" : "('CreatedDate_Month')",
+            "Compact" : [
+  [
+  "${Constants.Fiscal_Prefix}year",
+  0
+  ],
+  [
+  "${Constants.Fiscal_Prefix}year",
+  0
+  ]
+  ],
+            "CreatedField" : "'CreatedDate_Month'",
+            "CreatedProjection" : "created['CreatedDate_Month']",
+            "Current" : [
+  "current ${Constants.Fiscal_Prefix}year",
+  "current day"
+  ],
+            "FullGroup" : "CreatedDate_Year~~~CreatedDate_Month",
+            "GenerateClosedDate" : "'${Constants.ClosedDate}_Year'+\"~~~\"+'${Constants.ClosedDate}_Month' as 'CreatedDate_Year~~~CreatedDate_Month'",
+            "GenerateCoGroupDate" : "created['CreatedDate_Year']+\"~~~\"+created['CreatedDate_Month'] as 'CreatedDate_Year~~~CreatedDate_Month'",
+            "GenerateCreatedDate" : "'CreatedDate_Year'+\"~~~\"+'CreatedDate_Month' as 'CreatedDate_Year~~~CreatedDate_Month'",
+            "GroupbyClosedDate" : "('${Constants.ClosedDate}_Year','${Constants.ClosedDate}_Month')",
+            "GroupbyCreatedDate" : "('CreatedDate_Year','CreatedDate_Month')",
+            "Grouping" : "CreatedDate_Year~~~CreatedDate_Month",
+            "LastPeriodCompare" : [
+  "current ${Constants.Fiscal_Prefix}year - 1 year",
+  "current day - 1 year"
+  ],
+            "LastYearCompare" : [
+  "current ${Constants.Fiscal_Prefix}year - 1 year",
+  "current day - 1 year"
+  ],
+            "Measure" : [
+  "Backlog",
+  "Count",
+  null,
+  {
+                "display" : "Backlog Count at Start of Month"
+              }
+  ],
+            "compactGroup" : [
+  "CreatedDate_Year",
+  "CreatedDate_Month"
+  ],
+            "filter" : "${Constants.Fiscal_Prefix}year",
+            "queryCogroupNew" : "first(ThisYear['CreatedDate_Year'])+\"~~~\"+ThisYear['CreatedDate_Month'] as 'CreatedDate_Year~~~CreatedDate_Month'",
+            "SAQL" : "coalesce((avg(ThisYear['${Constants.CaseDuration}'])-avg(LastYear['${Constants.CaseDuration}']))/avg(LastYear['${Constants.CaseDuration}']),0)*100 as sum_Percent",
+            "trendProjection" : "toString(now(), \"yyyy\")+\"~~~\"+toString(now(), \"99\")"
+          },
+  {
+            "display" : "QTD",
+            "Backlog30DayClose" : "[\"current day - 120 days\"..\"current day - 1 quarter\"]",
+            "BacklogCompare" : [
+  "current day - 1 quarter",
+  "current day"
+  ],
+            "BacklogLabel" : "Backlog Last Quarter",
+            "ClosedField" : "'${Constants.ClosedDate}_Week'",
+            "CoGroup" : "('CreatedDate_Week')",
+            "Compact" : [
+  [
+  "${Constants.Fiscal_Prefix}quarter",
+  0
+  ],
+  [
+  "${Constants.Fiscal_Prefix}quarter",
+  0
+  ]
+  ],
+            "CreatedField" : "'CreatedDate_Week'",
+            "CreatedProjection" : "created['CreatedDate_Week']",
+            "Current" : [
+  "current ${Constants.Fiscal_Prefix}quarter",
+  "current day"
+  ],
+            "FullGroup" : "CreatedDate_Year~~~CreatedDate_Week",
+            "GenerateClosedDate" : "'${Constants.ClosedDate}_Year'+\"~~~\"+'${Constants.ClosedDate}_Week' as 'CreatedDate_Year~~~CreatedDate_Week'",
+            "GenerateCoGroupDate" : "created['CreatedDate_Year']+\"~~~\"+created['CreatedDate_Week'] as 'CreatedDate_Year~~~CreatedDate_Week'",
+            "GenerateCreatedDate" : "'CreatedDate_Year'+\"~~~\"+'CreatedDate_Week' as 'CreatedDate_Year~~~CreatedDate_Week'",
+            "GroupbyClosedDate" : "('${Constants.ClosedDate}_Year','${Constants.ClosedDate}_Week')",
+            "GroupbyCreatedDate" : "('CreatedDate_Year','CreatedDate_Week')",
+            "Grouping" : "CreatedDate_Year~~~CreatedDate_Week",
+            "LastPeriodCompare" : [
+  "current ${Constants.Fiscal_Prefix}quarter - 1 quarter",
+  "current day - 1 quarter"
+  ],
+            "LastYearCompare" : [
+  "current ${Constants.Fiscal_Prefix}quarter - 1 year",
+  "current day - 1 year"
+  ],
+            "Measure" : [
+  "Backlog",
+  "Count",
+  null,
+  {
+                "display" : "Backlog Count at Start of Week"
+              }
+  ],
+            "compactGroup" : [
+  "CreatedDate_Year",
+  "CreatedDate_Week"
+  ],
+            "filter" : "${Constants.Fiscal_Prefix}quarter",
+            "queryCogroupNew" : "first(ThisYear['CreatedDate_Year'])+\"~~~\"+ThisYear['CreatedDate_Week'] as 'CreatedDate_Year~~~CreatedDate_Week'",
+            "SAQL" : "coalesce((avg(ThisYear['${Constants.CaseDuration}'])-avg(LastYear['${Constants.CaseDuration}']))/avg(LastYear['${Constants.CaseDuration}']),0)*100 as sum_Percent",
+            "trendProjection" : "toString(now(), \"yyyy\")+\"~~~\"+toString(now(), \"99\")"
+          },
+  {
+            "display" : "MTD",
+            "Backlog30DayClose" : "[\"current day - 60 days\"..\"current day - 1 month\"]",
+            "BacklogCompare" : [
+  "current day - 1 month",
+  "current day"
+  ],
+            "BacklogLabel" : "Backlog Last Month",
+            "ClosedField" : "'${Constants.ClosedDate}_Month','${Constants.ClosedDate}_Day'",
+            "CoGroup" : "('CreatedDate_Month','CreatedDate_Day')",
+            "Compact" : [
+  [
+  "month",
+  0
+  ],
+  [
+  "month",
+  0
+  ]
+  ],
+            "CreatedField" : "'CreatedDate_Month','CreatedDate_Day'",
+            "CreatedProjection" : "created['CreatedDate_Month'] +\"~~~\" + created['CreatedDate_Day']",
+            "Current" : [
+  "current month",
+  "current month"
+  ],
+            "FullGroup" : "CreatedDate_Year~~~CreatedDate_Month~~~CreatedDate_Day",
+            "GenerateClosedDate" : "'${Constants.ClosedDate}_Year'+\"~~~\"+'${Constants.ClosedDate}_Month'+\"~~~\"+'${Constants.ClosedDate}_Day' as 'CreatedDate_Year~~~CreatedDate_Month~~~CreatedDate_Day'",
+            "GenerateCoGroupDate" : "created['CreatedDate_Year']+\"~~~\"+created['CreatedDate_Month']+\"~~~\"+created['CreatedDate_Day'] as 'CreatedDate_Year~~~CreatedDate_Month~~~CreatedDate_Day'",
+            "GenerateCreatedDate" : "'CreatedDate_Year'+\"~~~\"+'CreatedDate_Month'+\"~~~\"+'CreatedDate_Day' as 'CreatedDate_Year~~~CreatedDate_Month~~~CreatedDate_Day'",
+            "GroupbyClosedDate" : "('${Constants.ClosedDate}_Year','${Constants.ClosedDate}_Month','${Constants.ClosedDate}_Day')",
+            "GroupbyCreatedDate" : "('CreatedDate_Year','CreatedDate_Month','CreatedDate_Day')",
+            "Grouping" : "CreatedDate_Year~~~CreatedDate_Month~~~CreatedDate_Day",
+            "LastPeriodCompare" : [
+  "current month - 1 month",
+  "current day - 1 month"
+  ],
+            "LastYearCompare" : [
+  "current month - 1 year",
+  "current day - 1 year"
+  ],
+            "Measure" : [
+  "Backlog",
+  "Count",
+  null,
+  {
+                "display" : "Backlog Count at Start of Day"
+              }
+  ],
+            "compactGroup" : [
+  "CreatedDate_Year",
+  "CreatedDate_Month",
+  "CreatedDate_Day"
+  ],
+            "filter" : "month",
+            "queryCogroupNew" : "first(ThisYear['CreatedDate_Year'])+\"~~~\"+ThisYear['CreatedDate_Month']+\"~~~\"+ThisYear['CreatedDate_Day'] as 'CreatedDate_Year~~~CreatedDate_Month~~~CreatedDate_Day'",
+            "trendProjection" : "toString(now(), \"yyyy~~~MM\")+\"~~~\"+toString(now(), \"99\")"
+          },
+  {
+            "display" : "Last 7 Days",
+            "Backlog30DayClose" : "[\"current day - 37 days\"..\"current day - 7 days\"]",
+            "BacklogCompare" : [
+  "current day - 1 week",
+  "current day"
+  ],
+            "BacklogLabel" : "Backlog Last 7 Days",
+            "ClosedField" : "'${Constants.ClosedDate}_Month','${Constants.ClosedDate}_Day'",
+            "CoGroup" : "('CreatedDate_Month','CreatedDate_Day')",
+            "Compact" : [
+  [
+  "day",
+  -7
+  ],
+  [
+  "day",
+  0
+  ]
+  ],
+            "CreatedField" : "'CreatedDate_Month','CreatedDate_Day'",
+            "CreatedProjection" : "created['CreatedDate_Month'] +\"~~~\" + created['CreatedDate_Day']",
+            "Current" : [
+  "7 days ago",
+  "current day"
+  ],
+            "FullGroup" : "CreatedDate_Year~~~CreatedDate_Month~~~CreatedDate_Day",
+            "GenerateClosedDate" : "'${Constants.ClosedDate}_Year'+\"~~~\"+'${Constants.ClosedDate}_Month'+\"~~~\"+'${Constants.ClosedDate}_Day' as 'CreatedDate_Year~~~CreatedDate_Month~~~CreatedDate_Day'",
+            "GenerateCoGroupDate" : "created['CreatedDate_Year']+\"~~~\"+created['CreatedDate_Month']+\"~~~\"+created['CreatedDate_Day'] as 'CreatedDate_Year~~~CreatedDate_Month~~~CreatedDate_Day'",
+            "GenerateCreatedDate" : "'CreatedDate_Year'+\"~~~\"+'CreatedDate_Month'+\"~~~\"+'CreatedDate_Day' as 'CreatedDate_Year~~~CreatedDate_Month~~~CreatedDate_Day'",
+            "GroupbyClosedDate" : "('${Constants.ClosedDate}_Year','${Constants.ClosedDate}_Month','${Constants.ClosedDate}_Day')",
+            "GroupbyCreatedDate" : "('CreatedDate_Year','CreatedDate_Month','CreatedDate_Day')",
+            "Grouping" : "CreatedDate_Year~~~CreatedDate_Month~~~CreatedDate_Day",
+            "LastPeriodCompare" : [
+  "7 days ago - 1 week",
+  "current day - 1 week"
+  ],
+            "LastYearCompare" : [
+  "7 days ago - 1 year",
+  "current day - 1 year"
+  ],
+            "Measure" : [
+  "Backlog",
+  "Count",
+  null,
+  {
+                "display" : "Backlog Count at Start of Day"
+              }
+  ],
+            "compactGroup" : [
+  "CreatedDate_Year",
+  "CreatedDate_Month",
+  "CreatedDate_Day"
+  ],
+            "filter" : "week",
+            "queryCogroupNew" : "first(ThisYear['CreatedDate_Year'])+\"~~~\"+ThisYear['CreatedDate_Month']+\"~~~\"+ThisYear['CreatedDate_Day'] as 'CreatedDate_Year~~~CreatedDate_Month~~~CreatedDate_Day'",
+            "trendProjection" : "toString(now(), \"yyyy~~~MM\")+\"~~~\"+toString(now(), \"99\")"
+          },
+  {
+            "display" : "Last 30 Days",
+            "Backlog30DayClose" : "[\"current day - 60 days\"..\"current day - 30 days\"]",
+            "BacklogCompare" : [
+  "current day - 30 days",
+  "current day"
+  ],
+            "BacklogLabel" : "Backlog Last 30 Days",
+            "ClosedField" : "'${Constants.ClosedDate}_Week'",
+            "CoGroup" : "('CreatedDate_Week')",
+            "Compact" : [
+  [
+  "day",
+  -30
+  ],
+  [
+  "day",
+  0
+  ]
+  ],
+            "CreatedField" : "'CreatedDate_Week'",
+            "CreatedProjection" : "created['CreatedDate_Week']",
+            "Current" : [
+  "30 days ago",
+  "current day"
+  ],
+            "FullGroup" : "CreatedDate_Year~~~CreatedDate_Week",
+            "GenerateClosedDate" : "'${Constants.ClosedDate}_Year'+\"~~~\"+'${Constants.ClosedDate}_Week' as 'CreatedDate_Year~~~CreatedDate_Week'",
+            "GenerateCoGroupDate" : "created['CreatedDate_Year']+\"~~~\"+created['CreatedDate_Week'] as 'CreatedDate_Year~~~CreatedDate_Week'",
+            "GenerateCreatedDate" : "'CreatedDate_Year'+\"~~~\"+'CreatedDate_Week' as 'CreatedDate_Year~~~CreatedDate_Week'",
+            "GroupbyClosedDate" : "('${Constants.ClosedDate}_Year','${Constants.ClosedDate}_Week')",
+            "GroupbyCreatedDate" : "('CreatedDate_Year','CreatedDate_Week')",
+            "Grouping" : "CreatedDate_Year~~~CreatedDate_Week",
+            "LastPeriodCompare" : [
+  "30 days ago - 30 days",
+  "current day - 30 days"
+  ],
+            "LastYearCompare" : [
+  "30 days ago - 1 year",
+  "current day - 1 year"
+  ],
+            "Measure" : [
+  "Backlog",
+  "Count",
+  null,
+  {
+                "display" : "Backlog Count at Start of Week"
+              }
+  ],
+            "compactGroup" : [
+  "CreatedDate_Year",
+  "CreatedDate_Week"
+  ],
+            "filter" : "month",
+            "queryCogroupNew" : "first(ThisYear['CreatedDate_Year'])+\"~~~\"+ThisYear['CreatedDate_Week'] as 'CreatedDate_Year~~~CreatedDate_Week'",
+            "trendProjection" : "toString(now(), \"yyyy~~~MM\")+\"~~~\"+toString(now(), \"99\")"
+          },
+  {
+            "display" : "Last 180 Days",
+            "Backlog30DayClose" : "[\"current day - 240 days\"..\"current day - 180 days\"]",
+            "BacklogCompare" : [
+  "current day - 180 days",
+  "current day"
+  ],
+            "BacklogLabel" : "Backlog Last 180 Days",
+            "ClosedField" : "'${Constants.ClosedDate}_Month'",
+            "CoGroup" : "('CreatedDate_Month')",
+            "Compact" : [
+  [
+  "day",
+  -180
+  ],
+  [
+  "day",
+  0
+  ]
+  ],
+            "CreatedField" : "'CreatedDate_Month'",
+            "CreatedProjection" : "created['CreatedDate_Month']",
+            "Current" : [
+  "180 days ago",
+  "current day"
+  ],
+            "FullGroup" : "CreatedDate_Year~~~CreatedDate_Month",
+            "GenerateClosedDate" : "'${Constants.ClosedDate}_Year'+\"~~~\"+'${Constants.ClosedDate}_Month' as 'CreatedDate_Year~~~CreatedDate_Month'",
+            "GenerateCoGroupDate" : "created['CreatedDate_Year']+\"~~~\"+created['CreatedDate_Month'] as 'CreatedDate_Year~~~CreatedDate_Month'",
+            "GenerateCreatedDate" : "'CreatedDate_Year'+\"~~~\"+'CreatedDate_Month' as 'CreatedDate_Year~~~CreatedDate_Month'",
+            "GroupbyClosedDate" : "('${Constants.ClosedDate}_Year','${Constants.ClosedDate}_Month')",
+            "GroupbyCreatedDate" : "('CreatedDate_Year','CreatedDate_Month')",
+            "Grouping" : "CreatedDate_Year~~~CreatedDate_Month",
+            "LastPeriodCompare" : [
+  "180 days ago - 180 days",
+  "current day - 180 days"
+  ],
+            "LastYearCompare" : [
+  "180 days ago - 1 year",
+  "current day - 1 year"
+  ],
+            "Measure" : [
+  "Backlog",
+  "Count",
+  null,
+  {
+                "display" : "Backlog Count at Start of Month"
+              }
+  ],
+            "compactGroup" : [
+  "CreatedDate_Year",
+  "CreatedDate_Month"
+  ],
+            "filter" : "month",
+            "queryCogroupNew" : "first(ThisYear['CreatedDate_Year'])+\"~~~\"+ThisYear['CreatedDate_Month'] as 'CreatedDate_Year~~~CreatedDate_Month'",
+            "trendProjection" : "toString(now(), \"yyyy\")+\"~~~\"+toString(now(), \"99\")"
+          }
+  ],
+        "visualizationParameters" : { }
+      },
+      "Case_Type_1" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceActivity.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "groups" : [
+  "Case.${Constants.CaseType}"
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "multi",
+        "type" : "aggregateflex",
+        "useGlobal" : false,
+        "visualizationParameters" : { }
+      },
+      "all_2" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceActivity.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "filters" : [
+  [
+  "CreatedDate",
+  "{{column(Time_Selection.selection, [\"Compact\"]).asObject()}}"
+  ],
+  [
+  "IsCall",
+  [
+  "Yes"
+  ],
+  "in"
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "filter_call_result" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceActivity.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "groups" : [
+  "CallDisposition"
+  ],
+            "filters" : [
+  [
+  "CallDisposition",
+  [
+  "N/A"
+  ],
+  "not in"
+  ],
+  [
+  "CreatedDate",
+  "{{column(Time_Selection.selection, [\"Compact\"]).asObject()}}"
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "multi",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "pie"
+        }
+      },
+      "all_4" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceActivity.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "avg",
+  "Call_Per_Agent"
+  ]
+  ],
+            "pigql" : "a = load \"${App.EdgeMarts.ServiceActivity.Alias}\"; a = filter a by {{cell(Time_Selection.selection, 0, \"Current\").asDateRange(\"date('CreatedDate_Year','CreatedDate_Month','CreatedDate_Day')\")}};a = group a by ('CreatedDate_Year','CreatedDate_Month','CreatedDate_Day');a = foreach a generate count() / unique('Owner.Name') as 'avg_Call_Per_Agent';a = group a by all;a = foreach a generate avg('avg_Call_Per_Agent')  as 'avg_Call_Per_Agent';",
+            "autoFilter" : true
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "lens_2" : {
+        "broadcastFacet" : true,
+        "groups" : [ ],
+        "numbers" : [ ],
+        "query" : "q = load \"${App.EdgeMarts.ServiceActivity.Alias}\"; q = filter q by {{cell(Time_Selection.selection, 0, \"Current\").asDateRange(\"date('Case.CreatedDate_Year', 'Case.CreatedDate_Month', 'Case.CreatedDate_Day')\")}}; q = filter q by 'IsCall' == \"Yes\"; q = foreach q generate 'CallObject' as 'CallObject','Case.CaseNumber', first('Case.Account.Name') as 'Case.Account.Name', first('Owner.Name') as 'Owner.Name', first('CallDisposition') as 'CallDisposition', first('CallType') as 'CallType', first('Case.Reason') as 'Case.Reason',first('Status') as 'Status',first('Case.${Constants.CaseProduct}') as '${Constants.CaseProductLabel}', avg('CallDurationInSeconds') as 'avg_CallDurationInSeconds'; q = limit q 100;",
+        "receiveFacet" : true,
+        "selectMode" : "single",
+        "strings" : [ ],
+        "type" : "saql",
+        "useGlobal" : false
+      }
+    },
+    "widgetStyle" : {
+      "backgroundColor" : "#FFFFFF",
+      "borderColor" : "#E6ECF2",
+      "borderEdges" : [ ],
+      "borderRadius" : 0,
+      "borderWidth" : 1
+    },
+    "widgets" : {
+      "link_Chat" : {
+        "parameters" : {
+          "destination" : "${App.Dashboards['Service Live Agent Chat'].Id}",
+          "destinationType" : "dashboard",
+          "fontSize" : 12,
+          "includeState" : false,
+          "text" : "Chat",
+          "textAlignment" : "center",
+          "textColor" : "#091A3E"
+        },
+        "type" : "link"
+      },
+      "text_Case_and_Call_Priority" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "Case and Call Priority",
+          "textAlignment" : "left",
+          "textColor" : "#091A3E"
+        },
+        "type" : "text"
+      },
+      "container_14" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_13" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "chart_CreatedDate_Day_23" : {
+        "parameters" : {
+          "max" : 100,
+          "legend" : {
+            "showHeader" : true,
+            "show" : false,
+            "position" : "right-top",
+            "inside" : false
+          },
+          "icon" : "circle",
+          "visualizationType" : "rating",
+          "exploreLink" : false,
+          "title" : {
+            "label" : "Service level ",
+            "align" : "left",
+            "subtitleLabel" : ""
+          },
+          "trellis" : {
+            "enable" : false,
+            "type" : "x",
+            "parameters" : { },
+            "chartsPerLine" : 4
+          },
+          "colors" : {
+            "lowColor1" : "rgb(137, 85, 242)",
+            "highColor1" : "rgb(137, 85, 242)"
+          },
+          "high" : 66,
+          "min" : 0,
+          "numberOfIcons" : 10,
+          "valueType" : "compactNumber",
+          "valuesOnLeft" : false,
+          "step" : "CreatedDate_Day_23",
+          "theme" : "dark",
+          "showMax" : false
+        },
+        "type" : "chart"
+      },
+      "link_Knowledge_Usage" : {
+        "parameters" : {
+          "destination" : "${App.Dashboards['Service Knowledge Usage'].Id}",
+          "destinationType" : "dashboard",
+          "fontSize" : 12,
+          "includeState" : false,
+          "text" : "Knowledge Usage",
+          "textAlignment" : "center",
+          "textColor" : "#091A3E"
+        },
+        "type" : "link"
+      },
+      "text_Hourly_Breakdown" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "Hourly Breakdown",
+          "textAlignment" : "left",
+          "textColor" : "#091A3E"
+        },
+        "type" : "text"
+      },
+      "chart_CreatedDate_Day_22" : {
+        "parameters" : {
+          "max" : 100,
+          "legend" : {
+            "showHeader" : true,
+            "show" : false,
+            "position" : "right-top",
+            "inside" : false
+          },
+          "icon" : "circle",
+          "visualizationType" : "rating",
+          "exploreLink" : false,
+          "title" : {
+            "label" : "Probablity to Wait",
+            "align" : "left",
+            "subtitleLabel" : ""
+          },
+          "trellis" : {
+            "enable" : false,
+            "type" : "x",
+            "parameters" : { },
+            "chartsPerLine" : 4
+          },
+          "colors" : {
+            "lowColor1" : "rgb(22, 116, 217)",
+            "highColor1" : "rgb(22, 116, 217)"
+          },
+          "high" : 66,
+          "min" : 0,
+          "numberOfIcons" : 8,
+          "valueType" : "compactNumber",
+          "valuesOnLeft" : false,
+          "step" : "CreatedDate_Day_22",
+          "theme" : "dark",
+          "showMax" : false
+        },
+        "type" : "chart"
+      },
+      "text_Case_Priority" : {
+        "parameters" : {
+          "fontSize" : 14,
+          "text" : "Case Priority",
+          "textAlignment" : "left",
+          "textColor" : "#335779"
+        },
+        "type" : "text"
+      },
+      "container_1" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "listselector_Case_Type_1" : {
+        "parameters" : {
+          "compact" : false,
+          "expanded" : true,
+          "exploreLink" : false,
+          "instant" : false,
+          "measureField" : "count",
+          "step" : "Case_Type_1",
+          "title" : "Case Type"
+        },
+        "type" : "listselector"
+      },
+      "container_2" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_3" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "text_Call_Result" : {
+        "parameters" : {
+          "fontSize" : 14,
+          "text" : "Call Result",
+          "textAlignment" : "left",
+          "textColor" : "#335779"
+        },
+        "type" : "text"
+      },
+      "container_4" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "chart_calls_per_day" : {
+        "parameters" : {
+          "showPoints" : true,
+          "legend" : {
+            "showHeader" : false,
+            "show" : false,
+            "customSize" : "auto",
+            "position" : "bottom-center",
+            "inside" : false
+          },
+          "axisMode" : "multi",
+          "visualizationType" : "time",
+          "missingValue" : "connect",
+          "exploreLink" : true,
+          "timeAxis" : {
+            "showTitle" : true,
+            "showAxis" : true,
+            "title" : "Date"
+          },
+          "title" : {
+            "label" : "",
+            "align" : "left",
+            "subtitleLabel" : ""
+          },
+          "trellis" : {
+            "enable" : false,
+            "type" : "x",
+            "parameters" : { },
+            "chartsPerLine" : 4
+          },
+          "fillArea" : true,
+          "showZero" : true,
+          "measureAxis2" : {
+            "sqrtScale" : false,
+            "showTitle" : true,
+            "showAxis" : true,
+            "title" : ""
+          },
+          "measureAxis1" : {
+            "sqrtScale" : false,
+            "showTitle" : true,
+            "referenceLines" : [
+  {
+                "color" : "rgb(227, 96, 40)",
+                "label" : "Average",
+                "value" : "{{coalesce(cell(calls_per_day.result, 0, \"avg_dailyCalls\"), 0).asObject()}}"
+              }
+  ],
+            "showAxis" : true,
+            "title" : "Daily Calls"
+          },
+          "step" : "calls_per_day",
+          "theme" : "dark"
+        },
+        "type" : "chart"
+      },
+      "container_5" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_6" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_7" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_8" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "stretch"
+        },
+        "type" : "container"
+      },
+      "container_9" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "chart_filter_call_priority" : {
+        "parameters" : {
+          "showMeasureTitle" : false,
+          "legend" : {
+            "showHeader" : false,
+            "show" : true,
+            "customSize" : "auto",
+            "position" : "bottom-center",
+            "inside" : false
+          },
+          "showTotal" : false,
+          "visualizationType" : "pie",
+          "step" : "filter_call_priority",
+          "theme" : "light",
+          "exploreLink" : true,
+          "title" : {
+            "label" : "",
+            "align" : "center",
+            "subtitleLabel" : ""
+          },
+          "trellis" : {
+            "enable" : false,
+            "type" : "x",
+            "parameters" : { },
+            "chartsPerLine" : 4
+          },
+          "inner" : 70
+        },
+        "type" : "chart"
+      },
+      "link_Channel_Review" : {
+        "parameters" : {
+          "destination" : "${App.Dashboards['Service Channel Review'].Id}",
+          "destinationType" : "dashboard",
+          "fontSize" : 12,
+          "includeState" : false,
+          "text" : "Channel Review",
+          "textAlignment" : "center",
+          "textColor" : "#091A3E"
+        },
+        "type" : "link"
+      },
+      "chart_1" : {
+        "parameters" : {
+          "autoFitMode" : "fit",
+          "showValues" : true,
+          "showPoints" : true,
+          "legend" : {
+            "showHeader" : true,
+            "show" : true,
+            "customSize" : "auto",
+            "position" : "bottom-center",
+            "inside" : false
+          },
+          "axisMode" : "dual",
+          "visualizationType" : "combo",
+          "missingValue" : "connect",
+          "exploreLink" : false,
+          "title" : {
+            "label" : "",
+            "align" : "center",
+            "subtitleLabel" : ""
+          },
+          "trellis" : {
+            "enable" : false,
+            "type" : "x",
+            "parameters" : { },
+            "chartsPerLine" : 4
+          },
+          "measureAxis2" : {
+            "sqrtScale" : false,
+            "showTitle" : true,
+            "showAxis" : true,
+            "title" : ""
+          },
+          "measureAxis1" : {
+            "sqrtScale" : false,
+            "showTitle" : true,
+            "showAxis" : true,
+            "title" : ""
+          },
+          "step" : "CreatedDate_Day_1",
+          "theme" : "wave",
+          "dimensionAxis" : {
+            "showTitle" : true,
+            "customSize" : "auto",
+            "showAxis" : true,
+            "title" : ""
+          }
+        },
+        "type" : "chart"
+      },
+      "text_Telephony" : {
+        "parameters" : {
+          "fontSize" : 24,
+          "text" : "Telephony",
+          "textAlignment" : "left",
+          "textColor" : "#091A3E"
+        },
+        "type" : "text"
+      },
+      "chart_CreatedDate_Day_2" : {
+        "parameters" : {
+          "autoFitMode" : "keepLabels",
+          "showValues" : true,
+          "bins" : {
+            "breakpoints" : {
+              "high" : 100,
+              "low" : 0
+            },
+            "bands" : {
+              "high" : {
+                "color" : "#008000",
+                "label" : ""
+              },
+              "low" : {
+                "color" : "#B22222",
+                "label" : ""
+              },
+              "medium" : {
+                "color" : "#ffa500",
+                "label" : ""
+              }
+            }
+          },
+          "legend" : {
+            "showHeader" : false,
+            "show" : false,
+            "customSize" : "auto",
+            "position" : "top-center",
+            "inside" : false
+          },
+          "axisMode" : "multi",
+          "visualizationType" : "vbar",
+          "exploreLink" : true,
+          "title" : {
+            "label" : "",
+            "align" : "center",
+            "subtitleLabel" : ""
+          },
+          "trellis" : {
+            "enable" : false,
+            "type" : "x",
+            "parameters" : { },
+            "chartsPerLine" : 4
+          },
+          "binValues" : false,
+          "measureAxis2" : {
+            "sqrtScale" : false,
+            "showTitle" : true,
+            "showAxis" : true,
+            "title" : ""
+          },
+          "measureAxis1" : {
+            "sqrtScale" : false,
+            "showTitle" : false,
+            "showAxis" : true,
+            "title" : "Probability of Waiting (%)"
+          },
+          "step" : "CreatedDate_Day_2",
+          "theme" : "light",
+          "dimensionAxis" : {
+            "showTitle" : false,
+            "customSize" : "auto",
+            "showAxis" : true,
+            "title" : ""
+          }
+        },
+        "type" : "chart"
+      },
+      "chart_CreatedDate_Day_1" : {
+        "parameters" : {
+          "autoFitMode" : "keepLabels",
+          "showValues" : true,
+          "showPoints" : true,
+          "legend" : {
+            "showHeader" : true,
+            "show" : false,
+            "customSize" : "auto",
+            "position" : "right-top",
+            "inside" : false
+          },
+          "axisMode" : "dual",
+          "visualizationType" : "combo",
+          "missingValue" : "connect",
+          "exploreLink" : false,
+          "title" : {
+            "label" : "",
+            "align" : "center",
+            "subtitleLabel" : ""
+          },
+          "trellis" : {
+            "enable" : false,
+            "type" : "x",
+            "parameters" : { },
+            "chartsPerLine" : 4
+          },
+          "measureAxis2" : {
+            "sqrtScale" : false,
+            "showTitle" : true,
+            "showAxis" : false,
+            "title" : ""
+          },
+          "measureAxis1" : {
+            "sqrtScale" : false,
+            "showTitle" : true,
+            "showAxis" : false,
+            "title" : ""
+          },
+          "theme" : "light",
+          "step" : "CreatedDate_Day_1",
+          "dimensionAxis" : {
+            "showTitle" : false,
+            "customSize" : "auto",
+            "showAxis" : true,
+            "title" : ""
+          }
+        },
+        "type" : "chart"
+      },
+      "chart_CreatedDate_Day_4" : {
+        "parameters" : {
+          "autoFitMode" : "keepLabels",
+          "showValues" : true,
+          "bins" : {
+            "breakpoints" : {
+              "high" : 100,
+              "low" : 0
+            },
+            "bands" : {
+              "high" : {
+                "color" : "#008000",
+                "label" : ""
+              },
+              "low" : {
+                "color" : "#B22222",
+                "label" : ""
+              },
+              "medium" : {
+                "color" : "#ffa500",
+                "label" : ""
+              }
+            }
+          },
+          "showPoints" : true,
+          "legend" : {
+            "showHeader" : false,
+            "show" : false,
+            "customSize" : "auto",
+            "position" : "bottom-center",
+            "inside" : false
+          },
+          "axisMode" : "sync",
+          "visualizationType" : "vbar",
+          "exploreLink" : true,
+          "title" : {
+            "label" : "",
+            "align" : "left",
+            "subtitleLabel" : ""
+          },
+          "trellis" : {
+            "enable" : false,
+            "type" : "x",
+            "parameters" : { },
+            "chartsPerLine" : 4
+          },
+          "binValues" : false,
+          "measureAxis2" : {
+            "sqrtScale" : false,
+            "showTitle" : true,
+            "showAxis" : true,
+            "title" : ""
+          },
+          "measureAxis1" : {
+            "sqrtScale" : false,
+            "showTitle" : false,
+            "showAxis" : false,
+            "title" : "Agents Working"
+          },
+          "step" : "CreatedDate_Day_4",
+          "theme" : "light",
+          "dimensionAxis" : {
+            "showTitle" : false,
+            "customSize" : "auto",
+            "showAxis" : true,
+            "title" : "Daily Hours"
+          }
+        },
+        "type" : "chart"
+      },
+      "text_filter_info_text" : {
+        "parameters" : {
+          "fontSize" : 12,
+          "text" : "Click charts to filter dashboard",
+          "textAlignment" : "left",
+          "textColor" : "#7D98B3"
+        },
+        "type" : "text"
+      },
+      "chart_filter_call_type" : {
+        "parameters" : {
+          "showMeasureTitle" : false,
+          "legend" : {
+            "showHeader" : false,
+            "show" : true,
+            "customSize" : "auto",
+            "position" : "bottom-center",
+            "inside" : false
+          },
+          "showTotal" : false,
+          "visualizationType" : "pie",
+          "step" : "filter_call_type",
+          "theme" : "light",
+          "exploreLink" : true,
+          "title" : {
+            "label" : "",
+            "align" : "center",
+            "subtitleLabel" : ""
+          },
+          "trellis" : {
+            "enable" : false,
+            "type" : "x",
+            "parameters" : { },
+            "chartsPerLine" : 4
+          },
+          "inner" : 70
+        },
+        "type" : "chart"
+      },
+      "text_Agents_Working" : {
+        "parameters" : {
+          "fontSize" : 14,
+          "text" : "Agents Working",
+          "textAlignment" : "left",
+          "textColor" : "#335779"
+        },
+        "type" : "text"
+      },
+      "number_2" : {
+        "parameters" : {
+          "compact" : false,
+          "exploreLink" : true,
+          "measureField" : "prob_waiting",
+          "numberColor" : "#FFFFFF",
+          "numberSize" : 24,
+          "step" : "CreatedDate_Day_22",
+          "textAlignment" : "left",
+          "title" : "Probability to Wait",
+          "titleColor" : "#C5D3E0",
+          "titleSize" : 14
+        },
+        "type" : "number"
+      },
+      "number_1" : {
+        "parameters" : {
+          "compact" : false,
+          "exploreLink" : true,
+          "measureField" : "service_level",
+          "numberColor" : "#FFFFFF",
+          "numberSize" : 24,
+          "step" : "CreatedDate_Day_23",
+          "textAlignment" : "left",
+          "title" : "Service Level",
+          "titleColor" : "#C5D3E0",
+          "titleSize" : 14
+        },
+        "type" : "number"
+      },
+      "table_lens_2" : {
+        "parameters" : {
+          "columns" : [ ],
+          "customBulkActions" : [ ],
+          "exploreLink" : true,
+          "step" : "lens_2"
+        },
+        "type" : "table"
+      },
+      "listselector_Case_RecordType_Name_1" : {
+        "parameters" : {
+          "compact" : false,
+          "expanded" : true,
+          "exploreLink" : false,
+          "instant" : false,
+          "measureField" : "count",
+          "step" : "Case_RecordType_Name_1",
+          "title" : "Case Record Type"
+        },
+        "type" : "listselector"
+      },
+      "text_Call_type" : {
+        "parameters" : {
+          "fontSize" : 14,
+          "text" : "Call Type",
+          "textAlignment" : "left",
+          "textColor" : "#335779"
+        },
+        "type" : "text"
+      },
+      "container_12" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_11" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_10" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "text_Daily_Call_Volume" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "Daily Call Volume",
+          "textAlignment" : "left",
+          "textColor" : "#FFFFFF"
+        },
+        "type" : "text"
+      },
+      "link_Home" : {
+        "parameters" : {
+          "destination" : "${App.Dashboards['Service Analytics Overview'].Id}",
+          "destinationType" : "dashboard",
+          "fontSize" : 12,
+          "includeState" : false,
+          "text" : "Overview",
+          "textAlignment" : "center",
+          "textColor" : "#091A3E"
+        },
+        "type" : "link"
+      },
+      "link_Omni" : {
+        "parameters" : {
+          "destination" : "${App.Dashboards['Service Omni'].Id}",
+          "destinationType" : "dashboard",
+          "fontSize" : 12,
+          "includeState" : false,
+          "text" : "Omni",
+          "textAlignment" : "center",
+          "textColor" : "#091A3E"
+        },
+        "type" : "link"
+      },
+      "pillbox_filter_closed" : {
+        "parameters" : {
+          "compact" : false,
+          "exploreLink" : false,
+          "measureField" : "none",
+          "step" : "filter_closed",
+          "title" : ""
+        },
+        "type" : "pillbox"
+      },
+      "text_Call_Priority" : {
+        "parameters" : {
+          "fontSize" : 14,
+          "text" : "Call Priority",
+          "textAlignment" : "left",
+          "textColor" : "#335779"
+        },
+        "type" : "text"
+      },
+      "text_Case_Details" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "Call Details",
+          "textAlignment" : "left",
+          "textColor" : "#091A3E"
+        },
+        "type" : "text"
+      },
+      "number_all_2" : {
+        "parameters" : {
+          "compact" : false,
+          "exploreLink" : true,
+          "measureField" : "count",
+          "numberColor" : "#FFFFFF",
+          "numberSize" : 24,
+          "step" : "all_2",
+          "textAlignment" : "left",
+          "title" : "Total Calls",
+          "titleColor" : "#C5D3E0",
+          "titleSize" : 14
+        },
+        "type" : "number"
+      },
+      "text_iphone_title_Telephony" : {
+        "parameters" : {
+          "fontSize" : 20,
+          "text" : "Telephony",
+          "textAlignment" : "center",
+          "textColor" : "#091A3E"
+        },
+        "type" : "text"
+      },
+      "chart_CallType_1" : {
+        "parameters" : {
+          "legend" : {
+            "showHeader" : true,
+            "show" : true,
+            "customSize" : "auto",
+            "position" : "right-top",
+            "inside" : false
+          },
+          "x" : {
+            "sqrtScale" : false,
+            "showZero" : false,
+            "showTitle" : true,
+            "showAxis" : true,
+            "title" : "Average Call Duration"
+          },
+          "visualizationType" : "scatter",
+          "y" : {
+            "sqrtScale" : false,
+            "showZero" : false,
+            "showTitle" : true,
+            "showAxis" : true,
+            "title" : "Average Calls Per Case"
+          },
+          "step" : "CallType_1",
+          "theme" : "light",
+          "exploreLink" : true,
+          "title" : {
+            "label" : "",
+            "align" : "center",
+            "subtitleLabel" : ""
+          },
+          "trellis" : {
+            "enable" : false,
+            "type" : "x",
+            "parameters" : { },
+            "chartsPerLine" : 4
+          }
+        },
+        "type" : "chart"
+      },
+      "chart_filter_case_priority" : {
+        "parameters" : {
+          "showMeasureTitle" : false,
+          "legend" : {
+            "showHeader" : false,
+            "show" : true,
+            "customSize" : "auto",
+            "position" : "bottom-center",
+            "inside" : false
+          },
+          "showTotal" : false,
+          "visualizationType" : "pie",
+          "step" : "filter_case_priority",
+          "theme" : "light",
+          "exploreLink" : true,
+          "title" : {
+            "label" : "",
+            "align" : "center",
+            "subtitleLabel" : ""
+          },
+          "trellis" : {
+            "enable" : false,
+            "type" : "x",
+            "parameters" : { },
+            "chartsPerLine" : 4
+          },
+          "inner" : 70
+        },
+        "type" : "chart"
+      },
+      "text_Call_Volume_Average_Duration" : {
+        "parameters" : {
+          "fontSize" : 14,
+          "text" : "Call Volume & Average Duration",
+          "textAlignment" : "left",
+          "textColor" : "#335779"
+        },
+        "type" : "text"
+      },
+      "chart_filter_call_support" : {
+        "parameters" : {
+          "showMeasureTitle" : false,
+          "legend" : {
+            "showHeader" : false,
+            "show" : true,
+            "customSize" : "auto",
+            "position" : "bottom-center",
+            "inside" : false
+          },
+          "showTotal" : false,
+          "visualizationType" : "pie",
+          "step" : "filter_call_support",
+          "theme" : "light",
+          "exploreLink" : true,
+          "title" : {
+            "label" : "",
+            "align" : "center",
+            "subtitleLabel" : ""
+          },
+          "trellis" : {
+            "enable" : false,
+            "type" : "x",
+            "parameters" : { },
+            "chartsPerLine" : 4
+          },
+          "inner" : 70
+        },
+        "type" : "chart"
+      },
+      "chart_filter_call_result" : {
+        "parameters" : {
+          "showMeasureTitle" : false,
+          "legend" : {
+            "showHeader" : false,
+            "show" : true,
+            "customSize" : "auto",
+            "position" : "bottom-center",
+            "inside" : false
+          },
+          "showTotal" : false,
+          "visualizationType" : "pie",
+          "step" : "filter_call_result",
+          "theme" : "light",
+          "exploreLink" : true,
+          "title" : {
+            "label" : "",
+            "align" : "center",
+            "subtitleLabel" : ""
+          },
+          "trellis" : {
+            "enable" : false,
+            "type" : "x",
+            "parameters" : { },
+            "chartsPerLine" : 4
+          },
+          "inner" : 70
+        },
+        "type" : "chart"
+      },
+      "text_Service_Level" : {
+        "parameters" : {
+          "fontSize" : 14,
+          "text" : "Service Level",
+          "textAlignment" : "left",
+          "textColor" : "#335779"
+        },
+        "type" : "text"
+      },
+      "listselector_Time_Selection" : {
+        "parameters" : {
+          "compact" : false,
+          "expanded" : true,
+          "exploreLink" : false,
+          "instant" : true,
+          "step" : "Time_Selection",
+          "title" : "Date Range"
+        },
+        "type" : "listselector"
+      },
+      "globalfilters_all_6" : {
+        "parameters" : {
+          "step" : "all_6"
+        },
+        "type" : "globalfilters"
+      },
+      "text_Agent_Performance" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "Agent Performance",
+          "textAlignment" : "left",
+          "textColor" : "#091A3E"
+        },
+        "type" : "text"
+      },
+      "text_Probability_To_Wait" : {
+        "parameters" : {
+          "fontSize" : 14,
+          "text" : "Probability To Wait",
+          "textAlignment" : "left",
+          "textColor" : "#335779"
+        },
+        "type" : "text"
+      },
+      "text_iphone_Hourly_CallVol_Avg_Duration" : {
+        "parameters" : {
+          "fontSize" : 14,
+          "text" : "Call Volume & Average Duration  Hourly Breakdown",
+          "textAlignment" : "left",
+          "textColor" : "#335779"
+        },
+        "type" : "text"
+      },
+      "link_Telephony" : {
+        "parameters" : {
+          "destination" : "${App.Dashboards['Service Telephony'].Id}",
+          "destinationType" : "dashboard",
+          "fontSize" : 12,
+          "includeState" : false,
+          "text" : "Telephony",
+          "textAlignment" : "center",
+          "textColor" : "rgb(99, 79, 149)"
+        },
+        "type" : "link"
+      },
+      "number_all_4" : {
+        "parameters" : {
+          "compact" : false,
+          "exploreLink" : true,
+          "measureField" : "avg_Call_Per_Agent",
+          "numberColor" : "#FFFFFF",
+          "numberSize" : 24,
+          "step" : "all_4",
+          "textAlignment" : "left",
+          "title" : "Avg. Calls Per Agent",
+          "titleColor" : "#C5D3E0",
+          "titleSize" : 14
+        },
+        "type" : "number"
+      },
+      "link_Knowledge_Efficiency" : {
+        "parameters" : {
+          "destination" : "${App.Dashboards['Service Knowledge Efficiency'].Id}",
+          "destinationType" : "dashboard",
+          "fontSize" : 12,
+          "includeState" : false,
+          "text" : "Knowledge Efficiency",
+          "textColor" : "#091A3E"
+        },
+        "type" : "link"
+      },
+      "text_Case_Support_Level" : {
+        "parameters" : {
+          "fontSize" : 14,
+          "text" : "Case Support Level",
+          "textAlignment" : "left",
+          "textColor" : "#335779"
+        },
+        "type" : "text"
+      }
+    }
+  }
+}

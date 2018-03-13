@@ -1,0 +1,4456 @@
+{
+  "name" : "Service_By_TeamEfficiency",
+  "label" : "Service Agent Performance",
+  "folder" : {
+    "id" : "${App.Folder.Id}"
+  },
+  "mobileDisabled" : false,
+  "state" : {
+    "dataSourceLinks" : [ ],
+    "filters" : [ ],
+    "gridLayouts" : [
+  {
+        "maxWidth" : 1360,
+        "name" : "Default",
+        "numColumns" : 48,
+        "pages" : [
+  {
+            "name" : "Default",
+            "widgets" : [
+  {
+                "colspan" : 15,
+                "column" : 1,
+                "name" : "text_Agent_Performance",
+                "row" : 3,
+                "rowspan" : 8,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 48,
+                "column" : 0,
+                "name" : "container_6",
+                "row" : 3,
+                "rowspan" : 8,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#9271E8",
+                  "borderEdges" : [
+  "bottom"
+  ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 4,
+                "column" : 6,
+                "name" : "listselector_filter_account",
+                "row" : 13,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "backgroundColor" : "#E6ECF2",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 4,
+                "column" : 31,
+                "name" : "listselector_filter_support_type",
+                "row" : 13,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "backgroundColor" : "#E6ECF2",
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 4,
+                "column" : 11,
+                "name" : "listselector_filter_type",
+                "row" : 13,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "backgroundColor" : "#E6ECF2",
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 4,
+                "column" : 26,
+                "name" : "listselector_filter_record_type",
+                "row" : 13,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "backgroundColor" : "#E6ECF2",
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 5,
+                "column" : 42,
+                "name" : "listselector_Time_Selection",
+                "row" : 13,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "backgroundColor" : "#E6ECF2",
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 48,
+                "column" : 0,
+                "name" : "container_7",
+                "row" : 11,
+                "rowspan" : 8,
+                "widgetStyle" : {
+                  "backgroundColor" : "#E6ECF2",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 30,
+                "column" : 1,
+                "name" : "text_Agent_Performance_by_CSAT_Duration_and_Case_Volume",
+                "row" : 21,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "borderColor" : "#FFFFFF",
+                  "borderEdges" : [ ],
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 3,
+                "column" : 28,
+                "name" : "listselector_filter_agent",
+                "row" : 26,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#FFFFFF",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 14,
+                "column" : 33,
+                "name" : "text_Performance_Summary",
+                "row" : 21,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgb(9, 27, 61)",
+                  "borderColor" : "rgba(51, 87, 121, 0.5)",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 7,
+                "column" : 2,
+                "name" : "pillbox_static_CSAT",
+                "row" : 27,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#FFFFFF",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 4,
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 7,
+                "column" : 33,
+                "name" : "number_kpi_avg_case_agent",
+                "row" : 41,
+                "rowspan" : 6,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgb(9, 27, 61)",
+                  "borderColor" : "#FFFFFF",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 2
+                }
+              },
+  {
+                "colspan" : 30,
+                "column" : 1,
+                "name" : "chart_agent_by_avg_duration_avg_csat",
+                "row" : 30,
+                "rowspan" : 31,
+                "widgetStyle" : {
+                  "borderColor" : "#FFFFFF",
+                  "borderEdges" : [ ],
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 14,
+                "column" : 33,
+                "name" : "number_kpi_unique_owner_count",
+                "row" : 34,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "backgroundColor" : "#091A3E",
+                  "borderColor" : "rgba(51, 87, 121, 0.5)",
+                  "borderEdges" : [
+  "bottom"
+  ],
+                  "borderRadius" : 4,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 32,
+                "column" : 0,
+                "name" : "container_3",
+                "row" : 19,
+                "rowspan" : 44,
+                "widgetStyle" : {
+                  "borderEdges" : [
+  "bottom"
+  ]
+                }
+              },
+  {
+                "colspan" : 7,
+                "column" : 40,
+                "name" : "number_Compare_Backlog",
+                "row" : 43,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "backgroundColor" : "{{cell(kpi_avg_case_agent_prev_period.result, 0, \"color\").asString()}}",
+                  "borderColor" : "{{cell(kpi_avg_case_agent_prev_period.result, 0, \"color\").asString()}}",
+                  "borderEdges" : [
+  "right"
+  ],
+                  "borderRadius" : 4,
+                  "borderWidth" : 4
+                }
+              },
+  {
+                "colspan" : 15,
+                "column" : 32,
+                "name" : "chart_average_case_count_over_time",
+                "row" : 48,
+                "rowspan" : 7,
+                "widgetStyle" : {
+                  "backgroundColor" : "#091A3E",
+                  "borderColor" : "rgba(51, 87, 121, 0.5)",
+                  "borderEdges" : [ ],
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 7,
+                "column" : 33,
+                "name" : "number_kpi_avg_duration",
+                "row" : 59,
+                "rowspan" : 6,
+                "widgetStyle" : {
+                  "backgroundColor" : "#091A3E",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 7,
+                "column" : 40,
+                "name" : "number_duration_Prev_Period",
+                "row" : 61,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "backgroundColor" : "{{cell(duration_Prev_Period.result, 0, \"color\").asString()}}",
+                  "borderColor" : "{{cell(duration_Prev_Period.result, 0, \"color\").asString()}}",
+                  "borderEdges" : [
+  "right"
+  ],
+                  "borderRadius" : 4,
+                  "borderWidth" : 4
+                }
+              },
+  {
+                "colspan" : 14,
+                "column" : 33,
+                "name" : "chart_average_case_duration_over_time",
+                "row" : 66,
+                "rowspan" : 7,
+                "widgetStyle" : {
+                  "backgroundColor" : "#091A3E",
+                  "borderColor" : "rgba(51, 87, 121, 0.5)",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 18,
+                "column" : 1,
+                "name" : "text_Segmentation",
+                "row" : 65,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "borderColor" : "#FFFFFF",
+                  "borderEdges" : [ ],
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 8,
+                "column" : 23,
+                "name" : "pillbox_static_measure",
+                "row" : 66,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "borderColor" : "#FFFFFF",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 4,
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 8,
+                "column" : 2,
+                "name" : "chart_case_count_by_product",
+                "row" : 76,
+                "rowspan" : 18,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 8,
+                "column" : 12,
+                "name" : "chart_case_count_by_reason",
+                "row" : 76,
+                "rowspan" : 18,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 8,
+                "column" : 23,
+                "name" : "chart_case_count_by_origin",
+                "row" : 76,
+                "rowspan" : 18,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 32,
+                "column" : 0,
+                "name" : "container_4",
+                "row" : 63,
+                "rowspan" : 33,
+                "widgetStyle" : {
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderWidth" : 4
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 33,
+                "name" : "number_kpi_escalation_percent",
+                "row" : 77,
+                "rowspan" : 6,
+                "widgetStyle" : {
+                  "backgroundColor" : "#091A3E",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 7,
+                "column" : 40,
+                "name" : "number_kpi_escalation_percent_Prev_Period",
+                "row" : 79,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "backgroundColor" : "{{cell(kpi_escalation_percent_Prev_Period.result, 0, \"color\").asString()}}",
+                  "borderColor" : "{{cell(kpi_escalation_percent_Prev_Period.result, 0, \"color\").asString()}}",
+                  "borderEdges" : [
+  "right"
+  ],
+                  "borderRadius" : 4,
+                  "borderWidth" : 4
+                }
+              },
+  {
+                "colspan" : 14,
+                "column" : 33,
+                "name" : "chart_average_case_escalated_over_time",
+                "row" : 84,
+                "rowspan" : 8,
+                "widgetStyle" : {
+                  "backgroundColor" : "#091A3E",
+                  "borderColor" : "rgba(51, 87, 121, 0.5)",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 14,
+                "column" : 33,
+                "name" : "number_kpi_fcr_percent",
+                "row" : 26,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "backgroundColor" : "#091A3E",
+                  "borderColor" : "rgba(51, 87, 121, 0.5)",
+                  "borderEdges" : [
+  "bottom"
+  ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 14,
+                "column" : 33,
+                "name" : "number_kpi_avg_csat",
+                "row" : 30,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "backgroundColor" : "#091A3E",
+                  "borderColor" : "rgba(51, 87, 121, 0.5)",
+                  "borderEdges" : [
+  "bottom"
+  ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 46,
+                "column" : 1,
+                "name" : "table_lens_1",
+                "row" : 102,
+                "rowspan" : 25,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 48,
+                "column" : 0,
+                "name" : "container_5",
+                "row" : 96,
+                "rowspan" : 33,
+                "widgetStyle" : {
+                  "borderEdges" : [
+  "top"
+  ],
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 4,
+                "column" : 21,
+                "name" : "listselector_Static_Duration",
+                "row" : 13,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "backgroundColor" : "#E6ECF2",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 8,
+                "column" : 2,
+                "name" : "listselector_filter_product",
+                "row" : 71,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#FFFFFF",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 8,
+                "column" : 12,
+                "name" : "listselector_filter_reason",
+                "row" : 71,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#FFFFFF",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 8,
+                "column" : 23,
+                "name" : "listselector_filter_origin",
+                "row" : 71,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 4,
+                "column" : 1,
+                "name" : "listselector_filter_isclosed",
+                "row" : 13,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "backgroundColor" : "#E6ECF2",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 21,
+                "column" : 1,
+                "name" : "text_Case_Details",
+                "row" : 97,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 3,
+                "column" : 35,
+                "name" : "link_Home",
+                "row" : 8,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 4,
+                "column" : 39,
+                "name" : "link_Performance",
+                "row" : 8,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#634F95",
+                  "borderEdges" : [
+  "bottom"
+  ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 2
+                }
+              },
+  {
+                "colspan" : 3,
+                "column" : 44,
+                "name" : "link_Activity",
+                "row" : 8,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 4,
+                "column" : 16,
+                "name" : "listselector_filter_role",
+                "row" : 13,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "backgroundColor" : "#E6ECF2",
+                  "borderColor" : "#F2F6FA",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 16,
+                "column" : 32,
+                "name" : "container_30",
+                "row" : 19,
+                "rowspan" : 77,
+                "widgetStyle" : {
+                  "backgroundColor" : "#091A3E",
+                  "borderColor" : "rgba(51, 87, 121, 0.5)",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 30,
+                "column" : 1,
+                "name" : "text_bubble_info_text",
+                "row" : 23,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              }
+  ]
+          }
+  ],
+        "rowHeight" : "fine",
+        "selectors" : [ ],
+        "style" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "backgroundColor" : "rgb(197, 211, 224)",
+          "cellSpacingX" : 0,
+          "cellSpacingY" : 0,
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "version" : 1.0
+      },
+  {
+        "name" : "iPhone",
+        "numColumns" : 8,
+        "pages" : [
+  {
+            "name" : "iPhone",
+            "widgets" : [
+  {
+                "colspan" : 8,
+                "column" : 0,
+                "name" : "text_iphone_AgentPerformance",
+                "row" : 1,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 8,
+                "column" : 0,
+                "name" : "container_6",
+                "row" : 0,
+                "rowspan" : 6,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#9271E8",
+                  "borderEdges" : [
+  "bottom"
+  ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 4,
+                "column" : 0,
+                "name" : "listselector_filter_role",
+                "row" : 6,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "backgroundColor" : "#E6ECF2",
+                  "borderColor" : "#F2F6FA",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 4,
+                "column" : 4,
+                "name" : "listselector_filter_agent",
+                "row" : 6,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "backgroundColor" : "#E6ECF2",
+                  "borderColor" : "#FFFFFF",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 8,
+                "column" : 0,
+                "name" : "listselector_Time_Selection",
+                "row" : 9,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "backgroundColor" : "#E6ECF2",
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 8,
+                "column" : 0,
+                "name" : "container_7",
+                "row" : 6,
+                "rowspan" : 6,
+                "widgetStyle" : {
+                  "backgroundColor" : "#E6ECF2",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 8,
+                "column" : 0,
+                "name" : "text_Performance_Summary",
+                "row" : 113,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgb(9, 27, 61)",
+                  "borderColor" : "rgba(51, 87, 121, 0.5)",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 4,
+                "column" : 0,
+                "name" : "number_kpi_fcr_percent",
+                "row" : 116,
+                "rowspan" : 6,
+                "widgetStyle" : {
+                  "backgroundColor" : "#091A3E",
+                  "borderColor" : "rgba(51, 87, 121, 0.5)",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 4,
+                "column" : 4,
+                "name" : "number_kpi_avg_csat",
+                "row" : 116,
+                "rowspan" : 6,
+                "widgetStyle" : {
+                  "backgroundColor" : "#091A3E",
+                  "borderColor" : "rgba(51, 87, 121, 0.5)",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 8,
+                "column" : 0,
+                "name" : "container_32",
+                "row" : 113,
+                "rowspan" : 9,
+                "widgetStyle" : {
+                  "backgroundColor" : "#091A3E",
+                  "borderColor" : "#091A3E",
+                  "borderEdges" : [
+  "left"
+  ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 5,
+                "column" : 0,
+                "name" : "number_kpi_avg_case_agent",
+                "row" : 41,
+                "rowspan" : 6,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgb(9, 27, 61)",
+                  "borderColor" : "#FFFFFF",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 2
+                }
+              },
+  {
+                "colspan" : 3,
+                "column" : 5,
+                "name" : "number_Compare_Backlog",
+                "row" : 43,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "backgroundColor" : "{{cell(kpi_avg_case_agent_prev_period.result, 0, \"color\").asString()}}",
+                  "borderColor" : "{{cell(kpi_avg_case_agent_prev_period.result, 0, \"color\").asString()}}",
+                  "borderEdges" : [
+  "right"
+  ],
+                  "borderRadius" : 4,
+                  "borderWidth" : 4
+                }
+              },
+  {
+                "colspan" : 8,
+                "column" : 0,
+                "name" : "container_33",
+                "row" : 41,
+                "rowspan" : 8,
+                "widgetStyle" : {
+                  "backgroundColor" : "#091A3E",
+                  "borderColor" : "#091A3E",
+                  "borderEdges" : [
+  "all"
+  ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 8,
+                "column" : 0,
+                "name" : "chart_average_case_count_over_time",
+                "row" : 49,
+                "rowspan" : 16,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [
+  "all"
+  ],
+                  "borderRadius" : 8,
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 5,
+                "column" : 0,
+                "name" : "number_kpi_avg_duration",
+                "row" : 65,
+                "rowspan" : 6,
+                "widgetStyle" : {
+                  "backgroundColor" : "#091A3E",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 3,
+                "column" : 5,
+                "name" : "number_duration_Prev_Period",
+                "row" : 67,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "backgroundColor" : "{{cell(duration_Prev_Period.result, 0, \"color\").asString()}}",
+                  "borderColor" : "{{cell(duration_Prev_Period.result, 0, \"color\").asString()}}",
+                  "borderEdges" : [
+  "right"
+  ],
+                  "borderRadius" : 4,
+                  "borderWidth" : 4
+                }
+              },
+  {
+                "colspan" : 8,
+                "column" : 0,
+                "name" : "container_30",
+                "row" : 65,
+                "rowspan" : 8,
+                "widgetStyle" : {
+                  "backgroundColor" : "#091A3E",
+                  "borderColor" : "#091A3E",
+                  "borderEdges" : [
+  "all"
+  ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 8,
+                "column" : 0,
+                "name" : "chart_average_case_duration_over_time",
+                "row" : 73,
+                "rowspan" : 16,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "rgba(51, 87, 121, 0.5)",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 8,
+                "column" : 0,
+                "name" : "container_34",
+                "row" : 73,
+                "rowspan" : 16,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [
+  "all"
+  ],
+                  "borderRadius" : 8,
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 5,
+                "column" : 0,
+                "name" : "number_kpi_escalation_percent",
+                "row" : 89,
+                "rowspan" : 6,
+                "widgetStyle" : {
+                  "backgroundColor" : "#091A3E",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 3,
+                "column" : 5,
+                "name" : "number_kpi_escalation_percent_Prev_Period",
+                "row" : 91,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "backgroundColor" : "{{cell(kpi_escalation_percent_Prev_Period.result, 0, \"color\").asString()}}",
+                  "borderColor" : "{{cell(kpi_escalation_percent_Prev_Period.result, 0, \"color\").asString()}}",
+                  "borderEdges" : [
+  "right"
+  ],
+                  "borderRadius" : 4,
+                  "borderWidth" : 4
+                }
+              },
+  {
+                "colspan" : 8,
+                "column" : 0,
+                "name" : "container_35",
+                "row" : 89,
+                "rowspan" : 8,
+                "widgetStyle" : {
+                  "backgroundColor" : "#091A3E",
+                  "borderColor" : "#091A3E",
+                  "borderEdges" : [
+  "all"
+  ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 8,
+                "column" : 0,
+                "name" : "chart_average_case_escalated_over_time",
+                "row" : 98,
+                "rowspan" : 15,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "rgba(51, 87, 121, 0.5)",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 8,
+                "column" : 0,
+                "name" : "container_36",
+                "row" : 97,
+                "rowspan" : 16,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [
+  "all"
+  ],
+                  "borderRadius" : 8,
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 8,
+                "column" : 0,
+                "name" : "text_Agent_Performance_by_CSAT_Duration_and_Case_Volume",
+                "row" : 12,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "borderColor" : "#FFFFFF",
+                  "borderEdges" : [ ],
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 4,
+                "column" : 0,
+                "name" : "text_bubble_info_text",
+                "row" : 15,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 4,
+                "column" : 4,
+                "name" : "pillbox_static_CSAT",
+                "row" : 15,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#A3B8CC",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 4,
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 8,
+                "column" : 0,
+                "name" : "chart_agent_by_avg_duration_avg_csat",
+                "row" : 18,
+                "rowspan" : 22,
+                "widgetStyle" : {
+                  "borderColor" : "#FFFFFF",
+                  "borderEdges" : [ ],
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 8,
+                "column" : 0,
+                "name" : "container_3",
+                "row" : 12,
+                "rowspan" : 29,
+                "widgetStyle" : {
+                  "borderEdges" : [
+  "all"
+  ],
+                  "borderRadius" : 8,
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 8,
+                "column" : 0,
+                "name" : "text_Segmentation",
+                "row" : 122,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "borderColor" : "#FFFFFF",
+                  "borderEdges" : [ ],
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 4,
+                "column" : 2,
+                "name" : "pillbox_static_measure",
+                "row" : 125,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "borderColor" : "#C5D3E0",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 4,
+                  "borderWidth" : 1
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 1,
+                "name" : "listselector_filter_product",
+                "row" : 131,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#FFFFFF",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 8,
+                "column" : 0,
+                "name" : "chart_case_count_by_product",
+                "row" : 134,
+                "rowspan" : 15,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 1,
+                "name" : "listselector_filter_reason",
+                "row" : 152,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#FFFFFF",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 8,
+                "column" : 0,
+                "name" : "chart_case_count_by_reason",
+                "row" : 155,
+                "rowspan" : 15,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 6,
+                "column" : 1,
+                "name" : "listselector_filter_origin",
+                "row" : 173,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 8,
+                "column" : 0,
+                "name" : "chart_case_count_by_origin",
+                "row" : 176,
+                "rowspan" : 15,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 8,
+                "column" : 0,
+                "name" : "container_4",
+                "row" : 122,
+                "rowspan" : 69,
+                "widgetStyle" : {
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [
+  "all"
+  ],
+                  "borderRadius" : 8,
+                  "borderWidth" : 8
+                }
+              },
+  {
+                "colspan" : 8,
+                "column" : 0,
+                "name" : "text_Case_Details",
+                "row" : 191,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 8,
+                "column" : 0,
+                "name" : "table_lens_1",
+                "row" : 194,
+                "rowspan" : 27,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+  {
+                "colspan" : 8,
+                "column" : 0,
+                "name" : "container_5",
+                "row" : 191,
+                "rowspan" : 30,
+                "widgetStyle" : {
+                  "borderEdges" : [
+  "all"
+  ],
+                  "borderRadius" : 8,
+                  "borderWidth" : 8
+                }
+              }
+  ]
+          }
+  ],
+        "rowHeight" : "fine",
+        "selectors" : [
+  "maxWidth(599)"
+  ],
+        "style" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "backgroundColor" : "#E6ECF2",
+          "cellSpacingX" : 0,
+          "cellSpacingY" : 0,
+          "fit" : "original",
+          "gutterColor" : "#C5D3E0"
+        },
+        "version" : 1.0
+      }
+  ],
+    "layouts" : [ ],
+    "steps" : {
+      "kpi_unique_owner_count" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "unique",
+  "OwnerId"
+  ]
+  ],
+            "autoFilter" : true,
+            "filters" : [
+  [
+  "CreatedDate",
+  "{{column(Time_Selection.selection, [\"Compact\"]).asObject()}}"
+  ]
+  ],
+            "order" : [
+  [
+  -1,
+  {
+                  "ascending" : false
+                }
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "single",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "compare_backlog_Last_Year" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "unique",
+  "Percent"
+  ]
+  ],
+            "pigql" : "q = load \"${App.EdgeMarts.ServiceCase.Alias}\";ENDTOTAL = filter q by 'IsClosed' == \"false\";updcreatedTOTAL = filter q by {{cell(Time_Selection.selection, 0, \"BacklogCompare\").asDateRange(\"date('CreatedDate_Year','CreatedDate_Month','CreatedDate_Day')\")}}; updclosedTOTAL = filter q by {{cell(Time_Selection.selection, 0, \"BacklogCompare\").asDateRange(\"date('${Constants.ClosedDate}_Year','${Constants.ClosedDate}_Month','${Constants.ClosedDate}_Day')\")}};compare = group updcreatedTOTAL by all full, updclosedTOTAL by all full, ENDTOTAL by all; compare = foreach compare generate (count(ENDTOTAL)-(count(ENDTOTAL)+count(updclosedTOTAL)-count(updcreatedTOTAL)))/(count(ENDTOTAL)+count(updclosedTOTAL)-count(updcreatedTOTAL)) *100  as 'unique_Percent', (case when (count(ENDTOTAL)-(count(ENDTOTAL)+count(updclosedTOTAL)-count(updcreatedTOTAL)))/(count(ENDTOTAL)+count(updclosedTOTAL)-count(updcreatedTOTAL)) *100 < 0 then \"#f2536d\" when (count(ENDTOTAL)-(count(ENDTOTAL)+count(updclosedTOTAL)-count(updcreatedTOTAL)))/(count(ENDTOTAL)+count(updclosedTOTAL)-count(updcreatedTOTAL)) *100 > 0 then \"#3CAF6D\" else \"#7D98B3\" end) as 'color';",
+            "autoFilter" : true
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "agent_by_avg_duration_avg_csat" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : "{{concat(column(Static_Duration.selection, [\"value\"]), cell(static_CSAT.selection,0, \"compact\")).asObject()}}",
+            "autoFilter" : true,
+            "groups" : "{{column(owner_group_select.selection, [\"value\"]).asObject()}}",
+            "filters" : [
+  [
+  "CreatedDate",
+  "{{column(Time_Selection.selection, [\"Compact\"]).asObject()}}"
+  ],
+  [
+  "CSAT",
+  [
+  [
+  "{{cell(static_CSAT.selection,0, \"mea\").asObject()}}"
+  ]
+  ],
+  ">="
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "single",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "options" : {
+            "fit" : true
+          },
+          "visualizationType" : "scatter"
+        }
+      },
+      "static_measure" : {
+        "broadcastFacet" : false,
+        "datasets" : [ ],
+        "dimensions" : [ ],
+        "groups" : [ ],
+        "isGlobal" : false,
+        "numbers" : [ ],
+        "selectMode" : "singlerequired",
+        "start" : {
+          "display" : [
+  "#"
+  ]
+        },
+        "strings" : [ ],
+        "type" : "staticflex",
+        "useGlobal" : false,
+        "values" : [
+  {
+            "display" : "#",
+            "compact" : [
+  "count",
+  "*"
+  ]
+          },
+  {
+            "display" : "Duration",
+            "compact" : [
+  "avg",
+  "${Constants.CaseDuration}"
+  ]
+          }
+  ],
+        "visualizationParameters" : { }
+      },
+      "Backlog_Trend_Group_Select" : {
+        "broadcastFacet" : false,
+        "datasets" : [ ],
+        "dimensions" : [ ],
+        "groups" : [ ],
+        "isGlobal" : false,
+        "numbers" : [ ],
+        "selectMode" : "singlerequired",
+        "start" : {
+          "display" : [
+  "Support Type"
+  ]
+        },
+        "strings" : [ ],
+        "type" : "staticflex",
+        "useGlobal" : false,
+        "values" : [
+  {
+            "display" : "Support Type",
+            "value" : "${Constants.CaseSupportLevel}"
+          },
+  {
+            "display" : "${Constants.CaseProductLabel}",
+            "value" : "${Constants.CaseProduct}"
+          },
+  {
+            "display" : "${Constants.CaseType}",
+            "value" : "${Constants.CaseType}"
+          },
+  {
+            "display" : "Role",
+            "value" : "Role.Name"
+          },
+  {
+            "display" : "${Constants.CaseOrigin}",
+            "value" : "${Constants.CaseOrigin}"
+          }
+  ],
+        "visualizationParameters" : { }
+      },
+      "kpi_avg_case_agent_last_year" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "unique",
+  "Percent"
+  ]
+  ],
+            "pigql" : "q = load \"${App.EdgeMarts.ServiceCase.Alias}\"; curYear = filter q by {{cell(Time_Selection.selection, 0, \"Current\").asDateRange(\"date('CreatedDate_Year','CreatedDate_Month','CreatedDate_Day')\")}}; comparePeriod = filter q by {{cell(Time_Selection.selection, 0, \"LastYearCompare\").asDateRange(\"date('CreatedDate_Year','CreatedDate_Month','CreatedDate_Day')\")}};  b = cogroup curYear by all, comparePeriod by all; b = foreach b generate (count(curYear) / unique(curYear.OwnerId) - count(comparePeriod) / unique(comparePeriod.OwnerId))/count(comparePeriod) / unique(comparePeriod.OwnerId) *100 as 'unique_Percent', (case when (count(curYear) / unique(curYear.OwnerId) - count(comparePeriod) / unique(comparePeriod.OwnerId))/count(comparePeriod) / unique(comparePeriod.OwnerId) *100 < 0 then \"#3CAF6D\" when (count(curYear) / unique(curYear.OwnerId) - count(comparePeriod) / unique(comparePeriod.OwnerId))/count(comparePeriod) / unique(comparePeriod.OwnerId) *100 > 0 then \"#f2536d\" else \"#7D98B3\" end) as 'color';",
+            "autoFilter" : true
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "single",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "options" : { },
+          "visualizationType" : "hbar"
+        }
+      },
+      "closedcases_Last_Year" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "unique",
+  "Percent"
+  ]
+  ],
+            "pigql" : "q = load \"${App.EdgeMarts.ServiceCase.Alias}\";curYear = filter q by {{cell(Time_Selection.selection, 0, \"Current\").asDateRange(\"date('CreatedDate_Year','CreatedDate_Month','CreatedDate_Day')\")}}; comparePeriod = filter q by {{cell(Time_Selection.selection, 0, \"LastYearCompare\").asDateRange(\"date('CreatedDate_Year','CreatedDate_Month','CreatedDate_Day')\")}};  b = cogroup curYear by all, comparePeriod by all; b = foreach b generate (count(curYear) - count(comparePeriod))/count(comparePeriod) *100 as 'unique_Percent', (case when (count(curYear) - count(comparePeriod))/count(comparePeriod) *100 < 0 then \"#3CAF6D\" when (count(curYear) - count(comparePeriod))/count(comparePeriod) *100 > 0 then \"#f2536d\"  else \"#7D98B3\" end) as 'color';",
+            "autoFilter" : true
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "Measure_Select" : {
+        "broadcastFacet" : false,
+        "datasets" : [ ],
+        "dimensions" : [ ],
+        "groups" : [ ],
+        "isGlobal" : false,
+        "numbers" : [ ],
+        "selectMode" : "singlerequired",
+        "start" : {
+          "display" : [
+  "Avg Duration"
+  ]
+        },
+        "strings" : [ ],
+        "type" : "staticflex",
+        "useGlobal" : false,
+        "values" : [
+  {
+            "display" : "Avg Duration",
+            "SAQL" : "coalesce((avg(ThisYear['${Constants.CaseDuration}'])-avg(LastYear['${Constants.CaseDuration}']))/avg(LastYear['${Constants.CaseDuration}']),0)*100 as sum_Percent",
+            "compact" : [
+  "sum",
+  "Percent",
+  null,
+  {
+                "display" : "% Change in Avg Duration Y/Y"
+              }
+  ]
+          },
+  {
+            "display" : "Volume",
+            "SAQL" : "coalesce((count(ThisYear)-count(LastYear))/count(LastYear),0)*100 as sum_Percent",
+            "compact" : [
+  "sum",
+  "Percent",
+  null,
+  {
+                "display" : "% Change in Volume Y/Y"
+              }
+  ]
+          }
+  ],
+        "visualizationParameters" : { }
+      },
+      "filter_type" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "autoFilter" : true,
+            "groups" : [
+  "${Constants.CaseType}"
+  ],
+            "filters" : [
+  [
+  "CreatedDate",
+  "{{column(Time_Selection.selection, [\"Compact\"]).asObject()}}"
+  ]
+  ],
+            "order" : [
+  [
+  -1,
+  {
+                  "ascending" : false
+                }
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "multi",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "kpi_escalation_percent_Prev_Period" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "unique",
+  "Percent"
+  ]
+  ],
+            "pigql" : "q = load \"${App.EdgeMarts.ServiceCase.Alias}\"; prevq = filter q by {{cell(Time_Selection.selection, 0, \"LastPeriodCompare\").asDateRange(\"date('CreatedDate_Year','CreatedDate_Month','CreatedDate_Day')\")}}; prevq = group prevq by 'IsEscalated'; prevq = foreach prevq generate 'IsEscalated' as 'IsEscalated', count() as 'count', (count()) / sum(count()) over([..] partition by all)*100 as 'perc_Percent'; prevq = filter prevq by 'IsEscalated' == \"true\"; q = filter q by {{cell(Time_Selection.selection, 0, \"Current\").asDateRange(\"date('CreatedDate_Year','CreatedDate_Month','CreatedDate_Day')\")}}; q = group q by 'IsEscalated'; q = foreach q generate 'IsEscalated' as 'IsEscalated', count() as 'count', (count()) / sum(count()) over([..] partition by all)*100 as 'perc_Percent'; q = filter q by 'IsEscalated' == \"true\"; b = cogroup q by all, prevq by all; b = foreach b generate 100*(avg(q.'perc_Percent')-avg(prevq.'perc_Percent'))/avg(prevq.'perc_Percent') as 'unique_Percent', (case when 100*(avg(q.'perc_Percent')-avg(prevq.'perc_Percent'))/avg(prevq.'perc_Percent') < 0 then \"#3CAF6D\" when 100*(avg(q.'perc_Percent')-avg(prevq.'perc_Percent'))/avg(prevq.'perc_Percent') > 0 then \"#f2536d\" else \"#7D98B3\" end) as 'color';",
+            "autoFilter" : true
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "filter_product" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "autoFilter" : true,
+            "groups" : [
+  "${Constants.CaseProduct}"
+  ],
+            "filters" : [
+  [
+  "CreatedDate",
+  "{{column(Time_Selection.selection, [\"Compact\"]).asObject()}}"
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "multi",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "Time_Selection" : {
+        "broadcastFacet" : false,
+        "datasets" : [ ],
+        "dimensions" : [ ],
+        "groups" : [ ],
+        "isGlobal" : false,
+        "numbers" : [ ],
+        "selectMode" : "singlerequired",
+        "start" : {
+          "display" : [
+  "Last 180 Days"
+  ]
+        },
+        "strings" : [ ],
+        "type" : "staticflex",
+        "useGlobal" : false,
+        "values" : [
+  {
+            "display" : "YTD",
+            "text_display" : "vs Prior YTD",
+            "Backlog30DayClose" : "[\"current day - 395 days\"..\"current day - 1 year\"]",
+            "BacklogCompare" : [
+  "current day - 1 year",
+  "current day"
+  ],
+            "BacklogLabel" : "Backlog Last Year",
+            "ClosedField" : "'${Constants.ClosedDate}_Month'",
+            "CoGroup" : "('CreatedDate_Month')",
+            "Compact" : [
+  [
+  "${Constants.Fiscal_Prefix}year",
+  0
+  ],
+  [
+  "${Constants.Fiscal_Prefix}year",
+  0
+  ]
+  ],
+            "CreatedField" : "'CreatedDate_Month'",
+            "CreatedProjection" : "created['CreatedDate_Month']",
+            "Current" : [
+  "current ${Constants.Fiscal_Prefix}year",
+  "current day"
+  ],
+            "FullGroup" : "'CreatedDate_Year~~~CreatedDate_Month'",
+            "GenerateClosedDate" : "'${Constants.ClosedDate}_Year'+\"~~~\"+'${Constants.ClosedDate}_Month' as 'CreatedDate_Year~~~CreatedDate_Month'",
+            "GenerateCoGroupDate" : "created['CreatedDate_Year']+\"~~~\"+created['CreatedDate_Month'] as 'CreatedDate_Year~~~CreatedDate_Month'",
+            "GenerateCreatedDate" : "'CreatedDate_Year'+\"~~~\"+'CreatedDate_Month' as 'CreatedDate_Year~~~CreatedDate_Month'",
+            "GroupbyClosedDate" : "('${Constants.ClosedDate}_Year','${Constants.ClosedDate}_Month')",
+            "GroupbyCreatedDate" : "'CreatedDate_Year','CreatedDate_Month'",
+            "Grouping" : "'CreatedDate_Year~~~CreatedDate_Month' as 'CreatedDate_Year~~~CreatedDate_Month'",
+            "LastPeriodCompare" : [
+  "current ${Constants.Fiscal_Prefix}year - 1 year",
+  "current day - 1 year"
+  ],
+            "LastYearCompare" : [
+  "current ${Constants.Fiscal_Prefix}year - 1 year",
+  "current day - 1 year"
+  ],
+            "Measure" : [
+  "Backlog",
+  "Count",
+  null,
+  {
+                "display" : "Backlog Count at Start of Month"
+              }
+  ],
+            "compactGroup" : [
+  "CreatedDate_Year",
+  "CreatedDate_Month"
+  ],
+            "filter" : "${Constants.Fiscal_Prefix}year",
+            "queryCogroupNew" : "first(ThisYear['CreatedDate_Year'])+\"~~~\"+ThisYear['CreatedDate_Month'] as 'CreatedDate_Year~~~CreatedDate_Month'",
+            "SAQL" : "coalesce((avg(ThisYear['${Constants.CaseDuration}'])-avg(LastYear['${Constants.CaseDuration}']))/avg(LastYear['${Constants.CaseDuration}']),0)*100 as sum_Percent",
+            "trendProjection" : "toString(now(), \"yyyy\")+\"~~~\"+toString(now(), \"99\")"
+          },
+  {
+            "display" : "QTD",
+            "text_display" : "vs Prior QTD",
+            "Backlog30DayClose" : "[\"current day - 120 days\"..\"current day - 1 quarter\"]",
+            "BacklogCompare" : [
+  "current day - 1 quarter",
+  "current day"
+  ],
+            "BacklogLabel" : "Backlog Last Quarter",
+            "ClosedField" : "'${Constants.ClosedDate}_Week'",
+            "CoGroup" : "('CreatedDate_Week')",
+            "Compact" : [
+  [
+  "${Constants.Fiscal_Prefix}quarter",
+  0
+  ],
+  [
+  "${Constants.Fiscal_Prefix}quarter",
+  0
+  ]
+  ],
+            "CreatedField" : "'CreatedDate_Week'",
+            "CreatedProjection" : "created['CreatedDate_Week']",
+            "Current" : [
+  "current ${Constants.Fiscal_Prefix}quarter",
+  "current day"
+  ],
+            "FullGroup" : "'CreatedDate_Year~~~CreatedDate_Week'",
+            "GenerateClosedDate" : "'${Constants.ClosedDate}_Year'+\"~~~\"+'${Constants.ClosedDate}_Week' as 'CreatedDate_Year~~~CreatedDate_Week'",
+            "GenerateCoGroupDate" : "created['CreatedDate_Year']+\"~~~\"+created['CreatedDate_Week'] as 'CreatedDate_Year~~~CreatedDate_Week'",
+            "GenerateCreatedDate" : "'CreatedDate_Year'+\"~~~\"+'CreatedDate_Week' as 'CreatedDate_Year~~~CreatedDate_Week'",
+            "GroupbyClosedDate" : "('${Constants.ClosedDate}_Year','${Constants.ClosedDate}_Week')",
+            "GroupbyCreatedDate" : "'CreatedDate_Year','CreatedDate_Week'",
+            "Grouping" : "'CreatedDate_Year~~~CreatedDate_Week' as 'CreatedDate_Year~~~CreatedDate_Week'",
+            "LastPeriodCompare" : [
+  "current ${Constants.Fiscal_Prefix}quarter - 1 quarter",
+  "current day - 1 quarter"
+  ],
+            "LastYearCompare" : [
+  "current ${Constants.Fiscal_Prefix}quarter - 1 year",
+  "current day - 1 year"
+  ],
+            "Measure" : [
+  "Backlog",
+  "Count",
+  null,
+  {
+                "display" : "Backlog Count at Start of Week"
+              }
+  ],
+            "compactGroup" : [
+  "CreatedDate_Year",
+  "CreatedDate_Week"
+  ],
+            "filter" : "${Constants.Fiscal_Prefix}quarter",
+            "queryCogroupNew" : "first(ThisYear['CreatedDate_Year'])+\"~~~\"+ThisYear['CreatedDate_Week'] as 'CreatedDate_Year~~~CreatedDate_Week'",
+            "SAQL" : "coalesce((avg(ThisYear['${Constants.CaseDuration}'])-avg(LastYear['${Constants.CaseDuration}']))/avg(LastYear['${Constants.CaseDuration}']),0)*100 as sum_Percent",
+            "trendProjection" : "toString(now(), \"yyyy\")+\"~~~\"+toString(now(), \"99\")"
+          },
+  {
+            "display" : "MTD",
+            "text_display" : "vs Prior MTD",
+            "Backlog30DayClose" : "[\"current day - 60 days\"..\"current day - 1 month\"]",
+            "BacklogCompare" : [
+  "current day - 1 month",
+  "current day"
+  ],
+            "BacklogLabel" : "Backlog Last Month",
+            "ClosedField" : "'${Constants.ClosedDate}_Month','${Constants.ClosedDate}_Day'",
+            "CoGroup" : "('CreatedDate_Month','CreatedDate_Day')",
+            "Compact" : [
+  [
+  "month",
+  0
+  ],
+  [
+  "month",
+  0
+  ]
+  ],
+            "CreatedField" : "'CreatedDate_Month','CreatedDate_Day'",
+            "CreatedProjection" : "created['CreatedDate_Month'] +\"~~~\" + created['CreatedDate_Day']",
+            "Current" : [
+  "current month",
+  "current month"
+  ],
+            "FullGroup" : "'CreatedDate_Year~~~CreatedDate_Month~~~CreatedDate_Day'",
+            "GenerateClosedDate" : "'${Constants.ClosedDate}_Year'+\"~~~\"+'${Constants.ClosedDate}_Month'+\"~~~\"+'${Constants.ClosedDate}_Day' as 'CreatedDate_Year~~~CreatedDate_Month~~~CreatedDate_Day'",
+            "GenerateCoGroupDate" : "created['CreatedDate_Year']+\"~~~\"+created['CreatedDate_Month']+\"~~~\"+created['CreatedDate_Day'] as 'CreatedDate_Year~~~CreatedDate_Month~~~CreatedDate_Day'",
+            "GenerateCreatedDate" : "'CreatedDate_Year'+\"~~~\"+'CreatedDate_Month'+\"~~~\"+'CreatedDate_Day' as 'CreatedDate_Year~~~CreatedDate_Month~~~CreatedDate_Day'",
+            "GroupbyClosedDate" : "('${Constants.ClosedDate}_Year','${Constants.ClosedDate}_Month','${Constants.ClosedDate}_Day')",
+            "GroupbyCreatedDate" : "'CreatedDate_Year','CreatedDate_Month','CreatedDate_Day'",
+            "Grouping" : "'CreatedDate_Year~~~CreatedDate_Month~~~CreatedDate_Day' as 'CreatedDate_Year~~~CreatedDate_Month~~~CreatedDate_Day'",
+            "LastPeriodCompare" : [
+  "current month - 1 month",
+  "current day - 1 month"
+  ],
+            "LastYearCompare" : [
+  "current month - 1 year",
+  "current day - 1 year"
+  ],
+            "Measure" : [
+  "Backlog",
+  "Count",
+  null,
+  {
+                "display" : "Backlog Count at Start of Day"
+              }
+  ],
+            "compactGroup" : [
+  "CreatedDate_Year",
+  "CreatedDate_Month",
+  "CreatedDate_Day"
+  ],
+            "filter" : "month",
+            "queryCogroupNew" : "first(ThisYear['CreatedDate_Year'])+\"~~~\"+ThisYear['CreatedDate_Month']+\"~~~\"+ThisYear['CreatedDate_Day'] as 'CreatedDate_Year~~~CreatedDate_Month~~~CreatedDate_Day'",
+            "trendProjection" : "toString(now(), \"yyyy~~~MM\")+\"~~~\"+toString(now(), \"99\")"
+          },
+  {
+            "display" : "Last 7 Days",
+            "text_display" : "vs Prior 7 Days",
+            "Backlog30DayClose" : "[\"current day - 37 days\"..\"current day - 7 days\"]",
+            "BacklogCompare" : [
+  "current day - 1 week",
+  "current day"
+  ],
+            "BacklogLabel" : "Backlog Last 7 Days",
+            "ClosedField" : "'${Constants.ClosedDate}_Month','${Constants.ClosedDate}_Day'",
+            "CoGroup" : "('CreatedDate_Month','CreatedDate_Day')",
+            "Compact" : [
+  [
+  "day",
+  -7
+  ],
+  [
+  "day",
+  0
+  ]
+  ],
+            "CreatedField" : "'CreatedDate_Month','CreatedDate_Day'",
+            "CreatedProjection" : "created['CreatedDate_Month'] +\"~~~\" + created['CreatedDate_Day']",
+            "Current" : [
+  "7 days ago",
+  "current day"
+  ],
+            "FullGroup" : "'CreatedDate_Year~~~CreatedDate_Month~~~CreatedDate_Day'",
+            "GenerateClosedDate" : "'${Constants.ClosedDate}_Year'+\"~~~\"+'${Constants.ClosedDate}_Month'+\"~~~\"+'${Constants.ClosedDate}_Day' as 'CreatedDate_Year~~~CreatedDate_Month~~~CreatedDate_Day'",
+            "GenerateCoGroupDate" : "created['CreatedDate_Year']+\"~~~\"+created['CreatedDate_Month']+\"~~~\"+created['CreatedDate_Day'] as 'CreatedDate_Year~~~CreatedDate_Month~~~CreatedDate_Day'",
+            "GenerateCreatedDate" : "'CreatedDate_Year'+\"~~~\"+'CreatedDate_Month'+\"~~~\"+'CreatedDate_Day' as 'CreatedDate_Year~~~CreatedDate_Month~~~CreatedDate_Day'",
+            "GroupbyClosedDate" : "('${Constants.ClosedDate}_Year','${Constants.ClosedDate}_Month','${Constants.ClosedDate}_Day')",
+            "GroupbyCreatedDate" : "'CreatedDate_Year','CreatedDate_Month','CreatedDate_Day'",
+            "Grouping" : "'CreatedDate_Year~~~CreatedDate_Month~~~CreatedDate_Day' as 'CreatedDate_Year~~~CreatedDate_Month~~~CreatedDate_Day'",
+            "LastPeriodCompare" : [
+  "7 days ago - 1 week",
+  "current day - 1 week"
+  ],
+            "LastYearCompare" : [
+  "7 days ago - 1 year",
+  "current day - 1 year"
+  ],
+            "Measure" : [
+  "Backlog",
+  "Count",
+  null,
+  {
+                "display" : "Backlog Count at Start of Day"
+              }
+  ],
+            "compactGroup" : [
+  "CreatedDate_Year",
+  "CreatedDate_Month",
+  "CreatedDate_Day"
+  ],
+            "filter" : "week",
+            "queryCogroupNew" : "first(ThisYear['CreatedDate_Year'])+\"~~~\"+ThisYear['CreatedDate_Month']+\"~~~\"+ThisYear['CreatedDate_Day'] as 'CreatedDate_Year~~~CreatedDate_Month~~~CreatedDate_Day'",
+            "trendProjection" : "toString(now(), \"yyyy~~~MM\")+\"~~~\"+toString(now(), \"99\")"
+          },
+  {
+            "display" : "Last 30 Days",
+            "text_display" : "vs Prior 30 Days",
+            "Backlog30DayClose" : "[\"current day - 60 days\"..\"current day - 30 days\"]",
+            "BacklogCompare" : [
+  "current day - 30 days",
+  "current day"
+  ],
+            "BacklogLabel" : "Backlog Last 30 Days",
+            "ClosedField" : "'${Constants.ClosedDate}_Week'",
+            "CoGroup" : "('CreatedDate_Week')",
+            "Compact" : [
+  [
+  "day",
+  -30
+  ],
+  [
+  "day",
+  0
+  ]
+  ],
+            "CreatedField" : "'CreatedDate_Week'",
+            "CreatedProjection" : "created['CreatedDate_Week']",
+            "Current" : [
+  "30 days ago",
+  "current day"
+  ],
+            "FullGroup" : "'CreatedDate_Year~~~CreatedDate_Week'",
+            "GenerateClosedDate" : "'${Constants.ClosedDate}_Year'+\"~~~\"+'${Constants.ClosedDate}_Week' as 'CreatedDate_Year~~~CreatedDate_Week'",
+            "GenerateCoGroupDate" : "created['CreatedDate_Year']+\"~~~\"+created['CreatedDate_Week'] as 'CreatedDate_Year~~~CreatedDate_Week'",
+            "GenerateCreatedDate" : "'CreatedDate_Year'+\"~~~\"+'CreatedDate_Week' as 'CreatedDate_Year~~~CreatedDate_Week'",
+            "GroupbyClosedDate" : "('${Constants.ClosedDate}_Year','${Constants.ClosedDate}_Week')",
+            "GroupbyCreatedDate" : "'CreatedDate_Year','CreatedDate_Week'",
+            "Grouping" : "'CreatedDate_Year~~~CreatedDate_Week' as 'CreatedDate_Year~~~CreatedDate_Week'",
+            "LastPeriodCompare" : [
+  "30 days ago - 30 days",
+  "current day - 30 days"
+  ],
+            "LastYearCompare" : [
+  "30 days ago - 1 year",
+  "current day - 1 year"
+  ],
+            "Measure" : [
+  "Backlog",
+  "Count",
+  null,
+  {
+                "display" : "Backlog Count at Start of Week"
+              }
+  ],
+            "compactGroup" : [
+  "CreatedDate_Year",
+  "CreatedDate_Week"
+  ],
+            "filter" : "month",
+            "queryCogroupNew" : "first(ThisYear['CreatedDate_Year'])+\"~~~\"+ThisYear['CreatedDate_Week'] as 'CreatedDate_Year~~~CreatedDate_Week'",
+            "trendProjection" : "toString(now(), \"yyyy~~~MM\")+\"~~~\"+toString(now(), \"99\")"
+          },
+  {
+            "display" : "Last 180 Days",
+            "text_display" : "vs Prior 180 Days",
+            "Backlog30DayClose" : "[\"current day - 240 days\"..\"current day - 180 days\"]",
+            "BacklogCompare" : [
+  "current day - 180 days",
+  "current day"
+  ],
+            "BacklogLabel" : "Backlog Last 180 Days",
+            "ClosedField" : "'${Constants.ClosedDate}_Month'",
+            "CoGroup" : "('CreatedDate_Month')",
+            "Compact" : [
+  [
+  "day",
+  -180
+  ],
+  [
+  "day",
+  0
+  ]
+  ],
+            "CreatedField" : "'CreatedDate_Month'",
+            "CreatedProjection" : "created['CreatedDate_Month']",
+            "Current" : [
+  "180 days ago",
+  "current day"
+  ],
+            "FullGroup" : "'CreatedDate_Year~~~CreatedDate_Month'",
+            "GenerateClosedDate" : "'${Constants.ClosedDate}_Year'+\"~~~\"+'${Constants.ClosedDate}_Month' as 'CreatedDate_Year~~~CreatedDate_Month'",
+            "GenerateCoGroupDate" : "created['CreatedDate_Year']+\"~~~\"+created['CreatedDate_Month'] as 'CreatedDate_Year~~~CreatedDate_Month'",
+            "GenerateCreatedDate" : "'CreatedDate_Year'+\"~~~\"+'CreatedDate_Month' as 'CreatedDate_Year~~~CreatedDate_Month'",
+            "GroupbyClosedDate" : "('${Constants.ClosedDate}_Year','${Constants.ClosedDate}_Month')",
+            "GroupbyCreatedDate" : "'CreatedDate_Year','CreatedDate_Month'",
+            "Grouping" : "'CreatedDate_Year~~~CreatedDate_Month' as 'CreatedDate_Year~~~CreatedDate_Month'",
+            "LastPeriodCompare" : [
+  "180 days ago - 180 days",
+  "current day - 180 days"
+  ],
+            "LastYearCompare" : [
+  "180 days ago - 1 year",
+  "current day - 1 year"
+  ],
+            "Measure" : [
+  "Backlog",
+  "Count",
+  null,
+  {
+                "display" : "Backlog Count at Start of Month"
+              }
+  ],
+            "compactGroup" : [
+  "CreatedDate_Year",
+  "CreatedDate_Month"
+  ],
+            "filter" : "month",
+            "queryCogroupNew" : "first(ThisYear['CreatedDate_Year'])+\"~~~\"+ThisYear['CreatedDate_Month'] as 'CreatedDate_Year~~~CreatedDate_Month'",
+            "trendProjection" : "toString(now(), \"yyyy\")+\"~~~\"+toString(now(), \"99\")"
+          }
+  ],
+        "visualizationParameters" : { }
+      },
+      "average_case_escalated_over_time" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "pigql" : "q = load \"${App.EdgeMarts.ServiceCase.Alias}\"; q = filter q by 'IsEscalated' == \"true\"; q = filter q by {{cell(Time_Selection.selection, 0, \"Current\").asDateRange(\"date('CreatedDate_Year', 'CreatedDate_Month', 'CreatedDate_Day')\")}}; r = filter q by {{column(agent_by_avg_duration_avg_csat.selection, [\"Owner.Name\"]).asEquality(\"Owner.Name\")}}; r = group r by ('Owner.Name', {{cell(Time_Selection.selection, 0, \"GroupbyCreatedDate\").asObject()}}); r = foreach r generate {{cell(Time_Selection.selection, 0, \"GenerateCreatedDate\").asObject()}}, (case when (\"{{cell(agent_by_avg_duration_avg_csat.selection, 0, \"Owner.Name\").asString()}}\" == \"null\") then \"ALL\" else \"Selected Agents\" end) as 'Performance', count() as 'count'; s = group q by ('Owner.Name', {{cell(Time_Selection.selection, 0, \"GroupbyCreatedDate\").asObject()}}); s = foreach s generate {{cell(Time_Selection.selection, 0, \"GenerateCreatedDate\").asObject()}}, \"Team\" as 'Performance', count() as 'count'; u = union r, s; u = filter u by 'Performance' != \"ALL\"; u = group u by ({{cell(Time_Selection.selection, 0, \"FullGroup\").asObject()}}, 'Performance'); u = foreach u generate {{cell(Time_Selection.selection, 0, \"Grouping\").asObject()}}, 'Performance' as 'Performance', avg('count') as 'count';",
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "groups" : [
+  "{{cell(Time_Selection.selection, 0, \"compactGroup\").asObject()}}",
+  "Performance"
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "none",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "time"
+        }
+      },
+      "Waterfall_Group_Select" : {
+        "datasets" : [ ],
+        "dimensions" : [ ],
+        "isFacet" : false,
+        "isGlobal" : false,
+        "selectMode" : "singlerequired",
+        "start" : [
+  [
+  "${Constants.CaseSupportLevel}"
+  ]
+  ],
+        "type" : "static",
+        "useGlobal" : false,
+        "values" : [
+  {
+            "display" : "Support Type",
+            "value" : [
+  "${Constants.CaseSupportLevel}"
+  ]
+          },
+  {
+            "display" : "${Constants.CaseProductLabel}",
+            "value" : [
+  "${Constants.CaseProduct}"
+  ]
+          },
+  {
+            "display" : "${Constants.CaseType}",
+            "value" : [
+  "${Constants.CaseType}"
+  ]
+          },
+  {
+            "display" : "Role",
+            "value" : [
+  "Role.Name"
+  ]
+          },
+  {
+            "display" : "${Constants.CaseOrigin}",
+            "value" : [
+  "${Constants.CaseOrigin}"
+  ]
+          }
+  ],
+        "visualizationParameters" : { }
+      },
+      "kpi_avg_csat" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "avg",
+  "CSAT"
+  ]
+  ],
+            "autoFilter" : true,
+            "filters" : [
+  [
+  "CreatedDate",
+  "{{column(Time_Selection.selection, [\"Compact\"]).asObject()}}"
+  ],
+  [
+  "CSAT",
+  [
+  [
+  -10
+  ]
+  ],
+  ">="
+  ],
+  [
+  "IsClosed",
+  [
+  "true"
+  ],
+  "in"
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "kpi_avg_duration" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : "{{column(Static_Duration.selection, [\"value\"]).asObject()}}",
+            "autoFilter" : true,
+            "filters" : [
+  [
+  "CreatedDate",
+  "{{column(Time_Selection.selection, [\"Compact\"]).asObject()}}"
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "average_case_count_over_time" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "pigql" : "q = load \"${App.EdgeMarts.ServiceCase.Alias}\"; q = filter q by {{column(filter_record_type.selection, [\"${Constants.CaseRecordTypeField}\"]).asEquality(\"${Constants.CaseRecordTypeField}\")}}; q = filter q by {{column(filter_origin.selection, [\"${Constants.CaseOrigin}\"]).asEquality(\"${Constants.CaseOrigin}\")}} && {{column(case_count_by_origin.selection, [\"${Constants.CaseOrigin}\"]).asEquality(\"${Constants.CaseOrigin}\")}}; q = filter q by {{column(filter_reason.selection, [\"${Constants.CaseReason}\"]).asEquality(\"${Constants.CaseReason}\")}} && {{column(case_count_by_reason.selection, [\"${Constants.CaseReason}\"]).asEquality(\"${Constants.CaseReason}\")}}; q = filter q by {{column(filter_product.selection, [\"${Constants.CaseProduct}\"]).asEquality(\"${Constants.CaseProduct}\")}} && {{column(case_count_by_product.selection, [\"${Constants.CaseProduct}\"]).asEquality(\"${Constants.CaseProduct}\")}}; q = filter q by {{column(filter_type.selection, [\"${Constants.CaseType}\"]).asEquality(\"${Constants.CaseType}\")}};  q = filter q by {{column(filter_account.selection, [\"Account.Name\"]).asEquality(\"Account.Name\")}}; q = filter q by {{column(filter_isclosed.selection, [\"IsClosed\"]).asEquality(\"IsClosed\")}}; q = filter q by {{cell(Time_Selection.selection, 0, \"Current\").asDateRange(\"date('CreatedDate_Year', 'CreatedDate_Month', 'CreatedDate_Day')\")}}; r = filter q by {{column(agent_by_avg_duration_avg_csat.selection, [\"Owner.Name\"]).asEquality(\"Owner.Name\")}}; r = group r by ('Owner.Name', {{cell(Time_Selection.selection, 0, \"GroupbyCreatedDate\").asObject()}}); r = foreach r generate {{cell(Time_Selection.selection, 0, \"GenerateCreatedDate\").asObject()}}, (case when (\"{{cell(agent_by_avg_duration_avg_csat.selection, 0, \"Owner.Name\").asString()}}\" == \"null\" && \"{{cell(filter_agent.selection, 0, \"Owner.Name\").asString()}}\" == \"null\") then \"ALL\" else \"Selected Agents\" end) as 'Performance', count() as 'count'; s = group q by ('Owner.Name', {{cell(Time_Selection.selection, 0, \"GroupbyCreatedDate\").asObject()}}); s = foreach s generate {{cell(Time_Selection.selection, 0, \"GenerateCreatedDate\").asObject()}}, \"Team\" as 'Performance', count() as 'count'; u = union r, s; u = filter u by 'Performance' != \"ALL\"; u = group u by ({{cell(Time_Selection.selection, 0, \"FullGroup\").asObject()}}, 'Performance'); u = foreach u generate {{cell(Time_Selection.selection, 0, \"Grouping\").asObject()}}, 'Performance' as 'Performance', avg('count') as 'count';",
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "groups" : [
+  "{{cell(Time_Selection.selection, 0, \"compactGroup\").asObject()}}",
+  "Performance"
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "none",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "time"
+        }
+      },
+      "filter_account" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "autoFilter" : true,
+            "groups" : [
+  "Account.Name"
+  ],
+            "filters" : [
+  [
+  "CreatedDate",
+  "{{column(Time_Selection.selection, [\"Compact\"]).asObject()}}"
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "multi",
+        "type" : "aggregateflex",
+        "useGlobal" : false,
+        "visualizationParameters" : { }
+      },
+      "average_case_duration_over_time" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "pigql" : "q = load \"${App.EdgeMarts.ServiceCase.Alias}\"; q = filter q by {{column(filter_record_type.selection, [\"${Constants.CaseRecordTypeField}\"]).asEquality(\"${Constants.CaseRecordTypeField}\")}}; q = filter q by {{column(filter_origin.selection, [\"${Constants.CaseOrigin}\"]).asEquality(\"${Constants.CaseOrigin}\")}} && {{column(case_count_by_origin.selection, [\"${Constants.CaseOrigin}\"]).asEquality(\"${Constants.CaseOrigin}\")}}; q = filter q by {{column(filter_reason.selection, [\"${Constants.CaseReason}\"]).asEquality(\"${Constants.CaseReason}\")}} && {{column(case_count_by_reason.selection, [\"${Constants.CaseReason}\"]).asEquality(\"${Constants.CaseReason}\")}}; q = filter q by {{column(filter_product.selection, [\"${Constants.CaseProduct}\"]).asEquality(\"${Constants.CaseProduct}\")}} && {{column(case_count_by_product.selection, [\"${Constants.CaseProduct}\"]).asEquality(\"${Constants.CaseProduct}\")}}; q = filter q by {{column(filter_type.selection, [\"${Constants.CaseType}\"]).asEquality(\"${Constants.CaseType}\")}};  q = filter q by {{column(filter_account.selection, [\"Account.Name\"]).asEquality(\"Account.Name\")}}; q = filter q by {{column(filter_isclosed.selection, [\"IsClosed\"]).asEquality(\"IsClosed\")}}; q = filter q by {{cell(Time_Selection.selection, 0, \"Current\").asDateRange(\"date('CreatedDate_Year', 'CreatedDate_Month', 'CreatedDate_Day')\")}}; r = filter q by {{column(agent_by_avg_duration_avg_csat.selection, [\"Owner.Name\"]).asEquality(\"Owner.Name\")}}; r = group r by ('Owner.Name', {{cell(Time_Selection.selection, 0, \"GroupbyCreatedDate\").asObject()}}); r = foreach r generate {{cell(Time_Selection.selection, 0, \"GenerateCreatedDate\").asObject()}}, (case when (\"{{cell(agent_by_avg_duration_avg_csat.selection, 0, \"Owner.Name\").asString()}}\" == \"null\" && \"{{cell(filter_agent.selection, 0, \"Owner.Name\").asString()}}\" == \"null\") then \"ALL\" else \"Selected Agents\" end) as 'Performance', avg('{{column(Static_Duration.selection, [\"pigql_value\"]).asObject()}}') as '{{column(Static_Duration.selection, [\"measure_field\"]).asObject()}}'; s = group q by ('Owner.Name', {{cell(Time_Selection.selection, 0, \"GroupbyCreatedDate\").asObject()}}); s = foreach s generate {{cell(Time_Selection.selection, 0, \"GenerateCreatedDate\").asObject()}}, \"Team\" as 'Performance', avg('{{column(Static_Duration.selection, [\"pigql_value\"]).asObject()}}') as '{{column(Static_Duration.selection, [\"measure_field\"]).asObject()}}'; u = union r, s; u = filter u by 'Performance' != \"ALL\"; u = group u by ({{cell(Time_Selection.selection, 0, \"FullGroup\").asObject()}}, 'Performance'); u = foreach u generate {{cell(Time_Selection.selection, 0, \"Grouping\").asObject()}}, 'Performance' as 'Performance', avg('{{column(Static_Duration.selection, [\"measure_field\"]).asObject()}}') as '{{column(Static_Duration.selection, [\"measure_field\"]).asObject()}}';",
+            "measures" : "{{column(Static_Duration.selection, [\"value\"]).asObject()}}",
+            "groups" : [
+  "{{cell(Time_Selection.selection, 0, \"compactGroup\").asObject()}}",
+  "Performance"
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "none",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "time"
+        }
+      },
+      "filter_reason" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "autoFilter" : true,
+            "groups" : [
+  "${Constants.CaseReason}"
+  ],
+            "filters" : [
+  [
+  "CreatedDate",
+  "{{column(Time_Selection.selection, [\"Compact\"]).asObject()}}"
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "multi",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "filter_isclosed" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "groups" : [
+  "IsClosed"
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "single",
+        "type" : "aggregateflex",
+        "useGlobal" : false,
+        "visualizationParameters" : { }
+      },
+      "filter_origin" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "autoFilter" : true,
+            "groups" : [
+  "${Constants.CaseOrigin}"
+  ],
+            "filters" : [
+  [
+  "CreatedDate",
+  "{{column(Time_Selection.selection, [\"Compact\"]).asObject()}}"
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "multi",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "case_count_by_product" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : "{{column(static_measure.selection, [\"compact\"]).asObject()}}",
+            "autoFilter" : true,
+            "groups" : [
+  "${Constants.CaseProduct}"
+  ],
+            "filters" : [
+  [
+  "CreatedDate",
+  "{{column(Time_Selection.selection, [\"Compact\"]).asObject()}}"
+  ]
+  ],
+            "order" : [
+  [
+  -1,
+  {
+                  "ascending" : false
+                }
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "multi",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "static_CSAT" : {
+        "broadcastFacet" : true,
+        "datasets" : [ ],
+        "dimensions" : [ ],
+        "groups" : [ ],
+        "isGlobal" : false,
+        "numbers" : [ ],
+        "selectMode" : "singlerequired",
+        "start" : {
+          "display" : [
+  "CSAT"
+  ]
+        },
+        "strings" : [ ],
+        "type" : "staticflex",
+        "useGlobal" : true,
+        "values" : [
+  {
+            "display" : "CSAT",
+            "compact" : [
+  [
+  "avg",
+  "CSAT"
+  ],
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "mea" : [
+  -10
+  ]
+          },
+  {
+            "display" : "# of Cases",
+            "compact" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "mea" : [
+  -999
+  ]
+          }
+  ],
+        "visualizationParameters" : { }
+      },
+      "Compare_Backlog" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "unique",
+  "Percent"
+  ]
+  ],
+            "pigql" : "q = load \"${App.EdgeMarts.ServiceCase.Alias}\";ENDTOTAL = filter q by 'IsClosed' == \"false\"; updcreatedTOTAL = filter q by {{cell(Time_Selection.selection, 0, \"BacklogCompare\").asDateRange(\"date('CreatedDate_Year','CreatedDate_Month','CreatedDate_Day')\")}}; updclosedTOTAL = filter q by {{cell(Time_Selection.selection, 0, \"BacklogCompare\").asDateRange(\"date('ClosedDate_Year','ClosedDate_Month','ClosedDate_Day')\")}};compare = group updcreatedTOTAL by all full, updclosedTOTAL by all full, ENDTOTAL by all; compare = foreach compare generate (count(ENDTOTAL)-(count(ENDTOTAL)+count(updclosedTOTAL)-count(updcreatedTOTAL)))/(count(ENDTOTAL)+count(updclosedTOTAL)-count(updcreatedTOTAL)) *100 as 'unique_Percent', (case when (count(ENDTOTAL)-(count(ENDTOTAL)+count(updclosedTOTAL)-count(updcreatedTOTAL)))/(count(ENDTOTAL)+count(updclosedTOTAL)-count(updcreatedTOTAL)) *100 < 0 then \"#f2536d\" when (count(ENDTOTAL)-(count(ENDTOTAL)+count(updclosedTOTAL)-count(updcreatedTOTAL)))/(count(ENDTOTAL)+count(updclosedTOTAL)-count(updcreatedTOTAL)) *100 > 0 then \"#3CAF6D\" else \"#7D98B3\" end) as 'color';",
+            "autoFilter" : true
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "single",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "case_count_by_reason" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : "{{column(static_measure.selection, [\"compact\"]).asObject()}}",
+            "autoFilter" : true,
+            "groups" : [
+  "${Constants.CaseReason}"
+  ],
+            "filters" : [
+  [
+  "CreatedDate",
+  "{{column(Time_Selection.selection, [\"Compact\"]).asObject()}}"
+  ]
+  ],
+            "order" : [
+  [
+  -1,
+  {
+                  "ascending" : false
+                }
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "multi",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "kpi_avg_case_agent_prev_period" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "unique",
+  "Percent"
+  ]
+  ],
+            "pigql" : "q = load \"${App.EdgeMarts.ServiceCase.Alias}\"; curYear = filter q by {{cell(Time_Selection.selection, 0, \"Current\").asDateRange(\"date('CreatedDate_Year','CreatedDate_Month','CreatedDate_Day')\")}}; comparePeriod = filter q by {{cell(Time_Selection.selection, 0, \"LastPeriodCompare\").asDateRange(\"date('CreatedDate_Year','CreatedDate_Month','CreatedDate_Day')\")}};  b = cogroup curYear by all, comparePeriod by all; b = foreach b generate (count(curYear) / unique(curYear.OwnerId) - count(comparePeriod) / unique(comparePeriod.OwnerId))/count(comparePeriod) / unique(comparePeriod.OwnerId) *100 as 'unique_Percent', (case when (count(curYear) / unique(curYear.OwnerId) - count(comparePeriod) / unique(comparePeriod.OwnerId))/count(comparePeriod) / unique(comparePeriod.OwnerId) *100 < 0 then \"#3CAF6D\" when (count(curYear) / unique(curYear.OwnerId) - count(comparePeriod) / unique(comparePeriod.OwnerId))/count(comparePeriod) / unique(comparePeriod.OwnerId) *100 > 0 then \"#f2536d\" else \"#7D98B3\" end) as 'color';",
+            "autoFilter" : true
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "single",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "options" : { },
+          "visualizationType" : "hbar"
+        }
+      },
+      "case_count_by_origin" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : "{{column(static_measure.selection, [\"compact\"]).asObject()}}",
+            "autoFilter" : true,
+            "groups" : [
+  "${Constants.CaseOrigin}"
+  ],
+            "filters" : [
+  [
+  "CreatedDate",
+  "{{column(Time_Selection.selection, [\"Compact\"]).asObject()}}"
+  ]
+  ],
+            "order" : [
+  [
+  -1,
+  {
+                  "ascending" : false
+                }
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "multi",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "filter_agent" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "autoFilter" : true,
+            "groups" : [
+  "Owner.Name"
+  ],
+            "filters" : [
+  [
+  "CreatedDate",
+  "{{column(Time_Selection.selection, [\"Compact\"]).asObject()}}"
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "multi",
+        "type" : "aggregateflex",
+        "useGlobal" : false,
+        "visualizationParameters" : { }
+      },
+      "filter_role" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "autoFilter" : true,
+            "groups" : [
+  "Role.Name"
+  ],
+            "filters" : [
+  [
+  "CreatedDate",
+  "{{column(Time_Selection.selection, [\"Compact\"]).asObject()}}"
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "multi",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "filter_record_type" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "autoFilter" : true,
+            "groups" : [
+  "${Constants.CaseRecordTypeField}"
+  ],
+            "filters" : [
+  [
+  "CreatedDate",
+  "{{column(Time_Selection.selection, [\"Compact\"]).asObject()}}"
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "multi",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "Owner_Id_1" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "autoFilter" : true,
+            "groups" : [
+  "Owner.Id"
+  ],
+            "filters" : [
+  [
+  "CreatedDate",
+  "{{column(Time_Selection.selection, [\"Compact\"]).asObject()}}"
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "single",
+        "type" : "aggregateflex",
+        "useGlobal" : false,
+        "visualizationParameters" : { }
+      },
+      "static_No_CSAT" : {
+        "broadcastFacet" : true,
+        "datasets" : [ ],
+        "dimensions" : [ ],
+        "groups" : [ ],
+        "isGlobal" : false,
+        "numbers" : [ ],
+        "selectMode" : "single",
+        "start" : {
+          "display" : [
+  "# of Cases"
+  ]
+        },
+        "strings" : [ ],
+        "type" : "staticflex",
+        "useGlobal" : true,
+        "values" : [
+  {
+            "display" : "# of Cases",
+            "compact" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "mea" : [
+  -999
+  ]
+          }
+  ],
+        "visualizationParameters" : { }
+      },
+      "filter_support_type" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "autoFilter" : true,
+            "groups" : [
+  "${Constants.CaseSupportLevel}"
+  ],
+            "filters" : [
+  [
+  "CreatedDate",
+  "{{column(Time_Selection.selection, [\"Compact\"]).asObject()}}"
+  ]
+  ],
+            "order" : [
+  [
+  -1,
+  {
+                  "ascending" : false
+                }
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "multi",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "test_step" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "pigql" : "q = load \"${App.EdgeMarts.ServiceCase.Alias}\";q = filter q by {{cell(Time_Selection.selection, 0, \"BacklogCompare\").asDateRange(\"date('CreatedDate_Year','CreatedDate_Month','CreatedDate_Day')\")}}; q = group q by all; q = foreach q generate count() as 'count';",
+            "autoFilter" : true
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "single",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "static_2" : {
+        "broadcastFacet" : false,
+        "datasets" : [ ],
+        "dimensions" : [ ],
+        "groups" : [ ],
+        "isGlobal" : false,
+        "numbers" : [ ],
+        "selectMode" : "single",
+        "strings" : [ ],
+        "type" : "staticflex",
+        "useGlobal" : false,
+        "values" : [
+  {
+            "display" : "This Month",
+            "value" : [
+  "current month",
+  "current month"
+  ]
+          },
+  {
+            "display" : "This year",
+            "value" : [
+  "current ${Constants.Fiscal_Prefix}year",
+  "current ${Constants.Fiscal_Prefix}year"
+  ]
+          }
+  ],
+        "visualizationParameters" : { }
+      },
+      "owner_group_select" : {
+        "broadcastFacet" : false,
+        "datasets" : [ ],
+        "dimensions" : [ ],
+        "groups" : [ ],
+        "isGlobal" : false,
+        "numbers" : [ ],
+        "selectMode" : "single",
+        "start" : {
+          "display" : [
+  "Agent"
+  ]
+        },
+        "strings" : [ ],
+        "type" : "staticflex",
+        "useGlobal" : false,
+        "values" : [
+  {
+            "display" : "Agent",
+            "value" : "Owner.Name"
+          },
+  {
+            "display" : "Role",
+            "value" : "Role.Name"
+          }
+  ],
+        "visualizationParameters" : { }
+      },
+      "duration_Prev_Period" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "unique",
+  "Percent"
+  ]
+  ],
+            "pigql" : "q = load \"${App.EdgeMarts.ServiceCase.Alias}\"; q = filter q by 'IsClosed' == \"true\"; r = filter q by {{cell(Time_Selection.selection, 0, \"LastPeriodCompare\").asDateRange(\"date('CreatedDate_Year','CreatedDate_Month','CreatedDate_Day')\")}}; s = filter q by {{cell(Time_Selection.selection, 0, \"Current\").asDateRange(\"date('CreatedDate_Year','CreatedDate_Month','CreatedDate_Day')\")}}; t = group r by all, s by all; t = foreach t generate 100*(avg(s.'{{cell(Static_Duration.selection, 0, \"pigql_value\").asObject()}}')-avg(r.'{{cell(Static_Duration.selection, 0, \"pigql_value\").asObject()}}'))/avg(r.'{{cell(Static_Duration.selection, 0, \"pigql_value\").asObject()}}') as 'unique_Percent', (case when 100*(avg(s.'{{cell(Static_Duration.selection, 0, \"pigql_value\").asObject()}}')-avg(r.'{{cell(Static_Duration.selection, 0, \"pigql_value\").asObject()}}'))/avg(r.'{{cell(Static_Duration.selection, 0, \"pigql_value\").asObject()}}') < 0 then \"#3CAF6D\" when 100*(avg(s.'{{cell(Static_Duration.selection, 0, \"pigql_value\").asObject()}}')-avg(r.'{{cell(Static_Duration.selection, 0, \"pigql_value\").asObject()}}'))/avg(r.'{{cell(Static_Duration.selection, 0, \"pigql_value\").asObject()}}') > 0 then \"#f2536d\"  else \"#7D98B3\" end) as 'color';",
+            "autoFilter" : true
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "kpi_avg_case_agent" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "avg",
+  "number"
+  ]
+  ],
+            "pigql" : "a = load \"${App.EdgeMarts.ServiceCase.Alias}\";a = filter a by {{cell(Time_Selection.selection, 0, \"Current\").asDateRange(\"date('CreatedDate_Year','CreatedDate_Month','CreatedDate_Day')\")}};a = filter a by {{column(static_case_open_closed.selection, [\"IsClosed\"]).asEquality(\"IsClosed\")}};a = group a by all;a = foreach a generate count() / unique('Owner.Id') as 'avg_number';",
+            "autoFilter" : true
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "single",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "kpi_escalation_percent" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "perc",
+  "Percent"
+  ]
+  ],
+            "pigql" : "q = load \"${App.EdgeMarts.ServiceCase.Alias}\"; q = filter q by {{cell(Time_Selection.selection, 0, \"Current\").asDateRange(\"date('CreatedDate_Year','CreatedDate_Month','CreatedDate_Day')\")}};q = group q by 'IsEscalated'; q = foreach q generate 'IsEscalated' as 'IsEscalated', count() as 'count', (count()) / sum(count()) over([..] partition by all)*100 as 'perc_Percent'; q = filter q by 'IsEscalated' == \"true\"; ",
+            "autoFilter" : true
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "single",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "${Constants.CaseDuration}_1" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "sum",
+  "${Constants.CaseDuration}"
+  ]
+  ],
+            "autoFilter" : true,
+            "filters" : [
+  [
+  "CreatedDate",
+  "{{column(Time_Selection.selection, [\"Compact\"]).asObject()}}"
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "single",
+        "type" : "aggregateflex",
+        "useGlobal" : false,
+        "visualizationParameters" : { }
+      },
+      "Static_Duration" : {
+        "broadcastFacet" : true,
+        "datasets" : [ ],
+        "dimensions" : [ ],
+        "groups" : [ ],
+        "isGlobal" : false,
+        "numbers" : [ ],
+        "selectMode" : "singlerequired",
+        "start" : {
+          "display" : [
+  "${Constants.CaseDurationLabel}"
+  ]
+        },
+        "strings" : [ ],
+        "type" : "staticflex",
+        "useGlobal" : true,
+        "values" : [
+  {
+            "display" : "${Constants.CaseDurationLabel}",
+            "value" : [
+  "avg",
+  "${Constants.CaseDuration}"
+  ],
+            "pigql_value" : "${Constants.CaseDuration}",
+            "measure_field" : "avg_${Constants.CaseDuration}"
+          }
+  ],
+        "visualizationParameters" : { }
+      },
+      "Product__c_1" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : "{{column(static_measure.selection, [\"compact\"]).asObject()}}",
+            "autoFilter" : true,
+            "groups" : [
+  "${Constants.CaseProduct}"
+  ],
+            "order" : [
+  [
+  -1,
+  {
+                  "ascending" : false
+                }
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "multi",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "duration_Last_Year" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "unique",
+  "Percent"
+  ]
+  ],
+            "pigql" : "q = load \"${App.EdgeMarts.ServiceCase.Alias}\"; q = filter q by 'IsClosed' == \"true\"; r = filter q by {{cell(Time_Selection.selection, 0, \"LastYearCompare\").asDateRange(\"date('CreatedDate_Year','CreatedDate_Month','CreatedDate_Day')\")}}; s = filter q by {{cell(Time_Selection.selection, 0, \"Current\").asDateRange(\"date('CreatedDate_Year','CreatedDate_Month','CreatedDate_Day')\")}}; t = group r by all, s by all; t = foreach t generate 100*(avg(s.'{{cell(Static_Duration.selection, 0, \"pigql_value\").asObject()}}')-avg(r.'{{cell(Static_Duration.selection, 0, \"pigql_value\").asObject()}}'))/avg(r.'{{cell(Static_Duration.selection, 0, \"pigql_value\").asObject()}}') as 'unique_Percent', (case when 100*(avg(s.'{{cell(Static_Duration.selection, 0, \"pigql_value\").asObject()}}')-avg(r.'{{cell(Static_Duration.selection, 0, \"pigql_value\").asObject()}}'))/avg(r.'{{cell(Static_Duration.selection, 0, \"pigql_value\").asObject()}}') < 0 then \"#3CAF6D\" when 100*(avg(s.'{{cell(Static_Duration.selection, 0, \"pigql_value\").asObject()}}')-avg(r.'{{cell(Static_Duration.selection, 0, \"pigql_value\").asObject()}}'))/avg(r.'{{cell(Static_Duration.selection, 0, \"pigql_value\").asObject()}}') > 0 then \"#f2536d\" else \"#7D98B3\" end) as 'color';",
+            "autoFilter" : true
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "static_case_open_closed" : {
+        "broadcastFacet" : false,
+        "datasets" : [ ],
+        "dimensions" : [ ],
+        "groups" : [ ],
+        "isGlobal" : false,
+        "numbers" : [ ],
+        "selectMode" : "single",
+        "strings" : [ ],
+        "type" : "staticflex",
+        "useGlobal" : false,
+        "values" : [
+  {
+            "display" : "Open",
+            "value" : "true"
+          },
+  {
+            "display" : "Closed",
+            "value" : "false"
+          }
+  ],
+        "visualizationParameters" : { }
+      },
+      "Product__c_2" : {
+        "broadcastFacet" : false,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "pigql" : "q = load \"${App.EdgeMarts.ServiceCase.Alias}\";ENDTOTAL = filter q by 'IsClosed' == \"false\";END_FAKE = group q by all; END_FAKE = foreach END_FAKE generate \"Current Backlog\" as 'Bucket', 0 as 'sum_Backlog'; END_REAL = group ENDTOTAL by all;END_REAL = foreach END_REAL generate \"Current Backlog\" as 'Bucket', count() as 'sum_Backlog'; END = union END_FAKE,END_REAL; END = union END_FAKE,END_REAL; END = group END by all; END = foreach END generate \"Current Backlog\" as 'Bucket', sum('sum_Backlog') as 'sum_Backlog'; upcreatedTotal = filter q by {{cell(Time_Selection.selection, 0, \"BacklogCompare\").asDateRange(\"date('CreatedDate_Year','CreatedDate_Month','CreatedDate_Day')\")}}; upcreated = group upcreatedTotal by all; upcreated = foreach upcreated generate \"Cases Created\" as 'Bucket', count() as 'sum_Backlog';dnclosedTotal = filter q by {{cell(Time_Selection.selection, 0, \"BacklogCompare\").asDateRange(\"date('CreatedDate_Year','CreatedDate_Month','CreatedDate_Day')\")}};dnclosed = group dnclosedTotal by all;dnclosed = foreach dnclosed generate \"Cases Closed\" as 'Bucket', -count() as 'sum_Backlog';START = group upcreatedTotal by all full, dnclosedTotal by all full, ENDTOTAL by all;START = foreach START generate \"BacklogLabel\" as 'Bucket', count(ENDTOTAL)+count(dnclosedTotal)-count(upcreatedTotal) as 'sum_Backlog';WATERFALL = union START, upcreated,dnclosed, END;",
+            "measures" : [
+  [
+  "sum",
+  "Backlog"
+  ]
+  ],
+            "autoFilter" : true,
+            "groups" : [
+  "Bucket"
+  ]
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "selectMode" : "single",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "lens_1" : {
+        "broadcastFacet" : true,
+        "groups" : [ ],
+        "numbers" : [ ],
+        "query" : "q = load \"${App.EdgeMarts.ServiceCase.Alias}\"; q = filter q by {{cell(Time_Selection.selection, 0, \"Current\").asDateRange(\"date('CreatedDate_Year','CreatedDate_Month','CreatedDate_Day')\")}}; q = foreach q generate 'CaseNumber', first('Account.Name') as 'Account.Name', ${Constants.CaseCSATQuery} ${Constants.CaseFCRQuery} first('${Constants.CaseType}') as '${Constants.CaseType}', first('Owner.Name') as 'Owner.Name', ${Constants.CaseSLAQuery} avg('{{column(Static_Duration.selection, [\"pigql_value\"]).asObject()}}') as '{{column(Static_Duration.selection, [\"measure_field\"]).asObject()}}', first('${Constants.CaseOrigin}') as '${Constants.CaseOrigin}', first('${Constants.CaseSeverityLevel}') as '${Constants.CaseSeverityLevel}', first('${Constants.CaseStatus}') as '${Constants.CaseStatus}', ${Constants.CaseSupportLevelQuery} first('${Constants.CaseProduct}') as '${Constants.CaseProductLabel}';q = limit q 100;",
+        "receiveFacet" : true,
+        "selectMode" : "single",
+        "strings" : [ ],
+        "type" : "saql",
+        "useGlobal" : false
+      },
+      "kpi_fcr_percent" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.ServiceCase.Alias}"
+          }
+  ],
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "perc",
+  "Percent"
+  ]
+  ],
+            "pigql" : "q = load \"${App.EdgeMarts.ServiceCase.Alias}\"; q = filter q by {{cell(Time_Selection.selection, 0, \"Current\").asDateRange(\"date('CreatedDate_Year','CreatedDate_Month','CreatedDate_Day')\")}};q = filter q by 'IsClosed' == \"true\"; q = group q by '${Constants.CaseFCR}'; q = foreach q generate '${Constants.CaseFCR}' as '${Constants.CaseFCR}', count() as 'count', (count()) / sum(count()) over([..] partition by all)*100 as 'perc_Percent'; q = filter q by '${Constants.CaseFCR}' == \"true\"; ",
+            "autoFilter" : true
+          },
+          "version" : -1.0
+        },
+        "receiveFacet" : true,
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      }
+    },
+    "widgetStyle" : {
+      "backgroundColor" : "#FFFFFF",
+      "borderColor" : "#E6ECF2",
+      "borderEdges" : [ ],
+      "borderRadius" : 0,
+      "borderWidth" : 1
+    },
+    "widgets" : {
+      "container_19" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_18" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_17" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_16" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_15" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_14" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "chart_case_count_by_origin" : {
+        "parameters" : {
+          "autoFitMode" : "keepLabels",
+          "showValues" : true,
+          "bins" : {
+            "breakpoints" : {
+              "high" : 100,
+              "low" : 0
+            },
+            "bands" : {
+              "high" : {
+                "color" : "#008000",
+                "label" : ""
+              },
+              "low" : {
+                "color" : "#B22222",
+                "label" : ""
+              },
+              "medium" : {
+                "color" : "#ffa500",
+                "label" : ""
+              }
+            }
+          },
+          "legend" : {
+            "showHeader" : true,
+            "show" : false,
+            "customSize" : "auto",
+            "position" : "right-top",
+            "inside" : false
+          },
+          "axisMode" : "multi",
+          "visualizationType" : "hbar",
+          "exploreLink" : true,
+          "title" : {
+            "label" : "",
+            "align" : "center",
+            "subtitleLabel" : ""
+          },
+          "trellis" : {
+            "enable" : false,
+            "type" : "x",
+            "parameters" : { },
+            "chartsPerLine" : 4
+          },
+          "binValues" : false,
+          "measureAxis2" : {
+            "sqrtScale" : false,
+            "showTitle" : true,
+            "showAxis" : true,
+            "title" : ""
+          },
+          "measureAxis1" : {
+            "sqrtScale" : false,
+            "showTitle" : false,
+            "showAxis" : false,
+            "title" : ""
+          },
+          "step" : "case_count_by_origin",
+          "theme" : "light",
+          "dimensionAxis" : {
+            "showTitle" : false,
+            "customSize" : 30,
+            "showAxis" : true,
+            "title" : ""
+          }
+        },
+        "type" : "chart"
+      },
+      "container_13" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "number_kpi_unique_owner_count" : {
+        "parameters" : {
+          "compact" : false,
+          "exploreLink" : true,
+          "measureField" : "unique_OwnerId",
+          "numberColor" : "#FFFFFF",
+          "numberSize" : 24,
+          "step" : "kpi_unique_owner_count",
+          "textAlignment" : "left",
+          "title" : "Agents Working",
+          "titleColor" : "#C5D3E0",
+          "titleSize" : 12
+        },
+        "type" : "number"
+      },
+      "chart_average_case_escalated_over_time" : {
+        "parameters" : {
+          "showPoints" : true,
+          "legend" : {
+            "showHeader" : false,
+            "show" : true,
+            "customSize" : "auto",
+            "position" : "right-top",
+            "inside" : false
+          },
+          "axisMode" : "multi",
+          "visualizationType" : "time",
+          "missingValue" : "connect",
+          "timeAxis" : {
+            "showTitle" : false,
+            "showAxis" : true,
+            "title" : ""
+          },
+          "exploreLink" : true,
+          "title" : {
+            "label" : "",
+            "align" : "center",
+            "subtitleLabel" : ""
+          },
+          "trellis" : {
+            "enable" : false,
+            "type" : "x",
+            "parameters" : { },
+            "chartsPerLine" : 4
+          },
+          "fillArea" : true,
+          "showZero" : true,
+          "measureAxis2" : {
+            "sqrtScale" : false,
+            "showTitle" : true,
+            "showAxis" : true,
+            "title" : ""
+          },
+          "measureAxis1" : {
+            "sqrtScale" : false,
+            "showTitle" : false,
+            "showAxis" : true,
+            "title" : ""
+          },
+          "step" : "average_case_escalated_over_time",
+          "theme" : "dark"
+        },
+        "type" : "chart"
+      },
+      "number_Compare_Backlog" : {
+        "parameters" : {
+          "compact" : false,
+          "exploreLink" : true,
+          "measureField" : "unique_Percent",
+          "numberColor" : "#FFFFFF",
+          "numberSize" : 12,
+          "step" : "kpi_avg_case_agent_prev_period",
+          "textAlignment" : "center",
+          "title" : "{{coalesce(cell(Time_Selection.selection, 0, \"text_display\"),\"#a9a9a9\").asString()}}",
+          "titleColor" : "#E6ECF2",
+          "titleSize" : 12
+        },
+        "type" : "number"
+      },
+      "listselector_filter_role" : {
+        "parameters" : {
+          "compact" : false,
+          "expanded" : true,
+          "exploreLink" : false,
+          "instant" : false,
+          "measureField" : "count",
+          "step" : "filter_role",
+          "title" : "Role Name"
+        },
+        "type" : "listselector"
+      },
+      "number_kpi_avg_csat" : {
+        "parameters" : {
+          "compact" : false,
+          "exploreLink" : true,
+          "measureField" : "avg_CSAT",
+          "numberColor" : "#FFFFFF",
+          "numberSize" : 24,
+          "step" : "kpi_avg_csat",
+          "textAlignment" : "left",
+          "title" : "Avg CSAT",
+          "titleColor" : "#C5D3E0",
+          "titleSize" : 12
+        },
+        "type" : "number"
+      },
+      "container_1" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_2" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_3" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_4" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_5" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_6" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_23" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "listselector_filter_record_type" : {
+        "parameters" : {
+          "compact" : false,
+          "expanded" : true,
+          "exploreLink" : false,
+          "instant" : false,
+          "measureField" : "count",
+          "step" : "filter_record_type",
+          "title" : "Case Record Type"
+        },
+        "type" : "listselector"
+      },
+      "container_7" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "number_kpi_fcr_percent" : {
+        "parameters" : {
+          "compact" : false,
+          "exploreLink" : true,
+          "measureField" : "perc_Percent",
+          "numberColor" : "#FFFFFF",
+          "numberSize" : 24,
+          "step" : "kpi_fcr_percent",
+          "textAlignment" : "left",
+          "title" : "First Contact Resolution",
+          "titleColor" : "#C5D3E0",
+          "titleSize" : 12
+        },
+        "type" : "number"
+      },
+      "container_22" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_8" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_21" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "chart_kpi_avg_csat" : {
+        "parameters" : {
+          "max" : 100,
+          "legend" : {
+            "showHeader" : true,
+            "show" : false,
+            "position" : "right-top",
+            "inside" : false
+          },
+          "icon" : "star",
+          "visualizationType" : "rating",
+          "exploreLink" : true,
+          "title" : {
+            "label" : "",
+            "align" : "center",
+            "subtitleLabel" : ""
+          },
+          "trellis" : {
+            "enable" : false,
+            "type" : "x",
+            "parameters" : { },
+            "chartsPerLine" : 4
+          },
+          "colors" : {
+            "lowColor1" : "#1674D9",
+            "highColor1" : "#1674D9"
+          },
+          "high" : 50,
+          "min" : 0,
+          "numberOfIcons" : 10,
+          "valueType" : "none",
+          "valuesOnLeft" : false,
+          "step" : "kpi_avg_csat",
+          "theme" : "dark",
+          "showMax" : false
+        },
+        "type" : "chart"
+      },
+      "text_iphone_AgentPerformance" : {
+        "parameters" : {
+          "fontSize" : 24,
+          "text" : "Agent Performance",
+          "textAlignment" : "center",
+          "textColor" : "#091A3E"
+        },
+        "type" : "text"
+      },
+      "container_9" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_20" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "listselector_filter_support_type" : {
+        "parameters" : {
+          "compact" : false,
+          "expanded" : true,
+          "exploreLink" : false,
+          "instant" : false,
+          "measureField" : "count",
+          "step" : "filter_support_type",
+          "title" : "Case Support Level"
+        },
+        "type" : "listselector"
+      },
+      "listselector_filter_isclosed" : {
+        "parameters" : {
+          "compact" : false,
+          "expanded" : true,
+          "exploreLink" : false,
+          "instant" : true,
+          "measureField" : "count",
+          "step" : "filter_isclosed",
+          "title" : "Open/Closed"
+        },
+        "type" : "listselector"
+      },
+      "number_duration_Prev_Period" : {
+        "parameters" : {
+          "compact" : true,
+          "exploreLink" : true,
+          "measureField" : "unique_Percent",
+          "numberColor" : "#FFFFFF",
+          "numberSize" : 12,
+          "step" : "duration_Prev_Period",
+          "textAlignment" : "center",
+          "title" : "{{coalesce(cell(Time_Selection.selection, 0, \"text_display\"),\"#000000\").asString()}}",
+          "titleColor" : "#E6ECF2",
+          "titleSize" : 12
+        },
+        "type" : "number"
+      },
+      "listselector_owner_group_select" : {
+        "parameters" : {
+          "compact" : false,
+          "expanded" : true,
+          "exploreLink" : false,
+          "instant" : true,
+          "step" : "owner_group_select",
+          "title" : ""
+        },
+        "type" : "listselector"
+      },
+      "listselector_filter_reason" : {
+        "parameters" : {
+          "compact" : false,
+          "expanded" : true,
+          "exploreLink" : false,
+          "instant" : false,
+          "measureField" : "count",
+          "step" : "filter_reason",
+          "title" : "By Reason"
+        },
+        "type" : "listselector"
+      },
+      "text_Constants_CaseReason" : {
+        "parameters" : {
+          "fontSize" : 14,
+          "text" : "Reason",
+          "textAlignment" : "left",
+          "textColor" : "#335779"
+        },
+        "type" : "text"
+      },
+      "number_kpi_escalation_percent" : {
+        "parameters" : {
+          "compact" : false,
+          "exploreLink" : true,
+          "measureField" : "perc_Percent",
+          "numberColor" : "#FFFFFF",
+          "numberSize" : 24,
+          "step" : "kpi_escalation_percent",
+          "textAlignment" : "left",
+          "title" : "Escalated",
+          "titleColor" : "#C5D3E0",
+          "titleSize" : 14
+        },
+        "type" : "number"
+      },
+      "text_Constants_CaseOrigin" : {
+        "parameters" : {
+          "fontSize" : 14,
+          "text" : "Origin",
+          "textAlignment" : "left",
+          "textColor" : "#335779"
+        },
+        "type" : "text"
+      },
+      "number_compare_backlog_Last_Year" : {
+        "parameters" : {
+          "compact" : false,
+          "exploreLink" : true,
+          "measureField" : "unique_Percent",
+          "numberColor" : "#FFFFFF",
+          "numberSize" : 12,
+          "step" : "kpi_avg_case_agent_last_year",
+          "textAlignment" : "right",
+          "title" : "vs Last Year",
+          "titleColor" : "#E6ECF2",
+          "titleSize" : 12
+        },
+        "type" : "number"
+      },
+      "listselector_filter_origin" : {
+        "parameters" : {
+          "compact" : false,
+          "expanded" : true,
+          "exploreLink" : false,
+          "instant" : false,
+          "measureField" : "count",
+          "step" : "filter_origin",
+          "title" : "By Origin"
+        },
+        "type" : "listselector"
+      },
+      "number_closedcases_Last_Year" : {
+        "parameters" : {
+          "compact" : true,
+          "exploreLink" : true,
+          "measureField" : "unique_Percent",
+          "numberColor" : "{{coalesce(cell(closedcases_Last_Year.result, 0, \"color\"),\"#a9a9a9\").asString()}}",
+          "numberSize" : 12,
+          "step" : "closedcases_Last_Year",
+          "textAlignment" : "right",
+          "title" : "vs Last Year",
+          "titleColor" : "#E6ECF2",
+          "titleSize" : 12
+        },
+        "type" : "number"
+      },
+      "table_lens_1" : {
+        "parameters" : {
+          "columns" : [ ],
+          "customBulkActions" : [ ],
+          "exploreLink" : true,
+          "step" : "lens_1"
+        },
+        "type" : "table"
+      },
+      "container_12" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_11" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "chart_case_count_by_product" : {
+        "parameters" : {
+          "autoFitMode" : "keepLabels",
+          "showValues" : true,
+          "bins" : {
+            "breakpoints" : {
+              "high" : 100,
+              "low" : 0
+            },
+            "bands" : {
+              "high" : {
+                "color" : "#008000",
+                "label" : ""
+              },
+              "low" : {
+                "color" : "#B22222",
+                "label" : ""
+              },
+              "medium" : {
+                "color" : "#ffa500",
+                "label" : ""
+              }
+            }
+          },
+          "legend" : {
+            "showHeader" : true,
+            "show" : false,
+            "customSize" : "auto",
+            "position" : "right-top",
+            "inside" : false
+          },
+          "axisMode" : "multi",
+          "visualizationType" : "hbar",
+          "exploreLink" : true,
+          "title" : {
+            "label" : "",
+            "align" : "center",
+            "subtitleLabel" : ""
+          },
+          "trellis" : {
+            "enable" : false,
+            "type" : "x",
+            "parameters" : { },
+            "chartsPerLine" : 4
+          },
+          "binValues" : false,
+          "measureAxis2" : {
+            "sqrtScale" : false,
+            "showTitle" : true,
+            "showAxis" : true,
+            "title" : ""
+          },
+          "measureAxis1" : {
+            "sqrtScale" : false,
+            "showTitle" : false,
+            "showAxis" : false,
+            "title" : ""
+          },
+          "step" : "case_count_by_product",
+          "theme" : "light",
+          "dimensionAxis" : {
+            "showTitle" : false,
+            "customSize" : 30,
+            "showAxis" : true,
+            "title" : ""
+          }
+        },
+        "type" : "chart"
+      },
+      "container_10" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "link_Home" : {
+        "parameters" : {
+          "destination" : "${App.Dashboards['Service Analytics Overview'].Id}",
+          "destinationType" : "dashboard",
+          "fontSize" : 12,
+          "includeState" : false,
+          "text" : "Overview",
+          "textAlignment" : "center",
+          "textColor" : "#091A3E"
+        },
+        "type" : "link"
+      },
+      "pillbox_static_CSAT" : {
+        "parameters" : {
+          "compact" : false,
+          "exploreLink" : false,
+          "step" : "static_CSAT"
+        },
+        "type" : "pillbox"
+      },
+      "number_duration_Last_Year" : {
+        "parameters" : {
+          "compact" : true,
+          "exploreLink" : true,
+          "measureField" : "unique_Percent",
+          "numberColor" : "{{coalesce(cell(duration_Last_Year.result, 0, \"color\"),\"#000000\").asString()}}",
+          "numberSize" : 12,
+          "step" : "duration_Last_Year",
+          "textAlignment" : "right",
+          "title" : "vs Last Year",
+          "titleColor" : "#E6ECF2",
+          "titleSize" : 12
+        },
+        "type" : "number"
+      },
+      "number_kpi_avg_case_agent" : {
+        "parameters" : {
+          "compact" : true,
+          "exploreLink" : true,
+          "measureField" : "avg_number",
+          "numberColor" : "#FFFFFF",
+          "numberSize" : 24,
+          "step" : "kpi_avg_case_agent",
+          "textAlignment" : "left",
+          "title" : "Average Cases Per Agent",
+          "titleColor" : "#C5D3E0",
+          "titleSize" : 14
+        },
+        "type" : "number"
+      },
+      "listselector_filter_product" : {
+        "parameters" : {
+          "compact" : false,
+          "expanded" : true,
+          "exploreLink" : false,
+          "instant" : false,
+          "measureField" : "count",
+          "step" : "filter_product",
+          "title" : "By Product"
+        },
+        "type" : "listselector"
+      },
+      "container_36" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "text_Constants_CaseProductLabel" : {
+        "parameters" : {
+          "fontSize" : 14,
+          "text" : "Product",
+          "textAlignment" : "left",
+          "textColor" : "#335779"
+        },
+        "type" : "text"
+      },
+      "listselector_filter_agent" : {
+        "parameters" : {
+          "compact" : false,
+          "expanded" : true,
+          "exploreLink" : false,
+          "instant" : false,
+          "measureField" : "count",
+          "step" : "filter_agent",
+          "title" : "Agent"
+        },
+        "type" : "listselector"
+      },
+      "text_Case_Details" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "Case Details",
+          "textAlignment" : "left",
+          "textColor" : "#091A3E"
+        },
+        "type" : "text"
+      },
+      "chart_average_case_duration_over_time" : {
+        "parameters" : {
+          "showPoints" : true,
+          "legend" : {
+            "showHeader" : false,
+            "show" : true,
+            "customSize" : "auto",
+            "position" : "right-top",
+            "inside" : false
+          },
+          "axisMode" : "multi",
+          "visualizationType" : "time",
+          "missingValue" : "connect",
+          "timeAxis" : {
+            "showTitle" : false,
+            "showAxis" : true,
+            "title" : ""
+          },
+          "exploreLink" : true,
+          "title" : {
+            "label" : "",
+            "align" : "center",
+            "subtitleLabel" : ""
+          },
+          "trellis" : {
+            "enable" : false,
+            "type" : "x",
+            "parameters" : { },
+            "chartsPerLine" : 4
+          },
+          "fillArea" : true,
+          "showZero" : true,
+          "measureAxis2" : {
+            "sqrtScale" : false,
+            "showTitle" : true,
+            "showAxis" : true,
+            "title" : ""
+          },
+          "measureAxis1" : {
+            "sqrtScale" : false,
+            "showTitle" : false,
+            "showAxis" : true,
+            "title" : ""
+          },
+          "step" : "average_case_duration_over_time",
+          "theme" : "dark"
+        },
+        "type" : "chart"
+      },
+      "container_35" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "listselector_Static_Duration" : {
+        "parameters" : {
+          "compact" : false,
+          "expanded" : true,
+          "exploreLink" : false,
+          "instant" : true,
+          "step" : "Static_Duration",
+          "title" : "Duration"
+        },
+        "type" : "listselector"
+      },
+      "listselector_filter_type" : {
+        "parameters" : {
+          "compact" : false,
+          "expanded" : true,
+          "exploreLink" : false,
+          "instant" : false,
+          "measureField" : "count",
+          "step" : "filter_type",
+          "title" : "Case Type"
+        },
+        "type" : "listselector"
+      },
+      "pillbox_static_measure" : {
+        "parameters" : {
+          "compact" : false,
+          "exploreLink" : false,
+          "step" : "static_measure"
+        },
+        "type" : "pillbox"
+      },
+      "text_Segmentation" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "Segmentation",
+          "textAlignment" : "left",
+          "textColor" : "#091A3E"
+        },
+        "type" : "text"
+      },
+      "text_bubble_info_text" : {
+        "parameters" : {
+          "fontSize" : 12,
+          "text" : "Click on bubble to filter dashboard",
+          "textAlignment" : "left",
+          "textColor" : "#7D98B3"
+        },
+        "type" : "text"
+      },
+      "number_kpi_escalation_percent_Prev_Period" : {
+        "parameters" : {
+          "compact" : true,
+          "exploreLink" : true,
+          "measureField" : "unique_Percent",
+          "numberColor" : "#FFFFFF",
+          "numberSize" : 12,
+          "step" : "kpi_escalation_percent_Prev_Period",
+          "textAlignment" : "center",
+          "title" : "{{coalesce(cell(Time_Selection.selection, 0, \"text_display\"),\"#a9a9a9\").asString()}}",
+          "titleColor" : "#E6ECF2",
+          "titleSize" : 12
+        },
+        "type" : "number"
+      },
+      "chart_case_count_by_reason" : {
+        "parameters" : {
+          "autoFitMode" : "keepLabels",
+          "showValues" : true,
+          "bins" : {
+            "breakpoints" : {
+              "high" : 100,
+              "low" : 0
+            },
+            "bands" : {
+              "high" : {
+                "color" : "#008000",
+                "label" : ""
+              },
+              "low" : {
+                "color" : "#B22222",
+                "label" : ""
+              },
+              "medium" : {
+                "color" : "#ffa500",
+                "label" : ""
+              }
+            }
+          },
+          "legend" : {
+            "showHeader" : true,
+            "show" : false,
+            "customSize" : "auto",
+            "position" : "right-top",
+            "inside" : false
+          },
+          "axisMode" : "multi",
+          "visualizationType" : "hbar",
+          "exploreLink" : true,
+          "title" : {
+            "label" : "",
+            "align" : "center",
+            "subtitleLabel" : ""
+          },
+          "trellis" : {
+            "enable" : false,
+            "type" : "x",
+            "parameters" : { },
+            "chartsPerLine" : 4
+          },
+          "binValues" : false,
+          "measureAxis2" : {
+            "sqrtScale" : false,
+            "showTitle" : true,
+            "showAxis" : true,
+            "title" : ""
+          },
+          "measureAxis1" : {
+            "sqrtScale" : false,
+            "showTitle" : false,
+            "showAxis" : false,
+            "title" : ""
+          },
+          "step" : "case_count_by_reason",
+          "theme" : "light",
+          "dimensionAxis" : {
+            "showTitle" : false,
+            "customSize" : 30,
+            "showAxis" : true,
+            "title" : ""
+          }
+        },
+        "type" : "chart"
+      },
+      "text_Performance_Summary" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "Performance Summary",
+          "textAlignment" : "left",
+          "textColor" : "#C5D3E0"
+        },
+        "type" : "text"
+      },
+      "listselector_filter_account" : {
+        "parameters" : {
+          "compact" : false,
+          "expanded" : true,
+          "exploreLink" : false,
+          "instant" : false,
+          "measureField" : "count",
+          "step" : "filter_account",
+          "title" : "Account Name"
+        },
+        "type" : "listselector"
+      },
+      "listselector_Time_Selection" : {
+        "parameters" : {
+          "compact" : false,
+          "expanded" : true,
+          "exploreLink" : false,
+          "instant" : true,
+          "step" : "Time_Selection",
+          "title" : "Date Range"
+        },
+        "type" : "listselector"
+      },
+      "container_29" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "chart_agent_by_avg_duration_avg_csat" : {
+        "parameters" : {
+          "legend" : {
+            "showHeader" : true,
+            "show" : true,
+            "customSize" : 20,
+            "position" : "right-top",
+            "inside" : false
+          },
+          "x" : {
+            "sqrtScale" : false,
+            "showZero" : false,
+            "showTitle" : true,
+            "showAxis" : true,
+            "title" : ""
+          },
+          "visualizationType" : "scatter",
+          "y" : {
+            "sqrtScale" : false,
+            "showZero" : false,
+            "showTitle" : true,
+            "showAxis" : true,
+            "title" : ""
+          },
+          "step" : "agent_by_avg_duration_avg_csat",
+          "theme" : "light",
+          "exploreLink" : true,
+          "title" : {
+            "label" : "",
+            "align" : "center",
+            "subtitleLabel" : ""
+          },
+          "trellis" : {
+            "enable" : false,
+            "type" : "x",
+            "parameters" : { },
+            "chartsPerLine" : 4
+          }
+        },
+        "type" : "chart"
+      },
+      "container_28" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_27" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_26" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "listselector_2" : {
+        "parameters" : {
+          "compact" : false,
+          "exploreLink" : false,
+          "instant" : true,
+          "measureField" : "count",
+          "step" : "filter_role",
+          "title" : "Role"
+        },
+        "type" : "listselector"
+      },
+      "container_25" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_24" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "documentId" : "",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "chart_average_case_count_over_time" : {
+        "parameters" : {
+          "showPoints" : true,
+          "legend" : {
+            "showHeader" : false,
+            "show" : true,
+            "customSize" : "auto",
+            "position" : "right-top",
+            "inside" : false
+          },
+          "axisMode" : "multi",
+          "visualizationType" : "time",
+          "missingValue" : "connect",
+          "exploreLink" : true,
+          "timeAxis" : {
+            "showTitle" : false,
+            "showAxis" : true,
+            "title" : ""
+          },
+          "title" : {
+            "label" : "",
+            "align" : "center",
+            "subtitleLabel" : ""
+          },
+          "trellis" : {
+            "enable" : false,
+            "type" : "x",
+            "parameters" : { },
+            "chartsPerLine" : 4
+          },
+          "fillArea" : true,
+          "showZero" : true,
+          "measureAxis2" : {
+            "sqrtScale" : false,
+            "showTitle" : true,
+            "showAxis" : true,
+            "title" : ""
+          },
+          "measureAxis1" : {
+            "sqrtScale" : false,
+            "showTitle" : false,
+            "showAxis" : true,
+            "title" : "Backlog Trend"
+          },
+          "theme" : "dark",
+          "step" : "average_case_count_over_time"
+        },
+        "type" : "chart"
+      },
+      "listselector_4" : {
+        "parameters" : {
+          "compact" : false,
+          "exploreLink" : false,
+          "instant" : true,
+          "step" : "static_CSAT",
+          "title" : "CSAT/No CSAT"
+        },
+        "type" : "listselector"
+      },
+      "text_Agent_Performance" : {
+        "parameters" : {
+          "fontSize" : 24,
+          "text" : "Agent Performance",
+          "textAlignment" : "left",
+          "textColor" : "rgb(9, 26, 62)"
+        },
+        "type" : "text"
+      },
+      "number_kpi_avg_duration" : {
+        "parameters" : {
+          "compact" : false,
+          "exploreLink" : true,
+          "measureField" : "avg_Duration__c",
+          "numberColor" : "#FFFFFF",
+          "numberSize" : 24,
+          "step" : "kpi_avg_duration",
+          "textAlignment" : "left",
+          "titleColor" : "#C5D3E0",
+          "titleSize" : 14
+        },
+        "type" : "number"
+      },
+      "text_Agent_Performance_by_CSAT_Duration_and_Case_Volume" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "Agent Performance",
+          "textAlignment" : "left",
+          "textColor" : "#091A3E"
+        },
+        "type" : "text"
+      },
+      "link_Activity" : {
+        "parameters" : {
+          "destination" : "${App.Dashboards['Service Agent Activity'].Id}",
+          "destinationType" : "dashboard",
+          "fontSize" : 12,
+          "includeState" : false,
+          "text" : "Activity",
+          "textAlignment" : "center",
+          "textColor" : "#091A3E"
+        },
+        "type" : "link"
+      },
+      "pillbox_1" : {
+        "parameters" : {
+          "compact" : false,
+          "exploreLink" : false,
+          "step" : "owner_group_select"
+        },
+        "type" : "pillbox"
+      },
+      "container_34" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_33" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "listselector_1" : {
+        "parameters" : {
+          "compact" : false,
+          "exploreLink" : false,
+          "instant" : true,
+          "measureField" : "count",
+          "step" : "filter_agent",
+          "title" : "Agent"
+        },
+        "type" : "listselector"
+      },
+      "link_Performance" : {
+        "parameters" : {
+          "destination" : "${App.Dashboards['Service Agent Performance'].Id}",
+          "destinationType" : "dashboard",
+          "fontSize" : 12,
+          "includeState" : false,
+          "text" : "Performance",
+          "textColor" : "#634F95"
+        },
+        "type" : "link"
+      },
+      "container_32" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_31" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_30" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "fit" : "original"
+        },
+        "type" : "container"
+      }
+    }
+  }
+}

@@ -1,0 +1,3795 @@
+{
+  "_type": "workflow",
+  "description": "Dataflow for the Service Analytics Application.",
+  "name": "ServiceAnalyticsDataflow",
+  "workflowDefinition": {
+    "Add_Fields_To_Event": {
+      "action": "computeExpression",
+      "parameters": {
+        "computedFields": [
+          {
+            "label": "CallObject",
+            "name": "CallObject",
+            "saqlExpression": "\"000000000000000\"",
+            "type": "Text"
+          },
+          {
+            "label": "Type",
+            "name": "Type",
+            "saqlExpression": "\"Event\"",
+            "type": "Text"
+          },
+          {
+            "label": "CallDisposition",
+            "name": "CallDisposition",
+            "saqlExpression": "\"Event\"",
+            "type": "Text"
+          },
+          {
+            "label": "CallType",
+            "name": "CallType",
+            "saqlExpression": "\"Event\"",
+            "type": "Text"
+          },
+          {
+            "label": "Status",
+            "name": "Status",
+            "saqlExpression": "\"Event\"",
+            "type": "Text"
+          },
+          {
+            "label": "Priority",
+            "name": "Priority",
+            "saqlExpression": "\"Event\"",
+            "type": "Text"
+          },
+          {
+            "label": "TaskSubtype",
+            "name": "TaskSubtype",
+            "saqlExpression": "EventSubtype",
+            "type": "Text"
+          },
+          {
+            "label": "ActivityType",
+            "name": "ActivityType",
+            "saqlExpression": "EventSubtype",
+            "type": "Text"
+          },
+          {
+            "defaultValue": "0",
+            "label": "CallDurationInSeconds",
+            "name": "CallDurationInSeconds",
+            "precision": 8,
+            "saqlExpression": "0",
+            "scale": 0,
+            "type": "Numeric"
+          },
+          {
+            "label": "IsClosed",
+            "name": "IsClosed",
+            "saqlExpression": "case when date(ActivityDate_Year,ActivityDate_Month,ActivityDate_Day) in [\"1 year ago\"..\"current day\"] then \"false\" else \"true\" end",
+            "type": "Text"
+          }
+        ],
+        "mergeWithSource": true,
+        "source": "Extract_Event"
+      }
+    },
+    "Add_Fields_To_Task": {
+      "action": "computeExpression",
+      "parameters": {
+        "computedFields": [
+          {
+            "format": "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+            "label": "EndDateTime",
+            "name": "EndDateTime",
+            "saqlExpression": "now()",
+            "type": "Date"
+          },
+          {
+            "label": "Type",
+            "name": "Type",
+            "saqlExpression": "\"Task\"",
+            "type": "Text"
+          },
+          {
+            "label": "EventSubtype",
+            "name": "EventSubtype",
+            "saqlExpression": "TaskSubtype",
+            "type": "Text"
+          },
+          {
+            "label": "ActivityType",
+            "name": "ActivityType",
+            "saqlExpression": "TaskSubtype",
+            "type": "Text"
+          },
+          {
+            "label": "ShowAs",
+            "name": "ShowAs",
+            "saqlExpression": "\"Task\"",
+            "type": "Text"
+          },
+          {
+            "defaultValue": "0",
+            "label": "DurationInMinutes",
+            "name": "DurationInMinutes",
+            "precision": 8,
+            "saqlExpression": "0",
+            "scale": 0,
+            "type": "Numeric"
+          }
+        ],
+        "mergeWithSource": true,
+        "source": "Extract_Task"
+      }
+    },
+    "Append_TaskEvent": {
+      "action": "append",
+      "parameters": {
+        "sources": [
+          "Add_Fields_To_Task",
+          "Add_Fields_To_Event"
+        ]
+      }
+    },
+    "Add_Fields_To_Queue": {
+      "action": "computeExpression",
+      "parameters": {
+        "computedFields": [
+          {
+            "label": "CallCenterId",
+            "name": "CallCenterId",
+            "saqlExpression": "\"000000000000000\"",
+            "type": "Text"
+          },
+          {
+            "label": "Type",
+            "name": "Type",
+            "saqlExpression": "\"Queue\"",
+            "type": "Text"
+          },
+          {
+            "label": "UserRoleId",
+            "name": "UserRoleId",
+            "saqlExpression": "\"000000000000000\"",
+            "type": "Text"
+          }
+        ],
+        "mergeWithSource": true,
+        "source": "Extract_Queue"
+      }
+    },
+    "Add_Fields_To_User": {
+      "action": "computeExpression",
+      "parameters": {
+        "computedFields": [
+          {
+            "label": "Type",
+            "name": "Type",
+            "saqlExpression": "\"User\"",
+            "type": "Text"
+          }
+        ],
+        "mergeWithSource": true,
+        "source": "Extract_User"
+      }
+    },
+    "Append_Knowledge_kav": {
+      "action": "append",
+      "parameters": {
+        "sources": [
+          "Extract_Knowledge_kav_online",
+          "Extract_Knowledge_kav_archived"
+        ]
+      }
+    },
+    "Append_Queue_User": {
+      "action": "append",
+      "parameters": {
+        "sources": [
+          "Add_Fields_To_Queue",
+          "Add_Fields_To_User"
+        ]
+      }
+    },
+    "Case_CSAT_Mea": {
+      "action": "dim2mea",
+      "parameters": {
+        "dimension": "${Constants.CaseCustomerSatFull}",
+        "measure": "CSAT",
+        "measureDefault": "-999",
+        "measureType": "long",
+        "source": "Join_CaseCSAT"
+      }
+    },
+    "Compute_Extract_Event": {
+      "action": "computeRelative",
+      "parameters": {
+        "computedFields": [
+          {
+            "description": "ActivityLastModifiedDate",
+            "expression": {
+              "default": "current()",
+              "offset": "first()",
+              "sourceField": "LastModifiedDate"
+            },
+            "label": "ActivityLastModifiedDate",
+            "name": "ActivityLastModifiedDate"
+          }
+        ],
+        "orderBy": [
+          {
+            "direction": "asc",
+            "name": "LastModifiedDate"
+          }
+        ],
+        "partitionBy": [
+          "WhatId"
+        ],
+        "source": "Extract_Event"
+      }
+    },
+    "Compute_Extract_Task": {
+      "action": "computeRelative",
+      "parameters": {
+        "computedFields": [
+          {
+            "description": "ActivityLastModifiedDate",
+            "expression": {
+              "default": "current()",
+              "offset": "first()",
+              "sourceField": "LastModifiedDate"
+            },
+            "label": "ActivityLastModifiedDate",
+            "name": "ActivityLastModifiedDate"
+          }
+        ],
+        "orderBy": [
+          {
+            "direction": "asc",
+            "name": "LastModifiedDate"
+          }
+        ],
+        "partitionBy": [
+          "WhatId"
+        ],
+        "source": "Extract_Task"
+      }
+    },
+    "Extract_Account": {
+      "action": "sfdcDigest",
+      "parameters": {
+        "fields": [
+          {
+            "name": "Id"
+          },
+          {
+            "name": "Name"
+          },
+          {
+            "defaultValue": "N/A",
+            "name": "${Constants.AccountGeography}"
+          },
+          {
+            "defaultValue": "N/A",
+            "name": "Industry"
+          }
+        ],
+        "object": "Account"
+      }
+    },
+    "Extract_BusinessHours": {
+      "action": "sfdcDigest",
+      "parameters": {
+        "object": "BusinessHours",
+        "fields": [
+          {
+            "name": "Id"
+          },
+          {
+            "name": "FridayEndTime"
+          },
+          {
+            "name": "FridayStartTime"
+          },
+          {
+            "name": "Name"
+          },
+          {
+            "name": "MondayEndTime"
+          },
+          {
+            "name": "MondayStartTime"
+          },
+          {
+            "name": "SaturdayEndTime"
+          },
+          {
+            "name": "SaturdayStartTime"
+          },
+          {
+            "name": "SundayEndTime"
+          },
+          {
+            "name": "SundayStartTime"
+          },
+          {
+            "name": "ThursdayEndTime"
+          },
+          {
+            "name": "ThursdayStartTime"
+          },
+          {
+            "name": "TimeZoneSidKey"
+          },
+          {
+            "name": "TuesdayEndTime"
+          },
+          {
+            "name": "TuesdayStartTime"
+          },
+          {
+            "name": "WednesdayEndTime"
+          },
+          {
+            "name": "WednesdayStartTime"
+          }
+        ]
+      }
+    },
+    "Compute_StartEndTimes": {
+      "action": "computeExpression",
+      "parameters": {
+        "source": "Extract_BusinessHours",
+        "computedFields": [
+          {
+            "name": "SundayStartTimeDate",
+            "saqlExpression": "case when 'SundayStartTime' is null then toDate(\"3000-10-10T10:10:10.100Z\",\"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\") else toDate(\"2000-01-01T\"+'SundayStartTime',\"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\") end",
+            "format": "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+            "type": "Date"
+          },
+          {
+            "name": "SundayEndTimeDate",
+            "saqlExpression": "case when 'SundayEndTime' is null then toDate(\"3000-10-10T10:10:10.100Z\",\"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\") else toDate(\"2000-01-01T\"+'SundayEndTime',\"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\") end",
+            "format": "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+            "type": "Date"
+          },
+          {
+            "name": "MondayStartTimeDate",
+            "saqlExpression": "case when 'MondayStartTime' is null then toDate(\"3000-10-10T10:10:10.100Z\",\"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\") else toDate(\"2000-01-01T\"+'MondayStartTime',\"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\") end",
+            "format": "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+            "type": "Date"
+          },
+          {
+            "name": "MondayEndTimeDate",
+            "saqlExpression": "case when 'MondayEndTime' is null then toDate(\"3000-10-10T10:10:10.100Z\",\"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\") else toDate(\"2000-01-01T\"+'MondayEndTime',\"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\") end",
+            "format": "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+            "type": "Date"
+          },
+          {
+            "name": "TuesdayStartTimeDate",
+            "saqlExpression": "case when 'TuesdayStartTime' is null then toDate(\"3000-10-10T10:10:10.100Z\",\"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\") else toDate(\"2000-01-01T\"+'TuesdayStartTime',\"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\") end",
+            "format": "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+            "type": "Date"
+          },
+          {
+            "name": "TuesdayEndTimeDate",
+            "saqlExpression": "case when 'TuesdayEndTime' is null then toDate(\"3000-10-10T10:10:10.100Z\",\"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\") else toDate(\"2000-01-01T\"+'TuesdayEndTime',\"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\") end",
+            "format": "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+            "type": "Date"
+          },
+          {
+            "name": "WednesdayStartTimeDate",
+            "saqlExpression": "case when 'WednesdayStartTime' is null then toDate(\"3000-10-10T10:10:10.100Z\",\"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\") else toDate(\"2000-01-01T\"+'WednesdayStartTime',\"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\") end",
+            "format": "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+            "type": "Date"
+          },
+          {
+            "name": "WednesdayEndTimeDate",
+            "saqlExpression": "case when 'WednesdayEndTime' is null then toDate(\"3000-10-10T10:10:10.100Z\",\"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\") else toDate(\"2000-01-01T\"+'WednesdayEndTime',\"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\") end",
+            "format": "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+            "type": "Date"
+          },
+          {
+            "name": "ThursdayStartTimeDate",
+            "saqlExpression": "case when 'ThursdayStartTime' is null then toDate(\"3000-10-10T10:10:10.100Z\",\"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\") else toDate(\"2000-01-01T\"+'ThursdayStartTime',\"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\") end",
+            "format": "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+            "type": "Date"
+          },
+          {
+            "name": "ThursdayEndTimeDate",
+            "saqlExpression": "case when 'ThursdayEndTime' is null then toDate(\"3000-10-10T10:10:10.100Z\",\"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\") else toDate(\"2000-01-01T\"+'ThursdayEndTime',\"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\") end",
+            "format": "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+            "type": "Date"
+          },
+          {
+            "name": "FridayStartTimeDate",
+            "saqlExpression": "case when 'FridayStartTime' is null then toDate(\"3000-10-10T10:10:10.100Z\",\"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\") else toDate(\"2000-01-01T\"+'FridayStartTime',\"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\") end",
+            "format": "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+            "type": "Date"
+          },
+          {
+            "name": "FridayEndTimeDate",
+            "saqlExpression": "case when 'FridayEndTime' is null then toDate(\"3000-10-10T10:10:10.100Z\",\"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\") else toDate(\"2000-01-01T\"+'FridayEndTime',\"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\") end",
+            "format": "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+            "type": "Date"
+          },
+          {
+            "name": "SaturdayStartTimeDate",
+            "saqlExpression": "case when 'SaturdayStartTime' is null then toDate(\"3000-10-10T10:10:10.100Z\",\"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\") else toDate(\"2000-01-01T\"+'SaturdayStartTime',\"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\") end",
+            "format": "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+            "type": "Date"
+          },
+          {
+            "name": "SaturdayEndTimeDate",
+            "saqlExpression": "case when 'SaturdayEndTime' is null then toDate(\"3000-10-10T10:10:10.100Z\",\"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\") else toDate(\"2000-01-01T\"+'SaturdayEndTime',\"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\") end",
+            "format": "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+            "type": "Date"
+          }
+        ],
+        "mergeWithSource": true
+      }
+    },
+    "Compute_WeekDay_Duration": {
+      "action": "computeExpression",
+      "parameters": {
+        "source": "Compute_StartEndTimes",
+        "computedFields": [
+          {
+            "name": "SundayDuration",
+            "saqlExpression": "case when ('SundayEndTimeDate' == \"3000-10-10T10:10:10.100Z\" or 'SundayStartTimeDate' == \"3000-10-10T10:10:10.100Z\") then 0 when ('SundayEndTimeDate_sec_epoch' == 'SundayStartTimeDate_sec_epoch') then 86400 else 'SundayEndTimeDate_sec_epoch' - 'SundayStartTimeDate_sec_epoch' end",
+            "label": "Sunday Duration",
+            "precision": 18,
+            "scale": 2,
+            "type": "Numeric"
+          },
+          {
+            "name": "MondayDuration",
+            "saqlExpression": "case when ('MondayEndTimeDate' == \"3000-10-10T10:10:10.100Z\" or 'MondayStartTimeDate' == \"3000-10-10T10:10:10.100Z\") then 0 when ('MondayEndTimeDate_sec_epoch' == 'MondayStartTimeDate_sec_epoch') then 86400 else 'MondayEndTimeDate_sec_epoch' - 'MondayStartTimeDate_sec_epoch' end",
+            "label": "Monday Duration",
+            "precision": 18,
+            "scale": 2,
+            "type": "Numeric"
+          },
+          {
+            "name": "TuesdayDuration",
+            "saqlExpression": "case when ('TuesdayEndTimeDate' == \"3000-10-10T10:10:10.100Z\" or 'TuesdayStartTimeDate' == \"3000-10-10T10:10:10.100Z\") then 0 when ('TuesdayEndTimeDate_sec_epoch' == 'TuesdayStartTimeDate_sec_epoch') then 86400 else 'TuesdayEndTimeDate_sec_epoch' - 'TuesdayStartTimeDate_sec_epoch' end",
+            "label": "Tuesday Duration",
+            "precision": 18,
+            "scale": 2,
+            "type": "Numeric"
+          },
+          {
+            "name": "WednesdayDuration",
+            "saqlExpression": "case when ('WednesdayEndTimeDate' == \"3000-10-10T10:10:10.100Z\" or 'WednesdayStartTimeDate' == \"3000-10-10T10:10:10.100Z\") then 0 when ('WednesdayEndTimeDate_sec_epoch' == 'WednesdayStartTimeDate_sec_epoch') then 86400 else 'WednesdayEndTimeDate_sec_epoch' - 'WednesdayStartTimeDate_sec_epoch' end",
+            "label": "Wednesday Duration",
+            "precision": 18,
+            "scale": 2,
+            "type": "Numeric"
+          },
+          {
+            "name": "ThursdayDuration",
+            "saqlExpression": "case when ('ThursdayEndTimeDate' == \"3000-10-10T10:10:10.100Z\" or 'ThursdayStartTimeDate' == \"3000-10-10T10:10:10.100Z\") then 0 when ('ThursdayEndTimeDate_sec_epoch' == 'ThursdayStartTimeDate_sec_epoch') then 86400 else 'ThursdayEndTimeDate_sec_epoch' - 'ThursdayStartTimeDate_sec_epoch' end",
+            "label": "Thursday Duration",
+            "precision": 18,
+            "scale": 2,
+            "type": "Numeric"
+          },
+          {
+            "name": "FridayDuration",
+            "saqlExpression": "case when ('FridayEndTimeDate' == \"3000-10-10T10:10:10.100Z\" or 'FridayStartTimeDate' == \"3000-10-10T10:10:10.100Z\") then 0 when ('FridayEndTimeDate_sec_epoch' == 'FridayStartTimeDate_sec_epoch') then 86400 else 'FridayEndTimeDate_sec_epoch' - 'FridayStartTimeDate_sec_epoch' end",
+            "label": "Friday Duration",
+            "precision": 18,
+            "scale": 2,
+            "type": "Numeric"
+          },
+          {
+            "name": "SaturdayDuration",
+            "saqlExpression": "case when ('SaturdayEndTimeDate' == \"3000-10-10T10:10:10.100Z\" or 'SaturdayStartTimeDate' == \"3000-10-10T10:10:10.100Z\") then 0 when ('SaturdayEndTimeDate_sec_epoch' == 'SaturdayStartTimeDate_sec_epoch') then 86400 else 'SaturdayEndTimeDate_sec_epoch' - 'SaturdayStartTimeDate_sec_epoch' end",
+            "label": "Saturday Duration",
+            "precision": 18,
+            "scale": 2,
+            "type": "Numeric"
+          },
+          {
+            "name": "SundayStartTime_sec",
+            "saqlExpression": "case when ('SundayEndTimeDate' == \"3000-10-10T10:10:10.100Z\" or 'SundayStartTimeDate' == \"3000-10-10T10:10:10.100Z\") then 0 when ('SundayEndTimeDate_sec_epoch' == 'SundayStartTimeDate_sec_epoch') then 0 else 'SundayStartTimeDate_sec_epoch' - 'SundayStartTimeDate_day_epoch'*86400 end",
+            "label": "Sunday Start Time",
+            "precision": 18,
+            "scale": 2,
+            "type": "Numeric"
+          },
+          {
+            "name": "MondayStartTime_sec",
+            "saqlExpression": "case when ('MondayEndTimeDate' == \"3000-10-10T10:10:10.100Z\" or 'MondayStartTimeDate' == \"3000-10-10T10:10:10.100Z\") then 0 when ('MondayEndTimeDate_sec_epoch' == 'MondayStartTimeDate_sec_epoch') then 0 else 'MondayStartTimeDate_sec_epoch' - 'MondayStartTimeDate_day_epoch'*86400 end",
+            "label": "Monday Start Time",
+            "precision": 18,
+            "scale": 2,
+            "type": "Numeric"
+          },
+          {
+            "name": "TuesdayStartTime_sec",
+            "saqlExpression": "case when ('TuesdayEndTimeDate' == \"3000-10-10T10:10:10.100Z\" or 'TuesdayStartTimeDate' == \"3000-10-10T10:10:10.100Z\") then 0 when ('TuesdayEndTimeDate_sec_epoch' == 'TuesdayStartTimeDate_sec_epoch') then 0 else 'TuesdayStartTimeDate_sec_epoch' - 'TuesdayStartTimeDate_day_epoch'*86400 end",
+            "label": "Tuesday Start Time",
+            "precision": 18,
+            "scale": 2,
+            "type": "Numeric"
+          },
+          {
+            "name": "WednesdayStartTime_sec",
+            "saqlExpression": "case when ('WednesdayEndTimeDate' == \"3000-10-10T10:10:10.100Z\" or 'WednesdayStartTimeDate' == \"3000-10-10T10:10:10.100Z\") then 0 when ('WednesdayEndTimeDate_sec_epoch' == 'WednesdayStartTimeDate_sec_epoch') then 0 else 'WednesdayStartTimeDate_sec_epoch' - 'WednesdayStartTimeDate_day_epoch'*86400 end",
+            "label": "Wednesday Start Time",
+            "precision": 18,
+            "scale": 2,
+            "type": "Numeric"
+          },
+          {
+            "name": "ThursdayStartTime_sec",
+            "saqlExpression": "case when ('ThursdayEndTimeDate' == \"3000-10-10T10:10:10.100Z\" or 'ThursdayStartTimeDate' == \"3000-10-10T10:10:10.100Z\") then 0 when ('ThursdayEndTimeDate_sec_epoch' == 'ThursdayStartTimeDate_sec_epoch') then 0 else 'ThursdayStartTimeDate_sec_epoch' - 'ThursdayStartTimeDate_day_epoch'*86400 end",
+            "label": "Thursday Start Time",
+            "precision": 18,
+            "scale": 2,
+            "type": "Numeric"
+          },
+          {
+            "name": "FridayStartTime_sec",
+            "saqlExpression": "case when ('FridayEndTimeDate' == \"3000-10-10T10:10:10.100Z\" or 'FridayStartTimeDate' == \"3000-10-10T10:10:10.100Z\") then 0 when ('FridayEndTimeDate_sec_epoch' == 'FridayStartTimeDate_sec_epoch') then 0 else 'FridayStartTimeDate_sec_epoch' - 'FridayStartTimeDate_day_epoch'*86400 end",
+            "label": "Friday Start Time",
+            "precision": 18,
+            "scale": 2,
+            "type": "Numeric"
+          },
+          {
+            "name": "SaturdayStartTime_sec",
+            "saqlExpression": "case when ('SaturdayEndTimeDate' == \"3000-10-10T10:10:10.100Z\" or 'SaturdayStartTimeDate' == \"3000-10-10T10:10:10.100Z\") then 0 when ('SaturdayEndTimeDate_sec_epoch' == 'SaturdayStartTimeDate_sec_epoch') then 0 else 'SaturdayStartTimeDate_sec_epoch' - 'SaturdayStartTimeDate_day_epoch'*86400 end",
+            "label": "Saturday Start Time",
+            "precision": 18,
+            "scale": 2,
+            "type": "Numeric"
+          },
+          {
+            "name": "SundayEndTime_sec",
+            "saqlExpression": "case when ('SundayEndTimeDate' == \"3000-10-10T10:10:10.100Z\" or 'SundayStartTimeDate' == \"3000-10-10T10:10:10.100Z\") then 0 when ('SundayEndTimeDate_sec_epoch' == 'SundayStartTimeDate_sec_epoch') then 86400 else 'SundayEndTimeDate_sec_epoch' - 'SundayEndTimeDate_day_epoch'*86400 end",
+            "label": "Sunday End Time",
+            "precision": 18,
+            "scale": 2,
+            "type": "Numeric"
+          },
+          {
+            "name": "MondayEndTime_sec",
+            "saqlExpression": "case when ('MondayEndTimeDate' == \"3000-10-10T10:10:10.100Z\" or 'MondayStartTimeDate' == \"3000-10-10T10:10:10.100Z\") then 0 when ('MondayEndTimeDate_sec_epoch' == 'MondayStartTimeDate_sec_epoch') then 86400 else 'MondayEndTimeDate_sec_epoch' - 'MondayEndTimeDate_day_epoch'*86400 end",
+            "label": "Monday End Time",
+            "precision": 18,
+            "scale": 2,
+            "type": "Numeric"
+          },
+          {
+            "name": "TuesdayEndTime_sec",
+            "saqlExpression": "case when ('TuesdayEndTimeDate' == \"3000-10-10T10:10:10.100Z\" or 'TuesdayStartTimeDate' == \"3000-10-10T10:10:10.100Z\") then 0 when ('TuesdayEndTimeDate_sec_epoch' == 'TuesdayStartTimeDate_sec_epoch') then 86400 else 'TuesdayEndTimeDate_sec_epoch' - 'TuesdayEndTimeDate_day_epoch'*86400 end",
+            "label": "Tuesday End Time",
+            "precision": 18,
+            "scale": 2,
+            "type": "Numeric"
+          },
+          {
+            "name": "WednesdayEndTime_sec",
+            "saqlExpression": "case when ('WednesdayEndTimeDate' == \"3000-10-10T10:10:10.100Z\" or 'WednesdayStartTimeDate' == \"3000-10-10T10:10:10.100Z\") then 0 when ('WednesdayEndTimeDate_sec_epoch' == 'WednesdayStartTimeDate_sec_epoch') then 86400 else 'WednesdayEndTimeDate_sec_epoch' - 'WednesdayEndTimeDate_day_epoch'*86400 end",
+            "label": "Wednesday End Time",
+            "precision": 18,
+            "scale": 2,
+            "type": "Numeric"
+          },
+          {
+            "name": "ThursdayEndTime_sec",
+            "saqlExpression": "case when ('ThursdayEndTimeDate' == \"3000-10-10T10:10:10.100Z\" or 'ThursdayStartTimeDate' == \"3000-10-10T10:10:10.100Z\") then 0 when ('ThursdayEndTimeDate_sec_epoch' == 'ThursdayStartTimeDate_sec_epoch') then 86400 else 'ThursdayEndTimeDate_sec_epoch' - 'ThursdayEndTimeDate_day_epoch'*86400 end",
+            "label": "Thursday End Time",
+            "precision": 18,
+            "scale": 2,
+            "type": "Numeric"
+          },
+          {
+            "name": "FridayEndTime_sec",
+            "saqlExpression": "case when ('FridayEndTimeDate' == \"3000-10-10T10:10:10.100Z\" or 'FridayStartTimeDate' == \"3000-10-10T10:10:10.100Z\") then 0 when ('FridayEndTimeDate_sec_epoch' == 'FridayStartTimeDate_sec_epoch') then 86400 else 'FridayEndTimeDate_sec_epoch' - 'FridayEndTimeDate_day_epoch'*86400 end",
+            "label": "Friday End Time",
+            "precision": 18,
+            "scale": 2,
+            "type": "Numeric"
+          },
+          {
+            "name": "SaturdayEndTime_sec",
+            "saqlExpression": "case when ('SaturdayEndTimeDate' == \"3000-10-10T10:10:10.100Z\" or 'SaturdayStartTimeDate' == \"3000-10-10T10:10:10.100Z\") then 0 when ('SaturdayEndTimeDate_sec_epoch' == 'SaturdayStartTimeDate_sec_epoch') then 86400 else 'SaturdayEndTimeDate_sec_epoch' - 'SaturdayEndTimeDate_day_epoch'*86400 end",
+            "label": "Saturday End Time",
+            "precision": 18,
+            "scale": 2,
+            "type": "Numeric"
+          }
+        ],
+        "mergeWithSource": true
+      }
+    },
+    "Join_CaseHistoryCaseBusinessHours": {
+      "action": "augment",
+      "parameters": {
+        "left": "compute_CaseHistory_DateFields",
+        "left_key": [
+          "Case.BusinessHoursId"
+        ],
+        "relationship": "BH",
+        "right": "Compute_WeekDay_Duration",
+        "right_key": [
+          "Id"
+        ],
+        "right_select": [
+          "FridayDuration",
+          "MondayDuration",
+          "SaturdayDuration",
+          "SundayDuration",
+          "ThursdayDuration",
+          "TuesdayDuration",
+          "WednesdayDuration",
+          "SundayStartTime_sec",
+          "MondayStartTime_sec",
+          "TuesdayStartTime_sec",
+          "WednesdayStartTime_sec",
+          "ThursdayStartTime_sec",
+          "FridayStartTime_sec",
+          "SaturdayStartTime_sec",
+          "SundayEndTime_sec",
+          "MondayEndTime_sec",
+          "TuesdayEndTime_sec",
+          "WednesdayEndTime_sec",
+          "ThursdayEndTime_sec",
+          "FridayEndTime_sec",
+          "SaturdayEndTime_sec"
+        ]
+      }
+    },
+    "Extract_CSAT": {
+      "action": "sfdcDigest",
+      "parameters": {
+        "fields": [
+          {
+            "name": "${Constants.JoinKeyOtherObj}"
+          },
+          {
+            "name": "${Constants.CSATField}",
+            "type": "Text"
+          }
+        ],
+        "object": "${Constants.CSATObj}"
+      }
+    },
+    "Extract_Case": {
+      "action": "sfdcDigest",
+      "parameters": {
+        "fields": [
+          {
+            "name": "AccountId"
+          },
+          {
+            "name": "ContactId"
+          },
+          {
+            "name": "OwnerId"
+          },
+          {
+            "name": "Id"
+          },
+          {
+            "name": "BusinessHoursId"
+          },
+          {
+            "defaultValue": "N/A",
+            "name": "${Constants.CaseOrigin}"
+          },
+          {
+            "defaultValue": "N/A",
+            "name": "${Constants.CaseReason}"
+          },
+          {
+            "defaultValue": "N/A",
+            "name": "${Constants.CaseType}"
+          },
+          {
+            "name": "IsClosed"
+          },
+          {
+            "firstDayOfWeek": 0,
+            "fiscalMonthOffset": 10,
+            "isYearEndFiscalYear": false,
+            "name": "${Constants.ClosedDate}"
+          },
+          {
+            "firstDayOfWeek": 0,
+            "fiscalMonthOffset": 10,
+            "isYearEndFiscalYear": false,
+            "name": "CreatedDate"
+          },
+          {
+            "firstDayOfWeek": 0,
+            "fiscalMonthOffset": 10,
+            "isYearEndFiscalYear": false,
+            "name": "LastModifiedDate"
+          },
+          {
+            "name": "IsEscalated"
+          },
+          {
+            "name": "${Constants.CaseFCR}"
+          },
+          {
+            "defaultValue": "N/A",
+            "name": "${Constants.CaseSupportLevel}"
+          },
+          {
+            "defaultValue": "N/A",
+            "name": "${Constants.CaseStatus}"
+          },
+          {
+            "name": "${Constants.CaseSLA}"
+          },
+          {
+            "defaultValue": "N/A",
+            "name": "${Constants.CaseProduct}"
+          },
+          {
+            "defaultValue": "N/A",
+            "name": "${Constants.CaseSeverityLevel}"
+          },
+          {
+            "name": "CaseNumber"
+          },
+          {
+            "defaultValue": "N/A",
+            "name": "RecordTypeId"
+          }
+        ],
+        "object": "Case"
+      }
+    },
+    "Extract_CaseArticleKnowledge": {
+      "action": "sfdcDigest",
+      "parameters": {
+        "fields": [
+          {
+            "name": "ArticleVersionNumber",
+            "type": "Text"
+          },
+          {
+            "firstDayOfWeek": 0,
+            "fiscalMonthOffset": 10,
+            "isYearEndFiscalYear": false,
+            "name": "CreatedDate"
+          },
+          {
+            "name": "CaseId"
+          },
+          {
+            "name": "CreatedById"
+          },
+          {
+            "name": "KnowledgeArticleId"
+          },
+          {
+            "name": "IsSharedByEmail"
+          }
+        ],
+        "object": "CaseArticle"
+      }
+    },
+    "Extract_CaseHistory": {
+      "action": "sfdcDigest",
+      "parameters": {
+        "complexFilterConditions": "CreatedDate >= LAST_N_MONTHS:18 and Field IN ('${Constants.CaseStatus}', 'created', 'Owner')",
+        "enablePKChunking": false,
+        "fields": [
+          {
+            "name": "CaseId"
+          },
+          {
+            "name": "CreatedById"
+          },
+          {
+            "firstDayOfWeek": 0,
+            "fiscalMonthOffset": 10,
+            "isYearEndFiscalYear": false,
+            "name": "CreatedDate"
+          },
+          {
+            "name": "Field"
+          },
+          {
+            "name": "Id"
+          },
+          {
+            "name": "NewValue"
+          },
+          {
+            "name": "OldValue"
+          }
+        ],
+        "object": "CaseHistory"
+      }
+    },
+    "Join_CaseHistory_NewOwnerID": {
+      "action": "augment",
+      "parameters": {
+        "left": "Extract_CaseHistory",
+        "left_key": [
+          "NewValue"
+        ],
+        "relationship": "NewOwnerID",
+        "right": "Join_CaseHistory_Queue_User_UserRole",
+        "right_key": [
+          "Id"
+        ],
+        "right_select": [
+          "Name"
+        ]
+      }
+    },
+    "compute_CaseHistory_NullFields": {
+      "action": "computeExpression",
+      "parameters": {
+        "source": "Join_CaseHistory_NewOwnerID",
+        "computedFields": [
+          {
+            "name": "DuplicateOwnerRecords",
+            "saqlExpression": "case when 'NewOwnerID.Name' is not null or  'Field' == \"created\" or 'Field' == \"${Constants.CaseStatus}\" then \"true\" else \"false\" end",
+            "label": "Non Null fields?",
+            "type": "Text"
+          }
+        ],
+        "mergeWithSource": true
+      }
+    },
+
+    "Filter_CaseHistory_OwnerNameChanges": {
+      "action": "filter",
+        "parameters": {
+          "filter": "DuplicateOwnerRecords:EQ:true",
+          "source": "compute_CaseHistory_NullFields"
+        }
+    },
+    "Join_CaseHistory_Case": {
+      "action": "augment",
+      "parameters": {
+        "left": "Filter_CaseHistory_OwnerNameChanges",
+        "left_key": [
+          "CaseId"
+        ],
+        "relationship": "Case",
+        "right": "Join_CaseAccountContactUserUserRoleRecordType",
+        "right_key": [
+          "Id"
+        ],
+        "right_select": [
+          "BusinessHoursId",
+          "IsClosed",
+          "${Constants.ClosedDate}",
+          "CreatedDate",
+          "${Constants.CaseDuration}",
+          "${Constants.CaseProduct}",
+          "${Constants.CaseOrigin}",
+          "${Constants.CaseReason}",
+          "${Constants.CaseSupportLevel}",
+          "${Constants.CaseSeverityLevel}",
+          "IsEscalated",
+          "${Constants.CaseSLA}",
+          "${Constants.CaseRecordTypeField}",
+          "Account.Name",
+          "Account.Id",
+          "${Constants.CaseType}",
+          "CaseNumber"
+        ]
+      }
+    },
+
+    "compute_CaseHistory_PreviousChanges": {
+      "action": "computeRelative",
+      "parameters": {
+        "computedFields": [
+          {
+            "expression": {
+              "format": "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+              "default": null,
+              "saqlExpression": "case when 'Field' == \"Owner\" or 'Field' == \"created\" then toDate(current('CreatedDate_sec_epoch')) else coalesce(previous('OwnerPreviousChangeDate'), toDate(current('CreatedDate_sec_epoch'))) end",
+              "type": "Date"
+            },
+            "name": "OwnerPreviousChangeDate",
+            "description": "OwnerPreviousChangeDate",
+            "label": "OwnerPreviousChangeDate"
+          },
+          {
+            "expression": {
+              "format": "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+              "default": null,
+              "saqlExpression": "case when 'Field' == \"${Constants.CaseStatus}\" or 'Field' == \"created\" then toDate(current('CreatedDate_sec_epoch')) else coalesce(previous('StatusPreviousChangeDate'), toDate(current('CreatedDate_sec_epoch'))) end",
+              "type": "Date"
+            },
+            "name": "StatusPreviousChangeDate",
+            "description": "StatusPreviousChangeDate",
+            "label": "StatusPreviousChangeDate"
+          }
+        ],
+        "orderBy": [
+          {
+            "direction": "asc",
+            "name": "CreatedDate"
+          }
+        ],
+        "partitionBy": [
+          "CaseId"
+        ],
+        "source": "Join_CaseHistory_Case"
+      }
+    },
+    "compute_CaseHistory_NextChanges": {
+      "action": "computeRelative",
+      "parameters": {
+        "computedFields": [
+          {
+            "expression": {
+              "format": "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+              "default": null,
+              "saqlExpression": "case when 'Field' == \"Owner\" or 'Field' == \"created\" then toDate(current('CreatedDate_sec_epoch')) else coalesce(previous('OwnerNextChangeDate'), now()) end",
+              "type": "Date"
+            },
+            "name": "OwnerNextChangeDate",
+            "description": "OwnerNextChangeDate",
+            "label": "OwnerNextChangeDate"
+          },
+          {
+            "expression": {
+              "format": "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+              "default": null,
+              "saqlExpression": "case when 'Field' == \"${Constants.CaseStatus}\" or 'Field' == \"created\" then toDate(current('CreatedDate_sec_epoch')) else coalesce(previous('StatusNextChangeDate'), now()) end",
+              "type": "Date"
+            },
+            "name": "StatusNextChangeDate",
+            "description": "StatusNextChangeDate",
+            "label": "StatusNextChangeDate"
+          },
+          {
+            "expression": {
+              "default": null,
+              "saqlExpression": "case when 'Field' == \"${Constants.CaseStatus}\" then current('OldValue') when 'Field' == \"created\" then coalesce(previous('StatusPreviousValue'), \"created\") else coalesce(previous('StatusPreviousValue'), null) end",
+              "type": "Text"
+            },
+            "name": "StatusPreviousValue",
+            "description": "StatusPreviousValue",
+            "label": "StatusPreviousValue"
+          },
+          {
+            "expression": {
+              "default": null,
+              "saqlExpression": "case when 'Field' == \"Owner\" then current('OldValue') when 'Field' == \"created\" then previous('OwnerPreviousValue') else coalesce(previous('OwnerPreviousValue'), null) end",
+              "type": "Text"
+            },
+            "name": "OwnerPreviousValue",
+            "description": "OwnerPreviousValue",
+            "label": "OwnerPreviousValue"
+          }
+
+        ],
+        "orderBy": [
+          {
+            "direction": "desc",
+            "name": "CreatedDate"
+          }
+        ],
+        "partitionBy": [
+          "CaseId"
+        ],
+        "source": "compute_CaseHistory_PreviousChanges"
+      }
+    },
+    "compute_CaseHistory_OwnerStatusValues": {
+      "action": "computeRelative",
+      "parameters": {
+        "computedFields": [
+
+          {
+            "expression": {
+              "default": null,
+              "saqlExpression": "case when 'Field' == \"${Constants.CaseStatus}\" then current('NewValue') when 'Field' == \"created\" then coalesce(previous('StatusPreviousValue'), \"created\") else coalesce(previous('StatusValue'), null) end",
+              "type": "Text"
+            },
+            "name": "StatusValue",
+            "description": "StatusValue",
+            "label": "StatusValue"
+          },
+          {
+            "expression": {
+              "default": null,
+              "saqlExpression": "case when 'Field' == \"Owner\" then current('NewValue') when 'Field' == \"created\" then previous('OwnerPreviousValue') else coalesce(previous('OwnerValue'), null) end",
+              "type": "Text"
+            },
+            "name": "OwnerValue",
+            "description": "OwnerValue",
+            "label": "OwnerValue"
+          }
+        ],
+        "orderBy": [
+          {
+            "direction": "desc",
+            "name": "CreatedDate"
+          }
+        ],
+        "partitionBy": [
+          "CaseId"
+        ],
+        "source": "compute_CaseHistory_NextChanges"
+      }
+    },
+
+    "Join_CaseHistory_OwnerValue": {
+      "action": "augment",
+      "parameters": {
+        "left": "compute_CaseHistory_NextChanges",
+        "left_key": [
+          "OwnerValue"
+        ],
+        "relationship": "OwnerValue",
+        "right": "Join_CaseHistory_Queue_User_UserRole",
+        "right_key": [
+          "Id"
+        ],
+        "right_select": [
+          "CallCenterId",
+          "Name",
+          "Id",
+          "Role.Name",
+          "Type"
+        ]
+      }
+    },
+
+    "compute_CaseHistory_RelativeChanges": {
+      "action": "computeRelative",
+      "parameters": {
+        "computedFields": [
+          {
+            "expression": {
+              "format": "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+              "default": null,
+              "saqlExpression": "coalesce(toDate(previous('OwnerPreviousChangeDate_sec_epoch')), toDate(current('Case.CreatedDate_sec_epoch')))",
+              "type": "Date"
+            },
+            "name": "OwnerPreviousDate",
+            "description": "OwnerPreviousDate",
+            "label": "OwnerPreviousDate"
+          },
+          {
+            "expression": {
+              "format": "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+              "default": null,
+              "saqlExpression": "coalesce(toDate(previous('StatusPreviousChangeDate_sec_epoch')), toDate(current('Case.CreatedDate_sec_epoch')))",
+              "type": "Date"
+            },
+            "name": "StatusPreviousDate",
+            "description": "StatusPreviousDate",
+            "label": "StatusPreviousDate"
+          },
+          {
+            "expression": {
+              "format": "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+              "default": null,
+              "saqlExpression": "coalesce(toDate(next('OwnerNextChangeDate_sec_epoch')), now())",
+              "type": "Date"
+            },
+            "name": "OwnerNextDate",
+            "description": "OwnerNextDate",
+            "label": "OwnerNextDate"
+          },
+          {
+            "expression": {
+              "format": "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+              "default": null,
+              "saqlExpression": "coalesce(toDate(next('StatusNextChangeDate_sec_epoch')), now())",
+              "type": "Date"
+            },
+            "name": "StatusNextDate",
+            "description": "StatusNextDate",
+            "label": "StatusNextDate"
+          }
+
+        ],
+        "orderBy": [
+          {
+            "direction": "asc",
+            "name": "CreatedDate"
+          }
+        ],
+        "partitionBy": [
+          "CaseId"
+        ],
+        "source": "Join_CaseHistory_OwnerValue"
+      }
+    },
+    "compute_CaseHistory_OwnerStatusWithCreated": {
+      "action": "computeRelative",
+      "parameters": {
+        "computedFields": [
+          {
+            "expression": {
+              "default": null,
+              "saqlExpression": "case when 'Field' == \"Owner\" then 'NewOwnerID.Name' else coalesce(previous('NewOwnerWithCreated'),'NewValue') end",
+              "type": "Text"
+            },
+            "name": "NewOwnerWithCreated",
+            "description": "NewOwnerWithCreated",
+            "label": "NewOwnerWithCreated"
+          },
+          {
+            "expression": {
+              "default": null,
+              "saqlExpression": "case when 'Field' == \"${Constants.CaseStatus}\" then 'NewValue' when 'Field' == \"created\" then 'Field' else coalesce(previous('NewStatusWithCreated'),'NewValue') end",
+              "type": "Text"
+            },
+            "name": "NewStatusWithCreated",
+            "description": "NewStatusWithCreated",
+            "label": "NewStatusWithCreated"
+          }
+        ],
+        "orderBy": [
+          {
+            "direction": "desc",
+            "name": "CreatedDate"
+          }
+        ],
+        "partitionBy": [
+          "CaseId"
+        ],
+        "source": "compute_CaseHistory_RelativeChanges"
+      }
+    },
+
+    "compute_CaseHistory_DateFields": {
+      "action": "computeExpression",
+      "parameters": {
+        "computedFields": [
+          {
+            "format": "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+            "name": "ValidToDate",
+            "label": "ValidToDate",
+            "saqlExpression": "case when 'Field' == \"Owner\" then toDate('OwnerNextDate_sec_epoch') when 'Field' == \"${Constants.CaseStatus}\" then toDate('StatusNextDate_sec_epoch') else toDate('StatusNextDate_sec_epoch') end",
+            "type": "Date"
+          },
+          {
+            "format": "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+            "name": "CreatedDatePrev",
+            "label": "CreatedDatePrev",
+            "saqlExpression": "case when 'Field' == \"Owner\" then toDate('OwnerPreviousDate_sec_epoch') when 'Field' == \"${Constants.CaseStatus}\" then toDate('StatusPreviousDate_sec_epoch') else toDate('StatusPreviousDate_sec_epoch') end",
+            "type": "Date"
+          }
+
+        ],
+        "mergeWithSource": true,
+        "source": "compute_CaseHistory_OwnerStatusWithCreated"
+      }
+    },
+
+    "Extract_Contact": {
+      "action": "sfdcDigest",
+      "parameters": {
+        "fields": [
+          {
+            "name": "Name"
+          },
+          {
+            "defaultValue": "N/A",
+            "name": "${Constants.AccountGeography}"
+          },          
+          {
+            "name": "Id"
+          }
+        ],
+        "object": "Contact"
+      }
+    },
+    "Extract_Event": {
+      "action": "sfdcDigest",
+      "parameters": {
+        "fields": [
+          {
+            "name": "OwnerId"
+          },
+          {
+            "firstDayOfWeek": 0,
+            "fiscalMonthOffset": 10,
+            "isYearEndFiscalYear": false,
+            "name": "CreatedDate"
+          },
+          {
+            "firstDayOfWeek": 0,
+            "fiscalMonthOffset": 10,
+            "isYearEndFiscalYear": false,
+            "name": "LastModifiedDate"
+          },
+          {
+            "firstDayOfWeek": 0,
+            "fiscalMonthOffset": 10,
+            "isYearEndFiscalYear": false,
+            "name": "ActivityDate"
+          },
+          {
+            "name": "EndDateTime"
+          },
+          {
+            "defaultValue": "N/A",
+            "name": "Subject"
+          },
+          {
+            "name": "ShowAs"
+          },
+          {
+            "name": "DurationInMinutes"
+          },
+          {
+            "defaultValue": "N/A",
+            "name": "EventSubtype"
+          },
+          {
+            "name": "WhatId"
+          }
+        ],
+        "object": "Event"
+      }
+    },
+    "Extract_Knowledge_DataCategory": {
+      "action": "sfdcDigest",
+      "parameters": {
+        "fields": [
+          {
+            "name": "DataCategoryGroupName"
+          },
+          {
+            "name": "DataCategoryName"
+          },
+          {
+            "name": "ParentId"
+          }
+        ],
+        "object": "${Constants.KnowledgeArticleType}__DataCategorySelection"
+      }
+    },
+    "Extract_Knowledge_ViewStat": {
+      "action": "sfdcDigest",
+      "parameters": {
+        "fields": [
+          {
+            "name": "Channel"
+          },
+          {
+            "name": "ParentId"
+          },
+          {
+            "name": "ViewCount"
+          },
+          {
+            "name": "NormalizedScore"
+          }
+        ],
+        "object": "${Constants.KnowledgeArticleType}__ViewStat"
+      }
+    },
+    "Extract_Knowledge_VoteStat": {
+      "action": "sfdcDigest",
+      "parameters": {
+        "fields": [
+          {
+            "name": "Channel"
+          },
+          {
+            "name": "ParentId"
+          },
+          {
+            "name": "NormalizedScore"
+          }
+        ],
+        "object": "${Constants.KnowledgeArticleType}__VoteStat"
+      }
+    },
+    "Extract_Knowledge_ka": {
+      "action": "sfdcDigest",
+      "parameters": {
+        "fields": [
+          {
+            "name": "Id"
+          },
+          {
+            "name": "ArticleNumber"
+          },
+          {
+            "name": "CaseAssociationCount"
+          },
+          {
+            "name": "CreatedById"
+          },
+          {
+            "firstDayOfWeek": 0,
+            "fiscalMonthOffset": 10,
+            "isYearEndFiscalYear": false,
+            "name": "CreatedDate"
+          },
+          {
+            "firstDayOfWeek": 0,
+            "fiscalMonthOffset": 10,
+            "isYearEndFiscalYear": false,
+            "name": "FirstPublishedDate"
+          },
+          {
+            "firstDayOfWeek": 0,
+            "fiscalMonthOffset": 10,
+            "isYearEndFiscalYear": false,
+            "name": "LastPublishedDate"
+          },
+          {
+            "name": "LastModifiedById"
+          }
+        ],
+        "object": "${Constants.KnowledgeArticleType}__ka"
+      }
+    },
+    "Extract_Knowledge_kav_archived": {
+      "action": "sfdcDigest",
+      "parameters": {
+        "complexFilterConditions": "language = 'en_US' and PublishStatus='Archived'",
+        "enablePKChunking": false,
+        "fields": [
+          {
+            "name": "Id"
+          },
+          {
+            "name": "ArticleNumber"
+          },
+          {
+            "name": "CreatedById"
+          },
+          {
+            "firstDayOfWeek": 0,
+            "fiscalMonthOffset": 10,
+            "isYearEndFiscalYear": false,
+            "name": "CreatedDate"
+          },
+          {
+            "name": "OwnerId"
+          },
+          {
+            "name": "PublishStatus"
+          },
+          {
+            "name": "IsLatestVersion"
+          },
+          {
+            "name": "IsVisibleInApp"
+          },
+          {
+            "name": "IsVisibleInCsp"
+          },
+          {
+            "name": "IsVisibleInPkb"
+          },
+          {
+            "name": "IsVisibleInPrm"
+          },
+          {
+            "name": "KnowledgeArticleId"
+          },
+          {
+            "name": "Title"
+          },
+          {
+            "name": "VersionNumber",
+            "type": "Text"
+          }
+        ],
+        "object": "${Constants.KnowledgeArticleType}__kav"
+      }
+    },
+    "Extract_Knowledge_kav_online": {
+      "action": "sfdcDigest",
+      "parameters": {
+        "complexFilterConditions": "language = 'en_US' and PublishStatus='Online'",
+        "fields": [
+          {
+            "name": "Id"
+          },
+          {
+            "name": "ArticleNumber"
+          },
+          {
+            "name": "CreatedById"
+          },
+          {
+            "firstDayOfWeek": 0,
+            "fiscalMonthOffset": 10,
+            "isYearEndFiscalYear": false,
+            "name": "CreatedDate"
+          },
+          {
+            "name": "OwnerId"
+          },
+          {
+            "name": "PublishStatus"
+          },
+          {
+            "name": "IsLatestVersion"
+          },
+          {
+            "name": "IsVisibleInApp"
+          },
+          {
+            "name": "IsVisibleInCsp"
+          },
+          {
+            "name": "IsVisibleInPkb"
+          },
+          {
+            "name": "IsVisibleInPrm"
+          },
+          {
+            "name": "KnowledgeArticleId"
+          },
+          {
+            "name": "Title"
+          },
+          {
+            "name": "VersionNumber",
+            "type": "Text"
+          }
+        ],
+        "object": "${Constants.KnowledgeArticleType}__kav"
+      }
+    },
+    "Extract_Opportunity": {
+      "action": "sfdcDigest",
+      "parameters": {
+        "SFDCtoken": "SFDCtoken",
+        "fields": [
+          {
+            "name": "Id"
+          },
+          {
+            "name": "AccountId"
+          },
+          {
+            "name": "OwnerId"
+          },
+          {
+            "name": "Name"
+          },
+          {
+            "defaultValue": "N/A",
+            "name": "StageName"
+          },
+          {
+            "defaultValue": "N/A",
+            "name": "LeadSource"
+          },
+          {
+            "name": "IsWon"
+          },
+          {
+            "name": "IsClosed"
+          },
+          {
+            "defaultValue": "N/A",
+            "name": "ForecastCategory"
+          },
+          {
+            "defaultValue": "N/A",
+            "name": "ForecastCategoryName"
+          },
+          {
+            "firstDayOfWeek": 0,
+            "fiscalMonthOffset": 10,
+            "isYearEndFiscalYear": false,
+            "name": "CreatedDate"
+          },
+          {
+            "firstDayOfWeek": 0,
+            "fiscalMonthOffset": 10,
+            "isYearEndFiscalYear": false,
+            "name": "CloseDate"
+          },
+          {
+            "name": "Amount"
+          },
+          {
+            "name": "CreatedById"
+          },
+          {
+            "name": "RecordTypeId"
+          }
+        ],
+        "object": "Opportunity"
+      }
+    },
+    "Extract_Queue": {
+      "action": "sfdcDigest",
+      "parameters": {
+        "fields": [
+          {
+            "name": "Id"
+          },
+          {
+            "name": "Name"
+          }
+        ],
+        "complexFilterConditions": "Type = 'Queue'",
+        "object": "Group"
+      }
+    },
+    "Extract_RecordTypes": {
+      "action": "sfdcDigest",
+      "parameters": {
+        "fields": [
+          {
+            "name": "Name"
+          },
+          {
+            "name": "Id"
+          }
+        ],
+        "object": "RecordType"
+      }
+    },
+    "Extract_Task": {
+      "action": "sfdcDigest",
+      "parameters": {
+        "fields": [
+          {
+            "name": "Id"
+          },
+          {
+            "name": "CallObject"
+          },
+          {
+            "name": "CallDurationInSeconds"
+          },
+          {
+            "defaultValue": "N/A",
+            "name": "CallDisposition"
+          },
+          {
+            "defaultValue": "N/A",
+            "name": "CallType"
+          },
+          {
+            "name": "OwnerId"
+          },
+          {
+            "defaultValue": "N/A",
+            "name": "Status"
+          },
+          {
+            "defaultValue": "N/A",
+            "name": "Priority"
+          },
+          {
+            "name": "IsClosed"
+          },
+          {
+            "defaultValue": "N/A",
+            "name": "TaskSubtype"
+          },
+          {
+            "firstDayOfWeek": 0,
+            "fiscalMonthOffset": 10,
+            "isYearEndFiscalYear": false,
+            "name": "CreatedDate"
+          },
+          {
+            "firstDayOfWeek": 0,
+            "fiscalMonthOffset": 10,
+            "isYearEndFiscalYear": false,
+            "name": "ActivityDate"
+          },
+          {
+            "firstDayOfWeek": 0,
+            "fiscalMonthOffset": 10,
+            "isYearEndFiscalYear": false,
+            "name": "LastModifiedDate"
+          },
+          {
+            "defaultValue": "N/A",
+            "name": "Subject"
+          },
+          {
+            "name": "WhatId"
+          }
+        ],
+        "object": "Task"
+      }
+    },
+    "Extract_User": {
+      "action": "sfdcDigest",
+      "parameters": {
+        "fields": [
+          {
+            "name": "CallCenterId"
+          },
+          {
+            "name": "Name"
+          },
+          {
+            "name": "UserRoleId"
+          },
+          {
+            "name": "Id"
+          }
+        ],
+        "object": "User"
+      }
+    },
+    "Extract_UserRole": {
+      "action": "sfdcDigest",
+      "parameters": {
+        "fields": [
+          {
+            "name": "Id"
+          },
+          {
+            "name": "Name"
+          },
+          {
+            "name": "ParentRoleId"
+          },
+          {
+            "firstDayOfWeek": 0,
+            "fiscalMonthOffset": 10,
+            "isYearEndFiscalYear": false,
+            "name": "LastModifiedDate"
+          },
+          {
+            "name": "LastModifiedById"
+          },
+          {
+            "name": "SystemModstamp"
+          }
+        ],
+        "object": "UserRole"
+      }
+    },
+    "Filter_Activities": {
+      "action": "filter",
+      "parameters": {
+        "filter": "IsActivity:EQ:Yes",
+        "source": "Handle_Only_Activities"
+      }
+    },
+    "Handle_Null_Attached_Articles": {
+      "action": "dim2mea",
+      "parameters": {
+        "dimension": "CaseArticle.ArticleVersionNumber",
+        "measure": "ArticleVersion",
+        "measureDefault": "0",
+        "measureType": "long",
+        "source": "Join_CaseAccountContactUserUserRoleCaseArticle"
+      }
+    },
+    "Handle_Null_Opportunity_RecordType": {
+      "action": "computeExpression",
+      "parameters": {
+        "computedFields": [
+          {
+            "label": "Opportunity Record Type",
+            "name": "RecordTypeName",
+            "saqlExpression": "case when RecordTypeId is null then \"N/A\" else 'RecordType.Name' end",
+            "type": "Text"
+          }
+        ],
+        "mergeWithSource": true,
+        "source": "Join_OpportunityRecordType"
+      }
+    },
+    "Handle_Null_RecordType": {
+      "action": "computeExpression",
+      "parameters": {
+        "computedFields": [
+          {
+            "label": "Case Record Type",
+            "name": "RecordTypeName",
+            "saqlExpression": "case when RecordTypeId is null then \"N/A\" else 'RecordType.Name' end",
+            "type": "Text"
+          }
+        ],
+        "mergeWithSource": true,
+        "source": "Join_CaseAccountContactUserUserRoleRecordType"
+      }
+    },
+    "Handle_Only_Activities": {
+      "action": "computeExpression",
+      "parameters": {
+        "computedFields": [
+          {
+            "label": "Is Activity",
+            "name": "IsActivity",
+            "saqlExpression": "case when 'Case.Id' is null then \"No\" else \"Yes\" end",
+            "type": "Text"
+          },
+          {
+            "label": "Is Call",
+            "name": "IsCall",
+            "saqlExpression": "case when CallDurationInSeconds > 0 then \"Yes\" else \"No\" end",
+            "type": "Text"
+          },
+          {
+            "name": "ActivityIsClosed",
+            "saqlExpression": "case when ('Type' == \"Task\" && 'IsClosed' == \"true\") ||  ('Case.CurrentDate_sec_epoch' > 'EndDateTime_sec_epoch') then \"Completed\" when ('Type' == \"Task\" && 'IsClosed' == \"false\") then \"Open\" else \"Open\" end",
+            "label": "Activity Is Closed",
+            "type": "Text"
+          }
+        ],
+        "mergeWithSource": true,
+        "source": "Join_ActivityOwner_Case"
+      }
+    },
+    "Handle_Only_Task": {
+      "action": "computeExpression",
+      "parameters": {
+        "computedFields": [
+          {
+            "label": "Is Activity",
+            "name": "IsActivity",
+            "saqlExpression": "case when 'Case.Id' is null then \"No\" else \"Yes\" end",
+            "type": "Text"
+          },
+          {
+            "label": "Is Call",
+            "name": "IsCall",
+            "saqlExpression": "case when CallDurationInSeconds > 0 then \"Yes\" else \"No\" end",
+            "type": "Text"
+          },
+          {
+            "label": "ActivityType",
+            "name": "ActivityType",
+            "saqlExpression": "TaskSubtype",
+            "type": "Text"
+          },
+          {
+            "name": "ActivityIsClosed",
+            "saqlExpression": "case when 'IsClosed' == \"true\" then \"Completed\" else \"Open\" end",
+            "label": "Activity Is Closed",
+            "type": "Text"
+          }
+        ],
+        "mergeWithSource": true,
+        "source": "Join_ActivityOwner_Case"
+      }
+    },
+    "Join_Append_Knowledge__ka_kav_dataCategory": {
+      "action": "augment",
+      "parameters": {
+        "left": "Extract_Knowledge_ka",
+        "left_key": [
+          "Id"
+        ],
+        "relationship": "ArticleVersion",
+        "right": "Join_Append_Knowledge__kav_dataCategory",
+        "right_key": [
+          "KnowledgeArticleId"
+        ],
+        "right_select": [
+          "CreatedById",
+          "CreatedDate",
+          "OwnerId",
+          "PublishStatus",
+          "IsLatestVersion",
+          "IsVisibleInApp",
+          "IsVisibleInCsp",
+          "IsVisibleInPkb",
+          "IsVisibleInPrm",
+          "Title",
+          "VersionNumber",
+          "Id",
+          "DataCategory.DataCategoryName",
+          "DataCategory.DataCategoryGroupName"
+        ]
+      }
+    },
+    "Join_Append_Knowledge__ka_kav_dataCategory_ViewStat": {
+      "action": "augment",
+      "parameters": {
+        "left": "Join_Append_Knowledge__ka_kav_dataCategory",
+        "left_key": [
+          "Id"
+        ],
+        "relationship": "ViewStat",
+        "right": "Extract_Knowledge_ViewStat",
+        "right_key": [
+          "ParentId"
+        ],
+        "right_select": [
+          "Channel",
+          "ViewCount",
+          "NormalizedScore"
+        ]
+      }
+    },
+    "Join_Append_Knowledge__ka_kav_dataCategory_ViewStat_VoteStat": {
+      "action": "augment",
+      "parameters": {
+        "left": "Join_Append_Knowledge__ka_kav_dataCategory_ViewStat",
+        "left_key": [
+          "Id"
+        ],
+        "relationship": "VoteStat",
+        "right": "Extract_Knowledge_VoteStat",
+        "right_key": [
+          "ParentId"
+        ],
+        "right_select": [
+          "Channel",
+          "NormalizedScore"
+        ]
+      }
+    },
+    "Join_Append_Knowledge__ka_kav_dataCategory_ViewStat_VoteStat_User": {
+      "action": "augment",
+      "parameters": {
+        "left": "Join_Append_Knowledge__ka_kav_dataCategory_ViewStat_VoteStat",
+        "left_key": [
+          "CreatedById"
+        ],
+        "relationship": "User",
+        "right": "Extract_User",
+        "right_key": [
+          "Id"
+        ],
+        "right_select": [
+          "Name"
+        ]
+      }
+    },
+    "Join_Append_Knowledge__kav_dataCategory": {
+      "action": "augment",
+      "parameters": {
+        "left": "Append_Knowledge_kav",
+        "left_key": [
+          "Id"
+        ],
+        "operation": "LookupMultiValue",
+        "relationship": "DataCategory",
+        "right": "Extract_Knowledge_DataCategory",
+        "right_key": [
+          "ParentId"
+        ],
+        "right_select": [
+          "DataCategoryName",
+          "DataCategoryGroupName"
+        ]
+      }
+    },
+    "Join_CaseAccount": {
+      "action": "augment",
+      "parameters": {
+        "left": "Case_CSAT_Mea",
+        "left_key": [
+          "AccountId"
+        ],
+        "relationship": "Account",
+        "right": "Extract_Account",
+        "right_key": [
+          "Id"
+        ],
+        "right_select": [
+          "Id",
+          "Name",
+          "${Constants.AccountGeography}",
+          "Industry"
+        ]
+      }
+    },
+    "Join_CaseAccountContact": {
+      "action": "augment",
+      "parameters": {
+        "left": "computeJoin_ServiceCaseTaskEvent",
+        "left_key": [
+          "ContactId"
+        ],
+        "relationship": "Contact",
+        "right": "Extract_Contact",
+        "right_key": [
+          "Id"
+        ],
+        "right_select": [
+          "Name",
+          "Id",
+          "${Constants.AccountGeography}"
+        ]
+      }
+    },
+    "Join_CaseAccountContactUser": {
+      "action": "augment",
+      "parameters": {
+        "left": "Join_CaseAccountContact",
+        "left_key": [
+          "OwnerId"
+        ],
+        "relationship": "Owner",
+        "right": "Append_Queue_User",
+        "right_key": [
+          "Id"
+        ],
+        "right_select": [
+          "CallCenterId",
+          "Name",
+          "Id",
+          "UserRoleId",
+          "Type"
+        ]
+      }
+    },
+    "Join_CaseAccountContactUserUserRole": {
+      "action": "augment",
+      "parameters": {
+        "left": "Join_CaseAccountContactUser",
+        "left_key": [
+          "Owner.UserRoleId"
+        ],
+        "relationship": "Role",
+        "right": "Extract_UserRole",
+        "right_key": [
+          "Id"
+        ],
+        "right_select": [
+          "Name",
+          "ParentRoleId"
+        ]
+      }
+    },
+    "Join_CaseAccountContactUserUserRoleCaseArticle": {
+      "action": "augment",
+      "parameters": {
+        "left": "Join_CaseAccountContactUserUserRole",
+        "left_key": [
+          "Id"
+        ],
+        "relationship": "CaseArticle",
+        "right": "Join_CaseArticleKnowledge_User",
+        "right_key": [
+          "CaseId"
+        ],
+        "right_select": [
+          "ArticleVersionNumber",
+          "CaseId",
+          "CreatedDate",
+          "User.Name"
+        ]
+      }
+    },
+    "Join_CaseAccountContactUserUserRoleRecordType": {
+      "action": "augment",
+      "parameters": {
+        "left": "Handle_Null_Attached_Articles",
+        "left_key": [
+          "RecordTypeId"
+        ],
+        "relationship": "RecordType",
+        "right": "Extract_RecordTypes",
+        "right_key": [
+          "Id"
+        ],
+        "right_select": [
+          "Name"
+        ]
+      }
+    },
+    "Join_CaseArticleKnowledge_User": {
+      "action": "augment",
+      "parameters": {
+        "left": "Extract_CaseArticleKnowledge",
+        "left_key": [
+          "CreatedById"
+        ],
+        "relationship": "User",
+        "right": "Extract_User",
+        "right_key": [
+          "Id"
+        ],
+        "right_select": [
+          "Id",
+          "Name"
+        ]
+      }
+    },
+    "Join_CaseArticleKnowledge_User_Case": {
+      "action": "augment",
+      "parameters": {
+        "left": "Join_CaseArticleKnowledge_User",
+        "left_key": [
+          "CaseId"
+        ],
+        "relationship": "Case",
+        "right": "Compute_CaseBusinessHours",
+        "right_key": [
+          "Id"
+        ],
+        "right_select": [
+          "${Constants.CaseProduct}",
+          "${Constants.CaseReason}",
+          "${Constants.CaseStatus}",
+          "${Constants.CaseSupportLevel}",
+          "${Constants.CaseType}"
+        ]
+      }
+    },
+    "Join_CaseArticleKnowledge_User_Case_Knowledge": {
+      "action": "augment",
+      "parameters": {
+        "left": "Join_CaseArticleKnowledge_User_Case",
+        "left_key": [
+          "KnowledgeArticleId"
+        ],
+        "relationship": "Article",
+        "right": "computeKnowledgeDraftStatusAndChannelField",
+        "right_key": [
+          "Id"
+        ],
+        "right_select": [
+          "ArticleVersion.Title",
+          "ArticleVersion.PublishStatus",
+          "ArticleVersion.VersionNumber",
+          "ArticleVersion.IsVisibleInApp",
+          "ArticleVersion.IsVisibleInCsp",
+          "ArticleVersion.IsVisibleInPkb",
+          "ArticleVersion.IsVisibleInPrm",
+          "ArticleVersion.DataCategory.DataCategoryName",
+          "ArticleVersion.DataCategory.DataCategoryGroupName",
+          "User.Name",
+          "CreatedById"
+        ]
+      }
+    },
+    "Join_CaseCSAT": {
+      "action": "augment",
+      "parameters": {
+        "left": "Compute_CaseBusinessHours",
+        "left_key": [
+          "${Constants.CSATCaseJoinKey}"
+        ],
+        "relationship": "CSAT",
+        "right": "Extract_CSAT",
+        "right_key": [
+          "${Constants.JoinKeyOtherObj}"
+        ],
+        "right_select": [
+          "${Constants.CSATField}"
+        ]
+      }
+    },
+    "Join_CaseHistory_NewOwner": {
+      "action": "augment",
+      "parameters": {
+        "left": "Join_CaseHistory_OldOwner",
+        "left_key": [
+          "NewOwner"
+        ],
+        "relationship": "NewOwner",
+        "right": "Join_CaseHistory_Queue_User_UserRole",
+        "right_key": [
+          "Id"
+        ],
+        "right_select": [
+          "CallCenterId",
+          "Name",
+          "Id",
+          "Role.Name",
+          "Type"
+        ]
+      }
+    },
+    "Join_CaseHistory_OldOwner": {
+      "action": "augment",
+      "parameters": {
+        "left": "compute_CaseHistory_OldNewStatus",
+        "left_key": [
+          "OldOwner"
+        ],
+        "relationship": "OldOwner",
+        "right": "Join_CaseHistory_Queue_User_UserRole",
+        "right_key": [
+          "Id"
+        ],
+        "right_select": [
+          "CallCenterId",
+          "Name",
+          "Id",
+          "Role.Name",
+          "Type"
+        ]
+      }
+    },
+    "Join_CaseHistory_Queue_User_UserRole": {
+      "action": "augment",
+      "parameters": {
+        "left": "Append_Queue_User",
+        "left_key": [
+          "UserRoleId"
+        ],
+        "relationship": "Role",
+        "right": "Extract_UserRole",
+        "right_key": [
+          "Id"
+        ],
+        "right_select": [
+          "Name"
+        ]
+      }
+    },
+    "Join_OpportunityRecordType": {
+      "action": "augment",
+      "parameters": {
+        "left": "Extract_Opportunity",
+        "left_key": [
+          "RecordTypeId"
+        ],
+        "relationship": "RecordType",
+        "right": "Extract_RecordTypes",
+        "right_key": [
+          "Id"
+        ],
+        "right_select": [
+          "Name"
+        ]
+      }
+    },
+    "Join_OpportunityRecordTypeAccount": {
+      "action": "augment",
+      "parameters": {
+        "left": "Handle_Null_Opportunity_RecordType",
+        "left_key": [
+          "AccountId"
+        ],
+        "relationship": "Account",
+        "right": "Extract_Account",
+        "right_key": [
+          "Id"
+        ],
+        "right_select": [
+          "Id",
+          "Name",
+          "Industry"
+        ]
+      }
+    },
+    "Join_OpportunityRecordTypeAccountCase": {
+      "action": "augment",
+      "parameters": {
+        "left": "Join_OpportunityRecordTypeAccount",
+        "left_key": [
+          "AccountId"
+        ],
+        "relationship": "Case",
+        "right": "Compute_CaseBusinessHours",
+        "right_key": [
+          "AccountId"
+        ],
+        "right_select": [
+          "Id",
+          "CaseNumber",
+          "IsEscalated",
+          "${Constants.CaseSeverityLevel}"
+        ]
+      }
+    },
+    "Join_ServiceCaseServiceTask": {
+      "action": "augment",
+      "parameters": {
+        "left": "Join_CaseAccount",
+        "left_key": [
+          "Id"
+        ],
+        "relationship": "Task",
+        "right": "Compute_Extract_Task",
+        "right_key": [
+          "WhatId"
+        ],
+        "right_select": [
+          "ActivityLastModifiedDate"
+        ]
+      }
+    },
+    "Join_ServiceCaseTaskEvent": {
+      "action": "augment",
+      "parameters": {
+        "left": "Join_ServiceCaseServiceTask",
+        "left_key": [
+          "Id"
+        ],
+        "relationship": "Event",
+        "right": "Compute_Extract_Event",
+        "right_key": [
+          "WhatId"
+        ],
+        "right_select": [
+          "ActivityLastModifiedDate"
+        ]
+      }
+    },
+    "Join_ActivityOwner": {
+      "action": "augment",
+      "parameters": {
+        "left": "Append_TaskEvent",
+        "left_key": [
+          "OwnerId"
+        ],
+        "relationship": "Owner",
+        "right": "Extract_User",
+        "right_key": [
+          "Id"
+        ],
+        "right_select": [
+          "Name",
+          "Id",
+          "UserRoleId"
+        ]
+      }
+    },
+    "Join_ActivityOwner_Case": {
+      "action": "augment",
+      "parameters": {
+        "left": "Join_ActivityOwner",
+        "left_key": [
+          "WhatId"
+        ],
+        "relationship": "Case",
+        "right": "Handle_Null_RecordType",
+        "right_key": [
+          "Id"
+        ],
+        "right_select": [
+          "Id",
+          "${Constants.CaseOrigin}",
+          "${Constants.CaseReason}",
+          "${Constants.CaseType}",
+          "IsClosed",
+          "${Constants.ClosedDate}",
+          "CreatedDate",
+          "${Constants.CaseSupportLevel}",
+          "${Constants.CaseStatus}",
+          "${Constants.CaseProduct}",
+          "${Constants.CaseSeverityLevel}",
+          "CaseNumber",
+          "RecordType.Name",
+          "Account.Name",
+          "Account.Id",
+          "${Constants.CaseDuration}",
+          "Role.Name",
+          "CurrentDate"
+        ]
+      }
+    },
+    "Register_Case": {
+      "action": "sfdcRegister",
+      "parameters": {
+        "SFDCtoken": "SFDCtoken",
+        "alias": "${App.EdgeMarts.ServiceCase.Alias}",
+        "name": "ServiceCase",
+        "source": "Handle_Null_RecordType"
+      }
+    },
+    "Register_Knowledge": {
+      "action": "sfdcRegister",
+      "parameters": {
+        "alias": "${App.EdgeMarts.ServiceKnowledge.Alias}",
+        "name": "ServiceKnowledge",
+        "source": "computeKnowledgeDraftStatusAndChannelField"
+      }
+    },
+    "Register_KnowledgeAttached": {
+      "action": "sfdcRegister",
+      "parameters": {
+        "alias": "${App.EdgeMarts.ServiceKnowledgeAttached.Alias}",
+        "name": "ServiceKnowledgeAttached",
+        "source": "computeKnowledgeCitationFlag"
+      }
+    },
+    "Register_Opportunity": {
+      "action": "sfdcRegister",
+      "parameters": {
+        "SFDCtoken": "SFDCtoken",
+        "alias": "${App.EdgeMarts.ServiceOpportunity.Alias}",
+        "name": "ServiceOpportunities",
+        "source": "Join_OpportunityRecordTypeAccountCase"
+      }
+    },
+    "Register_ServiceCaseHistory": {
+      "action": "sfdcRegister",
+      "parameters": {
+        "alias": "${App.EdgeMarts.ServiceCaseHistory.Alias}",
+        "name": "ServiceCaseHistory",
+        "source": "Join_CaseHistory_NewOwner"
+      }
+    },
+    "Register_ActivityOwner_Case": {
+      "action": "sfdcRegister",
+      "parameters": {
+        "SFDCtoken": "SFDCtoken",
+        "alias": "${App.EdgeMarts.ServiceActivity.Alias}",
+        "name": "ServiceActivity",
+        "source": "Filter_Activities"
+      }
+    },
+    "computeJoin_ServiceCaseTaskEvent": {
+      "action": "computeExpression",
+      "parameters": {
+        "computedFields": [
+          {
+            "defaultValue": "0",
+            "label": "Last LastModifiedDate",
+            "name": "sum_last_activity",
+            "precision": 18,
+            "saqlExpression": "case when ('Task.ActivityLastModifiedDate_sec_epoch' > 'Event.ActivityLastModifiedDate_sec_epoch' && 'Task.ActivityLastModifiedDate_sec_epoch' >= 'LastModifiedDate_sec_epoch') then  ('CurrentDate_sec_epoch' - 'Task.ActivityLastModifiedDate_sec_epoch')/86400 when ('Event.ActivityLastModifiedDate_sec_epoch' > 'Task.ActivityLastModifiedDate_sec_epoch' && 'Event.ActivityLastModifiedDate_sec_epoch' >= 'LastModifiedDate_sec_epoch') then ('CurrentDate_sec_epoch' - 'Event.ActivityLastModifiedDate_sec_epoch')/86400  when ('LastModifiedDate_sec_epoch' >= 'Task.ActivityLastModifiedDate_sec_epoch' && 'LastModifiedDate_sec_epoch' >= 'Event.ActivityLastModifiedDate_sec_epoch') then ('CurrentDate_sec_epoch' - 'LastModifiedDate_sec_epoch')/86400  else ('CurrentDate_sec_epoch' - 'LastModifiedDate_sec_epoch')/86400 end",
+            "scale": 2,
+            "type": "Numeric"
+          }
+        ],
+        "mergeWithSource": true,
+        "source": "Join_ServiceCaseTaskEvent"
+      }
+    },
+    "computeJoin_ServiceCaseTask": {
+      "action": "computeExpression",
+      "parameters": {
+        "computedFields": [
+          {
+            "defaultValue": "0",
+            "label": "Last LastModifiedDate",
+            "name": "sum_last_activity",
+            "precision": 18,
+            "saqlExpression": "case when ('Task.ActivityLastModifiedDate_sec_epoch' >= 'LastModifiedDate_sec_epoch') then ('CurrentDate_sec_epoch' - 'Task.ActivityLastModifiedDate_sec_epoch')/86400 when ('LastModifiedDate_sec_epoch' >= 'Task.ActivityLastModifiedDate_sec_epoch') then ('CurrentDate_sec_epoch' - 'LastModifiedDate_sec_epoch')/86400  else ('CurrentDate_sec_epoch' - 'LastModifiedDate_sec_epoch')/86400 end",
+            "scale": 2,
+            "type": "Numeric"
+          }
+        ],
+        "mergeWithSource": true,
+        "source": "Join_ServiceCaseServiceTask"
+      }
+    },
+    "computeKnowledgeCitationFlag": {
+      "action": "computeExpression",
+      "parameters": {
+        "computedFields": [
+          {
+            "label": "is Attached By Owner?",
+            "name": "isAttachedByOwner",
+            "saqlExpression": "case when 'CreatedById' == 'Article.CreatedById' then \"true\" else \"false\" end",
+            "type": "Text"
+          }
+        ],
+        "mergeWithSource": true,
+        "source": "Join_CaseArticleKnowledge_User_Case_Knowledge"
+      }
+    },
+    "computeKnowledgeDraftStatusAndChannelField": {
+      "action": "computeExpression",
+      "parameters": {
+        "computedFields": [
+          {
+            "label": "Is Draft",
+            "name": "IsDraft",
+            "saqlExpression": "case when 'ArticleVersion.Id' is null then \"true\" else \"false\" end",
+            "type": "Text"
+          },
+          {
+            "label": "Channel List",
+            "name": "ChannelList",
+            "saqlExpression": "case when ('ArticleVersion.IsVisibleInApp' == \"false\" && 'ArticleVersion.IsVisibleInPrm' == \"false\" && 'ArticleVersion.IsVisibleInCsp' == \"false\" && 'ArticleVersion.IsVisibleInPkb' == \"true\" ) then \"Public\" when ('ArticleVersion.IsVisibleInApp' == \"false\" && 'ArticleVersion.IsVisibleInPrm' == \"false\" && 'ArticleVersion.IsVisibleInCsp' == \"true\" && 'ArticleVersion.IsVisibleInPkb' == \"false\" ) then \"Customer\" when ('ArticleVersion.IsVisibleInApp' == \"false\" && 'ArticleVersion.IsVisibleInPrm' == \"false\" && 'ArticleVersion.IsVisibleInCsp' == \"true\" && 'ArticleVersion.IsVisibleInPkb' == \"true\" ) then \"Customer;Public\" when ('ArticleVersion.IsVisibleInApp' == \"false\" && 'ArticleVersion.IsVisibleInPrm' == \"true\" && 'ArticleVersion.IsVisibleInCsp' == \"false\" && 'ArticleVersion.IsVisibleInPkb' == \"false\" ) then \"Parter\" when ('ArticleVersion.IsVisibleInApp' == \"false\" && 'ArticleVersion.IsVisibleInPrm' == \"true\" && 'ArticleVersion.IsVisibleInCsp' == \"false\" && 'ArticleVersion.IsVisibleInPkb' == \"true\" ) then \"Parter;Public\" when ('ArticleVersion.IsVisibleInApp' == \"false\" && 'ArticleVersion.IsVisibleInPrm' == \"true\" && 'ArticleVersion.IsVisibleInCsp' == \"true\" && 'ArticleVersion.IsVisibleInPkb' == \"false\" ) then \"Parter;Customer\"    when ('ArticleVersion.IsVisibleInApp' == \"false\" && 'ArticleVersion.IsVisibleInPrm' == \"true\" && 'ArticleVersion.IsVisibleInCsp' == \"true\" && 'ArticleVersion.IsVisibleInPkb' == \"true\" ) then \"Parter;Customer;Public\" when ('ArticleVersion.IsVisibleInApp' == \"true\" && 'ArticleVersion.IsVisibleInPrm' == \"false\" && 'ArticleVersion.IsVisibleInCsp' == \"false\" && 'ArticleVersion.IsVisibleInPkb' == \"false\" ) then \"Internal\" when ('ArticleVersion.IsVisibleInApp' == \"true\" && 'ArticleVersion.IsVisibleInPrm' == \"false\" && 'ArticleVersion.IsVisibleInCsp' == \"false\" && 'ArticleVersion.IsVisibleInPkb' == \"true\" ) then \"Internal;Public\" when ('ArticleVersion.IsVisibleInApp' == \"true\" && 'ArticleVersion.IsVisibleInPrm' == \"false\" && 'ArticleVersion.IsVisibleInCsp' == \"true\" && 'ArticleVersion.IsVisibleInPkb' == \"false\" ) then \"Internal;Customer\" when ('ArticleVersion.IsVisibleInApp' == \"true\" && 'ArticleVersion.IsVisibleInPrm' == \"false\" && 'ArticleVersion.IsVisibleInCsp' == \"true\" && 'ArticleVersion.IsVisibleInPkb' == \"true\" ) then \"Internal;Customer;Public\" when ('ArticleVersion.IsVisibleInApp' == \"true\" && 'ArticleVersion.IsVisibleInPrm' == \"true\" && 'ArticleVersion.IsVisibleInCsp' == \"false\" && 'ArticleVersion.IsVisibleInPkb' == \"false\" ) then \"Internal;Parter\" when ('ArticleVersion.IsVisibleInApp' == \"true\" && 'ArticleVersion.IsVisibleInPrm' == \"true\" && 'ArticleVersion.IsVisibleInCsp' == \"false\" && 'ArticleVersion.IsVisibleInPkb' == \"true\" ) then \"Internal;Parter;Public\" when ('ArticleVersion.IsVisibleInApp' == \"true\" && 'ArticleVersion.IsVisibleInPrm' == \"true\" && 'ArticleVersion.IsVisibleInCsp' == \"true\" && 'ArticleVersion.IsVisibleInPkb' == \"false\" ) then \"Internal;Parter;Customer\" when ('ArticleVersion.IsVisibleInApp' == \"true\" && 'ArticleVersion.IsVisibleInPrm' == \"true\" && 'ArticleVersion.IsVisibleInCsp' == \"true\" && 'ArticleVersion.IsVisibleInPkb' == \"true\" ) then \"Internal;Parter;Customer;Public\" end",
+            "type": "Text"
+          }
+        ],
+        "mergeWithSource": true,
+        "source": "Join_Append_Knowledge__ka_kav_dataCategory_ViewStat_VoteStat_User"
+      }
+    },
+    "compute_CalculatedCaseDuration": {
+      "action": "computeExpression",
+      "parameters": {
+        "computedFields": [
+          {
+            "defaultValue": "0",
+            "label": "Case Duration",
+            "name": "DurationCalculatedField",
+            "precision": 18,
+            "saqlExpression": "case  when ('IsClosed' == \"true\") then ('ClosedDate_sec_epoch' - 'CreatedDate_sec_epoch')/86400   else ('CurrentDate_sec_epoch' - 'CreatedDate_sec_epoch')/86400  end",
+            "scale": 2,
+            "type": "Numeric"
+          }
+        ],
+        "mergeWithSource": true,
+        "source": "compute_CurrentDateForCase"
+      }
+    },
+    "Join_CaseBusinessHours": {
+      "action": "augment",
+      "parameters": {
+        "left": "compute_CalculatedCaseDuration",
+        "left_key": [
+          "BusinessHoursId"
+        ],
+        "relationship": "BH",
+        "right": "Compute_WeekDay_Duration",
+        "right_key": [
+          "Id"
+        ],
+        "right_select": [
+          "FridayDuration",
+          "MondayDuration",
+          "SaturdayDuration",
+          "SundayDuration",
+          "ThursdayDuration",
+          "TuesdayDuration",
+          "WednesdayDuration",
+          "SundayStartTime_sec",
+          "MondayStartTime_sec",
+          "TuesdayStartTime_sec",
+          "WednesdayStartTime_sec",
+          "ThursdayStartTime_sec",
+          "FridayStartTime_sec",
+          "SaturdayStartTime_sec",
+          "SundayEndTime_sec",
+          "MondayEndTime_sec",
+          "TuesdayEndTime_sec",
+          "WednesdayEndTime_sec",
+          "ThursdayEndTime_sec",
+          "FridayEndTime_sec",
+          "SaturdayEndTime_sec"
+        ]
+      }
+    },
+    "Compute_CaseBusinessHours_1": {
+      "action": "computeExpression",
+      "parameters": {
+        "source": "Join_CaseBusinessHours",
+        "computedFields": [
+          {
+            "name": "NumWeeks",
+            "saqlExpression": "case when ('ValidToWithNow_day_epoch' - 'CreatedDate_day_epoch')< 2 then 0 else ('ValidToWithNow_day_epoch' - 'CreatedDate_day_epoch')/7 end",
+            "scale": 0,
+            "type": "Numeric"
+          },
+          {
+            "name": "StartWeekDay",
+            "saqlExpression": "'CreatedDate_day_epoch'%7",
+            "scale": 0,
+            "type": "Numeric"
+          },
+          {
+            "name": "EndWeekDay",
+            "saqlExpression": "'ValidToWithNow_day_epoch'%7",
+            "scale": 0,
+            "type": "Numeric"
+          }
+        ],
+        "mergeWithSource": true
+      }
+    },
+    "Compute_CaseBusinessHours_2": {
+      "action": "computeExpression",
+      "parameters": {
+        "source": "Compute_CaseBusinessHours_1",
+        "computedFields": [
+          {
+            "name": "TotalThursdayDuration",
+            "saqlExpression": "case when ( ('EndWeekDay' < 'StartWeekDay') and ((0 < 'EndWeekDay') or (('StartWeekDay' < 0) and (0 < ('EndWeekDay'+7))))) or ('StartWeekDay' != 'EndWeekDay' && ('StartWeekDay' < 0 && 0< 'EndWeekDay')) then  'BH.ThursdayDuration'*('NumWeeks' + 1) else 'BH.ThursdayDuration'*'NumWeeks' end",
+            "scale": 0,
+            "type": "Numeric"
+          },
+          {
+            "name": "TotalFridayDuration",
+            "saqlExpression": "case when ( ('EndWeekDay' < 'StartWeekDay') and ((1 < 'EndWeekDay') or (('StartWeekDay' < 1) and (1 < ('EndWeekDay'+7))))) or ('StartWeekDay' != 'EndWeekDay' && ('StartWeekDay' < 1 && 1< 'EndWeekDay')) then 'BH.FridayDuration'*('NumWeeks' + 1) else 'BH.FridayDuration'*'NumWeeks' end",
+            "scale": 0,
+            "type": "Numeric"
+          },
+          {
+            "name": "TotalSaturdayDuration",
+            "saqlExpression": "case when ( ('EndWeekDay' < 'StartWeekDay') and ((2 < 'EndWeekDay') or (('StartWeekDay' < 2) and (2 < ('EndWeekDay'+7))))) or ('StartWeekDay' != 'EndWeekDay' && ('StartWeekDay' < 2 && 2< 'EndWeekDay')) then 'BH.SaturdayDuration'*('NumWeeks' + 1) else 'BH.SaturdayDuration'*'NumWeeks' end",
+            "scale": 0,
+            "type": "Numeric"
+          },
+          {
+            "name": "TotalSundayDuration",
+            "saqlExpression": "case when ( ('EndWeekDay' < 'StartWeekDay') and ((3 < 'EndWeekDay') or (('StartWeekDay' < 3) and (3 < ('EndWeekDay'+7))))) or ('StartWeekDay' != 'EndWeekDay' && ('StartWeekDay' < 3 && 3< 'EndWeekDay')) then 'BH.SundayDuration'*('NumWeeks' + 1) else 'BH.SundayDuration'*'NumWeeks' end",
+            "scale": 0,
+            "type": "Numeric"
+          },
+          {
+            "name": "TotalMondayDuration",
+            "saqlExpression": "case when ( ('EndWeekDay' < 'StartWeekDay') and ((4 < 'EndWeekDay') or (('StartWeekDay' < 4) and (4 < ('EndWeekDay'+7))))) or ('StartWeekDay' != 'EndWeekDay' && ('StartWeekDay' < 4 && 4< 'EndWeekDay')) then 'BH.MondayDuration'*('NumWeeks' + 1) else 'BH.MondayDuration'*'NumWeeks' end",
+            "scale": 0,
+            "type": "Numeric"
+          },
+          {
+            "name": "TotalTuesdayDuration",
+            "saqlExpression": "case when ( ('EndWeekDay' < 'StartWeekDay') and ((5 < 'EndWeekDay') or (('StartWeekDay' < 5) and (5 < ('EndWeekDay'+7))))) or ('StartWeekDay' != 'EndWeekDay' && ('StartWeekDay' < 5 && 5< 'EndWeekDay')) then 'BH.TuesdayDuration'*('NumWeeks' + 1) else 'BH.TuesdayDuration'*'NumWeeks' end",
+            "scale": 0,
+            "type": "Numeric"
+          },
+          {
+            "name": "TotalWednesdayDuration",
+            "saqlExpression": "case when ( ('EndWeekDay' < 'StartWeekDay') and ((6 < 'EndWeekDay') or (('StartWeekDay' < 6) and (6 < ('EndWeekDay'+7))))) or ('StartWeekDay' != 'EndWeekDay' && ('StartWeekDay' < 6 && 6< 'EndWeekDay')) then 'BH.WednesdayDuration'*('NumWeeks' + 1) else 'BH.WednesdayDuration'*'NumWeeks' end",
+            "scale": 0,
+            "type": "Numeric"
+          },
+          {
+            "name": "BusinessCreateDateStartTimeInSeconds",
+            "saqlExpression": "case when 'StartWeekDay' == 0 then 'BH.ThursdayStartTime_sec' when 'StartWeekDay' == 1 then 'BH.FridayStartTime_sec' when 'StartWeekDay' == 2 then 'BH.SaturdayStartTime_sec' when 'StartWeekDay' == 3 then 'BH.SundayStartTime_sec' when 'StartWeekDay' == 4 then 'BH.MondayStartTime_sec' when 'StartWeekDay' == 5 then 'BH.TuesdayStartTime_sec' when 'StartWeekDay' == 6 then 'BH.WednesdayStartTime_sec' else 'BH.WednesdayStartTime_sec' end",
+            "scale": 0,
+            "type": "Numeric"
+          },
+          {
+            "name": "BusinessCreateDateEndTimeInSeconds",
+            "saqlExpression": "case when 'StartWeekDay' == 0 then 'BH.ThursdayEndTime_sec' when 'StartWeekDay' == 1 then 'BH.FridayEndTime_sec' when 'StartWeekDay' == 2 then 'BH.SaturdayEndTime_sec' when 'StartWeekDay' == 3 then 'BH.SundayEndTime_sec' when 'StartWeekDay' == 4 then 'BH.MondayEndTime_sec' when 'StartWeekDay' == 5 then 'BH.TuesdayEndTime_sec' when 'StartWeekDay' == 6 then 'BH.WednesdayEndTime_sec' else 'BH.WednesdayEndTime_sec' end",
+            "scale": 0,
+            "type": "Numeric"
+          },
+          {
+            "name": "BusinessValidToStartTimeInSeconds",
+            "saqlExpression": "case when 'EndWeekDay' == 0 then 'BH.ThursdayStartTime_sec' when 'EndWeekDay' == 1 then 'BH.FridayStartTime_sec' when 'EndWeekDay' == 2 then 'BH.SaturdayStartTime_sec' when 'EndWeekDay' == 3 then 'BH.SundayStartTime_sec' when 'EndWeekDay' == 4 then 'BH.MondayStartTime_sec' when 'EndWeekDay' == 5 then 'BH.TuesdayStartTime_sec' when 'EndWeekDay' == 6 then 'BH.WednesdayStartTime_sec' else 'BH.WednesdayStartTime_sec' end",
+            "scale": 0,
+            "type": "Numeric"
+          },
+          {
+            "name": "BusinessValidToEndTimeInSeconds",
+            "saqlExpression": "case when 'EndWeekDay' == 0 then 'BH.ThursdayEndTime_sec' when 'EndWeekDay' == 1 then 'BH.FridayEndTime_sec' when 'EndWeekDay' == 2 then 'BH.SaturdayEndTime_sec' when 'EndWeekDay' == 3 then 'BH.SundayEndTime_sec' when 'EndWeekDay' == 4 then 'BH.MondayEndTime_sec' when 'EndWeekDay' == 5 then 'BH.TuesdayEndTime_sec' when 'EndWeekDay' == 6 then 'BH.WednesdayEndTime_sec' else 'BH.WednesdayEndTime_sec' end",
+            "scale": 0,
+            "type": "Numeric"
+          }
+        ],
+        "mergeWithSource": true
+      }
+    },
+    "Compute_CaseBusinessHours_3": {
+      "action": "computeExpression",
+      "parameters": {
+        "source": "Compute_CaseBusinessHours_2",
+        "computedFields": [
+          {
+            "name": "StartTimeAdjusted",
+            "saqlExpression": "case when (('CreatedDate_sec_epoch'-('CreatedDate_day_epoch'*86400)) > 'BusinessCreateDateEndTimeInSeconds') then 'BusinessCreateDateEndTimeInSeconds' when (('CreatedDate_sec_epoch'-('CreatedDate_day_epoch'*86400)) < 'BusinessCreateDateStartTimeInSeconds') then 'BusinessCreateDateStartTimeInSeconds' else ('CreatedDate_sec_epoch'-('CreatedDate_day_epoch'*86400)) end",
+            "scale": 0,
+            "type": "Numeric"
+          },
+          {
+            "name": "EndTimeAdjusted",
+            "saqlExpression": "case when (('ValidToWithNow_sec_epoch'-('ValidToWithNow_day_epoch'*86400)) > 'BusinessValidToEndTimeInSeconds') then 'BusinessValidToEndTimeInSeconds' when (('ValidToWithNow_sec_epoch'-('ValidToWithNow_day_epoch'*86400)) < 'BusinessValidToStartTimeInSeconds') then 'BusinessValidToStartTimeInSeconds' else ('ValidToWithNow_sec_epoch'-('ValidToWithNow_day_epoch'*86400)) end",
+            "scale": 0,
+            "type": "Numeric"
+          }
+        ],
+        "mergeWithSource": true
+      }
+    },
+    "Compute_CaseBusinessHours_4": {
+      "action": "computeExpression",
+      "parameters": {
+        "source": "Compute_CaseBusinessHours_3",
+        "computedFields": [
+          {
+            "name": "PartialDaysDurationStart",
+            "saqlExpression": "case when ('ValidToWithNow_day_epoch' == 'CreatedDate_day_epoch') then 0 else 'BusinessCreateDateEndTimeInSeconds' - 'StartTimeAdjusted' end",
+            "scale": 0,
+            "type": "Numeric"
+          },
+          {
+            "name": "PartialDaysDurationEnd",
+            "saqlExpression": "case when ('ValidToWithNow_day_epoch' == 'CreatedDate_day_epoch') then 'EndTimeAdjusted' - 'StartTimeAdjusted' else 'EndTimeAdjusted' - 'BusinessValidToStartTimeInSeconds' end",
+            "scale": 0,
+            "type": "Numeric"
+          }
+        ],
+        "mergeWithSource": true
+      }
+    },
+    "Compute_CaseBusinessHours": {
+      "action": "computeExpression",
+      "parameters": {
+        "source": "Compute_CaseBusinessHours_4",
+        "computedFields": [
+          {
+            "name": "BusinessHours",
+            "saqlExpression": "('PartialDaysDurationStart'+ 'PartialDaysDurationEnd'+ 'TotalThursdayDuration' + 'TotalFridayDuration' + 'TotalSaturdayDuration'+'TotalSundayDuration'+'TotalMondayDuration'+'TotalTuesdayDuration'+'TotalWednesdayDuration') / 3600",
+            "scale": 0,
+            "type": "Numeric"
+          }
+        ],
+        "mergeWithSource": true
+      }
+    },
+    "compute_CaseHistory_CurrentDate": {
+      "action": "computeExpression",
+      "parameters": {
+        "computedFields": [
+          {
+            "format": "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+            "label": "CurrentDate",
+            "name": "CurrentDate",
+            "saqlExpression": "now()",
+            "type": "Date"
+          },
+          {
+            "name": "ValidToWithNow",
+            "saqlExpression": "case when 'ValidToDate' == \"3000-10-10T10:10:10.100Z\" then now() else toDate('ValidToDate', \"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\") end",
+            "format": "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+            "type": "Date"
+          },
+          {
+            "name": "OwnerDurationInHours",
+            "saqlExpression": "case when 'Field' == \"Owner\"  or 'Field' == \"created\" then date_diff(\"hour\",toDate(CreatedDate_sec_epoch),toDate(OwnerNextDate_sec_epoch)) else 0 end",
+            "format": "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+            "scale": 0,
+            "type": "Numeric"
+          },
+          {
+            "name": "StatusDurationInHours",
+            "saqlExpression": "case when 'Field' == \"${Constants.CaseStatus}\" or 'Field' == \"created\" then date_diff(\"hour\",toDate(CreatedDate_sec_epoch),toDate(StatusNextDate_sec_epoch)) else 0 end",
+            "format": "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+            "scale": 0,
+            "type": "Numeric"
+          }
+        ],
+        "mergeWithSource": true,
+        "source": "Join_CaseHistoryCaseBusinessHours"
+      }
+    },
+    "Compute_BusinessHours_1": {
+      "action": "computeExpression",
+      "parameters": {
+        "source": "compute_CaseHistory_CurrentDate",
+        "computedFields": [
+          {
+            "name": "NumWeeks",
+            "saqlExpression": "case when ('ValidToWithNow_day_epoch' - 'CreatedDate_day_epoch')< 2 then 0 else ('ValidToWithNow_day_epoch' - 'CreatedDate_day_epoch')/7 end",
+            "scale": 0,
+            "type": "Numeric"
+          },
+          {
+            "name": "StartWeekDay",
+            "saqlExpression": "'CreatedDate_day_epoch'%7",
+            "scale": 0,
+            "type": "Numeric"
+          },
+          {
+            "name": "EndWeekDay",
+            "saqlExpression": "'ValidToWithNow_day_epoch'%7",
+            "scale": 0,
+            "type": "Numeric"
+          }
+        ],
+        "mergeWithSource": true
+      }
+    },
+    "Compute_BusinessHours_2": {
+      "action": "computeExpression",
+      "parameters": {
+        "source": "Compute_BusinessHours_1",
+        "computedFields": [
+          {
+            "name": "TotalThursdayDuration",
+            "saqlExpression": "case when ( ('EndWeekDay' < 'StartWeekDay') and ((0 < 'EndWeekDay') or (('StartWeekDay' < 0) and (0 < ('EndWeekDay'+7))))) or ('StartWeekDay' != 'EndWeekDay' && ('StartWeekDay' < 0 && 0< 'EndWeekDay')) then  'BH.ThursdayDuration'*('NumWeeks' + 1) else 'BH.ThursdayDuration'*'NumWeeks' end",
+            "scale": 0,
+            "type": "Numeric"
+          },
+          {
+            "name": "TotalFridayDuration",
+            "saqlExpression": "case when ( ('EndWeekDay' < 'StartWeekDay') and ((1 < 'EndWeekDay') or (('StartWeekDay' < 1) and (1 < ('EndWeekDay'+7))))) or ('StartWeekDay' != 'EndWeekDay' && ('StartWeekDay' < 1 && 1< 'EndWeekDay')) then 'BH.FridayDuration'*('NumWeeks' + 1) else 'BH.FridayDuration'*'NumWeeks' end",
+            "scale": 0,
+            "type": "Numeric"
+          },
+          {
+            "name": "TotalSaturdayDuration",
+            "saqlExpression": "case when ( ('EndWeekDay' < 'StartWeekDay') and ((2 < 'EndWeekDay') or (('StartWeekDay' < 2) and (2 < ('EndWeekDay'+7))))) or ('StartWeekDay' != 'EndWeekDay' && ('StartWeekDay' < 2 && 2< 'EndWeekDay')) then 'BH.SaturdayDuration'*('NumWeeks' + 1) else 'BH.SaturdayDuration'*'NumWeeks' end",
+            "scale": 0,
+            "type": "Numeric"
+          },
+          {
+            "name": "TotalSundayDuration",
+            "saqlExpression": "case when ( ('EndWeekDay' < 'StartWeekDay') and ((3 < 'EndWeekDay') or (('StartWeekDay' < 3) and (3 < ('EndWeekDay'+7))))) or ('StartWeekDay' != 'EndWeekDay' && ('StartWeekDay' < 3 && 3< 'EndWeekDay')) then 'BH.SundayDuration'*('NumWeeks' + 1) else 'BH.SundayDuration'*'NumWeeks' end",
+            "scale": 0,
+            "type": "Numeric"
+          },
+          {
+            "name": "TotalMondayDuration",
+            "saqlExpression": "case when ( ('EndWeekDay' < 'StartWeekDay') and ((4 < 'EndWeekDay') or (('StartWeekDay' < 4) and (4 < ('EndWeekDay'+7))))) or ('StartWeekDay' != 'EndWeekDay' && ('StartWeekDay' < 4 && 4< 'EndWeekDay')) then 'BH.MondayDuration'*('NumWeeks' + 1) else 'BH.MondayDuration'*'NumWeeks' end",
+            "scale": 0,
+            "type": "Numeric"
+          },
+          {
+            "name": "TotalTuesdayDuration",
+            "saqlExpression": "case when ( ('EndWeekDay' < 'StartWeekDay') and ((5 < 'EndWeekDay') or (('StartWeekDay' < 5) and (5 < ('EndWeekDay'+7))))) or ('StartWeekDay' != 'EndWeekDay' && ('StartWeekDay' < 5 && 5< 'EndWeekDay')) then 'BH.TuesdayDuration'*('NumWeeks' + 1) else 'BH.TuesdayDuration'*'NumWeeks' end",
+            "scale": 0,
+            "type": "Numeric"
+          },
+          {
+            "name": "TotalWednesdayDuration",
+            "saqlExpression": "case when ( ('EndWeekDay' < 'StartWeekDay') and ((6 < 'EndWeekDay') or (('StartWeekDay' < 6) and (6 < ('EndWeekDay'+7))))) or ('StartWeekDay' != 'EndWeekDay' && ('StartWeekDay' < 6 && 6< 'EndWeekDay')) then 'BH.WednesdayDuration'*('NumWeeks' + 1) else 'BH.WednesdayDuration'*'NumWeeks' end",
+            "scale": 0,
+            "type": "Numeric"
+          },
+          {
+            "name": "BusinessCreateDateStartTimeInSeconds",
+            "saqlExpression": "case when 'StartWeekDay' == 0 then 'BH.ThursdayStartTime_sec' when 'StartWeekDay' == 1 then 'BH.FridayStartTime_sec' when 'StartWeekDay' == 2 then 'BH.SaturdayStartTime_sec' when 'StartWeekDay' == 3 then 'BH.SundayStartTime_sec' when 'StartWeekDay' == 4 then 'BH.MondayStartTime_sec' when 'StartWeekDay' == 5 then 'BH.TuesdayStartTime_sec' when 'StartWeekDay' == 6 then 'BH.WednesdayStartTime_sec' else 'BH.WednesdayStartTime_sec' end",
+            "scale": 0,
+            "type": "Numeric"
+          },
+          {
+            "name": "BusinessCreateDateEndTimeInSeconds",
+            "saqlExpression": "case when 'StartWeekDay' == 0 then 'BH.ThursdayEndTime_sec' when 'StartWeekDay' == 1 then 'BH.FridayEndTime_sec' when 'StartWeekDay' == 2 then 'BH.SaturdayEndTime_sec' when 'StartWeekDay' == 3 then 'BH.SundayEndTime_sec' when 'StartWeekDay' == 4 then 'BH.MondayEndTime_sec' when 'StartWeekDay' == 5 then 'BH.TuesdayEndTime_sec' when 'StartWeekDay' == 6 then 'BH.WednesdayEndTime_sec' else 'BH.WednesdayEndTime_sec' end",
+            "scale": 0,
+            "type": "Numeric"
+          },
+          {
+            "name": "BusinessValidToStartTimeInSeconds",
+            "saqlExpression": "case when 'EndWeekDay' == 0 then 'BH.ThursdayStartTime_sec' when 'EndWeekDay' == 1 then 'BH.FridayStartTime_sec' when 'EndWeekDay' == 2 then 'BH.SaturdayStartTime_sec' when 'EndWeekDay' == 3 then 'BH.SundayStartTime_sec' when 'EndWeekDay' == 4 then 'BH.MondayStartTime_sec' when 'EndWeekDay' == 5 then 'BH.TuesdayStartTime_sec' when 'EndWeekDay' == 6 then 'BH.WednesdayStartTime_sec' else 'BH.WednesdayStartTime_sec' end",
+            "scale": 0,
+            "type": "Numeric"
+          },
+          {
+            "name": "BusinessValidToEndTimeInSeconds",
+            "saqlExpression": "case when 'EndWeekDay' == 0 then 'BH.ThursdayEndTime_sec' when 'EndWeekDay' == 1 then 'BH.FridayEndTime_sec' when 'EndWeekDay' == 2 then 'BH.SaturdayEndTime_sec' when 'EndWeekDay' == 3 then 'BH.SundayEndTime_sec' when 'EndWeekDay' == 4 then 'BH.MondayEndTime_sec' when 'EndWeekDay' == 5 then 'BH.TuesdayEndTime_sec' when 'EndWeekDay' == 6 then 'BH.WednesdayEndTime_sec' else 'BH.WednesdayEndTime_sec' end",
+            "scale": 0,
+            "type": "Numeric"
+          }
+        ],
+        "mergeWithSource": true
+      }
+    },
+    "Compute_BusinessHours_3": {
+      "action": "computeExpression",
+      "parameters": {
+        "source": "Compute_BusinessHours_2",
+        "computedFields": [
+          {
+            "name": "StartTimeAdjusted",
+            "saqlExpression": "case when (('CreatedDate_sec_epoch'-('CreatedDate_day_epoch'*86400)) > 'BusinessCreateDateEndTimeInSeconds') then 'BusinessCreateDateEndTimeInSeconds' when (('CreatedDate_sec_epoch'-('CreatedDate_day_epoch'*86400)) < 'BusinessCreateDateStartTimeInSeconds') then 'BusinessCreateDateStartTimeInSeconds' else ('CreatedDate_sec_epoch'-('CreatedDate_day_epoch'*86400)) end",
+            "scale": 0,
+            "type": "Numeric"
+          },
+          {
+            "name": "EndTimeAdjusted",
+            "saqlExpression": "case when (('ValidToWithNow_sec_epoch'-('ValidToWithNow_day_epoch'*86400)) > 'BusinessValidToEndTimeInSeconds') then 'BusinessValidToEndTimeInSeconds' when (('ValidToWithNow_sec_epoch'-('ValidToWithNow_day_epoch'*86400)) < 'BusinessValidToStartTimeInSeconds') then 'BusinessValidToStartTimeInSeconds' else ('ValidToWithNow_sec_epoch'-('ValidToWithNow_day_epoch'*86400)) end",
+            "scale": 0,
+            "type": "Numeric"
+          }
+        ],
+        "mergeWithSource": true
+      }
+    },
+    "Compute_BusinessHours_4": {
+      "action": "computeExpression",
+      "parameters": {
+        "source": "Compute_BusinessHours_3",
+        "computedFields": [
+          {
+            "name": "PartialDaysDurationStart",
+            "saqlExpression": "case when ('ValidToWithNow_day_epoch' == 'CreatedDate_day_epoch') then 0 else 'BusinessCreateDateEndTimeInSeconds' - 'StartTimeAdjusted' end",
+            "scale": 0,
+            "type": "Numeric"
+          },
+          {
+            "name": "PartialDaysDurationEnd",
+            "saqlExpression": "case when ('ValidToWithNow_day_epoch' == 'CreatedDate_day_epoch') then 'EndTimeAdjusted' - 'StartTimeAdjusted' else 'EndTimeAdjusted' - 'BusinessValidToStartTimeInSeconds' end",
+            "scale": 0,
+            "type": "Numeric"
+          }
+        ],
+        "mergeWithSource": true
+      }
+    },
+    "Compute_BusinessHours": {
+      "action": "computeExpression",
+      "parameters": {
+        "source": "Compute_BusinessHours_4",
+        "computedFields": [
+          {
+            "label": "Business Hours",
+            "name": "BusinessHours",
+            "saqlExpression": "('PartialDaysDurationStart'+ 'PartialDaysDurationEnd'+ 'TotalThursdayDuration' + 'TotalFridayDuration' + 'TotalSaturdayDuration'+'TotalSundayDuration'+'TotalMondayDuration'+'TotalTuesdayDuration'+'TotalWednesdayDuration') / 3600",
+            "scale": 0,
+            "type": "Numeric"
+          }
+        ],
+        "mergeWithSource": true
+      }
+    },
+    "compute_CaseHistory_OldNewStatus": {
+      "action": "computeExpression",
+      "parameters": {
+        "computedFields": [
+          {
+            "label": "New Status",
+            "name": "NewStatus",
+            "saqlExpression": "case when 'Field' == \"created\" then \"Created\" when 'Field' == \"${Constants.CaseStatus}\" then 'NewValue' else\"NA\" end ",
+            "type": "Text"
+          },
+          {
+            "label": "Old Status",
+            "name": "OldStatus",
+            "saqlExpression": "case when 'Field' == \"closed\" then \"Closed\" when 'Field' == \"${Constants.CaseStatus}\" then 'OldValue' else \"NA\" end ",
+            "type": "Text"
+          },
+          {
+            "defaultValue": "N/A",
+            "label": "New Owner",
+            "name": "NewOwner",
+            "saqlExpression": "case when 'Field' == \"Owner\" then 'NewValue' else\"NA\" end ",
+            "type": "Text"
+          },
+          {
+            "defaultValue": "N/A",
+            "label": "Old Owner",
+            "name": "OldOwner",
+            "saqlExpression": "case when 'Field' == \"Owner\" then 'OldValue' else \"NA\" end ",
+            "type": "Text"
+          },
+          {
+            "defaultValue": "0",
+            "label": "Date Diff Old",
+            "name": "DateDiffOld",
+            "precision": 18,
+            "saqlExpression": "('CreatedDate_sec_epoch' - 'CreatedDatePrev_sec_epoch')/86400",
+            "scale": 2,
+            "type": "Numeric"
+          },
+          {
+            "defaultValue": "0",
+            "label": "Date Diff New",
+            "name": "DateDiffNew",
+            "precision": 18,
+            "saqlExpression": "case  when ('Case.IsClosed' == \"true\"  && CreatedDate <= 'Case.ClosedDate') then ('Case.ClosedDate_sec_epoch' - 'CreatedDate_sec_epoch')/86400   when ('Case.IsClosed' == \"true\" &&  CreatedDate > 'Case.ClosedDate') then 0 else ('ValidToWithNow_sec_epoch' - 'CreatedDate_sec_epoch')/86400 end",
+            "scale": 2,
+            "type": "Numeric"
+          },
+          {
+            "defaultValue": "false",
+            "label": "Change After CloseDate",
+            "name": "ChangeAfterCloseDate",
+            "saqlExpression": "case  when ('Field' == \"Owner\" && 'CreatedDate' > 'Case.ClosedDate') then \"true\"  else \"false\" end ",
+            "type": "Text"
+          },
+          {
+            "defaultValue": "false",
+            "label": "Last Change",
+            "name": "IsLastChange",
+            "saqlExpression": "case when ('Case.ClosedDate' is null && 'ValidToDate' == \"3000-10-10T10:10:10.100Z\") then \"true\" when ('CreatedDate' <= 'Case.ClosedDate' && 'ValidToDate' > 'Case.ClosedDate') then \"true\" else \"false\" end ",
+            "type": "Text"
+          }
+        ],
+        "mergeWithSource": true,
+        "source": "Compute_BusinessHours"
+      }
+    },
+    "compute_CurrentDateForCase": {
+      "action": "computeExpression",
+      "parameters": {
+        "computedFields": [
+          {
+            "format": "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+            "label": "CurrentDate",
+            "name": "CurrentDate",
+            "saqlExpression": "now()",
+            "type": "Date"
+          },
+          {
+            "format": "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+            "label": "ValidToWithNow",
+            "name": "ValidToWithNow",
+            "saqlExpression": "case  when ('IsClosed' == \"true\") then toDate('ClosedDate', \"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\") else now()  end",
+            "type": "Date"
+          }
+        ],
+        "mergeWithSource": true,
+        "source": "Extract_Case"
+      }
+    },
+    "Extract_LiveChatTranscriptEvent": {
+      "action": "sfdcDigest",
+      "parameters": {
+        "enablePKChunking": false,
+        "fields": [
+          {
+            "name": "Detail"
+          },
+          {
+            "name": "Time"
+          },
+          {
+            "name": "Type"
+          },
+          {
+            "name": "LiveChatTranscriptId"
+          },
+          {
+            "name": "AgentId"
+          }
+        ],
+        "filterConditions": [
+          {
+            "field": "Type",
+            "operator": "IN",
+            "value": [
+              "Accept",
+              "Transfer",
+              "OperatorJoinedConference",
+              "LeaveVisitor",
+              "EndAgent",
+              "EndVisitor"
+            ]
+          }
+        ],
+        "object": "LiveChatTranscriptEvent"
+      }
+    },
+    "Join_LiveChatTranscriptEvent_User": {
+      "action": "augment",
+      "parameters": {
+        "left": "Extract_LiveChatTranscriptEvent",
+        "left_key": [
+          "AgentId"
+        ],
+        "relationship": "User",
+        "right": "Extract_User",
+        "right_key": [
+          "Id"
+        ],
+        "right_select": [
+          "Name"
+        ]
+      }
+    },
+    "compute_LiveChatTranscriptEvent_ChatBoundaries": {
+      "action": "computeRelative",
+      "parameters": {
+        "partitionBy": [
+          "LiveChatTranscriptId"
+        ],
+        "orderBy": [
+          {
+            "name": "Time",
+            "direction": "asc"
+          }
+        ],
+        "source": "Join_LiveChatTranscriptEvent_User",
+        "computedFields": [
+          {
+            "expression": {
+              "sourceField": "Time",
+              "default": "current()",
+              "offset": "next()"
+            },
+            "name": "TempAgentChatEndTime",
+            "description": "Temp Agent Chat End Time",
+            "label": "TempAgentChatEndTime"
+          }
+        ]
+      }
+    },
+    "Extract_LiveChatTranscript": {
+      "action": "sfdcDigest",
+      "parameters": {
+        "object": "LiveChatTranscript",
+        "fields": [
+          {
+            "name": "Abandoned"
+          },
+          {
+            "name": "AverageResponseTimeOperator"
+          },
+          {
+            "name": "MaxResponseTimeOperator"
+          },
+          {
+            "name": "OperatorMessageCount"
+          },
+          {
+            "name": "Body"
+          },
+          {
+            "name": "Browser"
+          },
+          {
+            "name": "BrowserLanguage"
+          },
+          {
+            "name": "CaseId"
+          },
+          {
+            "name": "ChatDuration"
+          },
+          {
+            "name": "ChatKey"
+          },
+          {
+            "name": "CreatedDate"
+          },
+          {
+            "name": "IsDeleted"
+          },
+          {
+            "name": "EndTime"
+          },
+          {
+            "name": "EndedBy"
+          },
+          {
+            "name": "LastModifiedDate"
+          },
+          {
+            "name": "LastReferencedDate"
+          },
+          {
+            "name": "LastViewedDate"
+          },
+          {
+            "name": "LiveChatButtonId"
+          },
+          {
+            "name": "Id"
+          },
+          {
+            "name": "Name"
+          },
+          {
+            "name": "Location"
+          },
+          {
+            "name": "OwnerId"
+          },
+          {
+            "name": "Platform"
+          },
+          {
+            "name": "ReferrerUri"
+          },
+          {
+            "name": "RequestTime"
+          },
+          {
+            "name": "ScreenResolution"
+          },
+          {
+            "name": "StartTime"
+          },
+          {
+            "name": "Status"
+          },
+          {
+            "name": "SupervisorTranscriptBody"
+          },
+          {
+            "name": "SystemModstamp"
+          },
+          {
+            "name": "UserAgent"
+          },
+          {
+            "name": "AverageResponseTimeVisitor"
+          },
+          {
+            "name": "IpAddress"
+          },
+          {
+            "name": "MaxResponseTimeVisitor"
+          },
+          {
+            "name": "VisitorMessageCount"
+          },
+          {
+            "name": "WaitTime"
+          }
+        ]
+      }
+    },
+    "Extract_LiveChatButton": {
+      "action": "sfdcDigest",
+      "parameters": {
+        "object": "LiveChatButton",
+        "fields": [
+          {
+            "name": "MasterLabel"
+          },
+          {
+            "name": "CustomAgentName"
+          },
+          {
+            "name": "Id"
+          }
+        ]
+      }
+    },
+    "Join_LCTButton": {
+      "action": "augment",
+      "parameters": {
+        "left": "Extract_LiveChatTranscript",
+        "left_key": [
+          "LiveChatButtonId"
+        ],
+        "relationship": "LiveChatButton",
+        "right": "Extract_LiveChatButton",
+        "right_key": [
+          "Id"
+        ],
+        "right_select": [
+          "MasterLabel",
+          "CustomAgentName"
+        ]
+      }
+    },
+    "compute_LiveChatTranscript": {
+      "action": "computeExpression",
+      "parameters": {
+        "source": "Join_LCTButton",
+        "computedFields": [
+          {
+            "format": "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+            "label": "StartTime_15Min",
+            "name": "StartTime_15Min",
+            "saqlExpression": "toDate(floor(StartTime_sec_epoch/900)*900)",
+            "type": "Date"
+          }
+        ],
+        "mergeWithSource": true
+      }
+    },
+    "Join_LiveChatTranscript_User": {
+      "action": "augment",
+      "parameters": {
+        "left": "compute_LiveChatTranscript",
+        "left_key": [
+          "OwnerId"
+        ],
+        "relationship": "User",
+        "right": "Extract_User",
+        "right_key": [
+          "Id"
+        ],
+        "right_select": [
+          "Name"
+        ]
+      }
+    },
+    "Join_LiveChatTranscript_Case": {
+      "action": "augment",
+      "parameters": {
+        "left": "Join_LiveChatTranscript_User",
+        "left_key": [
+          "CaseId"
+        ],
+        "relationship": "Case",
+        "right": "Join_CaseAccountContactUserUserRoleRecordType",
+        "right_key": [
+          "Id"
+        ],
+        "right_select": [
+          "${Constants.CaseOrigin}",
+          "${Constants.CaseReason}",
+          "${Constants.CaseType}",
+          "IsClosed",
+          "${Constants.ClosedDate}",
+          "CreatedDate",
+          "${Constants.CaseSupportLevel}",
+          "${Constants.CaseStatus}",
+          "${Constants.CaseProduct}",
+          "${Constants.CaseSeverityLevel}",
+          "CaseNumber",
+          "Account.Name",
+          "Account.Id",
+          "${Constants.CaseDuration}",
+          "${Constants.CaseCustomerSatFull}",
+          "Role.Name",
+          "CurrentDate",
+          "CSAT",
+          "RecordType.Name"
+
+        ]
+      }
+    },
+    "compute_LiveChatTranscriptCSAT": {
+      "action": "computeExpression",
+      "parameters": {
+        "source": "Join_LiveChatTranscript_Case",
+        "mergeWithSource": true,
+        "computedFields": [
+          {
+            "name": "CSAT",
+            "saqlExpression": "case when 'CaseId' is null then -999 else 'Case.CSAT' end ",
+            "scale": 0,
+            "type": "Numeric"
+          }
+        ]
+      }
+    },
+    "Join_LiveChatTranscript_Case_NoCSAT": {
+      "action": "augment",
+      "parameters": {
+        "left": "Join_LiveChatTranscript_User",
+        "left_key": [
+          "CaseId"
+        ],
+        "relationship": "Case",
+        "right": "Join_CaseAccountContactUserUserRoleRecordType",
+        "right_key": [
+          "Id"
+        ],
+        "right_select": [
+          "${Constants.CaseOrigin}",
+          "${Constants.CaseReason}",
+          "${Constants.CaseType}",
+          "IsClosed",
+          "${Constants.ClosedDate}",
+          "CreatedDate",
+          "${Constants.CaseSupportLevel}",
+          "${Constants.CaseStatus}",
+          "${Constants.CaseProduct}",
+          "${Constants.CaseSeverityLevel}",
+          "CaseNumber",
+          "Account.Name",
+          "Account.Id",
+          "${Constants.CaseDuration}",
+          "Role.Name",
+          "CurrentDate",
+          "RecordType.Name"
+        ]
+      }
+    },
+    "Join_LiveChatTranscriptEventLCT": {
+      "action": "augment",
+      "parameters": {
+        "right_key": [
+          "Id"
+        ],
+        "left": "compute_LiveChatTranscriptEvent_ChatBoundaries",
+        "left_key": [
+          "LiveChatTranscriptId"
+        ],
+        "right_select": [
+          "Status",
+          "ChatDuration",
+          "EndedBy",
+          "StartTime",
+          "EndTime",
+          "RequestTime"
+        ],
+        "right": "compute_LiveChatTranscriptCSAT",
+        "relationship": "LCT"
+      }
+    },
+    "Register_LiveChatTranscript": {
+      "action": "sfdcRegister",
+      "parameters": {
+        "name": "ServiceChatTranscript",
+        "alias": "${App.EdgeMarts.ServiceChatTranscript.Alias}",
+        "source": "compute_LiveChatTranscriptCSAT"
+      }
+    },
+    "compute_LiveChatTranscriptEvent_AgentIds": {
+      "action": "computeRelative",
+      "parameters": {
+        "partitionBy": [
+          "LiveChatTranscriptId"
+        ],
+        "orderBy": [
+          {
+            "name": "Time",
+            "direction": "asc"
+          }
+        ],
+        "source": "Join_LiveChatTranscriptEventLCT",
+        "computedFields": [
+          {
+            "expression": {
+            "saqlExpression": "case when 'AgentId' is null then previous('AgentIdFill') else current('AgentId') end ",
+              "default": "0",
+              "type": "Text"
+            },
+            "name": "AgentIdFill",
+            "description": "AgentIdFill",
+            "label": "AgentIdFill"
+          },
+          {
+            "expression": {
+            "saqlExpression": "case when 'LCT.Status' == \"Completed\" && ('TempAgentChatEndTime_sec_epoch' == 'Time_sec_epoch') && ('Time_sec_epoch' != coalesce(previous('Time_sec_epoch'),0)) && (('Type' == \"EndAgent\") || ('Type' ==  \"EndVisitor\")  || ('Type' ==  \"LeaveVisitor\")) then \"true\" else \"false\" end ",
+            "default": "0",
+            "type": "Text"
+            },
+            "name": "IsEndChatEvent",
+            "description": "IsEndChatEvent",
+            "label": "IsEndChatEvent"
+          },
+          {
+            "expression": {
+            "saqlExpression": "case when 'LCT.Status' == \"Completed\" && ((next('Type') == \"Transfer\") || (next('Type') ==  \"OperatorJoinedConference\")) then \"true\" else \"false\" end ",
+            "default": "0",
+            "type": "Text"
+            },
+            "name": "IsNextChatEventTransfer",
+            "description": "next chat event is going to be Transfer",
+            "label": "IsNextChatEventTransfer"
+          }
+
+        ]
+      }
+    },
+
+    "compute_LiveChatTranscriptEvent_AgentSessions": {
+      "action": "computeRelative",
+      "parameters": {
+        "partitionBy": [
+          "AgentIdFill"
+        ],
+        "orderBy": [
+          {
+            "name": "Time",
+            "direction": "asc"
+          }
+        ],
+        "source": "compute_LiveChatTranscriptEvent_AgentIds",
+        "computedFields": [
+          {
+            "expression": {
+            "saqlExpression": "case when 'LCT.Status' == \"Completed\" && (('Type' == \"Accept\") || ('Type' ==  \"Transfer\")  || ('Type' ==  \"OperatorJoinedConference\")) then coalesce(previous('AgentStartCount')+1,1) else coalesce(previous('AgentStartCount'),0) end ",
+              "default": "0",
+              "scale": 0,
+              "type": "Numeric"
+            },
+            "name": "AgentStartCount",
+            "description": "AgentStartCount",
+            "label": "AgentStartCount"
+          },
+          {
+            "expression": {
+            "saqlExpression": "case when 'IsEndChatEvent' == \"true\" then coalesce(previous('AgentEndCount')+1,1) else coalesce(previous('AgentEndCount'),0) end ",
+              "default": "0",
+              "scale": 0,
+              "type": "Numeric"
+            },
+            "name": "AgentEndCount",
+            "description": "AgentEndCount",
+            "label": "AgentEndCount"
+          },
+          {
+            "expression": {
+            "saqlExpression": "case when 'IsNextChatEventTransfer' == \"true\" then coalesce(previous('AgentTransferCount')+1,1) else coalesce(previous('AgentTransferCount'),0) end ",
+              "default": "0",
+              "scale": 0,
+              "type": "Numeric"
+            },
+            "name": "AgentTransferCount",
+            "description": "AgentTransferCount",
+            "label": "AgentTransferCount"
+          }
+        ]
+      }
+    },
+
+    "compute_LiveChatTranscriptEventLCT": {
+      "action": "computeExpression",
+      "parameters": {
+        "source": "compute_LiveChatTranscriptEvent_AgentSessions",
+        "computedFields": [
+          {
+            "name": "NumConcurrentChats",
+            "saqlExpression": "case when 'IsNextChatEventTransfer' == \"true\"  then 'AgentStartCount' - 'AgentEndCount'- 'AgentTransferCount' +1 else 'AgentStartCount' - 'AgentEndCount' - 'AgentTransferCount' end",
+            "scale": 0,
+            "label": "Number of Concurrent Chats",
+            "type": "Numeric"
+          },
+          {
+            "name": "IsChatTransfered",
+            "saqlExpression": "case when 'LCT.Status' == \"Completed\" && (('Type' == \"Accept\") || ('Type' ==  \"Transfer\")  || ('Type' ==  \"OperatorJoinedConference\")) && 'LCT.StartTime' != 'Time' then 1 else 0 end ",
+            "label": "Is Chat Transfered",
+            "scale": 0,
+            "type": "Numeric"
+          },
+          {
+            "name": "AgentChatEndTime_sec_epoch",
+            "saqlExpression": "case when 'TempAgentChatEndTime_sec_epoch' == 'Time_sec_epoch' then 'LCT.EndTime_sec_epoch' else 'TempAgentChatEndTime_sec_epoch' end ",
+            "label": "Agent Chat End Time",
+            "precision": 18,
+            "scale": 2,
+            "type": "Numeric"
+          },
+          {
+            "name": "AgentChatDuration",
+            "saqlExpression": "case when 'TempAgentChatEndTime_sec_epoch' == 'Time_sec_epoch' then 'LCT.EndTime_sec_epoch' - 'Time_sec_epoch' else 'TempAgentChatEndTime_sec_epoch' - 'Time_sec_epoch' end ",
+            "label": "Agent Chat Duration",
+            "precision": 18,
+            "scale": 2,
+            "type": "Numeric"
+          }
+        ],
+        "mergeWithSource": true
+      }
+    },
+    "Register_LiveChatTranscriptEvent": {
+      "action": "sfdcRegister",
+      "parameters": {
+        "name": "ServiceChatTranscriptEvent",
+        "alias": "${App.EdgeMarts.ServiceChatTranscriptEvent.Alias}",
+        "source": "compute_LiveChatTranscriptEventLCT"
+      }
+    },
+    "Extract_AgentWork": {
+      "action": "sfdcDigest",
+      "parameters": {
+        "object": "AgentWork",
+        "fields": [
+          {
+            "name": "AcceptDateTime"
+          },
+          {
+            "name": "ActiveTime"
+          },
+          {
+            "name": "AgentCapacityWhenDeclined"
+          },
+          {
+            "name": "Id"
+          },
+          {
+            "name": "AssignedDateTime"
+          },
+          {
+            "name": "CancelDateTime"
+          },
+          {
+            "name": "CloseDateTime"
+          },
+          {
+            "name": "CreatedDate"
+          },
+          {
+            "name": "DeclineDateTime"
+          },
+          {
+            "name": "DeclineReason"
+          },
+          {
+            "name": "IsDeleted"
+          },
+          {
+            "name": "HandleTime"
+          },
+          {
+            "name": "LastModifiedDate"
+          },
+          {
+            "name": "Name"
+          },
+          {
+            "name": "CapacityPercentage"
+          },
+          {
+            "name": "PushTimeout"
+          },
+          {
+            "name": "PushTimeoutDateTime"
+          },
+          {
+            "name": "RequestDateTime"
+          },
+          {
+            "name": "SpeedToAnswer"
+          },
+          {
+            "name": "Status"
+          },
+          {
+            "name": "SystemModstamp"
+          },
+          {
+            "name": "CapacityWeight"
+          },
+          {
+            "name": "UserId"
+          },
+          {
+            "name": "OriginalQueueId"
+          },
+          {
+            "name": "ServiceChannelId"
+          },
+          {
+            "name": "WorkItemId"
+          }
+        ]
+      }
+    },
+    "Extract_Group": {
+      "action": "sfdcDigest",
+      "parameters": {
+        "object": "Group",
+        "fields": [
+          {
+            "name": "Name"
+          },
+          {
+            "name": "Id"
+          }
+        ]
+      }
+    },
+    "Extract_ServiceChannel": {
+      "action": "sfdcDigest",
+      "parameters": {
+        "object": "ServiceChannel",
+        "fields": [
+          {
+            "name": "DeveloperName"
+          },
+          {
+            "name": "MasterLabel"
+          },
+          {
+            "name": "Id"
+          }
+        ]
+      }
+    },
+    "Join_AgentWorkUser": {
+      "action": "augment",
+      "parameters": {
+        "left": "Extract_AgentWork",
+        "left_key": [
+          "UserId"
+        ],
+        "relationship": "UserId",
+        "right": "Extract_User",
+        "right_key": [
+          "Id"
+        ],
+        "right_select": [
+          "Name"
+        ]
+      }
+    },
+    "Join_AgentWorkUserGroup": {
+      "action": "augment",
+      "parameters": {
+        "left": "Join_AgentWorkUser",
+        "left_key": [
+          "OriginalQueueId"
+        ],
+        "relationship": "Group",
+        "right": "Extract_Group",
+        "right_key": [
+          "Id"
+        ],
+        "right_select": [
+          "Name"
+        ]
+      }
+    },
+    "Join_AgentWorkUserGroupServiceChannel": {
+      "action": "augment",
+      "parameters": {
+        "left": "Join_AgentWorkUserGroup",
+        "left_key": [
+          "ServiceChannelId"
+        ],
+        "relationship": "ServiceChannelId",
+        "right": "Extract_ServiceChannel",
+        "right_key": [
+          "Id"
+        ],
+        "right_select": [
+          "DeveloperName",
+          "MasterLabel"
+        ]
+      }
+    },
+    "Join_AgentWorkUserGroupServiceChannelCase": {
+      "action": "augment",
+      "parameters": {
+        "left": "Join_AgentWorkUserGroupServiceChannel",
+        "left_key": [
+          "WorkItemId"
+        ],
+        "relationship": "Case",
+        "right": "Join_CaseAccountContactUserUserRoleRecordType",
+        "right_key": [
+          "Id"
+        ],
+        "right_select": [
+          "${Constants.CaseOrigin}",
+          "${Constants.CaseReason}",
+          "${Constants.CaseType}",
+          "IsClosed",
+          "${Constants.ClosedDate}",
+          "CreatedDate",
+          "${Constants.CaseSupportLevel}",
+          "${Constants.CaseStatus}",
+          "${Constants.CaseProduct}",
+          "${Constants.CaseSeverityLevel}",
+          "CaseNumber",
+          "Account.Name",
+          "Account.Id",
+          "${Constants.CaseDuration}",
+          "${Constants.CaseCustomerSatFull}",
+          "Role.Name",
+          "CurrentDate",
+          "CSAT",
+          "RecordType.Name"
+        ]
+      }
+    },
+    "compute_AgentWorkCSAT": {
+      "action": "computeExpression",
+      "parameters": {
+        "source": "Join_AgentWorkUserGroupServiceChannelCase",
+        "mergeWithSource": true,
+        "computedFields": [
+          {
+            "name": "CSAT",
+            "saqlExpression": "case when 'Case.CreatedDate' is null then -999 else 'Case.CSAT' end ",
+            "scale": 0,
+            "type": "Numeric"
+          }
+        ]
+      }
+    },
+
+    "Join_AgentWorkUserGroupServiceChannelCase_NoCSAT": {
+      "action": "augment",
+      "parameters": {
+        "left": "Join_AgentWorkUserGroupServiceChannel",
+        "left_key": [
+          "WorkItemId"
+        ],
+        "relationship": "Case",
+        "right": "Join_CaseAccountContactUserUserRoleRecordType",
+        "right_key": [
+          "Id"
+        ],
+        "right_select": [
+          "${Constants.CaseOrigin}",
+          "${Constants.CaseReason}",
+          "${Constants.CaseType}",
+          "IsClosed",
+          "${Constants.ClosedDate}",
+          "CreatedDate",
+          "${Constants.CaseSupportLevel}",
+          "${Constants.CaseStatus}",
+          "${Constants.CaseProduct}",
+          "${Constants.CaseSeverityLevel}",
+          "CaseNumber",
+          "Account.Name",
+          "Account.Id",
+          "${Constants.CaseDuration}",
+          "Role.Name",
+          "CurrentDate",
+          "RecordType.Name"
+        ]
+      }
+    },
+
+    "Register_AgentWork": {
+      "action": "sfdcRegister",
+      "parameters": {
+        "source": "compute_AgentWorkCSAT",
+        "alias": "${App.EdgeMarts.ServiceOmniAgentWork.Alias}",
+        "name": "ServiceOmniAgentWork"
+      }
+    },
+    "Extract_UserServicePresence": {
+      "action": "sfdcDigest",
+      "parameters": {
+        "object": "UserServicePresence",
+        "fields": [
+          {
+            "name": "AtCapacityDuration"
+          },
+          {
+            "name": "AverageCapacity"
+          },
+          {
+            "name": "ConfiguredCapacity"
+          },
+          {
+            "name": "CreatedDate"
+          },
+          {
+            "name": "IsDeleted"
+          },
+          {
+            "name": "IdleDuration"
+          },
+          {
+            "name": "IsAway"
+          },
+          {
+            "name": "IsCurrentState"
+          },
+          {
+            "name": "LastModifiedDate"
+          },
+          {
+            "name": "Name"
+          },
+          {
+            "name": "StatusDuration"
+          },
+          {
+            "name": "StatusEndDate"
+          },
+          {
+            "name": "StatusStartDate"
+          },
+          {
+            "name": "SystemModstamp"
+          },
+          {
+            "name": "Id"
+          },
+          {
+            "name": "UserId"
+          },
+          {
+            "name": "ServicePresenceStatusId"
+          }
+        ]
+      }
+    },
+    "Extract_ServicePresenceStatus": {
+      "action": "sfdcDigest",
+      "parameters": {
+        "object": "ServicePresenceStatus",
+        "fields": [
+          {
+            "name": "MasterLabel"
+          },
+          {
+            "name": "Id"
+          }
+        ]
+      }
+    },
+    "Join_ServicePresenceUser": {
+      "action": "augment",
+      "parameters": {
+        "left": "Extract_UserServicePresence",
+        "left_key": [
+          "UserId"
+        ],
+        "relationship": "UserId",
+        "right": "Extract_User",
+        "right_key": [
+          "Id"
+        ],
+        "right_select": [
+          "Name"
+        ]
+      }
+    },
+    "Join_ServicePresenceUserStatus": {
+      "action": "augment",
+      "parameters": {
+        "left": "Join_ServicePresenceUser",
+        "left_key": [
+          "ServicePresenceStatusId"
+        ],
+        "relationship": "ServicePresenceStatusId",
+        "right": "Extract_ServicePresenceStatus",
+        "right_key": [
+          "Id"
+        ],
+        "right_select": [
+          "MasterLabel"
+        ]
+      }
+    },
+    "Register_UserServicePresence": {
+      "action": "sfdcRegister",
+      "parameters": {
+        "source": "Join_ServicePresenceUserStatus",
+        "alias": "${App.EdgeMarts.ServiceOmniUserPresence.Alias}",
+        "name": "ServiceOmniUserPresence"
+      }
+    }
+  }
+}

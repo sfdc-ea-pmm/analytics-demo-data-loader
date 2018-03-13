@@ -1,0 +1,1799 @@
+{
+  "name" : "Sales_Wave_Productivity",
+  "label" : "Sales Wave - Productivity",
+  "folder" : {
+    "id" : "${App.Folder.Id}"
+  },
+  "mobileDisabled" : false,
+  "state" : {
+    "dataSourceLinks" : [ ],
+    "filters" : [ ],
+    "gridLayouts" : [ ],
+    "layouts" : [
+  {
+        "device" : "default",
+        "pages" : [
+  {
+            "rows" : [
+  "box_Mob0 {colspan=6, rowspan=4, zIndex=-1, vpad=-10, hpad=-15} | row: {height=15}",
+  "text_26{colspan=6}",
+  "row: {height=15}",
+  "dimfilter_2{colspan=3} | dimfilter_3{colspan=3}",
+  "row : {height=10}",
+  "text_24{colspan=3, fontSize=20} | number_12{colspan=3, fontSize=30}",
+  "row: {height=10}",
+  "box_NewLine2 {colspan=6} | row: {height=1}",
+  "row : {height=10}",
+  "text_5{colspan=3, fontSize=20} | number_16{colspan=3}",
+  "row: {height=10}",
+  "box_NewLine3 {colspan=6} | row: {height=1}",
+  "row : {height=10}",
+  "text_9{colspan=3, fontSize=20} | number_18{colspan=3}",
+  "row: {height=10}",
+  "box_NewLine4 {colspan=6} | row: {height=1}",
+  "row : {height=10}",
+  "text_18{colspan=3, fontSize=20} | number_20{colspan=3}",
+  "row: {height=10}",
+  "box_NewLine5 {colspan=6} | row: {height=1}",
+  "row : {height=10}",
+  "text_22{colspan=3, fontSize=20} | number_22{colspan=3}"
+  ]
+          },
+  {
+            "rows" : [
+  "text_16{colspan=6, fontSize=20, vpad=15}",
+  "sel_order{colspan=6}",
+  "chart_8 {colspan=6}",
+  "row : {height=10}",
+  "text_21{colspan=6, fontSize=20}",
+  "chart_6{colspan=6}",
+  "text_28{colspan=6, fontSize=20}",
+  "chart_7{colspan=6}"
+  ]
+          },
+  {
+            "rows" : [
+  "text_31{colspan=6, fontSize=20, vpad=15}",
+  "chart_17{colspan=6}",
+  "chart_16{colspan=6, vAxisWidth=80}",
+  "row : {height=20}",
+  "valuestable_2{colspan=6}"
+  ]
+          },
+  {
+            "rows" : [
+  "text_19{colspan=6, vpad=15, fontSize=20}",
+  "number_6{colspan=2} | number_5{colspan=2} |number_7{colspan=2}",
+  "row : {height=20}",
+  "valuestable_5{colspan=6}"
+  ]
+          }
+  ],
+        "version" : 1.0
+      }
+  ],
+    "steps" : {
+      "mgr_get_list" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.opportunity.Alias}"
+          }
+  ],
+        "isFacet" : false,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "sum",
+  "${Variables.Opportunity_Amount.fieldName}"
+  ]
+  ],
+            "pigql" : "tsk = load \"${App.EdgeMarts.task.Alias}\";tsk = group tsk by  ('Owner.RoleNames','Owner.Role.DeveloperName','Owner.Name'); tsk = foreach tsk generate 'Owner.RoleNames' as 'Owner.RoleNames' ,'Owner.Role.DeveloperName' as 'Owner.Role.DeveloperName','Owner.Name' as 'Owner.Name' ; event = load \"${App.EdgeMarts.event.Alias}\";event  = group event by  ('Owner.RoleNames','Owner.Role.DeveloperName','Owner.Name'); event  = foreach event  generate 'Owner.RoleNames' as 'Owner.RoleNames' ,'Owner.Role.DeveloperName' as 'Owner.Role.DeveloperName','Owner.Name' as 'Owner.Name' ; src = union tsk,event; own = filter src by 'Owner.Role.DeveloperName' in {{ results(mgr_get_manager,'Role.DeveloperName') }} or 'Owner.Role.DeveloperName' in {{ selection(filter_role) }};own = group own by('Owner.RoleNames' , 'Owner.Name');own = foreach own generate \"S\" as 'GroupType', 'Owner.RoleNames' as 'Owner.RoleNames' ,'Owner.Name' as 'Name', 0 as 'sum_${Variables.Opportunity_Amount.fieldName}';dir = filter src by 'Owner.RoleNames' in {{ results(mgr_get_manager,'Role.DeveloperName') }};dir = group dir by ('Owner.RoleNames' , 'Owner.Name');dir = foreach dir generate \"D\" as 'GroupType','Owner.RoleNames' as 'Owner.RoleNames' , 'Owner.Name' as 'Name', 0  as 'sum_${Variables.Opportunity_Amount.fieldName}';oppty = union own,dir;oppty = filter oppty by 'Name' in {{ selection(mgr_get_manager) }};oppty = group oppty by  'Name';oppty = foreach oppty generate 'Name' as 'Owner.Name', sum('sum_${Variables.Opportunity_Amount.fieldName}') as 'sum_${Variables.Opportunity_Amount.fieldName}';",
+            "limit" : 10,
+            "groups" : [
+  "Owner.Name"
+  ],
+            "filters" : [ ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregate",
+        "useGlobal" : false,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "lens_94" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.event.Alias}"
+          }
+  ],
+        "isFacet" : false,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "values" : [
+  "ActivityDate",
+  "Owner.Name",
+  "Subject",
+  "DurationInMinutes"
+  ],
+            "filters" : [
+  [
+  "ActivityDate",
+  "{{ field(selection(step_grouplist3), 'Current') }}",
+  "in"
+  ],
+  [
+  "EventSubtype",
+  "{{selection(pl_activity_type)}}",
+  "in"
+  ],
+  [
+  "Owner.Name",
+  "{{results(mgr_get_list)}}",
+  "in"
+  ]
+  ],
+            "order" : [
+  [
+  "ActivityDate",
+  {
+                  "ascending" : false
+                }
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "grain",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "valuestable"
+        }
+      },
+      "step_order" : {
+        "datasets" : [ ],
+        "dimensions" : [ ],
+        "isFacet" : false,
+        "isGlobal" : false,
+        "selectMode" : "singlerequired",
+        "start" : [
+  "desc"
+  ],
+        "type" : "static",
+        "useGlobal" : false,
+        "values" : [
+  {
+            "display" : "Top",
+            "value" : "desc"
+          },
+  {
+            "display" : "Bottom",
+            "value" : "asc"
+          }
+  ]
+      },
+      "step_owner_name" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.task.Alias}"
+          }
+  ],
+        "isFacet" : false,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "pigql" : "srcUsr = load \"${App.EdgeMarts.user.Alias}\";\nusr_filtered = filter srcUsr by 'ParentRole.DeveloperName' in {{ selection(filter_role) }};\n\nd1 = group usr_filtered by 'Id';\nd1 = foreach d1 generate 'Id';\nd2 = group srcUsr by 'Id';\nd2 = foreach d2 generate 'Id';\nd3 = union d1, d2;\n\nd4 = group usr_filtered by 'Role.DeveloperName';\nd4 = foreach d4 generate 'Role.DeveloperName';\n\nsrcTask = load \"${App.EdgeMarts.task.Alias}\";\nsrcTask = filter srcTask by 'IsClosed' == \"true\";\nsrcTask = filter srcTask by date('LastModifiedDate_Year','LastModifiedDate_Month','LastModifiedDate_Day') in [{{ no_quote(value(field(selection(step_grouplist3), 'Current_pigql'))) }}] ;srcTask= filter srcTask by 'TaskSubtype' in {{selection(pl_activity_type)}};srcTask= filter srcTask by 'TaskSubtype' in {{selection(step_ActivityTypes)}};\n\nrepsTask = filter srcTask by 'Owner.Role.DeveloperName' in {{ selection(filter_role) }};\nrepsTask = group repsTask by 'OwnerId';\nrepsTask = foreach repsTask generate 'OwnerId', first('Owner.Name') as 'Group By', count() as 'count';\n\nz1Task = group repsTask by 'OwnerId' left, d3 by 'Id';\nz1Task = foreach z1Task generate first(repsTask['Group By']) as 'Group By', sum(repsTask['count']) as 'count';\n\nownTask = filter srcTask by 'Owner.Role.DeveloperName' in {{ results(mgr_get_manager,'Role.DeveloperName') }} or 'Owner.Role.DeveloperName' in {{ selection(filter_role) }};\nownTask = group ownTask by 'Owner.Role.DeveloperName';\nownTask = foreach ownTask generate \"S\" as 'GroupType', 'Owner.Role.DeveloperName' as 'Group By', count() as 'count';\ndirTask = filter srcTask by 'Owner.RoleNames' in {{ results(mgr_get_manager,'Role.DeveloperName') }};\ndirTask = group dirTask by 'Owner.RoleNames';\ndirTask = foreach dirTask generate \"D\" as 'GroupType', 'Owner.RoleNames' as 'Group By', count() as 'count';\ntask = union ownTask,dirTask;\ntask = group task by 'Group By';\ntask = foreach task generate 'Group By' as 'Group By', sum('count') as 'count';\n\nz2Task = group task by 'Group By', d4 by 'Role.DeveloperName';\nz2Task = foreach z2Task generate task['Group By'] as 'Group By', sum(task['count']) as 'count';\nz3Task = union z1Task, z2Task;\n\nsrcEvt = load \"${App.EdgeMarts.event.Alias}\";\nsrcEvt = filter srcEvt by date('ActivityDate_Year','ActivityDate_Month','ActivityDate_Day') in [{{ no_quote(value(field(selection(step_grouplist3), 'Current_pigql'))) }}] ;srcEvt = filter srcEvt by 'EventSubtype' in {{selection(pl_activity_type)}};srcEvt= filter srcEvt by 'EventSubtype' in {{selection(step_ActivityTypes)}};\n\nrepsEvt = filter srcEvt by 'Owner.Role.DeveloperName' in {{ selection(filter_role) }};\nrepsEvt = group repsEvt by 'OwnerId';\nrepsEvt = foreach repsEvt generate 'OwnerId', first('Owner.Name') as 'Group By', count() as 'count';\n\nz1Evt = group repsEvt by 'OwnerId' left, d3 by 'Id';\nz1Evt = foreach z1Evt generate first(repsEvt['Group By']) as 'Group By', sum(repsEvt['count']) as 'count';\n\nownEvt = filter srcEvt by 'Owner.Role.DeveloperName' in {{ results(mgr_get_manager,'Role.DeveloperName') }} or 'Owner.Role.DeveloperName' in {{ selection(filter_role) }};\nownEvt = group ownEvt by 'Owner.Role.DeveloperName';\nownEvt = foreach ownEvt generate \"S\" as 'GroupType', 'Owner.Role.DeveloperName' as 'Group By', count() as 'count';\ndirEvt = filter srcEvt by 'Owner.RoleNames' in {{ results(mgr_get_manager,'Role.DeveloperName') }};\ndirEvt = group dirEvt by 'Owner.RoleNames';\ndirEvt = foreach dirEvt generate \"D\" as 'GroupType', 'Owner.RoleNames' as 'Group By', count() as 'count';\nevent = union ownEvt,dirEvt;\nevent = group event by 'Group By';\nevent = foreach event generate 'Group By' as 'Group By', sum('count') as 'count';\n\nz2Evt = group event by 'Group By', d4 by 'Role.DeveloperName';\nz2Evt = foreach z2Evt generate event['Group By'] as 'Group By', sum(event['count']) as 'count';\nz3Evt = union z1Evt, z2Evt;\n\nacti = union z3Task,z3Evt;\nacti = group acti by 'Group By';\nacti = foreach acti generate 'Group By' as 'Group By', sum('count') as 'count';acti  = order acti by  'count' {{no_quote(value(selection(step_order)))}};",
+            "groups" : [
+  [
+  "Group By"
+  ]
+  ],
+            "filters" : [ ],
+            "order" : [ ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregate",
+        "useGlobal" : true
+      },
+      "activity_total_DONUT" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.task.Alias}"
+          }
+  ],
+        "isFacet" : true,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "pigql" : "SRC = load \"${App.EdgeMarts.event.Alias}\"; SRC = filter SRC by  date('ActivityDate_Year','ActivityDate_Month','ActivityDate_Day') in [{{ no_quote(value(field(selection(step_grouplist3), 'Current_pigql'))) }}]; SRC= filter SRC by 'EventSubtype' in {{selection(pl_activity_type)}};SRC= filter SRC by 'EventSubtype' in {{selection(step_ActivityTypes)}}; SRC = filter SRC by ('Owner.Name' in {{selection(step_owner_name)}} || 'Owner.Role.DeveloperName' in {{selection(step_owner_name)}} || 'Owner.RoleNames' in {{selection(step_owner_name)}});OWN = filter SRC by 'Owner.Name' in {{results(mgr_get_list)}}; OWN = group OWN by all; OWN = foreach OWN generate count() as 'count'; SRC1 = load \"${App.EdgeMarts.task.Alias}\"; SRC1 = filter SRC1 by  'IsClosed' == \"true\"; SRC1 = filter SRC1 by date('LastModifiedDate_Year','LastModifiedDate_Month','LastModifiedDate_Day') in [{{ no_quote(value(field(selection(step_grouplist3), 'Current_pigql'))) }}];SRC1= filter SRC1 by 'TaskSubtype' in {{selection(step_ActivityTypes)}};SRC1= filter SRC1 by 'TaskSubtype' in {{selection(pl_activity_type)}}; SRC1 = filter SRC1 by ('Owner.Name' in {{selection(step_owner_name)}} || 'Owner.Role.DeveloperName' in {{selection(step_owner_name)}} || 'Owner.RoleNames' in {{selection(step_owner_name)}});OWN1 = filter SRC1 by 'Owner.Name' in {{results(mgr_get_list)}} ; OWN1 = group OWN1 by all; OWN1 = foreach OWN1 generate count() as 'count'; ACTI = union OWN,OWN1; ACTI = group ACTI by all; ALLSUM = foreach ACTI generate sum('count') as 'count';",
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "order" : [ ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregate",
+        "useGlobal" : true
+      },
+      "step_ActivityTypes" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.task.Alias}"
+          }
+  ],
+        "isFacet" : false,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "pigql" : "SRC = load \"${App.EdgeMarts.event.Alias}\"; SRC = filter SRC by  date('ActivityDate_Year','ActivityDate_Month','ActivityDate_Day') in [{{ no_quote(value(field(selection(step_grouplist3), 'Current_pigql'))) }}];SRC= filter SRC by 'EventSubtype' in {{selection(pl_activity_type)}}; OWN = filter SRC by 'Owner.Name' in  {{results(mgr_get_list)}}; OWN = group OWN by ('EventSubtype','Owner.Name'); OWN = foreach OWN generate  \"Event\" as 'ActivityType', 'Owner.Name' as 'Name',count() as 'count'; SRC1 = load \"${App.EdgeMarts.task.Alias}\";SRC1 = filter SRC1 by date('LastModifiedDate_Year','LastModifiedDate_Month','LastModifiedDate_Day') in [{{ no_quote(value(field(selection(step_grouplist3), 'Current_pigql'))) }}];SRC1 = filter SRC1 by  'IsClosed' == \"true\"; SRC1= filter SRC1 by 'TaskSubtype' in {{selection(pl_activity_type)}}; OWN1 = filter SRC1 by 'Owner.Name' in  {{results(mgr_get_list)}}; OWN1 = group OWN1 by ('TaskSubtype','Owner.Name'); OWN1 = foreach OWN1 generate 'TaskSubtype' as 'ActivityType', 'Owner.Name' as 'Name',count() as 'count'; ACTI = union OWN,OWN1; ACTI = group ACTI by 'ActivityType'; ACTI = foreach ACTI generate 'ActivityType' as 'ActivityType' , sum('count') as 'count';",
+            "groups" : [
+  [
+  "ActivityType"
+  ]
+  ],
+            "filters" : [ ],
+            "order" : [ ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregate",
+        "useGlobal" : true
+      },
+      "pl_activity_type" : {
+        "datasets" : [ ],
+        "dimensions" : [ ],
+        "isFacet" : false,
+        "isGlobal" : false,
+        "selectMode" : "multi",
+        "start" : [ ],
+        "type" : "static",
+        "useGlobal" : false,
+        "values" : [
+  {
+            "display" : "Email",
+            "value" : "Email"
+          },
+  {
+            "display" : "Task",
+            "value" : "Task"
+          },
+  {
+            "display" : "Call",
+            "value" : "Call"
+          },
+  {
+            "display" : "Meetings",
+            "value" : "Event"
+          }
+  ]
+      },
+      "activity_total" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.task.Alias}"
+          }
+  ],
+        "isFacet" : true,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "pigql" : "SRC = load \"${App.EdgeMarts.event.Alias}\"; SRC = filter SRC by  date('ActivityDate_Year','ActivityDate_Month','ActivityDate_Day') in [{{ no_quote(value(field(selection(step_grouplist3), 'Current_pigql'))) }}]; SRC= filter SRC by 'EventSubtype' in {{selection(pl_activity_type)}};OWN = filter SRC by 'Owner.Name' in {{results(mgr_get_list)}}; OWN = group OWN by all; OWN = foreach OWN generate count() as 'count'; SRC1 = load \"${App.EdgeMarts.task.Alias}\"; SRC1 = filter SRC1 by  'IsClosed' == \"true\"; SRC1 = filter SRC1 by date('LastModifiedDate_Year','LastModifiedDate_Month','LastModifiedDate_Day') in [{{ no_quote(value(field(selection(step_grouplist3), 'Current_pigql'))) }}];SRC1= filter SRC1 by 'TaskSubtype' in {{selection(pl_activity_type)}}; OWN1 = filter SRC1 by 'Owner.Name' in {{results(mgr_get_list)}} ; OWN1 = group OWN1 by all; OWN1 = foreach OWN1 generate count() as 'count'; ACTI = union OWN,OWN1; ACTI = group ACTI by all; ALLSUM = foreach ACTI generate sum('count') as 'count';",
+            "order" : [ ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregate",
+        "useGlobal" : true
+      },
+      "filter_role" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.user.Alias}"
+          }
+  ],
+        "isFacet" : false,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "pigql" : "q = load \"${App.EdgeMarts.user.Alias}\"; q = group q by 'Role.DeveloperName'; q = foreach q generate 'Role.DeveloperName' as 'Role.DeveloperName';",
+            "groups" : [
+  "Role.DeveloperName"
+  ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "singlerequired",
+        "start" : [
+  "!{user.rolename}"
+  ],
+        "type" : "aggregate",
+        "useGlobal" : false,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "TaskSubtype_Priority_87" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.task.Alias}"
+          }
+  ],
+        "isFacet" : true,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "pigql" : "SRC1 = load \"${App.EdgeMarts.task.Alias}\"; SRC1 = filter SRC1 by  'IsClosed' == \"true\"; SRC1 = filter SRC1 by date('LastModifiedDate_Year','LastModifiedDate_Month','LastModifiedDate_Day') in [{{ no_quote(value(field(selection(step_grouplist3), 'Current_pigql'))) }}];SRC1= filter SRC1 by 'TaskSubtype' in {{selection(pl_activity_type)}}; SRC1 = filter SRC1 by 'Priority' in {{selection(Priority_88)}}; OWN1 = filter SRC1 by  'Owner.Name' in  {{results(mgr_get_list)}}; OWN1 = group OWN1 by ('TaskSubtype','Priority'); OWN1 = foreach OWN1 generate 'TaskSubtype' as 'TaskSubtype','Priority' as 'Priority',count() as 'count';",
+            "groups" : [
+  "TaskSubtype",
+  "Priority"
+  ],
+            "filters" : [ ],
+            "order" : [
+  [
+  -1,
+  {
+                  "ascending" : false
+                }
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "stackhbar"
+        }
+      },
+      "emails" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.task.Alias}"
+          }
+  ],
+        "isFacet" : true,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "pigql" : "SRC = load \"${App.EdgeMarts.task.Alias}\"; SRC = filter SRC by  'IsClosed' == \"true\"; SRC = filter SRC by 'TaskSubtype' == \"Email\";SRC= filter SRC by 'TaskSubtype' in {{selection(pl_activity_type)}}; SRC = filter SRC by date('LastModifiedDate_Year','LastModifiedDate_Month','LastModifiedDate_Day') in [{{ no_quote(value(field(selection(step_grouplist3), 'Current_pigql'))) }}]; OWN = filter SRC by 'Owner.Name' in {{results(mgr_get_list)}} ; OWN = group OWN by all; OWN = foreach OWN generate count() as 'count';",
+            "filters" : [ ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "start" : [ ],
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "step_grouplist3" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.opportunity.Alias}"
+          }
+  ],
+        "dimensions" : [ ],
+        "isFacet" : false,
+        "isGlobal" : false,
+        "selectMode" : "singlerequired",
+        "start" : [
+  [
+  {
+              "Current" : [
+  [
+  "week",
+  0
+  ],
+  [
+  "week",
+  0
+  ]
+  ],
+              "Current_pigql" : "\"current week\"..\"current week\""
+            }
+  ]
+  ],
+        "type" : "static",
+        "useGlobal" : false,
+        "values" : [
+  {
+            "display" : "This Week",
+            "value" : [
+  {
+                "Current" : [
+  [
+  "week",
+  0
+  ],
+  [
+  "week",
+  0
+  ]
+  ],
+                "Current_pigql" : "\"current week\"..\"current week\""
+              }
+  ]
+          },
+  {
+            "display" : "This Month",
+            "value" : [
+  {
+                "Current" : [
+  [
+  "month",
+  0
+  ],
+  [
+  "month",
+  0
+  ]
+  ],
+                "Current_pigql" : "\"current month\"..\"current month\""
+              }
+  ]
+          },
+  {
+            "display" : "This Quarter",
+            "value" : [
+  {
+                "Current" : [
+  [
+  "${Constants.Fiscal_Prefix}quarter",
+  0
+  ],
+  [
+  "${Constants.Fiscal_Prefix}quarter",
+  0
+  ]
+  ],
+                "Current_pigql" : "\"current ${Constants.Fiscal_Prefix}quarter\"..\"current ${Constants.Fiscal_Prefix}quarter\""
+              }
+  ]
+          },
+  {
+            "display" : "This Year",
+            "value" : [
+  {
+                "Current" : [
+  [
+  "${Constants.Fiscal_Prefix}year",
+  0
+  ],
+  [
+  "${Constants.Fiscal_Prefix}year",
+  0
+  ]
+  ],
+                "Current_pigql" : "\"current ${Constants.Fiscal_Prefix}year\"..\"current ${Constants.Fiscal_Prefix}year\""
+              }
+  ]
+          },
+  {
+            "display" : "Last Week",
+            "value" : [
+  {
+                "Current" : [
+  [
+  "week",
+  -1
+  ],
+  [
+  "week",
+  -1
+  ]
+  ],
+                "Current_pigql" : "\"1 week ago\"..\"1 week ago\""
+              }
+  ]
+          },
+  {
+            "display" : "Last Month",
+            "value" : [
+  {
+                "Current" : [
+  [
+  "month",
+  -1
+  ],
+  [
+  "month",
+  -1
+  ]
+  ],
+                "Current_pigql" : "\"1 month ago\"..\"1 month ago\""
+              }
+  ]
+          },
+  {
+            "display" : "Last Quarter",
+            "value" : [
+  {
+                "Current" : [
+  [
+  "${Constants.Fiscal_Prefix}quarter",
+  -1
+  ],
+  [
+  "${Constants.Fiscal_Prefix}quarter",
+  -1
+  ]
+  ],
+                "Current_pigql" : "\"1 ${Constants.Fiscal_Prefix}quarter ago\"..\"1 ${Constants.Fiscal_Prefix}quarter ago\""
+              }
+  ]
+          },
+  {
+            "display" : "Last Year",
+            "value" : [
+  {
+                "Current" : [
+  [
+  "${Constants.Fiscal_Prefix}year",
+  -1
+  ],
+  [
+  "${Constants.Fiscal_Prefix}year",
+  -1
+  ]
+  ],
+                "Current_pigql" : "\"1 ${Constants.Fiscal_Prefix}year ago\"..\"1 ${Constants.Fiscal_Prefix}year ago\""
+              }
+  ]
+          }
+  ]
+      },
+      "LastModifiedDate_Year_LastModifiedDate_Month_LastModifiedDate_Day_83" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.task.Alias}"
+          }
+  ],
+        "isFacet" : false,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "sum",
+  "ActivityCount"
+  ]
+  ],
+            "pigql" : "SRC = load \"${App.EdgeMarts.event.Alias}\"; SRC = filter SRC by date('ActivityDate_Year','ActivityDate_Month','ActivityDate_Day') in [{{ no_quote(value(field(selection(step_grouplist3), 'Current_pigql'))) }}];SRC= filter SRC by 'EventSubtype' in {{selection(pl_activity_type)}}; OWN = filter SRC by  'Owner.Name' in  {{results(mgr_get_list)}} ; OWN = group OWN by ('ActivityDate_Year','ActivityDate_Month','ActivityDate_Day'); OWN = foreach OWN generate 'ActivityDate_Year' + \"~~~\" + 'ActivityDate_Month' + \"~~~\" + 'ActivityDate_Day' as 'ActivityDate_Year~~~ActivityDate_Month~~~ActivityDate_Day', \"Meeting\" as 'ActivityType',count() as 'ActivityCount';  SRC1 = load \"${App.EdgeMarts.task.Alias}\"; SRC1 = filter SRC1 by 'IsClosed' == \"true\"; SRC1 = filter SRC1 by date('LastModifiedDate_Year','LastModifiedDate_Month','LastModifiedDate_Day') in [{{no_quote(value(field(selection(step_grouplist3),'Current_pigql')))}}];SRC1= filter SRC1 by 'TaskSubtype' in {{selection(pl_activity_type)}}; OWN1 = filter SRC1 by  'Owner.Name' in  {{results(mgr_get_list)}} ; OWN1 = group OWN1 by ('LastModifiedDate_Year','LastModifiedDate_Month','LastModifiedDate_Day','TaskSubtype'); OWN1 = foreach OWN1 generate 'LastModifiedDate_Year' + \"~~~\" + 'LastModifiedDate_Month' + \"~~~\" + 'LastModifiedDate_Day' as 'ActivityDate_Year~~~ActivityDate_Month~~~ActivityDate_Day','TaskSubtype' as 'ActivityType' ,count() as 'ActivityCount'; ACTI = union OWN,OWN1; ACTI = group ACTI by ('ActivityDate_Year~~~ActivityDate_Month~~~ActivityDate_Day' ,'ActivityType') ; ACTI = foreach ACTI generate 'ActivityDate_Year~~~ActivityDate_Month~~~ActivityDate_Day' as 'ActivityDate_Year~~~ActivityDate_Month~~~ActivityDate_Day','ActivityType' as 'ActivityType' ,sum('ActivityCount') as 'sum_ActivityCount';",
+            "groups" : [
+  [
+  "ActivityDate_Year",
+  "ActivityDate_Month",
+  "ActivityDate_Day"
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "start" : [ ],
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "time"
+        }
+      },
+      "Priority_88" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.task.Alias}"
+          }
+  ],
+        "isFacet" : true,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "pigql" : "SRC1 = load \"${App.EdgeMarts.task.Alias}\"; SRC1 = filter SRC1 by  'IsClosed' == \"true\"; SRC1 = filter SRC1 by date('LastModifiedDate_Year','LastModifiedDate_Month','LastModifiedDate_Day') in [{{ no_quote(value(field(selection(step_grouplist3), 'Current_pigql'))) }}];SRC1= filter SRC1 by 'TaskSubtype' in {{selection(pl_activity_type)}}; OWN1 = filter SRC1 by  'Owner.Name' in  {{results(mgr_get_list)}}; OWN1 = group OWN1 by  ('TaskSubtype','Priority'); OWN1 = foreach OWN1 generate  'TaskSubtype'+\"~~~\"+'Priority' as 'TaskSubtype~~~Priority','Priority' as 'Priority',count() as 'count' ;OWN1 = filter OWN1 by 'TaskSubtype~~~Priority' in {{selection(TaskSubtype_Priority_87)}};p88= group OWN1 by 'Priority'; p88 = foreach p88 generate 'Priority' as 'Priority' , sum('count') as 'count';",
+            "groups" : [
+  "Priority"
+  ],
+            "filters" : [ ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "pie"
+        }
+      },
+      "calls" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.task.Alias}"
+          }
+  ],
+        "isFacet" : true,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "pigql" : "SRC = load \"${App.EdgeMarts.task.Alias}\"; SRC = filter SRC by  'IsClosed' == \"true\"; SRC = filter SRC by 'TaskSubtype' == \"Call\"; SRC= filter SRC by 'TaskSubtype' in {{selection(pl_activity_type)}};SRC = filter SRC by date('LastModifiedDate_Year','LastModifiedDate_Month','LastModifiedDate_Day') in [{{ no_quote(value(field(selection(step_grouplist3), 'Current_pigql'))) }}]; OWN = filter SRC by 'Owner.Name' in {{results(mgr_get_list)}} ; OWN = group OWN by all; OWN = foreach OWN generate count() as 'count';",
+            "filters" : [ ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "start" : [ ],
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "DurationInMinutes_92" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.event.Alias}"
+          }
+  ],
+        "isFacet" : true,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "sum",
+  "DurationInMinutes"
+  ]
+  ],
+            "filters" : [
+  [
+  "ActivityDate",
+  "{{field(selection(step_grouplist3),'Current')}}"
+  ],
+  [
+  "Owner.Name",
+  "{{results(mgr_get_list)}}",
+  "in"
+  ],
+  [
+  "EventSubtype",
+  "{{selection(pl_activity_type)}}",
+  "in"
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "DurationInMinutes_93" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.event.Alias}"
+          }
+  ],
+        "isFacet" : true,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "avg",
+  "DurationInMinutes"
+  ]
+  ],
+            "filters" : [
+  [
+  "ActivityDate",
+  "{{ field(selection(step_grouplist3), 'Current') }}"
+  ],
+  [
+  "Owner.Name",
+  " {{results(mgr_get_list)}}",
+  "in"
+  ],
+  [
+  "EventSubtype",
+  "{{selection(pl_activity_type)}}",
+  "in"
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "meetings" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.event.Alias}"
+          }
+  ],
+        "isFacet" : true,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "pigql" : "SRC = load \"${App.EdgeMarts.event.Alias}\"; SRC = filter SRC by  date('ActivityDate_Year','ActivityDate_Month','ActivityDate_Day') in [{{ no_quote(value(field(selection(step_grouplist3), 'Current_pigql'))) }}];SRC= filter SRC by 'EventSubtype' in {{selection(pl_activity_type)}}; OWN = filter SRC by 'Owner.Name' in {{results(mgr_get_list)}}; OWN = group OWN by all; OWN = foreach OWN generate count() as 'count'; ",
+            "filters" : [ ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "start" : [ ],
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "mgr_get_manager" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.user.Alias}"
+          }
+  ],
+        "isFacet" : true,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "groups" : [
+  "Role.DeveloperName"
+  ],
+            "filters" : [
+  [
+  "ParentRole.DeveloperName",
+  "{{ selection(filter_role) }}"
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "multi",
+        "start" : [ ],
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "activity_total_donut_2" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.task.Alias}"
+          }
+  ],
+        "isFacet" : true,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "pigql" : "SRC1 = load \"${App.EdgeMarts.task.Alias}\"; SRC1 = filter SRC1 by  'IsClosed' == \"true\"; SRC1 = filter SRC1 by date('LastModifiedDate_Year','LastModifiedDate_Month','LastModifiedDate_Day') in [{{ no_quote(value(field(selection(step_grouplist3), 'Current_pigql'))) }}];SRC1= filter SRC1 by 'TaskSubtype' in {{selection(pl_activity_type)}}; SRC1 = filter SRC1 by 'Priority' in {{selection(Priority_88)}}; OWN1 = filter SRC1 by  'Owner.Name' in  {{results(mgr_get_list)}}; OWN1 = foreach OWN1 generate count() as 'count', 'TaskSubtype' + \"~~~\" + 'Priority' as 'Grp'; OWN1 = filter OWN1 by 'Grp' in {{selection(TaskSubtype_Priority_87)}} ; OWN1 = group OWN1 by all; OWN1 = foreach OWN1 generate count() as 'count';",
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "order" : [ ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregate",
+        "useGlobal" : true
+      },
+      "all_91" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.event.Alias}"
+          }
+  ],
+        "isFacet" : true,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "filters" : [
+  [
+  "ActivityDate",
+  "{{ field(selection(step_grouplist3), 'Current') }}",
+  ">=<="
+  ],
+  [
+  "Owner.Name",
+  "{{results(mgr_get_list)}}",
+  "in"
+  ],
+  [
+  "EventSubtype",
+  "{{selection(pl_activity_type)}}",
+  "in"
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "lens_89" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.task.Alias}"
+          }
+  ],
+        "isFacet" : true,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "values" : [
+  "TaskSubtype",
+  "Priority",
+  "ActivityDate",
+  "Subject",
+  "Owner.Name",
+  "LastModifiedDate"
+  ],
+            "filters" : [
+  [
+  "IsClosed",
+  [
+  "true"
+  ],
+  "in"
+  ],
+  [
+  "TaskSubtype",
+  "{{selection(pl_activity_type)}}",
+  "in"
+  ],
+  [
+  "Owner.Name",
+  "  {{results(mgr_get_list)}}",
+  "in"
+  ],
+  [
+  "LastModifiedDate",
+  "{{ field(selection(step_grouplist3), 'Current') }}",
+  ">=<="
+  ]
+  ],
+            "order" : [
+  [
+  "LastModifiedDate",
+  {
+                  "ascending" : false
+                }
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "grain",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "valuestable"
+        }
+      },
+      "tasks" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.task.Alias}"
+          }
+  ],
+        "isFacet" : true,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "pigql" : "SRC = load \"${App.EdgeMarts.task.Alias}\"; SRC = filter SRC by  'IsClosed' == \"true\"; SRC = filter SRC by 'TaskSubtype' == \"Task\";SRC= filter SRC by 'TaskSubtype' in {{selection(pl_activity_type)}}; SRC = filter SRC by date('LastModifiedDate_Year','LastModifiedDate_Month','LastModifiedDate_Day') in [{{ no_quote(value(field(selection(step_grouplist3), 'Current_pigql'))) }}]; OWN = filter SRC by 'Owner.Name' in {{results(mgr_get_list)}} ; OWN = group OWN by all; OWN = foreach OWN generate count() as 'count';",
+            "filters" : [ ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "start" : [ ],
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      }
+    },
+    "widgets" : {
+      "number_12" : {
+        "parameters" : {
+          "exploreLink" : false,
+          "measureField" : "count",
+          "step" : "activity_total",
+          "textAlignment" : "left",
+          "title" : ""
+        },
+        "position" : {
+          "w" : "190",
+          "x" : 1170,
+          "y" : 180,
+          "zIndex" : 1194
+        },
+        "type" : "number"
+      },
+      "number_11" : {
+        "parameters" : {
+          "exploreLink" : false,
+          "fontSize" : 20,
+          "measureField" : "count",
+          "step" : "activity_total_donut_2",
+          "textAlignment" : "center",
+          "title" : "Total"
+        },
+        "position" : {
+          "w" : "130",
+          "x" : 480,
+          "y" : 860,
+          "zIndex" : 1149
+        },
+        "type" : "number"
+      },
+      "text_18" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "Tasks",
+          "textAlignment" : "left",
+          "textColor" : "rgb(22, 50, 92)"
+        },
+        "position" : {
+          "x" : 610,
+          "y" : 130,
+          "zIndex" : 938
+        },
+        "type" : "text"
+      },
+      "text_17" : {
+        "parameters" : {
+          "fontSize" : 65,
+          "text" : "=",
+          "textAlignment" : "left",
+          "textColor" : "rgb(255, 255, 255)"
+        },
+        "position" : {
+          "x" : 1080,
+          "y" : 160,
+          "zIndex" : 942
+        },
+        "type" : "text"
+      },
+      "text_19" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "Event Details",
+          "textAlignment" : "left",
+          "textColor" : "rgb(52, 74, 95)"
+        },
+        "position" : {
+          "x" : 830,
+          "y" : 730,
+          "zIndex" : 980
+        },
+        "type" : "text"
+      },
+      "number_18" : {
+        "parameters" : {
+          "exploreLink" : false,
+          "fontSize" : 30,
+          "measureField" : "count",
+          "step" : "emails",
+          "textAlignment" : "left",
+          "title" : ""
+        },
+        "position" : {
+          "w" : "130",
+          "x" : 330,
+          "y" : 180,
+          "zIndex" : 961
+        },
+        "type" : "number"
+      },
+      "sel_order" : {
+        "parameters" : {
+          "exploreLink" : false,
+          "selectModeOverride" : "singlerequired",
+          "step" : "step_order",
+          "title" : ""
+        },
+        "position" : {
+          "w" : "140",
+          "x" : 300,
+          "y" : 350,
+          "zIndex" : 23
+        },
+        "type" : "pillbox"
+      },
+      "text_16" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "Team Productivity",
+          "textAlignment" : "left",
+          "textColor" : "rgb(52, 74, 95)"
+        },
+        "position" : {
+          "x" : 30,
+          "y" : 360,
+          "zIndex" : 975
+        },
+        "type" : "text"
+      },
+      "number_16" : {
+        "parameters" : {
+          "exploreLink" : false,
+          "fontSize" : 30,
+          "measureField" : "count",
+          "step" : "calls",
+          "textAlignment" : "left",
+          "title" : ""
+        },
+        "position" : {
+          "w" : "140",
+          "x" : 50,
+          "y" : 180,
+          "zIndex" : 960
+        },
+        "type" : "number"
+      },
+      "box_lightgray" : {
+        "parameters" : {
+          "backgroundColor" : "rgb(242, 246, 250)",
+          "borderColor" : "rgba(146, 103, 194, 0)"
+        },
+        "position" : {
+          "h" : "1390",
+          "w" : "1420",
+          "x" : 0,
+          "y" : 0,
+          "zIndex" : 0
+        },
+        "type" : "box"
+      },
+      "text_12" : {
+        "parameters" : {
+          "fontSize" : 65,
+          "text" : "+",
+          "textAlignment" : "left",
+          "textColor" : "rgb(255, 255, 255)"
+        },
+        "position" : {
+          "x" : 240,
+          "y" : 160,
+          "zIndex" : 935
+        },
+        "type" : "text"
+      },
+      "text_11" : {
+        "parameters" : {
+          "fontSize" : 65,
+          "text" : "+",
+          "textAlignment" : "left",
+          "textColor" : "rgb(255, 255, 255)"
+        },
+        "position" : {
+          "x" : 520,
+          "y" : 160,
+          "zIndex" : 936
+        },
+        "type" : "text"
+      },
+      "box_19" : {
+        "parameters" : {
+          "backgroundColor" : "rgb(255, 255, 255)",
+          "borderColor" : "rgb(163, 184, 204)"
+        },
+        "position" : {
+          "h" : "350",
+          "w" : "380",
+          "x" : 460,
+          "y" : 340,
+          "zIndex" : 1195
+        },
+        "type" : "box"
+      },
+      "box_15" : {
+        "parameters" : {
+          "backgroundColor" : "rgb(255, 255, 255)",
+          "borderColor" : "rgb(163, 184, 204)"
+        },
+        "position" : {
+          "h" : "640",
+          "w" : "550",
+          "x" : 830,
+          "y" : 710,
+          "zIndex" : 979
+        },
+        "type" : "box"
+      },
+      "chart_6" : {
+        "parameters" : {
+          "legend" : true,
+          "visualizationType" : "pie",
+          "step" : "step_ActivityTypes",
+          "exploreLink" : false
+        },
+        "position" : {
+          "h" : "250",
+          "w" : "360",
+          "x" : 470,
+          "y" : 430,
+          "zIndex" : 1197
+        },
+        "type" : "chart"
+      },
+      "box_13" : {
+        "parameters" : {
+          "backgroundColor" : "rgb(255, 255, 255)",
+          "borderColor" : "rgb(163, 184, 204)"
+        },
+        "position" : {
+          "h" : "640",
+          "w" : "780",
+          "x" : 30,
+          "y" : 710,
+          "zIndex" : 26
+        },
+        "type" : "box"
+      },
+      "chart_8" : {
+        "parameters" : {
+          "visualizationType" : "hbar",
+          "step" : "step_owner_name",
+          "exploreLink" : false
+        },
+        "position" : {
+          "h" : "260",
+          "w" : "380",
+          "x" : 50,
+          "y" : 410,
+          "zIndex" : 40
+        },
+        "type" : "chart"
+      },
+      "text_5" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "Calls",
+          "textAlignment" : "left",
+          "textColor" : "rgb(22, 50, 92)"
+        },
+        "position" : {
+          "x" : 50,
+          "y" : 130,
+          "zIndex" : 930
+        },
+        "type" : "text"
+      },
+      "chart_7" : {
+        "parameters" : {
+          "legend" : true,
+          "visualizationType" : "time",
+          "step" : "LastModifiedDate_Year_LastModifiedDate_Month_LastModifiedDate_Day_83",
+          "exploreLink" : false
+        },
+        "position" : {
+          "h" : "280",
+          "w" : "500",
+          "x" : 870,
+          "y" : 410,
+          "zIndex" : 1200
+        },
+        "type" : "chart"
+      },
+      "box_10" : {
+        "parameters" : {
+          "backgroundColor" : "rgb(255, 255, 255)",
+          "borderColor" : "rgb(217, 218, 223)"
+        },
+        "position" : {
+          "h" : "180",
+          "w" : "220",
+          "x" : 870,
+          "y" : 110,
+          "zIndex" : 964
+        },
+        "type" : "box"
+      },
+      "text_9" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "Emails",
+          "textAlignment" : "left",
+          "textColor" : "rgb(22, 50, 92)"
+        },
+        "position" : {
+          "x" : 330,
+          "y" : 130,
+          "zIndex" : 925
+        },
+        "type" : "text"
+      },
+      "number_22" : {
+        "parameters" : {
+          "compact" : true,
+          "exploreLink" : false,
+          "fontSize" : 30,
+          "measureField" : "count",
+          "step" : "meetings",
+          "textAlignment" : "left",
+          "title" : ""
+        },
+        "position" : {
+          "w" : "150",
+          "x" : 890,
+          "y" : 180,
+          "zIndex" : 1192
+        },
+        "type" : "number"
+      },
+      "number_20" : {
+        "parameters" : {
+          "exploreLink" : false,
+          "fontSize" : 30,
+          "measureField" : "count",
+          "step" : "tasks",
+          "textAlignment" : "left",
+          "title" : ""
+        },
+        "position" : {
+          "w" : "130",
+          "x" : 610,
+          "y" : 180,
+          "zIndex" : 962
+        },
+        "type" : "number"
+      },
+      "box_1" : {
+        "parameters" : {
+          "backgroundColor" : "rgb(255, 255, 255)",
+          "borderColor" : "rgb(217, 218, 223)"
+        },
+        "position" : {
+          "h" : "180",
+          "w" : "220",
+          "x" : 30,
+          "y" : 110,
+          "zIndex" : 929
+        },
+        "type" : "box"
+      },
+      "box_2" : {
+        "parameters" : {
+          "backgroundColor" : "rgb(92, 122, 153)",
+          "borderColor" : "rgba(0, 0, 0, 0)"
+        },
+        "position" : {
+          "h" : "240",
+          "w" : "1420",
+          "x" : 0,
+          "y" : 80,
+          "zIndex" : 923
+        },
+        "type" : "box"
+      },
+      "dimfilter_3" : {
+        "parameters" : {
+          "expanded" : false,
+          "exploreLink" : false,
+          "measureField" : "count",
+          "selectModeOverride" : "singlerequired",
+          "step" : "filter_role",
+          "title" : "Owner View as"
+        },
+        "position" : {
+          "h" : "50",
+          "w" : "170",
+          "x" : 1010,
+          "y" : 10,
+          "zIndex" : 100003
+        },
+        "type" : "listselector"
+      },
+      "dimfilter_4" : {
+        "parameters" : {
+          "expanded" : false,
+          "exploreLink" : false,
+          "instant" : false,
+          "measureField" : "",
+          "selectModeOverride" : "multi",
+          "step" : "pl_activity_type",
+          "title" : "Activity Type"
+        },
+        "position" : {
+          "h" : "50",
+          "w" : "170",
+          "x" : 1210,
+          "y" : 10,
+          "zIndex" : 100002
+        },
+        "type" : "listselector"
+      },
+      "box_white" : {
+        "parameters" : {
+          "backgroundColor" : "rgb(255, 255, 255)",
+          "borderColor" : "rgb(163, 184, 204)"
+        },
+        "position" : {
+          "h" : "350",
+          "w" : "410",
+          "x" : 30,
+          "y" : 340,
+          "zIndex" : 1
+        },
+        "type" : "box"
+      },
+      "dimfilter_2" : {
+        "parameters" : {
+          "expanded" : false,
+          "exploreLink" : false,
+          "measureField" : "",
+          "selectModeOverride" : "singlerequired",
+          "step" : "step_grouplist3",
+          "title" : "Date Range"
+        },
+        "position" : {
+          "h" : "50",
+          "w" : "170",
+          "x" : 810,
+          "y" : 10,
+          "zIndex" : 100002
+        },
+        "type" : "listselector"
+      },
+      "number_5" : {
+        "parameters" : {
+          "compact" : true,
+          "fontSize" : 30,
+          "measureField" : "count",
+          "step" : "all_91",
+          "textAlignment" : "center",
+          "title" : "Meetings"
+        },
+        "position" : {
+          "w" : "150",
+          "x" : 1020,
+          "y" : 790,
+          "zIndex" : 990
+        },
+        "type" : "number"
+      },
+      "chart_17" : {
+        "parameters" : {
+          "legend" : true,
+          "visualizationType" : "pie",
+          "step" : "Priority_88",
+          "exploreLink" : false
+        },
+        "position" : {
+          "h" : "230",
+          "w" : "340",
+          "x" : 450,
+          "y" : 790,
+          "zIndex" : 987
+        },
+        "type" : "chart"
+      },
+      "chart_16" : {
+        "parameters" : {
+          "legend" : true,
+          "visualizationType" : "stackhbar",
+          "step" : "TaskSubtype_Priority_87",
+          "exploreLink" : false
+        },
+        "position" : {
+          "h" : "220",
+          "w" : "380",
+          "x" : 50,
+          "y" : 790,
+          "zIndex" : 986
+        },
+        "type" : "chart"
+      },
+      "box_20" : {
+        "parameters" : {
+          "backgroundColor" : "rgb(255, 255, 255)",
+          "borderColor" : "rgb(163, 184, 204)"
+        },
+        "position" : {
+          "h" : "350",
+          "w" : "520",
+          "x" : 860,
+          "y" : 340,
+          "zIndex" : 1198
+        },
+        "type" : "box"
+      },
+      "valuestable_2" : {
+        "parameters" : {
+          "selectModeOverride" : "single",
+          "step" : "lens_89"
+        },
+        "position" : {
+          "h" : "320",
+          "w" : "750",
+          "x" : 40,
+          "y" : 1010,
+          "zIndex" : 988
+        },
+        "type" : "valuestable"
+      },
+      "box_NewLine5" : {
+        "parameters" : {
+          "backgroundColor" : "rgb(240,240,244)",
+          "borderColor" : "rgba(0, 0, 0, 0)"
+        },
+        "position" : {
+          "h" : "40",
+          "w" : "260",
+          "x" : 310,
+          "y" : 0,
+          "zIndex" : -1
+        },
+        "type" : "box"
+      },
+      "box_NewLine4" : {
+        "parameters" : {
+          "backgroundColor" : "rgb(240,240,244)",
+          "borderColor" : "rgba(0, 0, 0, 0)"
+        },
+        "position" : {
+          "h" : "40",
+          "w" : "260",
+          "x" : 310,
+          "y" : 0,
+          "zIndex" : -1
+        },
+        "type" : "box"
+      },
+      "number_9" : {
+        "parameters" : {
+          "exploreLink" : false,
+          "fontSize" : 20,
+          "measureField" : "count",
+          "step" : "activity_total_DONUT",
+          "textAlignment" : "center",
+          "title" : "Total"
+        },
+        "position" : {
+          "w" : "130",
+          "x" : 510,
+          "y" : 510,
+          "zIndex" : 100000
+        },
+        "type" : "number"
+      },
+      "box_NewLine3" : {
+        "parameters" : {
+          "backgroundColor" : "rgb(240,240,244)",
+          "borderColor" : "rgba(0, 0, 0, 0)"
+        },
+        "position" : {
+          "h" : "40",
+          "w" : "260",
+          "x" : 310,
+          "y" : 0,
+          "zIndex" : -1
+        },
+        "type" : "box"
+      },
+      "box_NewLine2" : {
+        "parameters" : {
+          "backgroundColor" : "rgb(240,240,244)",
+          "borderColor" : "rgba(0, 0, 0, 0)"
+        },
+        "position" : {
+          "h" : "40",
+          "w" : "260",
+          "x" : 310,
+          "y" : 0,
+          "zIndex" : -1
+        },
+        "type" : "box"
+      },
+      "text_31" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "Tasks Details",
+          "textAlignment" : "left",
+          "textColor" : "rgb(52, 74, 95)"
+        },
+        "position" : {
+          "x" : 30,
+          "y" : 730,
+          "zIndex" : 922
+        },
+        "type" : "text"
+      },
+      "number_7" : {
+        "parameters" : {
+          "compact" : true,
+          "fontSize" : 30,
+          "measureField" : "avg_DurationInMinutes",
+          "step" : "DurationInMinutes_93",
+          "textAlignment" : "center",
+          "title" : "Avg Time (mins)"
+        },
+        "position" : {
+          "w" : "170",
+          "x" : 1190,
+          "y" : 790,
+          "zIndex" : 992
+        },
+        "type" : "number"
+      },
+      "number_6" : {
+        "parameters" : {
+          "compact" : true,
+          "fontSize" : 30,
+          "measureField" : "sum_DurationInMinutes",
+          "step" : "DurationInMinutes_92",
+          "textAlignment" : "center",
+          "title" : "Total Time (mins)"
+        },
+        "position" : {
+          "w" : "160",
+          "x" : 840,
+          "y" : 790,
+          "zIndex" : 991
+        },
+        "type" : "number"
+      },
+      "box_7" : {
+        "parameters" : {
+          "backgroundColor" : "rgb(255, 255, 255)",
+          "borderColor" : "rgb(217, 218, 223)"
+        },
+        "position" : {
+          "h" : "180",
+          "w" : "220",
+          "x" : 590,
+          "y" : 110,
+          "zIndex" : 937
+        },
+        "type" : "box"
+      },
+      "box_6" : {
+        "parameters" : {
+          "backgroundColor" : "rgb(255, 255, 255)",
+          "borderColor" : "rgba(52, 74, 95, 0.5)"
+        },
+        "position" : {
+          "h" : "180",
+          "w" : "230",
+          "x" : 1150,
+          "y" : 110,
+          "zIndex" : 943
+        },
+        "type" : "box"
+      },
+      "box_9" : {
+        "parameters" : {
+          "backgroundColor" : "rgb(255, 255, 255)",
+          "borderColor" : "rgb(217, 218, 223)"
+        },
+        "position" : {
+          "h" : "180",
+          "w" : "220",
+          "x" : 310,
+          "y" : 110,
+          "zIndex" : 924
+        },
+        "type" : "box"
+      },
+      "text_28" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "Activities Close Date",
+          "textAlignment" : "left",
+          "textColor" : "rgb(52, 74, 95)"
+        },
+        "position" : {
+          "x" : 860,
+          "y" : 360,
+          "zIndex" : 1199
+        },
+        "type" : "text"
+      },
+      "text_24" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "Activities",
+          "textAlignment" : "left",
+          "textColor" : "rgb(52, 74, 95)"
+        },
+        "position" : {
+          "x" : 1170,
+          "y" : 130,
+          "zIndex" : 965
+        },
+        "type" : "text"
+      },
+      "text_26" : {
+        "parameters" : {
+          "fontSize" : 36,
+          "text" : "Productivity",
+          "textAlignment" : "left",
+          "textColor" : "rgb(41, 71, 102)"
+        },
+        "position" : {
+          "x" : 10,
+          "y" : 20,
+          "zIndex" : 934
+        },
+        "type" : "text"
+      },
+      "text_21" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "Type of Activities",
+          "textAlignment" : "left",
+          "textColor" : "rgb(52, 74, 95)"
+        },
+        "position" : {
+          "x" : 460,
+          "y" : 360,
+          "zIndex" : 1196
+        },
+        "type" : "text"
+      },
+      "text_23" : {
+        "parameters" : {
+          "fontSize" : 65,
+          "text" : "+",
+          "textAlignment" : "left",
+          "textColor" : "rgb(255, 255, 255)"
+        },
+        "position" : {
+          "x" : 800,
+          "y" : 160,
+          "zIndex" : 963
+        },
+        "type" : "text"
+      },
+      "box_Mob0" : {
+        "parameters" : {
+          "backgroundColor" : "rgb(240, 240, 244)",
+          "borderColor" : "rgba(0, 0, 0, 0)"
+        },
+        "position" : {
+          "h" : "390",
+          "w" : "1400",
+          "x" : 0,
+          "y" : 90,
+          "zIndex" : -1
+        },
+        "type" : "box"
+      },
+      "text_22" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "Meetings",
+          "textAlignment" : "left",
+          "textColor" : "rgb(52, 74, 95)"
+        },
+        "position" : {
+          "x" : 890,
+          "y" : 130,
+          "zIndex" : 966
+        },
+        "type" : "text"
+      },
+      "valuestable_5" : {
+        "parameters" : {
+          "selectModeOverride" : "single",
+          "step" : "lens_94"
+        },
+        "position" : {
+          "h" : "320",
+          "w" : "530",
+          "x" : 830,
+          "y" : 1010,
+          "zIndex" : 989
+        },
+        "type" : "valuestable"
+      }
+    }
+  }
+}

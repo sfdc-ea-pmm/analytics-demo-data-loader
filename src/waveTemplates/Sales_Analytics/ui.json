@@ -1,0 +1,33 @@
+{
+  "pages": [
+    {
+      "title": "Personalize Sales Wave Analytics - Accounts (1 of 3)",
+      "variables": [
+        "Customer",
+        "Customer_L2",
+        "Geography",
+        "Geography_L2",
+        "Source"
+      ]
+    },
+    {
+      "title": "Personalize Sales Wave Analytics - Opportunities (2 of 3)",
+      "variables": [
+        "Opportunity_Amount",
+        "Source_L2",
+        "Bookings",
+        "Fiscal_Month",
+        "Has_Quota",
+        "Has_Product"
+      ]
+    },
+    {
+      "title": "Optional - Complete if you track products (3 of 3)",
+      "variables": [
+        "Product_Amount",
+        "Product",
+        "Product_L2"
+      ]
+    }
+  ]
+}

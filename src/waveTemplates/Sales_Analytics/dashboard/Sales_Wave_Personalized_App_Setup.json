@@ -1,0 +1,1602 @@
+{
+  "name" : "Sales_Wave_Personalized_App_Setup",
+  "label" : "Sales Wave - Personalized App Setup",
+  "folder" : {
+    "id" : "${App.Folder.Id}"
+  },
+  "mobileDisabled" : false,
+  "state" : {
+    "dataSourceLinks" : [ ],
+    "filters" : [ ],
+    "gridLayouts" : [ ],
+    "layouts" : [
+  {
+        "device" : "default",
+        "pages" : [
+  {
+            "rows" : [
+  "text_1 {colspan=6, fontSize=20, textAlignment=left, vpad=25}",
+  "text_71{colspan=6, fontSize=10, textAlignment=left}",
+  "box_10{colspan=6, rowspan=2, zIndex=-1} | row: {height=1} ",
+  "text_77{colspan=6}",
+  "| row: {height=10}",
+  "text_72{colspan=6,textAlignment=left}",
+  "| row: {height=10}",
+  "text_74{colspan=6}",
+  "| row: {height=10}",
+  "box_NewLine1{colspan=6}| row: {height=1}",
+  "text_78{colspan=6,textAlignment=left}",
+  "| row: {height=10}",
+  "text_79{colspan=6,textAlignment=left}",
+  "| row: {height=10}",
+  "box_NewLine2{colspan=6}| row: {height=1}",
+  "text_81{colspan=6,textAlignment=left}",
+  "| row: {height=10}",
+  "text_82{colspan=6,textAlignment=left}",
+  "| row: {height=10}",
+  "box_NewLine3{colspan=6}| row: {height=1}",
+  "text_84{colspan=6,textAlignment=left}",
+  "| row: {height=10}",
+  "text_85{colspan=6,textAlignment=left}",
+  "| row: {height=10}",
+  "box_NewLine4{colspan=6}| row: {height=1}",
+  "text_87{colspan=6,textAlignment=left}",
+  "| row: {height=10}",
+  "text_88{colspan=6,textAlignment=left}",
+  "| row: {height=10}",
+  "| row: {height=10}",
+  "text_68{colspan=6, textAlignment=right}"
+  ]
+          },
+  {
+            "rows" : [
+  "text_71{colspan=6, fontSize=10, textAlignment=left}",
+  "box_10{colspan=6, rowspan=2, zIndex=-1} | row: {height=1} ",
+  "text_90{colspan=6}",
+  "| row: {height=10}",
+  "text_91{colspan=6,textAlignment=left}",
+  "| row: {height=10}",
+  "text_92{colspan=6}",
+  "| row: {height=10}",
+  "box_NewLine5{colspan=6} | row: {height=1}",
+  "text_94{colspan=6,textAlignment=left}",
+  "| row: {height=10}",
+  "text_95{colspan=6,textAlignment=left}",
+  "| row: {height=10}",
+  "box_NewLine6{colspan=6}| row: {height=1}",
+  "text_97{colspan=6,textAlignment=left}",
+  "| row: {height=10}",
+  "text_98{colspan=6,textAlignment=left}",
+  "| row: {height=10}",
+  "box_NewLine7{colspan=6}| row: {height=1}",
+  "text_100{colspan=6,textAlignment=left}",
+  "| row: {height=10}",
+  "text_101{colspan=6,textAlignment=left}",
+  "| row: {height=10}",
+  "box_NewLine8{colspan=6}| row: {height=1}",
+  "text_103{colspan=6,textAlignment=left}",
+  "| row: {height=10}",
+  "text_104{colspan=6,textAlignment=left}",
+  "| row: {height=10}",
+  "box_NewLine9{colspan=6}| row: {height=1}",
+  "text_106{colspan=6,textAlignment=left}",
+  "| row: {height=10}",
+  "text_107{colspan=6,textAlignment=left}",
+  "| row: {height=10}",
+  "| row: {height=10}",
+  "text_68{colspan=6, textAlignment=right}"
+  ]
+          },
+  {
+            "rows" : [
+  "text_71{colspan=6, fontSize=10, textAlignment=left, vpad=15}",
+  "box_10{colspan=6, rowspan=2, zIndex=-1} | row: {height=1} ",
+  "text_109{colspan=6,fontSize=15}",
+  "| row: {height=10}",
+  "text_110{colspan=6,textAlignment=left}",
+  "| row: {height=10}",
+  "text_111{colspan=6}",
+  "| row: {height=10}",
+  "box_NewLine5{colspan=6} | row: {height=1}",
+  "text_113{colspan=6,textAlignment=left}",
+  "| row: {height=10}",
+  "text_114{colspan=6,textAlignment=left}",
+  "| row: {height=10}",
+  "box_NewLine6{colspan=6}| row: {height=1}",
+  "text_116{colspan=6,textAlignment=left}",
+  "| row: {height=10}",
+  "text_117{colspan=6,textAlignment=left}",
+  "| row: {height=10}",
+  "| row: {height=10}",
+  "text_68{colspan=6, textAlignment=right}"
+  ]
+          }
+  ],
+        "version" : 1.0
+      }
+  ],
+    "steps" : { },
+    "widgets" : {
+      "box_50" : {
+        "parameters" : {
+          "backgroundColor" : "rgba(0, 140, 201, 0)",
+          "borderColor" : "rgb(230, 236, 242)"
+        },
+        "position" : {
+          "h" : "80",
+          "w" : "530",
+          "x" : 20,
+          "y" : 1250,
+          "zIndex" : 138
+        },
+        "type" : "box"
+      },
+      "text_98" : {
+        "parameters" : {
+          "fontSize" : 18,
+          "text" : "${Variables.Bookings.fieldLabel}",
+          "textAlignment" : "left",
+          "textColor" : "rgb(0, 112, 210)"
+        },
+        "position" : {
+          "x" : 560,
+          "y" : 820,
+          "zIndex" : 109
+        },
+        "type" : "text"
+      },
+      "text_97" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "3) What field indicates that an opportunity is new business?",
+          "textAlignment" : "left"
+        },
+        "position" : {
+          "x" : 20,
+          "y" : 820,
+          "zIndex" : 108
+        },
+        "type" : "text"
+      },
+      "text_99" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "Select the field you use to identify that an opportunity in Salesforce is \nnew business.",
+          "textAlignment" : "left",
+          "textColor" : "rgb(64, 96, 127)"
+        },
+        "position" : {
+          "x" : 800,
+          "y" : 820,
+          "zIndex" : 110
+        },
+        "type" : "text"
+      },
+      "text_94" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "2) What is the field from the Opportunity object you want to use to \nsegment your sources for finding new business?",
+          "textAlignment" : "left"
+        },
+        "position" : {
+          "x" : 20,
+          "y" : 740,
+          "zIndex" : 102
+        },
+        "type" : "text"
+      },
+      "text_93" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "Select the field you use to track the total amount of the opportunity in \nSalesforce.",
+          "textAlignment" : "left",
+          "textColor" : "rgb(64, 96, 127)"
+        },
+        "position" : {
+          "x" : 800,
+          "y" : 660,
+          "zIndex" : 98
+        },
+        "type" : "text"
+      },
+      "text_96" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "Your choice determines the second-level grouping of data about new \nbusiness sources displayed in Sales Wave dashboards.",
+          "textAlignment" : "left",
+          "textColor" : "rgb(64, 96, 127)"
+        },
+        "position" : {
+          "x" : 800,
+          "y" : 740,
+          "zIndex" : 104
+        },
+        "type" : "text"
+      },
+      "text_95" : {
+        "parameters" : {
+          "fontSize" : 18,
+          "text" : "${Variables.Source_L2.fieldLabel}",
+          "textAlignment" : "left",
+          "textColor" : "rgb(0, 112, 210)"
+        },
+        "position" : {
+          "x" : 560,
+          "y" : 740,
+          "zIndex" : 103
+        },
+        "type" : "text"
+      },
+      "text_90" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "Opportunities (2 of 3)"
+        },
+        "position" : {
+          "x" : 20,
+          "y" : 600,
+          "zIndex" : 92
+        },
+        "type" : "text"
+      },
+      "text_92" : {
+        "parameters" : {
+          "fontSize" : 18,
+          "text" : "${Variables.Opportunity_Amount.fieldLabel}",
+          "textAlignment" : "left",
+          "textColor" : "rgb(0, 112, 210)"
+        },
+        "position" : {
+          "x" : 560,
+          "y" : 660,
+          "zIndex" : 97
+        },
+        "type" : "text"
+      },
+      "text_91" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "1) What field contains the total amount of the opportunity?"
+        },
+        "position" : {
+          "x" : 20,
+          "y" : 660,
+          "zIndex" : 96
+        },
+        "type" : "text"
+      },
+      "box_56" : {
+        "parameters" : {
+          "backgroundColor" : "rgba(0, 140, 201, 0)",
+          "borderColor" : "rgba(0, 0, 0, 0)"
+        },
+        "position" : {
+          "h" : "120",
+          "w" : "1350",
+          "x" : 10,
+          "y" : 1410,
+          "zIndex" : 150
+        },
+        "type" : "box"
+      },
+      "box_55" : {
+        "parameters" : {
+          "backgroundColor" : "rgba(0, 140, 201, 0)",
+          "borderColor" : "rgb(230, 236, 242)"
+        },
+        "position" : {
+          "h" : "80",
+          "w" : "560",
+          "x" : 800,
+          "y" : 1330,
+          "zIndex" : 143
+        },
+        "type" : "box"
+      },
+      "box_54" : {
+        "parameters" : {
+          "backgroundColor" : "rgba(0, 140, 201, 0)",
+          "borderColor" : "rgb(230, 236, 242)"
+        },
+        "position" : {
+          "h" : "80",
+          "w" : "250",
+          "x" : 550,
+          "y" : 1330,
+          "zIndex" : 142
+        },
+        "type" : "box"
+      },
+      "box_53" : {
+        "parameters" : {
+          "backgroundColor" : "rgba(0, 140, 201, 0)",
+          "borderColor" : "rgb(230, 236, 242)"
+        },
+        "position" : {
+          "h" : "80",
+          "w" : "530",
+          "x" : 20,
+          "y" : 1330,
+          "zIndex" : 141
+        },
+        "type" : "box"
+      },
+      "box_52" : {
+        "parameters" : {
+          "backgroundColor" : "rgba(0, 140, 201, 0)",
+          "borderColor" : "rgb(230, 236, 242)"
+        },
+        "position" : {
+          "h" : "80",
+          "w" : "560",
+          "x" : 800,
+          "y" : 1250,
+          "zIndex" : 140
+        },
+        "type" : "box"
+      },
+      "box_51" : {
+        "parameters" : {
+          "backgroundColor" : "rgba(0, 140, 201, 0)",
+          "borderColor" : "rgb(230, 236, 242)"
+        },
+        "position" : {
+          "h" : "80",
+          "w" : "250",
+          "x" : 550,
+          "y" : 1250,
+          "zIndex" : 139
+        },
+        "type" : "box"
+      },
+      "box_3" : {
+        "parameters" : {
+          "backgroundColor" : "rgba(0, 140, 201, 0)",
+          "borderColor" : "rgb(230, 236, 242)"
+        },
+        "position" : {
+          "h" : "50",
+          "w" : "530",
+          "x" : 20,
+          "y" : 90,
+          "zIndex" : 3
+        },
+        "type" : "box"
+      },
+      "text_1" : {
+        "parameters" : {
+          "fontSize" : 32,
+          "text" : "Personalize Sales Wave Analytics",
+          "textColor" : "rgb(41, 71, 102)"
+        },
+        "position" : {
+          "x" : 0,
+          "y" : 10,
+          "zIndex" : 55
+        },
+        "type" : "text"
+      },
+      "text_87" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "5) What is the field from the Accounts object you want to use to\nsegment your sources for finding new business?",
+          "textAlignment" : "left"
+        },
+        "position" : {
+          "x" : 20,
+          "y" : 530,
+          "zIndex" : 88
+        },
+        "type" : "text"
+      },
+      "text_86" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "Your choice determines the second-level grouping of data about \ngeographies displayed in Sales Wave dashboards.",
+          "textAlignment" : "left",
+          "textColor" : "rgb(64, 96, 127)"
+        },
+        "position" : {
+          "x" : 800,
+          "y" : 450,
+          "zIndex" : 84
+        },
+        "type" : "text"
+      },
+      "text_89" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "Your choice determines the second-level grouping of data about \ngeographies displayed in Sales Wave dashboards.",
+          "textAlignment" : "left",
+          "textColor" : "rgb(64, 96, 127)"
+        },
+        "position" : {
+          "x" : 800,
+          "y" : 530,
+          "zIndex" : 90
+        },
+        "type" : "text"
+      },
+      "text_88" : {
+        "parameters" : {
+          "fontSize" : 18,
+          "text" : "${Variables.Source.fieldLabel}",
+          "textColor" : "rgb(0, 112, 210)"
+        },
+        "position" : {
+          "x" : 560,
+          "y" : 530,
+          "zIndex" : 89
+        },
+        "type" : "text"
+      },
+      "text_113" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "2) What is the first field you want to use to segment your products?",
+          "textAlignment" : "left"
+        },
+        "position" : {
+          "x" : 20,
+          "y" : 1270,
+          "zIndex" : 144
+        },
+        "type" : "text"
+      },
+      "text_83" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "Your choice determines the first-level grouping of data about geographies \ndisplayed in Sales Wave dashboards.",
+          "textAlignment" : "left",
+          "textColor" : "rgb(64, 96, 127)"
+        },
+        "position" : {
+          "x" : 800,
+          "y" : 370,
+          "zIndex" : 78
+        },
+        "type" : "text"
+      },
+      "text_112" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "Select the field you use to track the total amount of the product on the \nopportunity in Salesforce.",
+          "textAlignment" : "left",
+          "textColor" : "rgb(64, 96, 127)"
+        },
+        "position" : {
+          "x" : 800,
+          "y" : 1190,
+          "zIndex" : 137
+        },
+        "type" : "text"
+      },
+      "text_82" : {
+        "parameters" : {
+          "fontSize" : 18,
+          "text" : "${Variables.Geography.fieldLabel}",
+          "textColor" : "rgb(0, 112, 210)"
+        },
+        "position" : {
+          "x" : 560,
+          "y" : 370,
+          "zIndex" : 76
+        },
+        "type" : "text"
+      },
+      "text_115" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "Your choice determines the first-level grouping of product data displayed in \nSales Wave dashboards.",
+          "textAlignment" : "left",
+          "textColor" : "rgb(64, 96, 127)"
+        },
+        "position" : {
+          "x" : 800,
+          "y" : 1270,
+          "zIndex" : 146
+        },
+        "type" : "text"
+      },
+      "text_85" : {
+        "parameters" : {
+          "fontSize" : 18,
+          "text" : "${Variables.Geography_L2.fieldLabel}",
+          "textColor" : "rgb(0, 112, 210)"
+        },
+        "position" : {
+          "x" : 560,
+          "y" : 450,
+          "zIndex" : 83
+        },
+        "type" : "text"
+      },
+      "text_114" : {
+        "parameters" : {
+          "fontSize" : 18,
+          "text" : "${Variables.Product.fieldLabel}",
+          "textAlignment" : "left",
+          "textColor" : "rgb(0, 112, 210)"
+        },
+        "position" : {
+          "x" : 560,
+          "y" : 1270,
+          "zIndex" : 145
+        },
+        "type" : "text"
+      },
+      "text_84" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "4) What is the second field you want to use to segment your \ngeographies?",
+          "textAlignment" : "left"
+        },
+        "position" : {
+          "x" : 20,
+          "y" : 450,
+          "zIndex" : 82
+        },
+        "type" : "text"
+      },
+      "text_117" : {
+        "parameters" : {
+          "fontSize" : 18,
+          "text" : "${Variables.Product_L2.fieldLabel}",
+          "textColor" : "rgb(0, 112, 210)"
+        },
+        "position" : {
+          "x" : 560,
+          "y" : 1350,
+          "zIndex" : 148
+        },
+        "type" : "text"
+      },
+      "text_116" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "3) What is the second field you want to use to segment your \nproducts?",
+          "textAlignment" : "left"
+        },
+        "position" : {
+          "x" : 20,
+          "y" : 1350,
+          "zIndex" : 147
+        },
+        "type" : "text"
+      },
+      "text_81" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "3)What is the first field you want to use to segment your geographies?",
+          "textAlignment" : "left"
+        },
+        "position" : {
+          "x" : 20,
+          "y" : 370,
+          "zIndex" : 75
+        },
+        "type" : "text"
+      },
+      "text_118" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "Your choice determines the second-level grouping of product data \ndisplayed in Sales Wave dashboards.",
+          "textAlignment" : "left",
+          "textColor" : "rgb(64, 96, 127)"
+        },
+        "position" : {
+          "x" : 800,
+          "y" : 1350,
+          "zIndex" : 149
+        },
+        "type" : "text"
+      },
+      "text_80" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "Your choice determines the second-level grouping of customer data \ndisplayed in Sales Wave dashboards.",
+          "textAlignment" : "left",
+          "textColor" : "rgb(64, 96, 127)"
+        },
+        "position" : {
+          "x" : 800,
+          "y" : 290,
+          "zIndex" : 71
+        },
+        "type" : "text"
+      },
+      "text_79" : {
+        "parameters" : {
+          "fontSize" : 18,
+          "text" : "${Variables.Customer_L2.fieldLabel}",
+          "textAlignment" : "left",
+          "textColor" : "rgb(0, 112, 210)"
+        },
+        "position" : {
+          "x" : 560,
+          "y" : 290,
+          "zIndex" : 70
+        },
+        "type" : "text"
+      },
+      "text_76" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "Your choice determines the first-level grouping of customer \ndata displayed in Sales Wave dashboards.",
+          "textAlignment" : "left",
+          "textColor" : "rgb(64, 96, 127)"
+        },
+        "position" : {
+          "x" : 800,
+          "y" : 210,
+          "zIndex" : 61
+        },
+        "type" : "text"
+      },
+      "text_75" : {
+        "parameters" : {
+          "fontSize" : 12,
+          "text" : "DESCRIPTION",
+          "textAlignment" : "left",
+          "textColor" : "rgb(64, 96, 127)"
+        },
+        "position" : {
+          "x" : 800,
+          "y" : 100,
+          "zIndex" : 58
+        },
+        "type" : "text"
+      },
+      "text_78" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "2) What is the second field you want to use to segment your \ncustomers?",
+          "textAlignment" : "left"
+        },
+        "position" : {
+          "x" : 20,
+          "y" : 290,
+          "zIndex" : 69
+        },
+        "type" : "text"
+      },
+      "text_77" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "Account (1 of 3)"
+        },
+        "position" : {
+          "x" : 20,
+          "y" : 150,
+          "zIndex" : 63
+        },
+        "type" : "text"
+      },
+      "text_72" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "1) What is the first field you want to use to segment your customers?",
+          "textColor" : "rgb(0, 0, 0)"
+        },
+        "position" : {
+          "x" : 20,
+          "y" : 210,
+          "zIndex" : 52
+        },
+        "type" : "text"
+      },
+      "text_71" : {
+        "parameters" : {
+          "fontSize" : 12,
+          "text" : "CONFIGURATION QUESTION",
+          "textAlignment" : "left",
+          "textColor" : "rgb(64, 96, 127)"
+        },
+        "position" : {
+          "x" : 20,
+          "y" : 100,
+          "zIndex" : 50
+        },
+        "type" : "text"
+      },
+      "text_74" : {
+        "parameters" : {
+          "fontSize" : 18,
+          "text" : "${Variables.Customer.fieldLabel}",
+          "textAlignment" : "left",
+          "textColor" : "rgb(0, 112, 210)"
+        },
+        "position" : {
+          "x" : 560,
+          "y" : 210,
+          "zIndex" : 56
+        },
+        "type" : "text"
+      },
+      "text_73" : {
+        "parameters" : {
+          "fontSize" : 12,
+          "text" : "CONFIGURATION",
+          "textColor" : "rgb(64, 96, 127)"
+        },
+        "position" : {
+          "x" : 550,
+          "y" : 100,
+          "zIndex" : 54
+        },
+        "type" : "text"
+      },
+      "box_5" : {
+        "parameters" : {
+          "backgroundColor" : "rgba(0, 140, 201, 0)",
+          "borderColor" : "rgb(230, 236, 242)"
+        },
+        "position" : {
+          "h" : "50",
+          "w" : "250",
+          "x" : 550,
+          "y" : 90,
+          "zIndex" : 53
+        },
+        "type" : "box"
+      },
+      "box_4" : {
+        "parameters" : {
+          "backgroundColor" : "rgba(0, 140, 201, 0)",
+          "borderColor" : "rgb(230, 236, 242)"
+        },
+        "position" : {
+          "h" : "80",
+          "w" : "530",
+          "x" : 20,
+          "y" : 190,
+          "zIndex" : 51
+        },
+        "type" : "box"
+      },
+      "box_7" : {
+        "parameters" : {
+          "backgroundColor" : "rgba(0, 140, 201, 0)",
+          "borderColor" : "rgb(230, 236, 242)"
+        },
+        "position" : {
+          "h" : "50",
+          "w" : "560",
+          "x" : 800,
+          "y" : 90,
+          "zIndex" : 57
+        },
+        "type" : "box"
+      },
+      "box_6" : {
+        "parameters" : {
+          "backgroundColor" : "rgba(0, 140, 201, 0)",
+          "borderColor" : "rgb(230, 236, 242)"
+        },
+        "position" : {
+          "h" : "80",
+          "w" : "250",
+          "x" : 550,
+          "y" : 190,
+          "zIndex" : 55
+        },
+        "type" : "box"
+      },
+      "box_9" : {
+        "parameters" : {
+          "backgroundColor" : "rgba(0, 140, 201, 0)",
+          "borderColor" : "rgb(230, 236, 242)"
+        },
+        "position" : {
+          "h" : "80",
+          "w" : "560",
+          "x" : 800,
+          "y" : 190,
+          "zIndex" : 60
+        },
+        "type" : "box"
+      },
+      "text_68" : {
+        "parameters" : {
+          "fontSize" : 14,
+          "text" : "Patch Version:  200.10"
+        },
+        "position" : {
+          "x" : 1220,
+          "y" : 20,
+          "zIndex" : 49
+        },
+        "type" : "text"
+      },
+      "box_18" : {
+        "parameters" : {
+          "backgroundColor" : "rgba(0, 140, 201, 0)",
+          "borderColor" : "rgb(230, 236, 242)"
+        },
+        "position" : {
+          "h" : "80",
+          "w" : "560",
+          "x" : 800,
+          "y" : 350,
+          "zIndex" : 74
+        },
+        "type" : "box"
+      },
+      "box_17" : {
+        "parameters" : {
+          "backgroundColor" : "rgba(0, 140, 201, 0)",
+          "borderColor" : "rgb(230, 236, 242)"
+        },
+        "position" : {
+          "h" : "80",
+          "w" : "250",
+          "x" : 550,
+          "y" : 350,
+          "zIndex" : 73
+        },
+        "type" : "box"
+      },
+      "box_16" : {
+        "parameters" : {
+          "backgroundColor" : "rgba(0, 140, 201, 0)",
+          "borderColor" : "rgb(230, 236, 242)"
+        },
+        "position" : {
+          "h" : "80",
+          "w" : "530",
+          "x" : 20,
+          "y" : 350,
+          "zIndex" : 72
+        },
+        "type" : "box"
+      },
+      "box_14" : {
+        "parameters" : {
+          "backgroundColor" : "rgba(0, 140, 201, 0)",
+          "borderColor" : "rgb(230, 236, 242)"
+        },
+        "position" : {
+          "h" : "80",
+          "w" : "560",
+          "x" : 800,
+          "y" : 270,
+          "zIndex" : 67
+        },
+        "type" : "box"
+      },
+      "box_12" : {
+        "parameters" : {
+          "backgroundColor" : "rgba(0, 140, 201, 0)",
+          "borderColor" : "rgb(230, 236, 242)"
+        },
+        "position" : {
+          "h" : "80",
+          "w" : "250",
+          "x" : 550,
+          "y" : 270,
+          "zIndex" : 65
+        },
+        "type" : "box"
+      },
+      "box_11" : {
+        "parameters" : {
+          "backgroundColor" : "rgba(0, 140, 201, 0)",
+          "borderColor" : "rgb(230, 236, 242)"
+        },
+        "position" : {
+          "h" : "80",
+          "w" : "530",
+          "x" : 20,
+          "y" : 270,
+          "zIndex" : 64
+        },
+        "type" : "box"
+      },
+      "box_10" : {
+        "parameters" : {
+          "backgroundColor" : "rgba(230, 236, 242, 0.5)",
+          "borderColor" : "rgb(230, 236, 242)"
+        },
+        "position" : {
+          "h" : "50",
+          "w" : "1340",
+          "x" : 20,
+          "y" : 140,
+          "zIndex" : 62
+        },
+        "type" : "box"
+      },
+      "box_29" : {
+        "parameters" : {
+          "backgroundColor" : "rgba(0, 140, 201, 0)",
+          "borderColor" : "rgb(230, 236, 242)"
+        },
+        "position" : {
+          "h" : "80",
+          "w" : "560",
+          "x" : 800,
+          "y" : 640,
+          "zIndex" : 95
+        },
+        "type" : "box"
+      },
+      "box_28" : {
+        "parameters" : {
+          "backgroundColor" : "rgba(0, 140, 201, 0)",
+          "borderColor" : "rgb(230, 236, 242)"
+        },
+        "position" : {
+          "h" : "80",
+          "w" : "250",
+          "x" : 550,
+          "y" : 640,
+          "zIndex" : 94
+        },
+        "type" : "box"
+      },
+      "box_27" : {
+        "parameters" : {
+          "backgroundColor" : "rgba(0, 140, 201, 0)",
+          "borderColor" : "rgb(230, 236, 242)"
+        },
+        "position" : {
+          "h" : "80",
+          "w" : "530",
+          "x" : 20,
+          "y" : 640,
+          "zIndex" : 93
+        },
+        "type" : "box"
+      },
+      "box_26" : {
+        "parameters" : {
+          "backgroundColor" : "rgba(230, 236, 242, 0.5)",
+          "borderColor" : "rgb(230, 236, 242)"
+        },
+        "position" : {
+          "h" : "50",
+          "w" : "1340",
+          "x" : 20,
+          "y" : 590,
+          "zIndex" : 91
+        },
+        "type" : "box"
+      },
+      "box_25" : {
+        "parameters" : {
+          "backgroundColor" : "rgba(0, 140, 201, 0)",
+          "borderColor" : "rgb(230, 236, 242)"
+        },
+        "position" : {
+          "h" : "80",
+          "w" : "560",
+          "x" : 800,
+          "y" : 510,
+          "zIndex" : 87
+        },
+        "type" : "box"
+      },
+      "box_24" : {
+        "parameters" : {
+          "backgroundColor" : "rgba(0, 140, 201, 0)",
+          "borderColor" : "rgb(230, 236, 242)"
+        },
+        "position" : {
+          "h" : "80",
+          "w" : "250",
+          "x" : 550,
+          "y" : 510,
+          "zIndex" : 86
+        },
+        "type" : "box"
+      },
+      "box_23" : {
+        "parameters" : {
+          "backgroundColor" : "rgba(0, 140, 201, 0)",
+          "borderColor" : "rgb(230, 236, 242)"
+        },
+        "position" : {
+          "h" : "80",
+          "w" : "530",
+          "x" : 20,
+          "y" : 510,
+          "zIndex" : 85
+        },
+        "type" : "box"
+      },
+      "box_22" : {
+        "parameters" : {
+          "backgroundColor" : "rgba(0, 140, 201, 0)",
+          "borderColor" : "rgb(230, 236, 242)"
+        },
+        "position" : {
+          "h" : "80",
+          "w" : "560",
+          "x" : 800,
+          "y" : 430,
+          "zIndex" : 81
+        },
+        "type" : "box"
+      },
+      "box_21" : {
+        "parameters" : {
+          "backgroundColor" : "rgba(0, 140, 201, 0)",
+          "borderColor" : "rgb(230, 236, 242)"
+        },
+        "position" : {
+          "h" : "80",
+          "w" : "250",
+          "x" : 550,
+          "y" : 430,
+          "zIndex" : 80
+        },
+        "type" : "box"
+      },
+      "box_20" : {
+        "parameters" : {
+          "backgroundColor" : "rgba(0, 140, 201, 0)",
+          "borderColor" : "rgb(230, 236, 242)"
+        },
+        "position" : {
+          "h" : "80",
+          "w" : "530",
+          "x" : 20,
+          "y" : 430,
+          "zIndex" : 79
+        },
+        "type" : "box"
+      },
+      "box_NewLine9" : {
+        "parameters" : {
+          "backgroundColor" : "rgb(240,240,244)",
+          "borderColor" : "rgba(0, 0, 0, 0)"
+        },
+        "position" : {
+          "h" : "40",
+          "w" : "260",
+          "x" : 310,
+          "y" : 150,
+          "zIndex" : 0
+        },
+        "type" : "box"
+      },
+      "box_NewLine8" : {
+        "parameters" : {
+          "backgroundColor" : "rgb(240,240,244)",
+          "borderColor" : "rgba(0, 0, 0, 0)"
+        },
+        "position" : {
+          "h" : "40",
+          "w" : "260",
+          "x" : 310,
+          "y" : 150,
+          "zIndex" : 0
+        },
+        "type" : "box"
+      },
+      "box_NewLine7" : {
+        "parameters" : {
+          "backgroundColor" : "rgb(240,240,244)",
+          "borderColor" : "rgba(0, 0, 0, 0)"
+        },
+        "position" : {
+          "h" : "40",
+          "w" : "260",
+          "x" : 310,
+          "y" : 150,
+          "zIndex" : 0
+        },
+        "type" : "box"
+      },
+      "box_NewLine6" : {
+        "parameters" : {
+          "backgroundColor" : "rgb(240,240,244)",
+          "borderColor" : "rgba(0, 0, 0, 0)"
+        },
+        "position" : {
+          "h" : "40",
+          "w" : "260",
+          "x" : 310,
+          "y" : 150,
+          "zIndex" : 0
+        },
+        "type" : "box"
+      },
+      "box_NewLine5" : {
+        "parameters" : {
+          "backgroundColor" : "rgb(240,240,244)",
+          "borderColor" : "rgba(0, 0, 0, 0)"
+        },
+        "position" : {
+          "h" : "40",
+          "w" : "260",
+          "x" : 310,
+          "y" : 150,
+          "zIndex" : 0
+        },
+        "type" : "box"
+      },
+      "box_NewLine4" : {
+        "parameters" : {
+          "backgroundColor" : "rgb(240,240,244)",
+          "borderColor" : "rgba(0, 0, 0, 0)"
+        },
+        "position" : {
+          "h" : "40",
+          "w" : "260",
+          "x" : 310,
+          "y" : 150,
+          "zIndex" : 0
+        },
+        "type" : "box"
+      },
+      "box_NewLine3" : {
+        "parameters" : {
+          "backgroundColor" : "rgb(240,240,244)",
+          "borderColor" : "rgba(0, 0, 0, 0)"
+        },
+        "position" : {
+          "h" : "40",
+          "w" : "260",
+          "x" : 310,
+          "y" : 150,
+          "zIndex" : 0
+        },
+        "type" : "box"
+      },
+      "box_NewLine2" : {
+        "parameters" : {
+          "backgroundColor" : "rgb(240,240,244)",
+          "borderColor" : "rgba(0, 0, 0, 0)"
+        },
+        "position" : {
+          "h" : "40",
+          "w" : "260",
+          "x" : 310,
+          "y" : 150,
+          "zIndex" : 0
+        },
+        "type" : "box"
+      },
+      "box_NewLine1" : {
+        "parameters" : {
+          "backgroundColor" : "rgb(240,240,244)",
+          "borderColor" : "rgba(0, 0, 0, 0)"
+        },
+        "position" : {
+          "h" : "40",
+          "w" : "260",
+          "x" : 310,
+          "y" : 150,
+          "zIndex" : 0
+        },
+        "type" : "box"
+      },
+      "text_111" : {
+        "parameters" : {
+          "fontSize" : 18,
+          "text" : "${Variables.Product_Amount.fieldLabel}",
+          "textAlignment" : "left",
+          "textColor" : "rgb(0, 112, 210)"
+        },
+        "position" : {
+          "x" : 560,
+          "y" : 1190,
+          "zIndex" : 135
+        },
+        "type" : "text"
+      },
+      "text_110" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "1) What field contains the total amount of a product on the \nopportunity?",
+          "textAlignment" : "left"
+        },
+        "position" : {
+          "x" : 20,
+          "y" : 1190,
+          "zIndex" : 134
+        },
+        "type" : "text"
+      },
+      "text_102" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "Determines if fiscal is different from calendar. We can support standard \nfiscal period.",
+          "textAlignment" : "left",
+          "textColor" : "rgb(64, 96, 127)"
+        },
+        "position" : {
+          "x" : 800,
+          "y" : 900,
+          "zIndex" : 116
+        },
+        "type" : "text"
+      },
+      "text_101" : {
+        "parameters" : {
+          "fontSize" : 18,
+          "text" : "${Variables.Fiscal_Month}",
+          "textAlignment" : "left",
+          "textColor" : "rgb(0, 112, 210)"
+        },
+        "position" : {
+          "x" : 560,
+          "y" : 900,
+          "zIndex" : 115
+        },
+        "type" : "text"
+      },
+      "text_104" : {
+        "parameters" : {
+          "fontSize" : 18,
+          "text" : "${Variables.Has_Quota}",
+          "textAlignment" : "left",
+          "textColor" : "rgb(0, 112, 210)"
+        },
+        "position" : {
+          "x" : 560,
+          "y" : 980,
+          "zIndex" : 121
+        },
+        "type" : "text"
+      },
+      "text_103" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "5) Do you want to upload in Sales Wave the quota per sales person?"
+        },
+        "position" : {
+          "x" : 20,
+          "y" : 980,
+          "zIndex" : 120
+        },
+        "type" : "text"
+      },
+      "text_106" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "6) Do you use the product object in Salesforce?"
+        },
+        "position" : {
+          "x" : 20,
+          "y" : 1060,
+          "zIndex" : 126
+        },
+        "type" : "text"
+      },
+      "box_39" : {
+        "parameters" : {
+          "backgroundColor" : "rgba(0, 140, 201, 0)",
+          "borderColor" : "rgb(230, 236, 242)"
+        },
+        "position" : {
+          "h" : "80",
+          "w" : "530",
+          "x" : 20,
+          "y" : 960,
+          "zIndex" : 117
+        },
+        "type" : "box"
+      },
+      "text_105" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "Answer yes or no to indicate whether you track quotas for your salespeople. \nIf yes, you have to upload a CSV file containing quota data.",
+          "textAlignment" : "left",
+          "textColor" : "rgb(64, 96, 127)"
+        },
+        "position" : {
+          "x" : 800,
+          "y" : 980,
+          "zIndex" : 122
+        },
+        "type" : "text"
+      },
+      "box_38" : {
+        "parameters" : {
+          "backgroundColor" : "rgba(0, 140, 201, 0)",
+          "borderColor" : "rgb(230, 236, 242)"
+        },
+        "position" : {
+          "h" : "80",
+          "w" : "560",
+          "x" : 800,
+          "y" : 880,
+          "zIndex" : 113
+        },
+        "type" : "box"
+      },
+      "text_108" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "Answer yes if you track products at the opportunity level in Salesforce. \nIf yes, answer the questions on the next screen.  If no, skip to the end.",
+          "textAlignment" : "left",
+          "textColor" : "rgb(64, 96, 127)"
+        },
+        "position" : {
+          "x" : 800,
+          "y" : 1060,
+          "zIndex" : 128
+        },
+        "type" : "text"
+      },
+      "box_37" : {
+        "parameters" : {
+          "backgroundColor" : "rgba(0, 140, 201, 0)",
+          "borderColor" : "rgb(230, 236, 242)"
+        },
+        "position" : {
+          "h" : "80",
+          "w" : "250",
+          "x" : 550,
+          "y" : 880,
+          "zIndex" : 112
+        },
+        "type" : "box"
+      },
+      "text_107" : {
+        "parameters" : {
+          "fontSize" : 18,
+          "text" : "${Variables.Has_Product}",
+          "textAlignment" : "left",
+          "textColor" : "rgb(0, 112, 210)"
+        },
+        "position" : {
+          "x" : 560,
+          "y" : 1060,
+          "zIndex" : 127
+        },
+        "type" : "text"
+      },
+      "box_36" : {
+        "parameters" : {
+          "backgroundColor" : "rgba(0, 140, 201, 0)",
+          "borderColor" : "rgb(230, 236, 242)"
+        },
+        "position" : {
+          "h" : "80",
+          "w" : "530",
+          "x" : 20,
+          "y" : 880,
+          "zIndex" : 111
+        },
+        "type" : "box"
+      },
+      "box_35" : {
+        "parameters" : {
+          "backgroundColor" : "rgba(0, 140, 201, 0)",
+          "borderColor" : "rgb(230, 236, 242)"
+        },
+        "position" : {
+          "h" : "80",
+          "w" : "560",
+          "x" : 800,
+          "y" : 800,
+          "zIndex" : 107
+        },
+        "type" : "box"
+      },
+      "text_109" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "Optional - Complete if you track products (3 of 3)"
+        },
+        "position" : {
+          "x" : 20,
+          "y" : 1130,
+          "zIndex" : 130
+        },
+        "type" : "text"
+      },
+      "box_34" : {
+        "parameters" : {
+          "backgroundColor" : "rgba(0, 140, 201, 0)",
+          "borderColor" : "rgb(230, 236, 242)"
+        },
+        "position" : {
+          "h" : "80",
+          "w" : "250",
+          "x" : 550,
+          "y" : 800,
+          "zIndex" : 106
+        },
+        "type" : "box"
+      },
+      "box_33" : {
+        "parameters" : {
+          "backgroundColor" : "rgba(0, 140, 201, 0)",
+          "borderColor" : "rgb(230, 236, 242)"
+        },
+        "position" : {
+          "h" : "80",
+          "w" : "530",
+          "x" : 20,
+          "y" : 800,
+          "zIndex" : 105
+        },
+        "type" : "box"
+      },
+      "box_32" : {
+        "parameters" : {
+          "backgroundColor" : "rgba(0, 140, 201, 0)",
+          "borderColor" : "rgb(230, 236, 242)"
+        },
+        "position" : {
+          "h" : "80",
+          "w" : "560",
+          "x" : 800,
+          "y" : 720,
+          "zIndex" : 101
+        },
+        "type" : "box"
+      },
+      "box_31" : {
+        "parameters" : {
+          "backgroundColor" : "rgba(0, 140, 201, 0)",
+          "borderColor" : "rgb(230, 236, 242)"
+        },
+        "position" : {
+          "h" : "80",
+          "w" : "250",
+          "x" : 550,
+          "y" : 720,
+          "zIndex" : 100
+        },
+        "type" : "box"
+      },
+      "box_30" : {
+        "parameters" : {
+          "backgroundColor" : "rgba(0, 140, 201, 0)",
+          "borderColor" : "rgb(230, 236, 242)"
+        },
+        "position" : {
+          "h" : "80",
+          "w" : "530",
+          "x" : 20,
+          "y" : 720,
+          "zIndex" : 99
+        },
+        "type" : "box"
+      },
+      "text_100" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "4) What month starts your fiscal period?"
+        },
+        "position" : {
+          "x" : 20,
+          "y" : 900,
+          "zIndex" : 114
+        },
+        "type" : "text"
+      },
+      "box_48" : {
+        "parameters" : {
+          "backgroundColor" : "rgba(0, 140, 201, 0)",
+          "borderColor" : "rgb(230, 236, 242)"
+        },
+        "position" : {
+          "h" : "80",
+          "w" : "560",
+          "x" : 800,
+          "y" : 1170,
+          "zIndex" : 133
+        },
+        "type" : "box"
+      },
+      "box_47" : {
+        "parameters" : {
+          "backgroundColor" : "rgba(0, 140, 201, 0)",
+          "borderColor" : "rgb(230, 236, 242)"
+        },
+        "position" : {
+          "h" : "80",
+          "w" : "250",
+          "x" : 550,
+          "y" : 1170,
+          "zIndex" : 132
+        },
+        "type" : "box"
+      },
+      "box_46" : {
+        "parameters" : {
+          "backgroundColor" : "rgba(0, 140, 201, 0)",
+          "borderColor" : "rgb(230, 236, 242)"
+        },
+        "position" : {
+          "h" : "80",
+          "w" : "530",
+          "x" : 20,
+          "y" : 1170,
+          "zIndex" : 131
+        },
+        "type" : "box"
+      },
+      "box_45" : {
+        "parameters" : {
+          "backgroundColor" : "rgba(230, 236, 242, 0.5)",
+          "borderColor" : "rgb(230, 236, 242)"
+        },
+        "position" : {
+          "h" : "50",
+          "w" : "1340",
+          "x" : 20,
+          "y" : 1120,
+          "zIndex" : 129
+        },
+        "type" : "box"
+      },
+      "box_44" : {
+        "parameters" : {
+          "backgroundColor" : "rgba(0, 140, 201, 0)",
+          "borderColor" : "rgb(230, 236, 242)"
+        },
+        "position" : {
+          "h" : "80",
+          "w" : "560",
+          "x" : 800,
+          "y" : 1040,
+          "zIndex" : 125
+        },
+        "type" : "box"
+      },
+      "box_43" : {
+        "parameters" : {
+          "backgroundColor" : "rgba(0, 140, 201, 0)",
+          "borderColor" : "rgb(230, 236, 242)"
+        },
+        "position" : {
+          "h" : "80",
+          "w" : "250",
+          "x" : 550,
+          "y" : 1040,
+          "zIndex" : 124
+        },
+        "type" : "box"
+      },
+      "box_42" : {
+        "parameters" : {
+          "backgroundColor" : "rgba(0, 140, 201, 0)",
+          "borderColor" : "rgb(230, 236, 242)"
+        },
+        "position" : {
+          "h" : "80",
+          "w" : "530",
+          "x" : 20,
+          "y" : 1040,
+          "zIndex" : 123
+        },
+        "type" : "box"
+      },
+      "box_41" : {
+        "parameters" : {
+          "backgroundColor" : "rgba(0, 140, 201, 0)",
+          "borderColor" : "rgb(230, 236, 242)"
+        },
+        "position" : {
+          "h" : "80",
+          "w" : "560",
+          "x" : 800,
+          "y" : 960,
+          "zIndex" : 119
+        },
+        "type" : "box"
+      },
+      "box_40" : {
+        "parameters" : {
+          "backgroundColor" : "rgba(0, 140, 201, 0)",
+          "borderColor" : "rgb(230, 236, 242)"
+        },
+        "position" : {
+          "h" : "80",
+          "w" : "250",
+          "x" : 550,
+          "y" : 960,
+          "zIndex" : 118
+        },
+        "type" : "box"
+      }
+    }
+  }
+}

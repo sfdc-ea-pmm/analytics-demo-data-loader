@@ -1,0 +1,2727 @@
+{
+  "name" : "Sales_Wave_Pipe_Activity_w_Product",
+  "label" : "Sales Wave - Pipe Activity w/ Product",
+  "folder" : {
+    "id" : "${App.Folder.Id}"
+  },
+  "mobileDisabled" : false,
+  "state" : {
+    "dataSourceLinks" : [ ],
+    "filters" : [ ],
+    "gridLayouts" : [ ],
+    "layouts" : [
+  {
+        "device" : "default",
+        "pages" : [
+  {
+            "rows" : [
+  "box_1{colspan=12, rowspan=5, zIndex=-1, vpad=-2, hpad=-15} | row: {height=10}",
+  "text_1{colspan=12, fontSize=28, textAlignment=left}",
+  "datefilter_1 {colspan=12}",
+  "dimfilter_20{colspan=12,vpad=5}",
+  "dimfilter_16{colspan=6,vpad=5} | dimfilter_17{colspan=6,vpad=5}",
+  "| row: {height=5}",
+  "text_38{colspan=12, fontSize=12, textAlignment=left,vpad=5}",
+  "buttongroup_1{colspan=12, vpad=-15}",
+  "| row: {height=10}",
+  "text_8_small{colspan=12, fontSize=12, textAlignment=right, vpad=10}",
+  "box_2{colspan=12, rowspan=5, zIndex=-1, hpad=-15, vpad=-15} | row: {height=0}",
+  "| | | text_7{colspan=2, hpad=-10, vpad=-5, textAlignment=center, fontSize=15} | text_8_Mobile{colspan=3, vpad=-5, textAlignment=center, fontSize=15} | text_12{colspan=4, vpad=-5, textAlignment=center, fontSize=15}",
+  "text_13{colspan=3, vpad=2, textAlignment=left, hpad=-3} | number_5{colspan=2, vpad=2,fontSize=22} | number_4{colspan=3, vpad=2,fontSize=22} | number_12{colspan=4, vpad=2,fontSize=22}",
+  "text_15{colspan=3, vpad=10, textAlignment=left, hpad=-3} | number_6{colspan=2, vpad=10,fontSize=22} | number_8{colspan=3, vpad=10,fontSize=22} | number_18{colspan=4, vpad=10,fontSize=22}",
+  "text_16{colspan=3, vpad=-5, textAlignment=left, hpad=-3, fontSize=12} | number_16{colspan=2, vpad=-5,fontSize=22} | number_17{colspan=3, vpad=-5,fontSize=22} | number_13{colspan=4, vpad=-5,fontSize=22}",
+  "text_23{colspan=12, fontSize=20, textAlignment=left,vpad=10}",
+  "text_21{colspan=12, fontSize=16, textAlignment=left}",
+  "chart_1{colspan=12, vpad=10}",
+  "text_25{colspan=12, fontSize=16, textAlignment=left}",
+  "chart_6{colspan=12, vpad=10}",
+  "chart_9{colspan=12, vpad=10}"
+  ]
+          },
+  {
+            "rows" : [
+  "text_22{colspan=12, fontSize=20, textAlignment=left, vpad=25}",
+  "chart_2{colspan=12, vpad=10, hpad=-10, vAxisWidth=100}",
+  "text_35{colspan=12, fontSize=20, textAlignment=left, vpad=10}",
+  "chart_4{colspan=12, vpad=10, hpad=-10, vAxisWidth=100}"
+  ]
+          },
+  {
+            "rows" : [
+  "text_28{colspan=12, fontSize=20, textAlignment=left, vpad=15}",
+  "text_34{colspan=12, textAlignment=left, fontSize=15, vpad=-10}",
+  "sel_hbar_source {colspan=12, hpad=-10, vpad=-10}",
+  "valuestable_1{colspan=12, vpad=15, hpad=-10}"
+  ]
+          }
+  ],
+        "version" : 1.0
+      }
+  ],
+    "steps" : {
+      "lens_74" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.opportunity.Alias}"
+          }
+  ],
+        "isFacet" : true,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "pigql" : "q = load \"${App.EdgeMarts.opportunity.Alias}\"; q = filter q by 'Id' in {{results(Id_84)}}; q = filter q by 'Id' in {{selection(inactive_monitoring,'Opportunity.Id')}}; q = filter q by 'Product.Product.Family' in {{selection(Product_Family_Pl)}} ;q = filter q by 'Product.Product.Name' in {{selection(Product_Name_Pl)}} ; q = foreach q generate 'Id' as 'Id', first('Account.Name') as 'AccountName', first('Name') as 'Name', first('Owner.Name') as 'OwnerName', first('ForecastCategory') as 'ForecastCategory', abs(daysBetween(toDate(('CreatedDate_Year' + \"-\" +'CreatedDate_Month' + \"-\" + 'CreatedDate_Day'), \"yyyy-MM-dd\"),now())) as 'CreatedDate' ,first('CloseDate') as 'CloseDate', sum('${Variables.Opportunity_Amount.fieldName}') as '${Variables.Opportunity_Amount.fieldName}';q = order q by 'CreatedDate' asc; q = group q by 'Id'; q = foreach q generate 'Id', first('AccountName') as 'AccountName', first('Name') as 'Name',first('CloseDate') as 'CloseDate', first('Id') as 'Opportunity.Id', first('OwnerName') as 'OwnerName', first('CreatedDate') as 'DaysBetween', sum('${Variables.Opportunity_Amount.fieldName}') as 'sum_${Variables.Opportunity_Amount.fieldName}'; srcTask = load \"${App.EdgeMarts.task.Alias}\"; srcTask = filter srcTask by 'Opportunity.Id' in {{results(Id_84)}}; srcTask = filter srcTask by 'Opportunity.Id' in {{selection(inactive_monitoring,'Opportunity.Id')}};  srcTask = foreach srcTask generate 'Id',('Opportunity.Id') as 'Opportunity.Id',('Opportunity.Account.Name') as 'AccountName',('Owner.Name') as 'OwnerName',('TaskSubtype') as 'TaskSubtype', abs(daysBetween(toDate(('LastModifiedDate_Year') + \"-\" +('LastModifiedDate_Month') + \"-\" +('LastModifiedDate_Day'),\"yyyy-MM-dd\"),now())) as 'LastModifiedDt';srcTask = order srcTask by 'LastModifiedDt' asc; srcTask = group srcTask by 'Id'; srcTask = foreach srcTask generate 'Id', first('AccountName') as 'AccountName', first('Opportunity.Id') as 'Opportunity.Id', first('OwnerName') as 'OwnerName', first('TaskSubtype') as 'TaskSubtype', first('LastModifiedDt') as 'DaysBetween'; srcEvent = load \"${App.EdgeMarts.event.Alias}\"; srcEvent = filter srcEvent by 'Opportunity.Id' in {{results(Id_84)}}; srcEvent = filter srcEvent by 'Opportunity.Id' in {{selection(inactive_monitoring,'Opportunity.Id')}}; srcEvent = foreach srcEvent generate 'Id', ('Opportunity.Id') as 'Opportunity.Id', ('Opportunity.Account.Name') as 'AccountName', ('Owner.Name') as 'OwnerName', \"Meeting\" as 'TaskSubtype', abs(daysBetween(toDate(first('LastModifiedDate_Year') + \"-\" + ('LastModifiedDate_Month') + \"-\" + ('LastModifiedDate_Day'),\"yyyy-MM-dd\"),now())) as 'LastModifiedDt'; srcEvent = order srcEvent by 'LastModifiedDt' asc; srcEvent = group srcEvent by 'Id'; srcEvent = foreach srcEvent generate 'Id', first('AccountName') as 'AccountName', first('Opportunity.Id') as 'Opportunity.Id', first('OwnerName') as 'OwnerName', first('TaskSubtype') as 'TaskSubtype', first('LastModifiedDt') as 'DaysBetween'; srcActivity = union srcTask,srcEvent; srcActivity = order srcActivity by 'DaysBetween' asc; srcActivity = group srcActivity by 'Id'; srcActivity = foreach srcActivity generate 'Id' as 'activityId', first('Opportunity.Id') as 'Id', first('AccountName') as 'AccountName', first('OwnerName') as 'OwnerName', first('TaskSubtype') as 'TaskSubtype', first('DaysBetween') as 'DaysBetween'; srcActiOppty = cogroup q by ('AccountName','Id') left ,srcActivity by ('AccountName','Id') ; srcActiOppty = foreach srcActiOppty generate q['AccountName'] as 'Account.Name', q['Id'] as 'Id', first(q['Name']) as 'Name', first(q['OwnerName']) as 'Owner.Name',first(q['CloseDate']) as 'CloseDate', sum(q['sum_${Variables.Opportunity_Amount.fieldName}']) as '${Variables.Opportunity_Amount.fieldName}', (case when min(srcActivity['DaysBetween']) >= 0 then min(srcActivity['DaysBetween']) else  first(q['DaysBetween']) end) as 'last_activity'; srcActiOppty = order srcActiOppty by {{no_quote(value(selection(step_hbar_group)))}};",
+            "values" : [
+  "Account.Name",
+  "Id",
+  "Name",
+  "Owner.Name",
+  "${Variables.Opportunity_Amount.fieldName}",
+  "CloseDate",
+  "last_activity"
+  ],
+            "filters" : [ ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "grain",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "valuestable"
+        }
+      },
+      "Account_Type_75" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.opportunity.Alias}"
+          }
+  ],
+        "isFacet" : true,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "groups" : [
+  "${Variables.Customer.sobjectName}.${Variables.Customer.fieldName}"
+  ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "multi",
+        "start" : [ ],
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "ForecastCategoryName_79" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.opportunity.Alias}"
+          }
+  ],
+        "isFacet" : false,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "groups" : [
+  "ForecastCategoryName"
+  ],
+            "filters" : [
+  [
+  "ForecastCategory",
+  [
+  "Closed",
+  "Omitted"
+  ],
+  "not in"
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "multi",
+        "start" : [ ],
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "IsClosed_76" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.opportunity.Alias}"
+          }
+  ],
+        "isFacet" : false,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*",
+  null,
+  {
+                  "display" : " "
+                }
+  ]
+  ],
+            "pigql" : "q = load \"${App.EdgeMarts.opportunity.Alias}\"; q = foreach q generate (case when {{value(results(pct_diff_open_won))- 0 || 0}} > 0 then \"Green\" when {{value(results(pct_diff_open_won))- 0 || 0}} < 0 then  \"Red\" when ({{value(results(Amount_11))- 0 || 0}} > 0 and  {{value(results(Amount_12))- 0 || 0}} == 0 )then \"Red\"else \"Gray\" end) as 'RAG',  0.1 as 'count';q = limit q 1; ",
+            "groups" : [
+  "RAG"
+  ],
+            "filters" : [ ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "none",
+        "type" : "aggregate",
+        "useGlobal" : false,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "pct_diff_comp_acty" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.opportunity.Alias}"
+          }
+  ],
+        "isFacet" : true,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "avg",
+  "pct_diff_comp_acty"
+  ]
+  ],
+            "pigql" : "q = load \"${App.EdgeMarts.opportunity.Alias}\";q = group q by all;q = foreach q generate  1-({{value(results(Id_16)) - 0 || 0}} /{{value(results(Id_15))- 0 || 0}}) as 'avg_pct_diff_comp_acty';",
+            "filters" : [ ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "source_Pl" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.opportunity.Alias}"
+          }
+  ],
+        "isFacet" : true,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "groups" : [
+  "${Variables.Source.sobjectName}.${Variables.Source.fieldName}"
+  ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "multi",
+        "start" : [ ],
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "open_oppty" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.opportunity.Alias}"
+          }
+  ],
+        "isFacet" : true,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "sum",
+  "${Variables.Opportunity_Amount.fieldName}"
+  ],
+  [
+  "sum",
+  "last_activity",
+  null,
+  {
+                  "display" : "Days Since Last Activity"
+                }
+  ]
+  ],
+            "pigql" : "q = load \"${App.EdgeMarts.opportunity.Alias}\"; q = filter q by '${Variables.Bookings.fieldName}' in {{selection(Type_82)}}; q = filter q by 'IsClosed' ==\"false\"; q = filter q by 'Product.Product.Family' in {{selection(Product_Family_Pl)}}; q = filter q by 'Product.Product.Name' in {{selection(Product_Name_Pl)}}; q = foreach q generate 'Id' as 'Id', first('Account.Name') as 'AccountName', first('Name') as 'Name', first('Owner.Name') as 'OwnerName', first('ForecastCategoryName') as 'ForecastCategoryName', first('StageName') as StageName, first('${Variables.Bookings.fieldName}') as '${Variables.Bookings.fieldName}',first('${Variables.Customer.sobjectName}.${Variables.Customer.fieldName}') as '${Variables.Customer.sobjectName}.${Variables.Customer.fieldName}', first('${Variables.Customer_L2.sobjectName}.${Variables.Customer_L2.fieldName}') as '${Variables.Customer_L2.sobjectName}.${Variables.Customer_L2.fieldName}', first('${Variables.Geography.sobjectName}.${Variables.Geography.fieldName}') as '${Variables.Geography.sobjectName}.${Variables.Geography.fieldName}', first('${Variables.Geography_L2.sobjectName}.${Variables.Geography_L2.fieldName}') as '${Variables.Geography_L2.sobjectName}.${Variables.Geography_L2.fieldName}', first('${Variables.Source.sobjectName}.${Variables.Source.fieldName}') as '${Variables.Source.sobjectName}.${Variables.Source.fieldName}', first('${Variables.Source_L2.fieldName}') as '${Variables.Source_L2.fieldName}' , first('Owner.Role.Name') as 'Owner.Role.Name', first('Owner.Name') as 'Owner.Name', first('CloseDate') as 'CloseDate', abs(daysBetween(toDate(('CreatedDate_Year' + \"-\" +'CreatedDate_Month' + \"-\" + 'CreatedDate_Day'), \"yyyy-MM-dd\"),now())) as 'CreatedDate', first('CloseDate_Year') as 'CloseDate_Year', first('CloseDate_Month') as 'CloseDate_Month', first('CloseDate_Day') as 'CloseDate_Day', sum('${Variables.Opportunity_Amount.fieldName}') as '${Variables.Opportunity_Amount.fieldName}';q = filter q by 'Id' in {{ selection(inactive_monitoring) }};q=filter q by date('CloseDate_Year','CloseDate_Month','CloseDate_Day') in {{selection(CloseDate_Pl)}}; q = filter q by 'ForecastCategoryName' in {{selection(ForecastCategoryName_79)}}; q = filter q by 'StageName' in {{selection(StageName_80)}}; q = filter q by '${Variables.Bookings.fieldName}' in {{selection(Type_82)}}; q = filter q by '${Variables.Customer.sobjectName}.${Variables.Customer.fieldName}' in {{selection(Account_Type_75)}}; q = filter q by '${Variables.Customer_L2.sobjectName}.${Variables.Customer_L2.fieldName}' in {{selection(Account_Industry_Pl)}}; q = filter q by '${Variables.Geography.sobjectName}.${Variables.Geography.fieldName}' in {{selection(country_Pl)}}; q = filter q by '${Variables.Geography_L2.sobjectName}.${Variables.Geography_L2.fieldName}' in {{selection(state_Pl)}}; q = filter q by '${Variables.Source.sobjectName}.${Variables.Source.fieldName}' in {{selection(source_Pl)}}; q = filter q by '${Variables.Source_L2.fieldName}' in {{selection(LeadSource_Pl)}}; q = filter q by 'Owner.Role.Name' in {{selection(Owner_RoleNames_77)}}; q = filter q by 'Owner.Name' in {{selection(Owner_Name_78)}}; q = group q by ('Id','Name', 'ForecastCategoryName'); q = foreach q generate 'Id' as 'Id',first('CreatedDate') as 'DaysBetween','Name' as 'Name', 'ForecastCategoryName' as 'ForecastCategoryName', first('CloseDate') as 'CloseDate', sum('${Variables.Opportunity_Amount.fieldName}') as 'sum_${Variables.Opportunity_Amount.fieldName}',count() as 'count'; srcTask = load \"${App.EdgeMarts.task.Alias}\"; srcTask = filter srcTask by 'Opportunity.IsClosed' ==\"false\"; srcTask = foreach srcTask generate 'Opportunity.Id' as 'Id', abs(daysBetween(toDate('LastModifiedDate_Year' + \"-\" + 'LastModifiedDate_Month' + \"-\" + 'LastModifiedDate_Day',\"yyyy-MM-dd\"),now() ))as 'LastModifiedDt'; srcTask = group srcTask by 'Id'; srcTask = foreach srcTask generate 'Id' as 'Id',min('LastModifiedDt') as 'DaysBetween'; srcEvent = load \"${App.EdgeMarts.event.Alias}\"; srcEvent = filter srcEvent by 'Opportunity.IsClosed' ==\"false\"; srcEvent = foreach srcEvent generate 'Opportunity.Id' as 'Id', abs(daysBetween(toDate('LastModifiedDate_Year' + \"-\" + 'LastModifiedDate_Month' + \"-\" + 'LastModifiedDate_Day',\"yyyy-MM-dd\"),now() ))as 'LastModifiedDt'; srcEvent = group srcEvent by 'Id'; srcEvent = foreach srcEvent generate 'Id' as 'Id',min('LastModifiedDt') as 'DaysBetween'; srcActi = union srcTask,srcEvent; srcActi = group srcActi by 'Id'; srcActi = foreach srcActi generate 'Id' as 'Id',min('DaysBetween') as 'DaysBetween'; srcTaskOppty = cogroup q by 'Id' left ,srcActi by 'Id'; srcTaskOppty = foreach srcTaskOppty generate q['Id'] as 'Id', first(q['Name']) as 'Name', first(q['ForecastCategoryName']) as 'ForecastCategoryName', sum(q['sum_${Variables.Opportunity_Amount.fieldName}']) as 'sum_${Variables.Opportunity_Amount.fieldName}' , (case when min(srcActi['DaysBetween']) >= 0 then min(srcActi['DaysBetween']) else  first(q['DaysBetween']) end) as 'sum_last_activity'; srcTaskOppty = order srcTaskOppty by 'sum_${Variables.Opportunity_Amount.fieldName}' desc; srcTaskOppty = limit srcTaskOppty {{value(selection(topSelector))}};",
+            "limit" : 100,
+            "groups" : [
+  "Id",
+  "Name",
+  "ForecastCategoryName"
+  ],
+            "order" : [ ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "step_hbar_group" : {
+        "datasets" : [ ],
+        "dimensions" : [ ],
+        "isFacet" : false,
+        "isGlobal" : false,
+        "selectMode" : "singlerequired",
+        "start" : [
+  [
+  "last_activity desc"
+  ]
+  ],
+        "type" : "static",
+        "useGlobal" : false,
+        "values" : [
+  {
+            "display" : "$ High to Low",
+            "value" : [
+  "'${Variables.Opportunity_Amount.fieldName}' desc"
+  ]
+          },
+  {
+            "display" : "$ Low to High",
+            "value" : [
+  "'${Variables.Opportunity_Amount.fieldName}' asc"
+  ]
+          },
+  {
+            "display" : "Days Since Last Activity - High to Low",
+            "value" : [
+  "last_activity desc"
+  ]
+          },
+  {
+            "display" : "Days Since Last Activity - Low to High",
+            "value" : [
+  "last_activity asc"
+  ]
+          }
+  ]
+      },
+      "completedActyWonOpp" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.task.Alias}"
+          }
+  ],
+        "isFacet" : false,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "sum",
+  "WonActiCount"
+  ]
+  ],
+            "pigql" : "q = load \"${App.EdgeMarts.event.Alias}\"; q = filter q by 'Opportunity.${Variables.Bookings.fieldName}' in {{selection(Type_82)}}; q = filter q by date('ActivityDate_Year','ActivityDate_Month','ActivityDate_Day') in [\"10 ${Constants.Fiscal_Prefix}years ago\"..\"current day\"]; q = filter q by date('Opportunity.CloseDate_Year${Constants.Fiscal_Postfix}','Opportunity.CloseDate_Month','Opportunity.CloseDate_Day') in [\"12 months ago\"..\"current month\"];q = filter q by 'Opportunity.${Variables.Customer.sobjectName}.${Variables.Customer.fieldName}' in {{selection(Account_Type_75)}}; q = filter q by 'Opportunity.${Variables.Customer_L2.sobjectName}.${Variables.Customer_L2.fieldName}' in {{selection(Account_Industry_Pl)}}; q = filter q by 'Opportunity.${Variables.Geography.sobjectName}.${Variables.Geography.fieldName}' in {{selection(country_Pl)}}; q = filter q by 'Opportunity.${Variables.Geography_L2.sobjectName}.${Variables.Geography_L2.fieldName}' in {{selection(state_Pl)}}; q = filter q by 'Opportunity.${Variables.Source.sobjectName}.${Variables.Source.fieldName}' in {{selection(source_Pl)}}; q = filter q by 'Opportunity.${Variables.Source_L2.fieldName}' in {{selection(LeadSource_Pl)}}; q = filter q by 'Owner.Role.Name' in {{selection(Owner_RoleNames_77)}}; q = filter q by 'Owner.Name' in {{selection(Owner_Name_78)}}; q = filter q by 'Opportunity.IsWon' == \"true\"; q = filter q by 'Opportunity.Product.Family' in {{selection(Product_Family_Pl)}}; q = filter q by 'Opportunity.Product.Name' in {{selection(Product_Name_Pl)}};eOpen = group q by 'Opportunity.Id'; eOpen = foreach eOpen generate 'Opportunity.Id' as 'Opportunity.Id',count() as 'ActiCount'; eOpen = group eOpen by 'Opportunity.Id'; eOpen = foreach eOpen generate   'Opportunity.Id' as 'Opportunity.Id',sum('ActiCount') as  'ActiCount'; q = load \"${App.EdgeMarts.task.Alias}\"; q = filter q by 'IsClosed' == \"true\"; q = filter q by 'Opportunity.IsWon' == \"true\"; q = filter q by 'Opportunity.${Variables.Bookings.fieldName}' in {{selection(Type_82)}};q = filter q by date('Opportunity.CloseDate_Year${Constants.Fiscal_Postfix}','Opportunity.CloseDate_Month','Opportunity.CloseDate_Day') in [\"12 months ago\"..\"current month\"]; q = filter q by 'Opportunity.${Variables.Customer.sobjectName}.${Variables.Customer.fieldName}' in {{selection(Account_Type_75)}}; q = filter q by 'Opportunity.${Variables.Customer_L2.sobjectName}.${Variables.Customer_L2.fieldName}' in {{selection(Account_Industry_Pl)}}; q = filter q by 'Opportunity.${Variables.Geography.sobjectName}.${Variables.Geography.fieldName}' in {{selection(country_Pl)}}; q = filter q by 'Opportunity.${Variables.Geography_L2.sobjectName}.${Variables.Geography_L2.fieldName}' in {{selection(state_Pl)}}; q = filter q by 'Opportunity.${Variables.Source.sobjectName}.${Variables.Source.fieldName}' in {{selection(source_Pl)}}; q = filter q by 'Opportunity.${Variables.Source_L2.fieldName}' in {{selection(LeadSource_Pl)}}; q = filter q by 'Owner.Role.Name' in {{selection(Owner_RoleNames_77)}}; q = filter q by 'Owner.Name' in {{selection(Owner_Name_78)}}; q = filter q by 'Opportunity.Product.Family' in {{selection(Product_Family_Pl)}}; q = filter q by 'Opportunity.Product.Name' in {{selection(Product_Name_Pl)}}; tOpen = group q by 'Opportunity.Id'; tOpen = foreach tOpen generate 'Opportunity.Id' as 'Opportunity.Id',count() as 'ActiCount'; tOpen = group tOpen by 'Opportunity.Id'; tOpen = foreach tOpen generate 'Opportunity.Id',sum('ActiCount') as 'ActiCount'; openActi = union eOpen,tOpen; openActi = group openActi by 'Opportunity.Id'; openActi = foreach openActi generate 'Opportunity.Id' as 'Opportunity.Id',sum('ActiCount') as 'ActiCount';openActi = group openActi by all; openActi = foreach openActi generate sum('ActiCount') as 'sum_WonActiCount';",
+            "groups" : [ ],
+            "filters" : [ ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "none",
+        "type" : "aggregate",
+        "useGlobal" : false,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "pct_diff_open_won" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.opportunity.Alias}"
+          }
+  ],
+        "isFacet" : true,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "avg",
+  "pct_diff_open_won"
+  ]
+  ],
+            "pigql" : "q = load \"${App.EdgeMarts.opportunity.Alias}\";q = group q by all;q = foreach q generate 1-({{value(results(Amount_11)) - 0 || 0}} / {{value(results(Amount_12))- 0 || 0}}) as 'avg_pct_diff_open_won';",
+            "filters" : [ ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "open_oppty_ab_close_open_num" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.task.Alias}"
+          }
+  ],
+        "isFacet" : false,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "sum",
+  "pctAb"
+  ]
+  ],
+            "pigql" : "SRC = load \"${App.EdgeMarts.event.Alias}\";SRC = filter SRC by 'Opportunity.Id' in {{results(Id_84)}};SRC = filter SRC by 'Opportunity.Id' in {{selection(inactive_monitoring)}}; SRC = foreach SRC generate 'ActivityDate' as 'ActivityDate' , (case when date('ActivityDate_Year','ActivityDate_Month','ActivityDate_Day') in [\"3 ${Constants.Fiscal_Prefix}years ago\"..\"current day\"] then \"true\" else \"false\" end) as 'IsClosed'; OWN= group SRC by 'IsClosed'; OWN = foreach OWN generate 'IsClosed' as 'IsClosed', count() as 'count'; SRC1 = load \"${App.EdgeMarts.task.Alias}\"; SRC1 = filter SRC1 by 'Opportunity.Id' in {{results(Id_84)}};SRC1 = filter SRC1 by 'Opportunity.Id' in {{selection(inactive_monitoring)}}; OWN1 = group SRC1 by 'IsClosed'; OWN1 = foreach OWN1 generate 'IsClosed' as 'IsClosed',count() as 'count'; ACTI = union OWN,OWN1; ACTI = group ACTI by all; allCount = foreach ACTI generate  sum('count') as 'nCount' , 0 as 'dCount'; SRC = load \"${App.EdgeMarts.event.Alias}\";SRC = filter SRC by 'Opportunity.Id' in {{results(Id_84)}};SRC = filter SRC by 'Opportunity.Id' in {{selection(inactive_monitoring)}}; SRC = foreach SRC generate 'ActivityDate' as 'ActivityDate' , (case when date('ActivityDate_Year','ActivityDate_Month','ActivityDate_Day') in [\"3 ${Constants.Fiscal_Prefix}years ago\"..\"current day\"] then \"true\" else \"false\" end) as 'IsClosed'; SRC = group SRC by 'IsClosed'; SRC = filter SRC by 'IsClosed' == \"true\" ; OWN = foreach SRC generate 'IsClosed' as 'IsClosed', count() as 'count'; SRC1 = load \"${App.EdgeMarts.task.Alias}\";SRC1 = filter SRC1 by 'Opportunity.Id' in {{results(Id_84)}};SRC1 = filter SRC1 by 'Opportunity.Id' in {{selection(inactive_monitoring)}}; SRC1 = filter SRC1 by 'IsClosed' == \"true\"; SRC1 = group SRC1 by 'IsClosed'; OWN1 = foreach SRC1 generate 'IsClosed' as 'IsClosed',count() as 'count'; ACTI = union OWN,OWN1; ACTI = group ACTI by all; ACTI = foreach ACTI generate 0 as 'nCount',sum('count') as 'dCount'; pctAllcount = union allCount,ACTI; pctAllcount = group pctAllcount by all ; pctAllcount = foreach pctAllcount generate sum('dCount')/sum('nCount') as 'sum_pctAb';",
+            "groups" : [ ],
+            "filters" : [ ],
+            "order" : [ ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "Account_Industry_Pl" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.opportunity.Alias}"
+          }
+  ],
+        "isFacet" : true,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "groups" : [
+  "${Variables.Customer_L2.sobjectName}.${Variables.Customer_L2.fieldName}"
+  ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "multi",
+        "start" : [ ],
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "open_opps" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.opportunity.Alias}"
+          }
+  ],
+        "isFacet" : true,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "pigql" : "q = load \"${App.EdgeMarts.opportunity.Alias}\"; q = filter q by 'IsClosed' ==\"false\";q = filter q by 'Id' in {{results(Id_84)}}; q = filter q by 'Id' in {{selection(inactive_monitoring)}}; q = filter q by '${Variables.Bookings.fieldName}' in {{selection(Type_82)}}; q = filter q by 'ForecastCategoryName' in {{selection(ForecastCategoryName_79)}}; q = filter q by 'StageName' in {{selection(StageName_80)}}; q=filter q by date('CloseDate_Year','CloseDate_Month','CloseDate_Day') in {{selection(CloseDate_Pl)}}; q = filter q by '${Variables.Customer.sobjectName}.${Variables.Customer.fieldName}' in {{selection(Account_Type_75)}}; q = filter q by '${Variables.Customer_L2.sobjectName}.${Variables.Customer_L2.fieldName}' in {{selection(Account_Industry_Pl)}}; q = filter q by '${Variables.Geography.sobjectName}.${Variables.Geography.fieldName}' in {{selection(country_Pl)}}; q = filter q by '${Variables.Geography_L2.sobjectName}.${Variables.Geography_L2.fieldName}' in {{selection(state_Pl)}}; q = filter q by '${Variables.Source.sobjectName}.${Variables.Source.fieldName}' in {{selection(source_Pl)}}; q = filter q by '${Variables.Source_L2.fieldName}' in {{selection(LeadSource_Pl)}}; q = filter q by 'Owner.Role.Name' in {{selection(Owner_RoleNames_77)}}; q = filter q by 'Owner.Name' in {{selection(Owner_Name_78)}}; q = group q by 'Id'; q = foreach q generate 'Id' as 'Id', sum('${Variables.Opportunity_Amount.fieldName}') as 'sum_${Variables.Opportunity_Amount.fieldName}',count() as 'count'; q = group q by all; openopps = foreach q generate sum('count') as 'count';",
+            "filters" : [ ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "won_oppty_ab" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.task.Alias}"
+          }
+  ],
+        "isFacet" : false,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "avg",
+  "activities_completed",
+  null,
+  {
+                  "display" : "Avg of Activities Completed"
+                }
+  ]
+  ],
+            "pigql" : "q = load \"${App.EdgeMarts.event.Alias}\";q = filter q by 'Opportunity.Id' in {{ results(Id_84) }};q = filter q by 'Opportunity.Id' in {{ selection(inactive_monitoring) }};q = filter q by date('ActivityDate_Year', 'ActivityDate_Month', 'ActivityDate_Day') in [\"10 ${Constants.Fiscal_Prefix}years ago\"..\"current day\"];q = filter q by date('Opportunity.CloseDate_Year${Constants.Fiscal_Postfix}','Opportunity.CloseDate_Month','Opportunity.CloseDate_Day') in {{selection(CloseDate_Pl)}};q = filter q by 'Opportunity.IsClosed' == \"false\";q = filter q by 'Opportunity.${Variables.Customer.sobjectName}.${Variables.Customer.fieldName}' in {{selection(Account_Type_75)}};q = filter q by 'Opportunity.${Variables.Customer_L2.sobjectName}.${Variables.Customer_L2.fieldName}' in {{selection(Account_Industry_Pl)}};q = filter q by 'Opportunity.${Variables.Geography.sobjectName}.${Variables.Geography.fieldName}' in {{selection(country_Pl)}};q = filter q by 'Opportunity.${Variables.Geography_L2.sobjectName}.${Variables.Geography_L2.fieldName}' in {{selection(state_Pl)}};q = filter q by 'Opportunity.${Variables.Source.sobjectName}.${Variables.Source.fieldName}' in {{selection(source_Pl)}};q = filter q by 'Opportunity.${Variables.Source_L2.fieldName}' in {{selection(LeadSource_Pl)}};q = filter q by 'Owner.Role.Name' in {{selection(Owner_RoleNames_77)}};q = filter q by 'Owner.Name' in {{selection(Owner_Name_78)}}; q = filter q by 'Opportunity.Product.Family' in {{selection(Product_Family_Pl)}}; q = filter q by 'Opportunity.Product.Name' in {{selection(Product_Name_Pl)}}; eOpen = group q by all;eOpen = foreach eOpen generate \"Meeting\" as 'TaskSubtype', \"Open\" as 'Status', round(coalesce(count()/{{value(results(open_opps)) -0||0}}, 0)) as 'ActiCount';q = load \"${App.EdgeMarts.task.Alias}\";q = filter q by 'Opportunity.Id' in {{ results(Id_84) }};q = filter q by 'Opportunity.Id' in {{ selection(inactive_monitoring) }};q = filter q by date('Opportunity.CloseDate_Year${Constants.Fiscal_Postfix}','Opportunity.CloseDate_Month','Opportunity.CloseDate_Day') in {{selection(CloseDate_Pl)}};q = filter q by 'IsClosed' ==\"true\";q = filter q by 'Opportunity.IsClosed' == \"false\";q = filter q by 'Opportunity.${Variables.Customer.sobjectName}.${Variables.Customer.fieldName}' in {{selection(Account_Type_75)}};q = filter q by 'Opportunity.${Variables.Customer_L2.sobjectName}.${Variables.Customer_L2.fieldName}' in {{selection(Account_Industry_Pl)}};q = filter q by 'Opportunity.${Variables.Geography.sobjectName}.${Variables.Geography.fieldName}' in {{selection(country_Pl)}};q = filter q by 'Opportunity.${Variables.Geography_L2.sobjectName}.${Variables.Geography_L2.fieldName}' in {{selection(state_Pl)}};q = filter q by 'Opportunity.${Variables.Source.sobjectName}.${Variables.Source.fieldName}' in {{selection(source_Pl)}};q = filter q by 'Opportunity.${Variables.Source_L2.fieldName}' in {{selection(LeadSource_Pl)}};q = filter q by 'Owner.Role.Name' in {{selection(Owner_RoleNames_77)}};q = filter q by 'Owner.Name' in {{selection(Owner_Name_78)}}; q = filter q by 'Opportunity.Product.Family' in {{selection(Product_Family_Pl)}}; q = filter q by 'Opportunity.Product.Name' in {{selection(Product_Name_Pl)}}; tOpen = group q by ('Opportunity.Id', 'TaskSubtype');tOpen = foreach tOpen generate 'Opportunity.Id' as 'Opportunity.Id', 'TaskSubtype' as 'TaskSubtype', count() as 'SubTypeCount';tOpen = group tOpen by 'TaskSubtype';tOpen = foreach tOpen generate 'TaskSubtype' as 'TaskSubtype', \"Open\" as 'Status', round(coalesce(sum('SubTypeCount')/{{value(results(open_opps))- 0 || 0}}, 0)) as 'ActiCount';q = load \"${App.EdgeMarts.event.Alias}\";q = filter q by 'Opportunity.IsWon' == \"true\";q = filter q by date('ActivityDate_Year', 'ActivityDate_Month', 'ActivityDate_Day') in [\"10 ${Constants.Fiscal_Prefix}years ago\"..\"current day\"];q = filter q by date('Opportunity.CloseDate_Year${Constants.Fiscal_Postfix}','Opportunity.CloseDate_Month','Opportunity.CloseDate_Day') in [\"12 months ago\"..\"current month\"];q = filter q by 'Opportunity.${Variables.Customer.sobjectName}.${Variables.Customer.fieldName}' in {{selection(Account_Type_75)}};q = filter q by 'Opportunity.${Variables.Customer_L2.sobjectName}.${Variables.Customer_L2.fieldName}' in {{selection(Account_Industry_Pl)}};q = filter q by 'Opportunity.${Variables.Geography.sobjectName}.${Variables.Geography.fieldName}' in {{selection(country_Pl)}};q = filter q by 'Opportunity.${Variables.Geography_L2.sobjectName}.${Variables.Geography_L2.fieldName}' in {{selection(state_Pl)}};q = filter q by 'Opportunity.${Variables.Source.sobjectName}.${Variables.Source.fieldName}' in {{selection(source_Pl)}};q = filter q by 'Opportunity.${Variables.Source_L2.fieldName}' in {{selection(LeadSource_Pl)}};q = filter q by 'Owner.Role.Name' in {{selection(Owner_RoleNames_77)}};q = filter q by 'Owner.Name' in {{selection(Owner_Name_78)}}; q = filter q by 'Opportunity.Product.Family' in {{selection(Product_Family_Pl)}}; q = filter q by 'Opportunity.Product.Name' in {{selection(Product_Name_Pl)}}; eWon = group q by all;eWon = foreach eWon generate \"Meeting\" as 'TaskSubtype', \"Won\" as 'Status', round(coalesce(count()/{{value(results(all_10)) -0 || 0}}, 0)) as 'ActiCount';q = load \"${App.EdgeMarts.task.Alias}\";q = filter q by 'IsClosed' == \"true\";q = filter q by date('Opportunity.CloseDate_Year${Constants.Fiscal_Postfix}','Opportunity.CloseDate_Month','Opportunity.CloseDate_Day') in [\"12 months ago\"..\"current month\"];q = filter q by 'Opportunity.IsWon' == \"true\";q = filter q by 'Opportunity.${Variables.Customer.sobjectName}.${Variables.Customer.fieldName}' in {{selection(Account_Type_75)}};q = filter q by 'Opportunity.${Variables.Customer_L2.sobjectName}.${Variables.Customer_L2.fieldName}' in {{selection(Account_Industry_Pl)}};q = filter q by 'Opportunity.${Variables.Geography.sobjectName}.${Variables.Geography.fieldName}' in {{selection(country_Pl)}};q = filter q by 'Opportunity.${Variables.Geography_L2.sobjectName}.${Variables.Geography_L2.fieldName}' in {{selection(state_Pl)}};q = filter q by 'Opportunity.${Variables.Source.sobjectName}.${Variables.Source.fieldName}' in {{selection(source_Pl)}};q = filter q by 'Opportunity.${Variables.Source_L2.fieldName}' in {{selection(LeadSource_Pl)}};q = filter q by 'Owner.Role.Name' in {{selection(Owner_RoleNames_77)}};q = filter q by 'Owner.Name' in {{selection(Owner_Name_78)}}; q = filter q by 'Opportunity.Product.Family' in {{selection(Product_Family_Pl)}}; q = filter q by 'Opportunity.Product.Name' in {{selection(Product_Name_Pl)}}; tWon = group q by ('Opportunity.Id', 'TaskSubtype');tWon = foreach tWon generate 'Opportunity.Id' as 'Opportunity.Id', 'TaskSubtype' as 'TaskSubtype', count() as 'SubTypeCount';tWon = group tWon by 'TaskSubtype';tWon = foreach tWon generate 'TaskSubtype' as 'TaskSubtype', \"Won\" as 'Status', round(coalesce(sum('SubTypeCount')/{{value(results(all_10))-0||0}}, 0)) as 'ActiCount';allActi = union tOpen, eWon, tWon, eOpen;allActi = group allActi by ('TaskSubtype', 'Status');wonopptyab = foreach allActi generate 'TaskSubtype' as 'ActivityType', 'Status' as 'Status', sum('ActiCount') as 'avg_activities_completed';",
+            "groups" : [
+  "ActivityType",
+  "Status"
+  ],
+            "filters" : [ ],
+            "order" : [ ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "Name_81" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.opportunity.Alias}"
+          }
+  ],
+        "isFacet" : false,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "groups" : [
+  "Id"
+  ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "multi",
+        "start" : [ ],
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "Time_In_Stage" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.pipeline_trending.Alias}"
+          }
+  ],
+        "isFacet" : false,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "avg",
+  "days_in_stage",
+  null,
+  {
+                  "display" : "Avg of Days in Stage"
+                }
+  ]
+  ],
+            "pigql" : "q = load \"${App.EdgeMarts.pipeline_trending.Alias}\"; q = filter q by 'OpportunityId' in {{results(Id_84)}};q = filter q by 'OpportunityId' in {{selection(inactive_monitoring)}}; q = filter q by 'Opportunity.Owner.Name' in {{selection(Owner_Name_78)}}; q = filter q by date('Opportunity.CloseDate_Year${Constants.Fiscal_Postfix}','Opportunity.CloseDate_Month','Opportunity.CloseDate_Day') in {{selection(CloseDate_Pl)}}; q = filter q by 'Opportunity.${Variables.Customer.sobjectName}.${Variables.Customer.fieldName}' in {{selection(Account_Type_75)}}; q = filter q by 'Opportunity.${Variables.Customer_L2.sobjectName}.${Variables.Customer_L2.fieldName}' in {{selection(Account_Industry_Pl)}}; q = filter q by 'Opportunity.${Variables.Geography.sobjectName}.${Variables.Geography.fieldName}' in {{selection(country_Pl)}}; q = filter q by 'Opportunity.${Variables.Geography_L2.sobjectName}.${Variables.Geography_L2.fieldName}' in {{selection(state_Pl)}}; q = filter q by 'Opportunity.Product.Family' in {{selection(Product_Family_Pl)}}; q = filter q by 'Opportunity.Product.Name' in {{selection(Product_Name_Pl)}}; q = filter q by 'Opportunity.${Variables.Source.sobjectName}.${Variables.Source.fieldName}' in {{selection(source_Pl)}}; q = filter q by 'Opportunity.${Variables.Source_L2.fieldName}' in {{selection(LeadSource_Pl)}}; q = filter q by 'Opportunity.Owner.Role.Name' in {{selection(Owner_RoleNames_77)}}; q = filter q by 'Opportunity.IsClosed' == \"false\"; q = filter q by 'StagePrev.IsClosed' == \"false\"; a = foreach q generate 'Id', \"Open\" as 'Status', 'OpportunityId', (CreatedDate_sec_epoch - CreatedDatePrev_sec_epoch)/86400 as 'diff', 'StageNamePrev' as 'StageName', 'Stage.IsClosed'; a = filter a by 'StageName' is not null; b = foreach q generate 'Id', 'OpportunityId', daysBetween(toDate(CreatedDate_Day + \"-\" + CreatedDate_Month + \"-\" + CreatedDate_Year, \"dd-MM-yyyy\"), now()) as 'diff', 'StageName', 'Stage.IsClosed', 'CreatedDate'; b = order b by 'CreatedDate' asc; b = group b by 'OpportunityId'; b = foreach b generate 'OpportunityId', \"Open\" as 'Status', last('Id') as 'Id', last('diff') as 'diff', last('StageName') as 'StageName', last('Stage.IsClosed') as 'Stage.IsClosed'; b = filter b by 'Stage.IsClosed' == \"false\"; c = union a, b; c = group c by ('StageName', 'Status'); c = foreach c generate 'StageName', 'Status', coalesce(sum('diff')/{{value(results(open_opps))-0 || 0}},0) as 'avg_days_in_stage'; q2 = load \"${App.EdgeMarts.pipeline_trending.Alias}\"; q2 = filter q2 by date('Opportunity.CloseDate_Year${Constants.Fiscal_Postfix}','Opportunity.CloseDate_Month','Opportunity.CloseDate_Day') in [\"12 months ago\"..\"current month\"]; q2 = filter q2 by 'Opportunity.${Variables.Customer.sobjectName}.${Variables.Customer.fieldName}' in {{selection(Account_Type_75)}}; q2 = filter q2 by 'Opportunity.${Variables.Customer_L2.sobjectName}.${Variables.Customer_L2.fieldName}' in {{selection(Account_Industry_Pl)}}; q2 = filter q2 by 'Opportunity.${Variables.Geography.sobjectName}.${Variables.Geography.fieldName}' in {{selection(country_Pl)}}; q2 = filter q2 by 'Opportunity.${Variables.Geography_L2.sobjectName}.${Variables.Geography_L2.fieldName}' in {{selection(state_Pl)}}; q2 = filter q2 by 'Opportunity.Product.Family' in {{selection(Product_Family_Pl)}}; q2 = filter q2 by 'Opportunity.Product.Name' in {{selection(Product_Name_Pl)}}; q2 = filter q2 by 'Opportunity.${Variables.Source.sobjectName}.${Variables.Source.fieldName}' in {{selection(source_Pl)}}; q2 = filter q2 by 'Opportunity.${Variables.Source_L2.fieldName}' in {{selection(LeadSource_Pl)}}; q2 = filter q2 by 'Opportunity.Owner.Role.Name' in {{selection(Owner_RoleNames_77)}}; q2 = filter q2 by 'Opportunity.Owner.Name' in {{selection(Owner_Name_78)}}; q2 = filter q2 by 'Opportunity.IsWon' == \"true\"; q2 = filter q2 by 'StagePrev.IsClosed' == \"false\"; c2 = foreach q2 generate 'Id', \"Won\" as 'Status', 'OpportunityId', (CreatedDate_sec_epoch - CreatedDatePrev_sec_epoch)/86400 as 'diff', 'StageNamePrev' as 'StageName', 'Stage.IsClosed'; c2 = filter c2 by 'StageName' is not null; c2 = group c2 by ('StageName', 'Status'); c2 = foreach c2 generate 'StageName', 'Status', coalesce(sum('diff')/{{value(results(all_10)) - 0 || 0}},0) as 'avg_days_in_stage'; d = union c,c2; d = group d by ('StageName', 'Status'); d = foreach d generate 'StageName', 'Status', round(sum('avg_days_in_stage')) as 'avg_days_in_stage'; ",
+            "groups" : [
+  "StageName",
+  "Status"
+  ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "all_10" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.opportunity.Alias}"
+          }
+  ],
+        "isFacet" : false,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "pigql" : "q = load \"${App.EdgeMarts.opportunity.Alias}\";q = filter q by 'IsWon' ==\"true\";q = filter q by 'Id' in {{selection(Name_81)}};q = filter q by '${Variables.Bookings.fieldName}' in {{selection(Type_82)}};q = filter q by 'ForecastCategoryName' in {{selection(ForecastCategoryName_79)}};q = filter q by 'StageName' in {{selection(StageName_80)}};q=filter q by date('CloseDate_Year','CloseDate_Month','CloseDate_Day') in [\"12 months ago\"..\"current month\"];q = filter q by '${Variables.Customer.sobjectName}.${Variables.Customer.fieldName}' in {{selection(Account_Type_75)}};q = filter q by '${Variables.Customer_L2.sobjectName}.${Variables.Customer_L2.fieldName}' in {{selection(Account_Industry_Pl)}};q = filter q by '${Variables.Geography.sobjectName}.${Variables.Geography.fieldName}' in {{selection(country_Pl)}};q = filter q by '${Variables.Geography_L2.sobjectName}.${Variables.Geography_L2.fieldName}' in {{selection(state_Pl)}};q = filter q by '${Variables.Source.sobjectName}.${Variables.Source.fieldName}' in {{selection(source_Pl)}};q = filter q by '${Variables.Source_L2.fieldName}' in {{selection(LeadSource_Pl)}};q = filter q by 'Owner.Role.Name' in {{selection(Owner_RoleNames_77)}};q = filter q by 'Owner.Name' in {{selection(Owner_Name_78)}};q = group q by all;q = foreach q generate count() as 'count';",
+            "filters" : [ ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "state_Pl" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.opportunity.Alias}"
+          }
+  ],
+        "isFacet" : true,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "groups" : [
+  "${Variables.Geography_L2.sobjectName}.${Variables.Geography_L2.fieldName}"
+  ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "multi",
+        "start" : [ ],
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "cf_avg_comp_acty" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.opportunity.Alias}"
+          }
+  ],
+        "isFacet" : false,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*",
+  null,
+  {
+                  "display" : " "
+                }
+  ]
+  ],
+            "pigql" : "q = load \"${App.EdgeMarts.opportunity.Alias}\"; q = foreach q generate (case when {{value(results(pct_diff_comp_acty))- 0 || 0}} > 0 then \"Green\" when {{value(results(pct_diff_comp_acty)) - 0 || 0}} < 0 then \"Red\" when ({{value(results(Id_16))- 0 || 0}} > 0 and  {{value(results(Id_15))- 0 || 0}} == 0 )then \"Red\" else \"Gray\" end) as 'RAG',  0.1 as 'count';q = limit q 1; ",
+            "groups" : [
+  "RAG"
+  ],
+            "filters" : [ ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "none",
+        "type" : "aggregate",
+        "useGlobal" : false,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "Id_16" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.event.Alias}"
+          }
+  ],
+        "isFacet" : false,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "avg",
+  "comp_act"
+  ]
+  ],
+            "pigql" : "q = load \"${App.EdgeMarts.event.Alias}\"; q = foreach q generate round({{value(results(completedActyWonOpp))- 0 || 0}}/{{value(results(all_10))- 0 || 0}}) as 'avg_comp_act';",
+            "filters" : [ ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "Id_15" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.event.Alias}"
+          }
+  ],
+        "isFacet" : true,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "avg",
+  "comp_act"
+  ]
+  ],
+            "pigql" : "q = load \"${App.EdgeMarts.event.Alias}\"; id15 = foreach q generate round(({{value(results(completedActyOpenOpp))- 0 || 0}}/{{value(results(open_opps))- 0 || 0}})) as 'avg_comp_act';"
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "Owner_RoleNames_77" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.opportunity.Alias}"
+          }
+  ],
+        "isFacet" : true,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "groups" : [
+  "Owner.Role.Name"
+  ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "multi",
+        "start" : [ ],
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "topSelector" : {
+        "datasets" : [ ],
+        "dimensions" : [ ],
+        "isFacet" : false,
+        "isGlobal" : false,
+        "selectMode" : "singlerequired",
+        "start" : [
+  10
+  ],
+        "type" : "static",
+        "useGlobal" : false,
+        "values" : [
+  {
+            "display" : "Top 10",
+            "value" : 10
+          },
+  {
+            "display" : "Top 50",
+            "value" : 50
+          },
+  {
+            "display" : "Top 100",
+            "value" : 100
+          }
+  ]
+      },
+      "Type_82" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.opportunity.Alias}"
+          }
+  ],
+        "isFacet" : false,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "groups" : [
+  "${Variables.Bookings.fieldName}"
+  ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "multi",
+        "start" : [ ],
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "pct_diff_sale_cyc" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.opportunity.Alias}"
+          }
+  ],
+        "isFacet" : true,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "sum",
+  "pct_diff_sale_cyc"
+  ]
+  ],
+            "pigql" : "q = load \"${App.EdgeMarts.opportunity.Alias}\";q = foreach q generate 1 -({{value(results(Amount_14))- 0 || 0}} / {{value(results(Amount_13))- 0 || 0}}) as 'sum_pct_diff_sale_cyc';",
+            "filters" : [ ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "Product_Name_Pl" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.opportunity.Alias}"
+          }
+  ],
+        "isFacet" : false,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "groups" : [
+  "Product.Product.Name"
+  ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregate",
+        "useGlobal" : false,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "open_oppty_ab_close_open" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.task.Alias}"
+          }
+  ],
+        "isFacet" : false,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "pigql" : "SRC = load \"${App.EdgeMarts.event.Alias}\";SRC = filter SRC by 'Opportunity.Id' in {{results(Id_84)}};SRC = filter SRC by 'Opportunity.Id' in {{selection(inactive_monitoring,'Opportunity.Id')}}; SRC = foreach SRC generate 'ActivityDate' as 'ActivityDate' , (case when date('ActivityDate_Year','ActivityDate_Month','ActivityDate_Day') in [\"3 ${Constants.Fiscal_Prefix}years ago\"..\"current day\"] then \"true\" else \"false\" end) as 'IsClosed';OWN= group SRC by 'IsClosed'; OWN = foreach OWN generate 'IsClosed' as 'IsClosed', count() as 'count'; SRC1 = load \"${App.EdgeMarts.task.Alias}\";SRC1 = filter SRC1 by 'Opportunity.Id' in {{results(Id_84)}};SRC1 = filter SRC1 by 'Opportunity.Id' in {{selection(inactive_monitoring,'Opportunity.Id')}}; OWN1 = group SRC1 by 'IsClosed'; OWN1 = foreach OWN1 generate 'IsClosed' as 'IsClosed',count() as 'count'; ACTI = union OWN,OWN1; ACTI = group ACTI by 'IsClosed'; ACTI = foreach ACTI generate 'IsClosed' as 'IsClosed' , sum('count') as 'count'; ACTI = order ACTI by 'count' desc;",
+            "groups" : [
+  "IsClosed"
+  ],
+            "filters" : [ ],
+            "order" : [ ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "pie"
+        }
+      },
+      "inactive_monitoring" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.opportunity.Alias}"
+          }
+  ],
+        "isFacet" : false,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "sum",
+  "last_activity"
+  ],
+  [
+  "sum",
+  "${Variables.Opportunity_Amount.fieldName}"
+  ]
+  ],
+            "pigql" : "q = load \"${App.EdgeMarts.opportunity.Alias}\"; q = filter q by '${Variables.Bookings.fieldName}' in {{selection(Type_82)}}; q = filter q by 'IsClosed' ==\"false\"; q = filter q by 'Id' in {{results(Id_84)}};q=filter q by date('CloseDate_Year','CloseDate_Month','CloseDate_Day') in {{selection(CloseDate_Pl)}}; q = filter q by 'ForecastCategoryName' in {{selection(ForecastCategoryName_79)}}; q = filter q by 'StageName' in {{selection(StageName_80)}}; q = filter q by '${Variables.Bookings.fieldName}' in {{selection(Type_82)}}; q = filter q by '${Variables.Customer.sobjectName}.${Variables.Customer.fieldName}' in {{selection(Account_Type_75)}}; q = filter q by '${Variables.Customer_L2.sobjectName}.${Variables.Customer_L2.fieldName}' in {{selection(Account_Industry_Pl)}}; q = filter q by '${Variables.Geography.sobjectName}.${Variables.Geography.fieldName}' in {{selection(country_Pl)}}; q = filter q by '${Variables.Geography_L2.sobjectName}.${Variables.Geography_L2.fieldName}' in {{selection(state_Pl)}}; q = filter q by '${Variables.Source.sobjectName}.${Variables.Source.fieldName}' in {{selection(source_Pl)}}; q = filter q by '${Variables.Source_L2.fieldName}' in {{selection(LeadSource_Pl)}}; q = filter q by 'Owner.Role.Name' in {{selection(Owner_RoleNames_77)}}; q = filter q by 'Owner.Name' in {{selection(Owner_Name_78)}}; q = filter q by 'Product.Product.Family' in {{selection(Product_Family_Pl)}}; q = filter q by 'Product.Product.Name' in {{selection(Product_Name_Pl)}}; q = group q by ('Id','Name'); q = foreach q generate 'Id' as 'Id','Name' as 'Name', sum('${Variables.Opportunity_Amount.fieldName}') as 'sum_${Variables.Opportunity_Amount.fieldName}',count() as 'count'; srcTask = load \"${App.EdgeMarts.task.Alias}\"; srcTask = filter srcTask by 'Opportunity.IsClosed' ==\"false\"; srcTask = foreach srcTask generate 'Opportunity.Id' as 'Id', abs(daysBetween(toDate('LastModifiedDate_Year' + \"-\" + 'LastModifiedDate_Month' + \"-\" + 'LastModifiedDate_Day',\"yyyy-MM-dd\"),now() ))as 'LastModifiedDt'; srcTask = group srcTask by 'Id'; srcTask = foreach srcTask generate 'Id' as 'Id',min('LastModifiedDt') as 'DaysBetween'; srcEvent = load \"${App.EdgeMarts.event.Alias}\"; srcEvent = filter srcEvent by 'Opportunity.IsClosed' ==\"false\"; srcEvent = foreach srcEvent generate 'Opportunity.Id' as 'Id', abs(daysBetween(toDate('LastModifiedDate_Year' + \"-\" + 'LastModifiedDate_Month' + \"-\" + 'LastModifiedDate_Day',\"yyyy-MM-dd\"),now() ))as 'LastModifiedDt'; srcEvent = group srcEvent by 'Id'; srcEvent = foreach srcEvent generate 'Id' as 'Id',min('LastModifiedDt') as 'DaysBetween'; srcActi = union srcTask,srcEvent; srcActi = group srcActi by 'Id'; srcActi = foreach srcActi generate 'Id' as 'Id',min('DaysBetween') as 'DaysBetween'; srcTaskOppty = cogroup q by 'Id' left ,srcActi by 'Id'; srcTaskOppty = foreach srcTaskOppty generate q['Id'] as 'Id', first(q['Name']) as 'Name', sum(q['sum_${Variables.Opportunity_Amount.fieldName}']) as 'sum_${Variables.Opportunity_Amount.fieldName}' , min(srcActi['DaysBetween']) as 'sum_last_activity'; srcTaskOppty = order srcTaskOppty by 'sum_${Variables.Opportunity_Amount.fieldName}' desc; scatterPlt = limit srcTaskOppty {{value(selection(topSelector))}};",
+            "limit" : 100,
+            "groups" : [
+  "Id"
+  ],
+            "order" : [
+  [
+  -1,
+  {
+                  "ascending" : false
+                }
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "StageName_80" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.opportunity.Alias}"
+          }
+  ],
+        "isFacet" : false,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "groups" : [
+  "StageName"
+  ],
+            "filters" : [
+  [
+  "StageName",
+  [
+  "Closed Won",
+  "Closed Lost"
+  ],
+  "not in"
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "multi",
+        "start" : [ ],
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "Product_Family_Pl" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.opportunity.Alias}"
+          }
+  ],
+        "isFacet" : false,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "groups" : [
+  "Product.Product.Family"
+  ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "Owner_Name_78" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.opportunity.Alias}"
+          }
+  ],
+        "isFacet" : true,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "groups" : [
+  "Owner.Name"
+  ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "multi",
+        "start" : [ ],
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "saleCycle" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.opportunity.Alias}"
+          }
+  ],
+        "isFacet" : false,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*",
+  null,
+  {
+                  "display" : " "
+                }
+  ]
+  ],
+            "pigql" : "q = load \"${App.EdgeMarts.opportunity.Alias}\"; q = foreach q generate (case when {{value(results(pct_diff_sale_cyc))- 0 || 0}} > 0 then \"Red\" when {{value(results(pct_diff_sale_cyc)) - 0 || 0}} < 0 then \"Green\" when ({{value(results(Amount_14))- 0 || 0}} > 0 and  {{value(results(Amount_13))- 0 || 0}} == 0 )then \"Green\"else \"Gray\" end) as 'RAG',  0.1 as 'count';q = limit q 1; ",
+            "groups" : [
+  "RAG"
+  ],
+            "filters" : [ ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "none",
+        "type" : "aggregate",
+        "useGlobal" : false,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "open_oppty_ab" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.task.Alias}"
+          }
+  ],
+        "isFacet" : false,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "pigql" : "SRC = load \"${App.EdgeMarts.event.Alias}\";SRC = filter SRC by 'Opportunity.Id' in {{results(Id_84)}};SRC = filter SRC by 'Opportunity.Id' in {{selection(inactive_monitoring,'Opportunity.Id')}}; SRC = foreach SRC generate 'ActivityDate' as 'ActivityDate' , (case when  date('ActivityDate_Year','ActivityDate_Month','ActivityDate_Day') in [\"3 ${Constants.Fiscal_Prefix}years ago\"..\"current day\"] then \"true\" else \"false\" end) as 'IsClosed';OWN= group SRC by 'IsClosed';SRC = filter SRC by 'IsClosed' in  {{selection(open_oppty_ab_close_open)}}; OWN= group SRC by all; OWN = foreach OWN generate  \"Meeting\" as 'ActivityType', count() as 'count'; SRC1 = load \"${App.EdgeMarts.task.Alias}\";SRC1 = filter SRC1 by 'Opportunity.Id' in {{results(Id_84)}};SRC1 = filter SRC1 by 'Opportunity.Id' in {{selection(inactive_monitoring,'Opportunity.Id')}}; SRC1 = filter SRC1 by 'IsClosed' in {{selection(open_oppty_ab_close_open)}};OWN1 = group SRC1 by 'TaskSubtype'; OWN1 = foreach OWN1 generate 'TaskSubtype' as 'ActivityType',count() as 'count'; ACTI = union OWN,OWN1; ACTI = group ACTI by 'ActivityType'; ACTI = foreach ACTI generate 'ActivityType' as 'ActivityType' , sum('count') as 'count'; openopptyab = order ACTI by 'count' desc;",
+            "groups" : [
+  "ActivityType"
+  ],
+            "filters" : [ ],
+            "order" : [ ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "pie"
+        }
+      },
+      "LeadSource_Pl" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.opportunity.Alias}"
+          }
+  ],
+        "isFacet" : true,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "groups" : [
+  "${Variables.Source_L2.fieldName}"
+  ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "multi",
+        "start" : [ ],
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "all_63" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.task.Alias}"
+          }
+  ],
+        "isFacet" : true,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "pigql" : "SRC = load \"${App.EdgeMarts.event.Alias}\";SRC = filter SRC by 'Opportunity.Id' in {{results(Id_84)}};SRC = filter SRC by 'Opportunity.Id' in {{selection(inactive_monitoring)}}; SRC = foreach SRC generate 'ActivityDate' as 'ActivityDate' , (case when date('ActivityDate_Year','ActivityDate_Month','ActivityDate_Day') in [\"3 ${Constants.Fiscal_Prefix}years ago\"..\"current day\"] then \"true\" else \"false\" end) as 'IsClosed';OWN= group SRC by 'IsClosed';SRC = filter SRC by 'IsClosed' in  {{selection(open_oppty_ab_close_open)}};OWN= group SRC by all; OWN = foreach OWN generate count() as 'count'; SRC1 = load \"${App.EdgeMarts.task.Alias}\";SRC1 = filter SRC1 by 'Opportunity.Id' in {{results(Id_84)}};SRC1 = filter SRC1 by 'Opportunity.Id' in {{selection(inactive_monitoring)}}; SRC1 = filter SRC1 by 'IsClosed' in {{selection(open_oppty_ab_close_open)}};OWN1 = group SRC1 by all; OWN1 = foreach OWN1 generate count() as 'count'; ACTI = union OWN,OWN1; ACTI = group ACTI by all; ACTI = foreach ACTI generate sum('count') as 'count';",
+            "filters" : [ ],
+            "order" : [ ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "Id_84" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.opportunity.Alias}"
+          }
+  ],
+        "isFacet" : true,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "sum",
+  "${Variables.Opportunity_Amount.fieldName}"
+  ]
+  ],
+            "limit" : "{{value(selection(topSelector))}}",
+            "groups" : [
+  "Id"
+  ],
+            "filters" : [
+  [
+  "IsClosed",
+  [
+  "false"
+  ],
+  "in"
+  ],
+  [
+  "CloseDate",
+  "{{selection(CloseDate_Pl)}}"
+  ]
+  ],
+            "order" : [
+  [
+  -1,
+  {
+                  "ascending" : false
+                }
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "CloseDate_Pl" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.opportunity.Alias}"
+          }
+  ],
+        "isFacet" : false,
+        "isGlobal" : true,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "groups" : [
+  [
+  "CloseDate_Year${Constants.Fiscal_Postfix}",
+  "CloseDate_Month",
+  "CloseDate_Day"
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "start" : [
+  [
+  [
+  "day",
+  0
+  ],
+  [
+  "day",
+  90
+  ]
+  ]
+  ],
+        "type" : "aggregate",
+        "useGlobal" : false,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "Amount_14" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.opportunity.Alias}"
+          }
+  ],
+        "isFacet" : false,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "avg",
+  "sale_cycle_closed"
+  ]
+  ],
+            "pigql" : "q = load \"${App.EdgeMarts.opportunity.Alias}\";q = filter q by 'IsWon' ==\"true\";q = filter q by '${Variables.Bookings.fieldName}' in {{selection(Type_82)}};q=filter q by date('CloseDate_Year','CloseDate_Month','CloseDate_Day') in  [\"12 months ago\"..\"current month\"];q = filter q by '${Variables.Customer.sobjectName}.${Variables.Customer.fieldName}' in {{selection(Account_Type_75)}};q = filter q by '${Variables.Customer_L2.sobjectName}.${Variables.Customer_L2.fieldName}' in {{selection(Account_Industry_Pl)}};q = filter q by '${Variables.Geography.sobjectName}.${Variables.Geography.fieldName}' in {{selection(country_Pl)}};q = filter q by '${Variables.Geography_L2.sobjectName}.${Variables.Geography_L2.fieldName}' in {{selection(state_Pl)}};q = filter q by 'Product.Product.Family' in {{selection(Product_Family_Pl)}};q = filter q by 'Product.Product.Name' in {{selection(Product_Name_Pl)}};q = filter q by '${Variables.Source.sobjectName}.${Variables.Source.fieldName}' in {{selection(source_Pl)}};q = filter q by '${Variables.Source_L2.fieldName}' in {{selection(LeadSource_Pl)}};q = filter q by 'Owner.Role.Name' in {{selection(Owner_RoleNames_77)}};q = filter q by 'Owner.Name' in {{selection(Owner_Name_78)}};q = group q by all; q = foreach q generate round(coalesce((sum('CloseDate_day_epoch') - sum('CreatedDate_day_epoch'))/{{value(results(all_10))- 0 || 0}},0))  as 'avg_sale_cycle_closed'; ",
+            "filters" : [ ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "Amount_13" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.opportunity.Alias}"
+          }
+  ],
+        "isFacet" : true,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "avg",
+  "sale_cycle_won"
+  ]
+  ],
+            "pigql" : "q = load \"${App.EdgeMarts.opportunity.Alias}\"; q = filter q by 'IsClosed' ==\"false\"; q = filter q by 'Id' in {{results(Id_84)}};q = filter q by 'Id' in {{selection(inactive_monitoring)}}; q = filter q by 'Id' in {{selection(Name_81)}}; q = filter q by '${Variables.Bookings.fieldName}' in {{selection(Type_82)}}; q = filter q by 'ForecastCategoryName' in {{selection(ForecastCategoryName_79)}}; q = filter q by 'StageName' in {{selection(StageName_80)}}; q=filter q by date('CloseDate_Year','CloseDate_Month','CloseDate_Day') in {{selection(CloseDate_Pl)}}; q = filter q by '${Variables.Customer.sobjectName}.${Variables.Customer.fieldName}' in {{selection(Account_Type_75)}}; q = filter q by '${Variables.Customer_L2.sobjectName}.${Variables.Customer_L2.fieldName}' in {{selection(Account_Industry_Pl)}}; q = filter q by '${Variables.Geography.sobjectName}.${Variables.Geography.fieldName}' in {{selection(country_Pl)}}; q = filter q by '${Variables.Geography_L2.sobjectName}.${Variables.Geography_L2.fieldName}' in {{selection(state_Pl)}};q = filter q by 'Product.Product.Family' in {{selection(Product_Family_Pl)}};q = filter q by 'Product.Product.Name' in {{selection(Product_Name_Pl)}}; q = filter q by '${Variables.Source.sobjectName}.${Variables.Source.fieldName}' in {{selection(source_Pl)}}; q = filter q by '${Variables.Source_L2.fieldName}' in {{selection(LeadSource_Pl)}}; q = filter q by 'Owner.Role.Name' in {{selection(Owner_RoleNames_77)}}; q = filter q by 'Owner.Name' in {{selection(Owner_Name_78)}};  q = group q by 'Id'; q = foreach q generate 'Id' as 'Id', round( (abs(daysBetween(toDate(first('CreatedDate_Year') + \"-\" + first('CreatedDate_Month') + \"-\" + first('CreatedDate_Day'),\"yyyy-MM-dd\"),now())))/1,0)  as 'SaleCycle'; q = group q by all; q = foreach q generate avg('SaleCycle') as 'avg_sale_cycle_won';",
+            "filters" : [ ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "Amount_12" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.opportunity.Alias}"
+          }
+  ],
+        "isFacet" : true,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "avg",
+  "selling_price"
+  ]
+  ],
+            "pigql" : "q = load \"${App.EdgeMarts.opportunity.Alias}\";q = filter q by 'IsClosed' ==\"false\";q = filter q by '${Variables.Bookings.fieldName}' in {{selection(Type_82)}};q = filter q by 'ForecastCategoryName' in {{selection(ForecastCategoryName_79)}};q = filter q by 'StageName' in {{selection(StageName_80)}};q=filter q by date('CloseDate_Year','CloseDate_Month','CloseDate_Day') in {{selection(CloseDate_Pl)}};q = filter q by '${Variables.Customer.sobjectName}.${Variables.Customer.fieldName}' in {{selection(Account_Type_75)}};q = filter q by '${Variables.Customer_L2.sobjectName}.${Variables.Customer_L2.fieldName}' in {{selection(Account_Industry_Pl)}};q = filter q by '${Variables.Geography.sobjectName}.${Variables.Geography.fieldName}' in {{selection(country_Pl)}};q = filter q by '${Variables.Geography_L2.sobjectName}.${Variables.Geography_L2.fieldName}' in {{selection(state_Pl)}};q = filter q by 'Product.Product.Family' in {{selection(Product_Family_Pl)}};q = filter q by 'Product.Product.Name' in {{selection(Product_Name_Pl)}};q = filter q by '${Variables.Source.sobjectName}.${Variables.Source.fieldName}' in {{selection(source_Pl)}};q = filter q by '${Variables.Source_L2.fieldName}' in {{selection(LeadSource_Pl)}};q = filter q by 'Owner.Role.Name' in {{selection(Owner_RoleNames_77)}};q = filter q by 'Owner.Name' in {{selection(Owner_Name_78)}};q =foreach q generate 'Id'+\"~~~\"+'Name'+\"~~~\"+'ForecastCategoryName' as 'IdName','Id' as 'Id','${Variables.Opportunity_Amount.fieldName}' as '${Variables.Opportunity_Amount.fieldName}';q = filter q by 'Id' in {{results(open_oppty)}}; q = filter q by 'IdName' in {{selection(open_oppty)}};q = group q by 'Id'; q = foreach q generate 'Id' as 'Id', sum('${Variables.Opportunity_Amount.fieldName}') as '${Variables.Opportunity_Amount.fieldName}',count() as 'count';q = group q by all; q = foreach q generate sum('${Variables.Opportunity_Amount.fieldName}')/{{value(results(open_opps))- 0 || 0}}  as 'avg_selling_price';",
+            "filters" : [
+  [
+  "IsWon",
+  [
+  "false"
+  ],
+  "in"
+  ]
+  ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "start" : "0",
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "Amount_11" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.opportunity.Alias}"
+          }
+  ],
+        "isFacet" : false,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "avg",
+  "selling_price"
+  ]
+  ],
+            "pigql" : "q = load \"${App.EdgeMarts.opportunity.Alias}\";q = filter q by 'IsWon' ==\"true\";q = filter q by date('CloseDate_Year','CloseDate_Month','CloseDate_Day') in [\"12 months ago\"..\"current month\"];q = filter q by '${Variables.Customer.sobjectName}.${Variables.Customer.fieldName}' in {{selection(Account_Type_75)}};q = filter q by '${Variables.Bookings.fieldName}' in {{selection(Type_82)}};q = filter q by '${Variables.Customer_L2.sobjectName}.${Variables.Customer_L2.fieldName}' in {{selection(Account_Industry_Pl)}};q = filter q by '${Variables.Geography.sobjectName}.${Variables.Geography.fieldName}' in {{selection(country_Pl)}};q = filter q by '${Variables.Geography_L2.sobjectName}.${Variables.Geography_L2.fieldName}' in {{selection(state_Pl)}};q = filter q by 'Product.Product.Family' in {{selection(Product_Family_Pl)}};q = filter q by 'Product.Product.Name' in {{selection(Product_Name_Pl)}};q = filter q by '${Variables.Source.sobjectName}.${Variables.Source.fieldName}' in {{selection(source_Pl)}};q = filter q by '${Variables.Source_L2.fieldName}' in {{selection(LeadSource_Pl)}};q = filter q by 'Owner.Role.Name' in {{selection(Owner_RoleNames_77)}};q = filter q by 'Owner.Name' in {{selection(Owner_Name_78)}};q = group q by all; q = foreach q generate (sum('${Variables.Opportunity_Amount.fieldName}')/{{value(results(all_10))- 0 || 0}})  as 'avg_selling_price';",
+            "filters" : [ ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "start" : "0",
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "completedActyOpenOpp" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.task.Alias}"
+          }
+  ],
+        "isFacet" : false,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "sum",
+  "ActiCount"
+  ],
+  [
+  "sum",
+  "Oppty"
+  ],
+  [
+  "avg",
+  "comp_act_open"
+  ]
+  ],
+            "pigql" : "q = load \"${App.EdgeMarts.event.Alias}\";q = filter q by 'Opportunity.ForecastCategoryName' in {{selection(ForecastCategoryName_79)}};q = filter q by 'Opportunity.StageName' in {{selection(StageName_80)}}; q = filter q by 'Opportunity.Id' in {{results(Id_84)}}; q = filter q by 'Opportunity.Id' in {{selection(inactive_monitoring)}}; q = filter q by 'Opportunity.${Variables.Bookings.fieldName}' in {{selection(Type_82)}};q = filter q by 'Opportunity.${Variables.Customer.sobjectName}.${Variables.Customer.fieldName}' in {{selection(Account_Type_75)}}; q = filter q by 'Opportunity.${Variables.Customer_L2.sobjectName}.${Variables.Customer_L2.fieldName}' in {{selection(Account_Industry_Pl)}}; q = filter q by 'Opportunity.${Variables.Geography.sobjectName}.${Variables.Geography.fieldName}' in {{selection(country_Pl)}}; q = filter q by 'Opportunity.${Variables.Geography_L2.sobjectName}.${Variables.Geography_L2.fieldName}' in {{selection(state_Pl)}}; q = filter q by 'Opportunity.${Variables.Source.sobjectName}.${Variables.Source.fieldName}' in {{selection(source_Pl)}}; q = filter q by 'Opportunity.${Variables.Source_L2.fieldName}' in {{selection(LeadSource_Pl)}};q = filter q by 'Opportunity.Product.Family' in {{selection(Product_Family_Pl)}}; q = filter q by 'Opportunity.Product.Name' in {{selection(Product_Name_Pl)}}; q = filter q by 'Opportunity.Product.Family' in {{selection(Product_Family_Pl)}}; q = filter q by 'Opportunity.Product.Name' in {{selection(Product_Name_Pl)}}; q = filter q by 'Owner.Role.Name' in {{selection(Owner_RoleNames_77)}}; q = filter q by 'Owner.Name' in {{selection(Owner_Name_78)}}; q = foreach q generate 'Opportunity.Id' as 'Opportunity.Id',(case when date('ActivityDate_Year','ActivityDate_Month','ActivityDate_Day') in [\"3 ${Constants.Fiscal_Prefix}years ago\"..\"current day\"] then \"true\" else \"false\" end) as 'IsClosed'; q = filter q by 'IsClosed' == \"true\"; eOpen = group q by 'Opportunity.Id'; eOpen = foreach eOpen generate 'Opportunity.Id' as 'Opportunity.Id',count() as 'ActiCount'; eOpen = group eOpen by 'Opportunity.Id'; eOpen = foreach eOpen generate   'Opportunity.Id' as 'Opportunity.Id',sum('ActiCount') as  'ActiCount'; q = load \"${App.EdgeMarts.task.Alias}\";q = filter q by 'Opportunity.ForecastCategoryName' in {{selection(ForecastCategoryName_79)}};q = filter q by 'Opportunity.StageName' in {{selection(StageName_80)}}; q = filter q by 'Opportunity.Id' in {{results(Id_84)}}; q = filter q by 'Opportunity.Id' in {{selection(inactive_monitoring)}}; q = filter q by 'Opportunity.${Variables.Bookings.fieldName}' in {{selection(Type_82)}}; q = filter q by 'IsClosed' == \"true\";q = filter q by 'Opportunity.${Variables.Customer.sobjectName}.${Variables.Customer.fieldName}' in {{selection(Account_Type_75)}}; q = filter q by 'Opportunity.${Variables.Customer_L2.sobjectName}.${Variables.Customer_L2.fieldName}' in {{selection(Account_Industry_Pl)}}; q = filter q by 'Opportunity.${Variables.Geography.sobjectName}.${Variables.Geography.fieldName}' in {{selection(country_Pl)}}; q = filter q by 'Opportunity.${Variables.Geography_L2.sobjectName}.${Variables.Geography_L2.fieldName}' in {{selection(state_Pl)}}; q = filter q by 'Opportunity.${Variables.Source.sobjectName}.${Variables.Source.fieldName}' in {{selection(source_Pl)}}; q = filter q by 'Opportunity.${Variables.Source_L2.fieldName}' in {{selection(LeadSource_Pl)}}; q = filter q by 'Owner.Role.Name' in {{selection(Owner_RoleNames_77)}}; q = filter q by 'Owner.Name' in {{selection(Owner_Name_78)}}; q = filter q by 'Opportunity.Product.Family' in {{selection(Product_Family_Pl)}}; q = filter q by 'Opportunity.Product.Name' in {{selection(Product_Name_Pl)}}; tOpen = group q by 'Opportunity.Id'; tOpen = foreach tOpen generate 'Opportunity.Id' as 'Opportunity.Id',count() as 'ActiCount'; tOpen = group tOpen by 'Opportunity.Id'; tOpen = foreach tOpen generate 'Opportunity.Id',sum('ActiCount') as 'ActiCount'; openActi = union eOpen,tOpen; openActi = group openActi by 'Opportunity.Id'; openActi = foreach openActi generate 'Opportunity.Id' as 'Opportunity.Id',sum('ActiCount') as 'ActiCount';openActi = group openActi by all; openActiid15 = foreach openActi generate sum('ActiCount') as 'sum_ActiCount',count() as 'sum_Oppty',sum('ActiCount')/count() as 'avg_comp_act_open';",
+            "groups" : [ ],
+            "filters" : [ ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "none",
+        "type" : "aggregate",
+        "useGlobal" : false,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      },
+      "country_Pl" : {
+        "datasets" : [
+  {
+            "name" : "${App.EdgeMarts.opportunity.Alias}"
+          }
+  ],
+        "isFacet" : true,
+        "isGlobal" : false,
+        "query" : {
+          "query" : {
+            "measures" : [
+  [
+  "count",
+  "*"
+  ]
+  ],
+            "groups" : [
+  "${Variables.Geography.sobjectName}.${Variables.Geography.fieldName}"
+  ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "multi",
+        "start" : [ ],
+        "type" : "aggregate",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "visualizationType" : "hbar"
+        }
+      }
+    },
+    "widgets" : {
+      "number_12" : {
+        "parameters" : {
+          "exploreLink" : false,
+          "fontSize" : 15,
+          "measureField" : "avg_pct_diff_open_won",
+          "step" : "pct_diff_open_won",
+          "textAlignment" : "center",
+          "textColor" : "rgb(255, 255, 255)",
+          "title" : ""
+        },
+        "position" : {
+          "w" : "130",
+          "x" : 580,
+          "y" : 300,
+          "zIndex" : 9979
+        },
+        "type" : "number"
+      },
+      "text_18" : {
+        "parameters" : {
+          "fontSize" : 8,
+          "text" : "-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------",
+          "textColor" : "rgb(242, 246, 250)"
+        },
+        "position" : {
+          "x" : 230,
+          "y" : 200,
+          "zIndex" : 21
+        },
+        "type" : "text"
+      },
+      "text_13" : {
+        "parameters" : {
+          "fontSize" : 13,
+          "text" : "AVG DEAL SIZE",
+          "textColor" : "rgb(255, 255, 255)"
+        },
+        "position" : {
+          "x" : 580,
+          "y" : 120,
+          "zIndex" : 16
+        },
+        "type" : "text"
+      },
+      "number_18" : {
+        "parameters" : {
+          "exploreLink" : false,
+          "fontSize" : 16,
+          "measureField" : "sum_pct_diff_sale_cyc",
+          "step" : "pct_diff_sale_cyc",
+          "textAlignment" : "center",
+          "textColor" : "rgb(255, 255, 255)",
+          "title" : ""
+        },
+        "position" : {
+          "w" : "130",
+          "x" : 830,
+          "y" : 300,
+          "zIndex" : 9963
+        },
+        "type" : "number"
+      },
+      "text_16" : {
+        "parameters" : {
+          "fontSize" : 13,
+          "text" : "AVG COMPLETED ACTIVITIES",
+          "textColor" : "rgb(255, 255, 255)"
+        },
+        "position" : {
+          "x" : 1070,
+          "y" : 120,
+          "zIndex" : 19
+        },
+        "type" : "text"
+      },
+      "number_17" : {
+        "parameters" : {
+          "exploreLink" : false,
+          "fontSize" : 20,
+          "measureField" : "avg_comp_act",
+          "step" : "Id_16",
+          "textAlignment" : "center",
+          "textColor" : "rgb(255, 255, 255)",
+          "title" : ""
+        },
+        "position" : {
+          "w" : "190",
+          "x" : 1060,
+          "y" : 230,
+          "zIndex" : 35
+        },
+        "type" : "number"
+      },
+      "text_15" : {
+        "parameters" : {
+          "fontSize" : 13,
+          "text" : "AVG SALE CYCLE (d)",
+          "textColor" : "rgb(255, 255, 255)"
+        },
+        "position" : {
+          "x" : 820,
+          "y" : 120,
+          "zIndex" : 18
+        },
+        "type" : "text"
+      },
+      "number_16" : {
+        "parameters" : {
+          "exploreLink" : false,
+          "fontSize" : 32,
+          "measureField" : "avg_comp_act",
+          "step" : "Id_15",
+          "textAlignment" : "center",
+          "textColor" : "rgb(255, 255, 255)",
+          "title" : ""
+        },
+        "position" : {
+          "w" : "190",
+          "x" : 1060,
+          "y" : 150,
+          "zIndex" : 34
+        },
+        "type" : "number"
+      },
+      "dimfilter_23" : {
+        "parameters" : {
+          "expanded" : false,
+          "instant" : false,
+          "measureField" : "count",
+          "step" : "Product_Name_Pl"
+        },
+        "position" : {
+          "h" : "50",
+          "w" : "160",
+          "x" : 20,
+          "y" : 1210,
+          "zIndex" : 100001
+        },
+        "type" : "listselector"
+      },
+      "number_14" : {
+        "parameters" : {
+          "exploreLink" : false,
+          "fontSize" : 20,
+          "measureField" : "count",
+          "step" : "all_63",
+          "textAlignment" : "center",
+          "textColor" : "rgb(23, 50, 77)",
+          "title" : ""
+        },
+        "position" : {
+          "w" : "160",
+          "x" : 1020,
+          "y" : 690,
+          "zIndex" : 9962
+        },
+        "type" : "number"
+      },
+      "text_12" : {
+        "parameters" : {
+          "fontSize" : 15,
+          "text" : "% difference open vs won",
+          "textColor" : "rgb(255, 255, 255)"
+        },
+        "position" : {
+          "x" : 230,
+          "y" : 300,
+          "zIndex" : 15
+        },
+        "type" : "text"
+      },
+      "datefilter_1" : {
+        "parameters" : {
+          "expanded" : false,
+          "step" : "CloseDate_Pl",
+          "title" : "Close Date"
+        },
+        "position" : {
+          "h" : "50",
+          "w" : "160",
+          "x" : 20,
+          "y" : 100,
+          "zIndex" : 100001
+        },
+        "type" : "dateselector"
+      },
+      "number_13" : {
+        "parameters" : {
+          "exploreLink" : false,
+          "fontSize" : 15,
+          "measureField" : "avg_pct_diff_comp_acty",
+          "step" : "pct_diff_comp_acty",
+          "textAlignment" : "center",
+          "textColor" : "rgb(255, 255, 255)",
+          "title" : ""
+        },
+        "position" : {
+          "w" : "190",
+          "x" : 1060,
+          "y" : 300,
+          "zIndex" : 9964
+        },
+        "type" : "number"
+      },
+      "text_11" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "Inactive Monitoring",
+          "textAlignment" : "left",
+          "textColor" : "rgb(64, 96, 127)"
+        },
+        "position" : {
+          "x" : 230,
+          "y" : 1290,
+          "zIndex" : 24
+        },
+        "type" : "text"
+      },
+      "box_18" : {
+        "parameters" : {
+          "backgroundColor" : "rgb(64, 96, 127)",
+          "borderColor" : "rgba(0, 0, 0, 0)"
+        },
+        "position" : {
+          "h" : "40",
+          "w" : "130",
+          "x" : 660,
+          "y" : 300,
+          "zIndex" : 9971
+        },
+        "type" : "box"
+      },
+      "box_17" : {
+        "parameters" : {
+          "backgroundColor" : "rgb(64, 96, 127)",
+          "borderColor" : "rgba(0, 0, 0, 0)"
+        },
+        "position" : {
+          "h" : "40",
+          "w" : "1140",
+          "x" : 220,
+          "y" : 330,
+          "zIndex" : 9977
+        },
+        "type" : "box"
+      },
+      "chart_9" : {
+        "parameters" : {
+          "legend" : true,
+          "visualizationType" : "pie",
+          "step" : "open_oppty_ab",
+          "exploreLink" : false
+        },
+        "position" : {
+          "h" : "170",
+          "w" : "360",
+          "x" : 990,
+          "y" : 630,
+          "zIndex" : 44
+        },
+        "type" : "chart"
+      },
+      "box_16" : {
+        "parameters" : {
+          "backgroundColor" : "rgb(242, 246, 250)",
+          "borderColor" : "rgba(146, 103, 194, 0)"
+        },
+        "position" : {
+          "h" : "330",
+          "w" : "218",
+          "x" : 0,
+          "y" : 470,
+          "zIndex" : 64
+        },
+        "type" : "box"
+      },
+      "text_8_small" : {
+        "parameters" : {
+          "fontSize" : 15,
+          "text" : "Won is based on last 12 months",
+          "textAlignment" : "left",
+          "textColor" : "rgb(0, 0, 0)"
+        },
+        "position" : {
+          "x" : 230,
+          "y" : 230,
+          "zIndex" : 1
+        },
+        "type" : "text"
+      },
+      "chart_6" : {
+        "parameters" : {
+          "legend" : true,
+          "visualizationType" : "pie",
+          "step" : "open_oppty_ab_close_open",
+          "exploreLink" : false
+        },
+        "position" : {
+          "h" : "170",
+          "w" : "360",
+          "x" : 990,
+          "y" : 460,
+          "zIndex" : 28
+        },
+        "type" : "chart"
+      },
+      "text_3" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "By Geo",
+          "textAlignment" : "left",
+          "textColor" : "rgb(41, 71, 102)"
+        },
+        "position" : {
+          "x" : 0,
+          "y" : 550,
+          "zIndex" : 67
+        },
+        "type" : "text"
+      },
+      "text_2" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "By Customer",
+          "textAlignment" : "left",
+          "textColor" : "rgb(41, 71, 102)"
+        },
+        "position" : {
+          "x" : 0,
+          "y" : 370,
+          "zIndex" : 119
+        },
+        "type" : "text"
+      },
+      "text_4" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "By Source",
+          "textAlignment" : "left",
+          "textColor" : "rgb(41, 71, 102)"
+        },
+        "position" : {
+          "x" : 0,
+          "y" : 920,
+          "zIndex" : 5
+        },
+        "type" : "text"
+      },
+      "box_10" : {
+        "parameters" : {
+          "backgroundColor" : "rgb(255, 255, 255)",
+          "borderColor" : "rgb(210, 221, 231)"
+        },
+        "position" : {
+          "h" : "410",
+          "w" : "560",
+          "x" : 800,
+          "y" : 830,
+          "zIndex" : 9985
+        },
+        "type" : "box"
+      },
+      "chart_2" : {
+        "parameters" : {
+          "visualizationType" : "hbar",
+          "step" : "Time_In_Stage",
+          "exploreLink" : false
+        },
+        "position" : {
+          "h" : "340",
+          "w" : "540",
+          "x" : 230,
+          "y" : 900,
+          "zIndex" : 9990
+        },
+        "type" : "chart"
+      },
+      "text_7" : {
+        "parameters" : {
+          "fontSize" : 15,
+          "text" : "Open",
+          "textAlignment" : "left",
+          "textColor" : "rgb(255, 255, 255)"
+        },
+        "position" : {
+          "x" : 230,
+          "y" : 160,
+          "zIndex" : 11
+        },
+        "type" : "text"
+      },
+      "chart_1" : {
+        "parameters" : {
+          "legend" : true,
+          "visualizationType" : "stackhbar",
+          "step" : "open_oppty",
+          "exploreLink" : false
+        },
+        "position" : {
+          "h" : "330",
+          "w" : "890",
+          "x" : 90,
+          "y" : 470,
+          "zIndex" : 60
+        },
+        "type" : "chart"
+      },
+      "chart_4" : {
+        "parameters" : {
+          "visualizationType" : "hbar",
+          "step" : "won_oppty_ab",
+          "exploreLink" : false
+        },
+        "position" : {
+          "h" : "340",
+          "w" : "540",
+          "x" : 810,
+          "y" : 900,
+          "zIndex" : 9986
+        },
+        "type" : "chart"
+      },
+      "text_9" : {
+        "parameters" : {
+          "fontSize" : 15,
+          "text" : "(based on last 12 months)",
+          "textColor" : "rgb(255, 255, 255)"
+        },
+        "position" : {
+          "x" : 270,
+          "y" : 230,
+          "zIndex" : 13
+        },
+        "type" : "text"
+      },
+      "text_8" : {
+        "parameters" : {
+          "fontSize" : 15,
+          "text" : "Won",
+          "textAlignment" : "left",
+          "textColor" : "rgb(255, 255, 255)"
+        },
+        "position" : {
+          "x" : 230,
+          "y" : 230,
+          "zIndex" : 12
+        },
+        "type" : "text"
+      },
+      "number_21" : {
+        "parameters" : {
+          "exploreLink" : false,
+          "fontSize" : 20,
+          "measureField" : "sum_pctAb",
+          "step" : "open_oppty_ab_close_open_num",
+          "textAlignment" : "center",
+          "textColor" : "rgb(23, 50, 77)",
+          "title" : ""
+        },
+        "position" : {
+          "w" : "160",
+          "x" : 1020,
+          "y" : 520,
+          "zIndex" : 48
+        },
+        "type" : "number"
+      },
+      "box_1" : {
+        "parameters" : {
+          "backgroundColor" : "rgb(242, 246, 250)",
+          "borderColor" : "rgba(146, 103, 194, 0)"
+        },
+        "position" : {
+          "h" : "2120",
+          "w" : "1400",
+          "x" : 0,
+          "y" : 0,
+          "zIndex" : 1
+        },
+        "type" : "box"
+      },
+      "box_3" : {
+        "parameters" : {
+          "backgroundColor" : "rgb(255, 255, 255)",
+          "borderColor" : "rgb(210, 221, 231)"
+        },
+        "position" : {
+          "h" : "410",
+          "w" : "560",
+          "x" : 220,
+          "y" : 830,
+          "zIndex" : 9989
+        },
+        "type" : "box"
+      },
+      "text_1" : {
+        "parameters" : {
+          "fontSize" : 32,
+          "text" : "Pipe Activity Management",
+          "textColor" : "rgb(41, 71, 102)"
+        },
+        "position" : {
+          "x" : 0,
+          "y" : 20,
+          "zIndex" : 3
+        },
+        "type" : "text"
+      },
+      "box_2" : {
+        "parameters" : {
+          "backgroundColor" : "rgb(64, 96, 127)",
+          "borderColor" : "rgba(0, 0, 0, 0)"
+        },
+        "position" : {
+          "h" : "250",
+          "w" : "1140",
+          "x" : 220,
+          "y" : 100,
+          "zIndex" : 2
+        },
+        "type" : "box"
+      },
+      "dimfilter_18" : {
+        "parameters" : {
+          "expanded" : false,
+          "instant" : false,
+          "selectModeOverride" : "multi",
+          "step" : "Name_81"
+        },
+        "position" : {
+          "h" : "50",
+          "w" : "160",
+          "x" : -200,
+          "y" : 280,
+          "zIndex" : 100014
+        },
+        "type" : "listselector"
+      },
+      "dimfilter_3" : {
+        "parameters" : {
+          "expanded" : false,
+          "instant" : false,
+          "selectModeOverride" : "multi",
+          "step" : "country_Pl"
+        },
+        "position" : {
+          "h" : "50",
+          "w" : "160",
+          "x" : 20,
+          "y" : 590,
+          "zIndex" : 100003
+        },
+        "type" : "listselector"
+      },
+      "dimfilter_4" : {
+        "parameters" : {
+          "expanded" : false,
+          "instant" : false,
+          "selectModeOverride" : "multi",
+          "step" : "state_Pl"
+        },
+        "position" : {
+          "h" : "50",
+          "w" : "160",
+          "x" : 20,
+          "y" : 650,
+          "zIndex" : 100004
+        },
+        "type" : "listselector"
+      },
+      "dimfilter_16" : {
+        "parameters" : {
+          "expanded" : false,
+          "instant" : false,
+          "selectModeOverride" : "multi",
+          "step" : "ForecastCategoryName_79",
+          "title" : "Forecast Category"
+        },
+        "position" : {
+          "h" : "50",
+          "w" : "160",
+          "x" : 20,
+          "y" : 160,
+          "zIndex" : 100012
+        },
+        "type" : "listselector"
+      },
+      "dimfilter_5" : {
+        "parameters" : {
+          "expanded" : false,
+          "instant" : false,
+          "selectModeOverride" : "multi",
+          "step" : "source_Pl"
+        },
+        "position" : {
+          "h" : "50",
+          "w" : "160",
+          "x" : 20,
+          "y" : 960,
+          "zIndex" : 100005
+        },
+        "type" : "listselector"
+      },
+      "dimfilter_17" : {
+        "parameters" : {
+          "expanded" : false,
+          "instant" : false,
+          "selectModeOverride" : "multi",
+          "step" : "StageName_80"
+        },
+        "position" : {
+          "h" : "50",
+          "w" : "160",
+          "x" : 20,
+          "y" : 220,
+          "zIndex" : 100013
+        },
+        "type" : "listselector"
+      },
+      "dimfilter_6" : {
+        "parameters" : {
+          "expanded" : false,
+          "instant" : false,
+          "selectModeOverride" : "multi",
+          "step" : "LeadSource_Pl"
+        },
+        "position" : {
+          "h" : "50",
+          "w" : "160",
+          "x" : 20,
+          "y" : 1020,
+          "zIndex" : 100006
+        },
+        "type" : "listselector"
+      },
+      "dimfilter_12" : {
+        "parameters" : {
+          "expanded" : false,
+          "instant" : false,
+          "selectModeOverride" : "multi",
+          "step" : "Owner_RoleNames_77"
+        },
+        "position" : {
+          "h" : "50",
+          "w" : "160",
+          "x" : 20,
+          "y" : 770,
+          "zIndex" : 100009
+        },
+        "type" : "listselector"
+      },
+      "dimfilter_13" : {
+        "parameters" : {
+          "expanded" : false,
+          "instant" : false,
+          "selectModeOverride" : "multi",
+          "step" : "Owner_Name_78"
+        },
+        "position" : {
+          "h" : "50",
+          "w" : "160",
+          "x" : 20,
+          "y" : 830,
+          "zIndex" : 100010
+        },
+        "type" : "listselector"
+      },
+      "dimfilter_2" : {
+        "parameters" : {
+          "expanded" : false,
+          "instant" : false,
+          "selectModeOverride" : "multi",
+          "step" : "Account_Industry_Pl"
+        },
+        "position" : {
+          "h" : "50",
+          "w" : "160",
+          "x" : 20,
+          "y" : 470,
+          "zIndex" : 100002
+        },
+        "type" : "listselector"
+      },
+      "dimfilter_21" : {
+        "parameters" : {
+          "expanded" : false,
+          "instant" : false,
+          "measureField" : "count",
+          "step" : "Product_Family_Pl"
+        },
+        "position" : {
+          "h" : "50",
+          "w" : "160",
+          "x" : 20,
+          "y" : 1150,
+          "zIndex" : 100000
+        },
+        "type" : "listselector"
+      },
+      "number_5" : {
+        "parameters" : {
+          "compact" : true,
+          "exploreLink" : false,
+          "fontSize" : 32,
+          "measureField" : "avg_selling_price",
+          "step" : "Amount_12",
+          "textAlignment" : "center",
+          "textColor" : "rgb(255, 255, 255)",
+          "title" : ""
+        },
+        "position" : {
+          "w" : "140",
+          "x" : 580,
+          "y" : 150,
+          "zIndex" : 8
+        },
+        "type" : "number"
+      },
+      "number_4" : {
+        "parameters" : {
+          "compact" : true,
+          "exploreLink" : false,
+          "fontSize" : 20,
+          "measureField" : "avg_selling_price",
+          "step" : "Amount_11",
+          "textAlignment" : "center",
+          "textColor" : "rgb(255, 255, 255)",
+          "title" : ""
+        },
+        "position" : {
+          "w" : "130",
+          "x" : 580,
+          "y" : 230,
+          "zIndex" : 34
+        },
+        "type" : "number"
+      },
+      "text_41" : {
+        "parameters" : {
+          "fontSize" : 8,
+          "text" : "-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------",
+          "textColor" : "rgb(255, 255, 255)"
+        },
+        "position" : {
+          "x" : 230,
+          "y" : 270,
+          "zIndex" : 9984
+        },
+        "type" : "text"
+      },
+      "dimfilter_20" : {
+        "parameters" : {
+          "expanded" : false,
+          "instant" : false,
+          "selectModeOverride" : "multi",
+          "step" : "Type_82"
+        },
+        "position" : {
+          "h" : "50",
+          "w" : "160",
+          "x" : 20,
+          "y" : 280,
+          "zIndex" : 100015
+        },
+        "type" : "listselector"
+      },
+      "sel_hbar_source" : {
+        "parameters" : {
+          "expanded" : false,
+          "exploreLink" : false,
+          "selectModeOverride" : "singlerequired",
+          "step" : "step_hbar_group",
+          "title" : ""
+        },
+        "position" : {
+          "h" : "50",
+          "w" : "240",
+          "x" : 1100,
+          "y" : 1710,
+          "zIndex" : 9796
+        },
+        "type" : "listselector"
+      },
+      "box_24" : {
+        "parameters" : {
+          "backgroundColor" : "rgb(242, 246, 250)",
+          "borderColor" : "rgba(0, 0, 0, 0)"
+        },
+        "position" : {
+          "h" : "420",
+          "w" : "220",
+          "x" : 0,
+          "y" : 390,
+          "zIndex" : 66
+        },
+        "type" : "box"
+      },
+      "chart_16" : {
+        "parameters" : {
+          "visualizationType" : "hbar",
+          "step" : "Id_84"
+        },
+        "position" : {
+          "h" : "310",
+          "w" : "500",
+          "x" : 840,
+          "y" : 10,
+          "zIndex" : 0
+        },
+        "type" : "chart"
+      },
+      "box_23" : {
+        "parameters" : {
+          "backgroundColor" : "rgb(242, 246, 250)",
+          "borderColor" : "rgb(210, 221, 231)"
+        },
+        "position" : {
+          "h" : "400",
+          "w" : "220",
+          "x" : 0,
+          "y" : 400,
+          "zIndex" : 65
+        },
+        "type" : "box"
+      },
+      "chart_15" : {
+        "parameters" : {
+          "visualizationType" : "stackhbar",
+          "step" : "IsClosed_76",
+          "exploreLink" : false,
+          "selectModeOverride" : "none"
+        },
+        "position" : {
+          "h" : "120",
+          "w" : "190",
+          "x" : 540,
+          "y" : 240,
+          "zIndex" : 9975
+        },
+        "type" : "chart"
+      },
+      "box_22" : {
+        "parameters" : {
+          "backgroundColor" : "rgb(64, 96, 127)",
+          "borderColor" : "rgba(0, 0, 0, 0)"
+        },
+        "position" : {
+          "h" : "40",
+          "w" : "130",
+          "x" : 1210,
+          "y" : 300,
+          "zIndex" : 9970
+        },
+        "type" : "box"
+      },
+      "box_21" : {
+        "parameters" : {
+          "backgroundColor" : "rgb(64, 96, 127)",
+          "borderColor" : "rgba(0, 0, 0, 0)"
+        },
+        "position" : {
+          "h" : "60",
+          "w" : "160",
+          "x" : 950,
+          "y" : 280,
+          "zIndex" : 9969
+        },
+        "type" : "box"
+      },
+      "chart_13" : {
+        "parameters" : {
+          "visualizationType" : "stackhbar",
+          "step" : "saleCycle",
+          "exploreLink" : false,
+          "selectModeOverride" : "none"
+        },
+        "position" : {
+          "h" : "120",
+          "w" : "180",
+          "x" : 800,
+          "y" : 240,
+          "zIndex" : 50
+        },
+        "type" : "chart"
+      },
+      "box_20" : {
+        "parameters" : {
+          "backgroundColor" : "rgb(255, 255, 255)",
+          "borderColor" : "rgba(0, 0, 0, 0)"
+        },
+        "position" : {
+          "h" : "300",
+          "w" : "250",
+          "x" : 0,
+          "y" : 500,
+          "zIndex" : 64
+        },
+        "type" : "box"
+      },
+      "chart_10" : {
+        "parameters" : {
+          "visualizationType" : "stackhbar",
+          "step" : "cf_avg_comp_acty",
+          "exploreLink" : false,
+          "selectModeOverride" : "none"
+        },
+        "position" : {
+          "h" : "120",
+          "w" : "180",
+          "x" : 1070,
+          "y" : 240,
+          "zIndex" : 49
+        },
+        "type" : "chart"
+      },
+      "text_39" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "By Product",
+          "textAlignment" : "left",
+          "textColor" : "rgb(41, 71, 102)"
+        },
+        "position" : {
+          "x" : 0,
+          "y" : 1110,
+          "zIndex" : 9996
+        },
+        "type" : "text"
+      },
+      "valuestable_1" : {
+        "parameters" : {
+          "exploreLink" : false,
+          "selectModeOverride" : "single",
+          "step" : "lens_74"
+        },
+        "position" : {
+          "h" : "320",
+          "w" : "1140",
+          "x" : 220,
+          "y" : 1760,
+          "zIndex" : 32
+        },
+        "type" : "valuestable"
+      },
+      "text_36" : {
+        "parameters" : {
+          "fontSize" : 14,
+          "text" : "Completed",
+          "textColor" : "rgb(64, 96, 127)"
+        },
+        "position" : {
+          "x" : 1030,
+          "y" : 540,
+          "zIndex" : 53
+        },
+        "type" : "text"
+      },
+      "text_35" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "Open vs Won: Avg Activities Completed",
+          "textColor" : "rgb(64, 96, 127)"
+        },
+        "position" : {
+          "x" : 810,
+          "y" : 850,
+          "zIndex" : 9988
+        },
+        "type" : "text"
+      },
+      "text_38" : {
+        "parameters" : {
+          "fontSize" : 14,
+          "text" : "Limit Open Opportunities by $",
+          "textAlignment" : "right",
+          "textColor" : "rgb(64, 96, 127)"
+        },
+        "position" : {
+          "x" : 930,
+          "y" : 35,
+          "zIndex" : 55
+        },
+        "type" : "text"
+      },
+      "text_37" : {
+        "parameters" : {
+          "fontSize" : 14,
+          "text" : "Activities",
+          "textColor" : "rgb(64, 96, 127)"
+        },
+        "position" : {
+          "x" : 1030,
+          "y" : 710,
+          "zIndex" : 54
+        },
+        "type" : "text"
+      },
+      "number_8" : {
+        "parameters" : {
+          "compact" : true,
+          "exploreLink" : false,
+          "fontSize" : 20,
+          "measureField" : "avg_sale_cycle_closed",
+          "step" : "Amount_14",
+          "textAlignment" : "center",
+          "textColor" : "rgb(255, 255, 255)",
+          "title" : ""
+        },
+        "position" : {
+          "w" : "130",
+          "x" : 820,
+          "y" : 230,
+          "zIndex" : 8
+        },
+        "type" : "number"
+      },
+      "text_8_Mobile" : {
+        "parameters" : {
+          "fontSize" : 15,
+          "text" : "Won",
+          "textAlignment" : "left",
+          "textColor" : "rgb(255, 255, 255)"
+        },
+        "position" : {
+          "x" : 230,
+          "y" : 230,
+          "zIndex" : 13
+        },
+        "type" : "text"
+      },
+      "text_34" : {
+        "parameters" : {
+          "fontSize" : 14,
+          "text" : "Sort by ",
+          "textAlignment" : "right",
+          "textColor" : "rgb(64, 96, 127)"
+        },
+        "position" : {
+          "x" : 960,
+          "y" : 1720,
+          "zIndex" : 9966
+        },
+        "type" : "text"
+      },
+      "number_6" : {
+        "parameters" : {
+          "exploreLink" : false,
+          "fontSize" : 32,
+          "measureField" : "avg_sale_cycle_won",
+          "step" : "Amount_13",
+          "textAlignment" : "center",
+          "textColor" : "rgb(255, 255, 255)",
+          "title" : ""
+        },
+        "position" : {
+          "w" : "130",
+          "x" : 820,
+          "y" : 150,
+          "zIndex" : 9
+        },
+        "type" : "number"
+      },
+      "dimfilter_11" : {
+        "parameters" : {
+          "expanded" : false,
+          "instant" : false,
+          "selectModeOverride" : "multi",
+          "step" : "Account_Type_75"
+        },
+        "position" : {
+          "h" : "50",
+          "w" : "160",
+          "x" : 20,
+          "y" : 410,
+          "zIndex" : 100009
+        },
+        "type" : "listselector"
+      },
+      "text_30" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "By Owner",
+          "textAlignment" : "left",
+          "textColor" : "rgb(41, 71, 102)"
+        },
+        "position" : {
+          "x" : 0,
+          "y" : 730,
+          "zIndex" : 67
+        },
+        "type" : "text"
+      },
+      "buttongroup_1" : {
+        "parameters" : {
+          "exploreLink" : false,
+          "measureField" : "",
+          "selectModeOverride" : "singlerequired",
+          "step" : "topSelector"
+        },
+        "position" : {
+          "w" : "250",
+          "x" : 1150,
+          "y" : 20,
+          "zIndex" : 50
+        },
+        "type" : "pillbox"
+      },
+      "box_5" : {
+        "parameters" : {
+          "backgroundColor" : "rgb(255, 255, 255)",
+          "borderColor" : "rgb(210, 221, 231)"
+        },
+        "position" : {
+          "h" : "400",
+          "w" : "1140",
+          "x" : 220,
+          "y" : 400,
+          "zIndex" : 21
+        },
+        "type" : "box"
+      },
+      "box_6" : {
+        "parameters" : {
+          "backgroundColor" : "rgb(255, 255, 255)",
+          "borderColor" : "rgb(210, 221, 231)"
+        },
+        "position" : {
+          "h" : "390",
+          "w" : "1140",
+          "x" : 220,
+          "y" : 1270,
+          "zIndex" : 21
+        },
+        "type" : "box"
+      },
+      "box_32" : {
+        "parameters" : {
+          "backgroundColor" : "rgb(64, 96, 127)",
+          "borderColor" : "rgba(0, 0, 0, 0)"
+        },
+        "position" : {
+          "h" : "40",
+          "w" : "130",
+          "x" : 650,
+          "y" : 290,
+          "zIndex" : 9974
+        },
+        "type" : "box"
+      },
+      "box_9" : {
+        "parameters" : {
+          "backgroundColor" : "rgb(255, 255, 255)",
+          "borderColor" : "rgb(210, 221, 231)"
+        },
+        "position" : {
+          "h" : "380",
+          "w" : "1140",
+          "x" : 220,
+          "y" : 1690,
+          "zIndex" : 30
+        },
+        "type" : "box"
+      },
+      "box_31" : {
+        "parameters" : {
+          "backgroundColor" : "rgb(64, 96, 127)",
+          "borderColor" : "rgb(64, 96, 127)"
+        },
+        "position" : {
+          "h" : "60",
+          "w" : "130",
+          "x" : 470,
+          "y" : 280,
+          "zIndex" : 9983
+        },
+        "type" : "box"
+      },
+      "box_30" : {
+        "parameters" : {
+          "backgroundColor" : "rgb(64, 96, 127)",
+          "borderColor" : "rgba(0, 0, 0, 0)"
+        },
+        "position" : {
+          "h" : "60",
+          "w" : "150",
+          "x" : 700,
+          "y" : 280,
+          "zIndex" : 9976
+        },
+        "type" : "box"
+      },
+      "scatterplot" : {
+        "parameters" : {
+          "visualizationType" : "scatter",
+          "step" : "inactive_monitoring",
+          "exploreLink" : false
+        },
+        "position" : {
+          "h" : "320",
+          "w" : "1120",
+          "x" : 230,
+          "y" : 1340,
+          "zIndex" : 469
+        },
+        "type" : "chart"
+      },
+      "text_28" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "Details of Open Opportunity & Days Since Last Activity",
+          "textAlignment" : "left",
+          "textColor" : "rgb(64, 96, 127)"
+        },
+        "position" : {
+          "x" : 230,
+          "y" : 1710,
+          "zIndex" : 32
+        },
+        "type" : "text"
+      },
+      "text_25" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "Activity Breakdown",
+          "textAlignment" : "left",
+          "textColor" : "rgb(64, 96, 127)"
+        },
+        "position" : {
+          "x" : 990,
+          "y" : 420,
+          "zIndex" : 9995
+        },
+        "type" : "text"
+      },
+      "text_21" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "Top Open Opportunities & Days Since Last Activity",
+          "textAlignment" : "left",
+          "textColor" : "rgb(64, 96, 127)"
+        },
+        "position" : {
+          "x" : 230,
+          "y" : 420,
+          "zIndex" : 9994
+        },
+        "type" : "text"
+      },
+      "text_22" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "text" : "Open vs Won: Avg Stage Duration",
+          "textAlignment" : "left",
+          "textColor" : "rgb(64, 96, 127)"
+        },
+        "position" : {
+          "x" : 230,
+          "y" : 850,
+          "zIndex" : 9992
+        },
+        "type" : "text"
+      }
+    }
+  }
+}

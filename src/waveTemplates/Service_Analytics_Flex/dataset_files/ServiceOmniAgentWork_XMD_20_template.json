@@ -1,0 +1,158 @@
+{
+  "dataset": {},
+  "dates": [],
+  "derivedDimensions": [],
+  "derivedMeasures": [
+    {
+      "field": "Percent",
+      "format": {
+        "customFormat": "[\"#,###%\",1]"
+      },
+      "label": "Percent",
+      "showInExplorer": false
+    }
+  ],
+  "dimensions": [
+    {
+      "customActions": [],
+      "customActionsEnabled": true,
+      "description": "Agent Name",
+      "field": "UserId.Name",
+      "label": "Agent",
+      "linkTemplateEnabled": true,
+      "linkTemplate": "/{{row.UserId}}",
+      "linkTooltip": "Open User Record",
+      "recordIdField": "UserId",
+      "members": [],
+      "recordDisplayFields": [],
+      "salesforceActions": [],
+      "salesforceActionsEnabled": true,
+      "showInExplorer": true
+    },
+    {
+      "customActions": [],
+      "customActionsEnabled": true,
+      "description": "Product",
+      "field": "Case.${Constants.CaseProduct}",
+      "label": "Product",
+      "linkTemplateEnabled": true,
+      "members": [],
+      "recordDisplayFields": [],
+      "salesforceActions": [],
+      "salesforceActionsEnabled": true,
+      "showInExplorer": true
+    },
+    {
+      "customActions": [],
+      "customActionsEnabled": true,
+      "description": "Agent Work",
+      "field": "Name",
+      "label": "Agent Work",
+      "linkTemplateEnabled": true,
+      "members": [],
+      "recordDisplayFields": [],
+      "salesforceActions": [],
+      "salesforceActionsEnabled": true,
+      "showInExplorer": true
+    },
+    {
+      "customActions": [],
+      "customActionsEnabled": true,
+      "description": "Case number",
+      "field": "Case.CaseNumber",
+      "label": "Case Number",
+      "linkTemplateEnabled": true,
+      "linkTemplate": "/{{row.WorkItemId}}",
+      "linkTooltip": "Open Case",
+      "recordIdField": "WorkItemId",
+      "members": [],
+      "recordDisplayFields": [],
+      "salesforceActions": [],
+      "salesforceActionsEnabled": true,
+      "showInExplorer": true
+    },
+    {
+      "customActions": [],
+      "customActionsEnabled": true,
+      "description": "Omni Channel",
+      "field": "Case.Origin",
+      "label": "Channel",
+      "linkTemplateEnabled": true,
+      "members": [],
+      "recordDisplayFields": [],
+      "salesforceActions": [],
+      "salesforceActionsEnabled": true,
+      "showInExplorer": true
+    },
+    {
+      "customActions": [],
+      "customActionsEnabled": true,
+      "description": "Omni Queue",
+      "field": "Group.Name",
+      "label": "Queue",
+      "linkTemplateEnabled": true,
+      "members": [],
+      "recordDisplayFields": [],
+      "salesforceActions": [],
+      "salesforceActionsEnabled": true,
+      "showInExplorer": true
+    },
+    {
+      "customActions": [],
+      "customActionsEnabled": true,
+      "description": "Account",
+      "field": "Case.Account.Name",
+      "label": "Account",
+      "linkTemplateEnabled": true,
+      "linkTemplate": "/{{row.Case.Account.Id}}",
+      "linkTooltip": "Open Account",
+      "recordIdField": "Case.Account.Id",
+      "members": [],
+      "recordDisplayFields": [],
+      "salesforceActions": [],
+      "salesforceActionsEnabled": true,
+      "showInExplorer": true
+    }
+  ],
+  "measures": [
+    {
+      "field": "CSAT",
+      "format": {
+        "customFormat": "[\"0.#\",1]",
+        "decimalDigits": 0
+      },
+      "label": "CSAT"
+    },
+
+    {
+      "field": "HandleTime",
+      "format": {
+        "customFormat": "[\"#,###  s\",1]",
+        "decimalDigits": 0
+      },
+      "label": "Handle Time",
+      "showInExplorer": true
+    },
+    {
+      "field": "SpeedToAnswer",
+      "format": {
+        "customFormat": "[\"#,###  s\",1]",
+        "decimalDigits": 0
+      },
+      "label": "Speed To Answer",
+      "showInExplorer": true
+    },
+    {
+      "field": "ActiveTime",
+      "format": {
+        "customFormat": "[\"#,###  s\",1]",
+        "decimalDigits": 0
+      },
+      "label": "Active Time",
+      "showInExplorer": true
+    }
+
+  ],
+  "organizations": [],
+  "showDetailsDefaultFields": []
+}

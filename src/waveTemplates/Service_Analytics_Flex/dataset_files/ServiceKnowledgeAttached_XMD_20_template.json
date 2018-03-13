@@ -1,0 +1,185 @@
+{
+  "derivedDimensions": [
+  ],
+  "derivedMeasures": [
+    {
+      "field": "percent",
+      "format": {
+        "customFormat": "[\"#,###%\",100]"
+      },
+      "label": "percent",
+      "showInExplorer": false
+    }
+  ],
+  "dimensions": [
+    {
+      "customActionsEnabled": true,
+      "field": "Case.${Constants.CaseStatus}",
+      "label": "${Constants.CaseStatusLabel}",
+      "linkTemplateEnabled": true,
+      "salesforceActionsEnabled": true,
+      "showInExplorer": false
+    },
+    {
+      "customActionsEnabled": true,
+      "field": "Case.${Constants.CaseType}",
+      "label": "${Constants.CaseTypeLabel}",
+      "linkTemplateEnabled": true,
+      "salesforceActionsEnabled": true,
+      "showInExplorer": false
+    },
+    {
+      "customActionsEnabled": true,
+      "field": "Case.${Constants.CaseSupportLevel}",
+      "label": "${Constants.CaseSupportLevelLabel}",
+      "linkTemplateEnabled": true,
+      "salesforceActionsEnabled": true,
+      "showInExplorer": false
+    },
+    {
+      "customActionsEnabled": true,
+      "field": "Case.${Constants.CaseReason}",
+      "label": "${Constants.CaseReasonLabel}",
+      "linkTemplateEnabled": true,
+      "salesforceActionsEnabled": true,
+      "showInExplorer": false
+    },
+    {
+      "customActionsEnabled": true,
+      "field": "Case.${Constants.CaseProduct}",
+      "label": "${Constants.CaseProductLabel}",
+      "linkTemplateEnabled": true,
+      "salesforceActionsEnabled": true,
+      "showInExplorer": false
+    },
+    {
+      "field": "Article.ArticleVersion.IsVisibleInApp",
+      "label": "Article.ArticleVersion.IsVisibleInApp"
+    },
+    {
+      "field": "Article.ArticleVersion.DataCategory.DataCategoryGroupName",
+      "label": "Data Category Group Name"
+    },
+    {
+      "field": "CreatedDate_Second",
+      "label": "CreatedDate_Second"
+    },
+    {
+      "field": "IsSharedByEmail",
+      "label": "Is Shared by Email"
+    },
+    {
+      "field": "ArticleVersionNumber",
+      "label": "Version Number"
+    },
+    {
+      "field": "CreatedDate_Quarter",
+      "label": "CreatedDate_Quarter"
+    },
+    {
+      "field": "Article.ArticleVersion.Title",
+      "label": "Article Title",
+      "linkTemplate": "/{{row.KnowledgeArticleId}}",
+      "linkTooltip": "Open Article",
+      "recordIdField": "KnowledgeArticleId"
+    },
+    {
+      "field": "CreatedDate_Day",
+      "label": "CreatedDate_Day"
+    },
+    {
+      "field": "CreatedById",
+      "label": "Created By ID"
+    },
+    {
+      "field": "Article.ArticleVersion.PublishStatus",
+      "label": "Article Publish Status"
+    },
+    {
+      "field": "Article.User.Name",
+      "label": "Article Creator"
+    },
+    {
+      "field": "KnowledgeArticleId",
+      "label": "Article ID"
+    },
+    {
+      "field": "CreatedDate_Week",
+      "label": "CreatedDate_Week"
+    },
+    {
+      "field": "Article.ArticleVersion.IsVisibleInPrm",
+      "label": "Article.ArticleVersion.IsVisibleInPrm"
+    },
+    {
+      "field": "CreatedDate_Month",
+      "label": "CreatedDate_Month"
+    },
+    {
+      "field": "Article.CreatedById",
+      "label": "Article.CreatedById"
+    },
+    {
+      "field": "Article.ArticleVersion.IsVisibleInPkb",
+      "label": "Article.ArticleVersion.IsVisibleInPkb"
+    },
+    {
+      "field": "CreatedDate_Year",
+      "label": "CreatedDate_Year"
+    },
+    {
+      "field": "User.Name",
+      "label": "Article Creator"
+    },
+    {
+      "field": "Article.ArticleVersion.VersionNumber",
+      "label": "Version Number"
+    },
+    {
+      "field": "Article.ArticleVersion.IsVisibleInCsp",
+      "label": "Article.ArticleVersion.IsVisibleInCsp"
+    },
+    {
+      "field": "CreatedDate_Minute",
+      "label": "CreatedDate_Minute"
+    },
+    {
+      "field": "CaseId",
+      "label": "Case ID"
+    },
+    {
+      "field": "User.Id",
+      "label": "User.Id"
+    },
+    {
+      "field": "Article.ArticleVersion.DataCategory.DataCategoryName",
+      "label": "Data Category Name"
+    },
+    {
+      "field": "CreatedDate_Hour",
+      "label": "CreatedDate_Hour"
+    },
+    {
+      "field": "isAttachedByOwner",
+      "label": "is Attached By Owner?"
+    },
+    {
+      "field": "CreatedDate",
+      "label": "Created Date"
+    },
+    {
+      "field": "Id",
+      "label": "Case Article ID"
+    }
+  ],
+  "measures": [
+    {
+      "field": "CreatedDate_day_epoch",
+      "label": "CreatedDate_day_epoch"
+    },
+    {
+      "field": "CreatedDate_sec_epoch",
+      "label": "CreatedDate_sec_epoch"
+    }
+  ]
+}

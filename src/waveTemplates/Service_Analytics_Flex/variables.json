@@ -1,0 +1,553 @@
+{
+  "isDemoApplication": {
+    "label": "Is this a Demo Application?",
+    "description": "",
+    "variableType": {
+      "enums": [
+          "Yes",
+          "No"
+      ],
+      "type": "StringType"
+    },
+    "defaultValue": "Yes"
+  },
+  "CaseDuration": {
+    "defaultValue": {
+      "fieldName": "",
+      "sobjectName": "Case"
+    },
+    "description": "Service Analytics uses this value to help you see how quickly your team closes cases.",
+    "excludeSelected": true,
+    "label": "1. What primary field do you use to track case duration? Leave blank if you dont have a custom formula field for duration.",
+    "required": false,
+    "variableType": {
+      "dataType": "xsd:double",
+      "type": "SobjectFieldType"
+    }
+  },
+  "CaseDurationMoreFields": {
+    "label": "2. What other case duration measures would you like to include?",
+    "description": "Select the measures that you would like to track in addition to the primary duration, for example time with customer.",
+    "defaultValue": [
+      {
+        "sobjectName": "Case",
+        "fieldName": ""
+      }
+    ],
+    "variableType": {
+      "type": "ArrayType",
+      "itemsType": {
+        "type": "SobjectFieldType",
+        "dataType": "xsd:double"
+      },
+      "sizeLimit": {
+        "max": 3
+      }
+    },
+    "excludeSelected": true
+  },
+  "CaseSLA": {
+    "defaultValue": {
+      "fieldName": "",
+      "fieldLabel": "",
+      "sobjectName": "Case"
+    },
+    "description": "Select the field that indicates whether cases meet an SLA target.",
+    "excludeSelected": true,
+    "excludes": [
+      "IsEscalated",
+      "IsClosed",
+      "Deleted"
+    ],
+    "label": "3. What field do you use to track whether cases are within the bounds of an SLA?",
+    "required": false,
+    "variableType": {
+      "dataType": "xsd:string",
+      "type": "SobjectFieldType"
+    }
+  },
+  "CaseFCR": {
+    "defaultValue": {
+      "fieldName": "",
+      "fieldLabel": "",
+      "sobjectName": "Case"
+    },
+    "description": "Indicates a true/false field (Boolean) that shows if cases were resolved on first contact to help you track the efficiency of your team.",
+    "excludeSelected": true,
+    "excludes": [
+      "IsEscalated",
+      "IsClosed",
+      "Deleted"
+    ],
+    "label": "4. Which field do you use to track first contact resolution?",
+    "required": false,
+    "variableType": {
+      "dataType": "xsd:boolean",
+      "type": "SobjectFieldType"
+    }
+  },
+  "Fiscal_Month": {
+    "defaultValue": "01 - January",
+    "description": "Determines if fiscal is different from calendar.  We can support standard fiscal period.",
+    "label": "5. What month starts your fiscal period?",
+    "required": true,
+    "variableType": {
+      "enums": [
+        "01 - January",
+        "02 - February",
+        "03 - March",
+        "04 - April",
+        "05 - May",
+        "06 - June",
+        "07 - July",
+        "08 - August",
+        "09 - September",
+        "10 - October",
+        "11 - November",
+        "12 - December"
+      ],
+      "type": "StringType"
+    }
+  },
+  "FY_Month_Offset_Map": {
+    "defaultValue": {
+      "01 - January": 0,
+      "02 - February": 1,
+      "03 - March": 2,
+      "04 - April": 3,
+      "05 - May": 4,
+      "06 - June": 5,
+      "07 - July": 6,
+      "08 - August": 7,
+      "09 - September": 8,
+      "10 - October": 9,
+      "11 - November": 10,
+      "12 - December": 11
+    },
+    "description": "Internal mapping between fiscal year start months and offset, not to be displayed in UI.",
+    "required": true,
+    "variableType": {
+      "type": "ObjectType"
+    }
+  },
+
+  "CaseStatus": {
+    "label": "1. What field do you use to track the status of case?",
+    "description": "Identifies the field you use to track the current status of a case so you can filter and analyze cases according to status.",
+    "excludeSelected": true,
+    "excludes": [
+      "CaseNumber"
+    ],
+    "defaultValue": {
+      "sobjectName": "Case",
+      "fieldName": "Status"
+    },
+    "required": true,
+    "variableType": {
+      "type": "SobjectFieldType"
+    }
+  },
+  "CaseSupportLevel": {
+    "defaultValue": {
+      "fieldName": "",
+      "fieldLabel": "",
+      "sobjectName": "Case"
+    },
+    "description": "Service Analytics uses your answer to identify the type/level of support you offer customers -- for example, premium, basic, and so on -- so you can filter and analyze cases according to support type/level.",
+    "excludeSelected": true,
+    "excludes": [
+      "CaseNumber"
+    ],
+    "label": "2. What field do you use to record the type/level of support customers are entitled to receive?",
+    "required": false,
+    "variableType": {
+      "dataType": "xsd:string",
+      "type": "SobjectFieldType"
+    }
+  },
+  "CaseSeverityLevel": {
+    "defaultValue": {
+      "fieldName": "Priority",
+      "sobjectName": "Case"
+    },
+    "description": "The field used to prioritize cases, typically by severity.",
+    "excludeSelected": true,
+    "excludes": [
+      "CaseNumber"
+    ],
+    "label": "3. What field do you use to categorize case severity?",
+    "required": true,
+    "variableType": {
+      "type": "SobjectFieldType"
+    }
+  },
+  "CaseProduct": {
+    "defaultValue": {
+      "sobjectName": "Case"
+    },
+    "description": "Identifies the field you use to track products associated with a case so you can filter and visualize cases by product.",
+    "excludeSelected": true,
+    "excludes": [
+      "CaseNumber"
+    ],
+    "label": "4. What field do you use to identify the product associated with the case?",
+    "required": true,
+    "variableType": {
+      "dataType": "xsd:string",
+      "type": "SobjectFieldType"
+    }
+  },
+  "CaseReason": {
+    "defaultValue": {
+      "fieldName": "Reason",
+      "sobjectName": "Case"
+    },
+    "description": "Identifies the field you use to track topics/reasons/closure codes of cases to help you understand which topics/reasons your team solves for most efficiently.",
+    "excludeSelected": true,
+    "excludes": [
+      "CaseNumber"
+    ],
+    "label": "5. What field do you use to identify the case reason or topics?",
+    "required": true,
+    "variableType": {
+      "type": "SobjectFieldType"
+    }
+  },
+
+  "CaseType": {
+    "defaultValue": {
+      "fieldName": "Type",
+      "sobjectName": "Case"
+    },
+    "description": "Identifies the field you use to track types of cases so you can filter and analyze cases according to support type.",
+    "excludeSelected": true,
+    "excludes": [
+      "CaseNumber"
+    ],
+    "label": "6. What field do you use to identify the case type?",
+    "required": true,
+    "variableType": {
+      "type": "SobjectFieldType"
+    }
+  },
+  "CaseOrigin": {
+    "defaultValue": {
+      "fieldName": "Origin",
+      "sobjectName": "Case"
+    },
+    "description": "Indicates the field you use to track the channels used by customers to open cases, such as phone, email, mobile, web, and so on.",
+    "excludeSelected": true,
+    "excludes": [
+      "CaseNumber"
+    ],
+    "label": "7. What field do you use to identify the origin or channel of the case?",
+    "required": true,
+    "variableType": {
+      "type": "SobjectFieldType"
+    }
+  },
+  "GeographyObject": {
+    "label": "8. What object do you use to view data by geography?",
+    "description": "Indicates the object you use to track cases according to geography. Options are Account,Contact and Case.",
+    "defaultValue": {
+      "sobjectName": "Account"
+    },
+    "required": true,
+    "excludes": [
+      "/(?!^Case$|^Account$|^Contact$)(^.*$)/"
+    ],
+    "variableType": {
+      "type": "SobjectType"
+    }
+  },
+  "Geography": {
+    "defaultValue": {
+      "sobjectName": "{{Variables.GeographyObject.sobjectName}}"
+    },
+    "description": "Indicates the field you use to track cases according to geography, for example billing country, region.",
+    "excludeSelected": true,
+    "excludes": [
+      "Name"
+    ],
+    "label": "9. What field do you use to view data by geography?",
+    "required": true,
+    "variableType": {
+      "type": "SobjectFieldType",
+      "dataType": "xsd:string"
+    }
+  },
+  "IncludeCaseRecordTypes": {
+    "defaultValue": "Yes",
+    "description": "If you use the record type field, answer Yes and Service Analytics lets you filter and analyze cases by record type.",
+    "label": "10. Do you use the record type field to distinguish your cases?",
+    "required": true,
+    "variableType": {
+      "enums": [
+        "Yes",
+        "No"
+      ],
+      "type": "StringType"
+    }
+  },
+  "IncludeQueueNames": {
+    "defaultValue": "Yes",
+    "description": "Queues help you prioritize, distribute, and assign records to teams who share workloads. If you assign ownership of cases to queues, answer Yes and Service Analytics lets you filter and analyze cases by queue.",
+    "label": "11. Do you assign ownership of cases to queues?",
+    "required": true,
+    "variableType": {
+      "enums": [
+        "Yes",
+        "No"
+      ],
+      "type": "StringType"
+    }
+  },
+  "CaseMoreMeasures": {
+    "label": "12. Are there any other Case object measures that you would like to make available in Service Analytics?",
+    "description": "Choose the numerical fields you would like to include in Service Analytics datasets.",
+    "defaultValue": [
+      {
+        "sobjectName": "Case",
+        "fieldName": ""
+      }
+    ],
+    "variableType": {
+      "type": "ArrayType",
+      "itemsType": {
+        "type": "SobjectFieldType",
+        "dataType": "xsd:double"
+      }
+    },
+    "excludeSelected": true
+  },
+  "CaseMoreDims": {
+    "label": "13. Are there any other Case object dimensions that you would like to make available in Service Analytics?",
+    "description": "Choose the text fields you would like to include in Service Analytics datasets.",
+    "defaultValue": [
+      {
+        "sobjectName": "Case",
+        "fieldName": ""
+      }
+    ],
+    "variableType": {
+      "type": "ArrayType",
+      "itemsType": {
+        "type": "SobjectFieldType",
+        "dataType": "xsd:string"
+      }
+    },
+    "excludes": [
+      "IsEscalated",
+      "IsClosed",
+      "Deleted",
+      "CaseNumber"
+    ],
+    "excludeSelected": true
+  },
+
+  "IncludeCaseHistory": {
+    "defaultValue": "Yes",
+    "description": "Answer Yes If you have enabled history tracking for both Case Owner and for the field selected in Page 2, Question 1, to track status.",
+    "label": "1. Are you tracking the changes for Case Owner and Case Status?",
+    "required": true,
+    "variableType": {
+      "enums": [
+        "Yes",
+        "No"
+      ],
+      "type": "StringType"
+    }
+  },
+  "TrackCSAT": {
+    "defaultValue": "Yes",
+    "description": "If you answer Yes, you will see additional questions that let you identify the object and field for CSAT.",
+    "label": "2. Do you track Customer Satisfaction (CSAT) score?",
+    "required": true,
+    "variableType": {
+      "enums": [
+        "Yes",
+        "No"
+      ],
+      "type": "StringType"
+    }
+  },
+  "IncludeKnowledge": {
+    "defaultValue": "No",
+    "description": "If you answer Yes, you will see additional questions about how Service Analytics should use Knowledge reporting.",
+    "label": "3. Do you use Salesforce Knowledge in your support process?",
+    "required": true,
+    "variableType": {
+      "enums": [
+        "Yes",
+        "No"
+      ],
+      "type": "StringType"
+    }
+  },
+  "IncludeTelephony": {
+    "defaultValue": "Yes",
+    "description": "If you use the Task object call fields for telephony, answer Yes and Service Analytics creates a Telephony dashboard.",
+    "label": "4. Do you report on telephony or CTI data using fields in the Task object?",
+    "required": true,
+    "variableType": {
+      "enums": [
+        "Yes",
+        "No"
+      ],
+      "type": "StringType"
+    }
+  },
+  "IncludeOpportunity": {
+    "defaultValue": "Yes",
+    "description": "If you answer Yes, Service Analytics shows you which of your customers represent the greatest revenue opportunity and lets you prioritize cases accordingly. ",
+    "label": "5. Do you want Service Analytics to use Salesforce Opportunity object data?",
+    "required": true,
+    "variableType": {
+      "enums": [
+        "Yes",
+        "No"
+      ],
+      "type": "StringType"
+    }
+  },
+  "IncludeOpportunityRecordTypes": {
+    "defaultValue": "Yes",
+    "description": "If you use the record type field, answer Yes and Service Analytics lets you filter and analyze Opportunities by record type.",
+    "label": "6. Do you use the record type field to distinguish your opportunities?",
+    "required": true,
+    "variableType": {
+      "enums": [
+        "Yes",
+        "No"
+      ],
+      "type": "StringType"
+    }
+  },
+  "IncludeEvent": {
+    "defaultValue": "No",
+    "description": "If you use Event object to track activities, answer Yes and Service Analytics will include the object in your application.",
+    "label": "7. Do you use the Event object to track activities for your cases?",
+    "required": true,
+    "variableType": {
+      "enums": [
+        "Yes",
+        "No"
+      ],
+      "type": "StringType"
+    }
+  },
+  "IncludeBusinessHours": {
+    "defaultValue": "No",
+    "description": "If you use the Business Hours field, answer Yes and Service Analytics adds a case duration business hours calculation to datasets.",
+    "label": "8. Do you use Business Hours to calculate duration?",
+    "required": true,
+    "variableType": {
+      "enums": [
+        "Yes",
+        "No"
+      ],
+      "type": "StringType"
+    }
+  },
+  "IncludeChat": {
+    "defaultValue": "No",
+    "description": "If you use Live Agent for chat, answer Yes and Service Analytics creates a Chat dashboard and dataset.",
+    "label": "9. Do you use Live Agent for your chat channel?",
+    "required": true,
+    "variableType": {
+      "enums": [
+        "Yes",
+        "No"
+      ],
+      "type": "StringType"
+    }
+  },
+  "IncludeOmni": {
+    "defaultValue": "No",
+    "description": "If you use Omni-Channel, answer Yes and Service Analytics creates an Omni-Channel dashboard and dataset.",
+    "label": "10. Do you use Omni-Channel to create and route work items?",
+    "required": true,
+    "variableType": {
+      "enums": [
+        "Yes",
+        "No"
+      ],
+      "type": "StringType"
+    }
+  },
+  "CSATObj": {
+    "defaultValue": {
+      "sobjectName": "Case"
+    },
+    "required": true,
+    "description": "Service Analytics defaults to the Case object. If you use a different object to track CSAT, select it from the list below.",
+    "label": "1. What object do you use to track customer satisfaction?",
+    "variableType": {
+      "type": "SobjectType"
+    }
+  },
+  "CSATField": {
+    "defaultValue": {
+      "fieldName": "",
+      "sobjectName": "{{Variables.CSATObj.sobjectName}}"
+    },
+    "required": false,
+    "description": "Service Analytics uses your choice to provide a single numerical score to indicate customer satisfaction rating.",
+    "excludeSelected": true,
+    "label": "2. Which field on the object you just selected do you use to track CSAT?",
+    "variableType": {
+      "dataType": "xsd:double",
+      "type": "SobjectFieldType"
+    }
+  },
+  "JoinKeyOnCase": {
+    "label": "3. If you selected a different object than Case in Question 1, which field from the Cases object do you want to use as a join key?",
+    "description": "Service Analytics needs to join the object selected in Question 1 -- if it is not the Cases object -- with the Cases object. Determine a field from Cases to use for the join and enter its API name here. If it is the Id field, which is common in many orgs, enter Id. If it is another field enter its API name.",
+    "variableType": {
+      "type": "StringType"
+    },
+    "required": false
+  },
+  "JoinKeyOtherObj": {
+    "label": "4. If you selected a different object than Case in Question 1, which field from that object do you want to use as a join key?",
+    "description": "If you selected an object other than Cases in Question 1, that object needs to be joined with the Cases object. Determine a field from the object selected in Question 1 to use for the join and enter its API name here. You can use any field from that object.",
+    "variableType": {
+      "type": "StringType"
+    },
+    "required": false
+  },
+  "KnowldegeArticleType": {
+    "label": "1. What Salesforce Knowledge article type you would like to include in Service Analytics?",
+    "description": "Article type controls how an article displays and what type of information of fields are included. Article Type names are managed within Setup -- Customize -- Knowledge.",
+    "excludeSelected": true,
+    "excludes": [
+      "/^(?:(?!_kav).)*$/"
+    ],
+    "required": false,
+    "variableType": {
+      "type": "SobjectType"
+    }
+  },
+  "IncludeServiceLevel": {
+    "defaultValue": 50,
+    "label": "1. What is the maximum time service agents should keep customers waiting during a call?",
+    "description": "Indicate the time in seconds. Service Analytics uses the target waiting time to calculate agent service level.",
+    "variableType": {
+      "type": "NumberType"
+    },
+    "required": false
+  },
+  "ScanOrg": {
+    "defaultValue": "Yes",
+    "description": "Answer Yes to run a scan of your data (recommended). If you have the required data, Service Analytics creates the app. If you dont, Service Analytics tells you what you need to fix before you can create the app. For larger orgs, the scan may take a few minutes. Answer No if you have already created an app successfully.",
+    "label": "1. Do you want Service Analytics to verify that your orgs data meets minimum requirements to successfully create an app?",
+    "required": true,
+    "variableType": {
+      "enums": [
+        "Yes",
+        "No"
+      ],
+      "type": "StringType"
+    }
+  }
+}

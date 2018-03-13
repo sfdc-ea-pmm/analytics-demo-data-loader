@@ -1,0 +1,149 @@
+{
+	"constants": [
+            {
+	           "name": "Join_EventOwner_params_left",
+	           "value": "${Variables.isDemoApplication == 'Yes' ? 'Extract_Event_cleaned' : 'Extract_Event'}"
+            }
+	],
+	"rules": [
+		{
+      		"name": "HandleEventExtraction",
+      		"condition": "${Variables.isDemoApplication == 'Yes'}",
+      		"actions": [
+      			{
+      				"action": "add",
+      				"description": "Add CreatedDate__c field in Event extraction.",
+      				"path": "$.workflowDefinition.Extract_Event.parameters.fields",
+      				"index": 9,
+      				"value": {
+      					"name": "CreatedDate__c"
+      				}
+      			},
+      			{
+      				"action": "add",
+      				"description": "Add Put External ID field in Event extraction.",
+      				"path": "$.workflowDefinition.Extract_Event.parameters.fields",
+      				"index": 10,
+      				"value": {
+      					"name": "External_ID__c"
+      				}
+      			},
+      			{
+      				"action": "put",
+      				"description": "Filter to get the user's generated data.",
+      				"key": "Extract_Event_get_Users_Data",
+      				"path": "$.workflowDefinition",
+      				"value": {
+      					"action": "filter",      
+						"parameters": {            
+							"filter": "External_ID__c:EQ:''",
+							"source": "Extract_Event"
+						}
+      				}
+      			},
+      			{
+      				"action": "put",
+      				"description": "Filter to get the data generated for demo.",
+      				"path": "$.workflowDefinition",
+      				"key": "Extract_Event_get_Demo_Data",
+      				"value": {
+      					"action": "filter",      
+						"parameters": {            
+							"filter": "External_ID__c:N:''",
+							"source": "Extract_Event"
+						}
+      				}
+      			},
+      			{
+      				"action": "put",
+      				"description": "Drop CreatedDate field from Extract_Event_get_Demo_Data.",
+      				"key": "Extract_Event_get_Demo_Data_drop_CreatedDate",
+      				"path": "$.workflowDefinition",
+      				"value": {
+      					"action": "sliceDataset",
+						"parameters": {            
+							"source": "Extract_Event_get_Demo_Data",
+							"mode": "drop",
+							"fields": [
+								{
+									"name": "CreatedDate"
+								}
+							]
+						}
+      				}
+      			},
+      			{
+      				"action": "put",
+      				"description": "Rename CreatedDate__c field to CreatedDate in Extract_Event_get_Demo_Data_drop_CreatedDate",
+      				"key": "Extract_Event_get_Demo_Data_rename_fields",
+      				"path": "$.workflowDefinition",
+      				"value": {
+      					"action": "computeExpression",
+						"parameters": {            
+							"source": "Extract_Event_get_Demo_Data_drop_CreatedDate",
+							"mergeWithSource": true,
+							"computedFields": [
+								{
+									"name": "CreatedDate",
+									"type": "Date",
+									"label": "CreatedDate",
+									"saqlExpression": "toDate(CreatedDate__c, \"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\")",
+									"default":"",
+									"format":"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+								}
+							]
+						}
+      				}
+      			},
+      			{
+      				"action": "put",
+      				"description": "Final merge of user and demo data for Event.",
+      				"key": "Extract_Event_merge",
+      				"path": "$.workflowDefinition",
+      				"value": {
+      					"action": "append",
+						"parameters": {            
+							"sources": [
+								"Extract_Event_get_Demo_Data_rename_fields",
+								"Extract_Event_get_Users_Data"
+							]
+						}
+      				}
+      			},
+                        {
+                              "action": "put",
+                              "description": "Final cleaning of user and demo data for Event.",
+                              "key": "Extract_Event_cleaned",
+                              "path": "$.workflowDefinition",
+                              "value": {
+                                    "action": "sliceDataset",
+                                    "parameters": {            
+                                          "source": "Extract_Event_merge",
+                                          "mode": "drop",
+                                          "fields": [
+                                                {
+                                                      "name": "CreatedDate__c"
+                                                },
+                                                {
+                                                      "name": "External_ID__c"
+                                                }
+                                          ]
+                                    }
+                              }
+                        },
+      			{
+      				"action": "set",
+      				"description": "Set the left property of Join_EventOwner.parameters based on Demo App or not.",
+      				"path": "$.workflowDefinition.Join_EventOwner.parameters['left']",
+      				"value": "${Constants.Join_EventOwner_params_left}"
+      			}
+			],						
+			"appliesTo": [
+                        {
+                              "type": "workflow",
+                              "name": "*"
+                        }
+      		]
+		}
+	]
+}

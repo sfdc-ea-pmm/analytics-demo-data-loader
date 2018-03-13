@@ -1,0 +1,84 @@
+{
+  "pages": [
+    {
+      "title": "These questions focus on case metrics.",
+      "variables": [
+        {"name": "CaseDuration"},
+        {"name": "CaseDurationMoreFields"},
+        {"name": "CaseSLA"},
+        {"name": "CaseFCR"},
+        {"name": "Fiscal_Month"}
+      ],
+      "helpUrl":"https://help.salesforce.com/apex/HTViewHelpDoc?id=bi_app_service_wave.htm"
+    },
+    {
+      "title": "Service Analytics uses answers to these questions to drill into your Service Cloud data.",
+      "variables": [
+    	  {"name": "CaseStatus"},
+    	  {"name": "CaseSupportLevel"},
+        {"name": "CaseSeverityLevel"},
+        {"name": "CaseProduct"},
+        {"name": "CaseReason"},
+        {"name": "CaseType"},
+        {"name": "CaseOrigin"},
+        {"name": "GeographyObject"},
+        {"name": "Geography"},
+        {"name": "IncludeCaseRecordTypes"},
+        {"name": "IncludeQueueNames"},
+        {"name": "CaseMoreMeasures"},
+        {"name": "CaseMoreDims"}
+      ],
+      "helpUrl":"https://help.salesforce.com/apex/HTViewHelpDoc?id=bi_app_service_wave.htm"
+    },
+    {
+      "title": "Service Analytics uses answers to these questions to understand the areas you are interested in reporting on.",
+      "variables": [
+        {"name": "IncludeCaseHistory"},
+        {"name": "TrackCSAT"},
+        {"name": "IncludeKnowledge"},
+        {"name": "IncludeTelephony"},
+        {"name": "IncludeOpportunity"},
+        {"name": "IncludeOpportunityRecordTypes"},
+        {"name": "IncludeEvent"},
+        {"name": "IncludeBusinessHours"},
+        {"name": "IncludeChat"},
+        {"name": "IncludeOmni"}
+      ],
+      "helpUrl":"https://help.salesforce.com/apex/HTViewHelpDoc?id=bi_app_service_wave.htm"
+    },
+    {
+      "title": "Service Analytics uses the answers to these questions to set up how dashboards display CSAT data.",
+      "condition": "{{Variables.TrackCSAT == 'Yes'}}",
+      "variables": [
+        {"name": "CSATObj"},
+        {"name": "CSATField"},
+        {"name": "JoinKeyOnCase"},
+        {"name": "JoinKeyOtherObj"}
+      ],
+      "helpUrl":"https://help.salesforce.com/apex/HTViewHelpDoc?id=bi_app_service_wave.htm"
+    },
+    {
+      "title": "Service Analytics uses your answer to this question to set up how dashboards use Knowledge.",
+      "condition": "{{Variables.IncludeKnowledge == 'Yes'}}",
+      "variables": [
+        {"name": "KnowldegeArticleType"}
+      ],
+      "helpUrl":"https://help.salesforce.com/apex/HTViewHelpDoc?id=bi_app_service_wave.htm"
+    },
+    {
+      "title": "Service Analytics uses your answer to this question to set up how dashboards use Telephony.",
+      "condition": "{{Variables.IncludeTelephony == 'Yes'}}",
+      "variables": [
+        {"name": "IncludeServiceLevel"}
+      ],
+      "helpUrl":"https://help.salesforce.com/apex/HTViewHelpDoc?id=bi_app_service_wave.htm"
+    },
+    {
+      "title": "Service Analytics uses your answer to do additional scans on your org.",
+      "variables": [
+        {"name": "ScanOrg"}
+      ],
+      "helpUrl":"https://help.salesforce.com/apex/HTViewHelpDoc?id=bi_app_service_wave.htm"
+    }
+  ]
+}

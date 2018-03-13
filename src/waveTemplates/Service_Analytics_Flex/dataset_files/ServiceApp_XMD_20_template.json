@@ -1,0 +1,403 @@
+{
+  "derivedDimensions": [
+    {
+      "customActionsEnabled": true,
+      "field": "IsWon",
+      "label": "IsWon",
+      "linkTemplateEnabled": true,
+      "members": [
+        {
+          "label": "Lost",
+          "member": "false"
+        },
+        {
+          "label": "Won",
+          "member": "true"
+        }
+      ],
+      "salesforceActionsEnabled": true,
+      "showInExplorer": false
+    },
+    {
+      "customActionsEnabled": true,
+      "field": "Performance",
+      "label": "Performance",
+      "linkTemplateEnabled": true,
+      "members": [
+        {
+          "label": "Team Average",
+          "member": "All Agents - Team"
+        }
+      ],
+      "salesforceActionsEnabled": true,
+      "showInExplorer": false
+    }
+  ],
+  "derivedMeasures": [
+    {
+      "field": "tot_backlogdays",
+      "format": {
+        "customFormat": "[\"0.# days\",\"1\"]"
+      },
+      "label": "tot_backlogdays",
+      "showInExplorer": false
+    },
+    {
+      "field": "Percent",
+      "format": {
+        "customFormat": "[\"#,###.#%\",1]"
+      },
+      "label": "Percent",
+      "showInExplorer": false
+    },
+    {
+      "field": "Amount",
+      "format": {
+        "customFormat": "[\"$#,###\",1]"
+      },
+      "label": "Amount",
+      "showInExplorer": false
+    },
+    {
+      "field": "AttachedRate",
+      "format": {
+        "customFormat": "[\"#,###.#%\",100]"
+      },
+      "label": "AttachedRate",
+      "showInExplorer": false
+    }
+  ],
+  "dimensions": [
+    {
+      "customActionsEnabled": true,
+      "field": "${Constants.CaseFCR}",
+      "label": "${Constants.CaseFCRLabel}",
+      "linkTemplateEnabled": true,
+      "salesforceActionsEnabled": true
+    },
+    {
+      "customActionsEnabled": true,
+      "field": "${Constants.CaseStatus}",
+      "label": "${Constants.CaseStatusLabel}",
+      "linkTemplateEnabled": true,
+      "salesforceActionsEnabled": true
+
+    },
+    {
+      "customActionsEnabled": true,
+      "field": "${Constants.CaseProduct}",
+      "label": "${Constants.CaseProductLabel}",
+      "linkTemplateEnabled": true,
+      "salesforceActionsEnabled": true
+    },
+    {
+      "customActionsEnabled": true,
+      "field": "${Constants.CaseSLA}",
+      "label": "${Constants.CaseSLALabel}",
+      "linkTemplateEnabled": true,
+      "salesforceActionsEnabled": true
+    },
+    {
+      "customActionsEnabled": true,
+      "field": "${Constants.CaseRecordTypeField}",
+      "label": "${Constants.CaseRecordTypeLabel}",
+      "linkTemplateEnabled": true,
+      "salesforceActionsEnabled": true
+    },
+    {
+      "customActionsEnabled": true,
+      "field": "${Constants.CaseSeverityLevel}",
+      "label": "${Constants.CaseSeverityLevel}",
+      "linkTemplateEnabled": true,
+      "salesforceActionsEnabled": true},
+    {
+      "customActionsEnabled": true,
+      "field": "${Constants.ClosedDate}",
+      "label": "Closed Date",
+      "linkTemplateEnabled": true,
+      "salesforceActionsEnabled": true,
+      "showInExplorer": false
+    },
+    {
+      "customActionsEnabled": true,
+      "field": "${Constants.CaseSupportLevel}",
+      "label": "Case Support Level",
+      "linkTemplateEnabled": true,
+      "salesforceActionsEnabled": true
+    },
+    {
+      "customActionsEnabled": true,
+      "field": "${Constants.CaseGeography}",
+      "label": "${Constants.CaseGeographyLabel}",
+      "linkTemplateEnabled": true,
+      "salesforceActionsEnabled": true
+    },
+    {
+      "customActionsEnabled": true,
+      "field": "${Constants.CaseReason}",
+      "label": "${Constants.CaseReasonLabel}",
+      "linkTemplateEnabled": true,
+      "salesforceActionsEnabled": true
+    },
+    {
+      "customActionsEnabled": true,
+      "field": "${Constants.CaseType}",
+      "label": "${Constants.CaseTypeLabel}",
+      "linkTemplateEnabled": true,
+      "salesforceActionsEnabled": true
+    },
+    {
+      "customActionsEnabled": true,
+      "field": "${Constants.CaseOrigin}",
+      "label": "${Constants.CaseOriginLabel}",
+      "linkTemplateEnabled": true,
+      "salesforceActionsEnabled": true
+
+    },
+    {
+      "field": "AccountId",
+      "label": "Account ID"
+
+    },
+    {
+      "field": "Role.ParentRoleId",
+      "label": "Role.ParentRoleId",
+      "showInExplorer": false
+    },
+    {
+      "field": "ContactId",
+      "label": "Contact ID"
+    },
+    {
+      "field": "IsClosed",
+      "label": "Closed",
+      "members": [
+        {
+          "label": "Open",
+          "member": "false"
+        },
+        {
+          "label": "Closed",
+          "member": "true"
+        }
+      ]
+    },
+    {
+      "field": "Account.Industry",
+      "label": "Industry"
+    },
+    {
+      "field": "OwnerId",
+      "label": "Owner ID"
+    },
+    {
+      "field": "CaseNumber",
+      "label": "Case Number",
+      "linkTemplate": "/{{row.Id}}",
+      "linkTooltip": "Open Case",
+      "recordIdField": "Id"
+    },
+    {
+      "field": "Owner.Name",
+      "label": "Agent",
+      "linkTemplate": "/{{row.OwnerId}}",
+      "linkTooltip": "Open User Record",
+      "recordIdField": "OwnerId"
+    },
+    {
+      "field": "Contact.Name",
+      "label": "Contact"
+    },
+    {
+      "field": "IsEscalated",
+      "label": "Is Escalated"
+    },
+    {
+      "field": "Role.Name",
+      "label": "Role"
+    },
+    {
+      "field": "CreatedDate",
+      "label": "Created Date"
+    },
+    {
+      "field": "Account.Name",
+      "label": "Account",
+      "linkTemplate": "/{{row.AccountId}}",
+      "linkTooltip": "Open Account",
+      "recordIdField": "AccountId"
+    }
+  ],
+  "measures": [
+    {
+      "field": "CSAT",
+      "format": {
+        "customFormat": "[\"0.#\",1]",
+        "decimalDigits": 0
+      }
+    },
+    {
+      "field": "${Constants.CaseDuration}",
+      "format": {
+        "customFormat": "[\"0.# days\",1]"
+      },
+      "label": "${Constants.CaseDuration}"
+    },
+    {
+      "field": "BH.FridayDuration",
+      "showInExplorer": false
+    },
+    {
+      "field": "BH.MondayDuration",
+      "showInExplorer": false
+    },
+    {
+      "field": "BH.SaturdayDuration",
+      "showInExplorer": false
+    },
+    {
+      "field": "BH.SundayDuration",
+      "showInExplorer": false
+    },
+    {
+      "field": "BH.ThursdayDuration",
+      "showInExplorer": false
+    },
+    {
+      "field": "BH.TuesdayDuration",
+      "showInExplorer": false
+    },
+    {
+      "field": "BH.WednesdayDuration",
+      "showInExplorer": false
+    },
+    {
+      "field": "BH.SundayStartTime_sec",
+      "showInExplorer": false
+    },
+    {
+      "field": "BH.MondayStartTime_sec",
+      "showInExplorer": false
+    },
+    {
+      "field": "BH.TuesdayStartTime_sec",
+      "showInExplorer": false
+    },
+    {
+      "field": "BH.WednesdayStartTime_sec",
+      "showInExplorer": false
+    },
+    {
+      "field": "BH.ThursdayStartTime_sec",
+      "showInExplorer": false
+    },
+    {
+      "field": "BH.FridayStartTime_sec",
+      "showInExplorer": false
+    },
+    {
+      "field": "BH.SaturdayStartTime_sec",
+      "showInExplorer": false
+    },
+    {
+      "field": "BH.SundayEndTime_sec",
+      "showInExplorer": false
+    },
+    {
+      "field": "BH.MondayEndTime_sec",
+      "showInExplorer": false
+    },
+    {
+      "field": "BH.TuesdayEndTime_sec",
+      "showInExplorer": false
+    },
+    {
+      "field": "BH.WednesdayEndTime_sec",
+      "showInExplorer": false
+    },
+    {
+      "field": "BH.ThursdayEndTime_sec",
+      "showInExplorer": false
+    },
+    {
+      "field": "BH.FridayEndTime_sec",
+      "showInExplorer": false
+    },
+    {
+      "field": "BH.SaturdayEndTime_sec",
+      "showInExplorer": false
+    },
+    {
+      "field": "NumWeeks",
+      "showInExplorer": false
+    },
+    {
+      "field": "StartWeekDay",
+      "showInExplorer": false
+    },
+    {
+      "field": "EndWeekDay",
+      "showInExplorer": false
+    },
+    {
+      "field": "TotalThursdayDuration",
+      "showInExplorer": false
+    },
+    {
+      "field": "TotalFridayDuration",
+      "showInExplorer": false
+    },
+    {
+      "field": "TotalSaturdayDuration",
+      "showInExplorer": false
+    },
+    {
+      "field": "TotalSundayDuration",
+      "showInExplorer": false
+    },
+    {
+      "field": "TotalMondayDuration",
+      "showInExplorer": false
+    },
+    {
+      "field": "TotalTuesdayDuration",
+      "showInExplorer": false
+    },
+    {
+      "field": "TotalWednesdayDuration",
+      "showInExplorer": false
+    },
+    {
+      "field": "BusinessCreateDateStartTimeInSeconds",
+      "showInExplorer": false
+    },
+    {
+      "field": "BusinessCreateDateEndTimeInSeconds",
+      "showInExplorer": false
+    },
+    {
+      "field": "BusinessValidToStartTimeInSeconds",
+      "showInExplorer": false
+    },
+    {
+      "field": "BusinessValidToEndTimeInSeconds",
+      "showInExplorer": false
+    },
+    {
+      "field": "StartTimeAdjusted",
+      "showInExplorer": false
+    },
+    {
+      "field": "EndTimeAdjusted",
+      "showInExplorer": false
+    },
+    {
+      "field": "PartialDaysDurationStart",
+      "showInExplorer": false
+    },
+    {
+      "field": "PartialDaysDurationEnd",
+      "showInExplorer": false
+    }
+  ]
+}

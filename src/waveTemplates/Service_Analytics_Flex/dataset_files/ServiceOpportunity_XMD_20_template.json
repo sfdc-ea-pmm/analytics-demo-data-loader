@@ -1,0 +1,119 @@
+{
+    "measures": [
+        {
+            "field": "Amount",
+            "format": {
+                "decimalDigits": 2,
+                "customFormat": "[\"$#,###\",1]"
+            }
+        }
+    ],
+    "derivedDimensions": [
+
+    ],
+    "derivedMeasures": [
+        {
+            "field": "PercentageCSATChange",
+            "format": {"customFormat": "[\"#,###%\",100]"},
+            "label": "PercentageCSATChange",
+            "showInExplorer": false
+        },
+
+        {
+            "field": "PercentageCaseChange",
+            "format": {"customFormat": "[\"#,###%\",100]"},
+            "label": "PercentageCaseChange",
+            "showInExplorer": false
+        },
+        {
+            "field": "change",
+            "format": {"customFormat": "[\"#,###%\",100]"},
+            "label": "change",
+            "showInExplorer": false
+        },
+        {
+            "field": "CaseCustomerSatImprovement",
+            "format": {"customFormat": "[\"#,###%\",100]"},
+            "label": "CaseCustomerSatImprovement",
+            "showInExplorer": false
+        },
+        {
+            "field": "AttachedRate",
+            "format": {"customFormat": "[\"#,###%\",100]"},
+            "label": "AttachedRate",
+            "showInExplorer": false
+        },
+        {
+            "field": "CSAT",
+            "format": {"customFormat": "[\"\",1]"},
+            "label": "CSAT",
+            "showInExplorer": false
+        },
+        {
+            "field": "CaseDurationImprovement",
+            "format": {"customFormat": "[\"#,###%\",100]"},
+            "label": "CaseDurationImprovement",
+            "showInExplorer": false
+        },
+        {
+            "field": "PercentageCloseChange",
+            "format": {"customFormat": "[\"#,###%\",100]"},
+            "label": "PercentageCloseChange",
+            "showInExplorer": false
+        },
+        {
+            "field": "PercentageFCRChange",
+            "format": {"customFormat": "[\"#,###%\",100]"},
+            "label": "PercentageFCRChange",
+            "showInExplorer": false
+        }
+    ],
+    "dimensions": [
+      
+        {
+            "field": "CloseDate",
+            "label": "Closed Date"
+        },
+        {
+            "recordIdField": "Id",
+            "field": "Name",
+            "linkTemplate": "/{{row.Id}}",
+            "label": "Opportunity Name",
+            "linkTooltip": "Open Opportunity"
+        },
+        {
+            "field": "Account.Industry",
+            "label": "Industry"
+        },
+        {
+            "field": "Account.Id",
+            "label": "Account ID"
+        },
+        {
+            "field": "Case.${Constants.CaseSeverityLevel}",
+            "label": "${Constants.CaseSeverityLevelLabel}"
+        },
+        {
+            "field": "Case.IsEscalated",
+            "label": "Is Case Escalated"
+        },
+        {
+            "recordIdField": "Case.Id",
+            "field": "Case.CaseNumber",
+            "linkTemplate": "/{{row.Case.Id}}",
+            "label": "Case Number",
+            "linkTooltip": "Open Case"
+        },
+        {
+            "field": "CreatedDate",
+            "label": "Created Date"
+        },
+        {
+            "recordIdField": "Account.Id",
+            "field": "Account.Name",
+            "linkTemplate": "/{{row.Account.Id}}",
+            "label": "Account",
+            "linkTooltip": "Open Account"
+        }
+    ]
+}

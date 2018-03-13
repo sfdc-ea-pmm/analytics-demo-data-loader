@@ -1,0 +1,208 @@
+{
+  "icons" : {
+    "appBadge" : {
+      "name" : "10.png"
+    },
+    "templateBadge" : {
+      "name" : "service.png"
+    },
+    "templateDetail" : {
+      "name" : "service-details.png"
+    }
+  },
+  "templateType" : "app",
+  "description" : "The latest version of the app, which helps your entire team unlock the full power of Service Cloud data. With all-new dashboards built with the dashboard designer, it’s never been easier to build a winning service team. v3.0 #090",
+  "name" : "Service_Analytics_Flex",
+  "releaseInfo" : {
+    "notesFile" : "releasenotes.html",
+    "templateVersion" : "3.0"
+  },
+  "assetVersion" : 41.0,
+  "variableDefinition" : "variables.json",
+  "dashboards" : [
+  {
+      "condition" : "${Variables.IncludeKnowledge == 'Yes'}",
+      "name" : "Service_Knowledge",
+      "file" : "dashboards/Service_Knowledge_Efficiency.json",
+      "label" : "Service Knowledge Efficiency"
+    },
+  {
+      "condition" : "${Variables.IncludeKnowledge == 'Yes'}",
+      "name" : "Service_Knowledge_Metrics",
+      "file" : "dashboards/Service_Knowledge_Usage.json",
+      "label" : "Service Knowledge Usage"
+    },
+  {
+      "name" : "Service_Agent_Sidebar_By_Similarity",
+      "file" : "dashboards/Service_Agent_Sidebar_By_Similarity.json",
+      "label" : "Service Agent Sidebar By Similarity"
+    },
+  {
+      "name" : "Service_Account_Profile",
+      "file" : "dashboards/Service_Account_Profile.json",
+      "label" : "Service Account Profile"
+    },
+  {
+      "name" : "Service_Agent_Activity",
+      "file" : "dashboards/Service_Agent_Activity.json",
+      "label" : "Service Agent Activity"
+    },
+  {
+      "name" : "Service_By_TeamEfficiency",
+      "file" : "dashboards/Service_Agent_Performance.json",
+      "label" : "Service Agent Performance"
+    },
+  {
+      "condition" : "${Variables.IncludeCaseHistory == 'Yes'}",
+      "name" : "Service_Case_History_Sidebar",
+      "file" : "dashboards/Service_Agent_Sidebar_By_Case_History.json",
+      "label" : "Service Agent Sidebar By Case History"
+    },
+  {
+      "name" : "Service_Agent_Sidebar_By_Customer",
+      "file" : "dashboards/Service_Agent_Sidebar_By_Customer.json",
+      "label" : "Service Agent Sidebar By Customer"
+    },
+  {
+      "name" : "Service_Backlog_Analysis",
+      "file" : "dashboards/Service_Backlog.json",
+      "label" : "Service Backlog"
+    },
+  {
+      "name" : "My_Performance_Summary",
+      "file" : "dashboards/My_Performance_Summary.json",
+      "label" : "My Performance Summary"
+    },
+  {
+      "name" : "Service_By_EngagementEfficiency",
+      "file" : "dashboards/Service_Channel_Review.json",
+      "label" : "Service Channel Review"
+    },
+  {
+      "condition" : "${Variables.TrackCSAT == 'Yes'}",
+      "name" : "Service_Customer_Satisfaction",
+      "file" : "dashboards/Service_Customer_Satisfaction.json",
+      "label" : "Service Customer Satisfaction"
+    },
+  {
+      "name" : "Service_By_OpenCases",
+      "file" : "dashboards/Service_Open_Cases.json",
+      "label" : "Service Open Cases"
+    },
+  {
+      "name" : "Service_Overview",
+      "file" : "dashboards/Service_Manager_Overview.json",
+      "label" : "Service Analytics Overview"
+    },
+  {
+      "condition" : "${Variables.IncludeTelephony == 'Yes'}",
+      "name" : "Service_Telephony",
+      "file" : "dashboards/Service_Telephony.json",
+      "label" : "Service Telephony"
+    },
+  {
+      "condition" : "${Variables.IncludeChat == 'Yes'}",
+      "name" : "Service_Live_Agent_Chat",
+      "file" : "dashboards/Service_Live_Agent_Chat.json",
+      "label" : "Service Live Agent Chat"
+    },
+  {
+      "condition" : "${Variables.IncludeOmni == 'Yes'}",
+      "name" : "Service_Omni",
+      "file" : "dashboards/Service_Omni.json",
+      "label" : "Service Omni"
+    }
+  ],
+  "label" : "Service Analytics Demo",
+  "folderDefinition" : "folder.json",
+  "rules" : [
+  {
+      "file" : "rules.json",
+      "type" : "templateToApp"
+    },
+  {
+      "file" : "demo_rules/handle-case.rules.json",
+      "type" : "templateToApp"
+    },
+  {
+      "file" : "demo_rules/handle-case-article.rules.json",
+      "type" : "templateToApp"
+    },
+  {
+      "file" : "macros.json",
+      "type" : "templateToApp"
+    }
+  ],
+  "eltDataflows" : [
+  {
+      "file" : "dataflows/ServiceAnalyticsDataflow.json"
+    }
+  ],
+  "externalFiles" : [ ],
+  "datasetFiles" : [
+  {
+      "name" : "ServiceCase",
+      "label" : "ServiceCase",
+      "userXmd" : "dataset_files/ServiceApp_XMD_20_template.json"
+    },
+  {
+      "condition" : "${Variables.IncludeOpportunity == 'Yes'}",
+      "name" : "ServiceOpportunity",
+      "label" : "ServiceOpportunity",
+      "userXmd" : "dataset_files/ServiceOpportunity_XMD_20_template.json"
+    },
+  {
+      "condition" : "${Variables.IncludeKnowledge == 'Yes'}",
+      "name" : "ServiceKnowledge",
+      "label" : "ServiceKnowledge",
+      "userXmd" : "dataset_files/ServiceKnowledge_XMD_20_template.json"
+    },
+  {
+      "condition" : "${Variables.IncludeKnowledge == 'Yes'}",
+      "name" : "ServiceKnowledgeAttached",
+      "label" : "ServiceKnowledgeAttached",
+      "userXmd" : "dataset_files/ServiceKnowledgeAttached_XMD_20_template.json"
+    },
+  {
+      "name" : "ServiceActivity",
+      "label" : "ServiceActivity",
+      "userXmd" : "dataset_files/ServiceActivity_XMD_20_template.json"
+    },
+  {
+      "condition" : "${Variables.IncludeCaseHistory == 'Yes'}",
+      "label" : "ServiceCaseHistory",
+      "name" : "ServiceCaseHistory",
+      "userXmd" : "dataset_files/ServiceCaseHistory_XMD_20_template.json"
+    },
+  {
+      "condition" : "${Variables.IncludeChat == 'Yes'}",
+      "label" : "ServiceChatTranscript",
+      "name" : "ServiceChatTranscript",
+      "userXmd" : "dataset_files/ServiceChatTranscript_XMD_20_template.json"
+    },
+  {
+      "condition" : "${Variables.IncludeChat == 'Yes'}",
+      "label" : "ServiceChatTranscriptEvent",
+      "name" : "ServiceChatTranscriptEvent",
+      "userXmd" : "dataset_files/ServiceChatTranscriptEvent_XMD_20_template.json"
+    },
+  {
+      "condition" : "${Variables.IncludeOmni == 'Yes'}",
+      "label" : "ServiceOmniAgentWork",
+      "name" : "ServiceOmniAgentWork",
+      "userXmd" : "dataset_files/ServiceOmniAgentWork_XMD_20_template.json"
+    },
+  {
+      "condition" : "${Variables.IncludeOmni == 'Yes'}",
+      "label" : "ServiceOmniUserPresence",
+      "name" : "ServiceOmniUserPresence",
+      "userXmd" : "dataset_files/ServiceOmniUserPresence_XMD_20_template.json"
+    }
+  ],
+  "apexCallback" : {
+    "namespace" : "wavetemplate",
+    "name" : "ServiceWaveConfigurationModifier"
+  },
+  "uiDefinition" : "ui.json",
+  "lenses" : [ ]
+}

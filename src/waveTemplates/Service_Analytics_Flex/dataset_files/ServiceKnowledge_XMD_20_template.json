@@ -1,0 +1,308 @@
+{
+    "measures": [
+        {
+            "field": "ArticleVersion.CreatedDate_sec_epoch",
+            "label": "ArticleVersion.CreatedDate_sec_epoch"
+        },
+        {
+            "field": "CreatedDate_day_epoch",
+            "label": "CreatedDate_day_epoch"
+        },
+        {
+            "field": "VoteStat.NormalizedScore",
+            "format": {
+                "decimalDigits": 4,
+                "customFormat": "[\"\",1]"
+            },
+            "label": "Vote Normalized Score"
+        },
+        {
+            "field": "FirstPublishedDate_day_epoch",
+            "label": "FirstPublishedDate_day_epoch"
+        },
+        {
+            "field": "ViewStat.ViewCount",
+            "format": {
+                "decimalDigits": 0,
+                "customFormat": "[\"\",1]"
+            },
+            "label": "View Count"
+        },
+        {
+            "field": "FirstPublishedDate_sec_epoch",
+            "label": "FirstPublishedDate_sec_epoch"
+        },
+        {
+            "field": "LastPublishedDate_day_epoch",
+            "label": "LastPublishedDate_day_epoch"
+        },
+        {
+            "field": "ArticleVersion.CreatedDate_day_epoch",
+            "label": "ArticleVersion.CreatedDate_day_epoch"
+        },
+        {
+            "field": "CreatedDate_sec_epoch",
+            "label": "CreatedDate_sec_epoch"
+        },
+        {
+            "field": "ViewStat.NormalizedScore",
+            "format": {
+                "decimalDigits": 4,
+                "customFormat": "[\"\",1]"
+            },
+            "label": "View Normalized Score"
+        },
+        {
+            "field": "LastPublishedDate_sec_epoch",
+            "label": "LastPublishedDate_sec_epoch"
+        },
+        {
+            "field": "CaseAssociationCount",
+            "format": {
+                "decimalDigits": 0,
+                "customFormat": "[\"\",1]"
+            },
+            "label": "Case Association Count"
+        }
+    ],
+    "dimensions": [
+        {
+            "field": "LastPublishedDate_Minute",
+            "label": "LastPublishedDate_Minute"
+        },
+        {
+            "field": "ArticleVersion.IsVisibleInApp",
+            "label": "ArticleVersion.IsVisibleInApp"
+        },
+        {
+            "field": "ArticleVersion.CreatedDate_Hour",
+            "label": "ArticleVersion.CreatedDate_Hour"
+        },
+        {
+            "field": "ArticleVersion.DataCategory.DataCategoryGroupName",
+            "label": "Data Category Group Name"
+        },
+        {
+            "field": "CreatedDate_Second",
+            "label": "CreatedDate_Second"
+        },
+        {
+            "field": "LastPublishedDate_Month",
+            "label": "LastPublishedDate_Month"
+        },
+        {
+            "field": "ArticleVersion.IsVisibleInPrm",
+            "label": "ArticleVersion.IsVisibleInPrm"
+        },
+        {
+            "field": "LastPublishedDate",
+            "label": "Last Published Date"
+        },
+        {
+            "field": "ArticleVersion.DataCategory.DataCategoryName",
+            "label": "Data Category Name"
+        },
+        {
+            "field": "CreatedDate_Day",
+            "label": "CreatedDate_Day"
+        },
+        {
+            "field": "CreatedById",
+            "label": "Created By ID"
+        },
+        {
+            "field": "ArticleNumber",
+            "label": "Article Number"
+        },
+        {
+            "field": "ArticleVersion.CreatedDate",
+            "label": "ArticleVersion.CreatedDate"
+        },
+        {
+            "field": "FirstPublishedDate_Month",
+            "label": "FirstPublishedDate_Month"
+        },
+        {
+            "field": "ArticleVersion.CreatedDate_Month",
+            "label": "ArticleVersion.CreatedDate_Month"
+        },
+        {
+            "field": "ArticleVersion.CreatedDate_Minute",
+            "label": "ArticleVersion.CreatedDate_Minute"
+        },
+        {
+            "field": "ChannelList",
+            "label": "Channel List"
+        },
+        {
+            "field": "CreatedDate_Week",
+            "label": "CreatedDate_Week"
+        },
+        {
+            "field": "ViewStat.Channel",
+            "label": "ViewStat.Channel"
+        },
+        {
+            "field": "IsDraft",
+            "label": "Is Draft"
+        },
+        {
+            "field": "LastPublishedDate_Second",
+            "label": "LastPublishedDate_Second"
+        },
+        {
+            "recordIdField": "CreatedById",
+            "field": "User.Name",
+            "linkTemplate": "/{{row.CreatedById}}",
+            "label": "Article Creator",
+            "linkTooltip": "Open User"
+        },
+        {
+            "field": "LastPublishedDate_Week",
+            "label": "LastPublishedDate_Week"
+        },
+        {
+            "field": "CreatedDate_Minute",
+            "label": "CreatedDate_Minute"
+        },
+        {
+            "field": "ArticleVersion.Id",
+            "label": "ArticleVersion.Id"
+        },
+        {
+            "field": "ArticleVersion.IsLatestVersion",
+            "label": "ArticleVersion.IsLatestVersion"
+        },
+        {
+            "field": "ArticleVersion.CreatedDate_Week",
+            "label": "ArticleVersion.CreatedDate_Week"
+        },
+        {
+            "field": "FirstPublishedDate_Second",
+            "label": "FirstPublishedDate_Second"
+        },
+        {
+            "field": "ArticleVersion.CreatedById",
+            "label": "ArticleVersion.CreatedById"
+        },
+        {
+            "field": "CreatedDate",
+            "label": "Created Date"
+        },
+        {
+            "field": "FirstPublishedDate_Year",
+            "label": "FirstPublishedDate_Year"
+        },
+        {
+            "field": "Id",
+            "label": "Knowledge Article ID"
+        },
+        {
+            "field": "ArticleVersion.CreatedDate_Day",
+            "label": "ArticleVersion.CreatedDate_Day"
+        },
+        {
+            "field": "CreatedDate_Quarter",
+            "label": "CreatedDate_Quarter"
+        },
+        {
+            "field": "FirstPublishedDate_Quarter",
+            "label": "FirstPublishedDate_Quarter"
+        },
+        {
+            "field": "FirstPublishedDate_Minute",
+            "label": "FirstPublishedDate_Minute"
+        },
+        {
+            "field": "FirstPublishedDate_Hour",
+            "label": "FirstPublishedDate_Hour"
+        },
+        {
+            "field": "ArticleVersion.IsVisibleInCsp",
+            "label": "ArticleVersion.IsVisibleInCsp"
+        },
+        {
+            "field": "CreatedDate_Month",
+            "label": "CreatedDate_Month"
+        },
+        {
+            "field": "LastPublishedDate_Hour",
+            "label": "LastPublishedDate_Hour"
+        },
+        {
+            "field": "ArticleVersion.IsVisibleInPkb",
+            "label": "ArticleVersion.IsVisibleInPkb"
+        },
+        {
+            "field": "ArticleVersion.OwnerId",
+            "label": "ArticleVersion.OwnerId"
+        },
+        {
+            "field": "CreatedDate_Year",
+            "label": "CreatedDate_Year"
+        },
+        {
+            "field": "LastPublishedDate_Quarter",
+            "label": "LastPublishedDate_Quarter"
+        },
+        {
+            "field": "ArticleVersion.VersionNumber",
+            "label": "Version"
+        },
+        {
+            "field": "ArticleVersion.CreatedDate_Year",
+            "label": "ArticleVersion.CreatedDate_Year"
+        },
+        {
+            "field": "VoteStat.Channel",
+            "label": "VoteStat.Channel"
+        },
+        {
+            "field": "FirstPublishedDate_Week",
+            "label": "FirstPublishedDate_Week"
+        },
+        {
+            "field": "LastPublishedDate_Day",
+            "label": "LastPublishedDate_Day"
+        },
+        {
+            "recordIdField": "Id",
+            "field": "ArticleVersion.Title",
+            "linkTemplate": "/{{row.Id}}",
+            "label": "Article Title",
+            "linkTooltip": "Open Article"
+        },
+        {
+            "field": "CreatedDate_Hour",
+            "label": "CreatedDate_Hour"
+        },
+        {
+            "field": "FirstPublishedDate",
+            "label": "First Published Date"
+        },
+        {
+            "field": "ArticleVersion.CreatedDate_Second",
+            "label": "ArticleVersion.CreatedDate_Second"
+        },
+        {
+            "field": "ArticleVersion.PublishStatus",
+            "label": "Publish Status"
+        },
+        {
+            "field": "FirstPublishedDate_Day",
+            "label": "FirstPublishedDate_Day"
+        },
+        {
+            "field": "LastPublishedDate_Year",
+            "label": "LastPublishedDate_Year"
+        },
+        {
+            "field": "ArticleVersion.CreatedDate_Quarter",
+            "label": "ArticleVersion.CreatedDate_Quarter"
+        },
+        {
+            "field": "LastModifiedById",
+            "label": "Last Modified By ID"
+        }
+    ]
+}

@@ -1,0 +1,3964 @@
+{
+  "rules": [
+    {
+      "name": "RemoveCSATFromUserXMDv20",
+      "condition": "${Variables.TrackCSAT == 'No'}",
+      "appliesTo": [
+        {
+          "type": "xmd",
+          "name": "ServiceCase"
+        }
+      ],
+      "actions": [
+        {
+          "action": "delete",
+          "description": "remove CSAT so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='CSAT')]"
+        }
+      ]
+    },
+    {
+      "actions": [
+        {
+          "action": "delete",
+          "description": "remove BusinessHoursId so system.xmd doesn't complain",
+          "path": "$..dimensions[?(@.field=='BusinessHoursId')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove BH.FridayDuration so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='BH.FridayDuration')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove BH.MondayDuration so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='BH.MondayDuration')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove BH.SaturdayDuration so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='BH.SaturdayDuration')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove BH.SundayDuration so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='BH.SundayDuration')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove BH.ThursdayDuration so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='BH.ThursdayDuration')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove BH.TuesdayDuration so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='BH.TuesdayDuration')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove BH.WednesdayDuration so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='BH.WednesdayDuration')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove BH.SundayStartTime_sec so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='BH.SundayStartTime_sec')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove BH.MondayStartTime_sec so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='BH.MondayStartTime_sec')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove BH.TuesdayStartTime_sec so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='BH.TuesdayStartTime_sec')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove BH.WednesdayStartTime_sec so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='BH.WednesdayStartTime_sec')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove BH.ThursdayStartTime_sec so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='BH.ThursdayStartTime_sec')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove BH.FridayStartTime_sec so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='BH.FridayStartTime_sec')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove BH.SaturdayStartTime_sec so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='BH.SaturdayStartTime_sec')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove BH.SundayEndTime_sec so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='BH.SundayEndTime_sec')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove BH.MondayEndTime_sec so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='BH.MondayEndTime_sec')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove BH.TuesdayEndTime_sec so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='BH.TuesdayEndTime_sec')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove BH.WednesdayEndTime_sec so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='BH.WednesdayEndTime_sec')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove BH.ThursdayEndTime_sec so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='BH.ThursdayEndTime_sec')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove BH.FridayEndTime_sec so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='BH.FridayEndTime_sec')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove BH.SaturdayEndTime_sec so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='BH.SaturdayEndTime_sec')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove NumWeeks so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='NumWeeks')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove StartWeekDay so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='StartWeekDay')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove EndWeekDay so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='EndWeekDay')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove TotalThursdayDuration so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='TotalThursdayDuration')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove TotalFridayDuration so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='TotalFridayDuration')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove TotalSaturdayDuration so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='TotalSaturdayDuration')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove TotalSundayDuration so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='TotalSundayDuration')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove TotalMondayDuration so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='TotalMondayDuration')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove TotalTuesdayDuration so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='TotalTuesdayDuration')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove TotalWednesdayDuration so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='TotalWednesdayDuration')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove BusinessCreateDateStartTimeInSeconds so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='BusinessCreateDateStartTimeInSeconds')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove BusinessCreateDateEndTimeInSeconds so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='BusinessCreateDateEndTimeInSeconds')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove BusinessValidToStartTimeInSeconds so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='BusinessValidToStartTimeInSeconds')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove BusinessValidToEndTimeInSeconds so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='BusinessValidToEndTimeInSeconds')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove StartTimeAdjusted so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='StartTimeAdjusted')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove EndTimeAdjusted so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='EndTimeAdjusted')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove PartialDaysDurationStart so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='PartialDaysDurationStart')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove PartialDaysDurationEnd so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='PartialDaysDurationEnd')]"
+        }
+      ],
+      "appliesTo": [
+        {
+          "name": "ServiceCase",
+          "type": "xmd"
+        }
+      ],
+      "condition": "${Variables.IncludeBusinessHours == 'No'}",
+      "name": "RemoveBusinessHoursFromServiceCaseUserXMDv20"
+    },
+    {
+      "actions": [
+        {
+          "action": "delete",
+          "description": "remove BusinessHoursId so system.xmd doesn't complain",
+          "path": "$..dimensions[?(@.field=='Case.BusinessHoursId')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove BH.FridayDuration so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='BH.FridayDuration')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove BH.MondayDuration so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='BH.MondayDuration')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove BH.SaturdayDuration so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='BH.SaturdayDuration')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove BH.SundayDuration so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='BH.SundayDuration')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove BH.ThursdayDuration so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='BH.ThursdayDuration')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove BH.TuesdayDuration so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='BH.TuesdayDuration')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove BH.WednesdayDuration so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='BH.WednesdayDuration')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove BH.SundayStartTime_sec so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='BH.SundayStartTime_sec')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove BH.MondayStartTime_sec so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='BH.MondayStartTime_sec')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove BH.TuesdayStartTime_sec so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='BH.TuesdayStartTime_sec')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove BH.WednesdayStartTime_sec so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='BH.WednesdayStartTime_sec')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove BH.ThursdayStartTime_sec so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='BH.ThursdayStartTime_sec')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove BH.FridayStartTime_sec so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='BH.FridayStartTime_sec')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove BH.SaturdayStartTime_sec so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='BH.SaturdayStartTime_sec')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove BH.SundayEndTime_sec so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='BH.SundayEndTime_sec')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove BH.MondayEndTime_sec so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='BH.MondayEndTime_sec')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove BH.TuesdayEndTime_sec so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='BH.TuesdayEndTime_sec')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove BH.WednesdayEndTime_sec so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='BH.WednesdayEndTime_sec')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove BH.ThursdayEndTime_sec so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='BH.ThursdayEndTime_sec')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove BH.FridayEndTime_sec so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='BH.FridayEndTime_sec')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove BH.SaturdayEndTime_sec so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='BH.SaturdayEndTime_sec')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove NumWeeks so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='NumWeeks')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove StartWeekDay so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='StartWeekDay')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove EndWeekDay so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='EndWeekDay')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove TotalThursdayDuration so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='TotalThursdayDuration')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove TotalFridayDuration so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='TotalFridayDuration')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove TotalSaturdayDuration so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='TotalSaturdayDuration')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove TotalSundayDuration so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='TotalSundayDuration')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove TotalMondayDuration so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='TotalMondayDuration')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove TotalTuesdayDuration so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='TotalTuesdayDuration')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove TotalWednesdayDuration so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='TotalWednesdayDuration')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove BusinessCreateDateStartTimeInSeconds so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='BusinessCreateDateStartTimeInSeconds')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove BusinessCreateDateEndTimeInSeconds so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='BusinessCreateDateEndTimeInSeconds')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove BusinessValidToStartTimeInSeconds so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='BusinessValidToStartTimeInSeconds')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove BusinessValidToEndTimeInSeconds so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='BusinessValidToEndTimeInSeconds')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove StartTimeAdjusted so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='StartTimeAdjusted')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove EndTimeAdjusted so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='EndTimeAdjusted')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove PartialDaysDurationStart so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='PartialDaysDurationStart')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove PartialDaysDurationEnd so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='PartialDaysDurationEnd')]"
+        }
+      ],
+      "appliesTo": [
+        {
+          "name": "ServiceCaseHistory",
+          "type": "xmd"
+        }
+      ],
+      "condition": "${Variables.IncludeBusinessHours == 'No'}",
+      "name": "RemoveBusinessHoursFromServiceCaseUserXMDv20"
+    },
+    {
+      "name": "RemoveCSATFromServiceChatTranscriptXMDv20",
+      "condition": "${Variables.TrackCSAT == 'No'}",
+      "appliesTo": [
+        {
+          "type": "xmd",
+          "name": "ServiceChatTranscript"
+        }
+      ],
+      "actions": [
+        {
+          "action": "delete",
+          "description": "remove CSAT so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='CSAT')]"
+        }
+      ]
+    },
+    {
+      "name": "RemoveCSATFromServiceOmniAgentWorkXMDv20",
+      "condition": "${Variables.TrackCSAT == 'No'}",
+      "appliesTo": [
+        {
+          "type": "xmd",
+          "name": "ServiceOmniAgentWork"
+        }
+      ],
+      "actions": [
+        {
+          "action": "delete",
+          "description": "remove CSAT so system.xmd doesn't complain",
+          "path": "$..measures[?(@.field=='CSAT')]"
+        }
+      ]
+    },
+    {
+      "name": "XMDCaseFCR",
+      "condition": "${Constants.CaseFCR == ''}",
+      "appliesTo": [
+        {
+          "type": "xmd",
+          "name": "ServiceCase"
+        }
+      ],
+      "actions": [
+        {
+          "action": "delete",
+          "description": "remove CaseFCR so system.xmd doesn't complain",
+          "path": "$..dimensions[?(@.field=='${Constants.CaseFCR}')]"
+        }
+      ]
+    },
+    {
+      "name": "XMDCaseSLA",
+      "condition": "${Constants.CaseSLA == ''}",
+      "appliesTo": [
+        {
+          "type": "xmd",
+          "name": "ServiceCase"
+        },
+        {
+          "type": "xmd",
+          "name": "ServiceCaseHistory"
+        }
+      ],
+      "actions": [
+        {
+          "action": "delete",
+          "description": "remove CaseSLA so system.xmd doesn't complain",
+          "path": "$..dimensions[?(@.field=='Case.${Constants.CaseSLA}')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove CaseSLA so system.xmd doesn't complain",
+          "path": "$..dimensions[?(@.field=='${Constants.CaseSLA}')]"
+        }
+
+      ]
+    },
+    {
+      "name": "XMDCaseSupportLevel",
+      "condition": "${Constants.CaseSupportLevel == ''}",
+      "appliesTo": [
+        {
+          "type": "xmd",
+          "name": "ServiceCase"
+        },
+        {
+          "type": "xmd",
+          "name": "ServiceActivity"
+        },
+        {
+          "type": "xmd",
+          "name": "ServiceCaseHistory"
+        },
+        {
+          "type": "xmd",
+          "name": "ServiceKnowledgeAttached"
+        }
+      ],
+      "actions": [
+        {
+          "action": "delete",
+          "description": "remove CaseSupportLevel so system.xmd doesn't complain",
+          "path": "$..dimensions[?(@.field=='Case.${Constants.CaseSupportLevel}')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove CaseSupportLevel so system.xmd doesn't complain",
+          "path": "$..dimensions[?(@.field=='${Constants.CaseSupportLevel}')]"
+        }
+      ]
+    },
+    {
+      "name": "WorkflowMultiDims",
+      "condition": "${Constants.CaseMoreDimsHasValues}",
+      "appliesTo": [
+        {
+          "type": "workflow",
+          "name": "*"
+        }
+      ],
+      "actions": [
+        {
+          "action": "set",
+          "description": "put selected values for sfdcDigest in dataflow",
+          "path": "$.workflowDefinition.Extract_Case.parameters.fields",
+          "value": "${array:concat(Rules.CurrentNode, array:forEach(Variables.CaseMoreDims,'{\"name\":\"${var.fieldName}\"}'))}"
+        }
+      ]
+    },
+    {
+      "name": "WorkflowMultiMeasures",
+      "condition": "${Constants.CaseMoreMeasuresHasValues}",
+      "appliesTo": [
+        {
+          "type": "workflow",
+          "name": "*"
+        }
+      ],
+      "actions": [
+        {
+          "action": "set",
+          "description": "put selected values for sfdcDigest in dataflow",
+          "path": "$.workflowDefinition.Extract_Case.parameters.fields",
+          "value": "${array:concat(Rules.CurrentNode, array:forEach(Variables.CaseMoreMeasures,'{\"name\":\"${var.fieldName}\"}'))}"
+        }
+      ]
+    },
+    {
+      "name": "WorkflowIncludeChat",
+      "condition": "${Variables.IncludeChat == 'No'}",
+      "appliesTo": [
+        {
+          "type": "workflow",
+          "name": "*"
+        }
+      ],
+      "actions": [
+        {
+          "action": "delete",
+          "description": "delete chat related nodes",
+          "path": "$.workflowDefinition.Extract_LiveChatTranscriptEvent"
+        },
+        {
+          "action": "delete",
+          "description": "delete chat related nodes",
+          "path": "$.workflowDefinition.Join_LiveChatTranscriptEvent_User"
+        },
+        {
+          "action": "delete",
+          "description": "delete chat related nodes",
+          "path": "$.workflowDefinition.compute_LiveChatTranscriptEvent_ChatBoundaries"
+        },
+        {
+          "action": "delete",
+          "description": "delete chat related nodes",
+          "path": "$.workflowDefinition.Extract_LiveChatTranscript"
+        },
+        {
+          "action": "delete",
+          "description": "delete chat related nodes",
+          "path": "$.workflowDefinition.Extract_LiveChatButton"
+        },
+        {
+          "action": "delete",
+          "description": "delete chat related nodes",
+          "path": "$.workflowDefinition.Join_LCTButton"
+        },
+        {
+          "action": "delete",
+          "description": "delete chat related nodes",
+          "path": "$.workflowDefinition.compute_LiveChatTranscript"
+        },
+        {
+          "action": "delete",
+          "description": "delete chat related nodes",
+          "path": "$.workflowDefinition.Join_LiveChatTranscript_User"
+        },
+        {
+          "action": "delete",
+          "description": "delete chat related nodes",
+          "path": "$.workflowDefinition.Join_LiveChatTranscript_Case"
+        },
+        {
+          "action": "delete",
+          "description": "remove compute_LiveChatTranscriptCSAT node when no CSAT field in dataflow",
+          "path": "$.workflowDefinition.compute_LiveChatTranscriptCSAT"
+        },
+        {
+          "action": "delete",
+          "description": "delete chat related nodes",
+          "path": "$.workflowDefinition.Join_LiveChatTranscript_Case_NoCSAT"
+        },
+        {
+          "action": "delete",
+          "description": "delete chat related nodes",
+          "path": "$.workflowDefinition.Join_LiveChatTranscriptEventLCT"
+        },
+        {
+          "action": "delete",
+          "description": "delete chat related nodes",
+          "path": "$.workflowDefinition.compute_LiveChatTranscriptEvent_AgentSessions"
+        },
+        {
+          "action": "delete",
+          "description": "delete chat related nodes",
+          "path": "$.workflowDefinition.compute_LiveChatTranscriptEvent_AgentIds"
+        },
+        {
+          "action": "delete",
+          "description": "delete chat related nodes",
+          "path": "$.workflowDefinition.Register_LiveChatTranscript"
+        },
+        {
+          "action": "delete",
+          "description": "delete chat related nodes",
+          "path": "$.workflowDefinition.compute_LiveChatTranscriptEventLCT"
+        },
+        {
+          "action": "delete",
+          "description": "delete chat related nodes",
+          "path": "$.workflowDefinition.Register_LiveChatTranscriptEvent"
+        }
+      ]
+    },
+    {
+      "name": "WorkflowCaseFCR",
+      "condition": "${Constants.CaseFCR == ''}",
+      "appliesTo": [
+        {
+          "type": "workflow",
+          "name": "*"
+        }
+      ],
+      "actions": [
+        {
+          "action": "delete",
+          "description": "delete CaseFCR from Case Object",
+          "path": "$.workflowDefinition.Extract_Case.parameters.fields[?(@.name=='${Constants.CaseFCR}')]"
+        }
+      ]
+    },
+    {
+      "name": "WorkflowCaseSLA",
+      "condition": "${Constants.CaseSLA == ''}",
+      "appliesTo": [
+        {
+          "type": "workflow",
+          "name": "*"
+        }
+      ],
+      "actions": [
+        {
+          "action": "delete",
+          "description": "delete CaseSLA from Case Object",
+          "path": "$.workflowDefinition.Extract_Case.parameters.fields[?(@.name=='${Constants.CaseSLA}')]"
+        },
+        {
+          "action": "delete",
+          "description": "put selected values for sfdcDigest in dataflow",
+          "path": "$.workflowDefinition.Join_CaseHistory_Case.parameters.right_select[?(@=='${Constants.CaseSLA}')]"
+        }
+      ]
+    },
+    {
+      "name": "WorkflowCaseSupportLevel",
+      "condition": "${Constants.CaseSupportLevel == ''}",
+      "appliesTo": [
+        {
+          "type": "workflow",
+          "name": "*"
+        }
+      ],
+      "actions": [
+        {
+          "action": "delete",
+          "description": "delete CaseSupportLevel from Case Object",
+          "path": "$.workflowDefinition.Extract_Case.parameters.fields[?(@.name=='${Constants.CaseSupportLevel}')]"
+        },
+        {
+          "action": "delete",
+          "description": "delete from augmented columns of Join_CaseHistory_Case",
+          "path": "$.workflowDefinition.Join_CaseHistory_Case.parameters.right_select[?(@=='${Constants.CaseSupportLevel}')]"
+        },
+        {
+          "action": "delete",
+          "description": "delete from augmented columns of Join_CaseArticleKnowledge_User_Case",
+          "path": "$.workflowDefinition.Join_CaseArticleKnowledge_User_Case.parameters.right_select[?(@=='${Constants.CaseSupportLevel}')]"
+        },
+        {
+          "action": "delete",
+          "description": "delete from augmented columns of Join_ActivityOwner_Case",
+          "path": "$.workflowDefinition.Join_ActivityOwner_Case.parameters.right_select[?(@=='${Constants.CaseSupportLevel}')]"
+        },
+        {
+          "action": "delete",
+          "description": "delete from augmented columns of Join_LiveChatTranscript_Case",
+          "path": "$.workflowDefinition.Join_LiveChatTranscript_Case.parameters.right_select[?(@=='${Constants.CaseSupportLevel}')]"
+        },
+        {
+          "action": "delete",
+          "description": "delete from augmented columns of Join_LiveChatTranscript_Case_NoCSAT",
+          "path": "$.workflowDefinition.Join_LiveChatTranscript_Case_NoCSAT.parameters.right_select[?(@=='${Constants.CaseSupportLevel}')]"
+        },
+        {
+          "action": "delete",
+          "description": "delete from augmented columns of Join_AgentWorkUserGroupServiceChannelCase",
+          "path": "$.workflowDefinition.Join_AgentWorkUserGroupServiceChannelCase.parameters.right_select[?(@=='${Constants.CaseSupportLevel}')]"
+        },
+        {
+          "action": "delete",
+          "description": "delete from augmented columns of Join_AgentWorkUserGroupServiceChannelCase_NoCSAT",
+          "path": "$.workflowDefinition.Join_AgentWorkUserGroupServiceChannelCase_NoCSAT.parameters.right_select[?(@=='${Constants.CaseSupportLevel}')]"
+        }
+      ]
+    },
+    {
+      "name": "WorkflowCaseGeography",
+      "condition": "${Variables.Geography.sobjectName == 'Case'}",
+      "appliesTo": [
+        {
+          "type": "workflow",
+          "name": "*"
+        }
+      ],
+      "actions": [
+        {
+          "action": "delete",
+          "description": "put selected values for sfdcDigest in dataflow",
+          "path": "$.workflowDefinition.Extract_Account.parameters.fields[?(@.name=='${Constants.AccountGeography}')]"
+        },
+        {
+          "action": "delete",
+          "description": "put selected values for sfdcDigest in dataflow",
+          "path": "$.workflowDefinition.Join_CaseAccount.parameters.right_select[?(@=='${Constants.AccountGeography}')]"
+        },
+        {
+          "action": "delete",
+          "description": "put selected values for sfdcDigest in dataflow",
+          "path": "$.workflowDefinition.Extract_Contact.parameters.fields[?(@.name=='${Constants.AccountGeography}')]"
+        },
+        {
+          "action": "delete",
+          "description": "put selected values for sfdcDigest in dataflow",
+          "path": "$.workflowDefinition.Join_CaseAccountContact.parameters.right_select[?(@=='${Constants.AccountGeography}')]"
+        },
+        {
+          "action": "add",
+          "description": "Add Geography to Extract_Case",
+          "path": "$.workflowDefinition.Extract_Case.parameters.fields",
+          "index": 0,
+          "value": {
+            "name": "${Constants.AccountGeography}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "WorkflowContactGeography",
+      "condition": "${Variables.Geography.sobjectName == 'Contact'}",
+      "appliesTo": [
+        {
+          "type": "workflow",
+          "name": "*"
+        }
+      ],
+      "actions": [
+        {
+          "action": "delete",
+          "description": "put selected values for sfdcDigest in dataflow",
+          "path": "$.workflowDefinition.Extract_Account.parameters.fields[?(@.name=='${Constants.AccountGeography}')]"
+        },
+        {
+          "action": "delete",
+          "description": "put selected values for sfdcDigest in dataflow",
+          "path": "$.workflowDefinition.Join_CaseAccount.parameters.right_select[?(@=='${Constants.AccountGeography}')]"
+        }
+      ]
+    },
+    {
+      "name": "WorkflowAccountGeography",
+      "condition": "${Variables.Geography.sobjectName == 'Account'}",
+      "appliesTo": [
+        {
+          "type": "workflow",
+          "name": "*"
+        }
+      ],
+      "actions": [
+        {
+          "action": "delete",
+          "description": "put selected values for sfdcDigest in dataflow",
+          "path": "$.workflowDefinition.Extract_Contact.parameters.fields[?(@.name=='${Constants.AccountGeography}')]"
+        },
+        {
+          "action": "delete",
+          "description": "put selected values for sfdcDigest in dataflow",
+          "path": "$.workflowDefinition.Join_CaseAccountContact.parameters.right_select[?(@=='${Constants.AccountGeography}')]"
+        }
+      ]
+    },
+    {
+      "actions": [
+        {
+          "action": "delete",
+          "description": "remove Compute_CaseBusinessHours* node in dataflow",
+          "path": "$.workflowDefinition.Compute_CaseBusinessHours"
+        },
+        {
+          "action": "delete",
+          "description": "remove Compute_CaseBusinessHours* node in dataflow",
+          "path": "$.workflowDefinition.Compute_CaseBusinessHours_1"
+        },
+        {
+          "action": "delete",
+          "description": "remove Compute_CaseBusinessHours* node in dataflow",
+          "path": "$.workflowDefinition.Compute_CaseBusinessHours_2"
+        },
+        {
+          "action": "delete",
+          "description": "remove Compute_CaseBusinessHours* node in dataflow",
+          "path": "$.workflowDefinition.Compute_CaseBusinessHours_3"
+        },
+        {
+          "action": "delete",
+          "description": "remove Compute_CaseBusinessHours* node in dataflow",
+          "path": "$.workflowDefinition.Compute_CaseBusinessHours_4"
+        },
+        {
+          "action": "delete",
+          "description": "remove Compute_CaseBusinessHours* node in dataflow",
+          "path": "$.workflowDefinition.Compute_BusinessHours"
+        },
+        {
+          "action": "delete",
+          "description": "remove Compute_BusinessHours* node in dataflow",
+          "path": "$.workflowDefinition.Compute_BusinessHours_1"
+        },
+        {
+          "action": "delete",
+          "description": "remove Compute_BusinessHours* node in dataflow",
+          "path": "$.workflowDefinition.Compute_BusinessHours_2"
+        },
+        {
+          "action": "delete",
+          "description": "remove Compute_BusinessHours* node in dataflow",
+          "path": "$.workflowDefinition.Compute_BusinessHours_3"
+        },
+        {
+          "action": "delete",
+          "description": "remove Compute_BusinessHours* node in dataflow",
+          "path": "$.workflowDefinition.Compute_BusinessHours_4"
+        },
+        {
+          "action": "delete",
+          "description": "remove Extract_BusinessHours node in dataflow",
+          "path": "$.workflowDefinition.Extract_BusinessHours"
+        },
+        {
+          "action": "delete",
+          "description": "remove Compute_StartEndTimes node in dataflow",
+          "path": "$.workflowDefinition.Compute_StartEndTimes"
+        },
+        {
+          "action": "delete",
+          "description": "remove Compute_WeekDay_Duration node in dataflow",
+          "path": "$.workflowDefinition.Compute_WeekDay_Duration"
+        },
+        {
+          "action": "delete",
+          "description": "remove Join_CaseHistoryCaseBusinessHours node in dataflow",
+          "path": "$.workflowDefinition.Join_CaseHistoryCaseBusinessHours"
+        },
+        {
+          "action": "delete",
+          "description": "remove Join_CaseBusinessHours node in dataflow",
+          "path": "$.workflowDefinition.Join_CaseBusinessHours"
+        },
+        {
+          "action": "set",
+          "description": "Change the Source in node Join_CaseAccount to use Extract_Case instead of Case_CSAT_Mea",
+          "path": "$.workflowDefinition.compute_CaseHistory_CurrentDate.parameters['source']",
+          "value": "compute_CaseHistory_DateFields"
+        },
+        {
+          "action": "set",
+          "description": "Change the Source in node Join_OpportunityRecordTypeAccountCase to use Compute_CaseBusinessHours instead of Join_CaseCSAT",
+          "path": "$.workflowDefinition.Join_OpportunityRecordTypeAccountCase.parameters['right']",
+          "value": "compute_CalculatedCaseDuration"
+        },
+        {
+          "action": "set",
+          "description": "Change the Source in node Join_CaseArticleKnowledge_User_Case to use Compute_CaseBusinessHours instead of Join_CaseCSAT",
+          "path": "$.workflowDefinition.Join_CaseArticleKnowledge_User_Case.parameters['right']",
+          "value": "compute_CalculatedCaseDuration"
+        },
+        {
+          "action": "set",
+          "description": "Change the Source in node Join_CaseCSAT to use Compute_CaseBusinessHours instead of Join_CaseCSAT",
+          "path": "$.workflowDefinition.Join_CaseCSAT.parameters['left']",
+          "value": "compute_CalculatedCaseDuration"
+        },
+        {
+          "action": "set",
+          "description": "Change the Source in node compute_CaseHistory_OldNewStatus to use compute_CaseHistory_CurrentDate instead of Compute_BusinessHours",
+          "condition": "${Variables.IncludeCaseHistory == 'Yes'}",
+          "path": "$.workflowDefinition.compute_CaseHistory_OldNewStatus.parameters['source']",
+          "value": "compute_CaseHistory_CurrentDate"
+        },
+        {
+          "action": "delete",
+          "description": "remove BusinessHoursId from Extract_Case Dataflow",
+          "path": "$.workflowDefinition.Extract_Case.parameters.fields[?(@.name=='BusinessHoursId')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove BusinessHoursId from Join_CaseHistory_Case Dataflow",
+          "path": "$.workflowDefinition.Join_CaseHistory_Case.parameters.right_select[?(@=='BusinessHoursId')]"
+        }
+      ],
+      "appliesTo": [
+        {
+          "name": "*",
+          "type": "workflow"
+        }
+      ],
+      "condition": "${Variables.IncludeBusinessHours == 'No'}",
+      "name": "ruleBusinessHoursDataflow"
+    },
+    {
+      "name": "WorkflowMultiDuration",
+      "condition": "${Constants.CaseDurationMoreFieldsHasValues}",
+      "appliesTo": [
+        {
+          "type": "workflow",
+          "name": "*"
+        }
+      ],
+      "actions": [
+        {
+          "action": "set",
+          "description": "put selected values for sfdcDigest in dataflow",
+          "path": "$.workflowDefinition.Extract_Case.parameters.fields",
+          "value": "${array:concat(Rules.CurrentNode, array:forEach(Variables.CaseDurationMoreFields,'{\"name\":\"${var.fieldName}\"}'))}"
+        },
+        {
+          "action": "set",
+          "description": "put selected values for sfdcDigest in dataflow",
+          "path": "$.workflowDefinition.Join_ActivityOwner_Case.parameters.right_select",
+          "value": "${array:concat(Rules.CurrentNode, array:forEach(Variables.CaseDurationMoreFields,'${var.fieldName}'))}"
+        }
+      ]
+    },
+    {
+      "name": "ruleFiscalOffsetDataflow",
+      "appliesTo": [
+        {
+          "name": "*",
+          "type": "workflow"
+        }
+      ],
+      "actions": [
+        {
+          "action": "set",
+          "description": "Change Fiscal Offset",
+          "path": "$..parameters.fields..fiscalMonthOffset",
+          "value": "${Variables.FY_Month_Offset_Map[Variables.Fiscal_Month]}"
+        },
+        {
+          "action": "add",
+          "condition": "${! empty Variables.CaseDuration.fieldName}",
+          "description": "Add Duration Field",
+          "index": 0,
+          "path": "$.workflowDefinition.Extract_Case.parameters.fields",
+          "value": {
+            "name": "${Variables.CaseDuration.fieldName}"
+          }
+        }
+      ]
+    },
+    {
+      "actions": [
+        {
+          "action": "delete",
+          "description": "remove Extract_Queue node in dataflow",
+          "path": "$.workflowDefinition.Extract_Queue"
+        },
+        {
+          "action": "delete",
+          "description": "remove Add_Fields_To_Queue node in dataflow",
+          "path": "$.workflowDefinition.Add_Fields_To_Queue"
+        },
+        {
+          "action": "delete",
+          "description": "remove Append_Queue_User node in dataflow",
+          "path": "$.workflowDefinition.Append_Queue_User"
+        },
+        {
+          "action": "set",
+          "description": "Change the Right Join Source for any node that is using the Append Queue Node",
+          "path": "$..[?(@.right=='Append_Queue_User')].right",
+          "value": "Add_Fields_To_User"
+        },
+        {
+          "action": "set",
+          "description": "Change the Left Join Source for any node that is using the Append Queue Node",
+          "path": "$..[?(@.left=='Append_Queue_User')].left",
+          "value": "Add_Fields_To_User"
+        }
+      ],
+      "appliesTo": [
+        {
+          "name": "*",
+          "type": "workflow"
+        }
+      ],
+      "condition": "${Variables.IncludeQueueNames == 'No'}",
+      "name": "ruleQueueDataflow"
+    },
+    {
+      "actions": [
+        {
+          "action": "delete",
+          "description": "remove all helper nodes related to case history node in dataflow",
+          "path": "$.workflowDefinition..[?(@.parameters.source=~ /^.*CaseHistory.*$/i)]"
+        },
+        {
+          "action": "delete",
+          "description": "remove all helper nodes related to case history node in dataflow",
+          "path": "$.workflowDefinition..[?(@.parameters.left=~ /^.*CaseHistory.*$/i)]"
+        },
+        {
+          "action": "delete",
+          "description": "remove all helper nodes related to BusinessHours node in dataflow",
+          "path": "$.workflowDefinition..[?(@.parameters.source=~ /^.*Compute_BusinessHours.*$/i)]"
+        },
+        {
+          "action": "delete",
+          "description": "remove all helper nodes related to BusinessHours node in dataflow",
+          "path": "$.workflowDefinition..[?(@.parameters.left=~ /^.*Compute_BusinessHours.*$/i)]"
+        },
+        {
+          "action": "delete",
+          "description": "remove all helper nodes related to case history node in dataflow",
+          "path": "$.workflowDefinition.Append_CaseHistory"
+        },
+        {
+          "action": "delete",
+          "description": "remove all helper nodes related to case history node in dataflow",
+          "path": "$.workflowDefinition.Join_CaseHistory_Queue_User_UserRole"
+        },
+        {
+          "action": "delete",
+          "description": "remove case history extract nodes in dataflow",
+          "path": "$.workflowDefinition..[?(@.parameters.object=~ /^.*CaseHistory.*$/i)]"
+        }
+      ],
+      "appliesTo": [
+        {
+          "name": "*",
+          "type": "workflow"
+        }
+      ],
+      "condition": "${Variables.IncludeCaseHistory == 'No'}",
+      "name": "ruleCaseHistoryDataflow"
+    },
+    {
+      "actions": [
+        {
+          "action": "delete",
+          "description": "remove Extract_CaseArticleKnowledge node in dataflow",
+          "path": "$.workflowDefinition.Extract_CaseArticleKnowledge"
+        },
+        {
+          "action": "delete",
+          "description": "remove Join_CaseAccountContactUserUserRoleCaseArticle node in dataflow",
+          "path": "$.workflowDefinition.Join_CaseAccountContactUserUserRoleCaseArticle"
+        },
+        {
+          "action": "delete",
+          "description": "remove all nodes with the word knowldege in the source",
+          "path": "$..[?(@.parameters.source=~ /^.*knowledge.*$/i)]"
+        },
+        {
+          "action": "delete",
+          "description": "remove all nodes with the word knowldege as a left dataset in an augment",
+          "path": "$..[?(@.parameters.left=~ /^.*knowledge.*$/i)]"
+        },
+        {
+          "action": "delete",
+          "description": "remove all nodes with the word knowldege as a right dataset in an augment",
+          "path": "$..[?(@.parameters.right=~ /^.*knowledge.*$/i)]"
+        },
+        {
+          "action": "delete",
+          "description": "remove all nodes with the word knowldege in the object",
+          "path": "$..[?(@.parameters.object=~ /^.*knowledge.*$/i)]"
+        },
+        {
+          "action": "delete",
+          "description": "remove all nodes with the word knowldege in the object",
+          "path": "$.workflowDefinition.Append_Knowledge_kav"
+        },
+        {
+          "action": "delete",
+          "description": "remove Handle_Null_Attached_Articles node in dataflow",
+          "path": "$.workflowDefinition.Handle_Null_Attached_Articles"
+        },
+        {
+          "action": "set",
+          "description": "Change the Left Join Source in node Join_CaseAccountContactUserUserRoleRecordType to use Join_CaseAccountContactUserUserRole",
+          "path": "$.workflowDefinition.Join_CaseAccountContactUserUserRoleRecordType.parameters['left']",
+          "value": "Join_CaseAccountContactUserUserRole"
+        }
+      ],
+      "appliesTo": [
+        {
+          "name": "*",
+          "type": "workflow"
+        }
+      ],
+      "condition": "${Variables.IncludeKnowledge == 'No'}",
+      "name": "ruleKnowledgeDataflow"
+    },
+    {
+      "actions": [
+        {
+          "action": "delete",
+          "description": "remove Join_CaseAccountContactUserUserRoleRecordType node in dataflow",
+          "path": "$.workflowDefinition.Join_CaseAccountContactUserUserRoleRecordType"
+        },
+        {
+          "action": "delete",
+          "description": "remove Handle_Null_RecordType node in dataflow",
+          "path": "$.workflowDefinition.Handle_Null_RecordType"
+        },
+        {
+          "action": "delete",
+          "description": "remove RecordType from Extract_Case Dataflow",
+          "path": "$.workflowDefinition.Extract_Case.parameters.fields[?(@.name=='RecordTypeId')]"
+        },
+        {
+          "action": "set",
+          "description": "Change the register case node to use Join_CaseAccountContactUserUserRole",
+          "path": "$.workflowDefinition.Register_Case.parameters['source']",
+          "value": "${Variables.IncludeKnowledge == 'Yes'?  'Handle_Null_Attached_Articles' : 'Join_CaseAccountContactUserUserRole'}"
+        },
+        {
+          "action": "set",
+          "condition": "${Variables.IncludeCaseHistory == 'Yes'}",
+          "description": "Change the right Soruce of Join_CaseHistory_Case",
+          "path": "$.workflowDefinition.Join_CaseHistory_Case.parameters['right']",
+          "value": "Join_CaseAccountContactUserUserRole"
+        },
+        {
+          "action": "delete",
+          "condition": "${Variables.IncludeCaseHistory == 'Yes'}",
+          "description": "Delete RecordType.Name from right_select of Join_CaseHistory_Case",
+          "path": "$.workflowDefinition.Join_CaseHistory_Case.parameters.right_select[?(@=='RecordType.Name')]"
+        },
+        {
+          "action": "set",
+          "description": "Change the right Soruce of Join_ActivityOwner_Case",
+          "path": "$.workflowDefinition.Join_ActivityOwner_Case.parameters['right']",
+          "value": "Join_CaseAccountContactUserUserRole"
+        },
+        {
+          "action": "delete",
+          "description": "Delete RecordType.Name from right_select of Join_ActivityOwner_Case",
+          "path": "$.workflowDefinition.Join_ActivityOwner_Case.parameters.right_select[?(@=='RecordType.Name')]"
+        },
+        {
+          "action": "set",
+          "condition": "${Variables.IncludeChat == 'Yes'}",
+          "description": "Change the right Soruce of Join_LiveChatTranscript_Case",
+          "path": "$.workflowDefinition.Join_LiveChatTranscript_Case.parameters['right']",
+          "value": "Join_CaseAccountContactUserUserRole"
+        },
+        {
+          "action": "delete",
+          "condition": "${Variables.IncludeChat == 'Yes'}",
+          "description": "Delete RecordType.Name from right_select of Join_LiveChatTranscript_Case",
+          "path": "$.workflowDefinition.Join_LiveChatTranscript_Case.parameters.right_select[?(@=='RecordType.Name')]"
+        },
+        {
+          "action": "set",
+          "condition": "${Variables.IncludeChat == 'Yes'}",
+          "description": "Change the right Soruce of Join_LiveChatTranscript_Case_NoCSAT",
+          "path": "$.workflowDefinition.Join_LiveChatTranscript_Case_NoCSAT.parameters['right']",
+          "value": "Join_CaseAccountContactUserUserRole"
+        },
+        {
+          "action": "delete",
+          "condition": "${Variables.IncludeChat == 'Yes'}",
+          "description": "Delete RecordType.Name from right_select of Join_LiveChatTranscript_Case_NoCSAT",
+          "path": "$.workflowDefinition.Join_LiveChatTranscript_Case_NoCSAT.parameters.right_select[?(@=='RecordType.Name')]"
+        },
+        {
+          "action": "set",
+          "condition": "${Variables.IncludeOmni == 'Yes'}",
+          "description": "Change the right Soruce of Join_AgentWorkUserGroupServiceChannelCase",
+          "path": "$.workflowDefinition.Join_AgentWorkUserGroupServiceChannelCase.parameters['right']",
+          "value": "Join_CaseAccountContactUserUserRole"
+        },
+        {
+          "action": "delete",
+          "condition": "${Variables.IncludeOmni == 'Yes'}",
+          "description": "Delete RecordType.Name from right_select of Join_AgentWorkUserGroupServiceChannelCase",
+          "path": "$.workflowDefinition.Join_AgentWorkUserGroupServiceChannelCase.parameters.right_select[?(@=='RecordType.Name')]"
+        },
+        {
+          "action": "set",
+          "condition": "${Variables.IncludeOmni == 'Yes'}",
+          "description": "Change the right Soruce of Join_AgentWorkUserGroupServiceChannelCase_NoCSAT",
+          "path": "$.workflowDefinition.Join_AgentWorkUserGroupServiceChannelCase_NoCSAT.parameters['right']",
+          "value": "Join_CaseAccountContactUserUserRole"
+        },
+        {
+          "action": "delete",
+          "condition": "${Variables.IncludeOmni == 'Yes'}",
+          "description": "Delete RecordType.Name from right_select of Join_AgentWorkUserGroupServiceChannelCase_NoCSAT",
+          "path": "$.workflowDefinition.Join_AgentWorkUserGroupServiceChannelCase_NoCSAT.parameters.right_select[?(@=='RecordType.Name')]"
+        }
+      ],
+      "appliesTo": [
+        {
+          "name": "*",
+          "type": "workflow"
+        }
+      ],
+      "condition": "${Variables.IncludeCaseRecordTypes == 'No'}",
+      "name": "ruleCaseRecordTypeDataFlow"
+    },
+    {
+      "actions": [
+        {
+          "action": "set",
+          "description": "Change the Left Join Source in node Join_CaseAccountContactUserUserRoleCaseArticle to use Join_CaseAccountContactUserUserRole or Handle_Null_Attached_Articles",
+          "path": "$.workflowDefinition.Join_CaseAccountContactUserUserRoleCaseArticle.parameters['left']",
+          "value": "Join_CaseAccountContactUserUserRole"
+        }
+      ],
+      "appliesTo": [
+        {
+          "name": "*",
+          "type": "workflow"
+        }
+      ],
+      "condition": "${Variables.IncludeKnowledge == 'Yes'}",
+      "name": "ruleModifyKnowledgeAugment"
+    },
+    {
+      "actions": [
+        {
+          "action": "delete",
+          "description": "remove Join_OpportunityRecordType node in dataflow",
+          "path": "$.workflowDefinition.Join_OpportunityRecordType"
+        },
+        {
+          "action": "delete",
+          "description": "remove Handle_Null_Opportunity_RecordType node in dataflow",
+          "path": "$.workflowDefinition.Handle_Null_Opportunity_RecordType"
+        },
+        {
+          "action": "delete",
+          "description": "remove RecordType from Extract_Opportunity Dataflow",
+          "path": "$.workflowDefinition.Extract_Opportunity.parameters.fields[?(@.name=='RecordTypeId')]"
+        },
+        {
+          "action": "set",
+          "description": "Change the Left Join Source in node Join_OpportunityRecordTypeAccount to use Extract_Opportunity",
+          "path": "$.workflowDefinition.Join_OpportunityRecordTypeAccount.parameters['left']",
+          "value": "Extract_Opportunity"
+        }
+      ],
+      "appliesTo": [
+        {
+          "name": "*",
+          "type": "workflow"
+        }
+      ],
+      "condition": "${(Variables.IncludeOpportunityRecordTypes == 'No' && Variables.IncludeOpportunity == 'Yes')}",
+      "name": "ruleOpportunityRecordTypeDataFlow"
+    },
+    {
+      "actions": [
+        {
+          "action": "delete",
+          "description": "remove Extract_RecordTypes node in dataflow",
+          "path": "$.workflowDefinition.Extract_RecordTypes"
+        }
+      ],
+      "appliesTo": [
+        {
+          "name": "*",
+          "type": "workflow"
+        }
+      ],
+      "condition": "${((Variables.IncludeOpportunityRecordTypes == 'No' || Variables.IncludeOpportunity == 'No')  && Variables.IncludeCaseRecordTypes == 'No')}",
+      "name": "ruleAllRecordTypeDataFlow"
+    },
+    {
+      "actions": [
+        {
+          "action": "delete",
+          "description": "remove Extract_Opportunity node in dataflow",
+          "path": "$.workflowDefinition.Extract_Opportunity"
+        },
+        {
+          "action": "delete",
+          "description": "remove Join_OpportunityRecordType node in dataflow",
+          "path": "$.workflowDefinition.Join_OpportunityRecordType"
+        },
+        {
+          "action": "delete",
+          "description": "remove Handle_Null_Opportunity_RecordType node in dataflow",
+          "path": "$.workflowDefinition.Handle_Null_Opportunity_RecordType"
+        },
+        {
+          "action": "delete",
+          "description": "remove Join_OpportunityRecordTypeAccount node in dataflow",
+          "path": "$.workflowDefinition.Join_OpportunityRecordTypeAccount"
+        },
+        {
+          "action": "delete",
+          "description": "remove Join_OpportunityRecordTypeAccountCase node in dataflow",
+          "path": "$.workflowDefinition.Join_OpportunityRecordTypeAccountCase"
+        },
+        {
+          "action": "delete",
+          "description": "remove Register_Opportunity node in dataflow",
+          "path": "$.workflowDefinition.Register_Opportunity"
+        }
+      ],
+      "appliesTo": [
+        {
+          "name": "*",
+          "type": "workflow"
+        }
+      ],
+      "condition": "${Variables.IncludeOpportunity == 'No'}",
+      "name": "ruleOpportunityDataflow"
+    },
+    {
+      "actions": [
+        {
+          "action": "set",
+          "description": "Change the Left Join Source in node Join_CaseAccountContactUserUserRoleRecordType  to use Join_CaseAccountContactUserUserRole or Handle_Null_Attached_Articles",
+          "path": "$.workflowDefinition.Join_CaseAccountContactUserUserRoleRecordType.parameters['left']",
+          "value": "${Variables.IncludeKnowledge == 'No' ? 'Join_CaseAccountContactUserUserRole' : 'Handle_Null_Attached_Articles'}"
+        }
+      ],
+      "appliesTo": [
+        {
+          "name": "*",
+          "type": "workflow"
+        }
+      ],
+      "condition": "${Variables.IncludeOpportunity == 'No' && Variables.IncludeCaseRecordTypes == 'Yes'}",
+      "name": "ruleOpportunityDataflow"
+    },
+    {
+      "actions": [
+        {
+          "action": "set",
+          "description": "Change the Source in node Join_CaseAccount to use Extract_Case instead of Case_CSAT_Mea",
+          "condition": "${Variables.IncludeBusinessHours == 'Yes'}",
+          "path": "$.workflowDefinition.Join_CaseAccount.parameters['left']",
+          "value": "Compute_CaseBusinessHours"
+        },
+        {
+          "action": "set",
+          "description": "Change the Source in node Case_CSAT_Mea to use Compute_CaseBusinessHours instead of Join_CaseCSAT",
+          "condition": "${Variables.IncludeBusinessHours == 'No'}",
+          "path": "$.workflowDefinition.Join_CaseAccount.parameters['left']",
+          "value": "compute_CalculatedCaseDuration"
+        },
+        {
+          "action": "delete",
+          "description": "remove Extract_CSAT node in dataflow",
+          "path": "$.workflowDefinition.Extract_CSAT"
+        },
+        {
+          "action": "delete",
+          "description": "remove Join_CaseCSAT node in dataflow",
+          "path": "$.workflowDefinition.Join_CaseCSAT"
+        },
+        {
+          "action": "delete",
+          "description": "remove Join_LiveChatTranscript_Case node when no CSAT field in dataflow",
+          "path": "$.workflowDefinition.Join_LiveChatTranscript_Case"
+        },
+        {
+          "action": "delete",
+          "description": "remove compute_LiveChatTranscriptCSAT node when no CSAT field in dataflow",
+          "path": "$.workflowDefinition.compute_LiveChatTranscriptCSAT"
+        },
+        {
+          "action": "delete",
+          "description": "remove Case_CSAT_Mea node in dataflow",
+          "path": "$.workflowDefinition.Case_CSAT_Mea"
+        },
+        {
+          "action": "delete",
+          "description": "remove CSAT from Join_AgentWorkUserGroupServiceChannelCase Dataflow",
+          "path": "$.workflowDefinition.Join_AgentWorkUserGroupServiceChannelCase.parameters.right_select[?(@.name=='${Constants.CaseCustomerSatFull}')]"
+        },
+        {
+          "action": "delete",
+          "description": "remove CSAT from Join_LiveChatTranscript_Case Dataflow",
+          "path": "$.workflowDefinition.Join_LiveChatTranscript_Case.parameters.right_select[?(@.name=='${Constants.CaseCustomerSatFull}')]"
+        }
+      ],
+      "appliesTo": [
+        {
+          "name": "*",
+          "type": "workflow"
+        }
+      ],
+      "condition": "${Variables.TrackCSAT == 'No'}",
+      "name": "NoCSATCaseWorkflow"
+    },
+    {
+      "actions": [
+        {
+          "action": "delete",
+          "description": "remove Join_LiveChatTranscript_Case node when no CSAT field in dataflow",
+          "path": "$.workflowDefinition.Join_LiveChatTranscript_Case"
+        },
+        {
+          "action": "delete",
+          "description": "remove compute_LiveChatTranscriptCSAT node when no CSAT field in dataflow",
+          "path": "$.workflowDefinition.compute_LiveChatTranscriptCSAT"
+        },
+        {
+          "action": "set",
+          "description": "add no CSAT node in dataflow",
+          "path": "$.workflowDefinition.Join_LiveChatTranscriptEventLCT.parameters['right']",
+          "value": "Join_LiveChatTranscript_Case_NoCSAT"
+        },
+        {
+          "action": "set",
+          "description": "add no CSAT node in dataflow",
+          "path": "$.workflowDefinition.Register_LiveChatTranscript.parameters['source']",
+          "value": "Join_LiveChatTranscript_Case_NoCSAT"
+        }
+      ],
+      "appliesTo": [
+        {
+          "name": "*",
+          "type": "workflow"
+        }
+      ],
+      "condition": "${Variables.TrackCSAT == 'No' && Variables.IncludeChat == 'Yes'}",
+      "name": "NoCSATYesChatWorkflow"
+    },
+    {
+      "actions": [
+        {
+          "action": "delete",
+          "description": "remove Join_AgentWorkUserGroupServiceChannelCase node when no CSAT field in dataflow",
+          "path": "$.workflowDefinition.Join_AgentWorkUserGroupServiceChannelCase"
+        },
+        {
+          "action": "delete",
+          "description": "remove compute_AgentWorkCSAT node when no CSAT field in dataflow",
+          "path": "$.workflowDefinition.compute_AgentWorkCSAT"
+        },
+        {
+          "action": "set",
+          "description": "add no CSAT node in dataflow",
+          "path": "$.workflowDefinition.Register_AgentWork.parameters['source']",
+          "value": "Join_AgentWorkUserGroupServiceChannelCase_NoCSAT"
+        }
+      ],
+      "appliesTo": [
+        {
+          "name": "*",
+          "type": "workflow"
+        }
+      ],
+      "condition": "${Variables.TrackCSAT == 'No' && Variables.IncludeOmni == 'Yes'}",
+      "name": "NoCSATYesOmniWorkflow"
+    },
+    {
+      "actions": [
+        {
+          "action": "delete",
+          "description": "remove Join_LiveChatTranscript_Case node when no CSAT field in dataflow",
+          "path": "$.workflowDefinition.Extract_AgentWork"
+        },
+        {
+          "action": "delete",
+          "description": "remove Join_LiveChatTranscript_Case node when no CSAT field in dataflow",
+          "path": "$.workflowDefinition.Extract_Group"
+        },
+        {
+          "action": "delete",
+          "description": "remove Join_LiveChatTranscript_Case node when no CSAT field in dataflow",
+          "path": "$.workflowDefinition.Extract_ServiceChannel"
+        },
+        {
+          "action": "delete",
+          "description": "remove Join_LiveChatTranscript_Case node when no CSAT field in dataflow",
+          "path": "$.workflowDefinition.Join_AgentWorkUser"
+        },
+        {
+          "action": "delete",
+          "description": "remove Join_LiveChatTranscript_Case node when no CSAT field in dataflow",
+          "path": "$.workflowDefinition.Join_AgentWorkUserGroup"
+        },
+        {
+          "action": "delete",
+          "description": "remove Join_LiveChatTranscript_Case node when no CSAT field in dataflow",
+          "path": "$.workflowDefinition.Join_AgentWorkUserGroupServiceChannel"
+        },
+        {
+          "action": "delete",
+          "description": "remove Join_LiveChatTranscript_Case node when no CSAT field in dataflow",
+          "path": "$.workflowDefinition.Join_AgentWorkUserGroupServiceChannelCase"
+        },
+        {
+          "action": "delete",
+          "description": "remove compute_AgentWorkCSAT node when no CSAT field in dataflow",
+          "path": "$.workflowDefinition.compute_AgentWorkCSAT"
+        },
+        {
+          "action": "delete",
+          "description": "remove Join_LiveChatTranscript_Case node when no CSAT field in dataflow",
+          "path": "$.workflowDefinition.Join_AgentWorkUserGroupServiceChannelCase_NoCSAT"
+        },
+        {
+          "action": "delete",
+          "description": "remove Join_LiveChatTranscript_Case node when no CSAT field in dataflow",
+          "path": "$.workflowDefinition.Register_AgentWork"
+        },
+        {
+          "action": "delete",
+          "description": "remove Join_LiveChatTranscript_Case node when no CSAT field in dataflow",
+          "path": "$.workflowDefinition.Extract_UserServicePresence"
+        },
+        {
+          "action": "delete",
+          "description": "remove Join_LiveChatTranscript_Case node when no CSAT field in dataflow",
+          "path": "$.workflowDefinition.Extract_ServicePresenceStatus"
+        },
+        {
+          "action": "delete",
+          "description": "remove Join_LiveChatTranscript_Case node when no CSAT field in dataflow",
+          "path": "$.workflowDefinition.Join_ServicePresenceUser"
+        },
+        {
+          "action": "delete",
+          "description": "remove Join_LiveChatTranscript_Case node when no CSAT field in dataflow",
+          "path": "$.workflowDefinition.Join_ServicePresenceUserStatus"
+        },
+        {
+          "action": "delete",
+          "description": "remove Join_LiveChatTranscript_Case node when no CSAT field in dataflow",
+          "path": "$.workflowDefinition.Register_UserServicePresence"
+        }
+      ],
+      "appliesTo": [
+        {
+          "name": "*",
+          "type": "workflow"
+        }
+      ],
+      "condition": "${Variables.IncludeOmni == 'No'}",
+      "name": "NoOmniWorkflow"
+    },
+    {
+      "actions": [
+        {
+          "action": "set",
+          "description": "Change the Source in node Case_CSAT_Mea to use Compute_CaseBusinessHours instead of Join_CaseCSAT",
+          "condition": "${Variables.IncludeBusinessHours == 'Yes'}",
+          "path": "$.workflowDefinition.Case_CSAT_Mea.parameters['source']",
+          "value": "Compute_CaseBusinessHours"
+        },
+        {
+          "action": "set",
+          "description": "Change the Source in node Case_CSAT_Mea to use Compute_CaseBusinessHours instead of Join_CaseCSAT",
+          "condition": "${Variables.IncludeBusinessHours == 'No'}",
+          "path": "$.workflowDefinition.Case_CSAT_Mea.parameters['source']",
+          "value": "compute_CalculatedCaseDuration"
+        },
+        {
+          "action": "delete",
+          "description": "remove Extract_CSAT node in dataflow",
+          "path": "$.workflowDefinition.Extract_CSAT"
+        },
+        {
+          "action": "delete",
+          "description": "remove Join_CaseCSAT node in dataflow",
+          "path": "$.workflowDefinition.Join_CaseCSAT"
+        },
+        {
+          "action": "add",
+          "description": "Add CSAT Field",
+          "index": 0,
+          "path": "$.workflowDefinition.Extract_Case.parameters.fields",
+          "value": {
+            "name": "${Variables.CSATField.fieldName}",
+            "type": "Text"
+          }
+        }
+      ],
+      "appliesTo": [
+        {
+          "name": "*",
+          "type": "workflow"
+        }
+      ],
+      "condition": "${Variables.TrackCSAT == 'Yes' && Constants.IsCSATOnCase}",
+      "name": "CSATOnCaseWorkflow"
+    },
+    {
+      "actions": [
+        {
+          "action": "delete",
+          "description": "remove Add_Fields_To_Event node in dataflow",
+          "path": "$.workflowDefinition.Add_Fields_To_Event"
+        },
+        {
+          "action": "delete",
+          "description": "remove Add_Fields_To_Task node in dataflow",
+          "path": "$.workflowDefinition.Add_Fields_To_Task"
+        },
+        {
+          "action": "delete",
+          "description": "remove Append_TaskEvent node in dataflow",
+          "path": "$.workflowDefinition.Append_TaskEvent"
+        },
+        {
+          "action": "delete",
+          "description": "remove Compute_Extract_Event node in dataflow",
+          "path": "$.workflowDefinition.Compute_Extract_Event"
+        },
+        {
+          "action": "delete",
+          "description": "remove Extract_Event node in dataflow",
+          "path": "$.workflowDefinition.Extract_Event"
+        },
+        {
+          "action": "delete",
+          "description": "remove Join_ServiceCaseTaskEvent node in dataflow",
+          "path": "$.workflowDefinition.Join_ServiceCaseTaskEvent"
+        },
+        {
+          "action": "delete",
+          "description": "remove computeJoin_ServiceCaseTaskEvent node in dataflow",
+          "path": "$.workflowDefinition.computeJoin_ServiceCaseTaskEvent"
+        },
+        {
+          "action": "delete",
+          "description": "remove Handle_Only_Activities node in dataflow",
+          "path": "$.workflowDefinition.Handle_Only_Activities"
+        },
+        {
+          "action": "set",
+          "description": "Change the left Soruce of Join_CaseAccountContact",
+          "path": "$.workflowDefinition.Join_ActivityOwner.parameters['left']",
+          "value": "Extract_Task"
+        },
+        {
+          "action": "set",
+          "description": "Change the left Soruce of Join_CaseAccountContact",
+          "path": "$.workflowDefinition.Join_CaseAccountContact.parameters['left']",
+          "value": "computeJoin_ServiceCaseTask"
+        },
+        {
+          "action": "set",
+          "description": "Change the  Soruce of Filter_Activities",
+          "path": "$.workflowDefinition.Filter_Activities.parameters['source']",
+          "value": "Handle_Only_Task"
+        }
+      ],
+      "appliesTo": [
+        {
+          "name": "*",
+          "type": "workflow"
+        }
+      ],
+      "condition": "${Variables.IncludeEvent == 'No'}",
+      "name": "ruleEventDataFlow"
+    },
+    {
+      "actions": [
+        {
+          "action": "delete",
+          "description": "remove Handle_Only_Activities node in dataflow",
+          "path": "$.workflowDefinition.Handle_Only_Task"
+        }
+      ],
+      "appliesTo": [
+        {
+          "name": "*",
+          "type": "workflow"
+        }
+      ],
+      "condition": "${Variables.IncludeEvent == 'Yes'}",
+      "name": "ruleEventDataFlow"
+    },
+    {
+      "appliesTo": [
+        {
+          "type": "dashboard",
+          "name": "My_Performance_Summary"
+        }
+      ],
+      "name": "My_Performance_Summary_rules",
+      "actions": [
+
+
+        {
+          "action": "eval",
+          "description": "Deleting CSAT Card",
+          "condition": "${Variables.TrackCSAT == 'No'}",
+          "value": "${cards:deleteCards('card_CSAT')}"
+        },
+        {
+          "action": "eval",
+          "description": "Move FCR Card",
+          "condition": "${Variables.TrackCSAT == 'No' && Constants.CaseFCR != ''}",
+          "value": "${cards:moveCardstoLeft('card_FCR',9)}"
+        },
+
+        {
+          "action": "eval",
+          "description": "Move SLA Card",
+          "condition": "${Variables.TrackCSAT == 'No' && Constants.CaseSLA != ''}",
+          "value": "${cards:moveCardstoLeft('card_SLA',9)}"
+        },
+
+        {
+          "action": "eval",
+          "description": "Deleting FCR Card",
+          "condition": "${Constants.CaseFCR == ''}",
+          "value": "${cards:deleteCards('card_FCR')}"
+        },
+
+        {
+          "action": "eval",
+          "description": "Move SLA Card again if needed",
+          "condition": "${Constants.CaseFCR == '' && Constants.CaseSLA != ''}",
+          "value": "${cards:moveCardstoLeft('card_SLA',9)}"
+        },
+
+        {
+          "action": "eval",
+          "description": "Deleting SLA Card",
+          "condition": "${Constants.CaseSLA == ''}",
+          "value": "${cards:deleteCards('card_SLA')}"
+        },
+
+        {
+          "action": "eval",
+          "description": "Deleting Telephony Count Card",
+          "condition": "${Variables.IncludeTelephony == 'No'}",
+          "value": "${cards:deleteCards('card_telephonyCount')}"
+        },
+
+        {
+          "action": "eval",
+          "description": "Deleting Telephony Duration Card",
+          "condition": "${Variables.IncludeTelephony == 'No'}",
+          "value": "${cards:deleteCards('card_telephonyDuration')}"
+        },
+
+        {
+          "action": "eval",
+          "description": "Move Chat Count Card",
+          "condition": "${Variables.IncludeTelephony == 'No' && Variables.IncludeChat == 'Yes'}",
+          "value": "${cards:moveCardstoLeft('card_ChatCount',18)}"
+        },
+
+        {
+          "action": "eval",
+          "description": "Move Chat HandleTime Card",
+          "condition": "${Variables.IncludeTelephony == 'No' && Variables.IncludeChat == 'Yes'}",
+          "value": "${cards:moveCardstoLeft('card_ChatHandleTime',18)}"
+        },
+
+
+
+        {
+          "action": "eval",
+          "description": "Deleting Chat Count Card",
+          "condition": "${Variables.IncludeChat == 'No'}",
+          "value": "${cards:deleteCards('card_ChatCount')}"
+
+        },
+        {
+          "action": "eval",
+          "description": "Deleting Chat HandleTime Card",
+          "condition": "${Variables.IncludeChat == 'No'}",
+          "value": "${cards:deleteCards('card_ChatHandleTime')}"
+
+        },
+
+        {
+          "action": "eval",
+          "description": "Deleting CaseDuration Card",
+          "condition": "${Variables.IncludeCaseHistory == 'No'}",
+          "value": "${cards:deleteCards('card_caseDuration')}"
+
+        },
+
+
+        {
+          "action": "delete",
+          "description": "Deleting Default Layout",
+          "path": "$.state.gridLayouts.[?(@.name=='Default')]",
+          "condition": "${Variables.IncludeCaseHistory == 'No'}"
+        },
+        {
+          "action": "delete",
+          "description": "Deleting NoTrending Layout",
+          "path": "$.state.gridLayouts.[?(@.name=='NoTrending')]",
+          "condition": "${Variables.IncludeCaseHistory == 'Yes'}"
+        },
+
+
+        {
+          "action": "eval",
+          "description": "Deleting Widget listselector_Static_Duration",
+          "condition": "${! Constants.CaseDurationMoreFieldsHasValues}",
+          "value": "${widget_util:deleteWidget('listselector_Static_Duration')}"
+        },
+        {
+          "action": "set",
+          "path": "$.state.steps.Static_Duration.values",
+          "condition": "${Constants.CaseDurationMoreFieldsHasValues}",
+          "description": "adding values to Static_Duration",
+          "value": "${array:concat(Rules.CurrentNode, array:forEach(Variables.CaseDurationMoreFields,'{\"display\": \"${var.fieldLabel}\",\"value\": [\"avg\",\"${var.fieldName}\"],\"pigql_value\": \"${var.fieldName}\",\"measure_field\": \"avg_${var.fieldName}\"}'))}"
+        },
+        {
+          "action": "eval",
+          "description": "Deleting Widget chart_SLA_breakdownand Step ",
+          "condition": "${Constants.CaseSLA == ''}",
+          "value": "${widget_util:deleteWidget('chart_SLA_breakdown')}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.steps.card_caseDuration_step_kpi",
+          "description": "Deleting Step card_caseDuration_step_kpi in Dashboard Service_Account_Profile",
+          "condition": "${Constants.CaseSLA == ''}"
+
+
+        },
+        {
+          "action": "delete",
+          "path": "$.state.steps.card_caseDuration_step_kpi_noSLA",
+          "description": "Deleting Step card_caseDuration_step_kpi in Dashboard Service_Account_Profile",
+          "condition": "${Constants.CaseSLA != '' || Variables.IncludeCaseHistory == 'No'}"
+        },
+
+        {
+          "action": "set",
+          "description": "set alternate step for card_caseDuration_chart_kpi",
+          "path": "$.state.widgets.card_caseDuration_chart_kpi.parameters.step",
+          "value": "card_caseDuration_step_kpi_noSLA",
+          "condition": "${Constants.CaseSLA == '' && Variables.IncludeCaseHistory == 'Yes'}"
+        }
+
+      ]
+    },
+    {
+      "appliesTo": [
+        {
+          "type": "dashboard",
+          "name": "Service_Account_Profile"
+        }
+      ],
+      "name": "Service_Account_Profile_rules",
+      "actions": [
+        {
+          "action": "delete",
+          "path": "$.state.steps.kpi_won_opportunity_amount",
+          "description": "Deleting Step kpi_won_opportunity_amount in Dashboard Service_Account_Profile",
+          "condition": "${Variables.IncludeOpportunity == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.steps.kpi_open_opportunity_amount",
+          "description": "Deleting Step kpi_open_opportunity_amount in Dashboard Service_Account_Profile",
+          "condition": "${Variables.IncludeOpportunity == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.widgets.number_kpi_open_opportunity_amount",
+          "description": "Deleting Widget number_kpi_open_opportunity_amount",
+          "condition": "${Variables.IncludeOpportunity == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.gridLayouts.*.pages.*.widgets[?(@.name=='number_kpi_open_opportunity_amount')]",
+          "description": "delete number_kpi_open_opportunity_amount's gridLayout",
+          "condition": "${Variables.IncludeOpportunity == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.widgets.number_kpi_won_opportunity_amount",
+          "description": "Deleting Widget number_kpi_won_opportunity_amount",
+          "condition": "${Variables.IncludeOpportunity == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.gridLayouts.*.pages.*.widgets[?(@.name=='number_kpi_won_opportunity_amount')]",
+          "description": "delete number_kpi_won_opportunity_amount's gridLayout",
+          "condition": "${Variables.IncludeOpportunity == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.steps.kpi_avg_csat",
+          "description": "Deleting Step kpi_avg_csat in Dashboard Service_Account_Profile",
+          "condition": "${Variables.TrackCSAT == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.steps.CSAT_PrevPeriod",
+          "description": "Deleting Step CSAT_PrevPeriod in Dashboard Service_Account_Profile",
+          "condition": "${Variables.TrackCSAT == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.steps.CSAT_LastYear",
+          "description": "Deleting Step CSAT_LastYear in Dashboard Service_Account_Profile",
+          "condition": "${Variables.TrackCSAT == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.steps.avg_csat_over_time",
+          "description": "Deleting Step avg_csat_over_time in Dashboard Service_Account_Profile",
+          "condition": "${Variables.TrackCSAT == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.widgets.number_kpi_avg_csat",
+          "description": "Deleting Widget number_kpi_avg_csat",
+          "condition": "${Variables.TrackCSAT == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.gridLayouts.*.pages.*.widgets[?(@.name=='number_kpi_avg_csat')]",
+          "description": "delete number_kpi_avg_csat's gridLayout",
+          "condition": "${Variables.TrackCSAT == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.widgets.text_Constants_CaseCustomerSatLabel",
+          "description": "Deleting CSAT Text Widget",
+          "condition": "${Variables.TrackCSAT == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.gridLayouts.*.pages.*.widgets[?(@.name=='text_Constants_CaseCustomerSatLabel')]",
+          "description": "eleting CSAT Text Widget from gridLayouts",
+          "condition": "${Variables.TrackCSAT == 'No'}"
+        },
+        {
+          "action": "set",
+          "description": "set alternate CSAT step for RawData table",
+          "path": "$.state.steps.account_by_avg_duration_avg_csat.query.query.measures",
+          "condition": "${Variables.TrackCSAT == 'No'}",
+          "value": "{{concat(column(static_Duration.selection, [\"value\"]), cell(static_No_CSAT.selection,0, \"compact\")).asObject()}}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.steps.account_by_avg_duration_avg_csat.query.query.filters[?(@[0] == 'CSAT')]",
+          "description": "deleting Filter (CSAT) in agent_by_avg_duration_avg_csat",
+          "condition": "${Variables.TrackCSAT == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.widgets.listselector_static_CSAT",
+          "description": "Deleting  CSAT Toggle",
+          "condition": "${Variables.TrackCSAT == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.gridLayouts.*.pages.*.widgets[?(@.name=='listselector_static_CSAT')]",
+          "description": "delete No CSAT widget from gridLayout",
+          "condition": "${Variables.TrackCSAT == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.widgets.link_Constants_CaseCustomerSatLabel",
+          "description": "Deleting Widget link_Constants_CaseCustomerSatLabel",
+          "condition": "${Variables.TrackCSAT == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.gridLayouts.*.pages.*.widgets[?(@.name=='link_Constants_CaseCustomerSatLabel')]",
+          "description": "delete link_Constants_CaseCustomerSatLabel's gridLayout",
+          "condition": "${Variables.TrackCSAT == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.widgets.number_CSAT_PrevPeriod",
+          "description": "Deleting Widget number_CSAT_PrevPeriod",
+          "condition": "${Variables.TrackCSAT == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.gridLayouts.*.pages.*.widgets[?(@.name=='number_CSAT_PrevPeriod')]",
+          "description": "delete number_CSAT_PrevPeriod's gridLayout",
+          "condition": "${Variables.TrackCSAT == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.widgets.number_CSAT_LastYear",
+          "description": "Deleting Widget number_CSAT_LastYear",
+          "condition": "${Variables.TrackCSAT == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.gridLayouts.*.pages.*.widgets[?(@.name=='number_CSAT_LastYear')]",
+          "description": "delete number_CSAT_LastYear's gridLayout",
+          "condition": "${Variables.TrackCSAT == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.widgets.chart_avg_csat_over_time",
+          "description": "Deleting Widget chart_avg_csat_over_time",
+          "condition": "${Variables.TrackCSAT == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.gridLayouts.*.pages.*.widgets[?(@.name=='chart_avg_csat_over_time')]",
+          "description": "delete chart_avg_csat_over_time's gridLayout",
+          "condition": "${Variables.TrackCSAT == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.steps.raw_case.query.query.values[?(@=='${Constants.CaseCustomerSatFull}')]",
+          "description": "deleting Value (Constants.CaseCustomerSatFull) in raw_case",
+          "condition": "${Variables.TrackCSAT == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.steps.StageDurationVsAverage",
+          "description": "Deleting Step StageDurationVsAverage in Dashboard Service_Account_Profile",
+          "condition": "${Variables.IncludeCaseHistory == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.widgets.chart_StageDurationVsAverage",
+          "description": "Deleting Widget chart_StageDurationVsAverage",
+          "condition": "${Variables.IncludeCaseHistory == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.gridLayouts.*.pages.*.widgets[?(@.name=='chart_StageDurationVsAverage')]",
+          "description": "delete chart_StageDurationVsAverage's gridLayout",
+          "condition": "${Variables.IncludeCaseHistory == 'No'}"
+        },
+
+        {
+          "action": "delete",
+          "path": "$.state.widgets.text_Average_Duration_in_Status",
+          "description": "Deleting Widget text_Average_Duration_in_Status",
+          "condition": "${Variables.IncludeCaseHistory == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.gridLayouts.*.pages.*.widgets[?(@.name=='text_Average_Duration_in_Status')]",
+          "description": "delete text_Average_Duration_in_Status's gridLayout",
+          "condition": "${Variables.IncludeCaseHistory == 'No'}"
+        },
+
+        {
+          "action": "delete",
+          "path": "$.state.widgets.listselector_filter_recordtype",
+          "description": "Deleting Widget listselector_filter_recordtype",
+          "condition": "${Variables.IncludeCaseRecordTypes == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.gridLayouts.*.pages.*.widgets[?(@.name=='listselector_filter_recordtype')]",
+          "description": "delete listselector_filter_recordtype's gridLayout",
+          "condition": "${Variables.IncludeCaseRecordTypes == 'No'}"
+        },
+        {
+          "action": "set",
+          "path": "$.state.gridLayouts.[?(@.name=='Default')].pages.*.widgets[?(@.name=='listselector_static_Duration')].column",
+          "description": "delete listselector_filter_recordtype's gridLayout",
+          "condition": "${Variables.IncludeCaseRecordTypes == 'No'}",
+          "value": 11
+        },
+        {
+          "action": "delete",
+          "path": "$.state.widgets.listselector_static_Duration",
+          "description": "Deleting Widget listselector_static_Duration",
+          "condition": "${! Constants.CaseDurationMoreFieldsHasValues}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.gridLayouts.*.pages.*.widgets[?(@.name=='listselector_static_Duration')]",
+          "description": "delete listselector_static_Duration's gridLayout",
+          "condition": "${! Constants.CaseDurationMoreFieldsHasValues}"
+        },
+        {
+          "action": "set",
+          "path": "$.state.steps.static_Duration.values",
+          "condition": "${Constants.CaseDurationMoreFieldsHasValues}",
+          "description": "adding values to static_Duration",
+          "value": "${array:concat(Rules.CurrentNode, array:forEach(Variables.CaseDurationMoreFields,'{\"display\": \"${var.fieldLabel}\",\"value\": [\"avg\",\"${var.fieldName}\"],\"pigql_value\": \"${var.fieldName}\",\"measure_field\": \"avg_${var.fieldName}\"}'))}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.widgets.pillbox_static_CSAT",
+          "description": "Deleting No CSAT Toggle",
+          "condition": "${Variables.TrackCSAT == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.gridLayouts.*.pages.*.widgets[?(@.name=='pillbox_static_CSAT')]",
+          "description": "delete No CSAT widget from gridLayout",
+          "condition": "${Variables.TrackCSAT == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.widgets.chart_filter_SLA",
+          "description": "Deleting Widget chart_filter_SLAand Step ",
+          "condition": "${Constants.CaseSLA == ''}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.steps.filter_SLA",
+          "description": "Deleting Step filter_SLA in Dashboard Service_Account_Profile",
+          "condition": "${Constants.CaseSLA == ''}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.gridLayouts.*.pages.*.widgets[?(@.name=='chart_filter_SLA')]",
+          "description": "delete chart_filter_SLA's gridLayout",
+          "condition": "${Constants.CaseSLA == ''}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.widgets.chart_filter_SLA1",
+          "description": "Deleting Widget chart_filter_SLA1and Step ",
+          "condition": "${Constants.CaseSLA == ''}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.steps.filter_SLA",
+          "description": "Deleting Step filter_SLA in Dashboard Service_Account_Profile",
+          "condition": "${Constants.CaseSLA == ''}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.gridLayouts.*.pages.*.widgets[?(@.name=='chart_filter_SLA1')]",
+          "description": "delete chart_filter_SLA1's gridLayout",
+          "condition": "${Constants.CaseSLA == ''}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.widgets.text_Open_Cases_by_SLA",
+          "description": "Deleting Widget text_Open_Cases_by_SLA",
+          "condition": "${Constants.CaseSLA == ''}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.gridLayouts.*.pages.*.widgets[?(@.name=='text_Open_Cases_by_SLA')]",
+          "description": "delete text_Open_Cases_by_SLA's gridLayout",
+          "condition": "${Constants.CaseSLA == ''}"
+        }
+      ]
+    },
+    {
+      "appliesTo": [
+        {
+          "type": "dashboard",
+          "name": "Service_Overview"
+        }
+      ],
+      "name": "Service_Manager_Overview_rules",
+      "actions": [
+        {
+          "action": "delete",
+          "path": "$.state.steps.avg_CSAT",
+          "description": "Deleting Step avg_CSAT in Dashboard Service_Manager_Overview",
+          "condition": "${Variables.TrackCSAT == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.steps.avg_CSAT_over_time",
+          "description": "Deleting Step avg_CSAT_over_time in Dashboard Service_Manager_Overview",
+          "condition": "${Variables.TrackCSAT == 'No'}"
+        },
+        {
+          "action": "set",
+          "path": "$.state.widgets.number_avg_CSAT.parameters.step",
+          "condition": "${Variables.TrackCSAT == 'No'}",
+          "description": "setting Param (step) to Accounts_with_OpenCases in Widget number_avg_CSAT",
+          "value": "Accounts_with_OpenCases"
+        },
+        {
+          "action": "set",
+          "path": "$.state.widgets.number_avg_CSAT.parameters.measureField",
+          "condition": "${Variables.TrackCSAT == 'No'}",
+          "description": "setting Param (measureField) to unique_AccountId in Widget number_avg_CSAT",
+          "value": "unique_AccountId"
+        },
+        {
+          "action": "set",
+          "path": "$.state.widgets.number_avg_CSAT.parameters.title",
+          "description": "Changing number widget title",
+          "condition": "${Variables.TrackCSAT == 'No'}",
+          "value": "Accounts with Open Cases"
+        },
+        {
+          "action": "set",
+          "path": "$.state.widgets.chart_avg_CSAT_over_time.parameters.step",
+          "condition": "${Variables.TrackCSAT == 'No'}",
+          "description": "setting Param (step) to sla in Widget chart_avg_CSAT_over_time ",
+          "value": "count_case_by_accounts"
+        },
+
+        {
+          "action": "set",
+          "path": "$.state.widgets.chart_avg_CSAT_over_time.parameters.visualizationType",
+          "condition": "${Variables.TrackCSAT == 'No'}",
+          "description": "setting Param (step) to sla in Widget chart_avg_CSAT_over_time ",
+          "value": "pie"
+        },
+        {
+          "action": "eval",
+          "description": "Deleting Widget link_Review_CSAT_Drivers",
+          "condition": "${Variables.TrackCSAT == 'No'}",
+          "value": "${widget_util:deleteWidget('link_Review_CSAT_Drivers')}"
+        },
+        {
+          "action": "eval",
+          "description": "Deleting Widget link_Review_Knowledge_Impact",
+          "condition": "${Variables.IncludeKnowledge == 'No'}",
+          "value": "${widget_util:deleteWidget('link_Review_Knowledge_Impact')}"
+        },
+        {
+          "action": "eval",
+          "description": "Deleting Widget link_Review_Knowledge_Usage",
+          "condition": "${Variables.IncludeKnowledge == 'No'}",
+          "value": "${widget_util:deleteWidget('link_Review_Knowledge_Usage')}"
+        },
+        {
+          "action": "eval",
+          "description": "Remove link to Telephony",
+          "condition": "${Variables.IncludeTelephony == 'No'}",
+          "value": "${link_macros:removeVerticalLink('link_Review_Telephony_Metrics')}"
+        },
+        {
+          "action": "eval",
+          "description": "Remove link to Chat",
+          "condition": "${Variables.IncludeChat == 'No'}",
+          "value": "${link_macros:removeVerticalLink('link_Review_Chat_Metrics')}"
+        },
+        {
+          "action": "eval",
+          "description": "Remove link to Omni",
+          "condition": "${Variables.IncludeOmni == 'No'}",
+          "value": "${link_macros:removeVerticalLink('link_Review_Omni_Metrics')}"
+        },
+        {
+          "action": "eval",
+          "description": "Deleting Widget link_Review_Knowledge_Impact",
+          "condition": "${Variables.IncludeKnowledge == 'No'}",
+          "value": "${widget_util:deleteWidget('link_Review_Knowledge_Impact_iphone')}"
+        },
+        {
+          "action": "eval",
+          "description": "Deleting Widget link_Review_Knowledge_Usage",
+          "condition": "${Variables.IncludeKnowledge == 'No'}",
+          "value": "${widget_util:deleteWidget('link_Review_Knowledge_Usage_iphone')}"
+        },
+        {
+          "action": "eval",
+          "description": "Remove link to Telephony",
+          "condition": "${Variables.IncludeTelephony == 'No'}",
+          "value": "${link_macros:removeVerticalLink('link_Review_Telephony_Metrics_iphone')}"
+        },
+        {
+          "action": "eval",
+          "description": "Remove link to Chat",
+          "condition": "${Variables.IncludeChat == 'No'}",
+          "value": "${link_macros:removeVerticalLink('link_Review_Chat_Metrics_iphone')}"
+        },
+        {
+          "action": "eval",
+          "description": "Remove link to Omni",
+          "condition": "${Variables.IncludeOmni == 'No'}",
+          "value": "${link_macros:removeVerticalLink('link_Review_Omni_Metrics_iphone')}"
+        },
+        {
+          "action": "set",
+          "path": "$.state.widgets.number_CSAT_PrevPeriod.parameters.step",
+          "condition": "${Variables.TrackCSAT == 'No'}",
+          "description": "setting Param (step) to  Accounts_with_OpenCases_PrevPeriod ",
+          "value": "Accounts_with_OpenCases_PrevPeriod"
+        },
+        {
+          "action": "set",
+          "path": "$.state.gridLayouts.*.pages.*.widgets[?(@.name=='number_CSAT_PrevPeriod')].widgetStyle.backgroundColor",
+          "condition": "${Variables.TrackCSAT == 'No'}",
+          "description": "setting Param (step) to  Accounts_with_OpenCases_PrevPeriod ",
+          "value": "{{cell(Accounts_with_OpenCases_PrevPeriod.result, 0, \"color\").asString()}}"
+        },
+        {
+          "action": "set",
+          "path": "$.state.widgets.number_FCR_PrevPeriod.parameters.step",
+          "condition": "${Constants.CaseFCR == ''}",
+          "description": "setting Param (step) to  CaseResolution_PrevPeriod ",
+          "value": "CaseResolution_PrevPeriod"
+        },
+
+        {
+          "action": "set",
+          "path": "$.state.widgets.chart_avg_FCR_Over_Time.parameters.step",
+          "condition": "${Constants.CaseFCR == ''}",
+          "description": "setting Param (step) to sla in Widget case_volume_per_channel ",
+          "value": "case_volume_per_channel"
+        },
+        {
+          "action": "set",
+          "path": "$.state.gridLayouts.*.pages.*.widgets[?(@.name=='number_FCR_PrevPeriod')].widgetStyle.backgroundColor",
+          "condition": "${Constants.CaseFCR == ''}",
+          "description": "setting Param (step) to  CaseResolution_PrevPeriod ",
+          "value": "{{cell(CaseResolution_PrevPeriod.result, 0, \"color\").asString()}}"
+        },
+
+        {
+          "action": "set",
+          "path": "$.state.widgets.chart_avg_FCR_Over_Time.parameters.visualizationType",
+          "condition": "${Constants.CaseFCR == ''}",
+          "description": "setting Param (step) to sla in Widget chart_avg_FCR_Over_Time ",
+          "value": "pie"
+        },
+        {
+          "action": "set",
+          "path": "$.state.widgets.number_avg_FCR_Percent.parameters.step",
+          "condition": "${Constants.CaseFCR == ''}",
+          "description": "setting Param (step) to  avg_CaseResolution_Percent ",
+          "value": "avg_CaseResolution_Percent"
+        },
+        {
+          "action": "set",
+          "path": "$.state.widgets.number_avg_FCR_Percent.parameters.title",
+          "condition": "${Constants.CaseFCR == ''}",
+          "description": "setting Param (step) to  avg_CaseResolution_Percent ",
+          "value": "Case Resolution"
+        }
+      ]
+    },
+    {
+      "appliesTo": [
+        {
+          "type": "dashboard",
+          "name": "Service_Agent_Sidebar_By_Customer"
+        }
+      ],
+      "name": "Service_Agent_Sidebar_By_Customer_rules",
+      "actions": [
+        {
+          "action": "delete",
+          "path": "$.state.widgets.text_2",
+          "description": "remove text_2 node in dashboard",
+          "condition": "${Variables.IncludeOpportunity == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.widgets.text_4",
+          "description": "remove text_4 node in dashboard",
+          "condition": "${Variables.IncludeOpportunity == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.widgets.number_21",
+          "description": "remove number_21 node in dashboard",
+          "condition": "${Variables.IncludeOpportunity == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.widgets.number_22",
+          "description": "remove number_22 node in dashboard",
+          "condition": "${Variables.IncludeOpportunity == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.steps.Customer_Sum_Won_Opportunities",
+          "description": "remove Customer_Sum_Won_Opportunities node in dashboard",
+          "condition": "${Variables.IncludeOpportunity == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.widgets.number_Customer_Sum_Won_Opportunities",
+          "description": "remove number_Customer_Sum_Won_Opportunities node in dashboard",
+          "condition": "${Variables.IncludeOpportunity == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.gridLayouts.*.pages.*.widgets[?(@.name=='number_Customer_Sum_Won_Opportunities')]",
+          "description": "delete number_Customer_Sum_Won_Opportunities's gridLayout",
+          "condition": "${Variables.IncludeOpportunity == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.widgets.number_Customer_Sum_Open_Opportunities",
+          "description": "remove number_Customer_Sum_Open_Opportunities node in dashboard",
+          "condition": "${Variables.IncludeOpportunity == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.gridLayouts.*.pages.*.widgets[?(@.name=='number_Customer_Sum_Open_Opportunities')]",
+          "description": "delete number_Customer_Sum_Open_Opportunities's gridLayout",
+          "condition": "${Variables.IncludeOpportunity == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.steps.Customer_Sum_Open_Opportunities",
+          "description": "remove Customer_Sum_Open_Opportunities node in dashboard",
+          "condition": "${Variables.IncludeOpportunity == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.widgets.box_4",
+          "description": "remove box",
+          "condition": "${Variables.IncludeOpportunity == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.steps.Customer_CSAT",
+          "description": "remove Customer_CSAT node in dashboard",
+          "condition": "${Variables.TrackCSAT == 'No'}"
+        },
+        {
+          "action": "set",
+          "description": "set alternate step for chart_Customer_CSAT",
+          "path": "$.state.widgets.chart_Customer_CSAT.parameters.step",
+          "value": "avg_duration_over_time",
+          "condition": "${Variables.TrackCSAT == 'No'}"
+        },
+        {
+          "action": "set",
+          "description": "set alternate text for chart_Customer_Product",
+          "path": "$.state.widgets.chart_Customer_CSAT.parameters.title.label",
+          "value": "Duration Overview",
+          "condition": "${Variables.TrackCSAT == 'No'}"
+        }
+      ]
+    },
+    {
+      "appliesTo": [
+        {
+          "type": "dashboard",
+          "name": "Service_Agent_Sidebar_By_Similarity"
+        }
+      ],
+      "name": "Service_Agent_Sidebar_By_Similarity_rules",
+      "actions": [
+        {
+          "action": "delete",
+          "path": "$.state.steps.valuesTable_By_Similarity.query.query.values[?(@=='${Constants.CaseCustomerSatFull}')]",
+          "description": "deleting Value (Constants.CaseCustomerSatFull) in valuesTable_By_Similarity",
+          "condition": "${Variables.TrackCSAT == 'No'}"
+        }
+      ]
+    },
+    {
+      "appliesTo": [
+        {
+          "type": "dashboard",
+          "name": "Service_Backlog_Analysis"
+        }
+      ],
+      "name": "Service_Backlog_rules",
+      "actions": [
+        {
+          "action": "set",
+          "path": "$.state.gridLayouts.[?(@.name=='Default')].pages.*.widgets[?(@.name=='listselector_Support_Type_c_1')].column",
+          "description": "delete listselector_filter_case_record_type's gridLayout",
+          "condition": "${Variables.IncludeCaseRecordTypes == 'No' && Constants.CaseSupportLevel != ''}",
+          "value": 11
+        },
+        {
+          "action": "delete",
+          "path": "$.state.widgets.listselector_RecordType_Name_1",
+          "description": "Deleting Widget listselector_RecordType_Name_1",
+          "condition": "${Variables.IncludeCaseRecordTypes == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.gridLayouts.*.pages.*.widgets[?(@.name=='listselector_RecordType_Name_1')]",
+          "description": "delete listselector_RecordType_Name_1's gridLayout",
+          "condition": "${Variables.IncludeCaseRecordTypes == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.widgets.listselector_Support_Type_c_1",
+          "description": "Deleting Widget listselector_Support_Type_c_1and Step ",
+          "condition": "${Constants.CaseSupportLevel == ''}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.steps.Support_Type__c_1",
+          "description": "Deleting Step Support_Type__c_1 in Dashboard Service_Backlog_Analysis",
+          "condition": "${Constants.CaseSupportLevel == ''}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.gridLayouts.*.pages.*.widgets[?(@.name=='listselector_Support_Type_c_1')]",
+          "description": "delete listselector_Support_Type_c_1's gridLayout",
+          "condition": "${Constants.CaseSupportLevel == ''}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.steps.Backlog_Trend_Group_Select.values[?(@.value=='${Constants.CaseSupportLevel}')]",
+          "description": "deleting Value (Constants.CaseSupportLevel) in Backlog_Trend_Group_Select",
+          "condition": "${Constants.CaseSupportLevel == ''}"
+        }
+
+      ]
+    },
+    {
+      "appliesTo": [
+        {
+          "type": "dashboard",
+          "name": "Service_Agent_Activity"
+        }
+      ],
+      "name": "Service_Agent_Activity_rules",
+      "actions": [
+        {
+          "action": "delete",
+          "path": "$.state.widgets.listselector_filter_case_record_type",
+          "description": "Deleting Widget listselector_filter_case_record_type",
+          "condition": "${Variables.IncludeCaseRecordTypes == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.gridLayouts.*.pages.*.widgets[?(@.name=='listselector_filter_case_record_type')]",
+          "description": "delete listselector_filter_case_record_type's gridLayout",
+          "condition": "${Variables.IncludeCaseRecordTypes == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.widgets.listselector_Static_Duration",
+          "description": "Deleting Widget listselector_Static_Duration",
+          "condition": "${! Constants.CaseDurationMoreFieldsHasValues}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.gridLayouts.*.pages.*.widgets[?(@.name=='listselector_Static_Duration')]",
+          "description": "delete listselector_Static_Duration's gridLayout",
+          "condition": "${! Constants.CaseDurationMoreFieldsHasValues}"
+        },
+        {
+          "action": "set",
+          "path": "$.state.gridLayouts.[?(@.name=='Default')].pages.*.widgets[?(@.name=='listselector_filter_case_record_type')].column",
+          "description": "delete listselector_filter_case_record_type's gridLayout",
+          "condition": "${Variables.IncludeCaseRecordTypes != 'No' && ! Constants.CaseDurationMoreFieldsHasValues}",
+          "value": 26
+        },
+        {
+          "action": "set",
+          "path": "$.state.steps.Static_Duration.values",
+          "condition": "${Constants.CaseDurationMoreFieldsHasValues}",
+          "description": "adding values to Static_Duration",
+          "value": "${array:concat(Rules.CurrentNode, array:forEach(Variables.CaseDurationMoreFields,'{\"display\": \"${var.fieldLabel}\",\"value\": [\"${var.fieldName}\"],\"pigql_value\": \"${var.fieldName}\",\"measure_field\": \"avg_${var.fieldName}\"}'))}"
+        }
+      ]
+    },
+    {
+      "appliesTo": [
+        {
+          "type": "dashboard",
+          "name": "Service_Telephony"
+        }
+      ],
+      "name": "Service_Telephony_rules",
+      "actions": [
+        {
+          "action": "delete",
+          "path": "$.state.widgets.listselector_Case_RecordType_Name_1",
+          "description": "Deleting Widget listselector_Case_RecordType_Name_1",
+          "condition": "${Variables.IncludeCaseRecordTypes == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.gridLayouts.*.pages.*.widgets[?(@.name=='listselector_Case_RecordType_Name_1')]",
+          "description": "delete listselector_Case_RecordType_Name_1's gridLayout",
+          "condition": "${Variables.IncludeCaseRecordTypes == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.widgets.chart_filter_call_support",
+          "description": "Deleting Widget chart_filter_call_supportand Step ",
+          "condition": "${Constants.CaseSupportLevel == ''}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.steps.filter_call_support",
+          "description": "Deleting Step filter_call_support in Dashboard Service_Telephony",
+          "condition": "${Constants.CaseSupportLevel == ''}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.gridLayouts.*.pages.*.widgets[?(@.name=='chart_filter_call_support')]",
+          "description": "delete chart_filter_call_support's gridLayout",
+          "condition": "${Constants.CaseSupportLevel == ''}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.widgets.text_Case_Support_Level",
+          "description": "Deleting Widget text_Case_Support_Level and Step ",
+          "condition": "${Constants.CaseSupportLevel == ''}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.gridLayouts.*.pages.*.widgets[?(@.name=='text_Case_Support_Level')]",
+          "description": "delete text_Case_Support_Level's gridLayout",
+          "condition": "${Constants.CaseSupportLevel == ''}"
+        }
+      ]
+    },
+    {
+      "appliesTo": [
+        {
+          "type": "dashboard",
+          "name": "Service_By_TeamEfficiency"
+        }
+      ],
+      "name": "Service_Agent_Performance_rules",
+      "actions": [
+        {
+          "action": "delete",
+          "path": "$.state.widgets.listselector_filter_record_type",
+          "description": "Deleting Widget listselector_filter_record_type",
+          "condition": "${Variables.IncludeCaseRecordTypes == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.gridLayouts.*.pages.*.widgets[?(@.name=='listselector_filter_record_type')]",
+          "description": "delete listselector_filter_record_type's gridLayout",
+          "condition": "${Variables.IncludeCaseRecordTypes == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.widgets.listselector_Static_Duration",
+          "description": "Deleting Widget listselector_Static_Duration",
+          "condition": "${! Constants.CaseDurationMoreFieldsHasValues}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.gridLayouts.*.pages.*.widgets[?(@.name=='listselector_Static_Duration')]",
+          "description": "delete listselector_Static_Duration's gridLayout",
+          "condition": "${! Constants.CaseDurationMoreFieldsHasValues}"
+        },
+        {
+          "action": "set",
+          "path": "$.state.gridLayouts.[?(@.name=='Default')].pages.*.widgets[?(@.name=='listselector_filter_record_type')].column",
+          "description": "delete listselector_filter_case_record_type's gridLayout",
+          "condition": "${! Constants.CaseDurationMoreFieldsHasValues && Variables.IncludeCaseRecordTypes != 'No'}",
+          "value": 21
+        },
+        {
+          "action": "set",
+          "path": "$.state.gridLayouts.[?(@.name=='Default')].pages.*.widgets[?(@.name=='listselector_filter_support_type')].column",
+          "description": "delete listselector_filter_case_record_type's gridLayout",
+          "condition": "${((! Constants.CaseDurationMoreFieldsHasValues) != (Variables.IncludeCaseRecordTypes == 'No')) && Constants.CaseSupportLevel != ''}",
+          "value": 26
+        },
+        {
+          "action": "set",
+          "path": "$.state.gridLayouts.[?(@.name=='Default')].pages.*.widgets[?(@.name=='listselector_filter_support_type')].column",
+          "description": "delete listselector_filter_case_record_type's gridLayout",
+          "condition": "${((! Constants.CaseDurationMoreFieldsHasValues) && (Variables.IncludeCaseRecordTypes == 'No')) && Constants.CaseSupportLevel != ''}",
+          "value": 21
+        },
+        {
+          "action": "delete",
+          "path": "$.state.widgets.listselector_Static_Duration",
+          "description": "Deleting Widget listselector_Static_Duration",
+          "condition": "${! Constants.CaseDurationMoreFieldsHasValues}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.gridLayouts.*.pages.*.widgets[?(@.name=='listselector_Static_Duration')]",
+          "description": "delete listselector_Static_Duration's gridLayout",
+          "condition": "${! Constants.CaseDurationMoreFieldsHasValues}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.steps.kpi_avg_csat",
+          "description": "Deleting Step kpi_avg_csat in Dashboard Service_Agent_Performance",
+          "condition": "${Variables.TrackCSAT == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.widgets.chart_kpi_avg_csat",
+          "description": "Deleting Widget chart_kpi_avg_csat",
+          "condition": "${Variables.TrackCSAT == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.gridLayouts.*.pages.*.widgets[?(@.name=='chart_kpi_avg_csat')]",
+          "description": "delete chart_kpi_avg_csat's gridLayout",
+          "condition": "${Variables.TrackCSAT == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.widgets.number_kpi_avg_csat",
+          "description": "Deleting Widget number_kpi_avg_csat",
+          "condition": "${Variables.TrackCSAT == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.gridLayouts.*.pages.*.widgets[?(@.name=='number_kpi_avg_csat')]",
+          "description": "delete number_kpi_avg_csat's gridLayout",
+          "condition": "${Variables.TrackCSAT == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.steps.agent_by_avg_duration_avg_csat.query.query.filters[?(@[0] == 'CSAT')]",
+          "description": "deleting Filter (CSAT) in agent_by_avg_duration_avg_csat",
+          "condition": "${Variables.TrackCSAT == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.widgets.pillbox_static_CSAT",
+          "description": "Deleting No CSAT Toggle",
+          "condition": "${Variables.TrackCSAT == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.gridLayouts.*.pages.*.widgets[?(@.name=='pillbox_static_CSAT')]",
+          "description": "delete No CSAT widget from gridLayout",
+          "condition": "${Variables.TrackCSAT == 'No'}"
+        },
+        {
+          "action": "set",
+          "path": "$.state.widgets.text_Agent_Performance_by_CSAT_Duration_and_Case_Volume.parameters.text",
+          "description": "Changing chart title",
+          "condition": "${Variables.TrackCSAT == 'No'}",
+          "value": "Agent Performance by Duration & Case Volume"
+        },
+        {
+          "action": "delete",
+          "description": "remove CSAT from agent_by_avg_duration_avg_csat node in dashboard",
+          "path": "$.state.steps.agent_by_avg_duration_avg_csat.query.query.filters[0]",
+          "condition": "${Variables.TrackCSAT == 'No'}"
+        },
+        {
+          "action": "delete",
+          "description": "remove CSAT from agent_by_avg_duration_avg_csat node in dashboard",
+          "path": "$.state.steps.agent_by_avg_duration_avg_csat.query.query.measures[1]",
+          "condition": "${Variables.TrackCSAT == 'No'}"
+        },
+        {
+          "action": "set",
+          "description": "set alternate CSAT step for RawData table",
+          "path": "$.state.steps.agent_by_avg_duration_avg_csat.query.query.measures",
+          "condition": "${Variables.TrackCSAT == 'No'}",
+          "value": "{{concat(column(Static_Duration.selection, [\"value\"]), cell(static_No_CSAT.selection,0, \"compact\")).asObject()}}"
+        },
+        {
+          "action": "set",
+          "path": "$.state.steps.Static_Duration.values",
+          "condition": "${Constants.CaseDurationMoreFieldsHasValues}",
+          "description": "adding values to Static_Duration",
+          "value": "${array:concat(Rules.CurrentNode, array:forEach(Variables.CaseDurationMoreFields,'{\"display\": \"${var.fieldLabel}\",\"value\": [\"avg\",\"${var.fieldName}\"],\"pigql_value\": \"${var.fieldName}\",\"measure_field\": \"avg_${var.fieldName}\"}'))}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.widgets.number_kpi_fcr_percent",
+          "description": "Deleting Widget number_kpi_fcr_percentand Step ",
+          "condition": "${Constants.CaseFCR == ''}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.steps.kpi_fcr_percent",
+          "description": "Deleting Step kpi_fcr_percent in Dashboard Service_By_TeamEfficiency",
+          "condition": "${Constants.CaseFCR == ''}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.gridLayouts.*.pages.*.widgets[?(@.name=='number_kpi_fcr_percent')]",
+          "description": "delete number_kpi_fcr_percent's gridLayout",
+          "condition": "${Constants.CaseFCR == ''}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.widgets.listselector_filter_support_type",
+          "description": "Deleting Widget listselector_filter_support_typeand Step ",
+          "condition": "${Constants.CaseSupportLevel == ''}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.steps.filter_support_type",
+          "description": "Deleting Step filter_support_type in Dashboard Service_By_TeamEfficiency",
+          "condition": "${Constants.CaseSupportLevel == ''}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.gridLayouts.*.pages.*.widgets[?(@.name=='listselector_filter_support_type')]",
+          "description": "delete listselector_filter_support_type's gridLayout",
+          "condition": "${Constants.CaseSupportLevel == ''}"
+        }
+      ]
+    },
+    {
+      "appliesTo": [
+        {
+          "type": "dashboard",
+          "name": "Service_By_OpenCases"
+        }
+      ],
+      "name": "Service_Open_Cases_rules",
+      "actions": [
+
+        {
+          "action": "delete",
+          "path": "$.state.widgets.listselector_Static_Duration",
+          "description": "Deleting Widget listselector_Static_Duration",
+          "condition": "${! Constants.CaseDurationMoreFieldsHasValues}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.gridLayouts.*.pages.*.widgets[?(@.name=='listselector_Static_Duration')]",
+          "description": "delete listselector_Static_Duration's gridLayout",
+          "condition": "${! Constants.CaseDurationMoreFieldsHasValues}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.steps.filter_forecast_category",
+          "description": "Deleting Step filter_forecast_category in Dashboard Service_Open_Cases",
+          "condition": "${Variables.IncludeOpportunity == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.widgets.listselector_filter_forecast_category",
+          "description": "Deleting Widget listselector_filter_forecast_category",
+          "condition": "${Variables.IncludeOpportunity == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.gridLayouts.*.pages.*.widgets[?(@.name=='listselector_filter_forecast_category')]",
+          "description": "delete listselector_filter_forecast_category's gridLayout",
+          "condition": "${Variables.IncludeOpportunity == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.steps.case_count_by_account_withoppty",
+          "description": "Deleting Step case_count_by_account_withoppty in Dashboard Service_Open_Cases",
+          "condition": "${Variables.IncludeOpportunity == 'No'}"
+        },
+        {
+          "action": "set",
+          "description": "set chart_case_count_by_account step",
+          "path": "$.state.widgets.chart_case_count_by_account_withoppty.parameters.step",
+          "value": "case_count_by_account",
+          "condition": "${Variables.IncludeOpportunity == 'No'}"
+        },
+        {
+          "action": "set",
+          "description": "set chart_case_count_by_account step theme",
+          "path": "$.state.widgets.chart_case_count_by_account_withoppty.parameters.theme",
+          "value": "light",
+          "condition": "${Variables.IncludeOpportunity == 'No'}"
+        },
+        {
+          "action": "set",
+          "description": "Changing chart type for no oppty",
+          "path": "$.state.widgets.chart_case_count_by_account_withoppty.parameters.visualizationType",
+          "condition": "${Variables.IncludeOpportunity == 'No'}",
+          "value": "hbar"
+        },
+        {
+          "action": "delete",
+          "description": "remove toggle_field_select node in dashboard",
+          "path": "$.state.widgets.pillbox_Field_Select",
+          "condition": "${Variables.IncludeOpportunity == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.gridLayouts.*.pages.*.widgets[?(@.name=='pillbox_Field_Select')]",
+          "description": "delete listselector_Static_Duration's gridLayout",
+          "condition": "${Variables.IncludeOpportunity == 'No'}"
+        },
+        {
+          "action": "set",
+          "path": "$.state.steps.Static_Duration.values",
+          "condition": "${Constants.CaseDurationMoreFieldsHasValues}",
+          "description": "adding values to Static_Duration",
+          "value": "${array:concat(Rules.CurrentNode, array:forEach(Variables.CaseDurationMoreFields,'{\"display\": \"${var.fieldLabel}\",\"value\": [\"avg\",\"${var.fieldName}\"],\"pigql_value\": \"${var.fieldName}\",\"measure_field\": \"avg_${var.fieldName}\"}'))}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.widgets.chart_count_case_by_sla1",
+          "description": "Deleting Widget chart_count_case_by_sla1and Step ",
+          "condition": "${Constants.CaseSLA == ''}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.steps.count_case_by_sla",
+          "description": "Deleting Step count_case_by_sla in Dashboard Service_By_OpenCases",
+          "condition": "${Constants.CaseSLA == ''}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.gridLayouts.*.pages.*.widgets[?(@.name=='chart_count_case_by_sla1')]",
+          "description": "delete chart_count_case_by_sla1's gridLayout",
+          "condition": "${Constants.CaseSLA == ''}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.widgets.listselector_Support_Type_c_1",
+          "description": "Deleting Widget listselector_Support_Type_c_1and Step ",
+          "condition": "${Constants.CaseSupportLevel == ''}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.steps.Support_Type__c_1",
+          "description": "Deleting Step Support_Type__c_1 in Dashboard Service_By_OpenCases",
+          "condition": "${Constants.CaseSupportLevel == ''}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.gridLayouts.*.pages.*.widgets[?(@.name=='listselector_Support_Type_c_1')]",
+          "description": "delete listselector_Support_Type_c_1's gridLayout",
+          "condition": "${Constants.CaseSupportLevel == ''}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.widgets.chart_count_case_by_sla",
+          "description": "Deleting Widget chart_count_case_by_slaand Step ",
+          "condition": "${Constants.CaseSLA == ''}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.steps.count_case_by_sla",
+          "description": "Deleting Step count_case_by_sla in Dashboard Service_By_OpenCases",
+          "condition": "${Constants.CaseSLA == ''}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.gridLayouts.*.pages.*.widgets[?(@.name=='chart_count_case_by_sla')]",
+          "description": "delete chart_count_case_by_sla's gridLayout",
+          "condition": "${Constants.CaseSLA == ''}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.widgets.listselector_filter_recordtype",
+          "description": "Deleting Widget listselector_filter_recordtype and Step ",
+          "condition": "${Variables.IncludeCaseRecordTypes == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.steps.filter_recordtype",
+          "description": "Deleting Step filter_recordtype in Dashboard Service_By_OpenCases",
+          "condition": "${Variables.IncludeCaseRecordTypes == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.gridLayouts.*.pages.*.widgets[?(@.name=='listselector_filter_recordtype')]",
+          "description": "delete listselector_filter_recordtype's gridLayout",
+          "condition": "${Variables.IncludeCaseRecordTypes == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.widgets.text_Open_Cases_by_Constants_CaseSLALabel",
+          "description": "Deleting Widget text_Open_Cases_by_Constants_CaseSLALabel and Step ",
+          "condition": "${Constants.CaseSLA == ''}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.gridLayouts.*.pages.*.widgets[?(@.name=='text_Open_Cases_by_Constants_CaseSLALabel')]",
+          "description": "delete text_Open_Cases_by_Constants_CaseSLALabel's gridLayout",
+          "condition": "${Constants.CaseSLA == ''}"
+        },
+        {
+          "action": "set",
+          "path": "$.state.gridLayouts.[?(@.name=='Default')].pages.*.widgets[?(@.name=='listselector_Support_Type_c_1')].column",
+          "description": "delete listselector_filter_case_record_type's gridLayout",
+          "condition": "${Variables.IncludeCaseRecordTypes == 'No'}",
+          "value": 16
+        }
+
+      ]
+    },
+    {
+      "appliesTo": [
+        {
+          "type": "dashboard",
+          "name": "Service_Customer_Satisfaction"
+        }
+      ],
+      "name": "Service_Customer_Satisfaction_rules",
+      "actions": [
+        {
+          "action": "set",
+          "path": "$.state.steps.Static_Duration.values",
+          "condition": "${Constants.CaseDurationMoreFieldsHasValues && Variables.TrackCSAT == 'Yes'}",
+          "description": "adding values to Static_Duration",
+          "value": "${array:concat(Rules.CurrentNode, array:forEach(Variables.CaseDurationMoreFields,'{\"display\": \"${var.fieldLabel}\",\"value\": [\"avg\",\"${var.fieldName}\"],\"pigql_value\": \"${var.fieldName}\",\"measure_field\": \"avg_${var.fieldName}\"}'))}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.widgets.listselector_filter_recordType",
+          "description": "Deleting Widget listselector_filter_recordType",
+          "condition": "${Variables.IncludeCaseRecordTypes == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.gridLayouts.*.pages.*.widgets[?(@.name=='listselector_filter_recordType')]",
+          "description": "delete listselector_filter_recordType's gridLayout",
+          "condition": "${Variables.IncludeCaseRecordTypes == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.gridLayouts.[?(@.name=='Default')].pages.*.widgets[?(@.name=='listselector_Static_Duration')]",
+          "description": "delete listselector_Static_Duration's gridLayout",
+          "condition": "${! Constants.CaseDurationMoreFieldsHasValues}"
+        },
+        {
+          "action": "set",
+          "path": "$.state.gridLayouts.[?(@.name=='Default')].pages.*.widgets[?(@.name=='listselector_filter_recordType')].column",
+          "description": "delete listselector_filter_case_record_type's gridLayout",
+          "condition": "${! Constants.CaseDurationMoreFieldsHasValues && Variables.IncludeCaseRecordTypes != 'No'}",
+          "value": 13
+        },
+        {
+          "action": "set",
+          "path": "$.state.gridLayouts.[?(@.name=='Default')].pages.*.widgets[?(@.name=='listselector_filter_supportType')].column",
+          "description": "delete listselector_filter_case_record_type's gridLayout",
+          "condition": "${((! Constants.CaseDurationMoreFieldsHasValues) != (Variables.IncludeCaseRecordTypes == 'No')) && Constants.CaseSupportLevel != ''}",
+          "value": 19
+        },
+        {
+          "action": "set",
+          "path": "$.state.gridLayouts.[?(@.name=='Default')].pages.*.widgets[?(@.name=='listselector_filter_supportType')].column",
+          "description": "delete listselector_filter_case_record_type's gridLayout",
+          "condition": "${((! Constants.CaseDurationMoreFieldsHasValues) && (Variables.IncludeCaseRecordTypes == 'No')) && Constants.CaseSupportLevel != ''}",
+          "value": 13
+        },
+        {
+          "action": "delete",
+          "path": "$.state.widgets.listselector_filter_supportType",
+          "description": "Deleting Widget listselector_filter_supportTypeand Step ",
+          "condition": "${Constants.CaseSupportLevel == ''}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.steps.filter_supportType",
+          "description": "Deleting Step filter_supportType in Dashboard Service_Customer_Satisfaction",
+          "condition": "${Constants.CaseSupportLevel == ''}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.gridLayouts.*.pages.*.widgets[?(@.name=='listselector_filter_supportType')]",
+          "description": "delete listselector_filter_supportType's gridLayout",
+          "condition": "${Constants.CaseSupportLevel == ''}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.steps.Grouping_Bubble_Select.values[?(@.value=='${Constants.CaseSLA}')]",
+          "description": "deleting Value (Constants.CaseSLA) in Grouping_Bubble_Select",
+          "condition": "${Constants.CaseSLA == ''}"
+        }
+
+      ]
+    },
+    {
+      "appliesTo": [
+        {
+          "type": "dashboard",
+          "name": "Service_By_EngagementEfficiency"
+        }
+      ],
+      "name": "Service_Channel_Review_rules",
+      "actions": [
+        {
+          "action": "delete",
+          "path": "$.state.widgets.listselector_filter_record_type",
+          "description": "Deleting Widget listselector_filter_record_type",
+          "condition": "${Variables.IncludeCaseRecordTypes == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.gridLayouts.*.pages.*.widgets[?(@.name=='listselector_filter_record_type')]",
+          "description": "delete listselector_filter_record_type's gridLayout",
+          "condition": "${Variables.IncludeCaseRecordTypes == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.widgets.listselector_Static_Duration",
+          "description": "Deleting Widget listselector_Static_Duration",
+          "condition": "${! Constants.CaseDurationMoreFieldsHasValues}"
+        },
+        {
+          "action": "set",
+          "path": "$.state.gridLayouts.[?(@.name=='Default')].pages.*.widgets[?(@.name=='listselector_filter_record_type')].column",
+          "description": "delete listselector_filter_case_record_type's gridLayout",
+          "condition": "${! Constants.CaseDurationMoreFieldsHasValues && Variables.IncludeCaseRecordTypes != 'No'}",
+          "value": 11
+        },
+        {
+          "action": "set",
+          "path": "$.state.gridLayouts.[?(@.name=='Default')].pages.*.widgets[?(@.name=='listselector_filter_support_level')].column",
+          "description": "delete listselector_filter_case_record_type's gridLayout",
+          "condition": "${((! Constants.CaseDurationMoreFieldsHasValues) != (Variables.IncludeCaseRecordTypes == 'No')) && Constants.CaseSupportLevel != ''}",
+          "value": 16
+        },
+        {
+          "action": "set",
+          "path": "$.state.gridLayouts.[?(@.name=='Default')].pages.*.widgets[?(@.name=='listselector_filter_support_level')].column",
+          "description": "delete listselector_filter_case_record_type's gridLayout",
+          "condition": "${((! Constants.CaseDurationMoreFieldsHasValues) && (Variables.IncludeCaseRecordTypes == 'No')) && Constants.CaseSupportLevel != ''}",
+          "value": 11
+        },
+        {
+          "action": "delete",
+          "path": "$.state.gridLayouts.*.pages.*.widgets[?(@.name=='listselector_Static_Duration')]",
+          "description": "delete listselector_Static_Duration's gridLayout",
+          "condition": "${! Constants.CaseDurationMoreFieldsHasValues}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.steps.kpi_csat",
+          "description": "Deleting Step kpi_csat in Dashboard Service_Channel_Review",
+          "condition": "${Variables.TrackCSAT == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.widgets.number_kpi_csat",
+          "description": "Deleting Widget number_kpi_csat",
+          "condition": "${Variables.TrackCSAT == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.gridLayouts.*.pages.*.widgets[?(@.name=='number_kpi_csat')]",
+          "description": "delete number_kpi_csat's gridLayout",
+          "condition": "${Variables.TrackCSAT == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.steps.origin_by_csat_duration.query.query.filters[?(@[0] == 'CSAT')]",
+          "description": "deleting Filter (CSAT) in origin_by_csat_duration",
+          "condition": "${Variables.TrackCSAT == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.steps.raw_case.query.query.values[?(@=='${Constants.CaseCustomerSatFull}')]",
+          "description": "deleting Value (Constants.CaseCustomerSatFull) in raw_case",
+          "condition": "${Variables.TrackCSAT == 'No'}"
+        },
+        {
+          "action": "set",
+          "path": "$.state.steps.Static_Duration.values",
+          "condition": "${Constants.CaseDurationMoreFieldsHasValues}",
+          "description": "adding values to Static_Duration",
+          "value": "${array:concat(Rules.CurrentNode, array:forEach(Variables.CaseDurationMoreFields,'{\"display\": \"${var.fieldLabel}\",\"value\": [\"avg\",\"${var.fieldName}\"],\"pigql_value\": \"${var.fieldName}\",\"measure_field\": \"avg_${var.fieldName}\"}'))}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.widgets.listselector_static_CSAT",
+          "description": "Deleting  CSAT Toggle",
+          "condition": "${Variables.TrackCSAT == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.gridLayouts.*.pages.*.widgets[?(@.name=='listselector_static_CSAT')]",
+          "description": "delete No CSAT widget from gridLayout",
+          "condition": "${Variables.TrackCSAT == 'No'}"
+        },
+        {
+          "action": "set",
+          "description": "set alternate CSAT step for RawData table",
+          "path": "$.state.steps.origin_by_csat_duration.query.query.measures",
+          "condition": "${Variables.TrackCSAT == 'No'}",
+          "value": "{{concat(column(Static_Duration.selection, [\"value\"]), cell(static_No_CSAT.selection,0, \"compact\")).asObject()}}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.widgets.pillbox_static_CSAT",
+          "description": "Deleting CSAT Toggle",
+          "condition": "${Variables.TrackCSAT == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.gridLayouts.*.pages.*.widgets[?(@.name=='pillbox_static_CSAT')]",
+          "description": "delete No CSAT widget from gridLayout",
+          "condition": "${Variables.TrackCSAT == 'No'}"
+        },
+        {
+          "action": "set",
+          "path": "$.state.widgets.text_Channel_Performance_by_CSAT_Duration_and_Case_Volume.parameters.text",
+          "description": "Changing chart title",
+          "condition": "${Variables.TrackCSAT == 'No'}",
+          "value": "Channel Performance by Duration and Case Volume"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.widgets.listselector_filter_support_level",
+          "description": "Deleting Widget listselector_filter_support_leveland Step ",
+          "condition": "${Constants.CaseSupportLevel == ''}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.steps.filter_support_level",
+          "description": "Deleting Step filter_support_level in Dashboard Service_By_EngagementEfficiency",
+          "condition": "${Constants.CaseSupportLevel == ''}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.gridLayouts.*.pages.*.widgets[?(@.name=='listselector_filter_support_level')]",
+          "description": "delete listselector_filter_support_level's gridLayout",
+          "condition": "${Constants.CaseSupportLevel == ''}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.widgets.number_kpi_fcr",
+          "description": "Deleting Widget number_kpi_fcrand Step ",
+          "condition": "${Constants.CaseFCR == ''}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.steps.kpi_fcr",
+          "description": "Deleting Step kpi_fcr in Dashboard Service_By_EngagementEfficiency",
+          "condition": "${Constants.CaseFCR == ''}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.gridLayouts.*.pages.*.widgets[?(@.name=='number_kpi_fcr')]",
+          "description": "delete number_kpi_fcr's gridLayout",
+          "condition": "${Constants.CaseFCR == ''}"
+        }
+      ]
+    },
+    {
+      "appliesTo": [
+        {
+          "type": "dashboard",
+          "name": "Service_Live_Agent_Chat"
+        }
+      ],
+      "name": "Service_Live_Agent_Chat_rules",
+      "actions": [
+        {
+          "action": "delete",
+          "path": "$.state.widgets.listselector_RecordType",
+          "description": "Deleting Widget listselector_RecordType",
+          "condition": "${Variables.IncludeCaseRecordTypes == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.gridLayouts.*.pages.*.widgets[?(@.name=='listselector_RecordType')]",
+          "description": "delete listselector_RecordType's gridLayout",
+          "condition": "${Variables.IncludeCaseRecordTypes == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.steps.Step_RecordType_Selection",
+          "description": "Deleting Step Step_RecordType_Selection in Dashboard Service_Live_Agent_Chat",
+          "condition": "${Variables.IncludeCaseRecordTypes == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.widgets.number_Metric_CSAT",
+          "description": "Deleting Widget number_Metric_CSAT",
+          "condition": "${Variables.TrackCSAT == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.gridLayouts.*.pages.*.widgets[?(@.name=='number_Metric_CSAT')]",
+          "description": "delete number_Metric_CSAT's gridLayout",
+          "condition": "${Variables.TrackCSAT == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.steps.step_Metric_CSAT",
+          "description": "Deleting Step step_Metric_CSAT in Dashboard Service_Live_Agent_Chat",
+          "condition": "${Variables.TrackCSAT == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.widgets.number_Metric_CSAT_Prev_Period",
+          "description": "Deleting Widget number_Metric_CSAT_Prev_Period",
+          "condition": "${Variables.TrackCSAT == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.gridLayouts.*.pages.*.widgets[?(@.name=='number_Metric_CSAT_Prev_Period')]",
+          "description": "delete number_Metric_CSAT_Prev_Period's gridLayout",
+          "condition": "${Variables.TrackCSAT == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.steps.step_Metric_CSAT_Prev_Period",
+          "description": "Deleting Step step_Metric_CSAT_Prev_Period in Dashboard Service_Live_Agent_Chat",
+          "condition": "${Variables.TrackCSAT == 'No'}"
+        },
+        {
+          "action": "set",
+          "condition": "${Variables.TrackCSAT == 'No'}",
+          "description": "set alternate no_csat step for Scatter Plot",
+          "path": "$.state.widgets.chart_Scatter_Plot.parameters.step",
+          "value": "step_Scatter_Plot_No_CSAT"
+        }
+      ]
+    },
+    {
+      "appliesTo": [
+        {
+          "type": "dashboard",
+          "name": "Service_Omni"
+        }
+      ],
+      "name": "Service_Omni_rules",
+      "actions": [
+        {
+          "action": "delete",
+          "path": "$.state.widgets.listselector_RecordType_Selection",
+          "description": "Deleting Widget listselector_RecordType_Selection",
+          "condition": "${Variables.IncludeCaseRecordTypes == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.gridLayouts.*.pages.*.widgets[?(@.name=='listselector_RecordType_Selection')]",
+          "description": "delete listselector_RecordType_Selection's gridLayout",
+          "condition": "${Variables.IncludeCaseRecordTypes == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.steps.step_Selection_RecordType",
+          "description": "Deleting Step step_Selection_RecordType in Dashboard Service Omni",
+          "condition": "${Variables.IncludeCaseRecordTypes == 'No'}"
+        },
+        {
+          "action": "set",
+          "condition": "${Variables.TrackCSAT == 'No'}",
+          "description": "set alternate no_csat step for Scatter Plot",
+          "path": "$.state.widgets.chart_Scatter_Plot.parameters.step",
+          "value": "step_Scatter_Plot_No_CSAT"
+        },
+        {
+          "action": "set",
+          "condition": "${Variables.TrackCSAT == 'No'}",
+          "description": "set alternate title for Scatter Plot",
+          "path": "$.state.widgets.text_Agent_Performance.parameters.text",
+          "value": "Agent Performance by Handle Time and Handled Volume"
+        }
+      ]
+    },
+    {
+      "appliesTo": [
+        {
+          "type": "dashboard",
+          "name": "Service_Knowledge"
+        }
+      ],
+      "name": "Service_Knowledge_Efficiency_rules",
+      "actions": [
+        {
+          "action": "set",
+          "path": "$.state.gridLayouts.[?(@.name=='Default')].pages.*.widgets[?(@.name=='listselector_Support_Type_c_1')].column",
+          "description": "delete listselector_filter_case_record_type's gridLayout",
+          "condition": "${Variables.IncludeCaseRecordTypes == 'No' && Constants.CaseSupportLevel != ''}",
+          "value": 16
+        },
+        {
+          "action": "delete",
+          "path": "$.state.widgets.listselector_filter_record_type",
+          "description": "Deleting Widget listselector_filter_record_type",
+          "condition": "${Variables.IncludeCaseRecordTypes == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.gridLayouts.*.pages.*.widgets[?(@.name=='listselector_filter_record_type')]",
+          "description": "delete listselector_filter_record_type's gridLayout",
+          "condition": "${Variables.IncludeCaseRecordTypes == 'No'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.steps.Improvement_CaseCustomerSat",
+          "description": "Deleting Step Improvement_CaseCustomerSat in Dashboard Service_Knowledge_Efficiency",
+          "condition": "${Variables.TrackCSAT == 'No' && Variables.IncludeKnowledge == 'Yes'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.steps.average_duration_over_time",
+          "description": "Deleting Step average_duration_over_time in Dashboard Service_Knowledge_Efficiency",
+          "condition": "${Variables.TrackCSAT == 'No' && Variables.IncludeKnowledge == 'Yes'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.widgets.number_Improvement_CaseCustomerSat",
+          "description": "Deleting Widget number_Improvement_CaseCustomerSat",
+          "condition": "${Variables.TrackCSAT == 'No' && Variables.IncludeKnowledge == 'Yes'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.gridLayouts.*.pages.*.widgets[?(@.name=='number_Improvement_CaseCustomerSat')]",
+          "description": "delete number_Improvement_CaseCustomerSat's gridLayout",
+          "condition": "${Variables.TrackCSAT == 'No' && Variables.IncludeKnowledge == 'Yes'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.gridLayouts.*.pages.*.widgets[?(@.name=='number_Improvement_CaseCustomerSat')]",
+          "description": "delete number_Improvement_CaseCustomerSat's gridLayout",
+          "condition": "${Variables.TrackCSAT == 'No' && Variables.IncludeKnowledge == 'Yes'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.steps.static_2",
+          "description": "Deleting Step static_2 in Dashboard Service_Knowledge_Efficiency",
+          "condition": "${Variables.TrackCSAT == 'No' && Variables.IncludeKnowledge == 'Yes'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.widgets.pillbox_static_2",
+          "description": "Deleting Widget pillbox_static_2",
+          "condition": "${Variables.TrackCSAT == 'No' && Variables.IncludeKnowledge == 'Yes'}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.gridLayouts.*.pages.*.widgets[?(@.name=='pillbox_static_2')]",
+          "description": "delete pillbox_static_2's gridLayout",
+          "condition": "${Variables.TrackCSAT == 'No' && Variables.IncludeKnowledge == 'Yes'}"
+        },
+        {
+          "action": "set",
+          "path": "$.state.widgets.chart_average_duration_over_time.parameters.step",
+          "condition": "${Variables.TrackCSAT == 'No' && Variables.IncludeKnowledge == 'Yes'}",
+          "description": "setting Param (step) to average_duration_over_time in Widget chart_average_duration_over_time",
+          "value": "average_duration_over_time_no_csat"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.widgets.listselector_Support_Type_c_1",
+          "description": "Deleting Widget listselector_Support_Type_c_1and Step ",
+          "condition": "${Constants.CaseSupportLevel == ''}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.steps.Support_Type__c_1",
+          "description": "Deleting Step Support_Type__c_1 in Dashboard Service_Knowledge",
+          "condition": "${Constants.CaseSupportLevel == ''}"
+        },
+        {
+          "action": "delete",
+          "path": "$.state.gridLayouts.*.pages.*.widgets[?(@.name=='listselector_Support_Type_c_1')]",
+          "description": "delete listselector_Support_Type_c_1's gridLayout",
+          "condition": "${Constants.CaseSupportLevel == ''}"
+        }
+      ]
+    },
+    {
+      "name": "Delete Knowledge_Usage Links ",
+      "condition": "${Variables.IncludeKnowledge == 'No'}",
+      "appliesTo": [
+        {
+          "type": "dashboard",
+          "name": "Service_Omni"
+        },
+        {
+          "type": "dashboard",
+          "name": "Service_Live_Agent_Chat"
+        },
+        {
+          "type": "dashboard",
+          "name": "Service_By_EngagementEfficiency"
+        },
+        {
+          "type": "dashboard",
+          "name": "Service_Telephony"
+        }
+      ],
+      "actions": [
+        {
+          "action": "eval",
+          "description": "Remove link to Knowledge_Usage",
+          "value": "${link_macros:removeHorizontalLink('link_Knowledge_Usage')}"
+        }
+      ]
+    },
+    {
+      "name": "Delete Knowledge_Efficiency Links ",
+      "condition": "${Variables.IncludeKnowledge == 'No'}",
+      "appliesTo": [
+        {
+          "type": "dashboard",
+          "name": "Service_Omni"
+        },
+        {
+          "type": "dashboard",
+          "name": "Service_Live_Agent_Chat"
+        },
+        {
+          "type": "dashboard",
+          "name": "Service_By_EngagementEfficiency"
+        },
+        {
+          "type": "dashboard",
+          "name": "Service_Telephony"
+        }
+      ],
+      "actions": [
+        {
+          "action": "eval",
+          "description": "Remove link to Knowledge_Efficiency",
+          "value": "${link_macros:removeHorizontalLink('link_Knowledge_Efficiency')}"
+        }
+      ]
+    },
+    {
+      "name": "Delete Telephony Links",
+      "condition": "${Variables.IncludeTelephony == 'No'}",
+      "appliesTo": [
+        {
+          "type": "dashboard",
+          "name": "Service_Omni"
+        },
+        {
+          "type": "dashboard",
+          "name": "Service_Live_Agent_Chat"
+        },
+        {
+          "type": "dashboard",
+          "name": "Service_By_EngagementEfficiency"
+        },
+        {
+          "type": "dashboard",
+          "name": "Service_Knowledge"
+        },
+        {
+          "type": "dashboard",
+          "name": "Service_Knowledge_Metrics"
+        }
+      ],
+      "actions": [
+        {
+          "action": "eval",
+          "description": "Remove link to Telephony",
+          "value": "${link_macros:removeHorizontalLink('link_Telephony')}"
+        }
+      ]
+    },
+    {
+      "name": "Delete Chat Links",
+      "condition": "${Variables.IncludeChat == 'No'}",
+      "appliesTo": [
+        {
+          "type": "dashboard",
+          "name": "Service_Omni"
+        },
+        {
+          "type": "dashboard",
+          "name": "Service_Telephony"
+        },
+        {
+          "type": "dashboard",
+          "name": "Service_By_EngagementEfficiency"
+        },
+        {
+          "type": "dashboard",
+          "name": "Service_Knowledge"
+        },
+        {
+          "type": "dashboard",
+          "name": "Service_Knowledge_Metrics"
+        }
+      ],
+      "actions": [
+        {
+          "action": "eval",
+          "description": "Remove link to Chat",
+          "value": "${link_macros:removeHorizontalLink('link_Chat')}"
+        }
+      ]
+    },
+    {
+      "name": "Delete Omni Links",
+      "condition": "${Variables.IncludeOmni == 'No'}",
+      "appliesTo": [
+        {
+          "type": "dashboard",
+          "name": "Service_Live_Agent_Chat"
+        },
+        {
+          "type": "dashboard",
+          "name": "Service_Telephony"
+        },
+        {
+          "type": "dashboard",
+          "name": "Service_By_EngagementEfficiency"
+        },
+        {
+          "type": "dashboard",
+          "name": "Service_Knowledge"
+        },
+        {
+          "type": "dashboard",
+          "name": "Service_Knowledge_Metrics"
+        }
+      ],
+      "actions": [
+        {
+          "action": "eval",
+          "description": "Remove link to Omni",
+          "value": "${link_macros:removeHorizontalLink('link_Omni')}"
+        }
+      ]
+    },
+    {
+      "name": "RemoveUnwantedDashboardsfromFolder",
+
+      "appliesTo": [
+        {
+          "type": "folder",
+          "name": "*"
+        }
+      ],
+      "actions": [
+        {
+          "action": "delete",
+          "condition": "${Variables.IncludeKnowledge == 'No'}",
+          "description": "Delete Service Knowledge Efficiency from Folder",
+          "path": "$.featuredAssets.default.assets..[?(@.id=~ /^.*Service Knowledge Efficiency.*$/i)]"
+        },
+        {
+          "action": "delete",
+          "condition": "${Variables.IncludeKnowledge == 'No'}",
+          "description": "Delete Service Knowledge Usage from Folder",
+          "path": "$.featuredAssets.default.assets..[?(@.id=~ /^.*Service Knowledge Usage.*$/i)]"
+        },
+        {
+          "action": "delete",
+          "condition": "${Variables.TrackCSAT == 'No'}",
+          "description": "Delete Service Customer Satisfaction from Folder",
+          "path": "$.featuredAssets.default.assets..[?(@.id=~ /^.*Service Customer Satisfaction.*$/i)]"
+        },
+        {
+          "action": "delete",
+          "condition": "${Variables.IncludeTelephony == 'No'}",
+          "description": "Delete Service Telephony from Folder",
+          "path": "$.featuredAssets.default.assets..[?(@.id=~ /^.*Service Telephony.*$/i)]"
+        },
+
+        {
+          "action": "delete",
+          "condition": "${Variables.IncludeChat == 'No'}",
+          "description": "Delete Service Live Agent Chat from Folder",
+          "path": "$.featuredAssets.default.assets..[?(@.id=~ /^.*Service Live Agent Chat.*$/i)]"
+        },
+
+        {
+          "action": "delete",
+          "condition": "${Variables.IncludeOmni == 'No'}",
+          "description": "Delete Service Omni from Folder",
+          "path": "$.featuredAssets.default.assets..[?(@.id=~ /^.*Service Omni.*$/i)]"
+        }
+      ]
+    }
+  ],
+  "constants": [
+    {
+      "name": "NotNullIfArticleAttached",
+      "value": "CaseArticle.CaseId"
+    },
+    {
+      "name": "AppVersion",
+      "value": "Patch Version: 200.17"
+    },
+    {
+      "name": "NotNullIfArticleAttachedDescription",
+      "value": "This field is designed to clarify the previous constant. NotNullIfArticleAttached has to be null when no articles are attached to the case and not null otherwise. It is used in Service Knowledge. The field to use for production is CaseArticle.CaseId."
+    },
+    {
+      "name": "ClosedDate",
+      "value": "ClosedDate"
+    },
+    {
+      "name": "ClosedDateDescription",
+      "value": "This field is designed to clarify the previous constant. ClosedDate is the closeddate used in Service Knowledge, value then can be changed for demo purposes (if bad data on closed date). The field to use for production is ClosedDate."
+    },
+    {
+      "name": "CaseRecordTypeField",
+      "value": "${Variables.IncludeCaseRecordTypes == 'Yes' ? 'RecordType.Name' : 'Id'}"
+    },
+    {
+      "name": "OpportunityRecordTypeField",
+      "value": "${(Variables.IncludeOpportunityRecordTypes == 'Yes' && Variables.IncludeOpportunity == 'Yes')? 'Opportunity.RecordType.Name' : 'Opportunity.Id'}"
+    },
+    {
+      "name": "CaseRecordTypeLabel",
+      "value": "${Variables.IncludeCaseRecordTypes == 'Yes' ? 'Case Record Type' : 'Case Id'}"
+    },
+    {
+      "name": "OpportunityRecordTypeLabel",
+      "value": "${(Variables.IncludeOpportunityRecordTypes == 'Yes' && Variables.IncludeOpportunity == 'Yes') ? 'Opportunity Record Type' : 'Opportunity Id'}"
+    },
+    {
+      "name": "OpportunityRecordTypeLabel",
+      "value": "${(Variables.IncludeOpportunityRecordTypes == 'Yes' && Variables.IncludeOpportunity == 'Yes') ? 'Opportunity Record Type' : 'Opportunity Id'}"
+    },
+    {
+      "name": "LastPeriod",
+      "value": "1 week ago"
+    },
+    {
+      "name": "BeforeLastPeriod",
+      "value": "2 week ago"
+    },
+    {
+      "name": "LastPeriodsDescription",
+      "value": "This field is designed to clarify the two previous constants. LastPeriod and BeforeLastPeriod defines the two last periods of focus, enabling us to evaluate evolution on a number. They are used in most service dashboards, where there is changes in percentage (e.g. Overview). The fields to use for production are 1 week ago and 2 week ago"
+    },
+    {
+      "name": "CaseProduct",
+      "value": "${Variables.CaseProduct.fieldName}"
+    },
+    {
+      "name": "CaseProductLabel",
+      "value": "${Variables.CaseProduct.fieldLabel}"
+    },
+    {
+      "name": "CaseType",
+      "value": "${Variables.CaseType.fieldName}"
+    },
+    {
+      "name": "CaseTypeLabel",
+      "value": "${Variables.CaseType.fieldLabel}"
+    },
+    {
+      "name": "CaseDuration",
+      "value": "${! empty Variables.CaseDuration.fieldName ? Variables.CaseDuration.fieldName : 'DurationCalculatedField'}"
+    },
+    {
+      "name": "CaseDurationLabel",
+      "value": "${! empty Variables.CaseDuration.fieldName ? Variables.CaseDuration.fieldLabel : 'Case Duration'}"
+    },
+    {
+      "name": "CaseSupportLevel",
+      "value": "${Variables.CaseSupportLevel.fieldName}"
+    },
+    {
+      "name": "CaseSupportLevelLabel",
+      "value": "${Variables.CaseSupportLevel.fieldLabel}"
+    },
+    {
+      "name": "CaseSupportLevelQuery",
+      "value": "${empty Constants.CaseSupportLevel ? '' : 'first(\\''.concat(Constants.CaseSupportLevel).concat('\\') as \\'').concat(Constants.CaseSupportLevel).concat('\\',')}"
+    },
+    {
+      "name": "CaseSeverityLevel",
+      "value": "${Variables.CaseSeverityLevel.fieldName}"
+    },
+    {
+      "name": "CaseSeverityLevelLabel",
+      "value": "${Variables.CaseSeverityLevel.fieldLabel}"
+    },
+    {
+      "name": "CSATObj",
+      "value": "${Variables.CSATObj.sobjectName}"
+    },
+    {
+      "name": "CaseCustomerSatFull",
+      "value": "${Variables.CSATObj.sobjectName == 'Case' ? '' : 'CSAT.'}${Variables.CSATField.fieldName}"
+    },
+    {
+      "name": "CSATField",
+      "value": "${Variables.CSATField.fieldName}"
+    },
+    {
+      "name": "CSATLabel",
+      "value": "${! empty Variables.CSATField.fieldName ? Variables.CSATField.fieldLabel : ''}"
+    },
+    {
+      "name": "CSATCaseJoinKey",
+      "value": "${! empty Variables.JoinKeyOnCase ? Variables.JoinKeyOnCase : ''}"
+    },
+    {
+      "name": "JoinKeyOtherObj",
+      "value": "${! empty Variables.JoinKeyOtherObj ? Variables.JoinKeyOtherObj : ''}"
+    },
+    {
+      "name": "TrackCSAT",
+      "value": "${Variables.TrackCSAT}"
+    },
+    {
+      "name": "IsCSATOnCase",
+      "value": "${Variables.CSATObj.sobjectName == 'Case' ? true : false}"
+    },
+    {
+      "name": "CaseSLA",
+      "value": "${Variables.CaseSLA.fieldName}"
+    },
+    {
+      "name": "CaseSLALabel",
+      "value": "${Variables.CaseSLA.fieldLabel}"
+    },
+    {
+      "name": "CaseSLAQuery",
+      "value": "${empty Constants.CaseSLA ? '' : 'first(\\''.concat(Constants.CaseSLA).concat('\\') as \\'').concat(Constants.CaseSLA).concat('\\',')}"
+    },
+    {
+      "name": "CaseFCR",
+      "value": "${Variables.CaseFCR.fieldName}"
+    },
+    {
+      "name": "CaseFCRLabel",
+      "value": "${Variables.CaseFCR.fieldLabel}"
+    },
+    {
+      "name": "CaseFCRQuery",
+      "value": "${empty Constants.CaseFCR ? '' : 'first(\\''.concat(Constants.CaseFCR).concat('\\') as \\'').concat(Constants.CaseFCR).concat('\\',')}"
+    },
+    {
+      "name": "CaseCSATQuery",
+      "value": "${Variables.TrackCSAT == 'No' ? '' : 'first(\\''.concat(Constants.CaseCustomerSatFull).concat('\\') as \\'').concat(Constants.CaseCustomerSatFull).concat('\\',')}"
+    },
+    {
+      "name": "CaseFCRProjection",
+      "value": "${Constants.CaseFCR == ''} ? 'true_Kishore': 'false_Kishore"
+    },
+    {
+      "name": "CaseReason",
+      "value": "${Variables.CaseReason.fieldName}"
+    },
+    {
+      "name": "CaseReasonLabel",
+      "value": "${Variables.CaseReason.fieldLabel}"
+    },
+    {
+      "name": "CaseStatus",
+      "value": "${Variables.CaseStatus.fieldName}"
+    },
+    {
+      "name": "CaseStatusLabel",
+      "value": "${Variables.CaseStatus.fieldLabel}"
+    },
+    {
+      "name": "CaseOrigin",
+      "value": "${Variables.CaseOrigin.fieldName}"
+    },
+    {
+      "name": "CaseOriginLabel",
+      "value": "${Variables.CaseOrigin.fieldLabel}"
+    },
+    {
+      "name": "CaseGeography",
+      "value": "${Variables.GeographyObject.sobjectName == 'Case' ? '' : Variables.GeographyObject.sobjectName}${Variables.GeographyObject.sobjectName == 'Case' ? '' : '.'}${Variables.Geography.fieldName}"
+    },
+    {
+      "name": "CaseGeographyLabel",
+      "value": "${Variables.Geography.fieldLabel}"
+    },
+    {
+      "name": "AccountGeography",
+      "value": "${Variables.Geography.fieldName}"
+    },
+    {
+      "name": "KnowledgeArticleType",
+      "value": "${string:replace(Variables.KnowldegeArticleType.sobjectName, '__kav', '')}"
+    },
+    {
+      "name": "KnowledgeArticleTypeLabel",
+      "value": "${Variables.KnowldegeArticleType.sobjectLabel}"
+    },
+    {
+      "name": "Fiscal_Prefix",
+      "value": "${Variables.FY_Month_Offset_Map[Variables.Fiscal_Month] == '0' ? '' : 'fiscal_'}"
+    },
+    {
+      "name": "Fiscal_Postfix",
+      "value": "${Variables.FY_Month_Offset_Map[Variables.Fiscal_Month] == '0' ? '' : '_Fiscal'}"
+    },
+    {
+      "name": "CaseDurationMoreFieldsHasValues",
+      "value": "${! empty Variables.CaseDurationMoreFields[0].fieldName ? true : false}"
+    },
+    {
+      "name": "CaseMoreMeasuresHasValues",
+      "value": "${! empty Variables.CaseMoreMeasures[0].fieldName ? true : false}"
+    },
+    {
+      "name": "IncludeServiceLvl",
+      "value": "${Variables.IncludeServiceLevel}"
+    },
+    {
+      "name": "CaseMoreDimsHasValues",
+      "value": "${! empty Variables.CaseMoreDims[0].fieldName ? true : false}"
+    },
+    {
+      "name": "IncludeChat",
+      "value": "${Variables.IncludeChat}"
+    }
+  ]
+}

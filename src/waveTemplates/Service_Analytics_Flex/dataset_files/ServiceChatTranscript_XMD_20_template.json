@@ -1,0 +1,151 @@
+{
+  "dataset": {},
+  "dates": [],
+  "derivedDimensions": [],
+  "derivedMeasures": [
+    {
+      "field": "Percent",
+      "format": {
+        "customFormat": "[\"#,###%\",1]"
+      },
+      "label": "Percent",
+      "showInExplorer": false
+    }
+  ],
+  "dimensions": [
+
+    {
+      "customActions": [],
+      "customActionsEnabled": true,
+      "description": "Agent Name",
+      "field": "User.Name",
+      "label": "Chat Agent",
+      "linkTemplateEnabled": true,
+      "linkTemplate": "/{{row.OwnerId}}",
+      "linkTooltip": "Open User Record",
+      "recordIdField": "OwnerId",
+      "members": [],
+      "recordDisplayFields": [],
+      "salesforceActions": [],
+      "salesforceActionsEnabled": true,
+      "showInExplorer": true
+    },
+    {
+      "customActions": [],
+      "customActionsEnabled": true,
+      "description": "Product",
+      "field": "Case.${Constants.CaseProduct}",
+      "label": "Product",
+      "linkTemplateEnabled": true,
+      "members": [],
+      "recordDisplayFields": [],
+      "salesforceActions": [],
+      "salesforceActionsEnabled": true,
+      "showInExplorer": true
+    },
+    {
+        "customActions": [],
+        "customActionsEnabled": true,
+        "description": "Chat number",
+        "field": "Name",
+        "label": "Chat Number",
+        "linkTemplateEnabled": true,
+        "linkTemplate": "/{{row.Id}}",
+        "linkTooltip": "Open Chat",
+        "recordIdField": "Id",
+        "members": [],
+        "recordDisplayFields": [],
+        "salesforceActions": [],
+        "salesforceActionsEnabled": true,
+        "showInExplorer": true
+      },
+      {
+        "customActions": [],
+        "customActionsEnabled": true,
+        "description": "Case number",
+        "field": "Case.CaseNumber",
+        "label": "Case Number",
+        "linkTemplateEnabled": true,
+        "linkTemplate": "/{{row.CaseId}}",
+        "linkTooltip": "Open Case",
+        "recordIdField": "CaseId",
+        "members": [],
+        "recordDisplayFields": [],
+        "salesforceActions": [],
+        "salesforceActionsEnabled": true,
+        "showInExplorer": true
+    },
+    {
+      "customActions": [],
+      "customActionsEnabled": true,
+      "description": "Account",
+      "field": "Case.Account.Name",
+      "label": "Account",
+      "linkTemplateEnabled": true,
+      "linkTemplate": "/{{row.Case.Account.Id}}",
+      "linkTooltip": "Open Account",
+      "recordIdField": "Case.Account.Id",
+      "members": [],
+      "recordDisplayFields": [],
+      "salesforceActions": [],
+      "salesforceActionsEnabled": true,
+      "showInExplorer": true
+    }
+  ],
+  "measures": [
+    {
+      "field": "CSAT",
+      "format": {
+        "customFormat": "[\"0.#\",1]",
+        "decimalDigits": 0
+      },
+      "label": "CSAT"
+    },
+    {
+      "field": "OperatorMessageCount",
+      "format": {
+        "customFormat": "[\"0.#\",1]",
+        "decimalDigits": 0
+      },
+      "label": "# Agent Messages"
+    },
+    {
+      "field": "AverageResponseTimeOperator",
+      "format": {
+        "customFormat": "[\"#,### s\",1]",
+        "decimalDigits": 0
+      },
+      "label": "Agent Response Time",
+      "showInExplorer": true
+    },
+    {
+      "field": "AverageResponseTimeVisitor",
+      "format": {
+        "customFormat": "[\"#,### s\",1]",
+        "decimalDigits": 0
+      },
+      "label": "Visitor Response Time",
+      "showInExplorer": true
+    },
+    {
+      "field": "WaitTime",
+      "format": {
+        "customFormat": "[\"#,### s\",1]",
+        "decimalDigits": 0
+      },
+      "label": "Wait Time",
+      "showInExplorer": true
+    },
+    {
+      "field": "ChatDuration",
+      "format": {
+        "customFormat": "[\"#,### s\",1]",
+        "decimalDigits": 0
+      },
+      "label": "Handle Time",
+      "showInExplorer": true
+    }
+  ],
+  "organizations": [],
+  "showDetailsDefaultFields": []
+}
