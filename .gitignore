@@ -4,3 +4,4 @@ debug/logs
 /*.sublime-workspace
 \.DS_Store
 *.sfdx
+mdapioutput
