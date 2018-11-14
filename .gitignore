@@ -3,3 +3,5 @@ debug/logs
 *.sublime-project
 /*.sublime-workspace
 \.DS_Store
+*.sfdx
+mdapioutput/
