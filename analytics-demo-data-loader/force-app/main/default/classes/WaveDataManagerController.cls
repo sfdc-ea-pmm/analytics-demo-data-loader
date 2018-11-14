@@ -654,7 +654,7 @@ public with sharing class WaveDataManagerController {
 			if(!String.isBlank(this.batchProcessId)){
 
 				WaveApplicationObject currentNode = this.objectsNodes.get(this.currentNodeIndex);
-				List<AsyncApexJob> lstJobs = [SELECT CompletedDate, JobItemsProcessed, NumberOfErrors, Status, TotalJobItems FROM AsyncApexJob WHERE Id = :this.batchProcessId];
+				List<AsyncApexJob> lstJobs = [SELECT CompletedDate, JobItemsProcessed, NumberOfErrors, Status, ExtendedStatus, TotalJobItems FROM AsyncApexJob WHERE Id = :this.batchProcessId];
 				
 				if(lstJobs.size() > 0){
 
@@ -662,7 +662,10 @@ public with sharing class WaveDataManagerController {
 
 					if(asyncJob.Status == 'Completed'){
 						if(asyncJob.NumberOfErrors > 0) {
-							this.errorMessage = 'The process was interrupted due to errors while loading data for the ' + this.objectsNodes.get(this.currentNodeIndex).name + ' object. See logs for details.';
+							this.errorMessage = 'The process was interrupted due to errors while loading data for the ' + this.objectsNodes.get(this.currentNodeIndex).name + ' object. ';
+							if (string.isNotBlank(asyncJob.ExtendedStatus)) {
+								this.errorMessage = this.errorMessage + 'Detail: ' +  asyncJob.ExtendedStatus;
+							}
 							this.currentNodeIndex = 0;
 							currentNode.currentDataIndex = 0;
 							this.objectsNodes.clear();
@@ -748,7 +751,10 @@ public with sharing class WaveDataManagerController {
 						this.rollbackProcess(this.errorMessage, '');
 					}
 					else if(asyncJob.Status == 'Failed'){
-						this.errorMessage = 'The process failed while loading data for the ' + this.objectsNodes.get(this.currentNodeIndex).name + ' object.';
+						this.errorMessage = 'The process failed while loading data for the ' + this.objectsNodes.get(this.currentNodeIndex).name + ' object. ';
+						if (string.isNotBlank(asyncJob.ExtendedStatus)) {
+							this.errorMessage = this.errorMessage + 'Detail: ' +  asyncJob.ExtendedStatus;
+						}
 						this.currentNodeIndex = 0;
 						this.disabledButton = false;
 						this.objectsNodes.clear();
@@ -787,7 +793,7 @@ public with sharing class WaveDataManagerController {
 		try {
 			if(!String.isBlank(this.queueProcessId)){
 				UserPhotoInfo currentNode = this.userPhotoNodes.get(this.currentUserPhotoNodeIndex);
-				List<AsyncApexJob> lstJobs = [SELECT CompletedDate, JobItemsProcessed, NumberOfErrors, Status, TotalJobItems FROM AsyncApexJob WHERE Id = :this.queueProcessId];
+				List<AsyncApexJob> lstJobs = [SELECT CompletedDate, JobItemsProcessed, NumberOfErrors, Status, ExtendedStatus, TotalJobItems FROM AsyncApexJob WHERE Id = :this.queueProcessId];
 				
 				if(lstJobs.size() > 0){
 
@@ -795,7 +801,10 @@ public with sharing class WaveDataManagerController {
 
 					if(asyncJob.Status == 'Completed'){
 						if(asyncJob.NumberOfErrors > 0) {
-							this.errorMessage = 'The process was interrupted due to errors while uploading ' + this.userPhotoNodes.get(this.currentUserPhotoNodeIndex).fileBaseName + ' photo. See logs for details.';
+							this.errorMessage = 'The process was interrupted due to errors while uploading ' + this.userPhotoNodes.get(this.currentUserPhotoNodeIndex).fileBaseName + ' photo. ';
+							if (string.isNotBlank(asyncJob.ExtendedStatus)) {
+								this.errorMessage = this.errorMessage + 'Detail: ' +  asyncJob.ExtendedStatus;
+							}
 							this.currentUserPhotoNodeIndex = 0;
 							this.userPhotoNodes.clear();
 							this.disabledButton = false;
@@ -814,14 +823,17 @@ public with sharing class WaveDataManagerController {
 						}		
 					}
 					else if(asyncJob.Status == 'Aborted'){
-						this.errorMessage = 'The process was aborted while uploading ' + this.userPhotoNodes.get(this.currentUserPhotoNodeIndex).fileBaseName + ' photo. See logs for details.';
+						this.errorMessage = 'The process was aborted while uploading ' + this.userPhotoNodes.get(this.currentUserPhotoNodeIndex).fileBaseName + ' photo.';
 						this.currentUserPhotoNodeIndex = 0;
 						this.userPhotoNodes.clear();
 						this.disabledButton = false;
 						this.uploadingUserPhotos = false;
 					}
 					else if(asyncJob.Status == 'Failed'){
-						this.errorMessage = 'The process failed while uploading ' + this.userPhotoNodes.get(this.currentUserPhotoNodeIndex).fileBaseName + ' photo. See logs for details.';
+						this.errorMessage = 'The process failed while uploading ' + this.userPhotoNodes.get(this.currentUserPhotoNodeIndex).fileBaseName + ' photo. ';
+						if (string.isNotBlank(asyncJob.ExtendedStatus)) {
+							this.errorMessage = this.errorMessage + 'Error: ' +  asyncJob.ExtendedStatus;
+						}
 						this.currentUserPhotoNodeIndex = 0;
 						this.userPhotoNodes.clear();
 						this.disabledButton = false;
@@ -859,7 +871,7 @@ public with sharing class WaveDataManagerController {
 		try {
 			if(!String.isBlank(this.batchProcessId)){
 				WaveTimeShiftingItem currentNode = this.timeShiftingItems.get(this.currentTimeShiftingNodeIndex);
-				List<AsyncApexJob> lstJobs = [SELECT CompletedDate, JobItemsProcessed, NumberOfErrors, Status, TotalJobItems FROM AsyncApexJob WHERE Id = :this.batchProcessId];
+				List<AsyncApexJob> lstJobs = [SELECT CompletedDate, JobItemsProcessed, NumberOfErrors, Status, ExtendedStatus, TotalJobItems FROM AsyncApexJob WHERE Id = :this.batchProcessId];
 				
 				if(lstJobs.size() > 0){
 
@@ -867,7 +879,10 @@ public with sharing class WaveDataManagerController {
 
 					if(asyncJob.Status == 'Completed'){
 						if(asyncJob.NumberOfErrors > 0) {
-							this.errorMessage = 'The process was interrupted due to errors while time shifting data for the ' + this.timeShiftingItems.get(this.currentTimeShiftingNodeIndex).objectTypeName + ' object. See logs for details.';
+							this.errorMessage = 'The process was interrupted due to errors while time shifting data for the ' + this.timeShiftingItems.get(this.currentTimeShiftingNodeIndex).objectTypeName + ' object. ';
+							if (string.isNotBlank(asyncJob.ExtendedStatus)) {
+								this.errorMessage = this.errorMessage + 'Detail: ' +  asyncJob.ExtendedStatus;
+							}
 							this.currentTimeShiftingNodeIndex = 0;
 							this.timeShiftingItems.clear();
 							this.disabledButton = false;
@@ -898,7 +913,10 @@ public with sharing class WaveDataManagerController {
 						this.rollbackProcess(this.errorMessage, '');
 					}
 					else if(asyncJob.Status == 'Failed'){
-						this.errorMessage = 'The process failed while time shifting data for the ' + this.timeShiftingItems.get(this.currentTimeShiftingNodeIndex).objectTypeName + ' object.';
+						this.errorMessage = 'The process failed while time shifting data for the ' + this.timeShiftingItems.get(this.currentTimeShiftingNodeIndex).objectTypeName + ' object. ';
+						if (string.isNotBlank(asyncJob.ExtendedStatus)) {
+							this.errorMessage = this.errorMessage + 'Detail: ' +  asyncJob.ExtendedStatus;
+						}
 						this.currentTimeShiftingNodeIndex = 0;
 						this.timeShiftingItems.clear();
 						this.disabledButton = false;
@@ -1230,7 +1248,7 @@ public with sharing class WaveDataManagerController {
 		
 		try {
 			if(!String.isBlank(this.queueProcessId) && this.processingRecordTypes){
-				List<AsyncApexJob> lstJobs = [SELECT CompletedDate, JobItemsProcessed, NumberOfErrors, Status, TotalJobItems FROM AsyncApexJob WHERE Id = :this.queueProcessId];
+				List<AsyncApexJob> lstJobs = [SELECT CompletedDate, JobItemsProcessed, NumberOfErrors, Status, ExtendedStatus, TotalJobItems FROM AsyncApexJob WHERE Id = :this.queueProcessId];
 				SF_MetadataUtils.RecordTypeSpecification currentRecordType = this.objectsRecordTypesMatrix.get(this.currentObjectIndex).get(this.currentRecordTypeIndex);
 
 				if(lstJobs.size() > 0){
@@ -1238,7 +1256,10 @@ public with sharing class WaveDataManagerController {
 
 					if(asyncJob.Status == 'Completed'){
 						if(asyncJob.NumberOfErrors > 0) {
-							this.errorMessage = 'Error while processing ' + currentRecordType.Name + ' record type for the ' + currentRecordType.ObjectName + ' object. See logs for details.';
+							this.errorMessage = 'Error while processing ' + currentRecordType.Name + ' record type for the ' + currentRecordType.ObjectName + ' object. ';
+							if (string.isNotBlank(asyncJob.ExtendedStatus)) {
+								this.errorMessage = this.errorMessage + 'Detail: ' +  asyncJob.ExtendedStatus;
+							}
 							this.currentObjectIndex = 0;
 							this.currentRecordTypeIndex = 0;
 							this.processingRecordTypes = false;
@@ -1281,14 +1302,17 @@ public with sharing class WaveDataManagerController {
 						}		
 					}
 					else if(asyncJob.Status == 'Aborted'){
-						this.errorMessage = 'The process was aborted while processing ' + currentRecordType.Name + ' record type for the ' + currentRecordType.ObjectName + ' object. See logs for details.';
+						this.errorMessage = 'The process was aborted while processing ' + currentRecordType.Name + ' record type for the ' + currentRecordType.ObjectName + ' object.';
 						this.currentObjectIndex = 0;
 						this.currentRecordTypeIndex = 0;
 						this.processingRecordTypes = false;
 						this.disabledButton = false;
 					}
 					else if(asyncJob.Status == 'Failed'){
-						this.errorMessage = 'The process failed while processing ' + currentRecordType.Name + ' record type for the ' + currentRecordType.ObjectName + ' object. See logs for details.';
+						this.errorMessage = 'The process failed while processing ' + currentRecordType.Name + ' record type for the ' + currentRecordType.ObjectName + ' object. ';
+						if (string.isNotBlank(asyncJob.ExtendedStatus)) {
+							this.errorMessage = this.errorMessage + 'Detail: ' +  asyncJob.ExtendedStatus;
+						}
 						this.currentObjectIndex = 0;
 						this.currentRecordTypeIndex = 0;
 						this.processingRecordTypes = false;
@@ -1332,7 +1356,7 @@ public with sharing class WaveDataManagerController {
 		
 		try {
 			if(!String.isBlank(this.queueProcessId) && this.processingObjectsAndFieldsMetadata){
-				List<AsyncApexJob> lstJobs = [SELECT CompletedDate, JobItemsProcessed, NumberOfErrors, Status, TotalJobItems FROM AsyncApexJob WHERE Id = :this.queueProcessId];
+				List<AsyncApexJob> lstJobs = [SELECT CompletedDate, JobItemsProcessed, NumberOfErrors, Status, ExtendedStatus, TotalJobItems FROM AsyncApexJob WHERE Id = :this.queueProcessId];
 				SF_MetadataUtils.CustomFieldSpecification currentField = this.objectsAndFieldsMatrix.get(this.currentObjectIndex).get(this.currentFieldIndex);
 
 				if(lstJobs.size() > 0){
@@ -1340,7 +1364,10 @@ public with sharing class WaveDataManagerController {
 
 					if(asyncJob.Status == 'Completed'){
 						if(asyncJob.NumberOfErrors > 0) {
-							this.errorMessage = 'Error while processing metadata for the ' + currentField.ObjectName + ' object. Field: ' + currentField.Name + ' .See logs for details.';
+							this.errorMessage = 'Error while processing metadata for the ' + currentField.ObjectName + ' object. Field: ' + currentField.Name + '. ';
+							if (string.isNotBlank(asyncJob.ExtendedStatus)) {
+								this.errorMessage = this.errorMessage + 'Detail: ' +  asyncJob.ExtendedStatus;
+							}
 							this.currentObjectIndex = 0;
 							this.currentFieldIndex = 0;
 							this.processingObjectsAndFieldsMetadata = false;
@@ -1397,14 +1424,17 @@ public with sharing class WaveDataManagerController {
 						}		
 					}
 					else if(asyncJob.Status == 'Aborted'){
-						this.errorMessage = 'The process was aborted while processing metadata for the ' + currentField.ObjectName + ' object. Field: ' + currentField.Name + ' .See logs for details.';
+						this.errorMessage = 'The process was aborted while processing metadata for the ' + currentField.ObjectName + ' object. Field: ' + currentField.Name + '.';
 						this.currentObjectIndex = 0;
 						this.currentFieldIndex = 0;
 						this.processingObjectsAndFieldsMetadata = false;
 						this.disabledButton = false;
 					}
 					else if(asyncJob.Status == 'Failed'){
-						this.errorMessage = 'The process failed while processing metadata for the ' + currentField.ObjectName + ' object. Field: ' + currentField.Name + ' .See logs for details.';
+						this.errorMessage = 'The process failed while processing metadata for the ' + currentField.ObjectName + ' object. Field: ' + currentField.Name + '. ';
+						if (string.isNotBlank(asyncJob.ExtendedStatus)) {
+							this.errorMessage = this.errorMessage + 'Detail: ' +  asyncJob.ExtendedStatus;
+						}
 						this.currentObjectIndex = 0;
 						this.currentFieldIndex = 0;
 						this.processingObjectsAndFieldsMetadata = false;
