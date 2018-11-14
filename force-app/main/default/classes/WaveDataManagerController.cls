@@ -1581,5 +1581,4 @@ public with sharing class WaveDataManagerController {
 		this.processingLogWithoutTime.add(msg);
 	}
 
-
 }
