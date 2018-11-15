@@ -502,7 +502,7 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
 					compSmLookUp.TargetFieldsIndexes.add(this.fieldIndexes.get(fkPart.csvColumnName));
 				}
 
-				this.compositeSmartLookups.add(CompositeSmartLookup);
+				this.compositeSmartLookups.add(compSmLookUp);
 			}
 			else {
 				SmartLookup smLookUp = new SmartLookup();
