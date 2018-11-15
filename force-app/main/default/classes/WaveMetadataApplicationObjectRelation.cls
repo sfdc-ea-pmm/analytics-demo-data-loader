@@ -3,4 +3,5 @@ public class WaveMetadataApplicationObjectRelation {
 	public String targetSObject;
 	public String targetSObjectLookupField;
 	public String foreignKeyField;
+	public List<WaveMetadataCompositeForeignKeyPart> compositeForeignKey;
 }

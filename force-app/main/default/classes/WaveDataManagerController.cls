@@ -516,13 +516,26 @@ public with sharing class WaveDataManagerController {
 
 		// We process the relations
 		rootObj.relations = new List<WaveApplicationObjectRelation>();
-		if(wmaObj.relations != null){			
+		if(wmaObj.relations != null){
 			for(WaveMetadataApplicationObjectRelation relObj: wmaObj.relations) {
 				WaveApplicationObjectRelation rel = new WaveApplicationObjectRelation();
+				
 				rel.csvColumnName = relObj.csvColumnName;
 				rel.targetSObject = relObj.targetSObject;
 				rel.targetSObjectLookupField = relObj.targetSObjectLookupField;
 				rel.foreignKeyField = relObj.foreignKeyField;
+
+				if (relObj.compositeForeignKey != null) {
+					// We have a composite foreign key
+					rel.compositeForeignKey = new List<WaveApplicationCompositeForeignKeyPart>();
+
+					for (WaveMetadataCompositeForeignKeyPart wmcFKP : relObj.compositeForeignKey) {
+					   WaveApplicationCompositeForeignKeyPart wacFKP = new WaveApplicationCompositeForeignKeyPart();
+					   wacFKP.csvColumnName = wmcFKP.csvColumnName;
+					   wacFKP.targetSObjectLookupField = wmcFKP.targetSObjectLookupField;
+					   rel.compositeForeignKey.add(wacFKP);
+					}
+				}
 
 				rootObj.relations.add(rel);
 			}

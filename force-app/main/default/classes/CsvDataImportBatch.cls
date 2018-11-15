@@ -6,6 +6,7 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
 	private List<WaveApplicationObjectRelation> relations;
 	private SObjectType objectType;
 	private List<SmartLookup> smartLookups;
+	private List<CompositeSmartLookup> compositeSmartLookups;
 	private List<String> errorMessages;
 	private Double apiVersion;
 	private String sessionId;
@@ -487,15 +488,32 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
     	// Now we traverse relations of the object
     	for(WaveApplicationObjectRelation relObj: this.relations) {
     		
-    		SmartLookup smLookUp = new SmartLookup();
+    		// SmartLookup or CompositeSmartLookup
+			if (relObj.compositeForeignKey != null) {
+				// CompositeSmartLookup
+				CompositeSmartLookup compSmLookUp = new CompositeSmartLookup();
+				compSmLookUp.SObjectType = relObj.targetSObject;
+				compSmLookUp.LookupFieldName = relObj.foreignKeyField;
+				compSmLookUp.TargetFields = new List<String>();
+				compSmLookUp.TargetFieldsIndexes = new List<Integer>();
 
-    		String csvColumnName = relObj.csvColumnName;
-    		smLookUp.columnNumber = this.fieldIndexes.get(csvColumnName);
-    		smLookUp.SObjectType = relObj.targetSObject;
-    		smLookUp.targetField = relObj.targetSObjectLookupField;
+				for (WaveApplicationCompositeForeignKeyPart fkPart : relObj.compositeForeignKey) {
+					compSmLookUp.TargetFields.add(fkPart.targetSObjectLookupField);
+					compSmLookUp.TargetFieldsIndexes.add(this.fieldIndexes.get(fkPart.csvColumnName));
+				}
 
-    		this.fieldPositions.put(smLookUp.columnNumber, relObj.foreignKeyField);
-    		this.smartLookups.add(smLookUp);
+				this.compositeSmartLookups.add(CompositeSmartLookup);
+			}
+			else {
+				SmartLookup smLookUp = new SmartLookup();
+				String csvColumnName = relObj.csvColumnName;
+				smLookUp.columnNumber = this.fieldIndexes.get(csvColumnName);
+				smLookUp.SObjectType = relObj.targetSObject;
+				smLookUp.targetField = relObj.targetSObjectLookupField;
+
+				this.fieldPositions.put(smLookUp.columnNumber, relObj.foreignKeyField);
+				this.smartLookups.add(smLookUp);
+			}
     	}
 	}
 
