@@ -479,7 +479,9 @@ public with sharing class WaveDataManagerController {
 			Map<String, Integer> fieldPositions = new Map<String, Integer>();
 			
 			for(Integer i = 0; i < headers.size(); i++) {
-				fieldPositions.put(headers.get(i), i);
+				String fieldName = headers.get(i);
+				fieldName = fieldName.replace('"', '');
+				fieldPositions.put(fieldName, i);
 			}
 
 			// For each row of data in the CSV
@@ -594,8 +596,9 @@ public with sharing class WaveDataManagerController {
 					headersLine = headersLine.replace('\r', '');
 				}
 
+				headersLine = headersLine.replace('"', '');
 				List<String> headers = headersLine.split(',');
-				System.debug('Headers: ' + headers);
+				
 				currentNode.fieldPositions = new Map<Integer, String>();
 					
 				for(Integer i = 0; i < headers.size(); i++) {
