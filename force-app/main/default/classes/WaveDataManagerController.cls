@@ -459,100 +459,104 @@ public with sharing class WaveDataManagerController {
 
 	public List<WaveApplicationObject> getObjectsToProcess(WaveMetadataApplicationObject wmaObj){
 		List<WaveApplicationObject> listToProcess = new List<WaveApplicationObject>();
-		WaveApplicationObject rootObj = new WaveApplicationObject();
-		rootObj.name = wmaObj.name;
-		rootObj.url = this.baseUrl + wmaObj.url;
-		rootObj.additionalDataFiles = wmaObj.additionalDataFiles;
-		rootObj.stdFieldsForPermissionSet = wmaObj.stdFieldsForPermissionSet;
-
-		listToProcess.add(rootObj);
-
-		// We process the fields metadata
-		IMockarooHelper iMockHelper = MockarooHelperFactory.getIMockarooHelper();
 		
-		String metadataUrl = this.baseUrl + wmaObj.metadataUrl;
-
-		List<List<String>> csvMetadata = iMockHelper.getData(metadataUrl, false);
-    	if(csvMetadata.size() > 0){
-			// Will extract headers
-			List<String> headers = csvMetadata.remove(0);
-			Map<String, Integer> fieldPositions = new Map<String, Integer>();
-			
-			for(Integer i = 0; i < headers.size(); i++) {
-				String fieldName = headers.get(i);
-				fieldName = fieldName.replace('"', '');
-				fieldPositions.put(fieldName, i);
-			}
-
-			// For each row of data in the CSV
-			rootObj.fields = new List<WaveApplicationObjectField>();
-
-			try{
-				for(List<String> metadataRow: csvMetadata) {
-
-					WaveApplicationObjectField fieldMetadata = new WaveApplicationObjectField();
-					fieldMetadata.Label = metadataRow.get(fieldPositions.get('Label')).trim();
-					fieldMetadata.Name = metadataRow.get(fieldPositions.get('Name')).trim();
-					fieldMetadata.Type = metadataRow.get(fieldPositions.get('Type')).trim();
-					fieldMetadata.PickListValues = metadataRow.get(fieldPositions.get('PickListValues')).trim();
-					fieldMetadata.ReferenceTo = metadataRow.get(fieldPositions.get('ReferenceTo')).trim();
-					fieldMetadata.Length = Integer.valueOf(metadataRow.get(fieldPositions.get('Length')));
-					fieldMetadata.Precision = Integer.valueOf(metadataRow.get(fieldPositions.get('Precision')));
-					fieldMetadata.Scale = Integer.valueOf(metadataRow.get(fieldPositions.get('Scale')));
-					fieldMetadata.IsExternalId = Boolean.valueOf(metadataRow.get(fieldPositions.get('IsExternalId')));
-					fieldMetadata.IsRequired = Boolean.valueOf(metadataRow.get(fieldPositions.get('IsRequired')));
-					fieldMetadata.DefaultValue = metadataRow.get(fieldPositions.get('DefaultValue')).trim();
-					fieldMetadata.Formula = metadataRow.get(fieldPositions.get('Formula')).trim();
-
-					rootObj.fields.add(fieldMetadata);
-				}	
-			} 
-			catch(Exception ex){				
-				throw new WaveConfiguratorException('There is a configuration error. Missing csv columns at ' + metadataUrl);
-			}
-			
-		}
-		else {
-			throw new WaveConfiguratorException('There is a configuration error. No metadata csv found at ' + metadataUrl + ' URL.');
-		}
-
-		// We process the relations
-		rootObj.relations = new List<WaveApplicationObjectRelation>();
-		if(wmaObj.relations != null){
-			for(WaveMetadataApplicationObjectRelation relObj: wmaObj.relations) {
-				WaveApplicationObjectRelation rel = new WaveApplicationObjectRelation();
-				
-				rel.csvColumnName = relObj.csvColumnName;
-				rel.targetSObject = relObj.targetSObject;
-				rel.targetSObjectLookupField = relObj.targetSObjectLookupField;
-				rel.foreignKeyField = relObj.foreignKeyField;
-
-				if (relObj.compositeForeignKey != null) {
-					// We have a composite foreign key
-					rel.compositeForeignKey = new List<WaveApplicationCompositeForeignKeyPart>();
-
-					for (WaveMetadataCompositeForeignKeyPart wmcFKP : relObj.compositeForeignKey) {
-					   WaveApplicationCompositeForeignKeyPart wacFKP = new WaveApplicationCompositeForeignKeyPart();
-					   wacFKP.csvColumnName = wmcFKP.csvColumnName;
-					   wacFKP.targetSObjectLookupField = wmcFKP.targetSObjectLookupField;
-					   rel.compositeForeignKey.add(wacFKP);
-					}
-				}
-
-				rootObj.relations.add(rel);
-			}
-		}
-
-		// Replicate for each adittional data CSV file
-
-		// We process the children
-		if(wmaObj.children != null) {
-			// Now the children objects
-			for(WaveMetadataApplicationObject chObj: wmaObj.children) {
-				List<WaveApplicationObject> childrenObjs = getObjectsToProcess(chObj);
-				listToProcess.addAll(childrenObjs);
-			}
-		}
+        if(String.isNotBlank(wmaObj.url) && String.isNotBlank(wmaObj.metadataUrl)){
+            
+            WaveApplicationObject rootObj = new WaveApplicationObject();
+            rootObj.name = wmaObj.name;
+            rootObj.url = this.baseUrl + wmaObj.url;
+            rootObj.additionalDataFiles = wmaObj.additionalDataFiles;
+            rootObj.stdFieldsForPermissionSet = wmaObj.stdFieldsForPermissionSet;
+    
+            listToProcess.add(rootObj);
+    
+            // We process the fields metadata
+            IMockarooHelper iMockHelper = MockarooHelperFactory.getIMockarooHelper();
+            
+            String metadataUrl = this.baseUrl + wmaObj.metadataUrl;
+    
+            List<List<String>> csvMetadata = iMockHelper.getData(metadataUrl, false);
+            if(csvMetadata.size() > 0){
+                // Will extract headers
+                List<String> headers = csvMetadata.remove(0);
+                Map<String, Integer> fieldPositions = new Map<String, Integer>();
+                
+                for(Integer i = 0; i < headers.size(); i++) {
+                    String fieldName = headers.get(i);
+                    fieldName = fieldName.replace('"', '');
+                    fieldPositions.put(fieldName, i);
+                }
+    
+                // For each row of data in the CSV
+                rootObj.fields = new List<WaveApplicationObjectField>();
+    
+                try{
+                    for(List<String> metadataRow: csvMetadata) {
+    
+                        WaveApplicationObjectField fieldMetadata = new WaveApplicationObjectField();
+                        fieldMetadata.Label = metadataRow.get(fieldPositions.get('Label')).trim();
+                        fieldMetadata.Name = metadataRow.get(fieldPositions.get('Name')).trim();
+                        fieldMetadata.Type = metadataRow.get(fieldPositions.get('Type')).trim();
+                        fieldMetadata.PickListValues = metadataRow.get(fieldPositions.get('PickListValues')).trim();
+                        fieldMetadata.ReferenceTo = metadataRow.get(fieldPositions.get('ReferenceTo')).trim();
+                        fieldMetadata.Length = Integer.valueOf(metadataRow.get(fieldPositions.get('Length')));
+                        fieldMetadata.Precision = Integer.valueOf(metadataRow.get(fieldPositions.get('Precision')));
+                        fieldMetadata.Scale = Integer.valueOf(metadataRow.get(fieldPositions.get('Scale')));
+                        fieldMetadata.IsExternalId = Boolean.valueOf(metadataRow.get(fieldPositions.get('IsExternalId')));
+                        fieldMetadata.IsRequired = Boolean.valueOf(metadataRow.get(fieldPositions.get('IsRequired')));
+                        fieldMetadata.DefaultValue = metadataRow.get(fieldPositions.get('DefaultValue')).trim();
+                        fieldMetadata.Formula = metadataRow.get(fieldPositions.get('Formula')).trim();
+    
+                        rootObj.fields.add(fieldMetadata);
+                    }	
+                } 
+                catch(Exception ex){				
+                    throw new WaveConfiguratorException('There is a configuration error. Missing csv columns at ' + metadataUrl);
+                }
+                
+            }
+            else {
+                throw new WaveConfiguratorException('There is a configuration error. No metadata csv found at ' + metadataUrl + ' URL.');
+            }
+    
+            // We process the relations
+            rootObj.relations = new List<WaveApplicationObjectRelation>();
+            if(wmaObj.relations != null){
+                for(WaveMetadataApplicationObjectRelation relObj: wmaObj.relations) {
+                    WaveApplicationObjectRelation rel = new WaveApplicationObjectRelation();
+                    
+                    rel.csvColumnName = relObj.csvColumnName;
+                    rel.targetSObject = relObj.targetSObject;
+                    rel.targetSObjectLookupField = relObj.targetSObjectLookupField;
+                    rel.foreignKeyField = relObj.foreignKeyField;
+    
+                    if (relObj.compositeForeignKey != null) {
+                        // We have a composite foreign key
+                        rel.compositeForeignKey = new List<WaveApplicationCompositeForeignKeyPart>();
+    
+                        for (WaveMetadataCompositeForeignKeyPart wmcFKP : relObj.compositeForeignKey) {
+                           WaveApplicationCompositeForeignKeyPart wacFKP = new WaveApplicationCompositeForeignKeyPart();
+                           wacFKP.csvColumnName = wmcFKP.csvColumnName;
+                           wacFKP.targetSObjectLookupField = wmcFKP.targetSObjectLookupField;
+                           rel.compositeForeignKey.add(wacFKP);
+                        }
+                    }
+    
+                    rootObj.relations.add(rel);
+                }
+            }
+    
+            // Replicate for each adittional data CSV file
+    
+            // We process the children
+            if(wmaObj.children != null) {
+                // Now the children objects
+                for(WaveMetadataApplicationObject chObj: wmaObj.children) {
+                    List<WaveApplicationObject> childrenObjs = getObjectsToProcess(chObj);
+                    listToProcess.addAll(childrenObjs);
+                }
+            }
+        }
 
 		return listToProcess;
 	}

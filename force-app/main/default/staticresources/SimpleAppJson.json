@@ -32,10 +32,16 @@
 			"metadataUrl": "simple/Account_metadata.csv",
 			"relations": [
 				{
-					"csvColumnName": "Owner.External_Id__c",
+					"csvColumnName": "",
 					"targetSObject" : "User",
-					"targetSObjectLookupField" : "External_Id__c",
-					"foreignKeyField" : "OwnerId"
+					"targetSObjectLookupField" : "",
+					"foreignKeyField" : "OwnerId",
+					"compositeForeignKey" : [
+                        {
+                            "csvColumnName": "Owner.External_Id__c",
+                            "targetSObjectLookupField" : "External_Id__c"
+                        }
+                    ]
 				}
 			],
 			"dateFieldsToShift": [
