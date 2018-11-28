@@ -13,10 +13,38 @@ private class WaveDataManager_test {
 
 	@isTest static void metadataUtilsTest() {
 
+		System.assertEquals(false, SF_MetadataUtils.objectExists('FakeTestObj'));
+		System.assertEquals(false, SF_MetadataUtils.fieldExists('FakeTestObj', ''));
+		System.assertEquals(true, SF_MetadataUtils.fieldExists('Account', 'Id'));
+
+		MetadataServiceWebServiceMockImpl workflowMock = new MetadataServiceWebServiceMockImpl();
+		workflowMock.filePropertiesFullNames.put('Case', new List<String>{'MockValidationRule'});
+		Test.setMock(WebServiceMock.class, workflowMock);
+		List<String> objectsNames = new List<String>();
+		objectsNames.add('Case');
+		List<String> errs = SF_MetadataUtils.getObjectsWithRulesAndOrWorkflows(objectsNames, 43);
+
 		// Null Web Service mock implementation
         Test.setMock(WebServiceMock.class, new MetadataServiceTest.WebServiceMockImpl());
-		
-		List<String> errs = SF_MetadataUtils.createObject('TestObj__c');		
+		errs = SF_MetadataUtils.createObject('TestObj__c', 'fake-session-id');
+
+		Test.setMock(WebServiceMock.class, new MetadataServiceTest.WebServiceMockImpl());
+		errs = SF_MetadataUtils.createObject('TestObj__c');
+
+		Test.setMock(WebServiceMock.class, new MetadataServiceTest.WebServiceMockImpl());
+		errs = SF_MetadataUtils.assignAccessToField('Task', 'Id');
+
+		Test.setMock(WebServiceMock.class, new MetadataServiceTest.WebServiceMockImpl());
+		errs = SF_MetadataUtils.assignAccessToField('Account', 'Id', 'fake-session-id');
+
+		Test.setMock(WebServiceMock.class, new MetadataServiceTest.WebServiceMockImpl());
+		SF_MetadataUtils.RecordTypeSpecification recTypeSpec = new SF_MetadataUtils.RecordTypeSpecification();
+		recTypeSpec.ObjectName = 'Opportunity';
+		recTypeSpec.DeveloperName = 'Test_Oppty_Rec_Type';
+		recTypeSpec.Name = 'Test_Oppty_Rec_Type';
+		recTypeSpec.BusinessProcessName = '';
+		recTypeSpec.Description = '';
+		errs = SF_MetadataUtils.createRecordType(recTypeSpec, 'fake-session-id');
 
 		SF_MetadataUtils.CustomFieldSpecification fieldSpec = new SF_MetadataUtils.CustomFieldSpecification();
 		fieldSpec.ObjectName = 'TestObj__c';
@@ -34,6 +62,14 @@ private class WaveDataManager_test {
 		errs = SF_MetadataUtils.createField(fieldSpec);
 
 		Test.setMock(WebServiceMock.class, new MetadataServiceTest.WebServiceMockImpl());
+		fieldSpec.ObjectName = 'Task';
+		errs = SF_MetadataUtils.createField(fieldSpec, 'fake-session-id');
+		
+		Test.setMock(WebServiceMock.class, new MetadataServiceTest.WebServiceMockImpl());
+		fieldSpec.Name = 'CreatedDate';
+		errs = SF_MetadataUtils.createField(fieldSpec);
+
+		Test.setMock(WebServiceMock.class, new MetadataServiceTest.WebServiceMockImpl());
 		SF_MetadataUtils.checkMetadataAPIConnection();
 
 		fieldSpec = new SF_MetadataUtils.CustomFieldSpecification();
@@ -46,8 +82,71 @@ private class WaveDataManager_test {
 		fieldSpec.Precision = 0;
 		fieldSpec.Scale = 0;
 		fieldSpec.IsExternalId = false;
-		fieldSpec.IsRequired = false;
+		fieldSpec.IsRequired = false;		
 
+		Test.setMock(WebServiceMock.class, new MetadataServiceTest.WebServiceMockImpl());
+		errs = SF_MetadataUtils.createField(fieldSpec);
+
+		// Now test field creation for Checkbox, Number, TextArea, LongTextArea, Picklist, Formula
+		// Checkbox
+		fieldSpec = new SF_MetadataUtils.CustomFieldSpecification();
+		fieldSpec.ObjectName = 'TestObj__c';
+		fieldSpec.Name = 'CheckboxTestField__c';
+    	fieldSpec.Label = 'Checkbox Test field';
+    	fieldSpec.Type = 'Checkbox';
+		fieldSpec.DefaultValue = '';
+		Test.setMock(WebServiceMock.class, new MetadataServiceTest.WebServiceMockImpl());
+		errs = SF_MetadataUtils.createField(fieldSpec);
+
+		// Number
+		fieldSpec = new SF_MetadataUtils.CustomFieldSpecification();
+		fieldSpec.ObjectName = 'TestObj__c';
+		fieldSpec.Name = 'NumberTestField__c';
+    	fieldSpec.Label = 'Number Test field';
+    	fieldSpec.Type = 'Number';
+		fieldSpec.Precision = 10;
+		fieldSpec.Scale = 0;
+		fieldSpec.DefaultValue = '11';
+		Test.setMock(WebServiceMock.class, new MetadataServiceTest.WebServiceMockImpl());
+		errs = SF_MetadataUtils.createField(fieldSpec);
+
+		// TextArea
+		fieldSpec = new SF_MetadataUtils.CustomFieldSpecification();
+		fieldSpec.ObjectName = 'TestObj__c';
+		fieldSpec.Name = 'TextAreaTestField__c';
+    	fieldSpec.Label = 'TextArea Test field';
+    	fieldSpec.Type = 'TextArea';
+		fieldSpec.Length = 255;
+		Test.setMock(WebServiceMock.class, new MetadataServiceTest.WebServiceMockImpl());
+		errs = SF_MetadataUtils.createField(fieldSpec);
+
+		// LongTextArea
+		fieldSpec = new SF_MetadataUtils.CustomFieldSpecification();
+		fieldSpec.ObjectName = 'TestObj__c';
+		fieldSpec.Name = 'LongTextAreaTestField__c';
+    	fieldSpec.Label = 'LongTextArea Test field';
+    	fieldSpec.Type = 'LongTextArea';
+		fieldSpec.Length = 1000;
+		Test.setMock(WebServiceMock.class, new MetadataServiceTest.WebServiceMockImpl());
+		errs = SF_MetadataUtils.createField(fieldSpec);
+
+		// Picklist
+		fieldSpec = new SF_MetadataUtils.CustomFieldSpecification();
+		fieldSpec.ObjectName = 'TestObj__c';
+		fieldSpec.Name = 'PicklistTestField__c';
+    	fieldSpec.Label = 'Picklist Test field';
+    	fieldSpec.Type = 'Picklist';
+		fieldSpec.PickListValues = 'A,B,C';
+		Test.setMock(WebServiceMock.class, new MetadataServiceTest.WebServiceMockImpl());
+		errs = SF_MetadataUtils.createField(fieldSpec);
+
+		// Formula
+		fieldSpec = new SF_MetadataUtils.CustomFieldSpecification();
+		fieldSpec.ObjectName = 'TestObj__c';
+		fieldSpec.Name = 'FormulaTestField__c';
+    	fieldSpec.Label = 'Formula Test field';
+    	fieldSpec.Type = 'Text';
+		fieldSpec.Formula = 'Name  & \' for testing\'';
 		Test.setMock(WebServiceMock.class, new MetadataServiceTest.WebServiceMockImpl());
 		errs = SF_MetadataUtils.createField(fieldSpec);
 	}
@@ -119,7 +218,7 @@ private class WaveDataManager_test {
 		cnt.selectedInstallationProcess = 'timeShifting';
 
 		Test.startTest();
-        //cnt.selectAppMetadata();
+        cnt.selectAppMetadata();
 		cnt.executeSelectedProcess();
 		Test.stopTest();
 
@@ -266,5 +365,67 @@ private class WaveDataManager_test {
 		cnt.overrideDefaultSettingTS = false;
 		cnt.calculateDaysToShift();
         Test.stopTest();
+	}
+
+	public class MetadataServiceWebServiceMockImpl implements WebServiceMock 
+	{
+		public Map<String, List<String>> filePropertiesFullNames;
+
+		public MetadataServiceWebServiceMockImpl(){
+			this.filePropertiesFullNames = new Map<String, List<String>>();
+		}
+
+		public void doInvoke(
+			Object stub, Object request, Map<String, Object> response,
+			String endpoint, String soapAction, String requestName,
+			String responseNS, String responseName, String responseType) 
+		{
+			if(request instanceof MetadataService.retrieve_element)
+				response.put('response_x', new MetadataService.retrieveResponse_element());
+			else if(request instanceof MetadataService.checkDeployStatus_element)
+				response.put('response_x', new MetadataService.checkDeployStatusResponse_element());
+			else if(request instanceof MetadataService.listMetadata_element){
+				MetadataService.listMetadataResponse_element listMetadataResponseElem = new MetadataService.listMetadataResponse_element();
+				List<MetadataService.FileProperties> lstFileProps = new List<MetadataService.FileProperties>();
+				for (String fpName : this.filePropertiesFullNames.keySet()) {
+					for (String fpNameInner : this.filePropertiesFullNames.get(fpName)) {
+					   MetadataService.FileProperties fp = new MetadataService.FileProperties();
+					   fp.fullName = fpName + '.' + fpNameInner;
+					   lstFileProps.add(fp);
+					}
+				}
+				listMetadataResponseElem.result = new MetadataService.FileProperties[]{};
+				for (MetadataService.FileProperties f : lstFileProps) {
+				   listMetadataResponseElem.result.add(f);
+				}
+				
+				response.put('response_x', listMetadataResponseElem);
+			}
+			else if(request instanceof MetadataService.checkRetrieveStatus_element)
+				response.put('response_x', new MetadataService.checkRetrieveStatusResponse_element());
+			else if(request instanceof MetadataService.describeMetadata_element)
+				response.put('response_x', new MetadataService.describeMetadataResponse_element());
+			else if(request instanceof MetadataService.deploy_element)
+				response.put('response_x', new MetadataService.deployResponse_element());
+            else if(request instanceof MetadataService.updateMetadata_element)
+                response.put('response_x', new MetadataService.updateMetadataResponse_element());
+            else if(request instanceof MetadataService.renameMetadata_element)
+                response.put('response_x', new MetadataService.renameMetadataResponse_element());
+            else if(request instanceof  MetadataService.cancelDeploy_element)
+                response.put('response_x', new MetadataService.cancelDeployResponse_element());
+            else if(request instanceof  MetadataService.deleteMetadata_element)
+                response.put('response_x', new MetadataService.deleteMetadataResponse_element());
+            else if(request instanceof  MetadataService.upsertMetadata_element)
+                response.put('response_x', new MetadataService.upsertMetadataResponse_element());
+            else if(request instanceof  MetadataService.createMetadata_element)
+                response.put('response_x', new MetadataService.createMetadataResponse_element());
+            else if(request instanceof  MetadataService.deployRecentValidation_element)
+                response.put('response_x', new MetadataService.deployRecentValidationResponse_element());
+            else if(request instanceof MetadataService.describeValueType_element)
+                response.put('response_x', new MetadataService.describeValueTypeResponse_element());
+            else if(request instanceof MetadataService.checkRetrieveStatus_element)
+                response.put('response_x', new MetadataService.checkRetrieveStatusResponse_element());
+			return;
+		}
 	}
 }

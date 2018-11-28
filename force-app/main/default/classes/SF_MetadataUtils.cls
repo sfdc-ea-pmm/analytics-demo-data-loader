@@ -12,15 +12,10 @@ public with sharing class SF_MetadataUtils {
         if(globalDescribe.containsKey(objName.toLowerCase())){
             Schema.sObjectType objType = globalDescribe.get(objName.toLowerCase());            
             Schema.DescribeSObjectResult[] descResult = Schema.describeSObjects(new String[]{ objType.getDescribe().getName() });
-            if(descResult.size() > 0){
-                Schema.DescribeSObjectResult descResultItem = descResult[0];
-                Map<String, Schema.SObjectField> fieldMap = descResultItem.fields.getMap();
+            Schema.DescribeSObjectResult descResultItem = descResult[0];
+            Map<String, Schema.SObjectField> fieldMap = descResultItem.fields.getMap();
 
-                return fieldMap.containsKey(fieldName);
-            }
-            else {
-                return false;
-            }
+            return fieldMap.containsKey(fieldName);
         }
         else {
             return false;
