@@ -18,6 +18,7 @@ public with sharing class WaveDataManagerController {
 	public Integer currentTimeShiftingNodeIndex { get; set; }
 	public String currentObjectProcessing { get; set; }
 	public List<WaveApplicationObject> objectsNodes { get; set; }
+	public List<WaveApplicationEdgemart> edgemartsNodes { get; set; }
 	public boolean disabledButton { get; set; }
 	private WaveMetadata metadata;
 	private Map<String, String> appDescriptions; // <appName, appDesc>
@@ -36,7 +37,9 @@ public with sharing class WaveDataManagerController {
 	public List<List<SF_MetadataUtils.CustomFieldSpecification>> objectsAndFieldsMatrix;
 	public Integer currentObjectIndex;
 	public Integer currentFieldIndex;
+	public Integer currentEdgemartIndex;
 	public Boolean processingObjectsAndFieldsMetadata { get; set; }
+	public Boolean processingEdgemartsLoad { get; set;}
 	public List<List<SF_MetadataUtils.RecordTypeSpecification>> objectsRecordTypesMatrix;
 	public Integer currentRecordTypeIndex;
 	public Boolean processingRecordTypes { get; set; }
@@ -55,6 +58,7 @@ public with sharing class WaveDataManagerController {
 	public Map<String, Boolean> selectedObjectsToTimeShift { get; set; }
 	public CustomModalConfirmation modalMessage { get; set; }
 	public Boolean shiftOnlyOfApp { get; set; }
+	public String selectedDataflow { get; set; }
 
 	// Secuence control
 	public String installationStep { get; set; }
@@ -67,6 +71,7 @@ public with sharing class WaveDataManagerController {
 
 	public WaveDataManagerController() {
 		this.objectsNodes = new List<WaveApplicationObject>();
+		this.edgemartsNodes = new List<WaveApplicationEdgemart>();
 		this.timeShiftingItems = new List<WaveTimeShiftingItem>();
 		this.processingLog = new List<String>();
 		this.processingLogWithoutTime = new Set<String>();
@@ -220,6 +225,18 @@ public with sharing class WaveDataManagerController {
 				options.add(new SelectOption(genericApp.Name, genericApp.Label));
 			}
         }
+
+        return options;
+    }
+
+	public List<SelectOption> getOrgDataflows() {
+        
+        List<SelectOption> options = new List<SelectOption>();
+
+        List<Dataflow> lstDataflows = [SELECT Id, MasterLabel FROM Dataflow WHERE DataflowType = 'User'];
+		for(Dataflow dataflowItem: lstDataflows) {
+			options.add(new SelectOption(dataflowItem.Id, dataflowItem.MasterLabel));
+		}
 
         return options;
     }
@@ -1108,6 +1125,30 @@ public with sharing class WaveDataManagerController {
 					//createObjectsAndFields(this.objectsNodes); UNCOMMENT
 					this.launchObjectsLoading(); // COMMENT
 				}
+			} else if(this.selectedInstallationProcess == 'loadEdgemarts'){
+				this.disabledButton = true;
+				this.selectAppMetadata();
+				this.edgemartsNodes.clear();
+
+				if(this.selectedAppMetadata.edgemarts != null){
+					
+					List<WaveApplicationEdgemart> lstEdgemarts = new List<WaveApplicationEdgemart>();
+					// Retrieve edgemarts to process
+
+					for(WaveMetadataApplicationEdgemart wmaEdg: this.selectedAppMetadata.edgemarts) {
+						
+						WaveApplicationEdgemart waEdg = new WaveApplicationEdgemart();
+						waEdg.edgemartCsvDataUrl = wmaEdg.edgemartCsvDataUrl;
+						waEdg.edgemartJsonSchemaUrl = wmaEdg.edgemartJsonSchemaUrl;
+						waEdg.edgemartNodeNameInDataflow = wmaEdg.edgemartNodeNameInDataflow;
+						waEdg.objectName = wmaEdg.objectName;
+						waEdg.replaceData = wmaEdg.replaceData;
+
+						this.edgemartsNodes.add(waEdg);
+					}
+					
+					loadEdgemarts();
+				}
 			}
 		} 
 		catch(Exception e) {
@@ -1118,6 +1159,92 @@ public with sharing class WaveDataManagerController {
 			this.installationStep = '';
 			this.rollbackProcess(e.getMessage(), e.getStackTraceString());
 		}
+	}
+
+	public void loadEdgemarts(){
+		// Check if there are edgemarts to load
+		if(this.edgemartsNodes.size() > 0){
+
+			this.currentEdgemartIndex = 0;
+			this.processCurrentEdgemartLoad();
+			this.processingEdgemartsLoad = true;
+			
+		}
+		else {
+			// We DON'T have metadata to process
+			this.logMessage('No edgemarts to load.');
+			this.disabledButton = false;
+			this.processingEdgemartsLoad = false;
+		}
+	}
+
+	public void processCurrentEdgemartLoad(){
+
+		WaveApplicationEdgemart edg = this.edgemartsNodes.get(this.currentEdgemartIndex);
+		LoadEdgemartQueueable edgCreationQueue = new LoadEdgemartQueueable(edg, UserInfo.getSessionId());
+		this.queueProcessId = System.enqueueJob(edgCreationQueue);
+	}
+
+	public PageReference checkEdgemartLoadStatus(){
+		try {
+			if(!String.isBlank(this.queueProcessId) && this.processingEdgemartsLoad){
+				List<AsyncApexJob> lstJobs = [SELECT CompletedDate, JobItemsProcessed, NumberOfErrors, Status, ExtendedStatus, TotalJobItems FROM AsyncApexJob WHERE Id = :this.queueProcessId];
+				WaveApplicationEdgemart currentEdg = this.edgemartsNodes.get(this.currentEdgemartIndex);
+
+				if(lstJobs.size() > 0){
+					AsyncApexJob asyncJob = lstJobs.get(0);
+
+					if(asyncJob.Status == 'Completed'){
+						if(asyncJob.NumberOfErrors > 0) {
+							this.errorMessage = 'Error while loading edgemart for the ' + currentEdg.objectName + ' object.';
+							if (string.isNotBlank(asyncJob.ExtendedStatus)) {
+								this.errorMessage = this.errorMessage + 'Detail: ' +  asyncJob.ExtendedStatus;
+							}
+							this.currentEdgemartIndex = 0;
+							this.processingEdgemartsLoad = false;
+							this.disabledButton = false;
+						}
+						else {
+							// now check whether it was the last one
+							List<SF_MetadataUtils.CustomFieldSpecification> currentFieldList = this.objectsAndFieldsMatrix.get(this.currentObjectIndex);
+
+							if(this.currentEdgemartIndex == this.edgemartsNodes.size() - 1){
+								// We are finished loading edgemarts								
+							}
+							else {
+								this.currentEdgemartIndex = this.currentEdgemartIndex + 1;
+								this.processCurrentEdgemartLoad();
+							}
+						}		
+					}
+					else if(asyncJob.Status == 'Aborted'){
+						this.errorMessage = 'The process was aborted while loading edgemart for the ' + currentEdg.objectName + ' object.';
+						this.currentEdgemartIndex = 0;
+						this.processingEdgemartsLoad = false;
+						this.disabledButton = false;
+					}
+					else if(asyncJob.Status == 'Failed'){
+						this.errorMessage = 'The process failed while processing metadata for the ' + currentEdg.objectName + ' object. ';
+						if (string.isNotBlank(asyncJob.ExtendedStatus)) {
+							this.errorMessage = this.errorMessage + 'Detail: ' +  asyncJob.ExtendedStatus;
+						}
+						this.currentEdgemartIndex = 0;
+						this.processingEdgemartsLoad = false;
+						this.disabledButton = false;
+					}
+				}
+			}
+		}
+		catch(Exception e) {
+			this.errorMessage = e.getMessage();
+			System.debug(e.getMessage());
+			System.debug(e.getStackTraceString());
+			this.currentEdgemartIndex = 0;
+			this.processingEdgemartsLoad = false;
+			this.disabledButton = false;
+		}
+
+		return null;
 	}
 
 	public void addRecordTypeNodes(WaveMetadataApplicationObject wmaObj){
@@ -1178,6 +1305,7 @@ public with sharing class WaveDataManagerController {
 			operationMap.put('CreateObjectsAndFields','N/A');
 			operationMap.put('LoadData','N/A');
 			operationMap.put('TimeShifting','N/A');
+			operationMap.put('LoadEdgemarts','N/A');
 			this.operationsStatusTable.put(wmaObj.Name, operationMap);
 		}
 	}

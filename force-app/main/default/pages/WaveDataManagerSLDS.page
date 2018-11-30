@@ -170,8 +170,9 @@
 								   			<apex:selectList styleClass="slds-select processType" value="{!selectedInstallationProcess}" size="1" id="processType">
 								   				<apex:selectOption itemValue="loadObjects" itemLabel="Load Data into Core"/>
 								   				<apex:selectOption itemValue="createMetadata" itemLabel="Create Objects and Fields"/>
-								   				<apex:selectOption itemValue="timeShifting" itemLabel="Time shifting"/>
-								   				<apex:actionSupport event="onchange" rerender="vsbButton,emailNotification,timeShiftingValue,form1,modalHeader,modalBody" action="{!selectedApp}" onsubmit="disableRunButton()"/>
+												   <apex:selectOption itemValue="timeShifting" itemLabel="Time shifting"/>
+												   <apex:selectOption itemValue="loadEdgemarts" itemLabel="Load Datasets"/>
+								   				<apex:actionSupport event="onchange" rerender="vsbButton,emailNotification,loadEdgemartsPanel,timeShiftingValue,form1,modalHeader,modalBody" action="{!selectedApp}" onsubmit="disableRunButton()"/>
 								   			</apex:selectList>
 							   			</div>
 						   			</div>
@@ -243,6 +244,23 @@
 									   				<apex:inputText styleClass="slds-input" value="{!daysToShift}" />
 									   			</div>
 								   			</div>
+
+							   			</apex:outputPanel>
+									   </apex:outputPanel>
+									   
+									<apex:outputPanel id="loadEdgemartsPanel" >
+										<apex:outputPanel rendered="{!selectedInstallationProcess = 'loadEdgemarts'}">
+
+											<div class="slds-m-top_small">
+												<label class="slds-form-element__label" for="dataflowInstalled">Select your already installed analytics App:</label>
+												<div class="slds-form-element__control ">
+													<div class="slds-select_container">
+														<apex:selectList styleClass="slds-select" value="{!selectedDataflow}" size="1" id="dataflowInstalled">
+															<apex:selectOptions value="{!orgDataflows}"/>
+														</apex:selectList>
+													</div>
+												</div>
+											</div>
 
 							   			</apex:outputPanel>
 						   			</apex:outputPanel>
@@ -329,6 +347,8 @@
 							<apex:actionPoller action="{!checkRecordTypeCreationStatus}" reRender="processingStatus,processingLogConsole,messages,form1,form3,vsbButton" enabled="{!processingRecordTypes}" interval="5"/>
 							
 							<apex:actionPoller action="{!checkUserPhotoUploadStatus}" reRender="processingStatus,processingLogConsole,messages,form1,form3,vsbButton" enabled="{!uploadingUserPhotos}" interval="5"/>
+
+							<apex:actionPoller action="{!checkEdgemartLoadStatus}" reRender="processingStatus,processingLogConsole,messages,form1,form3,vsbButton" enabled="{!processingEdgemartsLoad}" interval="5" id="checkEdgemartLoadFunction"/>
 
 							<!-- Objects Load Panel/Function -->
 							<apex:outputPanel id="loadObjectsPanel">
