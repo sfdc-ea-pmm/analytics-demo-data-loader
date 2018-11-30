@@ -1,6 +1,35 @@
 @isTest
 private class WaveDataManager_test {
-	
+
+	private static MultiStaticResourceCalloutMock createStaticResources(){
+		MultiStaticResourceCalloutMock multimock = new MultiStaticResourceCalloutMock();
+		
+		String appsMetadataUrl = 'https://s3-us-west-2.amazonaws.com/ac-sdo-repo-dev/WaveApplications.csv';
+		String simpleAppJsonUrl = 'https://s3-us-west-2.amazonaws.com/ac-sdo-repo-dev/simple/Simple.json';
+		String accountsMetadataUrl = 'https://s3-us-west-2.amazonaws.com/ac-sdo-repo-dev/simple/Account_metadata.csv';
+		String accountsDataUrl = 'https://s3-us-west-2.amazonaws.com/ac-sdo-repo-dev/simple/Account.csv';
+		String oppMetadataUrl = 'https://s3-us-west-2.amazonaws.com/ac-sdo-repo-dev/simple/Opportunity_metadata.csv';
+		String oppDataUrl = 'https://s3-us-west-2.amazonaws.com/ac-sdo-repo-dev/simple/Opportunity.csv';
+		String userDataurl = 'https://s3-us-west-2.amazonaws.com/ac-sdo-repo-dev/simple/User.csv';
+		String userMetadataUrl = 'https://s3-us-west-2.amazonaws.com/ac-sdo-repo-dev/simple/User_metadata.csv';
+		String waveForSalesJsonUrl = 'https://s3-us-west-2.amazonaws.com/ac-sdo-repo/sales/WaveForSales.json';
+		String analyticsFaqDemoUrl = 'https://s3-us-west-2.amazonaws.com/ac-sdo-repo-dev/AnalyticsDemoFAQ.json';
+
+		multimock.setStaticResource(appsMetadataUrl, 'WaveAppsMetadataCSV');
+		multimock.setStaticResource(accountsMetadataUrl, 'AccountMetadataCSV');
+		multimock.setStaticResource(accountsDataUrl, 'AccountsDataCSV');
+		multimock.setStaticResource(oppMetadataUrl, 'OpportunityMetadataCSV');
+		multimock.setStaticResource(oppDataUrl, 'OpportunitiesDataCSV');
+		multimock.setStaticResource(waveForSalesJsonUrl, 'WaveForSalesJson');
+		multimock.setStaticResource(simpleAppJsonUrl, 'SimpleAppJson');
+		multimock.setStaticResource(userDataurl, 'UsersDataCSV');
+		multimock.setStaticResource(userMetadataUrl, 'UserMetadataCSV');
+		multimock.setStaticResource(analyticsFaqDemoUrl, 'AnalyticsFAQDemo');
+		multimock.setStatusCode(200);
+		multimock.setHeader('Content-Type', 'text/plain');
+
+		return multimock; 
+	}	
 	@isTest static void basicControllerTest() {
 
 		SmartLookup sm = new SmartLookup(0, 'User');
@@ -151,36 +180,6 @@ private class WaveDataManager_test {
 		errs = SF_MetadataUtils.createField(fieldSpec);
 	}
 
-	private static MultiStaticResourceCalloutMock createStaticResources(){
-		MultiStaticResourceCalloutMock multimock = new MultiStaticResourceCalloutMock();
-		
-		String appsMetadataUrl = 'https://s3-us-west-2.amazonaws.com/ac-sdo-repo-dev/WaveApplications.csv';
-		String simpleAppJsonUrl = 'https://s3-us-west-2.amazonaws.com/ac-sdo-repo-dev/simple/Simple.json';
-		String accountsMetadataUrl = 'https://s3-us-west-2.amazonaws.com/ac-sdo-repo-dev/simple/Account_metadata.csv';
-		String accountsDataUrl = 'https://s3-us-west-2.amazonaws.com/ac-sdo-repo-dev/simple/Account.csv';
-		String oppMetadataUrl = 'https://s3-us-west-2.amazonaws.com/ac-sdo-repo-dev/simple/Opportunity_metadata.csv';
-		String oppDataUrl = 'https://s3-us-west-2.amazonaws.com/ac-sdo-repo-dev/simple/Opportunity.csv';
-		String userDataurl = 'https://s3-us-west-2.amazonaws.com/ac-sdo-repo-dev/simple/User.csv';
-		String userMetadataUrl = 'https://s3-us-west-2.amazonaws.com/ac-sdo-repo-dev/simple/User_metadata.csv';
-		String waveForSalesJsonUrl = 'https://s3-us-west-2.amazonaws.com/ac-sdo-repo/sales/WaveForSales.json';
-		String analyticsFaqDemoUrl = 'https://s3-us-west-2.amazonaws.com/ac-sdo-repo-dev/AnalyticsDemoFAQ.json';
-
-		multimock.setStaticResource(appsMetadataUrl, 'WaveAppsMetadataCSV');
-		multimock.setStaticResource(accountsMetadataUrl, 'AccountMetadataCSV');
-		multimock.setStaticResource(accountsDataUrl, 'AccountsDataCSV');
-		multimock.setStaticResource(oppMetadataUrl, 'OpportunityMetadataCSV');
-		multimock.setStaticResource(oppDataUrl, 'OpportunitiesDataCSV');
-		multimock.setStaticResource(waveForSalesJsonUrl, 'WaveForSalesJson');
-		multimock.setStaticResource(simpleAppJsonUrl, 'SimpleAppJson');
-		multimock.setStaticResource(userDataurl, 'UsersDataCSV');
-		multimock.setStaticResource(userMetadataUrl, 'UserMetadataCSV');
-		multimock.setStaticResource(analyticsFaqDemoUrl, 'AnalyticsFAQDemo');
-		multimock.setStatusCode(200);
-		multimock.setHeader('Content-Type', 'text/plain');
-
-		return multimock; 
-	}
-    
     @isTest static void prepCoreTest(){
 		MultiStaticResourceCalloutMock multimock = createStaticResources(); 
 
