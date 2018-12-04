@@ -233,7 +233,7 @@ public with sharing class WaveDataManagerController {
         
         List<SelectOption> options = new List<SelectOption>();
 
-        List<Dataflow> lstDataflows = [SELECT Id, MasterLabel FROM Dataflow WHERE DataflowType = 'User'];
+        List<Dataflow> lstDataflows = [SELECT Id, MasterLabel FROM Dataflow WHERE DataflowType = 'User' AND State = 'Active'];
 		for(Dataflow dataflowItem: lstDataflows) {
 			options.add(new SelectOption(dataflowItem.Id, dataflowItem.MasterLabel));
 		}
@@ -1048,9 +1048,7 @@ public with sharing class WaveDataManagerController {
 			// page will recall this method.
 			this.installationStep = '';
 		}
-
 	}
-
 
 	public void executeSelectedProcess(){
 
@@ -1138,6 +1136,8 @@ public with sharing class WaveDataManagerController {
 					for(WaveMetadataApplicationEdgemart wmaEdg: this.selectedAppMetadata.edgemarts) {
 						
 						WaveApplicationEdgemart waEdg = new WaveApplicationEdgemart();
+						waEdg.edgemartDeveloperName = wmaEdg.edgemartDeveloperName;
+						waEdg.edgemartLabel = wmaEdg.edgemartLabel;
 						waEdg.edgemartCsvDataUrl = wmaEdg.edgemartCsvDataUrl;
 						waEdg.edgemartJsonSchemaUrl = wmaEdg.edgemartJsonSchemaUrl;
 						waEdg.edgemartNodeNameInDataflow = wmaEdg.edgemartNodeNameInDataflow;
@@ -1179,10 +1179,10 @@ public with sharing class WaveDataManagerController {
 	}
 
 	public void processCurrentEdgemartLoad(){
-
 		WaveApplicationEdgemart edg = this.edgemartsNodes.get(this.currentEdgemartIndex);
 		LoadEdgemartQueueable edgCreationQueue = new LoadEdgemartQueueable(edg, UserInfo.getSessionId());
 		this.queueProcessId = System.enqueueJob(edgCreationQueue);
+		this.logMessage('Loading ' + edg.edgemartLabel + ' dataset.');
 	}
 
 	public PageReference checkEdgemartLoadStatus(){
@@ -1205,11 +1205,9 @@ public with sharing class WaveDataManagerController {
 							this.disabledButton = false;
 						}
 						else {
-							// now check whether it was the last one
-							List<SF_MetadataUtils.CustomFieldSpecification> currentFieldList = this.objectsAndFieldsMatrix.get(this.currentObjectIndex);
-
 							if(this.currentEdgemartIndex == this.edgemartsNodes.size() - 1){
-								// We are finished loading edgemarts								
+								// We are finished loading edgemarts
+								this.finishEdgemartLoadProcess();
 							}
 							else {
 								this.currentEdgemartIndex = this.currentEdgemartIndex + 1;
@@ -1224,7 +1222,7 @@ public with sharing class WaveDataManagerController {
 						this.disabledButton = false;
 					}
 					else if(asyncJob.Status == 'Failed'){
-						this.errorMessage = 'The process failed while processing metadata for the ' + currentEdg.objectName + ' object. ';
+						this.errorMessage = 'The process failed while loading edgemart for the ' + currentEdg.objectName + ' object.';
 						if (string.isNotBlank(asyncJob.ExtendedStatus)) {
 							this.errorMessage = this.errorMessage + 'Detail: ' +  asyncJob.ExtendedStatus;
 						}
@@ -1245,6 +1243,19 @@ public with sharing class WaveDataManagerController {
 		}
 
 		return null;
+	}
+
+	private void finishEdgemartLoadProcess(){
+		this.disabledButton = false;
+		this.currentEdgemartIndex = 0;
+		this.edgemartsNodes.clear();
+		this.logMessage('Done.');
+		this.processingEdgemartsLoad = false;
+
+		if(this.selectedInstallationProcess == 'loadEdgemarts'){
+			this.successMessage = 'The Load Datasets process has finished successfully.';
+			WaveConfiguratorUtils.sendEmail(this.emailAddress, 'Load Datasets completed successfully', 'The Load Datasets process of your SDO data has finished successfully.');
+		}
 	}
 
 	public void addRecordTypeNodes(WaveMetadataApplicationObject wmaObj){
