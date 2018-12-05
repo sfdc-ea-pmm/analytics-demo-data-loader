@@ -1389,7 +1389,14 @@ public with sharing class WaveDataManagerController {
 					}
 				}
 			}
-		} 
+		}
+		else {
+			this.currentObjectIndex = 0;
+			this.currentFieldIndex = 0;
+			this.processingObjectsAndFieldsMetadata = false;
+			this.disabledButton = false;
+			this.logMessage('There are no objects and fields to create.');
+		}
 	}
 
 	private void processCurrentRecordType(Boolean startingWithObject){

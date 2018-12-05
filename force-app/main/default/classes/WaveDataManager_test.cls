@@ -8,6 +8,7 @@ private class WaveDataManager_test {
 		String simpleAppJsonUrl = 'https://s3-us-west-2.amazonaws.com/ac-sdo-repo-dev/simple/Simple.json';
 		String accountsMetadataUrl = 'https://s3-us-west-2.amazonaws.com/ac-sdo-repo-dev/simple/Account_metadata.csv';
 		String accountsDataUrl = 'https://s3-us-west-2.amazonaws.com/ac-sdo-repo-dev/simple/Account.csv';
+		String accountSchemaUrl = 'https://s3-us-west-2.amazonaws.com/ac-sdo-repo-dev/simple/Account.schema.json';
 		String oppMetadataUrl = 'https://s3-us-west-2.amazonaws.com/ac-sdo-repo-dev/simple/Opportunity_metadata.csv';
 		String oppDataUrl = 'https://s3-us-west-2.amazonaws.com/ac-sdo-repo-dev/simple/Opportunity.csv';
 		String userDataurl = 'https://s3-us-west-2.amazonaws.com/ac-sdo-repo-dev/simple/User.csv';
@@ -18,6 +19,7 @@ private class WaveDataManager_test {
 		multimock.setStaticResource(appsMetadataUrl, 'WaveAppsMetadataCSV');
 		multimock.setStaticResource(accountsMetadataUrl, 'AccountMetadataCSV');
 		multimock.setStaticResource(accountsDataUrl, 'AccountsDataCSV');
+		multimock.setStaticResource(accountSchemaUrl, 'AccountSchemaJson');
 		multimock.setStaticResource(oppMetadataUrl, 'OpportunityMetadataCSV');
 		multimock.setStaticResource(oppDataUrl, 'OpportunitiesDataCSV');
 		multimock.setStaticResource(waveForSalesJsonUrl, 'WaveForSalesJson');
@@ -364,6 +366,24 @@ private class WaveDataManager_test {
 		cnt.overrideDefaultSettingTS = false;
 		cnt.calculateDaysToShift();
         Test.stopTest();
+	}
+
+	@isTest static void loadEdgemartsTest(){
+		MultiStaticResourceCalloutMock multimock = createStaticResources(); 
+
+		WaveDataManagerController cnt = new WaveDataManagerController();
+
+		Test.setMock(HttpCalloutMock.class, multimock);
+		cnt.pageLoad();
+
+		cnt.selectedWaveApp = 'Simple';
+		cnt.selectedInstallationProcess = 'loadEdgemarts';
+		
+		Test.startTest();
+		cnt.executeSelectedProcess();
+		Test.stopTest();
+
+		cnt.checkEdgemartLoadStatus();
 	}
 
 	public class MetadataServiceWebServiceMockImpl implements WebServiceMock 
