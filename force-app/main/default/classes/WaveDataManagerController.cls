@@ -232,6 +232,7 @@ public with sharing class WaveDataManagerController {
 	public List<SelectOption> getOrgDataflows() {
         
         List<SelectOption> options = new List<SelectOption>();
+		options.add(new SelectOption('', 'None')); // Empty item
 
         List<Dataflow> lstDataflows = [SELECT Id, MasterLabel FROM Dataflow WHERE DataflowType = 'User' AND State = 'Active'];
 		for(Dataflow dataflowItem: lstDataflows) {
@@ -1206,6 +1207,12 @@ public with sharing class WaveDataManagerController {
 						}
 						else {
 							if(this.currentEdgemartIndex == this.edgemartsNodes.size() - 1){
+								// Dataflow will be edited?
+								if (String.isNotBlank(this.selectedDataflow)) {
+									AnalyticsDemoDataflowHelper dataflowHelper = new AnalyticsDemoDataflowHelper('v' + this.genericAppConfiguration.apiVersion);
+									dataflowHelper.replaceSfdcDigestByEdgemarts(this.selectedDataflow, this.edgemartsNodes);
+								}
+
 								// We are finished loading edgemarts
 								this.finishEdgemartLoadProcess();
 							}
