@@ -10,6 +10,7 @@ public with sharing class AnalyticsDemoDataflowHelper {
         
         Map<String, Object> dataflowDefinitionObject = AnalyticsDemoDataflowHelper.dataflowContentsAsJSON(dataflowID);
         Map<String, String> digestNodes = new Map<String, String>();
+        Map<String, String> replaceNodesMap = new Map<String, String>();
         List<String> lstObjectNamesToHandle = new List<String>();
 
         for (WaveApplicationEdgemart wae : edgemartsConfigurations) {
@@ -26,16 +27,16 @@ public with sharing class AnalyticsDemoDataflowHelper {
                     if(node.containsKey('parameters')) {
                         Map<String, Object> nodeParams = (Map<String, Object>)node.get('parameters');
                         String objName = (String)nodeParams.get('object');
-                        if (lstObjectNamesToHandle.contains(objName) && digestNodes.containsKey(objName)) {
-                           throw new WaveConfiguratorException('Cannot edit dataflow because cannot replace sfdcDigest by edgemart transformation. ' + objName + ' object is being extracted more than once in the dataflow.');
-                        }
-                        digestNodes.put(objName, nodeName);
+                        if (lstObjectNamesToHandle.contains(objName)) {
+                            if(digestNodes.containsKey(objName)){
+                                throw new WaveConfiguratorException('Cannot edit dataflow because cannot replace sfdcDigest by edgemart transformation. ' + objName + ' object is being extracted more than once in the dataflow.');
+                            }
+                            digestNodes.put(objName, nodeName);
+                        }                        
                     }
                 }
             }
         }
-
-        List<String> targetDigestNodes = new List<String>();
 
         for (WaveApplicationEdgemart wae : edgemartsConfigurations) {
             
@@ -43,17 +44,13 @@ public with sharing class AnalyticsDemoDataflowHelper {
             String nodeJson = '{"action": "edgemart","parameters": { "alias": "' + wae.edgemartDeveloperName + '" }}';
             Object o = JSON.deserializeUntyped(nodeJson);
             dataflowDefinitionObject.put(wae.edgemartNodeNameInDataflow, o);
-
-            // Find the sfdcDigest node where the object that the edgemart will replace is being extracted
-            if (digestNodes.containsKey(wae.objectName)) {
-                targetDigestNodes.add(digestNodes.get(wae.objectName));
-            }
+            replaceNodesMap.put(digestNodes.get(wae.objectName), wae.edgemartNodeNameInDataflow);
         }
 
         // Key: Node Name
         // Value: List of node names that depend on the node named by Key 
         Map<String, List<String>> dependencyMap = new Map<String, List<String>>();
-        for (String tdn : targetDigestNodes) {
+        for (String tdn : digestNodes.values()) {
             dependencyMap.put(tdn, new List<String>());
         }
 
@@ -73,7 +70,7 @@ public with sharing class AnalyticsDemoDataflowHelper {
                             when 'append' {
                                 List<String> sources = (List<String>)nodeParams.get('sources');
                                 for (String sourceTransf: sources) {
-                                    if (targetDigestNodes.contains(sourceTransf)) {
+                                    if (digestNodes.values().contains(sourceTransf)) {
                                         dependencyMap.get(sourceTransf).add(nodeName);
                                     }
                                 }
@@ -82,17 +79,17 @@ public with sharing class AnalyticsDemoDataflowHelper {
                                 String left = (String)nodeParams.get('left');
                                 String right = (String)nodeParams.get('right');
                                 
-                                if (targetDigestNodes.contains(left)) {
+                                if (digestNodes.values().contains(left)) {
                                     dependencyMap.get(left).add(nodeName);
                                 }
 
-                                if (targetDigestNodes.contains(right)) {
+                                if (digestNodes.values().contains(right)) {
                                     dependencyMap.get(right).add(nodeName);
                                 }
                             }
                             when else {
                                 String source = (String)nodeParams.get('source');
-                                if (targetDigestNodes.contains(source)) {
+                                if (digestNodes.values().contains(source)) {
                                     dependencyMap.get(source).add(nodeName);
                                 }
                             }
@@ -101,12 +98,48 @@ public with sharing class AnalyticsDemoDataflowHelper {
                 }
             }
         }
-
-        /*for (String s: dependencyMap.keySet()) {
+        
+        for (String s: dependencyMap.keySet()) {
             List<String> ls = dependencyMap.get(s);
             System.debug('Transformations that depend of: ' + s);
             System.debug(ls);
-        }*/
+        }
+
+        for (String nodeName : digestNodes.values()) {
+            
+            List<String> nodesToEdit = dependencyMap.get(nodeName);
+            
+            for (String nodeToEditName: nodesToEdit) {
+                Map<String, Object> nodeToEdit = (Map<String, Object>)dataflowDefinitionObject.get(nodeToEditName);
+                String action = (String)nodeToEdit.get('action');
+                Map<String, Object> nodeParams = (Map<String, Object>)nodeToEdit.get('parameters');
+                switch on action {
+                    when 'append' {
+                        List<String> sources = (List<String>)nodeParams.get('sources');
+                        sources.remove(sources.indexOf(nodeName));
+                        sources.add(replaceNodesMap.get(nodeName));
+                    }
+                    when 'augment', 'update' {
+                        String left = (String)nodeParams.get('left');
+                        String right = (String)nodeParams.get('right');
+                        
+                        if (left.equals(nodeName)) {
+                            nodeParams.put('left', replaceNodesMap.get(nodeName));
+                        }
+
+                        if (right.equals(nodeName)) {
+                            nodeParams.put('right', replaceNodesMap.get(nodeName));
+                        }
+                    }
+                    when else {
+                        String source = (String)nodeParams.get('source');
+                        if (source.equals(nodeName)) {
+                            nodeParams.put('source', replaceNodesMap.get(nodeName));
+                        }
+                    }
+                }
+            }
+        }
 
         String newDataflowDefinition = JSON.serialize(dataflowDefinitionObject);
         DataflowVersion newDataflowVersion = new DataflowVersion();
