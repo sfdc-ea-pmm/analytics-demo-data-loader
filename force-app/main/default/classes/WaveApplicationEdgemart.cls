@@ -5,5 +5,6 @@ public class WaveApplicationEdgemart {
     public String edgemartCsvDataUrl { get; set; }
     public String edgemartJsonSchemaUrl { get; set; }
     public String edgemartNodeNameInDataflow { get; set; }
+    public String edgemartNodeNameToReplaceInDataflow { get; set; }
     public Boolean replaceData { get; set; }
 }

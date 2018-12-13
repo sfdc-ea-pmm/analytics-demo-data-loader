@@ -9,8 +9,25 @@ public with sharing class AnalyticsDemoDataflowHelper {
     public void replaceSfdcDigestByEdgemarts(String dataflowID, List<WaveApplicationEdgemart> edgemartsConfigurations){
         
         Map<String, Object> dataflowDefinitionObject = AnalyticsDemoDataflowHelper.dataflowContentsAsJSON(dataflowID);
-        ReplaceSfdcDigestByEdgemartsGeneric replaceStrategyObj = new ReplaceSfdcDigestByEdgemartsGeneric();
-        dataflowDefinitionObject = replaceStrategyObj.doReplacement(dataflowDefinitionObject, edgemartsConfigurations);
+        
+        // Determine which should process generic and which direct replacement
+        List<WaveApplicationEdgemart> genericReplacements = new List<WaveApplicationEdgemart>();
+        List<WaveApplicationEdgemart> directReplacements = new List<WaveApplicationEdgemart>();
+        
+        for (WaveApplicationEdgemart wae : edgemartsConfigurations) {
+            if (String.isBlank(wae.edgemartNodeNameToReplaceInDataflow)) {
+                genericReplacements.add(wae);
+            }
+            else {
+                directReplacements.add(wae);
+            }
+        }
+
+        ReplaceSfdcDigestByEdgemarts genericStrategyObj = new ReplaceSfdcDigestByEdgemartsGeneric();
+        dataflowDefinitionObject = genericStrategyObj.doReplacement(dataflowDefinitionObject, genericReplacements);
+
+        ReplaceSfdcDigestByEdgemarts directStrategyObj = new ReplaceSfdcDigestByEdgemartsDirect();
+        dataflowDefinitionObject = directStrategyObj.doReplacement(dataflowDefinitionObject, directReplacements);
 
         String newDataflowDefinition = JSON.serialize(dataflowDefinitionObject);
         DataflowVersion newDataflowVersion = new DataflowVersion();

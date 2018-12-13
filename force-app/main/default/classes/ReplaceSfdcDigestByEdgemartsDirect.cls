@@ -1,53 +1,27 @@
-public with sharing class ReplaceSfdcDigestByEdgemartsGeneric implements ReplaceSfdcDigestByEdgemarts {
+public with sharing class ReplaceSfdcDigestByEdgemartsDirect implements ReplaceSfdcDigestByEdgemarts {
     
-    public ReplaceSfdcDigestByEdgemartsGeneric() {
+    public ReplaceSfdcDigestByEdgemartsDirect() {
 
     }
 
     public Map<String, Object> doReplacement(Map<String, Object> dataflowDefinitionObject, List<WaveApplicationEdgemart> edgemartsConfigurations){
-        Map<String, String> digestNodes = new Map<String, String>();
+        
+        // Key: Node Name
+        // Value: List of node names that depend on the node named by Key 
+        Map<String, List<String>> dependencyMap = new Map<String, List<String>>();
         Map<String, String> replaceNodesMap = new Map<String, String>();
-        List<String> lstObjectNamesToHandle = new List<String>();
-
+        List<String> lstDigestsToReplace = new List<String>();
+        
+        // sfdcDigest nodes that will be replaced by edgemarts and dependent of those
         for (WaveApplicationEdgemart wae : edgemartsConfigurations) {
-            lstObjectNamesToHandle.add(wae.objectName);
-        }
+            lstDigestsToReplace.add(wae.edgemartNodeNameToReplaceInDataflow);
+            dependencyMap.put(wae.edgemartNodeNameToReplaceInDataflow, new List<String>());
 
-        // With this for loop we search which are the sfdcDigest nodes and from which object they extract
-        for (String nodeName : dataflowDefinitionObject.keySet()) {
-            Map<String, Object> node = (Map<String, Object>)dataflowDefinitionObject.get(nodeName);
-            // If parameters exist
-            if(node.containsKey('action')) {
-                String action = (String)node.get('action');
-                if (action.equals('sfdcDigest')) {
-                    if(node.containsKey('parameters')) {
-                        Map<String, Object> nodeParams = (Map<String, Object>)node.get('parameters');
-                        String objName = (String)nodeParams.get('object');
-                        if (lstObjectNamesToHandle.contains(objName)) {
-                            if(digestNodes.containsKey(objName)){
-                                throw new WaveConfiguratorException('Cannot edit dataflow because cannot replace sfdcDigest by edgemart transformation. ' + objName + ' object is being extracted more than once in the dataflow.');
-                            }
-                            digestNodes.put(objName, nodeName);
-                        }                        
-                    }
-                }
-            }
-        }
-
-        for (WaveApplicationEdgemart wae : edgemartsConfigurations) {
-            
             // Add each edgemart node
             String nodeJson = '{"action": "edgemart","parameters": { "alias": "' + wae.edgemartDeveloperName + '" }}';
             Object o = JSON.deserializeUntyped(nodeJson);
             dataflowDefinitionObject.put(wae.edgemartNodeNameInDataflow, o);
-            replaceNodesMap.put(digestNodes.get(wae.objectName), wae.edgemartNodeNameInDataflow);
-        }
-
-        // Key: Node Name
-        // Value: List of node names that depend on the node named by Key 
-        Map<String, List<String>> dependencyMap = new Map<String, List<String>>();
-        for (String tdn : digestNodes.values()) {
-            dependencyMap.put(tdn, new List<String>());
+            replaceNodesMap.put(wae.edgemartNodeNameToReplaceInDataflow, wae.edgemartNodeNameInDataflow);
         }
 
         // With this for loop we search which nodes are dependent of our sfdcDigests
@@ -66,7 +40,7 @@ public with sharing class ReplaceSfdcDigestByEdgemartsGeneric implements Replace
                             when 'append' {
                                 List<String> sources = (List<String>)nodeParams.get('sources');
                                 for (String sourceTransf: sources) {
-                                    if (digestNodes.values().contains(sourceTransf)) {
+                                    if (lstDigestsToReplace.contains(sourceTransf)) {
                                         dependencyMap.get(sourceTransf).add(nodeName);
                                     }
                                 }
@@ -75,17 +49,17 @@ public with sharing class ReplaceSfdcDigestByEdgemartsGeneric implements Replace
                                 String left = (String)nodeParams.get('left');
                                 String right = (String)nodeParams.get('right');
                                 
-                                if (digestNodes.values().contains(left)) {
+                                if (lstDigestsToReplace.contains(left)) {
                                     dependencyMap.get(left).add(nodeName);
                                 }
 
-                                if (digestNodes.values().contains(right)) {
+                                if (lstDigestsToReplace.contains(right)) {
                                     dependencyMap.get(right).add(nodeName);
                                 }
                             }
                             when else {
                                 String source = (String)nodeParams.get('source');
-                                if (digestNodes.values().contains(source)) {
+                                if (lstDigestsToReplace.contains(source)) {
                                     dependencyMap.get(source).add(nodeName);
                                 }
                             }
@@ -101,7 +75,7 @@ public with sharing class ReplaceSfdcDigestByEdgemartsGeneric implements Replace
             System.debug(ls);
         }
 
-        for (String nodeName : digestNodes.values()) {
+        for (String nodeName : lstDigestsToReplace) {
             
             List<String> nodesToEdit = dependencyMap.get(nodeName);
             

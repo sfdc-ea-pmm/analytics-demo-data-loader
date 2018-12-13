@@ -1142,6 +1142,7 @@ public with sharing class WaveDataManagerController {
 						waEdg.edgemartCsvDataUrl = wmaEdg.edgemartCsvDataUrl;
 						waEdg.edgemartJsonSchemaUrl = wmaEdg.edgemartJsonSchemaUrl;
 						waEdg.edgemartNodeNameInDataflow = wmaEdg.edgemartNodeNameInDataflow;
+						waEdg.edgemartNodeNameToReplaceInDataflow = wmaEdg.edgemartNodeNameToReplaceInDataflow;
 						waEdg.objectName = wmaEdg.objectName;
 						waEdg.replaceData = wmaEdg.replaceData;
 
