@@ -111,6 +111,11 @@ public with sharing class ReplaceSfdcDigestByEdgemartsDirect implements ReplaceS
             }
         }
 
+        // Finally we remove all the nodes that were replaced
+        for (String nodeName : lstDigestsToReplace) {
+            dataflowDefinitionObject.remove(nodeName);
+        }
+
         return dataflowDefinitionObject;
     }
 }

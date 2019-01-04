@@ -59,6 +59,7 @@ public with sharing class WaveDataManagerController {
 	public CustomModalConfirmation modalMessage { get; set; }
 	public Boolean shiftOnlyOfApp { get; set; }
 	public String selectedDataflow { get; set; }
+	public String selectedAnalyticsApp { get; set; }
 
 	// Secuence control
 	public String installationStep { get; set; }
@@ -237,6 +238,19 @@ public with sharing class WaveDataManagerController {
         List<Dataflow> lstDataflows = [SELECT Id, MasterLabel FROM Dataflow WHERE DataflowType = 'User' AND State = 'Active'];
 		for(Dataflow dataflowItem: lstDataflows) {
 			options.add(new SelectOption(dataflowItem.Id, dataflowItem.MasterLabel));
+		}
+
+        return options;
+    }
+
+	public List<SelectOption> getOrgAnalyticsApps() {
+        
+        List<SelectOption> options = new List<SelectOption>();
+		options.add(new SelectOption('', 'None')); // Empty item
+
+        List<InsightsApplication> lstApps = [SELECT Id, MasterLabel FROM InsightsApplication WHERE DeveloperName NOT IN ('WAVE_PUBLIC_DATAFLOWS', 'SharedApp')];
+		for(InsightsApplication apptem: lstApps) {
+			options.add(new SelectOption(apptem.Id, apptem.MasterLabel));
 		}
 
         return options;
@@ -1182,7 +1196,7 @@ public with sharing class WaveDataManagerController {
 
 	public void processCurrentEdgemartLoad(){
 		WaveApplicationEdgemart edg = this.edgemartsNodes.get(this.currentEdgemartIndex);
-		LoadEdgemartQueueable edgCreationQueue = new LoadEdgemartQueueable(edg, UserInfo.getSessionId());
+		LoadEdgemartQueueable edgCreationQueue = new LoadEdgemartQueueable(edg, this.selectedAnalyticsApp, UserInfo.getSessionId());
 		this.queueProcessId = System.enqueueJob(edgCreationQueue);
 		this.logMessage('Loading ' + edg.edgemartLabel + ' dataset.');
 	}
@@ -1208,10 +1222,17 @@ public with sharing class WaveDataManagerController {
 						}
 						else {
 							if(this.currentEdgemartIndex == this.edgemartsNodes.size() - 1){
+								
+								AnalyticsDemoDataflowHelper dataflowHelper = new AnalyticsDemoDataflowHelper('v' + this.genericAppConfiguration.apiVersion);
+								
 								// Dataflow will be edited?
-								if (String.isNotBlank(this.selectedDataflow)) {
-									AnalyticsDemoDataflowHelper dataflowHelper = new AnalyticsDemoDataflowHelper('v' + this.genericAppConfiguration.apiVersion);
+								if (String.isNotBlank(this.selectedDataflow)) {									
 									dataflowHelper.replaceSfdcDigestByEdgemarts(this.selectedDataflow, this.edgemartsNodes);
+								}
+
+								// App will be edited?
+								if (String.isNotBlank(this.selectedAnalyticsApp)) {
+									dataflowHelper.remapNamesInAssets(this.selectedAnalyticsApp);
 								}
 
 								// We are finished loading edgemarts

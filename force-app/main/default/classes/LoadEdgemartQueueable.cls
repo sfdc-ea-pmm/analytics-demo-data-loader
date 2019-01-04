@@ -1,11 +1,20 @@
 public with sharing class LoadEdgemartQueueable implements Queueable, Database.AllowsCallouts {
 
     private String sessionId;
+    private String insightsAppName;
     private WaveApplicationEdgemart edgemartToLoad;
 
-    public LoadEdgemartQueueable(WaveApplicationEdgemart edg, String sessionId) {
+    public LoadEdgemartQueueable(WaveApplicationEdgemart edg, String insightsAppId, String sessionId) {
         this.edgemartToLoad = edg;
 		this.sessionId = sessionId;
+        this.insightsAppName = 'SharedApp';
+
+        if (String.isNotBlank(insightsAppId)) {
+            List<InsightsApplication> insAppLst = [SELECT FolderId FROM InsightsApplication WHERE Id = :insightsAppId];
+            if (insAppLst.size() > 0) {
+                this.insightsAppName = insAppLst.get(0).FolderId;
+            }
+        }
     }
 
     public void execute(QueueableContext context) {
@@ -19,7 +28,7 @@ public with sharing class LoadEdgemartQueueable implements Queueable, Database.A
 
         InsightsExternalData iedObj = new InsightsExternalData();
         iedObj.EdgemartAlias = this.edgemartToLoad.edgemartDeveloperName;
-        iedObj.EdgemartContainer = 'SharedApp';
+        iedObj.EdgemartContainer = this.insightsAppName;
         iedObj.MetadataJson = EncodingUtil.base64Decode(EncodingUtil.base64Encode(Blob.valueOf(schemaData)));
         iedObj.Format = 'Csv';
         iedObj.Operation = 'Overwrite';

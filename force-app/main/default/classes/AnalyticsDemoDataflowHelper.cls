@@ -29,7 +29,34 @@ public with sharing class AnalyticsDemoDataflowHelper {
         ReplaceSfdcDigestByEdgemarts directStrategyObj = new ReplaceSfdcDigestByEdgemartsDirect();
         dataflowDefinitionObject = directStrategyObj.doReplacement(dataflowDefinitionObject, directReplacements);
 
-        String newDataflowDefinition = JSON.serialize(dataflowDefinitionObject);
+        String newDataflowDefinition = JSON.serialize(dataflowDefinitionObject);        
+
+        // We need to make sure that the dataflow won't contain double underscores excepting __c ones
+        newDataflowDefinition = newDataflowDefinition.replaceAll('__c_Year\\b', '#cY#');
+        newDataflowDefinition = newDataflowDefinition.replaceAll('__c_Month\\b', '#cM#');
+        newDataflowDefinition = newDataflowDefinition.replaceAll('__c_Day\\b', '#cD#');
+        newDataflowDefinition = newDataflowDefinition.replaceAll('__c_Week\\b', '#cW#');
+        newDataflowDefinition = newDataflowDefinition.replaceAll('__c_Quarter\\b', '#cQ#');
+        newDataflowDefinition = newDataflowDefinition.replaceAll('__c_Hour\\b', '#cH#');
+        newDataflowDefinition = newDataflowDefinition.replaceAll('__c_Minute\\b', '#cm#');
+        newDataflowDefinition = newDataflowDefinition.replaceAll('__c_Second\\b', '#cS#');
+        newDataflowDefinition = newDataflowDefinition.replaceAll('__c_day_epoch\\b', '#cDE#');
+        newDataflowDefinition = newDataflowDefinition.replaceAll('__c_sec_epoch\\b', '#cSE#');
+        newDataflowDefinition = newDataflowDefinition.replaceAll('__c\\b', '#c#');
+        
+        newDataflowDefinition = newDataflowDefinition.replaceAll('__', '_');
+        newDataflowDefinition = newDataflowDefinition.replaceAll('#c#', '__c');
+        newDataflowDefinition = newDataflowDefinition.replaceAll('#cY#', '__c_Year');
+        newDataflowDefinition = newDataflowDefinition.replaceAll('#cM#', '__c_Month');
+        newDataflowDefinition = newDataflowDefinition.replaceAll('#cD#', '__c_Day');
+        newDataflowDefinition = newDataflowDefinition.replaceAll('#cW#', '__c_Week');
+        newDataflowDefinition = newDataflowDefinition.replaceAll('#cQ#', '__c_Quarter');
+        newDataflowDefinition = newDataflowDefinition.replaceAll('#cH#', '__c_Hour');
+        newDataflowDefinition = newDataflowDefinition.replaceAll('#cm#', '__c_Minute');
+        newDataflowDefinition = newDataflowDefinition.replaceAll('#cS#', '__c_Second');
+        newDataflowDefinition = newDataflowDefinition.replaceAll('#cDE#', '__c_day_epoch');
+        newDataflowDefinition = newDataflowDefinition.replaceAll('#cSE#', '__c_sec_epoch');        
+
         DataflowVersion newDataflowVersion = new DataflowVersion();
         newDataflowVersion.DataflowId = dataflowID;
         newDataflowVersion.DataflowDefinition = newDataflowDefinition;
@@ -39,6 +66,41 @@ public with sharing class AnalyticsDemoDataflowHelper {
             Dataflow df = [SELECT Id, CurrentId FROM Dataflow WHERE Id = :dataflowID];
             df.CurrentId = versionResult.id;
             this.updateDataflow(dataflowID, df);
+        }        
+    }
+
+    public void remapNamesInAssets(String insightsApplicationId){
+        // Get all dashboards and lenses from Lens object using InsightsApplicationId
+        List<Lens> appAssets = [SELECT Id, DeveloperName, Body FROM Lens WHERE InsightsApplicationId = :insightsApplicationId AND Type IN ('lens', 'dashboard')];
+        
+        // For each dataflow, lens, dashboard, execute the code below over the json body instead of the static resource body
+        for (Lens appAssetItem : appAssets) {
+            String bdy = appAssetItem.Body.toString();
+            bdy = bdy.replaceAll('__c_Year\\b', '#cY#');
+            bdy = bdy.replaceAll('__c_Month\\b', '#cM#');
+            bdy = bdy.replaceAll('__c_Day\\b', '#cD#');
+            bdy = bdy.replaceAll('__c_Week\\b', '#cW#');
+            bdy = bdy.replaceAll('__c_Quarter\\b', '#cQ#');
+            bdy = bdy.replaceAll('__c_Hour\\b', '#cH#');
+            bdy = bdy.replaceAll('__c_Minute\\b', '#cm#');
+            bdy = bdy.replaceAll('__c_Second\\b', '#cS#');
+            bdy = bdy.replaceAll('__c_day_epoch\\b', '#cDE#');
+            bdy = bdy.replaceAll('__c_sec_epoch\\b', '#cSE#');
+            bdy = bdy.replaceAll('__c\\b', '#c#');
+            
+            bdy = bdy.replaceAll('__', '_');
+            bdy = bdy.replaceAll('#c#', '__c');
+            bdy = bdy.replaceAll('#cY#', '__c_Year');
+            bdy = bdy.replaceAll('#cM#', '__c_Month');
+            bdy = bdy.replaceAll('#cD#', '__c_Day');
+            bdy = bdy.replaceAll('#cW#', '__c_Week');
+            bdy = bdy.replaceAll('#cQ#', '__c_Quarter');
+            bdy = bdy.replaceAll('#cH#', '__c_Hour');
+            bdy = bdy.replaceAll('#cm#', '__c_Minute');
+            bdy = bdy.replaceAll('#cS#', '__c_Second');
+            bdy = bdy.replaceAll('#cDE#', '__c_day_epoch');
+            bdy = bdy.replaceAll('#cSE#', '__c_sec_epoch');
+            this.updateLensAssetJsonBody(appAssetItem.Id, bdy);
         }
     }
 
@@ -78,5 +140,19 @@ public with sharing class AnalyticsDemoDataflowHelper {
         HTTPResponse res = http.send(req);
         String resBody = res.getBody();
         return (RestApiResponseBody)JSON.deserialize(resBody, RestApiResponseBody.class);
+    }
+
+    public void updateLensAssetJsonBody(Id assetId, String assetJsonBody) {
+        Http http = new Http();
+        HttpRequest req = new HttpRequest();
+        String salesforceHost = System.Url.getSalesforceBaseURL().toExternalForm();
+        String url = salesforceHost + '/services/data/' + this.apiVersion + '/sobjects/Lens/' + assetId + '?_HttpMethod=PATCH';
+        req.setMethod('POST');
+        req.setEndpoint(url);
+        req.setHeader('Content-type', 'application/json');
+        req.setHeader('Authorization', 'OAuth ' + UserInfo.getSessionId());
+        String jsonToPost = '{"attributes": {"type": "Lens"},"Body": "' + EncodingUtil.base64Encode(Blob.valueOf(assetJsonBody)) + '"}';
+        req.setBody(jsonToPost);
+        HTTPResponse res = http.send(req);
     }
 }
