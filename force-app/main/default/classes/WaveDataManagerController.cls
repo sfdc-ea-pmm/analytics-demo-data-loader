@@ -60,6 +60,7 @@ public with sharing class WaveDataManagerController {
 	public Boolean shiftOnlyOfApp { get; set; }
 	public String selectedDataflow { get; set; }
 	public String selectedAnalyticsApp { get; set; }
+	public List<WaveApplicationActionField> actionFieldNodes { get; set; }
 
 	// Secuence control
 	public String installationStep { get; set; }
@@ -73,6 +74,7 @@ public with sharing class WaveDataManagerController {
 	public WaveDataManagerController() {
 		this.objectsNodes = new List<WaveApplicationObject>();
 		this.edgemartsNodes = new List<WaveApplicationEdgemart>();
+		this.actionFieldNodes = new List<WaveApplicationActionField>();
 		this.timeShiftingItems = new List<WaveTimeShiftingItem>();
 		this.processingLog = new List<String>();
 		this.processingLogWithoutTime = new Set<String>();
@@ -1138,16 +1140,14 @@ public with sharing class WaveDataManagerController {
 					//createObjectsAndFields(this.objectsNodes); UNCOMMENT
 					this.launchObjectsLoading(); // COMMENT
 				}
-			} else if(this.selectedInstallationProcess == 'loadEdgemarts'){
+			} 
+			else if(this.selectedInstallationProcess == 'loadEdgemarts'){
 				this.disabledButton = true;
 				this.selectAppMetadata();
 				this.edgemartsNodes.clear();
 
 				if(this.selectedAppMetadata.edgemarts != null){
 					
-					List<WaveApplicationEdgemart> lstEdgemarts = new List<WaveApplicationEdgemart>();
-					// Retrieve edgemarts to process
-
 					for(WaveMetadataApplicationEdgemart wmaEdg: this.selectedAppMetadata.edgemarts) {
 						
 						WaveApplicationEdgemart waEdg = new WaveApplicationEdgemart();
@@ -1164,6 +1164,26 @@ public with sharing class WaveDataManagerController {
 					}
 					
 					loadEdgemarts();
+				}
+			}
+			else if(this.selectedInstallationProcess == 'createActionFields'){
+				this.disabledButton = true;
+				this.selectAppMetadata();
+				this.actionFieldNodes.clear();
+
+				if(this.selectedAppMetadata.actionFieldOverrides != null){
+					
+					for(WaveMetadataApplicationActionField wmaAF: this.selectedAppMetadata.actionFieldOverrides) {
+						
+						WaveApplicationActionField waAF = new WaveApplicationActionField();
+						waAF.datasetName = wmaAF.datasetName;
+						waAF.actionFieldName = wmaAF.actionFieldName;
+						waAF.actionFieldLabel = wmaAF.actionFieldLabel;
+
+						this.actionFieldNodes.add(waAF);
+					}
+					
+					//createActionFields();
 				}
 			}
 		} 
