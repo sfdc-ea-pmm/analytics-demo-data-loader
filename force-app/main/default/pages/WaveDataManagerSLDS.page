@@ -147,7 +147,7 @@
 									<div class="slds-form-element__control">
 								        <apex:selectList styleClass="slds-select" value="{!selectedWaveApp}" multiselect="false" size="5" style="width:200px">
 								   			<apex:selectOptions value="{!waveApps}"/>
-								   			<apex:actionSupport reRender="appDescription,vsbButton,folderName,timeShiftingValue,modalHeader,modalBody,form1" event="onchange" action="{!selectedApp}" onsubmit="disableRunButton()" />
+								   			<apex:actionSupport reRender="appDescription,vsbButton,folderName,timeShiftingValue,modalHeader,modalBody,form1,setActionFieldsPanel" event="onchange" action="{!selectedApp}" onsubmit="disableRunButton()" />
 								   		</apex:selectList>
 							   		</div>
 						   		</apex:form>
@@ -170,9 +170,10 @@
 								   			<apex:selectList styleClass="slds-select processType" value="{!selectedInstallationProcess}" size="1" id="processType">
 								   				<apex:selectOption itemValue="loadObjects" itemLabel="Load Data into Core"/>
 								   				<apex:selectOption itemValue="createMetadata" itemLabel="Create Objects and Fields"/>
-												   <apex:selectOption itemValue="timeShifting" itemLabel="Time shifting"/>
-												   <apex:selectOption itemValue="loadEdgemarts" itemLabel="Load Datasets"/>
-								   				<apex:actionSupport event="onchange" rerender="vsbButton,emailNotification,loadEdgemartsPanel,timeShiftingValue,form1,modalHeader,modalBody" action="{!selectedApp}" onsubmit="disableRunButton()"/>
+												<apex:selectOption itemValue="timeShifting" itemLabel="Time shifting"/>
+												<apex:selectOption itemValue="loadEdgemarts" itemLabel="Load Datasets"/>
+												<apex:selectOption itemValue="setActionFields" itemLabel="Set Action Fields"/>
+								   				<apex:actionSupport event="onchange" rerender="vsbButton,emailNotification,loadEdgemartsPanel,setActionFieldsPanel,timeShiftingValue,form1,modalHeader,modalBody" action="{!selectedApp}" onsubmit="disableRunButton()"/>
 								   			</apex:selectList>
 							   			</div>
 						   			</div>
@@ -270,6 +271,33 @@
 															<apex:selectOptions value="{!orgDataflows}"/>
 														</apex:selectList>
 													</div>
+												</div>
+											</div>
+
+							   			</apex:outputPanel>
+									</apex:outputPanel>
+									   
+									<apex:outputPanel id="setActionFieldsPanel" >
+										<apex:outputPanel rendered="{!selectedInstallationProcess = 'setActionFields'}">											
+
+											<div class="slds-m-top_small">
+												<label class="slds-form-element__label" for="dataflowForActionFields">Select dataflow (NOTE: This will modify the dataflow):</label>
+												<div class="slds-form-element__control ">
+													<div class="slds-select_container">
+														<apex:selectList styleClass="slds-select" value="{!selectedDataflowForActionFields}" size="1" id="dataflowForActionFields">
+															<apex:selectOptions value="{!orgDataflows}"/>
+														</apex:selectList>
+													</div>
+												</div>
+											</div>
+
+											<div class="slds-m-top_small">
+												<label class="slds-form-element__label">Enter Id value for each action field:</label>
+												<div class="slds-form-element__control">
+													<apex:repeat value="{!actionInputFields}" var="fieldName">
+														<apex:outputText value="Value for {!actionInputFields[fieldName].actionFieldLabel} field:" styleClass="slds-form-element__label"/>
+														<apex:inputText value="{!actionInputFields[fieldName].actionFieldValue}" styleClass="slds-input"/><br/>
+													</apex:repeat>
 												</div>
 											</div>
 

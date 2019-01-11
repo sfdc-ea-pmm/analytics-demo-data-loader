@@ -59,8 +59,10 @@ public with sharing class WaveDataManagerController {
 	public CustomModalConfirmation modalMessage { get; set; }
 	public Boolean shiftOnlyOfApp { get; set; }
 	public String selectedDataflow { get; set; }
+	public String selectedDataflowForActionFields { get; set; }
 	public String selectedAnalyticsApp { get; set; }
 	public List<WaveApplicationActionField> actionFieldNodes { get; set; }
+	public Map<String, WaveApplicationActionField> actionInputFields { get; set; }
 
 	// Secuence control
 	public String installationStep { get; set; }
@@ -296,6 +298,33 @@ public with sharing class WaveDataManagerController {
 					}
 
 					this.checkForTriggersAndRules(objNames, false);
+				}
+			}
+			else if(this.selectedInstallationProcess == 'setActionFields'){
+				
+				this.actionInputFields = new Map<String, WaveApplicationActionField>();
+
+				if(String.isNotBlank(this.selectedWaveApp)){
+					this.selectAppMetadata();
+					
+					this.actionFieldNodes.clear();
+
+					if(this.selectedAppMetadata.actionFieldOverrides != null){
+						
+						for(WaveMetadataApplicationActionField wmaAF: this.selectedAppMetadata.actionFieldOverrides) {
+							
+							WaveApplicationActionField waAF = new WaveApplicationActionField();
+							waAF.datasetName = wmaAF.datasetName;
+							waAF.actionFieldName = wmaAF.actionFieldName;
+							waAF.actionFieldLabel = wmaAF.actionFieldLabel;
+							waAF.computeExpressionName = wmaAF.computeExpressionName;
+
+							this.actionFieldNodes.add(waAF);
+
+							// Build action fields inputText list
+							this.actionInputFields.put(waAF.actionFieldName, waAF);
+						}
+					}
 				}
 			}
 		}
@@ -1166,25 +1195,10 @@ public with sharing class WaveDataManagerController {
 					loadEdgemarts();
 				}
 			}
-			else if(this.selectedInstallationProcess == 'createActionFields'){
+			else if(this.selectedInstallationProcess == 'setActionFields'){
+				// @TODO: IF SOMETHING TO PROCESS
 				this.disabledButton = true;
-				this.selectAppMetadata();
-				this.actionFieldNodes.clear();
-
-				if(this.selectedAppMetadata.actionFieldOverrides != null){
-					
-					for(WaveMetadataApplicationActionField wmaAF: this.selectedAppMetadata.actionFieldOverrides) {
-						
-						WaveApplicationActionField waAF = new WaveApplicationActionField();
-						waAF.datasetName = wmaAF.datasetName;
-						waAF.actionFieldName = wmaAF.actionFieldName;
-						waAF.actionFieldLabel = wmaAF.actionFieldLabel;
-
-						this.actionFieldNodes.add(waAF);
-					}
-					
-					//createActionFields();
-				}
+				//createActionFields();				
 			}
 		} 
 		catch(Exception e) {
@@ -1346,6 +1360,7 @@ public with sharing class WaveDataManagerController {
 	public void selectAppMetadata(){
 		Integer appIndex = this.appIndexes.get(this.selectedWaveApp);
 		WaveApplicationRow appRow = this.applicationRows.get(appIndex);
+		
 		// Retrieve and parse metadata
 		HttpRequest req = new HttpRequest();
 		req.setEndpoint(appRow.MetadataUrl);
@@ -1366,6 +1381,7 @@ public with sharing class WaveDataManagerController {
 			operationMap.put('LoadData','N/A');
 			operationMap.put('TimeShifting','N/A');
 			operationMap.put('LoadEdgemarts','N/A');
+			operationMap.put('SetActionFields', 'N/A');
 			this.operationsStatusTable.put(wmaObj.Name, operationMap);
 		}
 	}
