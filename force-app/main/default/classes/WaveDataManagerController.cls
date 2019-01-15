@@ -1196,9 +1196,7 @@ public with sharing class WaveDataManagerController {
 				}
 			}
 			else if(this.selectedInstallationProcess == 'setActionFields'){
-				// @TODO: IF SOMETHING TO PROCESS
-				this.disabledButton = true;
-				//createActionFields();				
+				setActionFields();				
 			}
 		} 
 		catch(Exception e) {
@@ -1209,6 +1207,24 @@ public with sharing class WaveDataManagerController {
 			this.installationStep = '';
 			this.rollbackProcess(e.getMessage(), e.getStackTraceString());
 		}
+	}
+
+	public void setActionFields(){
+		if(String.isBlank(this.selectedDataflowForActionFields)){
+			throw new WaveConfiguratorException('You are required to select dataflow for this operation.');
+		}
+
+		List<WaveApplicationActionField> fieldsToSet = new List<WaveApplicationActionField>();
+		for (WaveApplicationActionField v: this.actionInputFields.values()) {
+			if (!String.isBlank(v.actionFieldValue)) {
+				fieldsToSet.add(v); // Value was set by the user
+				this.logMessage('Setting value for ' + v.actionFieldLabel + ' field in ' + v.datasetName + ' dataset.');
+			}
+		}
+
+		AnalyticsDemoDataflowHelper dataflowHelper = new AnalyticsDemoDataflowHelper('v' + this.genericAppConfiguration.apiVersion);
+		dataflowHelper.setComputeExpressionsForActionFields(this.selectedDataflowForActionFields, fieldsToSet);
+		this.successMessage = 'The Set Action Fields process has finished successfully.';
 	}
 
 	public void loadEdgemarts(){

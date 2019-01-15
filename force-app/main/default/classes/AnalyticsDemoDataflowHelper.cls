@@ -29,7 +29,7 @@ public with sharing class AnalyticsDemoDataflowHelper {
         ReplaceSfdcDigestByEdgemarts directStrategyObj = new ReplaceSfdcDigestByEdgemartsDirect();
         dataflowDefinitionObject = directStrategyObj.doReplacement(dataflowDefinitionObject, directReplacements);
 
-        String newDataflowDefinition = JSON.serialize(dataflowDefinitionObject);        
+        String newDataflowDefinition = JSON.serialize(dataflowDefinitionObject);
 
         // We need to make sure that the dataflow won't contain double underscores excepting __c ones
         newDataflowDefinition = newDataflowDefinition.replaceAll('__c_Year\\b', '#cY#');
@@ -101,6 +101,64 @@ public with sharing class AnalyticsDemoDataflowHelper {
             bdy = bdy.replaceAll('#cDE#', '__c_day_epoch');
             bdy = bdy.replaceAll('#cSE#', '__c_sec_epoch');
             this.updateLensAssetJsonBody(appAssetItem.Id, bdy);
+        }
+    }
+
+    public void setComputeExpressionsForActionFields(String dataflowID, List<WaveApplicationActionField> actionFields){
+        
+        Map<String, Object> dataflowDefinitionObject = AnalyticsDemoDataflowHelper.dataflowContentsAsJSON(dataflowID);
+        Map<String, String> registerNodeNamesByDataset = new Map<String, String>();
+
+        for (String transfName : dataflowDefinitionObject.keySet()) {
+            Map<String, Object> currTransf = (Map<String, Object>) dataflowDefinitionObject.get(transfName);
+            if(currTransf.containsKey('action')) {
+                String action = (String)currTransf.get('action');
+                if (action.equals('sfdcRegister')) {
+                    Map<String, Object> currTransfParams = (Map<String, Object>)currTransf.get('parameters');
+                    String alias = (String)currTransfParams.get('alias');
+                    registerNodeNamesByDataset.put(alias, transfName);                    
+                }
+            }
+        }
+
+        for (WaveApplicationActionField actField: actionFields) {
+            if (dataflowDefinitionObject.containsKey(actField.computeExpressionName)) {
+                Map<String, Object> node = (Map<String, Object>)dataflowDefinitionObject.get(actField.computeExpressionName);
+                if (node != null) {
+                    Map<String, Object> nodeParams = (Map<String, Object>)node.get('parameters');
+                    List<Object> computedFields = (List<Object>)nodeParams.get('computedFields');
+                    Map<String, Object> theField = (Map<String, Object>)computedFields.get(0);
+                    theField.put('saqlExpression', '"' + actField.actionFieldValue + '"');
+                    theField.put('name', actField.actionFieldName);
+                    theField.put('label', actField.actionFieldLabel);
+                }
+            }
+            else {
+                // Add computeExpression
+                // First find node that registers dataset
+                String datasetName = actField.datasetName;
+                String registerNodeName = registerNodeNamesByDataset.get(datasetName);
+                Map<String, Object> registerNode = (Map<String, Object>) dataflowDefinitionObject.get(registerNodeName);
+                Map<String, Object> registerNodeParams = (Map<String, Object>)registerNode.get('parameters');
+                String source = (String)registerNodeParams.get('source');
+                String ceJson = '{"action": "computeExpression","parameters": { "source": "' + source + '", "mergeWithSource": true, "computedFields": [{"name": "' + actField.actionFieldName + '", "type": "Text", "label": "' + actField.actionFieldLabel + '", "saqlExpression": "\\"' + actField.actionFieldValue + '\\""}]}}';
+                Object o = JSON.deserializeUntyped(ceJson);
+                dataflowDefinitionObject.put(actField.computeExpressionName, o);
+                registerNodeParams.put('source', actField.computeExpressionName);
+            }
+        }
+
+        String newDataflowDefinition = JSON.serialize(dataflowDefinitionObject);
+
+        DataflowVersion newDataflowVersion = new DataflowVersion();
+        newDataflowVersion.DataflowId = dataflowID;
+        newDataflowVersion.DataflowDefinition = newDataflowDefinition;
+        RestApiResponseBody versionResult = insertDataflowVersion(JSON.serialize(newDataflowVersion));
+        
+        if(versionResult.success){
+            Dataflow df = [SELECT Id, CurrentId FROM Dataflow WHERE Id = :dataflowID];
+            df.CurrentId = versionResult.id;
+            this.updateDataflow(dataflowID, df);
         }
     }
 
