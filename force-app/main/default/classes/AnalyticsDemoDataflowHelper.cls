@@ -23,11 +23,15 @@ public with sharing class AnalyticsDemoDataflowHelper {
             }
         }
 
-        ReplaceSfdcDigestByEdgemarts genericStrategyObj = new ReplaceSfdcDigestByEdgemartsGeneric();
-        dataflowDefinitionObject = genericStrategyObj.doReplacement(dataflowDefinitionObject, genericReplacements);
+        if (genericReplacements.size() > 0) {
+            ReplaceSfdcDigestByEdgemarts genericStrategyObj = new ReplaceSfdcDigestByEdgemartsGeneric();
+            dataflowDefinitionObject = genericStrategyObj.doReplacement(dataflowDefinitionObject, genericReplacements);
+        }
 
-        ReplaceSfdcDigestByEdgemarts directStrategyObj = new ReplaceSfdcDigestByEdgemartsDirect();
-        dataflowDefinitionObject = directStrategyObj.doReplacement(dataflowDefinitionObject, directReplacements);
+        if (directReplacements.size() > 0) {
+            ReplaceSfdcDigestByEdgemarts directStrategyObj = new ReplaceSfdcDigestByEdgemartsDirect();
+            dataflowDefinitionObject = directStrategyObj.doReplacement(dataflowDefinitionObject, directReplacements);
+        }
 
         String newDataflowDefinition = JSON.serialize(dataflowDefinitionObject);
 
