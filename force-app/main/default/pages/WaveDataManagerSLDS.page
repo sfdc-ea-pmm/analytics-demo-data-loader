@@ -152,7 +152,7 @@
 							   		</div>
 						   		</apex:form>
 							</apex:outputPanel>
-				  			<div class="slds-col slds-size_2-of-2 slds-m-left_small">
+				  			<div class="slds-col slds-m-left_small">
 				  				<label class="slds-form-element__label">Description:</label>
 								<div class="slds-form-element__control">
 									<apex:outputText value="{!appDescription}" id="appDescription" />
@@ -179,7 +179,7 @@
 						   			</div>
 								</div>
 
-								<div class="slds-col slds-size_1-of-2">
+								<div class="slds-col">
 									<apex:outputPanel id="emailNotification" >
 										<apex:outputPanel rendered="{!selectedInstallationProcess != 'createMetadata'}">
 											<label class="slds-form-element__label">Notify this email when complete:</label>
@@ -351,7 +351,7 @@
 											
 											</div>
 											
-											<div class="slds-col slds-size_1-of-2">
+											<div class="slds-col">
 												<div class="slds-m-top_small">
 													<label class="slds-form-element__label">Objects Load Batch Size:</label>
 													<div class="slds-form-element__control">

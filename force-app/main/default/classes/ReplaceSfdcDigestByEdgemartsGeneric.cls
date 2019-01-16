@@ -64,8 +64,9 @@ public with sharing class ReplaceSfdcDigestByEdgemartsGeneric implements Replace
                         Map<String, Object> nodeParams = (Map<String, Object>)node.get('parameters');
                         switch on action {
                             when 'append' {
-                                List<String> sources = (List<String>)nodeParams.get('sources');
-                                for (String sourceTransf: sources) {
+                                List<Object> sources = (List<Object>)nodeParams.get('sources');
+                                for (Object sourceTransfObj: sources) {
+                                    String sourceTransf = (String) sourceTransfObj;
                                     if (digestNodes.values().contains(sourceTransf)) {
                                         dependencyMap.get(sourceTransf).add(nodeName);
                                     }
@@ -111,9 +112,9 @@ public with sharing class ReplaceSfdcDigestByEdgemartsGeneric implements Replace
                 Map<String, Object> nodeParams = (Map<String, Object>)nodeToEdit.get('parameters');
                 switch on action {
                     when 'append' {
-                        List<String> sources = (List<String>)nodeParams.get('sources');
+                        List<Object> sources = (List<Object>)nodeParams.get('sources');
                         sources.remove(sources.indexOf(nodeName));
-                        sources.add(replaceNodesMap.get(nodeName));
+                        sources.add(replaceNodesMap.get(nodeName));                        
                     }
                     when 'augment', 'update' {
                         String left = (String)nodeParams.get('left');
