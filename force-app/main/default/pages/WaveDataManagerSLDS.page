@@ -292,12 +292,15 @@
 											</div>
 
 											<div class="slds-m-top_small">
-												<label class="slds-form-element__label">Enter Id value for each action field:</label>
+												<label class="slds-form-element__label" style="margin-bottom: 10px">Enter Id value for each action field:</label>
 												<div class="slds-form-element__control">
-													<apex:repeat value="{!actionInputFields}" var="fieldName">
-														<apex:outputText value="Value for {!actionInputFields[fieldName].actionFieldLabel} field:" styleClass="slds-form-element__label"/>
-														<apex:inputText value="{!actionInputFields[fieldName].actionFieldValue}" styleClass="slds-input"/><br/>
-													</apex:repeat>
+													<apex:repeat value="{!actionInputFields}" var="dsName">
+														<apex:outputText value="{!dsName} dataset fields" styleClass="slds-form-element__label slds-text-title_bold" style="text-decoration: underline"/><br/>
+														<apex:repeat value="{!actionInputFields[dsName]}" var="fieldName">
+															<apex:outputText value="Value for {!actionInputFields[dsName][fieldName].actionFieldLabel} field:" styleClass="slds-form-element__label"/>
+															<apex:inputText value="{!actionInputFields[dsName][fieldName].actionFieldValue}" styleClass="slds-input"/><br/>
+														</apex:repeat>
+													</apex:repeat>													
 												</div>
 											</div>
 

@@ -61,8 +61,7 @@ public with sharing class WaveDataManagerController {
 	public String selectedDataflow { get; set; }
 	public String selectedDataflowForActionFields { get; set; }
 	public String selectedAnalyticsApp { get; set; }
-	public List<WaveApplicationActionField> actionFieldNodes { get; set; }
-	public Map<String, WaveApplicationActionField> actionInputFields { get; set; }
+	public Map<String, Map<String, WaveApplicationActionField>> actionInputFields { get; set; }
 
 	// Secuence control
 	public String installationStep { get; set; }
@@ -76,7 +75,6 @@ public with sharing class WaveDataManagerController {
 	public WaveDataManagerController() {
 		this.objectsNodes = new List<WaveApplicationObject>();
 		this.edgemartsNodes = new List<WaveApplicationEdgemart>();
-		this.actionFieldNodes = new List<WaveApplicationActionField>();
 		this.timeShiftingItems = new List<WaveTimeShiftingItem>();
 		this.processingLog = new List<String>();
 		this.processingLogWithoutTime = new Set<String>();
@@ -302,13 +300,11 @@ public with sharing class WaveDataManagerController {
 			}
 			else if(this.selectedInstallationProcess == 'setActionFields'){
 				
-				this.actionInputFields = new Map<String, WaveApplicationActionField>();
+				this.actionInputFields = new Map<String, Map<String, WaveApplicationActionField>>();
 
 				if(String.isNotBlank(this.selectedWaveApp)){
 					this.selectAppMetadata();
 					
-					this.actionFieldNodes.clear();
-
 					if(this.selectedAppMetadata.actionFieldOverrides != null){
 						
 						for(WaveMetadataApplicationActionField wmaAF: this.selectedAppMetadata.actionFieldOverrides) {
@@ -319,10 +315,18 @@ public with sharing class WaveDataManagerController {
 							waAF.actionFieldLabel = wmaAF.actionFieldLabel;
 							waAF.computeExpressionName = wmaAF.computeExpressionName;
 
-							this.actionFieldNodes.add(waAF);
-
 							// Build action fields inputText list
-							this.actionInputFields.put(waAF.actionFieldName, waAF);
+							Map<String, WaveApplicationActionField> mapWaf;
+							
+							if (this.actionInputFields.containsKey(waAF.datasetName)) {
+								mapWaf = this.actionInputFields.get(waAF.datasetName);
+							}
+							else {
+								mapWaf = new Map<String, WaveApplicationActionField>();
+								this.actionInputFields.put(waAF.datasetName, mapWaf);
+							}
+
+							mapWaf.put(waAF.actionFieldName, waAF);
 						}
 					}
 				}
@@ -1215,10 +1219,13 @@ public with sharing class WaveDataManagerController {
 		}
 
 		List<WaveApplicationActionField> fieldsToSet = new List<WaveApplicationActionField>();
-		for (WaveApplicationActionField v: this.actionInputFields.values()) {
-			if (!String.isBlank(v.actionFieldValue)) {
-				fieldsToSet.add(v); // Value was set by the user
-				this.logMessage('Setting value for ' + v.actionFieldLabel + ' field in ' + v.datasetName + ' dataset.');
+		
+		for (String dsName: this.actionInputFields.keySet()) {
+			for (WaveApplicationActionField v: this.actionInputFields.get(dsName).values()) {
+				if (!String.isBlank(v.actionFieldValue)) {
+					fieldsToSet.add(v); // Value was set by the user
+					this.logMessage('Setting ' + v.actionFieldValue + ' value for ' + v.actionFieldLabel + ' field in ' + v.datasetName + ' dataset.');
+				}
 			}
 		}
 
@@ -1391,14 +1398,16 @@ public with sharing class WaveDataManagerController {
 		String jsonMetadata = res.getBody();
 		this.selectedAppMetadata = (WaveMetadataApplication)JSON.deserialize(jsonMetadata, WaveMetadataApplication.class);
 		
-		for(WaveMetadataApplicationObject wmaObj: this.selectedAppMetadata.objects) {
-			Map<String,String> operationMap = new Map<String,String>();
-			operationMap.put('CreateObjectsAndFields','N/A');
-			operationMap.put('LoadData','N/A');
-			operationMap.put('TimeShifting','N/A');
-			operationMap.put('LoadEdgemarts','N/A');
-			operationMap.put('SetActionFields', 'N/A');
-			this.operationsStatusTable.put(wmaObj.Name, operationMap);
+		if (this.selectedAppMetadata != null && this.selectedAppMetadata.objects != null) {
+			for(WaveMetadataApplicationObject wmaObj: this.selectedAppMetadata.objects) {
+				Map<String,String> operationMap = new Map<String,String>();
+				operationMap.put('CreateObjectsAndFields','N/A');
+				operationMap.put('LoadData','N/A');
+				operationMap.put('TimeShifting','N/A');
+				operationMap.put('LoadEdgemarts','N/A');
+				operationMap.put('SetActionFields', 'N/A');
+				this.operationsStatusTable.put(wmaObj.Name, operationMap);
+			}
 		}
 	}
 
