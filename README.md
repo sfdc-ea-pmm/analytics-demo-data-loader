@@ -11,7 +11,7 @@
 
 ## Issues
 
-<a href="https://githubsfdeploy.herokuapp.com">
+<a href="https://githubsfdeploy.herokuapp.com?owner=EinsteinAnalyticsPMM&repo=analytics-demo-data-loader&ref=dev-dx">
   <img alt="Deploy to Salesforce"
        src="https://raw.githubusercontent.com/afawcett/githubsfdeploy/master/deploy.png">
 </a>
