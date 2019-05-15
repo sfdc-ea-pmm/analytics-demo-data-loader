@@ -232,6 +232,39 @@ public with sharing class WaveDataManagerController {
         return options;
     }
 
+	public List<SelectOption> getAvailableProcesses() {
+        
+        List<SelectOption> options = new List<SelectOption>();
+
+		/*
+		<apex:selectOption itemValue="loadObjects" itemLabel="Load Data into Core"/>
+		<apex:selectOption itemValue="createMetadata" itemLabel="Create Objects and Fields"/>
+		<apex:selectOption itemValue="timeShifting" itemLabel="Time shifting"/>
+		<apex:selectOption itemValue="loadEdgemarts" itemLabel="Load Datasets"/>
+		<apex:selectOption itemValue="setActionFields" itemLabel="Set Action Fields"/>
+		*/
+
+		if (this.selectedAppMetadata != null) {
+			// Options to work with SDO Objects
+			if (this.selectedAppMetadata.objects != null && this.selectedAppMetadata.objects.size() > 0) {
+				options.add(new SelectOption('loadObjects', 'Load Data into Core'));
+				options.add(new SelectOption('createMetadata', 'Create Objects and Fields'));
+				options.add(new SelectOption('timeShifting', 'Time shifting'));
+			}
+
+			// Options to work with datasets
+			if (this.selectedAppMetadata.edgemarts != null && this.selectedAppMetadata.edgemarts.size() > 0) {
+				options.add(new SelectOption('loadEdgemarts', 'Load Datasets'));
+			}
+
+			if (this.selectedAppMetadata.actionFieldOverrides != null && this.selectedAppMetadata.actionFieldOverrides.size() > 0) {
+				options.add(new SelectOption('setActionFields', 'Set Action Fields'));
+			}
+		}
+
+        return options;
+    }
+
 	public List<SelectOption> getOrgDataflows() {
         
         List<SelectOption> options = new List<SelectOption>();
@@ -260,10 +293,16 @@ public with sharing class WaveDataManagerController {
 
     public void saveSetting(){
     	this.overrideDefaultSettingTS = true;
-    	this.selectedApp();
+    	this.selectedProcess();
     }
 
-    public void selectedApp(){
+	public void selectedApp(){
+		if (String.isNotBlank(this.selectedWaveApp)) {
+			this.selectAppMetadata();
+		}
+	}
+
+    public void selectedProcess(){
     	
     	this.resetMessages();
 

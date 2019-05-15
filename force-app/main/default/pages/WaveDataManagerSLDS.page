@@ -147,7 +147,7 @@
 									<div class="slds-form-element__control">
 								        <apex:selectList styleClass="slds-select" value="{!selectedWaveApp}" multiselect="false" size="5" style="width:200px">
 								   			<apex:selectOptions value="{!waveApps}"/>
-								   			<apex:actionSupport reRender="appDescription,vsbButton,folderName,timeShiftingValue,modalHeader,modalBody,form1,setActionFieldsPanel" event="onchange" action="{!selectedApp}" onsubmit="disableRunButton()" />
+								   			<apex:actionSupport reRender="processType,appDescription,vsbButton,folderName,timeShiftingValue,modalHeader,modalBody,form1,setActionFieldsPanel" event="onchange" action="{!selectedApp}" onsubmit="disableRunButton()" />
 								   		</apex:selectList>
 							   		</div>
 						   		</apex:form>
@@ -168,12 +168,8 @@
 						   			<div class="slds-form-element__control ">
 						   				<div class="slds-select_container">
 								   			<apex:selectList styleClass="slds-select processType" value="{!selectedInstallationProcess}" size="1" id="processType">
-								   				<apex:selectOption itemValue="loadObjects" itemLabel="Load Data into Core"/>
-								   				<apex:selectOption itemValue="createMetadata" itemLabel="Create Objects and Fields"/>
-												<apex:selectOption itemValue="timeShifting" itemLabel="Time shifting"/>
-												<apex:selectOption itemValue="loadEdgemarts" itemLabel="Load Datasets"/>
-												<apex:selectOption itemValue="setActionFields" itemLabel="Set Action Fields"/>
-								   				<apex:actionSupport event="onchange" rerender="vsbButton,emailNotification,loadEdgemartsPanel,setActionFieldsPanel,timeShiftingValue,form1,modalHeader,modalBody" action="{!selectedApp}" onsubmit="disableRunButton()"/>
+												<apex:selectOptions value="{!availableProcesses}"/>
+								   				<apex:actionSupport event="onchange" rerender="vsbButton,emailNotification,loadEdgemartsPanel,setActionFieldsPanel,timeShiftingValue,form1,modalHeader,modalBody" action="{!selectedProcess}" onsubmit="disableRunButton()"/>
 								   			</apex:selectList>
 							   			</div>
 						   			</div>
