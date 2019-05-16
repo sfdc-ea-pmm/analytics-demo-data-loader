@@ -236,9 +236,9 @@
 								   			</div>
 
 								   			<div class="slds-m-top_small">
-									   			<label class="slds-form-element__label" for="processType">Number of days to shift records:</label>
+									   			<label class="slds-form-element__label" for="daysToShiftInput">Number of days to shift records:</label>
 									   			<div class="slds-form-element__control">
-									   				<apex:inputText styleClass="slds-input" value="{!daysToShift}" />
+									   				<apex:inputText styleClass="slds-input" value="{!daysToShift}" id="daysToShiftInput" />
 									   			</div>
 								   			</div>
 

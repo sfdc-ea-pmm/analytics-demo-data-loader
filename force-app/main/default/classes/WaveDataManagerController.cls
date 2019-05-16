@@ -89,7 +89,7 @@ public with sharing class WaveDataManagerController {
 		this.enableTimeShiftingCheck = false;
 		this.enableObjectProcessingCheck = false;
 		this.processingObjectsAndFieldsMetadata = false;
-		this.selectedInstallationProcess = 'timeShifting';
+		this.selectedInstallationProcess = '';
 		this.userPhotoNodes = new List<UserPhotoInfo>();
 		this.advancedOption = false;
 		this.advancedTimeShifting = false;
@@ -242,7 +242,7 @@ public with sharing class WaveDataManagerController {
 		<apex:selectOption itemValue="timeShifting" itemLabel="Time shifting"/>
 		<apex:selectOption itemValue="loadEdgemarts" itemLabel="Load Datasets"/>
 		<apex:selectOption itemValue="setActionFields" itemLabel="Set Action Fields"/>
-		*/
+		*/		
 
 		if (this.selectedAppMetadata != null) {
 			// Options to work with SDO Objects
@@ -259,6 +259,10 @@ public with sharing class WaveDataManagerController {
 
 			if (this.selectedAppMetadata.actionFieldOverrides != null && this.selectedAppMetadata.actionFieldOverrides.size() > 0) {
 				options.add(new SelectOption('setActionFields', 'Set Action Fields'));
+			}
+
+			if (options.size() > 0) {
+				options.add(0, new SelectOption('', 'None'));
 			}
 		}
 
@@ -297,6 +301,7 @@ public with sharing class WaveDataManagerController {
     }
 
 	public void selectedApp(){
+		this.selectedInstallationProcess = '';
 		if (String.isNotBlank(this.selectedWaveApp)) {
 			this.selectAppMetadata();
 		}
