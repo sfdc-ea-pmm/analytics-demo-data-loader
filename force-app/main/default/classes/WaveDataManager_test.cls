@@ -386,6 +386,24 @@ private class WaveDataManager_test {
 		cnt.checkEdgemartLoadStatus();
 	}
 
+	@isTest static void availableProcessesTest(){
+		MultiStaticResourceCalloutMock multimock = createStaticResources(); 
+
+		WaveDataManagerController cnt = new WaveDataManagerController();
+
+		Test.setMock(HttpCalloutMock.class, multimock);
+		cnt.pageLoad();
+
+		cnt.selectedWaveApp = 'Simple';
+		cnt.selectAppMetadata();
+		
+		Test.startTest();
+		List<SelectOption> availableProcesses = cnt.getAvailableProcesses();
+		Test.stopTest();
+
+		System.assert(availableProcesses.size() > 0);
+	}
+
 	public class MetadataServiceWebServiceMockImpl implements WebServiceMock 
 	{
 		public Map<String, List<String>> filePropertiesFullNames;
