@@ -6,3 +6,4 @@ debug/logs
 *.sfdx
 *.vscode/*
 mdapioutput
+mdapioutput/
