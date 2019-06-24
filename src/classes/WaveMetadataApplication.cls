@@ -8,4 +8,6 @@ public virtual class WaveMetadataApplication {
 	public TimeShiftSettings timeShift;
 	public List<WaveMetadataApplicationEdgemart> edgemarts;
 	public List<WaveMetadataApplicationActionField> actionFieldOverrides;
+	public List<WaveMetadataApplicationDataset> datasets;
+	public List<WaveMetadataApplicationDashboard> dashboards;
 }

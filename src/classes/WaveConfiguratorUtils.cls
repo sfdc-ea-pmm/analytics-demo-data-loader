@@ -21,7 +21,6 @@ public with sharing class WaveConfiguratorUtils {
 		}
 	}
 
-
 	public static List<WaveApplicationRow> getWaveApplications(String csvUrl){
 		
 		IMockarooHelper helper = MockarooHelperFactory.getIMockarooHelper();
@@ -234,4 +233,9 @@ public with sharing class WaveConfiguratorUtils {
 		Http http = new Http();
         HTTPResponse res = http.send(req);
 	}
+
+	public static boolean folderExists(String folderName){
+        Folder[] lstFolders = [SELECT Id FROM Folder WHERE DeveloperName = :folderName AND Type = 'Insights'];
+        return lstFolders.size() > 0;
+    }
 }

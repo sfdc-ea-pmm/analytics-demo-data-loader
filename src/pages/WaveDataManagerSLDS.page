@@ -169,7 +169,7 @@
 						   				<div class="slds-select_container">
 								   			<apex:selectList styleClass="slds-select processType" value="{!selectedInstallationProcess}" size="1" id="processType">
 												<apex:selectOptions value="{!availableProcesses}"/>
-								   				<apex:actionSupport event="onchange" rerender="vsbButton,emailNotification,loadEdgemartsPanel,setActionFieldsPanel,timeShiftingValue,form1,modalHeader,modalBody" action="{!selectedProcess}" onsubmit="disableRunButton()"/>
+								   				<apex:actionSupport event="onchange" rerender="vsbButton,emailNotification,loadEdgemartsPanel,setActionFieldsPanel,createCompleteAppPanel,timeShiftingValue,form1,modalHeader,modalBody" action="{!selectedProcess}" onsubmit="disableRunButton()"/>
 								   			</apex:selectList>
 							   			</div>
 						   			</div>
@@ -267,6 +267,28 @@
 															<apex:selectOptions value="{!orgDataflows}"/>
 														</apex:selectList>
 													</div>
+												</div>
+											</div>
+
+							   			</apex:outputPanel>
+									</apex:outputPanel>
+
+									<apex:outputPanel id="createCompleteAppPanel" >
+										<apex:outputPanel rendered="{!selectedInstallationProcess = 'createCompleteApp'}">
+
+											<div class="slds-m-top_small">
+												<label class="slds-form-element__label" for="createCompleteAppLabel">Label for the analytics application:</label>
+												<div class="slds-form-element__control ">
+													<apex:inputText styleClass="slds-input" id="appLabel" value="{!createCompleteAppLabel}">
+														<apex:actionSupport event="onchange" rerender="appName" action="{!suggestAnalyticsAppName}" />
+													</apex:inputText>
+												</div>
+											</div>
+
+											<div class="slds-m-top_small">
+												<label class="slds-form-element__label" for="createCompleteAppName">Name for the analytics application:</label>
+												<div class="slds-form-element__control ">
+													<apex:inputText styleClass="slds-input" id="appName" value="{!createCompleteAppName}"/>
 												</div>
 											</div>
 

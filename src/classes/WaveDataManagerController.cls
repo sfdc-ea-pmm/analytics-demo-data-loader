@@ -62,6 +62,19 @@ public with sharing class WaveDataManagerController {
 	public String selectedDataflowForActionFields { get; set; }
 	public String selectedAnalyticsApp { get; set; }
 	public Map<String, Map<String, WaveApplicationActionField>> actionInputFields { get; set; }
+	public String createCompleteAppId { get; set; }
+	public String createCompleteAppLabel { get; set; }
+	public String createCompleteAppName { get; set; }
+	private Map<String, String> datasetNamesToSave; // <dataset name as it comes from JSON, unique dataset name to store>
+    private Map<String, String> dashboardsIdsByName;
+    public String insightsAppName { get; set; }
+    public String insightsAppLabel { get; set; }
+    public String insightsAppId { get; set; }
+	public List<WaveApplicationDataset> datasetsNodes { get; set; }
+	public Boolean processingCreateCompleteApp { get; set; }
+	public List<WaveApplicationDashboard> dashboardsNodes { get; set; }
+	public Integer currentDatasetIndex { get; set; }
+	public Integer currentDashboardIndex { get; set; }
 
 	// Secuence control
 	public String installationStep { get; set; }
@@ -75,6 +88,8 @@ public with sharing class WaveDataManagerController {
 	public WaveDataManagerController() {
 		this.objectsNodes = new List<WaveApplicationObject>();
 		this.edgemartsNodes = new List<WaveApplicationEdgemart>();
+		this.datasetsNodes = new List<WaveApplicationDataset>();
+		this.dashboardsNodes = new List<WaveApplicationDashboard>();
 		this.timeShiftingItems = new List<WaveTimeShiftingItem>();
 		this.processingLog = new List<String>();
 		this.processingLogWithoutTime = new Set<String>();
@@ -259,6 +274,10 @@ public with sharing class WaveDataManagerController {
 
 			if (this.selectedAppMetadata.actionFieldOverrides != null && this.selectedAppMetadata.actionFieldOverrides.size() > 0) {
 				options.add(new SelectOption('setActionFields', 'Set Action Fields'));
+			}
+
+			if ((this.selectedAppMetadata.datasets != null && this.selectedAppMetadata.datasets.size() > 0) || (this.selectedAppMetadata.dashboards != null && this.selectedAppMetadata.dashboards.size() > 0)) {
+				options.add(new SelectOption('createCompleteApp', 'Create App, Datasets and Dashboards'));
 			}
 
 			if (options.size() > 0) {
@@ -1246,6 +1265,44 @@ public with sharing class WaveDataManagerController {
 			else if(this.selectedInstallationProcess == 'setActionFields'){
 				setActionFields();				
 			}
+			else if (this.selectedInstallationProcess == 'createCompleteApp') {
+				// Process specific pre validation
+
+				this.resetMessages();
+				// Start with validations
+				if(String.isBlank(this.createCompleteAppName)){
+					passedValidation = false;
+					this.warningMessage = 'Analytics application name must be specified.';
+				}
+				
+				if(String.isBlank(this.createCompleteAppLabel)){
+					passedValidation = false;
+					this.warningMessage = 'Analytics application label name must be specified.';
+				}				
+
+				if (passedValidation) {
+					this.disabledButton = true;
+					this.selectAppMetadata();
+					this.datasetsNodes.clear();
+
+					if(this.selectedAppMetadata.datasets != null){
+						
+						for(WaveMetadataApplicationDataset wmaEdg: this.selectedAppMetadata.datasets) {
+							
+							WaveApplicationDataset waDataset = new WaveApplicationDataset();
+							waDataset.name = wmaEdg.name;
+							waDataset.label = wmaEdg.label;
+							waDataset.jsonSchemaUrl = wmaEdg.jsonSchemaUrl;
+							waDataset.csvDataUrl = wmaEdg.csvDataUrl;
+							waDataset.xmdUrl = wmaEdg.xmdUrl;
+
+							this.datasetsNodes.add(waDataset);
+						}						
+						
+						createCompleteApp();
+					}
+				}
+			}
 		} 
 		catch(Exception e) {
 			System.debug(e.getMessage());
@@ -1385,6 +1442,54 @@ public with sharing class WaveDataManagerController {
 		if(this.selectedInstallationProcess == 'loadEdgemarts'){
 			this.successMessage = 'The Load Datasets process has finished successfully.';
 			WaveConfiguratorUtils.sendEmail(this.emailAddress, 'Load Datasets completed successfully', 'The Load Datasets process of your SDO data has finished successfully.');
+		}
+	}
+
+	public void createCompleteApp(){
+		// Check if there are datasets to load
+		if (this.datasetsNodes.size() == 0 && this.dashboardsNodes.size() == 0) {
+			// We DON'T have datasets or dashboards to process
+			this.warningMessage = 'There are no datasets or dashboards to load to application.';
+			this.disabledButton = false;
+			this.processingCreateCompleteApp = false;
+		}
+		else {
+			// 1st, create app
+			if(WaveConfiguratorUtils.folderExists(this.createCompleteAppName)){
+				
+			}
+			else {
+				
+			}
+			if(this.datasetsNodes.size() > 0){
+				this.currentDatasetIndex = 0;
+				this.processCurrentDatasetLoad();
+				this.processingCreateCompleteApp = true;			
+			}
+			else if(this.dashboardsNodes.size() > 0){
+				this.currentDashboardIndex = 0;
+				//this.processCurrentEdgemartLoad();
+				this.processingCreateCompleteApp = true;
+			}
+		}
+	}
+
+	public void processCurrentDatasetLoad(){
+		WaveApplicationDataset edg = this.datasetsNodes.get(this.currentDatasetIndex);
+		//LoadEdgemartQueueable edgCreationQueue = new LoadEdgemartQueueable(edg, this.selectedAnalyticsApp, UserInfo.getSessionId());
+		//this.queueProcessId = System.enqueueJob(edgCreationQueue);
+		this.logMessage('Loading ' + edg.label + ' dataset.');
+	}
+
+	public void suggestAnalyticsAppName(){
+		if (String.isBlank(this.createCompleteAppName) && String.isNotBlank(this.createCompleteAppLabel)) {
+			
+			String nameToSuggest = this.createCompleteAppLabel.trim();
+			while (nameToSuggest.substring(0 ,1).isNumeric()) {
+				nameToSuggest = nameToSuggest.substring(1);
+			}
+			
+			this.createCompleteAppName = nameToSuggest.replaceAll('[^a-zA-Z0-9]', '_');
 		}
 	}
 
