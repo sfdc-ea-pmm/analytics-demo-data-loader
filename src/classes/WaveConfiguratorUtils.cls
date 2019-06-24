@@ -234,8 +234,30 @@ public with sharing class WaveConfiguratorUtils {
         HTTPResponse res = http.send(req);
 	}
 
-	public static boolean folderExists(String folderName){
+	public boolean folderExists(String folderName){
         Folder[] lstFolders = [SELECT Id FROM Folder WHERE DeveloperName = :folderName AND Type = 'Insights'];
         return lstFolders.size() > 0;
+    }
+
+	public String getAnalyticsAppIdByDevName(String devName){
+		InsightsApplication anApp = [SELECT Id FROM InsightsApplication WHERE DeveloperName = :devName];
+		return anApp.Id;
+	}	
+
+	public String insertFolder(String appLabel, String folderName) {
+        String jsonToPost = '{"label":"' + appLabel + '","name":"' + folderName + '"}';
+        HTTPResponse res = WaveConfiguratorUtils.httpCallout('/services/data/v' + this.apiVersion + '/wave/folders', 'POST', true, jsonToPost);
+        System.debug(res);
+		if(!WaveConfiguratorUtils.checkStatus(res)){
+            if(res.getBody().containsIgnoreCase('errorCode')){
+                List<RestApiFolderErrorResponse> r = (List<RestApiFolderErrorResponse>)JSON.deserialize(res.getBody(), List<RestApiFolderErrorResponse>.class);
+                throw new WaveConfiguratorException('There was an error in the attempt to create the: ' + folderName + ' folder. Cause: ' + r.get(0).message + '.');
+            }
+            throw new WaveConfiguratorException('There was an error in the attempt to create the: ' + folderName + ' folder.');
+        }
+        else {
+            RestApiResponseBody responseBody = (RestApiResponseBody)JSON.deserialize(res.getBody(), RestApiResponseBody.class);
+              return responseBody.id;
+        }
     }
 }

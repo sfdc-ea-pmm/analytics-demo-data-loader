@@ -70,6 +70,7 @@ public with sharing class WaveDataManagerController {
     public String insightsAppName { get; set; }
     public String insightsAppLabel { get; set; }
     public String insightsAppId { get; set; }
+	public String createCompleteAppFolderId { get; set; }
 	public List<WaveApplicationDataset> datasetsNodes { get; set; }
 	public Boolean processingCreateCompleteApp { get; set; }
 	public List<WaveApplicationDashboard> dashboardsNodes { get; set; }
@@ -177,6 +178,16 @@ public with sharing class WaveDataManagerController {
 		}
 
 		return null;
+	}
+
+	private void logMessage(String msg){
+
+		if(!this.processingLogWithoutTime.contains(msg)){
+			DateTime dtNow = DateTime.now();
+			this.processingLog.add(String.format('[{0}] {1}', new String[]{ dtNow.format('yyyyMMdd HH:mm:ss') , msg }));
+		}
+
+		this.processingLogWithoutTime.add(msg);
 	}
 
 	public void getFaqJson(){
@@ -1443,55 +1454,7 @@ public with sharing class WaveDataManagerController {
 			this.successMessage = 'The Load Datasets process has finished successfully.';
 			WaveConfiguratorUtils.sendEmail(this.emailAddress, 'Load Datasets completed successfully', 'The Load Datasets process of your SDO data has finished successfully.');
 		}
-	}
-
-	public void createCompleteApp(){
-		// Check if there are datasets to load
-		if (this.datasetsNodes.size() == 0 && this.dashboardsNodes.size() == 0) {
-			// We DON'T have datasets or dashboards to process
-			this.warningMessage = 'There are no datasets or dashboards to load to application.';
-			this.disabledButton = false;
-			this.processingCreateCompleteApp = false;
-		}
-		else {
-			// 1st, create app
-			if(WaveConfiguratorUtils.folderExists(this.createCompleteAppName)){
-				
-			}
-			else {
-				
-			}
-			if(this.datasetsNodes.size() > 0){
-				this.currentDatasetIndex = 0;
-				this.processCurrentDatasetLoad();
-				this.processingCreateCompleteApp = true;			
-			}
-			else if(this.dashboardsNodes.size() > 0){
-				this.currentDashboardIndex = 0;
-				//this.processCurrentEdgemartLoad();
-				this.processingCreateCompleteApp = true;
-			}
-		}
-	}
-
-	public void processCurrentDatasetLoad(){
-		WaveApplicationDataset edg = this.datasetsNodes.get(this.currentDatasetIndex);
-		//LoadEdgemartQueueable edgCreationQueue = new LoadEdgemartQueueable(edg, this.selectedAnalyticsApp, UserInfo.getSessionId());
-		//this.queueProcessId = System.enqueueJob(edgCreationQueue);
-		this.logMessage('Loading ' + edg.label + ' dataset.');
-	}
-
-	public void suggestAnalyticsAppName(){
-		if (String.isBlank(this.createCompleteAppName) && String.isNotBlank(this.createCompleteAppLabel)) {
-			
-			String nameToSuggest = this.createCompleteAppLabel.trim();
-			while (nameToSuggest.substring(0 ,1).isNumeric()) {
-				nameToSuggest = nameToSuggest.substring(1);
-			}
-			
-			this.createCompleteAppName = nameToSuggest.replaceAll('[^a-zA-Z0-9]', '_');
-		}
-	}
+	}	
 
 	public void addRecordTypeNodes(WaveMetadataApplicationObject wmaObj){
 		
@@ -1974,16 +1937,55 @@ public with sharing class WaveDataManagerController {
 		else {
 			throw new WaveConfiguratorException(obj + ' object not supported.');
 		}
+	}	
+
+	public void createCompleteApp(){
+		// Check if there are datasets to load
+		if (this.datasetsNodes.size() == 0 && this.dashboardsNodes.size() == 0) {
+			// We DON'T have datasets or dashboards to process
+			this.warningMessage = 'There are no datasets or dashboards to load to application.';
+			this.disabledButton = false;
+			this.processingCreateCompleteApp = false;
+		}
+		else {
+			// 1st, create app
+			if(!this.utils.folderExists(this.createCompleteAppName)){
+				this.createCompleteAppFolderId = this.utils.insertFolder(this.createCompleteAppLabel, this.createCompleteAppName);
+			}
+			
+			// At this point we should have an InsightsApplication object created in the org with FolderId = this.createCompleteAppFolderId
+			this.insightsAppId = this.utils.getAnalyticsAppIdByDevName(this.createCompleteAppName);
+
+			if(this.datasetsNodes.size() > 0){
+				this.currentDatasetIndex = 0;
+				this.processCurrentDatasetLoad();
+				this.processingCreateCompleteApp = true;			
+			}
+			else if(this.dashboardsNodes.size() > 0){
+				this.currentDashboardIndex = 0;
+				//this.processCurrentEdgemartLoad();
+				this.processingCreateCompleteApp = true;
+			}
+		}
 	}
 
-	private void logMessage(String msg){
+	public void processCurrentDatasetLoad(){
+		WaveApplicationDataset edg = this.datasetsNodes.get(this.currentDatasetIndex);
+		//LoadEdgemartQueueable edgCreationQueue = new LoadEdgemartQueueable(edg, this.selectedAnalyticsApp, UserInfo.getSessionId());
+		//this.queueProcessId = System.enqueueJob(edgCreationQueue);
+		this.logMessage('Loading ' + edg.label + ' dataset.');
+	}
 
-		if(!this.processingLogWithoutTime.contains(msg)){
-			DateTime dtNow = DateTime.now();
-			this.processingLog.add(String.format('[{0}] {1}', new String[]{ dtNow.format('yyyyMMdd HH:mm:ss') , msg }));
+	public void suggestAnalyticsAppName(){
+		if (String.isBlank(this.createCompleteAppName) && String.isNotBlank(this.createCompleteAppLabel)) {
+			
+			String nameToSuggest = this.createCompleteAppLabel.trim();
+			while (nameToSuggest.substring(0 ,1).isNumeric()) {
+				nameToSuggest = nameToSuggest.substring(1);
+			}
+			
+			this.createCompleteAppName = nameToSuggest.replaceAll('[^a-zA-Z0-9]', '_');
 		}
-
-		this.processingLogWithoutTime.add(msg);
 	}
 
 }
