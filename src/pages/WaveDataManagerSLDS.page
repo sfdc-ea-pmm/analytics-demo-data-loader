@@ -410,6 +410,8 @@
 
 							<apex:actionPoller action="{!checkEdgemartLoadStatus}" reRender="processingStatus,processingLogConsole,messages,form1,form3,vsbButton" enabled="{!processingEdgemartsLoad}" interval="5" id="checkEdgemartLoadFunction"/>
 
+							<apex:actionPoller action="{!checkDatasetLoadStatus}" reRender="processingStatus,processingLogConsole,messages,form1,form3,vsbButton" enabled="{!processingCreateCompleteApp}" interval="5" id="checkDatasetLoadFunction"/>
+
 							<!-- Objects Load Panel/Function -->
 							<apex:outputPanel id="loadObjectsPanel">
 								<apex:actionFunction name="loadObjects" action="{!loadAllObjects}" reRender="loadObjectsPanel,form3,processingLogPanel,form1,vsbButton" />

@@ -257,7 +257,7 @@ public with sharing class WaveConfiguratorUtils {
         }
         else {
             RestApiResponseBody responseBody = (RestApiResponseBody)JSON.deserialize(res.getBody(), RestApiResponseBody.class);
-              return responseBody.id;
+            return responseBody.id;
         }
     }
 }

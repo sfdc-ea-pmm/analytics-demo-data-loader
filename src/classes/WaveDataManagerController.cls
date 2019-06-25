@@ -1959,7 +1959,7 @@ public with sharing class WaveDataManagerController {
 			if(this.datasetsNodes.size() > 0){
 				this.currentDatasetIndex = 0;
 				this.processCurrentDatasetLoad();
-				this.processingCreateCompleteApp = true;			
+				this.processingCreateCompleteApp = true;
 			}
 			else if(this.dashboardsNodes.size() > 0){
 				this.currentDashboardIndex = 0;
@@ -1971,8 +1971,8 @@ public with sharing class WaveDataManagerController {
 
 	public void processCurrentDatasetLoad(){
 		WaveApplicationDataset edg = this.datasetsNodes.get(this.currentDatasetIndex);
-		//LoadEdgemartQueueable edgCreationQueue = new LoadEdgemartQueueable(edg, this.selectedAnalyticsApp, UserInfo.getSessionId());
-		//this.queueProcessId = System.enqueueJob(edgCreationQueue);
+		LoadDatasetQueueable dsCreationQueue = new LoadDatasetQueueable(edg, this.insightsAppId, UserInfo.getSessionId());
+		this.queueProcessId = System.enqueueJob(dsCreationQueue);
 		this.logMessage('Loading ' + edg.label + ' dataset.');
 	}
 
@@ -1988,4 +1988,81 @@ public with sharing class WaveDataManagerController {
 		}
 	}
 
+	public PageReference checkDatasetLoadStatus(){
+		try {
+			if(!String.isBlank(this.queueProcessId) && this.processingCreateCompleteApp){
+				List<AsyncApexJob> lstJobs = [SELECT CompletedDate, JobItemsProcessed, NumberOfErrors, Status, ExtendedStatus, TotalJobItems FROM AsyncApexJob WHERE Id = :this.queueProcessId];
+				WaveApplicationDataset currentEdg = this.datasetsNodes.get(this.currentDatasetIndex);
+
+				if(lstJobs.size() > 0){
+					AsyncApexJob asyncJob = lstJobs.get(0);
+
+					if(asyncJob.Status == 'Completed'){
+						if(asyncJob.NumberOfErrors > 0) {
+							this.errorMessage = 'Error while loading dataset: ' + currentEdg.label;
+							if (string.isNotBlank(asyncJob.ExtendedStatus)) {
+								this.errorMessage = this.errorMessage + 'Detail: ' +  asyncJob.ExtendedStatus;
+							}
+							this.currentDatasetIndex = 0;
+							this.processingCreateCompleteApp = false;
+							this.disabledButton = false;
+						}
+						else {
+							if(this.currentDatasetIndex == this.datasetsNodes.size() - 1){
+								// We are finished loading app datasets
+								this.finishCreateCompleteAppProcess();
+							}
+							else {
+								this.currentDatasetIndex = this.currentDatasetIndex + 1;
+								this.processCurrentDatasetLoad();
+							}
+						}		
+					}
+					else if(asyncJob.Status == 'Aborted'){
+						this.errorMessage = 'The process was aborted while loading dataset: ' + currentEdg.label;
+						this.currentDatasetIndex = 0;
+						this.processingCreateCompleteApp = false;
+						this.disabledButton = false;
+					}
+					else if(asyncJob.Status == 'Failed'){
+						this.errorMessage = 'The process failed while loading dataset: ' + currentEdg.label;
+						if (string.isNotBlank(asyncJob.ExtendedStatus)) {
+							this.errorMessage = this.errorMessage + 'Detail: ' +  asyncJob.ExtendedStatus;
+						}
+						this.currentDatasetIndex = 0;
+						this.processingCreateCompleteApp = false;
+						this.disabledButton = false;
+					}
+				}
+			}
+		}
+		catch(Exception e) {
+			this.errorMessage = e.getMessage();
+			System.debug(e.getMessage());
+			System.debug(e.getStackTraceString());
+			this.currentDatasetIndex = 0;
+			this.processingCreateCompleteApp = false;
+			this.disabledButton = false;
+		}
+
+		return null;
+	}
+
+	private void finishCreateCompleteAppProcess(){
+		this.disabledButton = false;
+		this.currentDatasetIndex = 0;
+		this.datasetsNodes.clear();
+		this.logMessage('Done.');
+		this.processingCreateCompleteApp = false;
+
+		if(this.selectedInstallationProcess == 'createCompleteApp'){
+			this.successMessage = 'The Create App, Datasets and Dashboards process has finished successfully.';
+			WaveConfiguratorUtils.sendEmail(this.emailAddress, 'Create App, Datasets and Dashboards completed successfully', 'The LCreate App, Datasets and Dashboards process of your SDO data has finished successfully.');
+		}
+	}
+
+	// NEXT STEPS:
+	// 1) Load XMD for each dataset
+	// 2) Start to keep dataset IDs, Labels and Names
+	// 3) Load dashboards with data collected in step 2
 }
