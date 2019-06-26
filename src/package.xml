@@ -19,6 +19,7 @@
     <members>GenericAppConfiguration</members>
     <members>HexUtil</members>
     <members>IMockarooHelper</members>
+    <members>LoadDatasetQueueable</members>
     <members>LoadEdgemartQueueable</members>
     <members>MetadataService</members>
     <members>MetadataServiceTest</members>
@@ -28,8 +29,10 @@
     <members>ReplaceSfdcDigestByEdgemartsDirect</members>
     <members>ReplaceSfdcDigestByEdgemartsGeneric</members>
     <members>RestApiCompositeTreeResponse</members>
+    <members>RestApiFolderErrorResponse</members>
     <members>RestApiResponseBody</members>
     <members>SF_MetadataUtils</members>
+    <members>ScheduledTSDetails</members>
     <members>ScheduledTimeShifting</members>
     <members>SmartLookup</members>
     <members>TimeShiftSettings</members>
@@ -38,6 +41,8 @@
     <members>Utility_RowIterator</members>
     <members>WaveApplicationActionField</members>
     <members>WaveApplicationCompositeForeignKeyPart</members>
+    <members>WaveApplicationDashboard</members>
+    <members>WaveApplicationDataset</members>
     <members>WaveApplicationEdgemart</members>
     <members>WaveApplicationObject</members>
     <members>WaveApplicationObjectField</members>
@@ -51,6 +56,8 @@
     <members>WaveMetadata</members>
     <members>WaveMetadataApplication</members>
     <members>WaveMetadataApplicationActionField</members>
+    <members>WaveMetadataApplicationDashboard</members>
+    <members>WaveMetadataApplicationDataset</members>
     <members>WaveMetadataApplicationEdgemart</members>
     <members>WaveMetadataApplicationObject</members>
     <members>WaveMetadataApplicationObjectRelation</members>
@@ -58,6 +65,44 @@
     <members>WaveRecordTypeItem</members>
     <members>WaveTimeShiftingItem</members>
     <members>Zippex</members>
+  </types>
+  <types>
+    <name>StaticResource</name>
+    <members>AccountMetadataCSV</members>
+    <members>AccountSchemaJson</members>
+    <members>AccountsDataCSV</members>
+    <members>AnalyticsDemoDataToolLogo</members>
+    <members>LoadingGif</members>
+    <members>OpportunitiesDataCSV</members>
+    <members>OpportunityMetadataCSV</members>
+    <members>SEADemoDataLoaderConfig</members>
+    <members>SimpleAppJson</members>
+    <members>UserMetadataCSV</members>
+    <members>UsersDataCSV</members>
+    <members>WaveAppsMetadataCSV</members>
+    <members>WaveForSalesJson</members>
+  </types>
+  <types>
+    <name>CustomObject</name>
+    <members>ScheduledTSDetails__ChangeEvent</members>
+    <members>ScheduledTSDetails__Tag</members>
+    <members>ScheduledTSDetails__c</members>
+  </types>
+  <types>
+    <name>Document</name>
+    <members>App_Logos/Analytics_Demo_Data_Tool_Logo.png</members>
+  </types>
+  <types>
+    <name>CustomApplication</name>
+    <members>AnalyticsDemoDataTool</members>
+  </types>
+  <types>
+    <name>RemoteSiteSetting</name>
+    <members>AmazonS3</members>
+  </types>
+  <types>
+    <name>CustomTab</name>
+    <members>AnalyticsDemoDataTool</members>
   </types>
   <version>45.0</version>
 </Package>
