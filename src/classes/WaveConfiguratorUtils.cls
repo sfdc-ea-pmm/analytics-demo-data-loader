@@ -86,15 +86,15 @@ public with sharing class WaveConfiguratorUtils {
 
 		if(sfdcApi){
 			String salesforceHost = System.Url.getSalesforceBaseURL().toExternalForm();
-			totalUrl = salesforceHost + url;
+			totalUrl = salesforceHost + url;			
+		}
 
-			if(method.toUpperCase() == 'DELETE'){
-				totalUrl += '/' + parameter;
-			}
+		if(method.toUpperCase() == 'DELETE'){
+			totalUrl += '/' + parameter;
+		}
 
-			if(method.toUpperCase() == 'POST' || method.toUpperCase() == 'PUT'){
-				req.setBody(parameter);
-			}
+		if(method.toUpperCase() == 'POST' || method.toUpperCase() == 'PUT'){
+			req.setBody(parameter);
 		}
 
 		req.setMethod(method);
@@ -260,4 +260,29 @@ public with sharing class WaveConfiguratorUtils {
             return responseBody.id;
         }
     }
+
+	public static void setXmdForDataset(String datasetDevName, String xmdUrl, Double apiVersion){
+		Edgemart edgObj = [SELECT Id, CurrentId FROM EdgeMart WHERE DeveloperName = :datasetDevName];
+		HttpResponse resGetJsonXmd = WaveConfiguratorUtils.httpGetCallout(xmdUrl);
+		String xmdData = resGetJsonXmd.getBody();
+		String datasetId = edgObj.Id;
+		String currentVersionId = edgObj.CurrentId;
+		String urlToAttach = '/services/data/v' + apiVersion+ '/wave/datasets/' + datasetId + '/versions/' + currentVersionId + '/xmds/user';
+		HttpResponse resAttachXmd = WaveConfiguratorUtils.httpCallout(urlToAttach, 'PUT', true, xmdData);
+		if(!WaveConfiguratorUtils.checkStatus(resAttachXmd) || resAttachXmd.getBody().containsIgnoreCase('errorCode')){
+			List<RestApiErrorResponse> r = (List<RestApiErrorResponse>)JSON.deserialize(resAttachXmd.getBody(), List<RestApiErrorResponse>.class);
+			throw new WaveConfiguratorException('The xmd file could not be attached to the ' + datasetDevName + ' dataset. Cause: ' + r.get(0).message);
+		}
+	}
+
+	@future(callout=true)
+	public static void setXmdForDatasetFuture(String datasetDevName, String xmdUrl, Double apiVersion){
+		WaveConfiguratorUtils.setXmdForDataset(datasetDevName, xmdUrl, apiVersion);
+	}
+
+	public static Boolean containsDoubleByteCharacters(String input)
+	{
+    	Matcher m = Pattern.compile('[\\u0000-\\u007F]*').matcher(input);
+    	return !m.matches();
+	}
 }

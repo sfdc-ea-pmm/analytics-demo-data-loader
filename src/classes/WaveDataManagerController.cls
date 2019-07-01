@@ -1971,7 +1971,7 @@ public with sharing class WaveDataManagerController {
 
 	public void processCurrentDatasetLoad(){
 		WaveApplicationDataset edg = this.datasetsNodes.get(this.currentDatasetIndex);
-		LoadDatasetQueueable dsCreationQueue = new LoadDatasetQueueable(edg, this.insightsAppId, UserInfo.getSessionId());
+		LoadDatasetQueueable dsCreationQueue = new LoadDatasetQueueable(edg, this.insightsAppId, genericAppConfiguration.apiVersion, UserInfo.getSessionId());
 		this.queueProcessId = System.enqueueJob(dsCreationQueue);
 		this.logMessage('Loading ' + edg.label + ' dataset.');
 	}
@@ -2008,15 +2008,25 @@ public with sharing class WaveDataManagerController {
 							this.disabledButton = false;
 						}
 						else {
-							if(this.currentDatasetIndex == this.datasetsNodes.size() - 1){
-								// We are finished loading app datasets
-								this.finishCreateCompleteAppProcess();
+							if (LoadDatasetQueueable.getDatasetUploadStatus(currentEdg.name).equalsIgnoreCase('Completed')) {
+								// Dataset upload completed
+								//Load XMD ?
+								// XMD
+								if (String.isNotBlank(currentEdg.xmdUrl)) {
+									WaveConfiguratorUtils.setXmdForDataset(currentEdg.name, currentEdg.xmdUrl, this.genericAppConfiguration.apiVersion);
+								}
+								//Now we have to finish or move to next dataset upload
+								if(this.currentDatasetIndex == this.datasetsNodes.size() - 1){
+									// We are finished loading app datasets
+									this.finishCreateCompleteAppProcess();
+								}
+								else {
+									// Not finished yet, move to next dataset upload
+									this.currentDatasetIndex = this.currentDatasetIndex + 1;
+									this.processCurrentDatasetLoad();
+								}
 							}
-							else {
-								this.currentDatasetIndex = this.currentDatasetIndex + 1;
-								this.processCurrentDatasetLoad();
-							}
-						}		
+						}
 					}
 					else if(asyncJob.Status == 'Aborted'){
 						this.errorMessage = 'The process was aborted while loading dataset: ' + currentEdg.label;
