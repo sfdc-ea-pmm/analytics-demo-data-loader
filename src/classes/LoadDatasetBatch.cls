@@ -13,8 +13,13 @@ global class LoadDatasetBatch implements Database.Batchable<Integer>, Database.S
     global Iterable<Integer> start(Database.BatchableContext BC) {
 		
         List<Integer> lstIndexes = new List<Integer>();
-        for (Integer i = 1; i <= this.datasetToLoad.dataParts; i++) {
-            lstIndexes.add(i);
+        if (this.datasetToLoad.dataParts != null) {
+            for (Integer i = 1; i <= this.datasetToLoad.dataParts; i++) {
+                lstIndexes.add(i);
+            }
+        }
+        else {
+            lstIndexes.add(1);
         }
 
         this.insightsAppName = 'SharedApp';
@@ -45,7 +50,7 @@ global class LoadDatasetBatch implements Database.Batchable<Integer>, Database.S
 	}
 
     global void execute(Database.BatchableContext BC, List<Integer> scope) {
-        if (scope.size() > 0) {
+        if (scope.size() > 0 && String.isNotBlank(this.insightsExternalDataId)) {
             // Data is chunked or only one file?
             Integer dataIndex = 1;
             String dataUrl = this.datasetToLoad.csvDataUrl;
@@ -63,14 +68,17 @@ global class LoadDatasetBatch implements Database.Batchable<Integer>, Database.S
             Blob csvBlob = Blob.valueof(csvData);
             dataPart.dataFile = csvBlob;
             dataPart.DataLength = csvBlob.size();
+            dataPart.InsightsExternalDataId = this.insightsExternalDataId;
             
             insert dataPart;
         }
     }
 
     global void finish(Database.BatchableContext BC) {		
-		InsightsExternalData iedObj = [SELECT Id, Action FROM InsightsExternalData WHERE Id = :this.insightsExternalDataId];
-        iedObj.Action = 'Process';
-        update iedObj;
+		if (String.isNotBlank(this.insightsExternalDataId)) {
+            InsightsExternalData iedObj = [SELECT Id, Action FROM InsightsExternalData WHERE Id = :this.insightsExternalDataId];
+            iedObj.Action = 'Process';
+            update iedObj;   
+        }
 	}
 }

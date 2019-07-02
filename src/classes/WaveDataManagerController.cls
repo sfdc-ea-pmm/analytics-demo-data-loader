@@ -1972,8 +1972,9 @@ public with sharing class WaveDataManagerController {
 
 	public void processCurrentDatasetLoad(){
 		WaveApplicationDataset edg = this.datasetsNodes.get(this.currentDatasetIndex);
-		LoadDatasetQueueable dsCreationQueue = new LoadDatasetQueueable(edg, this.insightsAppId, genericAppConfiguration.apiVersion, UserInfo.getSessionId());
-		this.queueProcessId = System.enqueueJob(dsCreationQueue);
+		//LoadDatasetQueueable dsCreationQueue = new LoadDatasetQueueable(edg, this.insightsAppId, genericAppConfiguration.apiVersion, UserInfo.getSessionId());
+		LoadDatasetBatch dsBatch = new LoadDatasetBatch(edg, this.insightsAppId);
+		this.batchProcessId = Database.executeBatch(dsBatch, 1);
 		this.logMessage('Loading ' + edg.label + ' dataset.');
 	}
 
@@ -1991,8 +1992,8 @@ public with sharing class WaveDataManagerController {
 
 	public PageReference checkDatasetLoadStatus(){
 		try {
-			if(!String.isBlank(this.queueProcessId) && this.processingCreateCompleteApp){
-				List<AsyncApexJob> lstJobs = [SELECT CompletedDate, JobItemsProcessed, NumberOfErrors, Status, ExtendedStatus, TotalJobItems FROM AsyncApexJob WHERE Id = :this.queueProcessId];
+			if(!String.isBlank(this.batchProcessId) && this.processingCreateCompleteApp){
+				List<AsyncApexJob> lstJobs = [SELECT CompletedDate, JobItemsProcessed, NumberOfErrors, Status, ExtendedStatus, TotalJobItems FROM AsyncApexJob WHERE Id = :this.batchProcessId];
 				WaveApplicationDataset currentEdg = this.datasetsNodes.get(this.currentDatasetIndex);
 
 				if(lstJobs.size() > 0){
@@ -2010,7 +2011,10 @@ public with sharing class WaveDataManagerController {
 						}
 						else {
 							String datasetLoadStatus = LoadDatasetQueueable.getDatasetUploadStatus(currentEdg.name);
-							if (datasetLoadStatus.equalsIgnoreCase('Completed')) {
+							if (datasetLoadStatus.equalsIgnoreCase('Completed') || datasetLoadStatus.equalsIgnoreCase('CompletedWithWarnings')) {
+								if (datasetLoadStatus.equalsIgnoreCase('CompletedWithWarnings')) {
+									this.logMessage('Load completed with warnings. Please go to Analytics Studio / Data Manager for details.');
+								}
 								// Dataset upload completed
 								//Load XMD ?
 								// XMD
