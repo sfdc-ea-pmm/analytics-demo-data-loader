@@ -4,4 +4,5 @@ public class WaveMetadataApplicationDataset {
     public String jsonSchemaUrl;
     public String csvDataUrl;
     public String xmdUrl;
+    public Integer dataParts;
 }
