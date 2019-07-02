@@ -1,4 +1,4 @@
-public class WaveApplicationDataset {
+global class WaveApplicationDataset {
     public String name;
     public String label;
     public String jsonSchemaUrl;

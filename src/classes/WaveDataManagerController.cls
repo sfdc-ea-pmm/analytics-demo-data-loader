@@ -1306,6 +1306,7 @@ public with sharing class WaveDataManagerController {
 							waDataset.jsonSchemaUrl = wmaEdg.jsonSchemaUrl;
 							waDataset.csvDataUrl = wmaEdg.csvDataUrl;
 							waDataset.xmdUrl = wmaEdg.xmdUrl;
+							waDataset.dataParts = wmaEdg.dataParts;
 
 							this.datasetsNodes.add(waDataset);
 						}						
@@ -2008,13 +2009,15 @@ public with sharing class WaveDataManagerController {
 							this.disabledButton = false;
 						}
 						else {
-							if (LoadDatasetQueueable.getDatasetUploadStatus(currentEdg.name).equalsIgnoreCase('Completed')) {
+							String datasetLoadStatus = LoadDatasetQueueable.getDatasetUploadStatus(currentEdg.name);
+							if (datasetLoadStatus.equalsIgnoreCase('Completed')) {
 								// Dataset upload completed
 								//Load XMD ?
 								// XMD
 								if (String.isNotBlank(currentEdg.xmdUrl)) {
 									WaveConfiguratorUtils.setXmdForDataset(currentEdg.name, currentEdg.xmdUrl, this.genericAppConfiguration.apiVersion);
 								}
+								
 								//Now we have to finish or move to next dataset upload
 								if(this.currentDatasetIndex == this.datasetsNodes.size() - 1){
 									// We are finished loading app datasets
@@ -2025,6 +2028,12 @@ public with sharing class WaveDataManagerController {
 									this.currentDatasetIndex = this.currentDatasetIndex + 1;
 									this.processCurrentDatasetLoad();
 								}
+							}
+							else if (datasetLoadStatus.equalsIgnoreCase('Failed')) {
+								this.errorMessage = 'The dataset: ' + currentEdg.label + ' failed to load. Please go to Analytics Studio / Data Manager for details.';
+								this.currentDatasetIndex = 0;
+								this.processingCreateCompleteApp = false;
+								this.disabledButton = false;
 							}
 						}
 					}

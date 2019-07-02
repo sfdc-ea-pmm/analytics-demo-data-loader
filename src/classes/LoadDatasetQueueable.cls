@@ -22,10 +22,37 @@ public with sharing class LoadDatasetQueueable implements Queueable, Database.Al
     public void execute(QueueableContext context) {
         // Process the load of the edgemart
         // This code is intented to work only for those csv files < 10MB
-        HttpResponse res = WaveConfiguratorUtils.httpGetCallout(this.datasetToLoad.csvDataUrl);
-        String csvData = res.getBody();
+        
+        // Retrieve the Data first
+        List<InsightsExternalDataPart> lstDataParts = new List<InsightsExternalDataPart>();        
 
-        res = WaveConfiguratorUtils.httpGetCallout(this.datasetToLoad.jsonSchemaUrl);
+        // Data is chunked or only one file?
+        if (this.datasetToLoad.dataParts != null && this.datasetToLoad.dataParts > 0) {
+            for (Integer i = 1; i <= this.datasetToLoad.dataParts; i++){
+                String dataUrl = this.datasetToLoad.csvDataUrl + this.datasetToLoad.name + '-dataPart-' + i + '.csv';
+                HttpResponse resData = WaveConfiguratorUtils.httpGetCallout(dataUrl);
+                String csvData = resData.getBody();
+                //System.debug(csvData.substringBefore('\n'));
+                InsightsExternalDataPart dataPart = new InsightsExternalDataPart();
+                dataPart.PartNumber = i;
+                Blob csvBlob = Blob.valueof(csvData);
+                dataPart.dataFile = csvBlob;
+                dataPart.DataLength = csvBlob.size();
+                lstDataParts.add(dataPart);
+            }
+        }
+        else {
+            HttpResponse resData = WaveConfiguratorUtils.httpGetCallout(this.datasetToLoad.csvDataUrl);
+            String csvData = resData.getBody();
+            InsightsExternalDataPart dataPart = new InsightsExternalDataPart();
+            dataPart.PartNumber = 1;
+            Blob csvBlob = Blob.valueof(csvData);
+            dataPart.dataFile = csvBlob;
+            dataPart.DataLength = csvBlob.size();
+            lstDataParts.add(dataPart);
+        }
+
+        HttpResponse res = WaveConfiguratorUtils.httpGetCallout(this.datasetToLoad.jsonSchemaUrl);
         String schemaData = res.getBody();
 
         InsightsExternalData iedObj = new InsightsExternalData();
@@ -39,42 +66,10 @@ public with sharing class LoadDatasetQueueable implements Queueable, Database.Al
 
         insert iedObj;
 
-        // Add the Data
-        // Assumption: 1 character in string = 1 or 2 Bytes
-        Integer bytesPerChunk = 1024 * 1024 * 9; // We want 9 MB chunks
-        Integer charsPerChunk = bytesPerChunk;
-        Integer maxBytesChar = 1;
-        Integer currentFilePtr = 0;
-        List<String> lstChunks = new List<String>();
-        String currentInput = csvData;
-
-        if (WaveConfiguratorUtils.containsDoubleByteCharacters(csvData)) {
-            // There are some characters that span 2 bytes
-            charsPerChunk = charsPerChunk / 2;
-        }
-
-        while(currentFilePtr < csvData.length()){
-            String currentChunk = csvData.mid(currentFilePtr, charsPerChunk);
-            lstChunks.add(currentChunk);
-            currentFilePtr = currentFilePtr + currentChunk.length();
-        }
-
-        Integer dataPartIndex = 1;
-        List<InsightsExternalDataPart> lstDataParts = new List<InsightsExternalDataPart>();
-        
-        for (String dataChunk : lstChunks) {
-            InsightsExternalDataPart dataPart = new InsightsExternalDataPart();
+        for (InsightsExternalDataPart dataPart : lstDataParts) {
             dataPart.InsightsExternalDataId = iedObj.Id;
-            dataPart.PartNumber = dataPartIndex;
-            Blob csvBlob = Blob.valueof(dataChunk);
-            Integer size = csvBlob.size();
-            dataPart.dataFile = csvBlob;
-            dataPart.DataLength = size;
-
-            dataPartIndex++;
-            lstDataParts.add(dataPart);
         }
-        
+                
         insert lstDataParts;
 
         // Final Step: Manage the Upload
