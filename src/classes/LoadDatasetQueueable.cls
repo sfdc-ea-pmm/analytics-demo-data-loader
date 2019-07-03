@@ -75,15 +75,5 @@ public with sharing class LoadDatasetQueueable implements Queueable, Database.Al
         // Final Step: Manage the Upload
         iedObj.Action = 'Process';
         update iedObj;
-    }
-
-    public static String getDatasetUploadStatus(String datasetDevName){
-        try {
-            InsightsExternalData iedObj = [SELECT Status FROM InsightsExternalData WHERE EdgemartAlias = :datasetDevName ORDER BY CreatedDate DESC LIMIT 1];
-            return iedObj.Status;
-        } 
-        catch (Exception ex) {
-            return '';
-        }
-    }
+    }    
 }

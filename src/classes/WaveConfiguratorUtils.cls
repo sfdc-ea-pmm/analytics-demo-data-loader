@@ -239,6 +239,22 @@ public with sharing class WaveConfiguratorUtils {
         return lstFolders.size() > 0;
     }
 
+	public String getFolderIdByDevName(String folderName){
+        List<Folder> lstFolders = [SELECT Id FROM Folder WHERE DeveloperName = :folderName AND Type = 'Insights'];
+        return lstFolders.size() > 0 ? lstFolders.get(0).Id : '';
+    }
+
+	public Map<String, String> getDatasetIdByDevNameMapping(List<String> lstDatasetNames){
+        
+		Map<String, String> mapping = new Map<String, String>();
+
+		for (EdgeMart edg : [SELECT Id, DeveloperName FROM EdgeMart WHERE DeveloperName IN :lstDatasetNames]) {
+			mapping.put(edg.DeveloperName, edg.Id);
+		}
+
+		return mapping;
+    }
+
 	public String getAnalyticsAppIdByDevName(String devName){
 		InsightsApplication anApp = [SELECT Id FROM InsightsApplication WHERE DeveloperName = :devName];
 		return anApp.Id;
@@ -285,4 +301,14 @@ public with sharing class WaveConfiguratorUtils {
     	Matcher m = Pattern.compile('[\\u0000-\\u007F]*').matcher(input);
     	return !m.matches();
 	}
+
+	public static String getDatasetUploadStatus(String datasetDevName){
+        try {
+            InsightsExternalData iedObj = [SELECT Status FROM InsightsExternalData WHERE EdgemartAlias = :datasetDevName ORDER BY CreatedDate DESC LIMIT 1];
+            return iedObj.Status;
+        } 
+        catch (Exception ex) {
+            return '';
+        }
+    }
 }

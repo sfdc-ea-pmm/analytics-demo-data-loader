@@ -1,7 +1,7 @@
 global class LoadDatasetBatch implements Database.Batchable<Integer>, Database.Stateful, Database.AllowsCallouts {
 
     private String insightsAppId;
-    private String insightsAppName;
+    private String edgemartContainer;
     private WaveApplicationDataset datasetToLoad;
     private String insightsExternalDataId;
 
@@ -22,12 +22,12 @@ global class LoadDatasetBatch implements Database.Batchable<Integer>, Database.S
             lstIndexes.add(1);
         }
 
-        this.insightsAppName = 'SharedApp';
+        this.edgemartContainer = 'SharedApp';
 
         if (String.isNotBlank(insightsAppId)) {
             List<InsightsApplication> insAppLst = [SELECT FolderId FROM InsightsApplication WHERE Id = :insightsAppId];
             if (insAppLst.size() > 0) {
-                this.insightsAppName = insAppLst.get(0).FolderId;
+                this.edgemartContainer = insAppLst.get(0).FolderId;
             }
         }
 
@@ -35,8 +35,8 @@ global class LoadDatasetBatch implements Database.Batchable<Integer>, Database.S
         String schemaData = res.getBody();
 
         InsightsExternalData iedObj = new InsightsExternalData();
-        iedObj.EdgemartAlias = this.datasetToLoad.name;
-        iedObj.EdgemartContainer = this.insightsAppName;
+        iedObj.EdgemartAlias = this.datasetToLoad.nameToSave;
+        iedObj.EdgemartContainer = this.edgemartContainer;
         iedObj.MetadataJson = EncodingUtil.base64Decode(EncodingUtil.base64Encode(Blob.valueOf(schemaData)));
         iedObj.Format = 'Csv';
         iedObj.Operation = 'Overwrite';

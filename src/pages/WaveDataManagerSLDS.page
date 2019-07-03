@@ -280,7 +280,7 @@
 												<label class="slds-form-element__label" for="createCompleteAppLabel">Label for the analytics application:</label>
 												<div class="slds-form-element__control ">
 													<apex:inputText styleClass="slds-input" id="appLabel" value="{!createCompleteAppLabel}">
-														<apex:actionSupport event="onchange" rerender="appName" action="{!suggestAnalyticsAppName}" />
+														<apex:actionSupport event="onchange" rerender="appName,modalHeader,modalBody" action="{!suggestAnalyticsAppName}" />
 													</apex:inputText>
 												</div>
 											</div>
@@ -288,7 +288,9 @@
 											<div class="slds-m-top_small">
 												<label class="slds-form-element__label" for="createCompleteAppName">Name for the analytics application:</label>
 												<div class="slds-form-element__control ">
-													<apex:inputText styleClass="slds-input" id="appName" value="{!createCompleteAppName}"/>
+													<apex:inputText styleClass="slds-input" id="appName" value="{!createCompleteAppName}">
+														<apex:actionSupport event="onchange" reRender="modalHeader,modalBody" action="{!checkCreateCompleteAppExistence}" />
+													</apex:inputText>
 												</div>
 											</div>
 
@@ -412,6 +414,8 @@
 
 							<apex:actionPoller action="{!checkDatasetLoadStatus}" reRender="processingStatus,processingLogConsole,messages,form1,form3,vsbButton" enabled="{!processingCreateCompleteApp}" interval="5" id="checkDatasetLoadFunction"/>
 
+							<apex:actionPoller action="{!checkDashboardLoadStatus}" reRender="processingStatus,processingLogConsole,messages,form1,form3,vsbButton" enabled="{!processingCreateCompleteApp}" interval="5" id="checkDashboardLoadFunction"/>
+
 							<!-- Objects Load Panel/Function -->
 							<apex:outputPanel id="loadObjectsPanel">
 								<apex:actionFunction name="loadObjects" action="{!loadAllObjects}" reRender="loadObjectsPanel,form3,processingLogPanel,form1,vsbButton" />
@@ -508,7 +512,7 @@
 
 					var elements = document.getElementsByClassName('processType');
 				
-					if(elements[0].value == "timeShifting" || elements[0].value == "loadObjects"){
+					if(elements[0].value == "timeShifting" || elements[0].value == "loadObjects" || elements[0].value == "createCompleteApp"){
 
 						var modalHeader = document.getElementById('modal-heading-01');
 
