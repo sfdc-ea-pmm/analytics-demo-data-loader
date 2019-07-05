@@ -263,7 +263,7 @@ public with sharing class WaveConfiguratorUtils {
 	public String insertFolder(String appLabel, String folderName) {
         String jsonToPost = '{"label":"' + appLabel + '","name":"' + folderName + '"}';
         HTTPResponse res = WaveConfiguratorUtils.httpCallout('/services/data/v' + this.apiVersion + '/wave/folders', 'POST', true, jsonToPost);
-        System.debug(res);
+        
 		if(!WaveConfiguratorUtils.checkStatus(res)){
             if(res.getBody().containsIgnoreCase('errorCode')){
                 List<RestApiFolderErrorResponse> r = (List<RestApiFolderErrorResponse>)JSON.deserialize(res.getBody(), List<RestApiFolderErrorResponse>.class);

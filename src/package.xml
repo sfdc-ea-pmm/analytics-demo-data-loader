@@ -19,6 +19,8 @@
     <members>GenericAppConfiguration</members>
     <members>HexUtil</members>
     <members>IMockarooHelper</members>
+    <members>LoadDatasetBatch</members>
+    <members>LoadDashboardQueueable</members>
     <members>LoadDatasetQueueable</members>
     <members>LoadEdgemartQueueable</members>
     <members>MetadataService</members>

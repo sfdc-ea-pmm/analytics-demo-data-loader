@@ -43,13 +43,27 @@ public with sharing class LoadDashboardQueueable implements Queueable, Database.
             }
         }
 
+        // Get the dashboard json template. How to generate it? From Chrome's debugger console, network tab to see what is sent when you save a dashboard
+        HttpResponse resJson = WaveConfiguratorUtils.httpGetCallout(this.dashboardToLoad.jsonUrl);
+        String dashboardJsonToSend = resJson.getBody();
+        dashboardJsonToSend = dashboardJsonToSend.replace('{#FolderId}', this.folderId);
+        dashboardJsonToSend = dashboardJsonToSend.replace('{#DashboardName}', dashNameCandidate);
+        for (String datasetName : this.dashboardToLoad.referencedDatasets) {
+            if (this.datasetsMap.containsKey(datasetName)) {
+                WaveApplicationDataset ds = this.datasetsMap.get(datasetName);
+                dashboardJsonToSend = dashboardJsonToSend.replace('{#' + datasetName + '}', ds.nameToSave);
+            }
+        }
+        
         // Dashboard create or update?
         // https://developer.salesforce.com/docs/atlas.en-us.bi_dev_guide_rest.meta/bi_dev_guide_rest/bi_resources_dashboards_id.htm
         if (String.isBlank(dashboardId)) {
             // Create
+            HTTPResponse res = WaveConfiguratorUtils.httpCallout('/services/data/v' + apiVersion + '/wave/dashboards', 'POST', true, dashboardJsonToSend);
         }
         else {
             // Update
+            HTTPResponse res = WaveConfiguratorUtils.httpCallout('/services/data/v' + apiVersion + '/wave/dashboards/' + dashboardId + '?_HttpMethod=PATCH', 'POST', true, dashboardJsonToSend);
         }
     }
 }
