@@ -57,13 +57,22 @@ public with sharing class LoadDashboardQueueable implements Queueable, Database.
         
         // Dashboard create or update?
         // https://developer.salesforce.com/docs/atlas.en-us.bi_dev_guide_rest.meta/bi_dev_guide_rest/bi_resources_dashboards_id.htm
+        HTTPResponse res = null;
         if (String.isBlank(dashboardId)) {
             // Create
-            HTTPResponse res = WaveConfiguratorUtils.httpCallout('/services/data/v' + apiVersion + '/wave/dashboards', 'POST', true, dashboardJsonToSend);
+            res = WaveConfiguratorUtils.httpCallout('/services/data/v' + apiVersion + '/wave/dashboards', 'POST', true, dashboardJsonToSend);
         }
         else {
             // Update
-            HTTPResponse res = WaveConfiguratorUtils.httpCallout('/services/data/v' + apiVersion + '/wave/dashboards/' + dashboardId + '?_HttpMethod=PATCH', 'POST', true, dashboardJsonToSend);
+            res = WaveConfiguratorUtils.httpCallout('/services/data/v' + apiVersion + '/wave/dashboards/' + dashboardId + '?_HttpMethod=PATCH', 'POST', true, dashboardJsonToSend);
+        }
+
+        if(!WaveConfiguratorUtils.checkStatus(res)){
+            if(res.getBody().containsIgnoreCase('errorCode')){
+                List<RestApiErrorResponse> r = (List<RestApiErrorResponse>)JSON.deserialize(res.getBody(), List<RestApiErrorResponse>.class);
+                throw new WaveConfiguratorException('There was an error in the attempt to save the: ' + dashNameCandidate + ' dashboard. Cause: ' + r.get(0).message + '.');
+            }
+            throw new WaveConfiguratorException('There was an error in the attempt to save the: ' + dashNameCandidate + ' dashboard.');
         }
     }
 }
