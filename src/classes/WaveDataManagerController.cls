@@ -68,6 +68,7 @@ public with sharing class WaveDataManagerController {
 	private Map<String, String> folderIdByDatasetDevName; // <dataset developer name in org, folder id where it is stored>
 	private Map<String, String> idsByDatasetDevName; // <dataset developer name in org, dataset id with which it is stored>
 	private Map<String, WaveApplicationDataset> datasetsMap; // <dataset name as it comes from JSON, Dataset object as processed>
+	private Map<String, WaveApplicationDashboard> dashboardsMap; // <dashboard name as it comes from JSON, Dashboard object as processed>
     private Map<String, String> dashboardsIdsByName;
     public String insightsAppName { get; set; }
     public String insightsAppLabel { get; set; }
@@ -1335,6 +1336,7 @@ public with sharing class WaveDataManagerController {
 							WaveApplicationDashboard waDashboard = new WaveApplicationDashboard();
 							waDashboard.name = wmaDash.name;
 							waDashboard.referencedDatasets = wmaDash.referencedDatasets;
+							waDashboard.referencedDashboards = wmaDash.referencedDashboards;
 							waDashboard.jsonUrl = wmaDash.jsonUrl;
 
 							this.dashboardsNodes.add(waDashboard);
@@ -2089,18 +2091,6 @@ public with sharing class WaveDataManagerController {
 								
 								//Now we have to finish or move to next dataset upload
 								if(this.currentDatasetIndex == this.datasetsNodes.size() - 1){
-									// Get Dataset Name, Id mapping
-									List<String> lstDatasetDevNames = new List<String>();
-									for (WaveApplicationDataset ds : this.datasetsNodes) {
-										lstDatasetDevNames.add(ds.nameToSave);
-									}
-									this.idsByDatasetDevName = this.utils.getDatasetIdByDevNameMapping(lstDatasetDevNames);
-									this.datasetsMap = new Map<String, WaveApplicationDataset>();
-									for (WaveApplicationDataset ds : this.datasetsNodes) {
-										ds.Id = this.idsByDatasetDevName.get(ds.nameToSave);
-										this.datasetsMap.put(ds.name, ds);
-									}
-
 									// We are finished loading app datasets, now launch dashboards load
 									this.currentDashboardIndex = 0;
 									this.processingLoadDatasets = false;
@@ -2164,8 +2154,59 @@ public with sharing class WaveDataManagerController {
 	}
 
 	public void processCurrentDashboardLoad(){
+		if (this.currentDashboardIndex == 0) {
+			// Get Dataset Name, Id mapping
+			List<String> lstDatasetDevNames = new List<String>();
+			for (WaveApplicationDataset ds : this.datasetsNodes) {
+				lstDatasetDevNames.add(ds.nameToSave);
+			}
+			this.idsByDatasetDevName = this.utils.getDatasetIdByDevNameMapping(lstDatasetDevNames);
+			this.datasetsMap = new Map<String, WaveApplicationDataset>();
+			for (WaveApplicationDataset ds : this.datasetsNodes) {
+				ds.Id = this.idsByDatasetDevName.get(ds.nameToSave);
+				this.datasetsMap.put(ds.name, ds);
+			}
+			
+			// Load all dashboards so we can get the api names
+			List<StaticResource> srList = [SELECT Body FROM StaticResource WHERE Name = 'BlankDashboardTemplate'];
+			if(srList.size() == 0){
+				throw new WaveConfiguratorException('BlankDashboardTemplate Static Resource not found.');
+			}
+			// We create the dummy dashboards and the Map for storing resulting IDs
+			this.dashboardsIdsByName = new Map<String, String>();
+			String dummyDashboardJson = srList.get(0).Body.toString();
+			dummyDashboardJson = dummyDashboardJson.replace('{#FolderId}', this.createCompleteAppFolderId);
+
+			// Find if there exists dashboard
+			Map<String, String> dashboardFoldersByName = new Map<String, String>();			
+			for (Lens l: [SELECT DeveloperName, FolderId FROM Lens WHERE Type = 'dashboard' AND IsDeleted = false]) {
+				dashboardFoldersByName.put(l.DeveloperName, l.FolderId);
+			}
+
+			Set<String> dashboardNames = dashboardFoldersByName.keySet();
+			this.dashboardsMap = new Map<String, WaveApplicationDashboard>();
+
+			for (WaveApplicationDashboard dash : this.dashboardsNodes) {
+				String dashNameCandidate = dash.name;				
+				if (dashboardFoldersByName.containsKey(dash.name) && !dashboardFoldersByName.get(dash.name).equals(this.createCompleteAppFolderId)) {
+					// Dashboard already exists in the org but contained in another app
+					
+					Integer iSuffix = 0;                
+					while(dashboardNames.contains(dashNameCandidate)){
+						iSuffix++;
+						dashNameCandidate = dash.name + iSuffix;
+					}					
+				}
+
+				dash.nameToSave = dashNameCandidate;
+				String currDashJson = dummyDashboardJson.replace('{#DashboardName}', dash.nameToSave);
+				this.utils.insertDashboard(currDashJson);
+				this.dashboardsMap.put(dash.name, dash);
+			}
+		}
+
 		WaveApplicationDashboard d = this.dashboardsNodes.get(this.currentDashboardIndex);
-		LoadDashboardQueueable dashQueueable = new LoadDashboardQueueable(d, this.datasetsMap, this.createCompleteAppFolderId, genericAppConfiguration.apiVersion, UserInfo.getSessionId());
+		LoadDashboardQueueable dashQueueable = new LoadDashboardQueueable(d, this.datasetsMap, this.dashboardsMap, this.createCompleteAppFolderId, genericAppConfiguration.apiVersion, UserInfo.getSessionId());
 		this.queueProcessId = System.enqueueJob(dashQueueable);
 		this.logMessage('Loading ' + d.name + ' dashboard.');
 	}

@@ -311,4 +311,19 @@ public with sharing class WaveConfiguratorUtils {
             return '';
         }
     }
+
+	public String insertDashboard(String dashboardJson){
+        HTTPResponse res = WaveConfiguratorUtils.httpCallout('/services/data/v' + this.apiVersion + '/wave/dashboards', 'POST', true, dashboardJson);
+        if(!WaveConfiguratorUtils.checkStatus(res)){
+            if(res.getBody().containsIgnoreCase('errorCode')){
+                List<RestApiErrorResponse> r = (List<RestApiErrorResponse>)JSON.deserialize(res.getBody(), List<RestApiErrorResponse>.class);
+                throw new WaveConfiguratorException('Dashboard could not be created. Cause: ' + r.get(0).message + '.');
+            }
+            throw new WaveConfiguratorException('Dashboard could not be created. Check debug logs.');
+        }
+        else {
+            RestApiResponseBody responseBody = (RestApiResponseBody)JSON.deserialize(res.getBody(), RestApiResponseBody.class);
+              return responseBody.id;
+        }
+    }
 }
