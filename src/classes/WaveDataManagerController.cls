@@ -69,7 +69,9 @@ public with sharing class WaveDataManagerController {
 	private Map<String, String> idsByDatasetDevName; // <dataset developer name in org, dataset id with which it is stored>
 	private Map<String, WaveApplicationDataset> datasetsMap; // <dataset name as it comes from JSON, Dataset object as processed>
 	private Map<String, WaveApplicationDashboard> dashboardsMap; // <dashboard name as it comes from JSON, Dashboard object as processed>
-    private Map<String, String> dashboardsIdsByName;
+    private Map<String, String> dashboardImagesMapping;
+	private Map<String, String> dashboardsIdsByName;
+	private WaveApplicationImage referencedImages;
     public String insightsAppName { get; set; }
     public String insightsAppLabel { get; set; }
     public String insightsAppId { get; set; }
@@ -1337,6 +1339,7 @@ public with sharing class WaveDataManagerController {
 							waDashboard.name = wmaDash.name;
 							waDashboard.referencedDatasets = wmaDash.referencedDatasets;
 							waDashboard.referencedDashboards = wmaDash.referencedDashboards;
+							waDashboard.referencedImages = wmaDash.referencedImages;
 							waDashboard.jsonUrl = wmaDash.jsonUrl;
 
 							this.dashboardsNodes.add(waDashboard);
@@ -2144,6 +2147,7 @@ public with sharing class WaveDataManagerController {
 			System.debug(e.getStackTraceString());
 			this.currentDatasetIndex = 0;
 			this.processingLoadDatasets = false;
+			this.processingLoadDashboards = false;
 			this.disabledButton = false;
 			this.createCompleteAppName = '';
 			this.createCompleteAppFolderId = '';
@@ -2203,10 +2207,21 @@ public with sharing class WaveDataManagerController {
 				this.utils.insertDashboard(currDashJson);
 				this.dashboardsMap.put(dash.name, dash);
 			}
+
+			// If there are images to load for dashboards
+			this.dashboardImagesMapping = new Map<String, String>();
+			if(this.selectedAppMetadata.referencedImages != null){
+				this.referencedImages = new WaveApplicationImage();
+				this.referencedImages.type = this.selectedAppMetadata.referencedImages.type;
+				this.referencedImages.names = this.selectedAppMetadata.referencedImages.names;
+				this.referencedImages.zipUrl = this.selectedAppMetadata.referencedImages.zipUrl;
+				
+				this.dashboardImagesMapping = this.utils.insertAnalyticsImages(this.referencedImages);
+			}
 		}
 
 		WaveApplicationDashboard d = this.dashboardsNodes.get(this.currentDashboardIndex);
-		LoadDashboardQueueable dashQueueable = new LoadDashboardQueueable(d, this.datasetsMap, this.dashboardsMap, this.createCompleteAppFolderId, genericAppConfiguration.apiVersion, UserInfo.getSessionId());
+		LoadDashboardQueueable dashQueueable = new LoadDashboardQueueable(d, this.datasetsMap, this.dashboardsMap, this.referencedImages, this.dashboardImagesMapping, this.createCompleteAppFolderId, genericAppConfiguration.apiVersion, UserInfo.getSessionId());
 		this.queueProcessId = System.enqueueJob(dashQueueable);
 		this.logMessage('Loading ' + d.name + ' dashboard.');
 	}
@@ -2285,6 +2300,7 @@ public with sharing class WaveDataManagerController {
 	}
 
 	private void finishCreateCompleteAppProcess(){
+		
 		this.disabledButton = false;
 		this.currentDatasetIndex = 0;
 		this.currentDashboardIndex = 0;
@@ -2299,12 +2315,10 @@ public with sharing class WaveDataManagerController {
 
 		if(this.selectedInstallationProcess == 'createCompleteApp'){
 			this.successMessage = 'The Create App, Datasets and Dashboards process has finished successfully.';
-			WaveConfiguratorUtils.sendEmail(this.emailAddress, 'Create App, Datasets and Dashboards completed successfully', 'The LCreate App, Datasets and Dashboards process of your SDO data has finished successfully.');
+			WaveConfiguratorUtils.sendEmail(this.emailAddress, 'Create App, Datasets and Dashboards completed successfully', 'The Create App, Datasets and Dashboards process of your SDO data has finished successfully.');
 		}
 	}
 
 	// NEXT STEPS:
-	// 1) Load XMD for each dataset - DONE
-	// 2) Start to keep dataset IDs, Labels and Names - DONE
-	// 3) Load dashboards with data collected in step 2
+	// 1) Load images for dashboards
 }

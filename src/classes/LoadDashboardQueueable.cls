@@ -5,15 +5,19 @@ public with sharing class LoadDashboardQueueable implements Queueable, Database.
     private String folderId;
     private WaveApplicationDashboard dashboardToLoad;
     private Map<String, WaveApplicationDataset> datasetsMap;
-    Map<String, WaveApplicationDashboard> dashboardsMap;
+    private Map<String, WaveApplicationDashboard> dashboardsMap;
+    private WaveApplicationImage refImages;
+    private Map<String, String> imgMappingToContent;
 
-    public LoadDashboardQueueable(WaveApplicationDashboard dashboard, Map<String, WaveApplicationDataset> datasetsMap, Map<String, WaveApplicationDashboard> dashboarsMap, String folderId, Double apiVersion, String sessionId) {
+    public LoadDashboardQueueable(WaveApplicationDashboard dashboard, Map<String, WaveApplicationDataset> datasetsMap, Map<String, WaveApplicationDashboard> dashboarsMap, WaveApplicationImage refImages, Map<String, String> imgMappingToContent, String folderId, Double apiVersion, String sessionId) {
         this.dashboardToLoad = dashboard;
 		this.sessionId = sessionId;
         this.apiVersion = apiVersion;
         this.folderId = folderId;
         this.datasetsMap = datasetsMap;
         this.dashboardsMap = dashboarsMap;
+        this.refImages = refImages;
+        this.imgMappingToContent = imgMappingToContent;
     }
 
     public void execute(QueueableContext context) {
@@ -37,6 +41,19 @@ public with sharing class LoadDashboardQueueable implements Queueable, Database.
                 if (this.dashboardsMap.containsKey(dashName)) {
                     WaveApplicationDashboard dash = this.dashboardsMap.get(dashName);
                     dashboardJsonToSend = dashboardJsonToSend.replace('{#' + dashName + '}', dash.nameToSave);
+                }
+            }
+        }
+
+        if (this.dashboardToLoad.referencedImages != null && this.refImages != null) {
+            
+            String imgType = this.refImages.type;            
+
+            for (String imgName : this.dashboardToLoad.referencedImages) {
+                String key = imgName + '.' + imgType; // PathOnClient
+                if (this.imgMappingToContent.containsKey(key)) {
+                    String contentDocId = this.imgMappingToContent.get(key);
+                    dashboardJsonToSend = dashboardJsonToSend.replace('{#' + imgName + '}', contentDocId);
                 }
             }
         }

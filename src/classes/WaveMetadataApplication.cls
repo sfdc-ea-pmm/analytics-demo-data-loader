@@ -10,4 +10,5 @@ public virtual class WaveMetadataApplication {
 	public List<WaveMetadataApplicationActionField> actionFieldOverrides;
 	public List<WaveMetadataApplicationDataset> datasets;
 	public List<WaveMetadataApplicationDashboard> dashboards;
+	public WaveMetadataApplicationImage referencedImages;
 }

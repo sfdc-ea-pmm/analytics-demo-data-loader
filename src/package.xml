@@ -61,6 +61,7 @@
     <members>WaveMetadataApplicationDashboard</members>
     <members>WaveMetadataApplicationDataset</members>
     <members>WaveMetadataApplicationEdgemart</members>
+    <members>WaveMetadataApplicationImage</members>
     <members>WaveMetadataApplicationObject</members>
     <members>WaveMetadataApplicationObjectRelation</members>
     <members>WaveMetadataCompositeForeignKeyPart</members>

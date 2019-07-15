@@ -182,6 +182,21 @@ public with sharing class WaveConfiguratorUtils {
         return res.getBodyAsBlob();
 	}
 
+	public Blob getUrlContentsAsBlob(String fileUrl){
+		Http http = new Http();
+		HttpRequest req = new HttpRequest();
+		req.setEndpoint(fileUrl);
+        req.setMethod('GET');
+
+        HTTPResponse res = http.send(req);
+        
+        if(!WaveConfiguratorUtils.checkStatus(res)){
+			throw new WaveConfiguratorException('Error ' + res.getStatusCode() + ' - ' + res.getStatus() + ' in getUrlContentsAsBlob().');
+		}
+
+        return res.getBodyAsBlob();
+	}
+
 	public void uploadUsersPhotos(String zipFileUrl){
 
 		Map<String,Blob> photosToQuery = new Map<String,Blob>();
@@ -325,5 +340,40 @@ public with sharing class WaveConfiguratorUtils {
             RestApiResponseBody responseBody = (RestApiResponseBody)JSON.deserialize(res.getBody(), RestApiResponseBody.class);
               return responseBody.id;
         }
+    }
+
+	public Map<String, String> insertAnalyticsImages(WaveApplicationImage imgObject){
+        Blob file = this.getUrlContentsAsBlob(imgObject.zipUrl);
+		Zippex zip = new Zippex(file);
+		List<ContentVersion> lContentVersions = new List<ContentVersion>();		
+
+		for(String fileName: zip.getFileNames()){
+			System.debug(fileName);
+			Blob image = zip.getFile(fileName);
+			
+			if(!fileName.contains('/')){
+				ContentVersion cv = new ContentVersion();
+				cv.IsAssetEnabled = true;
+				cv.Title = fileName;
+				cv.PathOnClient = fileName;
+				cv.VersionData = EncodingUtil.base64Decode(EncodingUtil.base64Encode(image));
+				lContentVersions.add(cv);	
+			}
+		}
+		
+		// DML
+		insert lContentVersions;
+		List<String> lstIdsCv = new List<String>();
+		for (ContentVersion c: lContentVersions) {
+			lstIdsCv.add(c.Id);
+		}
+
+		Map<String, String> mapping = new Map<String, String>();
+		List<ContentVersion> lSavedContentVersions = [SELECT PathOnClient, ContentDocumentId FROM ContentVersion WHERE Id IN :lstIdsCv];
+		for (ContentVersion newCv : lSavedContentVersions) {
+			mapping.put(newCv.PathOnClient, newCv.ContentDocumentId);
+		}
+
+		return mapping;
     }
 }
