@@ -2191,20 +2191,29 @@ public with sharing class WaveDataManagerController {
 			this.dashboardsMap = new Map<String, WaveApplicationDashboard>();
 
 			for (WaveApplicationDashboard dash : this.dashboardsNodes) {
-				String dashNameCandidate = dash.name;				
-				if (dashboardFoldersByName.containsKey(dash.name) && !dashboardFoldersByName.get(dash.name).equals(this.createCompleteAppFolderId)) {
-					// Dashboard already exists in the org but contained in another app
+				
+				dash.nameToSave = dash.name;
+
+				if (!dashboardFoldersByName.containsKey(dash.name) || (dashboardFoldersByName.containsKey(dash.name) && !dashboardFoldersByName.get(dash.name).equals(this.createCompleteAppFolderId))) {
 					
-					Integer iSuffix = 0;                
-					while(dashboardNames.contains(dashNameCandidate)){
-						iSuffix++;
-						dashNameCandidate = dash.name + iSuffix;
-					}					
+					// Have to create new dashboard
+					
+					if (dashboardFoldersByName.containsKey(dash.name) && !dashboardFoldersByName.get(dash.name).equals(this.createCompleteAppFolderId)) {
+						// Dashboard already exists in the org but contained in another app. Need to find new name for it
+						String dashNameCandidate = dash.name;
+						Integer iSuffix = 0;                
+						while(dashboardNames.contains(dashNameCandidate)){
+							iSuffix++;
+							dashNameCandidate = dash.name + iSuffix;
+						}
+
+						dash.nameToSave = dashNameCandidate;
+					}
+
+					String currDashJson = dummyDashboardJson.replace('{#DashboardName}', dash.nameToSave);
+					this.utils.insertDashboard(currDashJson);
 				}
 
-				dash.nameToSave = dashNameCandidate;
-				String currDashJson = dummyDashboardJson.replace('{#DashboardName}', dash.nameToSave);
-				this.utils.insertDashboard(currDashJson);
 				this.dashboardsMap.put(dash.name, dash);
 			}
 
