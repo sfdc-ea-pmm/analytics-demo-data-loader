@@ -44,7 +44,7 @@
 					</span>
 		        </div>
 		        <div class="slds-media__body">
-		            <h1 class="slds-page-header__title slds-truncate slds-align-middle" title="Rohde Corp - 80,000 Widgets">Analytics Demo Data Tool</h1>
+		            <h1 class="slds-page-header__title slds-truncate slds-align-middle" title="Rohde Corp - 80,000 Widgets">Analytics Demo Data Tool - v1.61</h1>
 		            <p class="slds-text-body_small slds-line-height_reset">Saleforce Einstein Analytics Demo Data Loader</p>
 		        </div>
 		    </div>
@@ -169,7 +169,7 @@
 						   				<div class="slds-select_container">
 								   			<apex:selectList styleClass="slds-select processType" value="{!selectedInstallationProcess}" size="1" id="processType">
 												<apex:selectOptions value="{!availableProcesses}"/>
-								   				<apex:actionSupport event="onchange" rerender="vsbButton,emailNotification,loadEdgemartsPanel,setActionFieldsPanel,createCompleteAppPanel,timeShiftingValue,form1,modalHeader,modalBody" action="{!selectedProcess}" onsubmit="disableRunButton()"/>
+								   				<apex:actionSupport event="onchange" rerender="vsbButton,emailNotification,loadEdgemartsPanel,setActionFieldsPanel,createCompleteAppPanel,loadDatasetsToExistingAppPanel,timeShiftingValue,form1,modalHeader,modalBody" action="{!selectedProcess}" onsubmit="disableRunButton()"/>
 								   			</apex:selectList>
 							   			</div>
 						   			</div>
@@ -291,6 +291,23 @@
 													<apex:inputText styleClass="slds-input" id="appName" value="{!createCompleteAppName}">
 														<apex:actionSupport event="onchange" reRender="modalHeader,modalBody" action="{!checkCreateCompleteAppExistence}" />
 													</apex:inputText>
+												</div>
+											</div>
+
+							   			</apex:outputPanel>
+									</apex:outputPanel>
+
+									<apex:outputPanel id="loadDatasetsToExistingAppPanel" >
+										<apex:outputPanel rendered="{!selectedInstallationProcess = 'loadDatasetsToExistingApp'}">
+
+											<div class="slds-m-top_small">
+												<label class="slds-form-element__label" for="appInstalled">Select your already installed analytics App (NOTE: This will overwrite existing datasets):</label>
+												<div class="slds-form-element__control ">
+													<div class="slds-select_container">
+														<apex:selectList styleClass="slds-select" value="{!handleCompleteAppFolderId}" size="1" id="appFolder">
+															<apex:selectOptions value="{!orgAnalyticsFolders}"/>
+														</apex:selectList>
+													</div>
 												</div>
 											</div>
 

@@ -3,7 +3,6 @@ private class WaveDataManager_test {
 
 	private static MultiStaticResourceCalloutMock createStaticResources(){
 		MultiStaticResourceCalloutMock multimock = new MultiStaticResourceCalloutMock();
-		
 		String appsMetadataUrl = 'https://s3-us-west-2.amazonaws.com/ac-sdo-repo-dev/WaveApplications.csv';
 		String simpleAppJsonUrl = 'https://s3-us-west-2.amazonaws.com/ac-sdo-repo-dev/simple/Simple.json';
 		String accountsMetadataUrl = 'https://s3-us-west-2.amazonaws.com/ac-sdo-repo-dev/simple/Account_metadata.csv';
@@ -31,7 +30,7 @@ private class WaveDataManager_test {
 		multimock.setHeader('Content-Type', 'text/plain');
 
 		return multimock; 
-	}	
+	}
 	@isTest static void basicControllerTest() {
 
 		SmartLookup sm = new SmartLookup(0, 'User');
@@ -207,17 +206,21 @@ private class WaveDataManager_test {
 	}
 	
 	@isTest static void checktimeShiftingStatusTest(){
-		MultiStaticResourceCalloutMock multimock = createStaticResources(); 
-
-		WaveDataManagerController cnt = new WaveDataManagerController();
-
+        
+        MultiStaticResourceCalloutMock multimock = createStaticResources(); 
 		Test.setMock(HttpCalloutMock.class, multimock);
+        
+        MetadataServiceWebServiceMockImpl mock = new MetadataServiceWebServiceMockImpl();
+		Test.setMock(WebServiceMock.class, mock);
+        
+		WaveDataManagerController cnt = new WaveDataManagerController();
 		cnt.pageLoad();
 
 		cnt.selectedWaveApp = 'Simple';
 
 		cnt.selectedInstallationProcess = 'timeShifting';
-
+		cnt.updateSelectedObjectsToTimeShift();
+        
 		Test.startTest();
         cnt.selectAppMetadata();
 		cnt.executeSelectedProcess();
@@ -229,7 +232,7 @@ private class WaveDataManager_test {
 	@isTest static void timeShiftingTestServices(){
 		List<String> dateFieldNames = new List<String>();
 		dateFieldNames.add('CreatedDate__c');
-
+		
 		Case cs = new Case();
 		SObject caseToTest = cs.getSObjectType().newSObject();
 		caseToTest.put('Subject', 'TestCase');
@@ -237,7 +240,7 @@ private class WaveDataManager_test {
 		caseToTest.put('Priority', 'Medium');
 		caseToTest.put('Origin', 'Email');
 		caseToTest.put('CreatedDate__c', DateTime.now().addDays(-5));
-
+		
 		//Case cas = new Case(Subject='TestCase', Status ='Closed', Priority = 'Medium', Origin = 'Email', CreatedDate__c = DateTime.now().addDays(-5));
         insert caseToTest;
 
@@ -247,7 +250,6 @@ private class WaveDataManager_test {
 		Test.stopTest();
 	}
 
-
 	@isTest static void timeShiftingTestSales(){
 		List<String> dateFieldNames = new List<String>();
 		dateFieldNames.add('DateTimeCreated__c'); //Type DateTime
@@ -255,7 +257,7 @@ private class WaveDataManager_test {
 		
 		Account acc = new Account(Name = 'TestAccount', Description = 'Test Account Desc');
 		insert acc;
-
+		
 		Opportunity opp = new Opportunity(); 
 		SObject opptyToTest = opp.getSObjectType().newSObject();
 		opptyToTest.put('AccountId', acc.Id);
@@ -305,10 +307,14 @@ private class WaveDataManager_test {
 	}
 
 	@isTest static void executeSelectedProcessTest(){
-		WaveDataManagerController cnt = new WaveDataManagerController();
-		MultiStaticResourceCalloutMock multimock = createStaticResources(); 
-
+        MultiStaticResourceCalloutMock multimock = createStaticResources(); 
 		Test.setMock(HttpCalloutMock.class, multimock);
+        
+        MetadataServiceWebServiceMockImpl mock = new MetadataServiceWebServiceMockImpl();
+		Test.setMock(WebServiceMock.class, mock);
+        
+		WaveDataManagerController cnt = new WaveDataManagerController();
+        
 		cnt.pageLoad();
 		cnt.selectedWaveApp = 'Simple';
         
@@ -317,6 +323,27 @@ private class WaveDataManager_test {
 		
 		cnt.selectedInstallationProcess = 'timeShifting';
 		cnt.executeSelectedProcess();
+        
+        cnt.selectedInstallationProcess = 'setActionFields';
+		cnt.executeSelectedProcess();
+        
+        cnt.selectedInstallationProcess = 'loadEdgemarts';
+		cnt.executeSelectedProcess();
+        
+        cnt.selectedInstallationProcess = 'setActionFields';
+        cnt.selectedDataflowForActionFields = 'selectedDataflowForActionFields';
+		cnt.executeSelectedProcess();
+        
+        //negative
+        cnt.selectedInstallationProcess = 'createCompleteApp';
+		cnt.executeSelectedProcess();
+        
+        //positive
+		cnt.createCompleteAppName = 'createCompleteAppName';
+        cnt.createCompleteAppLabel = 'createCompleteAppLabel';
+        cnt.selectedInstallationProcess = 'createCompleteApp';
+		cnt.executeSelectedProcess();
+        
 	}
 
 	@isTest static void loadObjectsThroughChoosingProcess(){
@@ -403,7 +430,230 @@ private class WaveDataManager_test {
 
 		System.assert(availableProcesses.size() > 0);
 	}
+    
+    @isTest static void getOrgDataflowsTest(){
+        WaveDataManagerController cnt = new WaveDataManagerController();
+        List<SelectOption> options = new List<SelectOption>();
+        
+        Test.startTest();
+        options = cnt.getOrgDataflows();
+        Test.stopTest();
+        
+        System.assert(!options.isEmpty());
+    }
+    
+    @isTest static void getOrgAnalyticsAppsTest(){
+        WaveDataManagerController cnt = new WaveDataManagerController();
+        List<SelectOption> options = new List<SelectOption>();
+        
+        Test.startTest();
+        options = cnt.getOrgAnalyticsApps();
+        Test.stopTest();
+        
+        System.assert(!options.isEmpty());
+    }
+    
+    @isTest static void selectedProcessTestTimeShifting(){
+        MultiStaticResourceCalloutMock multimock = createStaticResources(); 
+		Test.setMock(HttpCalloutMock.class, multimock);
+        
+        MetadataServiceWebServiceMockImpl mock = new MetadataServiceWebServiceMockImpl();
+		Test.setMock(WebServiceMock.class, mock);
+        
+        WaveDataManagerController cnt = new WaveDataManagerController();
+        cnt.pageLoad();
+        
+        //first path
+        cnt.selectedWaveApp = 'Simple';
+        cnt.selectedInstallationProcess = 'timeShifting';
+        
+        Test.startTest();
+        cnt.selectedProcess();
+        Test.stopTest();
+		
+        
+    }
+    
+    @isTest static void selectedProcessTestLoadObjects(){
+        MultiStaticResourceCalloutMock multimock = createStaticResources(); 
+		Test.setMock(HttpCalloutMock.class, multimock);
+        
+        MetadataServiceWebServiceMockImpl mock = new MetadataServiceWebServiceMockImpl();
+		Test.setMock(WebServiceMock.class, mock);
+        
+        WaveDataManagerController cnt = new WaveDataManagerController();
+        cnt.pageLoad();
+        
+        //second path
+        cnt.selectedWaveApp = 'Simple';
+        cnt.selectedInstallationProcess = 'loadObjects';
+        
+        Test.startTest();
+        cnt.selectedProcess();
+        Test.stopTest();
+        
+    }
+    
+    @isTest static void selectedProcessTest(){
+        MultiStaticResourceCalloutMock multimock = createStaticResources(); 
+		Test.setMock(HttpCalloutMock.class, multimock);
+        
+        MetadataServiceWebServiceMockImpl mock = new MetadataServiceWebServiceMockImpl();
+		Test.setMock(WebServiceMock.class, mock);
+        
+        WaveDataManagerController cnt = new WaveDataManagerController();
+        cnt.pageLoad();
+        
+        //third path
+        cnt.selectedWaveApp = 'Simple';
+        cnt.selectedInstallationProcess = 'setActionFields';
+        
+        Test.startTest();
+        cnt.selectedProcess();
+		//this.selectedAppMetadata.actionFieldOverrides is null
+		cnt.checkMetadataCreationStatus();
+        Test.stopTest();
+        
+    }
+    
+    @isTest static void saveSettingTest(){
+        WaveDataManagerController cnt = new WaveDataManagerController();
+        
+        Test.startTest();
+        cnt.saveSetting();
+        Test.stopTest();
+    }
+    
+    @isTest static void selectedAppTest(){
+        MultiStaticResourceCalloutMock multimock = createStaticResources(); 
+		Test.setMock(HttpCalloutMock.class, multimock);
+        
+        MetadataServiceWebServiceMockImpl mock = new MetadataServiceWebServiceMockImpl();
+		Test.setMock(WebServiceMock.class, mock);
+        
+        WaveDataManagerController cnt = new WaveDataManagerController();
+        cnt.selectedWaveApp = 'Simple';
+        
+        cnt.pageLoad();
+        
+        Test.startTest();
+        cnt.selectedApp();
+        Test.stopTest();
+    }
+    
+    @isTest static void checkCreateCompleteAppExistenceTest(){
+        WaveDataManagerController cnt = new WaveDataManagerController();
+        
+        Test.startTest();
+        cnt.checkCreateCompleteAppExistence();
+        Test.stopTest();
+    }
+    
+    @isTest static void buildConfirmationModalGenericTest(){
+        WaveDataManagerController cnt = new WaveDataManagerController();
+        String modalHeader = 'Test modalheader';
+        String modalBody = 'Test modalBody';
+        
+        Test.startTest();
+        cnt.buildConfirmationModalGeneric(modalHeader, modalBody);
+        Test.stopTest();
+    }
+    
+    @isTest static void updateSelectedObjectsToTimeShiftTest(){
+		MultiStaticResourceCalloutMock multimock = createStaticResources(); 
+		Test.setMock(HttpCalloutMock.class, multimock);
+        
+        MetadataServiceWebServiceMockImpl mock = new MetadataServiceWebServiceMockImpl();
+		Test.setMock(WebServiceMock.class, mock);
+        
+        WaveDataManagerController cnt = new WaveDataManagerController();
+        cnt.selectedWaveApp = 'Simple';
+        cnt.pageLoad();
 
+        Test.startTest();
+        cnt.updateSelectedObjectsToTimeShift();
+        Test.stopTest();
+        
+    }
+    
+    @isTest static void finishPrepCoreDataTest(){
+        WaveDataManagerController cnt = new WaveDataManagerController();
+        
+        Test.startTest();
+        cnt.finishPrepCoreData();
+        Test.stopTest();
+    }
+    
+    @isTest static void createPermissionSetTest(){
+        MultiStaticResourceCalloutMock multimock = createStaticResources(); 
+		Test.setMock(HttpCalloutMock.class, multimock);
+        
+        MetadataServiceWebServiceMockImpl mock = new MetadataServiceWebServiceMockImpl();
+		Test.setMock(WebServiceMock.class, mock);
+        
+        WaveDataManagerController cnt = new WaveDataManagerController();
+        
+        Test.startTest();
+        cnt.checkMetadataCreationStatus();
+        Test.stopTest();
+    }
+    
+    @isTest static void checkTimeShiftingStatusTestError(){
+		MultiStaticResourceCalloutMock multimock = createStaticResources(); 
+		WaveDataManagerController cnt = new WaveDataManagerController();
+
+		Test.setMock(HttpCalloutMock.class, multimock);
+		cnt.pageLoad();
+
+		cnt.selectedWaveApp = 'Simple';
+		cnt.selectedInstallationProcess = 'loadObjects';
+		
+		cnt.executeSelectedProcess();
+		cnt.loadAllObjects();
+        
+		Test.startTest();
+		cnt.checkTimeShiftingStatus();
+		Test.stopTest();
+	}
+    
+    @isTest static void checkRecordTypeCreationStatusTest(){
+		MultiStaticResourceCalloutMock multimock = createStaticResources(); 
+		WaveDataManagerController cnt = new WaveDataManagerController();
+
+		Test.setMock(HttpCalloutMock.class, multimock);
+		cnt.pageLoad();
+
+		cnt.selectedWaveApp = 'Simple';
+        cnt.selectedInstallationProcess = 'loadObjects';
+        cnt.selectedProcess();
+        
+        
+		cnt.loadAllObjects();
+        cnt.checkDashboardLoadStatus();
+        
+        cnt.processingRecordTypes = True;
+        cnt.executeSelectedProcess();
+        
+		Test.startTest();
+		cnt.checkRecordTypeCreationStatus();
+		Test.stopTest();
+	}
+    
+    @isTest static void createCompleteAppTest(){
+        MultiStaticResourceCalloutMock multimock = createStaticResources(); 
+		Test.setMock(HttpCalloutMock.class, multimock);
+        
+        MetadataServiceWebServiceMockImpl mock = new MetadataServiceWebServiceMockImpl();
+		Test.setMock(WebServiceMock.class, mock);
+        
+        WaveDataManagerController cnt = new WaveDataManagerController();
+        
+        Test.startTest();
+        cnt.handleCompleteApp(true);
+        Test.stopTest();
+    }
+    
+    
 	public class MetadataServiceWebServiceMockImpl implements WebServiceMock 
 	{
 		public Map<String, List<String>> filePropertiesFullNames;

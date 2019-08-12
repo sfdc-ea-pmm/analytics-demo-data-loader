@@ -75,7 +75,7 @@ public with sharing class WaveDataManagerController {
     public String insightsAppName { get; set; }
     public String insightsAppLabel { get; set; }
     public String insightsAppId { get; set; }
-	public String createCompleteAppFolderId { get; set; }
+	public String handleCompleteAppFolderId { get; set; }
 	public List<WaveApplicationDataset> datasetsNodes { get; set; }
 	public Boolean processingLoadDatasets { get; set; }
 	public Boolean processingLoadDashboards { get; set; }
@@ -277,7 +277,7 @@ public with sharing class WaveDataManagerController {
 		*/		
 
 		if (this.selectedAppMetadata != null) {
-			// Options to work with SDO Objects
+			// Options to work with ORG Objects
 			if (this.selectedAppMetadata.objects != null && this.selectedAppMetadata.objects.size() > 0) {
 				options.add(new SelectOption('loadObjects', 'Load Data into Core'));
 				options.add(new SelectOption('createMetadata', 'Create Objects and Fields'));
@@ -295,6 +295,10 @@ public with sharing class WaveDataManagerController {
 
 			if ((this.selectedAppMetadata.datasets != null && this.selectedAppMetadata.datasets.size() > 0) || (this.selectedAppMetadata.dashboards != null && this.selectedAppMetadata.dashboards.size() > 0)) {
 				options.add(new SelectOption('createCompleteApp', 'Create App, Datasets and Dashboards'));
+			}
+
+			if ((this.selectedAppMetadata.datasets != null && this.selectedAppMetadata.datasets.size() > 0)) {
+				options.add(new SelectOption('loadDatasetsToExistingApp', 'Load Datasets into existing app'));
 			}
 
 			if (options.size() > 0) {
@@ -326,6 +330,19 @@ public with sharing class WaveDataManagerController {
         List<InsightsApplication> lstApps = [SELECT Id, MasterLabel FROM InsightsApplication WHERE DeveloperName NOT IN ('WAVE_PUBLIC_DATAFLOWS', 'SharedApp')];
 		for(InsightsApplication apptem: lstApps) {
 			options.add(new SelectOption(apptem.Id, apptem.MasterLabel));
+		}
+
+        return options;
+    }
+
+	public List<SelectOption> getOrgAnalyticsFolders() {
+        
+        List<SelectOption> options = new List<SelectOption>();
+		options.add(new SelectOption('', 'None')); // Empty item
+
+        List<Folder> lstApps = [SELECT Id, Name FROM Folder WHERE Type = 'Insights' AND Name NOT IN ('WavePublicDataflowsLabel', 'Einstein Bots', 'Einstein Forecasting')];
+		for(Folder apptem: lstApps) {
+			options.add(new SelectOption(apptem.Id, apptem.Name));
 		}
 
         return options;
@@ -823,7 +840,7 @@ public with sharing class WaveDataManagerController {
 
 		if(this.selectedInstallationProcess == 'timeShifting'){
 			this.successMessage = 'The Time Shifting process has finished successfully.';
-			WaveConfiguratorUtils.sendEmail(this.emailAddress, 'Time Shifting completed successfully', 'The Time Shifting process of your SDO data has finished successfully.');
+			WaveConfiguratorUtils.sendEmail(this.emailAddress, 'Time Shifting completed successfully', 'The Time Shifting process of your ORG data has finished successfully.');
 		}
 	}
 
@@ -1346,7 +1363,41 @@ public with sharing class WaveDataManagerController {
 						}
 					}
 
-					createCompleteApp();
+					handleCompleteApp(true);
+				}
+			}
+			else if(this.selectedInstallationProcess == 'loadDatasetsToExistingApp'){
+				this.resetMessages();
+				
+				// Start with validations
+				if(String.isBlank(this.handleCompleteAppFolderId)){
+					passedValidation = false;
+					this.warningMessage = 'An Analytics Application name must be selected.';
+				}
+
+				if (passedValidation) {
+					this.disabledButton = true;
+					this.selectAppMetadata();
+					this.datasetsNodes.clear();
+					this.dashboardsNodes.clear();
+
+					if(this.selectedAppMetadata.datasets != null){
+						
+						for(WaveMetadataApplicationDataset wmaEdg: this.selectedAppMetadata.datasets) {
+							
+							WaveApplicationDataset waDataset = new WaveApplicationDataset();
+							waDataset.name = wmaEdg.name;
+							waDataset.label = wmaEdg.label;
+							waDataset.jsonSchemaUrl = wmaEdg.jsonSchemaUrl;
+							waDataset.csvDataUrl = wmaEdg.csvDataUrl;
+							waDataset.xmdUrl = wmaEdg.xmdUrl;
+							waDataset.dataParts = wmaEdg.dataParts;
+
+							this.datasetsNodes.add(waDataset);
+						}
+					}
+
+					handleCompleteApp(false);
 				}
 			}
 		}
@@ -1487,7 +1538,7 @@ public with sharing class WaveDataManagerController {
 
 		if(this.selectedInstallationProcess == 'loadEdgemarts'){
 			this.successMessage = 'The Load Datasets process has finished successfully.';
-			WaveConfiguratorUtils.sendEmail(this.emailAddress, 'Load Datasets completed successfully', 'The Load Datasets process of your SDO data has finished successfully.');
+			WaveConfiguratorUtils.sendEmail(this.emailAddress, 'Load Datasets completed successfully', 'The Load Datasets process of your ORG data has finished successfully.');
 		}
 	}	
 
@@ -1981,7 +2032,7 @@ public with sharing class WaveDataManagerController {
 		}
 	}
 
-	public void createCompleteApp(){
+	public void handleCompleteApp(Boolean createApp){
 		// Check if there are datasets to load
 		if (this.datasetsNodes.size() == 0 && this.dashboardsNodes.size() == 0) {
 			// We DON'T have datasets or dashboards to process
@@ -1991,25 +2042,30 @@ public with sharing class WaveDataManagerController {
 			this.processingLoadDashboards = false;
 		}
 		else {
-			// 1st, create app
-			if(!this.utils.folderExists(this.createCompleteAppName)){
-				this.createCompleteAppFolderId = this.utils.insertFolder(this.createCompleteAppLabel, this.createCompleteAppName);
+			if (createApp) {
+				// 1st, create app
+				if(!this.utils.folderExists(this.createCompleteAppName)){
+					this.handleCompleteAppFolderId = this.utils.insertFolder(this.createCompleteAppLabel, this.createCompleteAppName);
+				}
+				else {
+					this.handleCompleteAppFolderId = this.utils.getFolderIdByDevName(this.createCompleteAppName);
+				}
+
+				// At this point we should have an InsightsApplication object created in the org with FolderId = this.handleCompleteAppFolderId
+				this.insightsAppId = this.utils.getAnalyticsAppIdByDevName(this.createCompleteAppName);
 			}
 			else {
-				this.createCompleteAppFolderId = this.utils.getFolderIdByDevName(this.createCompleteAppName);
+				this.insightsAppId = this.utils.getAnalyticsAppIdByFolderId(this.handleCompleteAppFolderId);
 			}
-			
-			// At this point we should have an InsightsApplication object created in the org with FolderId = this.createCompleteAppFolderId
-			this.insightsAppId = this.utils.getAnalyticsAppIdByDevName(this.createCompleteAppName);
 
 			this.getDatasetMappingToFolderId();
-
+			
 			// Need to define dataset developer names
 			for (WaveApplicationDataset ds : this.datasetsNodes) {
 				// As default, we try to use it as it comes from config
 				ds.nameToSave = ds.name;
 				
-				if (this.folderIdByDatasetDevName.containsKey(ds.name) && !this.folderIdByDatasetDevName.get(ds.name).equalsIgnoreCase(this.createCompleteAppFolderId)) {
+				if (this.folderIdByDatasetDevName.containsKey(ds.name) && !this.folderIdByDatasetDevName.get(ds.name).equalsIgnoreCase(this.handleCompleteAppFolderId)) {
 					// The dataset already exists in the org but it is contained in another app, need to generate new name
 					Integer iSuffix = 0;
                     String edgNameCandidate = ds.Name;
@@ -2020,7 +2076,7 @@ public with sharing class WaveDataManagerController {
 					
 					ds.nameToSave = edgNameCandidate;
 				}
-			}
+			}			
 
 			if(this.datasetsNodes.size() > 0){
 				this.currentDatasetIndex = 0;
@@ -2076,7 +2132,7 @@ public with sharing class WaveDataManagerController {
 							this.processingLoadDatasets = false;
 							this.disabledButton = false;
 							this.createCompleteAppName = '';
-							this.createCompleteAppFolderId = '';
+							this.handleCompleteAppFolderId = '';
 							this.insightsAppId = '';
 						}
 						else {
@@ -2094,11 +2150,21 @@ public with sharing class WaveDataManagerController {
 								
 								//Now we have to finish or move to next dataset upload
 								if(this.currentDatasetIndex == this.datasetsNodes.size() - 1){
-									// We are finished loading app datasets, now launch dashboards load
-									this.currentDashboardIndex = 0;
+									
+									// We are finished loading app datasets
 									this.processingLoadDatasets = false;
-									this.processingLoadDashboards = true;
-									this.processCurrentDashboardLoad();
+
+									if (this.selectedInstallationProcess.equals('createCompleteApp')) {
+										// Creating complete app, now launch dashboards load
+										this.currentDashboardIndex = 0;
+										this.processingLoadDatasets = false;
+										this.processingLoadDashboards = true;
+										this.processCurrentDashboardLoad();	
+									}
+									else if(this.selectedInstallationProcess.equals('loadDatasetsToExistingApp')){
+										// Only loading datasets into existing app, finish
+										this.finishHandleCompleteAppProcess();
+									}
 								}
 								else {
 									// Not finished yet, move to next dataset upload
@@ -2112,7 +2178,7 @@ public with sharing class WaveDataManagerController {
 								this.processingLoadDatasets = false;
 								this.disabledButton = false;
 								this.createCompleteAppName = '';
-								this.createCompleteAppFolderId = '';
+								this.handleCompleteAppFolderId = '';
 								this.insightsAppId = '';
 							}
 						}
@@ -2123,7 +2189,7 @@ public with sharing class WaveDataManagerController {
 						this.processingLoadDatasets = false;
 						this.disabledButton = false;
 						this.createCompleteAppName = '';
-						this.createCompleteAppFolderId = '';
+						this.handleCompleteAppFolderId = '';
 						this.insightsAppId = '';
 					}
 					else if(asyncJob.Status == 'Failed'){
@@ -2135,7 +2201,7 @@ public with sharing class WaveDataManagerController {
 						this.processingLoadDatasets = false;
 						this.disabledButton = false;
 						this.createCompleteAppName = '';
-						this.createCompleteAppFolderId = '';
+						this.handleCompleteAppFolderId = '';
 						this.insightsAppId = '';
 					}
 				}
@@ -2150,7 +2216,7 @@ public with sharing class WaveDataManagerController {
 			this.processingLoadDashboards = false;
 			this.disabledButton = false;
 			this.createCompleteAppName = '';
-			this.createCompleteAppFolderId = '';
+			this.handleCompleteAppFolderId = '';
 			this.insightsAppId = '';
 		}
 
@@ -2179,7 +2245,7 @@ public with sharing class WaveDataManagerController {
 			// We create the dummy dashboards and the Map for storing resulting IDs
 			this.dashboardsIdsByName = new Map<String, String>();
 			String dummyDashboardJson = srList.get(0).Body.toString();
-			dummyDashboardJson = dummyDashboardJson.replace('{#FolderId}', this.createCompleteAppFolderId);
+			dummyDashboardJson = dummyDashboardJson.replace('{#FolderId}', this.handleCompleteAppFolderId);
 
 			// Find if there exists dashboard
 			Map<String, String> dashboardFoldersByName = new Map<String, String>();			
@@ -2194,11 +2260,11 @@ public with sharing class WaveDataManagerController {
 				
 				dash.nameToSave = dash.name;
 
-				if (!dashboardFoldersByName.containsKey(dash.name) || (dashboardFoldersByName.containsKey(dash.name) && !dashboardFoldersByName.get(dash.name).equals(this.createCompleteAppFolderId))) {
+				if (!dashboardFoldersByName.containsKey(dash.name) || (dashboardFoldersByName.containsKey(dash.name) && !dashboardFoldersByName.get(dash.name).equals(this.handleCompleteAppFolderId))) {
 					
 					// Have to create new dashboard
 					
-					if (dashboardFoldersByName.containsKey(dash.name) && !dashboardFoldersByName.get(dash.name).equals(this.createCompleteAppFolderId)) {
+					if (dashboardFoldersByName.containsKey(dash.name) && !dashboardFoldersByName.get(dash.name).equals(this.handleCompleteAppFolderId)) {
 						// Dashboard already exists in the org but contained in another app. Need to find new name for it
 						String dashNameCandidate = dash.name;
 						Integer iSuffix = 0;                
@@ -2230,7 +2296,7 @@ public with sharing class WaveDataManagerController {
 		}
 
 		WaveApplicationDashboard d = this.dashboardsNodes.get(this.currentDashboardIndex);
-		LoadDashboardQueueable dashQueueable = new LoadDashboardQueueable(d, this.datasetsMap, this.dashboardsMap, this.referencedImages, this.dashboardImagesMapping, this.createCompleteAppFolderId, genericAppConfiguration.apiVersion, UserInfo.getSessionId());
+		LoadDashboardQueueable dashQueueable = new LoadDashboardQueueable(d, this.datasetsMap, this.dashboardsMap, this.referencedImages, this.dashboardImagesMapping, this.handleCompleteAppFolderId, genericAppConfiguration.apiVersion, UserInfo.getSessionId());
 		this.queueProcessId = System.enqueueJob(dashQueueable);
 		this.logMessage('Loading ' + d.name + ' dashboard.');
 	}
@@ -2254,14 +2320,14 @@ public with sharing class WaveDataManagerController {
 							this.processingLoadDashboards = false;
 							this.disabledButton = false;
 							this.createCompleteAppName = '';
-							this.createCompleteAppFolderId = '';
+							this.handleCompleteAppFolderId = '';
 							this.insightsAppId = '';
 						}
 						else {
 							if(this.currentDashboardIndex == this.dashboardsNodes.size() - 1){
 								
 								// We are finished loading dashboards, finish process
-								this.finishCreateCompleteAppProcess();
+								this.finishHandleCompleteAppProcess();
 							}
 							else {
 								this.currentDashboardIndex = this.currentDashboardIndex + 1;
@@ -2275,7 +2341,7 @@ public with sharing class WaveDataManagerController {
 						this.processingLoadDashboards = false;
 						this.disabledButton = false;
 						this.createCompleteAppName = '';
-						this.createCompleteAppFolderId = '';
+						this.handleCompleteAppFolderId = '';
 						this.insightsAppId = '';
 					}
 					else if(asyncJob.Status == 'Failed'){
@@ -2287,7 +2353,7 @@ public with sharing class WaveDataManagerController {
 						this.processingLoadDashboards = false;
 						this.disabledButton = false;
 						this.createCompleteAppName = '';
-						this.createCompleteAppFolderId = '';
+						this.handleCompleteAppFolderId = '';
 						this.insightsAppId = '';
 					}
 				}
@@ -2301,14 +2367,14 @@ public with sharing class WaveDataManagerController {
 			this.processingLoadDashboards = false;
 			this.disabledButton = false;
 			this.createCompleteAppName = '';
-			this.createCompleteAppFolderId = '';
+			this.handleCompleteAppFolderId = '';
 			this.insightsAppId = '';
 		}
 
 		return null;
 	}
 
-	private void finishCreateCompleteAppProcess(){
+	private void finishHandleCompleteAppProcess(){
 		
 		this.disabledButton = false;
 		this.currentDatasetIndex = 0;
@@ -2319,15 +2385,16 @@ public with sharing class WaveDataManagerController {
 		this.processingLoadDatasets = false;
 		this.processingLoadDashboards = false;
 		this.createCompleteAppName = '';
-		this.createCompleteAppFolderId = '';
+		this.handleCompleteAppFolderId = '';
 		this.insightsAppId = '';
 
 		if(this.selectedInstallationProcess == 'createCompleteApp'){
 			this.successMessage = 'The Create App, Datasets and Dashboards process has finished successfully.';
-			WaveConfiguratorUtils.sendEmail(this.emailAddress, 'Create App, Datasets and Dashboards completed successfully', 'The Create App, Datasets and Dashboards process of your SDO data has finished successfully.');
+			WaveConfiguratorUtils.sendEmail(this.emailAddress, 'Create App, Datasets and Dashboards completed successfully', 'The Create App, Datasets and Dashboards process of your ORG data has finished successfully.');
+		}
+		else if(this.selectedInstallationProcess == 'loadDatasetsToExistingApp'){
+			this.successMessage = 'The Load Datasets Into Existing App process has finished successfully.';
+			WaveConfiguratorUtils.sendEmail(this.emailAddress, 'Load Datasets Into Existing App completed successfully', 'The Load Datasets Into Existing App process of your ORG data has finished successfully.');
 		}
 	}
-
-	// NEXT STEPS:
-	// 1) Load images for dashboards
 }

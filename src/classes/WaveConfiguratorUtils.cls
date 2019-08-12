@@ -273,6 +273,11 @@ public with sharing class WaveConfiguratorUtils {
 	public String getAnalyticsAppIdByDevName(String devName){
 		InsightsApplication anApp = [SELECT Id FROM InsightsApplication WHERE DeveloperName = :devName];
 		return anApp.Id;
+	}
+
+	public String getAnalyticsAppIdByFolderId(String folderId){
+		InsightsApplication anApp = [SELECT Id FROM InsightsApplication WHERE FolderId = :folderId];
+		return anApp.Id;
 	}	
 
 	public String insertFolder(String appLabel, String folderName) {
