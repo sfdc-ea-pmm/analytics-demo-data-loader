@@ -2224,81 +2224,83 @@ public with sharing class WaveDataManagerController {
 	}
 
 	public void processCurrentDashboardLoad(){
-		if (this.currentDashboardIndex == 0) {
-			// Get Dataset Name, Id mapping
-			List<String> lstDatasetDevNames = new List<String>();
-			for (WaveApplicationDataset ds : this.datasetsNodes) {
-				lstDatasetDevNames.add(ds.nameToSave);
-			}
-			this.idsByDatasetDevName = this.utils.getDatasetIdByDevNameMapping(lstDatasetDevNames);
-			this.datasetsMap = new Map<String, WaveApplicationDataset>();
-			for (WaveApplicationDataset ds : this.datasetsNodes) {
-				ds.Id = this.idsByDatasetDevName.get(ds.nameToSave);
-				this.datasetsMap.put(ds.name, ds);
-			}
-			
-			// Load all dashboards so we can get the api names
-			List<StaticResource> srList = [SELECT Body FROM StaticResource WHERE Name = 'BlankDashboardTemplate'];
-			if(srList.size() == 0){
-				throw new WaveConfiguratorException('BlankDashboardTemplate Static Resource not found.');
-			}
-			// We create the dummy dashboards and the Map for storing resulting IDs
-			this.dashboardsIdsByName = new Map<String, String>();
-			String dummyDashboardJson = srList.get(0).Body.toString();
-			dummyDashboardJson = dummyDashboardJson.replace('{#FolderId}', this.handleCompleteAppFolderId);
-
-			// Find if there exists dashboard
-			Map<String, String> dashboardFoldersByName = new Map<String, String>();			
-			for (Lens l: [SELECT DeveloperName, FolderId FROM Lens WHERE Type = 'dashboard' AND IsDeleted = false]) {
-				dashboardFoldersByName.put(l.DeveloperName, l.FolderId);
-			}
-
-			Set<String> dashboardNames = dashboardFoldersByName.keySet();
-			this.dashboardsMap = new Map<String, WaveApplicationDashboard>();
-
-			for (WaveApplicationDashboard dash : this.dashboardsNodes) {
+		if(this.dashboardsNodes != null && this.dashboardsNodes.size() > 0){
+			if (this.currentDashboardIndex == 0) {
+				// Get Dataset Name, Id mapping
+				List<String> lstDatasetDevNames = new List<String>();
+				for (WaveApplicationDataset ds : this.datasetsNodes) {
+					lstDatasetDevNames.add(ds.nameToSave);
+				}
+				this.idsByDatasetDevName = this.utils.getDatasetIdByDevNameMapping(lstDatasetDevNames);
+				this.datasetsMap = new Map<String, WaveApplicationDataset>();
+				for (WaveApplicationDataset ds : this.datasetsNodes) {
+					ds.Id = this.idsByDatasetDevName.get(ds.nameToSave);
+					this.datasetsMap.put(ds.name, ds);
+				}
 				
-				dash.nameToSave = dash.name;
+				// Load all dashboards so we can get the api names
+				List<StaticResource> srList = [SELECT Body FROM StaticResource WHERE Name = 'BlankDashboardTemplate'];
+				if(srList.size() == 0){
+					throw new WaveConfiguratorException('BlankDashboardTemplate Static Resource not found.');
+				}
+				// We create the dummy dashboards and the Map for storing resulting IDs
+				this.dashboardsIdsByName = new Map<String, String>();
+				String dummyDashboardJson = srList.get(0).Body.toString();
+				dummyDashboardJson = dummyDashboardJson.replace('{#FolderId}', this.handleCompleteAppFolderId);
 
-				if (!dashboardFoldersByName.containsKey(dash.name) || (dashboardFoldersByName.containsKey(dash.name) && !dashboardFoldersByName.get(dash.name).equals(this.handleCompleteAppFolderId))) {
-					
-					// Have to create new dashboard
-					
-					if (dashboardFoldersByName.containsKey(dash.name) && !dashboardFoldersByName.get(dash.name).equals(this.handleCompleteAppFolderId)) {
-						// Dashboard already exists in the org but contained in another app. Need to find new name for it
-						String dashNameCandidate = dash.name;
-						Integer iSuffix = 0;                
-						while(dashboardNames.contains(dashNameCandidate)){
-							iSuffix++;
-							dashNameCandidate = dash.name + iSuffix;
-						}
-
-						dash.nameToSave = dashNameCandidate;
-					}
-
-					String currDashJson = dummyDashboardJson.replace('{#DashboardName}', dash.nameToSave);
-					this.utils.insertDashboard(currDashJson);
+				// Find if there exists dashboard
+				Map<String, String> dashboardFoldersByName = new Map<String, String>();			
+				for (Lens l: [SELECT DeveloperName, FolderId FROM Lens WHERE Type = 'dashboard' AND IsDeleted = false]) {
+					dashboardFoldersByName.put(l.DeveloperName, l.FolderId);
 				}
 
-				this.dashboardsMap.put(dash.name, dash);
+				Set<String> dashboardNames = dashboardFoldersByName.keySet();
+				this.dashboardsMap = new Map<String, WaveApplicationDashboard>();
+
+				for (WaveApplicationDashboard dash : this.dashboardsNodes) {
+					
+					dash.nameToSave = dash.name;
+
+					if (!dashboardFoldersByName.containsKey(dash.name) || (dashboardFoldersByName.containsKey(dash.name) && !dashboardFoldersByName.get(dash.name).equals(this.handleCompleteAppFolderId))) {
+						
+						// Have to create new dashboard
+						
+						if (dashboardFoldersByName.containsKey(dash.name) && !dashboardFoldersByName.get(dash.name).equals(this.handleCompleteAppFolderId)) {
+							// Dashboard already exists in the org but contained in another app. Need to find new name for it
+							String dashNameCandidate = dash.name;
+							Integer iSuffix = 0;                
+							while(dashboardNames.contains(dashNameCandidate)){
+								iSuffix++;
+								dashNameCandidate = dash.name + iSuffix;
+							}
+
+							dash.nameToSave = dashNameCandidate;
+						}
+
+						String currDashJson = dummyDashboardJson.replace('{#DashboardName}', dash.nameToSave);
+						this.utils.insertDashboard(currDashJson);
+					}
+
+					this.dashboardsMap.put(dash.name, dash);
+				}
+
+				// If there are images to load for dashboards
+				this.dashboardImagesMapping = new Map<String, String>();
+				if(this.selectedAppMetadata.referencedImages != null){
+					this.referencedImages = new WaveApplicationImage();
+					this.referencedImages.type = this.selectedAppMetadata.referencedImages.type;
+					this.referencedImages.names = this.selectedAppMetadata.referencedImages.names;
+					this.referencedImages.zipUrl = this.selectedAppMetadata.referencedImages.zipUrl;
+					
+					this.dashboardImagesMapping = this.utils.insertAnalyticsImages(this.referencedImages);
+				}
 			}
 
-			// If there are images to load for dashboards
-			this.dashboardImagesMapping = new Map<String, String>();
-			if(this.selectedAppMetadata.referencedImages != null){
-				this.referencedImages = new WaveApplicationImage();
-				this.referencedImages.type = this.selectedAppMetadata.referencedImages.type;
-				this.referencedImages.names = this.selectedAppMetadata.referencedImages.names;
-				this.referencedImages.zipUrl = this.selectedAppMetadata.referencedImages.zipUrl;
-				
-				this.dashboardImagesMapping = this.utils.insertAnalyticsImages(this.referencedImages);
-			}
+			WaveApplicationDashboard d = this.dashboardsNodes.get(this.currentDashboardIndex);
+			LoadDashboardQueueable dashQueueable = new LoadDashboardQueueable(d, this.datasetsMap, this.dashboardsMap, this.referencedImages, this.dashboardImagesMapping, this.handleCompleteAppFolderId, genericAppConfiguration.apiVersion, UserInfo.getSessionId());
+			this.queueProcessId = System.enqueueJob(dashQueueable);
+			this.logMessage('Loading ' + d.name + ' dashboard.');
 		}
-
-		WaveApplicationDashboard d = this.dashboardsNodes.get(this.currentDashboardIndex);
-		LoadDashboardQueueable dashQueueable = new LoadDashboardQueueable(d, this.datasetsMap, this.dashboardsMap, this.referencedImages, this.dashboardImagesMapping, this.handleCompleteAppFolderId, genericAppConfiguration.apiVersion, UserInfo.getSessionId());
-		this.queueProcessId = System.enqueueJob(dashQueueable);
-		this.logMessage('Loading ' + d.name + ' dashboard.');
 	}
 
 	public PageReference checkDashboardLoadStatus(){
