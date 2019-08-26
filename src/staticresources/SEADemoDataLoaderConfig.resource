@@ -1,6 +1,6 @@
 {
 	"apiVersion": 46.0,
-	"baseUrl": "https://s3-us-west-2.amazonaws.com/ac-sdo-repo-dev/",
+	"baseUrl": "https://s3-us-west-2.amazonaws.com/ac-sdo-repo/",
 	"baseDevUrl": "https://s3-us-west-2.amazonaws.com/ac-sdo-repo-dev/",
 	"waveApplicationsUrl": "WaveApplications.csv",
 	"objectLoadingBatchSize": 1500,
