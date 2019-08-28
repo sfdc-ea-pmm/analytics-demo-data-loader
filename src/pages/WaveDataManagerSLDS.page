@@ -27,6 +27,10 @@
 			.slds-checkbox {
 				cursor: pointer;
 			}
+
+			.false-tab-li {
+				padding: 0 .75rem;
+			}
 		</style>
 
 		<!-- Import the Design System style sheet -->
@@ -54,11 +58,13 @@
 	        <ul class="slds-tabs_default__nav" role="tablist">
 	            <li class="slds-tabs_default__item slds-is-active slds-has-focus" title="Home" role="presentation">
 	           		<a class="slds-tabs_default__link" href="javascript:void(0);" role="tab" tabindex="0" aria-selected="true" aria-controls="tab-default-home" id="tab-default-home__item">Home</a>
-	            </li>
-
-	            <li class="slds-tabs_default__item" title="FAQ" role="presentation">
-	            	<a class="slds-tabs_default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-faq" id="tab-default-faq__item">FAQ</a>
 				</li>
+				<li title="Guide" role="presentation" class="false-tab-li">
+					<a class="slds-tabs_default__link" target="_blank" href="https://salesforce.quip.com/MBs7Ag8nXdFh" aria-selected="false" aria-controls="tab-default-home" role="tab" tabindex="-1" id="tab-default-guide__item">Guide</a>
+				 </li>
+				 <li title="Release Notes" role="presentation" class="false-tab-li">
+					<a class="slds-tabs_default__link" target="_blank" href="https://salesforce.quip.com/5WxHAX5VRCiv" aria-selected="false" aria-controls="tab-default-home" role="tab" tabindex="-1" id="tab-default-releasenotes__item">Release Notes</a>
+			 	</li>
 	        </ul>
 			
 			<!--Tab 1-->
@@ -469,22 +475,7 @@
 						</apex:form>
 					</div> <!-- End Right column -->
 				</div> <!-- End Main grid -->
-	        </div> <!-- End Tab 1 -->
-	       
-	        <div id="tab-default-faq" class="slds-tabs_default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-faq__item">
-	        	<div class="slds-grid slds-wrap slds-m-around_medium">
-					<div class="slds-col">
-						<ol class="slds-has-dividers_bottom-space slds-list_ordered">
-							<apex:repeat value="{!analyticsDemoFAQ}" var="faqKey">
-								<li class="slds-item">
-									<p class="slds-text-heading_large slds-m-vertical_x-small">{!faqKey.question}</p>
-									<p>{!faqKey.answer}</p>
-								</li>
-							</apex:repeat>
-						</ol>
-					</div>
-	        	</div>
-			</div>
+	        </div> <!-- End Tab 1 -->	    	        
 	    
 	    </div>		
 		<apex:form >
