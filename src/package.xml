@@ -60,6 +60,7 @@
     <members>WaveMetadataApplicationActionField</members>
     <members>WaveMetadataApplicationDashboard</members>
     <members>WaveMetadataApplicationDataset</members>
+    <members>WaveMetadataApplicationDataflow</members>
     <members>WaveMetadataApplicationEdgemart</members>
     <members>WaveMetadataApplicationImage</members>
     <members>WaveMetadataApplicationObject</members>
@@ -112,5 +113,5 @@
     <name>ContentAsset</name>
     <members>AnalyticsDemoDataTool_Lightning_Logo</members>
   </types>
-  <version>45.0</version>
+  <version>47.0</version>
 </Package>

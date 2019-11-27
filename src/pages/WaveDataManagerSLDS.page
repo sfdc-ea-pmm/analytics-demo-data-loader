@@ -48,7 +48,7 @@
 					</span>
 		        </div>
 		        <div class="slds-media__body">
-		            <h1 class="slds-page-header__title slds-truncate slds-align-middle" title="Rohde Corp - 80,000 Widgets">Analytics Demo Data Tool - v1.62</h1>
+		            <h1 class="slds-page-header__title slds-truncate slds-align-middle" title="Rohde Corp - 80,000 Widgets">Analytics Demo Data Tool - v1.63</h1>
 		            <p class="slds-text-body_small slds-line-height_reset">Einstein Analytics Demo Data Loader</p>
 		        </div>
 		    </div>
@@ -151,7 +151,7 @@
 								<apex:form styleClass="slds-form-element">
 									<label class="slds-form-element__label">Please select an App to configure:</label>
 									<div class="slds-form-element__control">
-								        <apex:selectList styleClass="slds-select" value="{!selectedWaveApp}" multiselect="false" size="5" style="width:200px">
+								        <apex:selectList styleClass="slds-select" value="{!selectedWaveApp}" multiselect="false" size="5" style="width:250px" disabled="{!disabledButton}" id="appSelectionList">
 								   			<apex:selectOptions value="{!waveApps}"/>
 								   			<apex:actionSupport reRender="processType,appDescription,vsbButton,folderName,timeShiftingValue,modalHeader,modalBody,form1,setActionFieldsPanel" event="onchange" action="{!selectedApp}" onsubmit="disableRunButton()" />
 								   		</apex:selectList>
@@ -423,21 +423,21 @@
 					<div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-right_large">
 						<apex:form id="form3" styleClass="standardText">
 							
-							<apex:actionPoller action="{!checkObjectLoadingStatus}" reRender="processingStatus,processingLogConsole,messages,form1,form3,vsbButton,operationStatus" interval="5" enabled="{!enableObjectProcessingCheck}" id="checkFunction"/>
+							<apex:actionPoller action="{!checkObjectLoadingStatus}" reRender="processingStatus,processingLogConsole,messages,form1,form3,vsbButton,operationStatus,appSelectionList" interval="5" enabled="{!enableObjectProcessingCheck}" id="checkFunction"/>
 							
-							<apex:actionPoller action="{!checkTimeShiftingStatus}" reRender="processingStatus,processingLogConsole,messages,form1,form3,vsbButton" interval="5" enabled="{!timeShiftingItems.size > 0 && enableTimeShiftingCheck}" id="checkTimeShiftingFunction"/>
+							<apex:actionPoller action="{!checkTimeShiftingStatus}" reRender="processingStatus,processingLogConsole,messages,form1,form3,vsbButton,appSelectionList" interval="5" enabled="{!timeShiftingItems.size > 0 && enableTimeShiftingCheck}" id="checkTimeShiftingFunction"/>
 							
-							<apex:actionPoller action="{!checkMetadataCreationStatus}" reRender="processingStatus,processingLogConsole,messages,form1,form3,vsbButton" enabled="{!processingObjectsAndFieldsMetadata}" interval="5" id="checkMetadataFunction"/>
+							<apex:actionPoller action="{!checkMetadataCreationStatus}" reRender="processingStatus,processingLogConsole,messages,form1,form3,vsbButton,appSelectionList" enabled="{!processingObjectsAndFieldsMetadata}" interval="5" id="checkMetadataFunction"/>
 
-							<apex:actionPoller action="{!checkRecordTypeCreationStatus}" reRender="processingStatus,processingLogConsole,messages,form1,form3,vsbButton" enabled="{!processingRecordTypes}" interval="5"/>
+							<apex:actionPoller action="{!checkRecordTypeCreationStatus}" reRender="processingStatus,processingLogConsole,messages,form1,form3,vsbButton,appSelectionList" enabled="{!processingRecordTypes}" interval="5"/>
 							
-							<apex:actionPoller action="{!checkUserPhotoUploadStatus}" reRender="processingStatus,processingLogConsole,messages,form1,form3,vsbButton" enabled="{!uploadingUserPhotos}" interval="5"/>
+							<apex:actionPoller action="{!checkUserPhotoUploadStatus}" reRender="processingStatus,processingLogConsole,messages,form1,form3,vsbButton,appSelectionList" enabled="{!uploadingUserPhotos}" interval="5"/>
 
-							<apex:actionPoller action="{!checkEdgemartLoadStatus}" reRender="processingStatus,processingLogConsole,messages,form1,form3,vsbButton" enabled="{!processingEdgemartsLoad}" interval="5" id="checkEdgemartLoadFunction"/>
+							<apex:actionPoller action="{!checkEdgemartLoadStatus}" reRender="processingStatus,processingLogConsole,messages,form1,form3,vsbButton,appSelectionList" enabled="{!processingEdgemartsLoad}" interval="5" id="checkEdgemartLoadFunction"/>
 
-							<apex:actionPoller action="{!checkDatasetLoadStatus}" reRender="processingStatus,processingLogConsole,messages,form1,form3,vsbButton" enabled="{!processingLoadDatasets}" interval="5" id="checkDatasetLoadFunction"/>
+							<apex:actionPoller action="{!checkDatasetLoadStatus}" reRender="processingStatus,processingLogConsole,messages,form1,form3,vsbButton,appSelectionList" enabled="{!processingLoadDatasets}" interval="5" id="checkDatasetLoadFunction"/>
 
-							<apex:actionPoller action="{!checkDashboardLoadStatus}" reRender="processingStatus,processingLogConsole,messages,form1,form3,vsbButton" enabled="{!processingLoadDashboards}" interval="5" id="checkDashboardLoadFunction"/>
+							<apex:actionPoller action="{!checkDashboardLoadStatus}" reRender="processingStatus,processingLogConsole,messages,form1,form3,vsbButton,appSelectionList" enabled="{!processingLoadDashboards}" interval="5" id="checkDashboardLoadFunction"/>
 
 							<!-- Objects Load Panel/Function -->
 							<apex:outputPanel id="loadObjectsPanel">

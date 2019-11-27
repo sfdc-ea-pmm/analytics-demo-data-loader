@@ -11,4 +11,5 @@ public virtual class WaveMetadataApplication {
 	public List<WaveMetadataApplicationDataset> datasets;
 	public List<WaveMetadataApplicationDashboard> dashboards;
 	public WaveMetadataApplicationImage referencedImages;
+	public WaveMetadataApplicationDataflow dataflow;
 }

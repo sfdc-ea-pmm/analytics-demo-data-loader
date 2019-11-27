@@ -82,6 +82,7 @@ public with sharing class WaveDataManagerController {
 	public List<WaveApplicationDashboard> dashboardsNodes { get; set; }
 	public Integer currentDatasetIndex { get; set; }
 	public Integer currentDashboardIndex { get; set; }
+	//public WaveApplicationDataflow dataflowConfig { get; set; }
 
 	// Secuence control
 	public String installationStep { get; set; }
@@ -279,9 +280,39 @@ public with sharing class WaveDataManagerController {
 		if (this.selectedAppMetadata != null) {
 			// Options to work with ORG Objects
 			if (this.selectedAppMetadata.objects != null && this.selectedAppMetadata.objects.size() > 0) {
-				options.add(new SelectOption('loadObjects', 'Load Data into Core'));
-				options.add(new SelectOption('createMetadata', 'Create Objects and Fields'));
-				options.add(new SelectOption('timeShifting', 'Time shifting'));
+				// UX depends on availability of configuration
+				Boolean addLoadObjects = false;
+				Boolean addCreateMetadata = false;
+				Boolean addTimeshifting = false;
+
+				for (WaveMetadataApplicationObject wmaObj : this.selectedAppMetadata.objects) {
+					// If there is some piece of config for metadata
+					if (String.isNotBlank(wmaObj.metadataUrl)) {
+						addCreateMetadata = true;
+					}
+
+					// URL with data to load
+					if (String.isNotBlank(wmaObj.url)) {
+						addLoadObjects = true;
+					}
+
+					// Timeshifting fields
+					if (wmaObj.dateFieldsToShift != null && wmaObj.dateFieldsToShift.size() > 0) {
+						addTimeshifting = true;
+					}
+				}
+
+				if (addLoadObjects) {
+					options.add(new SelectOption('loadObjects', 'Load Data into Core'));	
+				}
+				
+				if (addCreateMetadata) {
+					options.add(new SelectOption('createMetadata', 'Create Objects and Fields'));	
+				}
+				
+				if (addTimeshifting) {
+					options.add(new SelectOption('timeShifting', 'Time shifting'));	
+				}
 			}
 
 			// Options to work with datasets
@@ -1363,6 +1394,12 @@ public with sharing class WaveDataManagerController {
 						}
 					}
 
+					/*if(this.selectedAppMetadata.dataflow != null){
+						this.dataflowConfig = new WaveApplicationDataflow();
+						this.dataflowConfig.referencedDatasets = this.selectedAppMetadata.dataflow.referencedDatasets;
+						this.dataflowConfig.jsonUrl = this.selectedAppMetadata.dataflow.jsonUrl;
+					}*/
+
 					handleCompleteApp(true);
 				}
 			}
@@ -1849,6 +1886,7 @@ public with sharing class WaveDataManagerController {
 										}
 									}
 									else if(this.selectedInstallationProcess == 'createMetadata'){
+										this.successMessage = 'Done';
 										this.logMessage('All needed metadata was created successfully.');
 										this.disabledButton = false;
 									}
@@ -2153,6 +2191,25 @@ public with sharing class WaveDataManagerController {
 									
 									// We are finished loading app datasets
 									this.processingLoadDatasets = false;
+
+									// DATAFLOW?
+									/*
+									if (this.dataflowConfig != null) {
+										// Download dataflow JSON template
+										HttpResponse resDfJson = WaveConfiguratorUtils.httpGetCallout(this.dataflowConfig.jsonUrl);
+										String dataflowJsonToSend = resDfJson.getBody();
+										//dataflowJsonToSend = dataflowJsonToSend.replace('{#FolderId}', this.folderId);
+										//dataflowJsonToSend = dataflowJsonToSend.replace('{#DashboardName}', this.dashboardToLoad.nameToSave);
+										
+										if (this.dataflowConfig.referencedDatasets != null) {
+											for (String datasetName : this.dataflowConfig.referencedDatasets) {
+												if (this.datasetsMap.containsKey(datasetName)) {
+													WaveApplicationDataset ds = this.datasetsMap.get(datasetName);
+													dataflowJsonToSend = dataflowJsonToSend.replace('{#' + datasetName + '}', ds.nameToSave);
+												}
+											}   
+										}
+									}*/
 
 									if (this.selectedInstallationProcess.equals('createCompleteApp')) {
 										// Creating complete app, now launch dashboards load
