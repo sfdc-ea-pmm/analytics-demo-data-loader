@@ -1,0 +1,524 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 9,
+                "line": 36
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "Milestone1_GettingStartedController",
+            "parameters": [],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000GcRUaAAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRUaAAN",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 41
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "setupStandardSettings",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 64
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "handleGettingStartedProjectInitialization",
+            "parameters": [],
+            "references": [],
+            "returnType": "Milestone1_Project__c",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 142
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getInitialSettingsWithoutSave",
+            "parameters": [],
+            "references": [],
+            "returnType": "Milestone1_Settings__c",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 25,
+                "line": 204
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "testMethod"
+            ],
+            "name": "testGetSettings",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 25,
+                "line": 227
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "testMethod"
+            ],
+            "name": "testGettingStartedProject",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "Milestone1_GettingStartedController",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 31
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "settingsReady",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 32
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "projectReady",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 34
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "lastResult",
+            "references": [],
+            "type": "String"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 27,
+            "line": 29
+        },
+        "modifiers": [
+            "public",
+            "with sharing"
+        ],
+        "name": "Milestone1_GettingStartedController",
+        "references": [],
+        "type": "Milestone1_GettingStartedController"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 43
+            },
+            "modifiers": [],
+            "name": "settings",
+            "references": [],
+            "type": "Milestone1_Settings__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 66
+            },
+            "modifiers": [],
+            "name": "tasks",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 67
+            },
+            "modifiers": [],
+            "name": "milestones",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 69
+            },
+            "modifiers": [],
+            "name": "project",
+            "references": [],
+            "type": "Milestone1_Project__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 72
+            },
+            "modifiers": [],
+            "name": "docs",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 75
+            },
+            "modifiers": [],
+            "name": "startProject",
+            "references": [],
+            "type": "Document"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 35,
+                "line": 77
+            },
+            "modifiers": [],
+            "name": "util",
+            "references": [],
+            "type": "Milestone1_XML_Import_Utility"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 35,
+                "line": 84
+            },
+            "modifiers": [],
+            "name": "milestonesRetrieved",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 13,
+                "line": 95
+            },
+            "modifiers": [],
+            "name": "offset",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 96
+            },
+            "modifiers": [],
+            "name": "max_Deadline_Date",
+            "references": [],
+            "type": "Date"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 34,
+                "line": 98
+            },
+            "modifiers": [],
+            "name": "current",
+            "references": [],
+            "type": "Milestone1_Milestone__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 11,
+                "line": 99
+            },
+            "modifiers": [],
+            "name": "max_Due_Date",
+            "references": [],
+            "type": "Date"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 101
+            },
+            "modifiers": [],
+            "name": "task",
+            "references": [],
+            "type": "Milestone1_Task__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 13,
+                "line": 124
+            },
+            "modifiers": [],
+            "name": "targetAlias",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 125
+            },
+            "modifiers": [],
+            "name": "aliasCount",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 144
+            },
+            "modifiers": [],
+            "name": "settings",
+            "references": [],
+            "type": "Milestone1_Settings__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 146
+            },
+            "modifiers": [],
+            "name": "reports",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 7,
+                "line": 148
+            },
+            "modifiers": [],
+            "name": "blockedTasks",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 7,
+                "line": 149
+            },
+            "modifiers": [],
+            "name": "myTasks",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 7,
+                "line": 150
+            },
+            "modifiers": [],
+            "name": "overdueTasks",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 7,
+                "line": 151
+            },
+            "modifiers": [],
+            "name": "overallTaskStatus",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 7,
+                "line": 152
+            },
+            "modifiers": [],
+            "name": "openTaskStatus",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 7,
+                "line": 153
+            },
+            "modifiers": [],
+            "name": "projMilestones",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 7,
+                "line": 154
+            },
+            "modifiers": [],
+            "name": "reportMyTasksAllProjects",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 7,
+                "line": 155
+            },
+            "modifiers": [],
+            "name": "reportMyTasksByPriority",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 7,
+                "line": 156
+            },
+            "modifiers": [],
+            "name": "summaryBlockedTasks",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 7,
+                "line": 157
+            },
+            "modifiers": [],
+            "name": "summaryLateTasks",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 161
+            },
+            "modifiers": [],
+            "name": "current",
+            "references": [],
+            "type": "Report"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 39,
+                "line": 206
+            },
+            "modifiers": [],
+            "name": "cont",
+            "references": [],
+            "type": "Milestone1_GettingStartedController"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 208
+            },
+            "modifiers": [],
+            "name": "settings",
+            "references": [],
+            "type": "Milestone1_Settings__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 39,
+                "line": 229
+            },
+            "modifiers": [],
+            "name": "cont",
+            "references": [],
+            "type": "Milestone1_GettingStartedController"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 231
+            },
+            "modifiers": [],
+            "name": "project",
+            "references": [],
+            "type": "Milestone1_Project__c"
+        }
+    ]
+}

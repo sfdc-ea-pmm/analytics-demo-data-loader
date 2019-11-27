@@ -1,0 +1,843 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRY8AAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRY8AAN",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 15
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getListingById",
+            "parameters": [
+                {
+                    "name": "id",
+                    "type": "Id"
+                }
+            ],
+            "references": [],
+            "returnType": "asb_ListingDO",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 39,
+                "line": 25
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getListingsByIds",
+            "parameters": [
+                {
+                    "name": "idList",
+                    "type": "LIST"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 44,
+                "line": 42
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getAllUnusedLanguages",
+            "parameters": [
+                {
+                    "name": "forapp",
+                    "type": "asb_AppDO"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 39,
+                "line": 63
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getListingsBySimilarCategories",
+            "parameters": [
+                {
+                    "name": "categories",
+                    "type": "LIST"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 39,
+                "line": 67
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getListingsBySimilarCategories",
+            "parameters": [
+                {
+                    "name": "categories",
+                    "type": "LIST"
+                },
+                {
+                    "name": "appToExclude",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 39,
+                "line": 71
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getListingsBySimilarCategories",
+            "parameters": [
+                {
+                    "name": "categories",
+                    "type": "LIST"
+                },
+                {
+                    "name": "appToExclude",
+                    "type": "String"
+                },
+                {
+                    "name": "limitTo",
+                    "type": "Integer"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 42,
+                "line": 118
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getAppListingsForUser",
+            "parameters": [
+                {
+                    "name": "appsList",
+                    "type": "LIST"
+                }
+            ],
+            "references": [],
+            "returnType": "Map",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 48,
+                "line": 152
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getAllListingsForApps",
+            "parameters": [
+                {
+                    "name": "appsList",
+                    "type": "LIST"
+                }
+            ],
+            "references": [],
+            "returnType": "Map",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 41,
+                "line": 181
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "getAppListings",
+            "parameters": [
+                {
+                    "name": "appIds",
+                    "type": "Set"
+                },
+                {
+                    "name": "additionalWhereClause",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 204
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getUserLanguageListingOrDefaultListing",
+            "parameters": [
+                {
+                    "name": "appId",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        }
+    ],
+    "name": "asb_ListingDAO",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 39,
+                "line": 9
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "final"
+            ],
+            "name": "APP_SEARCH_LISTING_FIELDS",
+            "references": [],
+            "type": "LIST"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 15,
+            "line": 7
+        },
+        "modifiers": [
+            "public"
+        ],
+        "name": "asb_ListingDAO",
+        "references": [],
+        "type": "asb_ListingDAO"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 51,
+                "line": 15
+            },
+            "modifiers": [],
+            "name": "id",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 16
+            },
+            "modifiers": [],
+            "name": "idList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 20
+            },
+            "modifiers": [],
+            "name": "listings",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 65,
+                "line": 25
+            },
+            "modifiers": [],
+            "name": "idList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 26
+            },
+            "modifiers": [],
+            "name": "listings",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 28
+            },
+            "modifiers": [],
+            "name": "listing",
+            "references": [],
+            "type": "asb_Listing__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 34
+            },
+            "modifiers": [],
+            "name": "listingData",
+            "references": [],
+            "type": "asb_ListingDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 76,
+                "line": 42
+            },
+            "modifiers": [],
+            "name": "forapp",
+            "references": [],
+            "type": "asb_AppDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 43
+            },
+            "modifiers": [],
+            "name": "possibleLanguages",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 44
+            },
+            "modifiers": [],
+            "name": "auxPossibleLanguages",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 34,
+                "line": 45
+            },
+            "modifiers": [],
+            "name": "unusedLanguages",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 50
+            },
+            "modifiers": [],
+            "name": "additionalWhereClause",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 52
+            },
+            "modifiers": [],
+            "name": "l",
+            "references": [],
+            "type": "asb_Listing__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 53
+            },
+            "modifiers": [],
+            "name": "ldo",
+            "references": [],
+            "type": "asb_ListingDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 57
+            },
+            "modifiers": [],
+            "name": "key",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 83,
+                "line": 63
+            },
+            "modifiers": [],
+            "name": "categories",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 83,
+                "line": 67
+            },
+            "modifiers": [],
+            "name": "categories",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 102,
+                "line": 67
+            },
+            "modifiers": [],
+            "name": "appToExclude",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 83,
+                "line": 71
+            },
+            "modifiers": [],
+            "name": "categories",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 102,
+                "line": 71
+            },
+            "modifiers": [],
+            "name": "appToExclude",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 124,
+                "line": 71
+            },
+            "modifiers": [],
+            "name": "limitTo",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 72
+            },
+            "modifiers": [],
+            "name": "similarListings",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 75
+            },
+            "modifiers": [],
+            "name": "counter",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 79
+            },
+            "modifiers": [],
+            "name": "qry",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 97
+            },
+            "modifiers": [],
+            "name": "listing",
+            "references": [],
+            "type": "asb_Listing__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 98
+            },
+            "modifiers": [],
+            "name": "listingData",
+            "references": [],
+            "type": "asb_ListingDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 99
+            },
+            "modifiers": [],
+            "name": "listingApp",
+            "references": [],
+            "type": "asb_AppDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 80,
+                "line": 118
+            },
+            "modifiers": [],
+            "name": "appsList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 124
+            },
+            "modifiers": [],
+            "name": "appListingMap",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 125
+            },
+            "modifiers": [],
+            "name": "appLookup",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 126
+            },
+            "modifiers": [],
+            "name": "a",
+            "references": [],
+            "type": "asb_AppDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 132
+            },
+            "modifiers": [],
+            "name": "usersLanguage",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 133
+            },
+            "modifiers": [],
+            "name": "additionalWhereClause",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 135
+            },
+            "modifiers": [],
+            "name": "results",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 138
+            },
+            "modifiers": [],
+            "name": "l",
+            "references": [],
+            "type": "asb_Listing__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 140
+            },
+            "modifiers": [],
+            "name": "ldo",
+            "references": [],
+            "type": "asb_ListingDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 86,
+                "line": 152
+            },
+            "modifiers": [],
+            "name": "appsList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 38,
+                "line": 158
+            },
+            "modifiers": [],
+            "name": "appListingMap",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 159
+            },
+            "modifiers": [],
+            "name": "appLookup",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 160
+            },
+            "modifiers": [],
+            "name": "a",
+            "references": [],
+            "type": "asb_AppDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 165
+            },
+            "modifiers": [],
+            "name": "additionalWhereClause",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 167
+            },
+            "modifiers": [],
+            "name": "results",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 170
+            },
+            "modifiers": [],
+            "name": "l",
+            "references": [],
+            "type": "asb_Listing__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 171
+            },
+            "modifiers": [],
+            "name": "ldo",
+            "references": [],
+            "type": "asb_ListingDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 174
+            },
+            "modifiers": [],
+            "name": "listings",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 64,
+                "line": 181
+            },
+            "modifiers": [],
+            "name": "appIds",
+            "references": [],
+            "type": "Set"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 79,
+                "line": 181
+            },
+            "modifiers": [],
+            "name": "additionalWhereClause",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 182
+            },
+            "modifiers": [],
+            "name": "listings",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 183
+            },
+            "modifiers": [],
+            "name": "listingQuery",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 72,
+                "line": 204
+            },
+            "modifiers": [],
+            "name": "appId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 205
+            },
+            "modifiers": [],
+            "name": "usersLanguage",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 206
+            },
+            "modifiers": [],
+            "name": "listings",
+            "references": [],
+            "type": "LIST"
+        }
+    ]
+}

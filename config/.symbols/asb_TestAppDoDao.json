@@ -1,0 +1,514 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRZlAAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRZlAAN",
+    "methods": [
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 32,
+                "line": 9
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "testMethod"
+            ],
+            "name": "testGetApp",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 32,
+                "line": 90
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "testMethod"
+            ],
+            "name": "testGetPopularApps",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 32,
+                "line": 175
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "testMethod"
+            ],
+            "name": "testGetAppByAppId",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 32,
+                "line": 194
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "testMethod"
+            ],
+            "name": "testPublishedAppsChartData",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "asb_TestAppDoDao",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [
+            {
+                "name": "IsTest"
+            }
+        ],
+        "location": {
+            "column": 15,
+            "line": 7
+        },
+        "modifiers": [
+            "private",
+            "testMethod"
+        ],
+        "name": "asb_TestAppDoDao",
+        "references": [],
+        "type": "asb_TestAppDoDao"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 11
+            },
+            "modifiers": [],
+            "name": "storeObj",
+            "references": [],
+            "type": "asb_Store__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 13,
+                "line": 12
+            },
+            "modifiers": [],
+            "name": "appForDeleteTest",
+            "references": [],
+            "type": "asb_AppDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 9,
+                "line": 15
+            },
+            "modifiers": [],
+            "name": "u",
+            "references": [],
+            "type": "User"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 15,
+                "line": 20
+            },
+            "modifiers": [],
+            "name": "ado",
+            "references": [],
+            "type": "asb_AppDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 22
+            },
+            "modifiers": [],
+            "name": "values",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 41
+            },
+            "modifiers": [],
+            "name": "l",
+            "references": [],
+            "type": "asb_Listing__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 35,
+                "line": 51
+            },
+            "modifiers": [],
+            "name": "ext",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 8,
+                "line": 77
+            },
+            "modifiers": [],
+            "name": "oid",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 91
+            },
+            "modifiers": [],
+            "name": "storeObj",
+            "references": [],
+            "type": "asb_Store__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 9,
+                "line": 94
+            },
+            "modifiers": [],
+            "name": "u",
+            "references": [],
+            "type": "User"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 95
+            },
+            "modifiers": [],
+            "name": "ado",
+            "references": [],
+            "type": "asb_AppDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 95
+            },
+            "modifiers": [],
+            "name": "ado2",
+            "references": [],
+            "type": "asb_AppDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 95
+            },
+            "modifiers": [],
+            "name": "ado3",
+            "references": [],
+            "type": "asb_AppDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 95
+            },
+            "modifiers": [],
+            "name": "ado4",
+            "references": [],
+            "type": "asb_AppDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 95
+            },
+            "modifiers": [],
+            "name": "ado5",
+            "references": [],
+            "type": "asb_AppDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 96
+            },
+            "modifiers": [],
+            "name": "lst",
+            "references": [],
+            "type": "asb_ListingDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 96
+            },
+            "modifiers": [],
+            "name": "lst2",
+            "references": [],
+            "type": "asb_ListingDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 96
+            },
+            "modifiers": [],
+            "name": "lst3",
+            "references": [],
+            "type": "asb_ListingDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 35,
+                "line": 96
+            },
+            "modifiers": [],
+            "name": "lst4",
+            "references": [],
+            "type": "asb_ListingDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 41,
+                "line": 96
+            },
+            "modifiers": [],
+            "name": "lst5",
+            "references": [],
+            "type": "asb_ListingDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 100
+            },
+            "modifiers": [],
+            "name": "apps",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 115
+            },
+            "modifiers": [],
+            "name": "activities",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 129
+            },
+            "modifiers": [],
+            "name": "activities",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 142
+            },
+            "modifiers": [],
+            "name": "activities",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 152
+            },
+            "modifiers": [],
+            "name": "activities",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 160
+            },
+            "modifiers": [],
+            "name": "la",
+            "references": [],
+            "type": "asb_ListingActivityDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 163
+            },
+            "modifiers": [],
+            "name": "searchParams",
+            "references": [],
+            "type": "SearchParams"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 165
+            },
+            "modifiers": [],
+            "name": "popApps",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 177
+            },
+            "modifiers": [],
+            "name": "storeObj",
+            "references": [],
+            "type": "asb_Store__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 9,
+                "line": 180
+            },
+            "modifiers": [],
+            "name": "u",
+            "references": [],
+            "type": "User"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 15,
+                "line": 185
+            },
+            "modifiers": [],
+            "name": "ado",
+            "references": [],
+            "type": "asb_AppDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 15,
+                "line": 188
+            },
+            "modifiers": [],
+            "name": "objFromDB",
+            "references": [],
+            "type": "asb_AppDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 9,
+                "line": 196
+            },
+            "modifiers": [],
+            "name": "u",
+            "references": [],
+            "type": "User"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 15,
+                "line": 199
+            },
+            "modifiers": [],
+            "name": "ado",
+            "references": [],
+            "type": "asb_AppDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 203
+            },
+            "modifiers": [],
+            "name": "chartJSON",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 205
+            },
+            "modifiers": [],
+            "name": "chartData",
+            "references": [],
+            "type": "LIST"
+        }
+    ]
+}

@@ -1,0 +1,864 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 17
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "GSurveysController",
+            "parameters": [
+                {
+                    "name": "stdController",
+                    "type": "StandardController"
+                }
+            ],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000GcRUhAAN",
+    "innerClasses": [
+        {
+            "constructors": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 12,
+                        "line": 210
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "miniSurvey",
+                    "parameters": [
+                        {
+                            "name": "miniName",
+                            "type": "String"
+                        },
+                        {
+                            "name": "miniId",
+                            "type": "String"
+                        }
+                    ],
+                    "references": [],
+                    "type": null
+                }
+            ],
+            "externalReferences": [],
+            "id": null,
+            "innerClasses": [],
+            "interfaces": [],
+            "key": null,
+            "methods": [],
+            "name": "miniSurvey",
+            "namespace": null,
+            "parentClass": "",
+            "properties": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 19,
+                        "line": 207
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "sName",
+                    "references": [],
+                    "type": "String"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 19,
+                        "line": 208
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "sId",
+                    "references": [],
+                    "type": "String"
+                }
+            ],
+            "tableDeclaration": {
+                "annotations": [],
+                "location": {
+                    "column": 16,
+                    "line": 206
+                },
+                "modifiers": [
+                    "public"
+                ],
+                "name": "miniSurvey",
+                "references": [],
+                "type": "miniSurvey"
+            },
+            "variables": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 30,
+                        "line": 210
+                    },
+                    "modifiers": [],
+                    "name": "miniName",
+                    "references": [],
+                    "type": "String"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 47,
+                        "line": 210
+                    },
+                    "modifiers": [],
+                    "name": "miniId",
+                    "references": [],
+                    "type": "String"
+                }
+            ]
+        }
+    ],
+    "interfaces": [],
+    "key": "01p3600000GcRUhAAN",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 25
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "setupSitesPicklist",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 62
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "setupShowSites",
+            "parameters": [
+                {
+                    "name": "i",
+                    "type": "Integer"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 71
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "setAllSurveys",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 93
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "makeNewSurvey",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 141
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "setupDomainForSurvey",
+            "parameters": [
+                {
+                    "name": "pod",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 156
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "checkSubdomain",
+            "parameters": [
+                {
+                    "name": "subdomain",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "Boolean",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 165
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "setupUrlPrefix",
+            "parameters": [
+                {
+                    "name": "site",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 172
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "doSurveyReset",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 34,
+                "line": 85
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "testMethod"
+            ],
+            "name": "testGSurveysController",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 130
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "createAnonSurveyTaker",
+            "parameters": [
+                {
+                    "name": "surveyId",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 34,
+                "line": 177
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "testMethod"
+            ],
+            "name": "testMakeNewSurvey",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 35,
+                "line": 191
+            },
+            "modifiers": [
+                "static",
+                "webService",
+                "public",
+                "global"
+            ],
+            "name": "deleteSurvey",
+            "parameters": [
+                {
+                    "name": "deleteId",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 34,
+                "line": 198
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "testMethod"
+            ],
+            "name": "testDeleteSurvey",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "GSurveysController",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 3
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "surveyDelete",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 4
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "newSurveyName",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 5
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "allSurveys",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 6
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "username",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 7
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "userId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 8
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "POD",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 9
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "sitesPicklist",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 10
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "surveySite",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 11
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "showAddSitesMessage",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 12
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "subdomain",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 13
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "useTopLevelDomain",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 15
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "siteInfo",
+            "references": [],
+            "type": "String"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 27,
+            "line": 1
+        },
+        "modifiers": [
+            "global",
+            "with sharing"
+        ],
+        "name": "GSurveysController",
+        "references": [],
+        "type": "GSurveysController"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 58,
+                "line": 17
+            },
+            "modifiers": [],
+            "name": "stdController",
+            "references": [],
+            "type": "StandardController"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 42,
+                "line": 26
+            },
+            "modifiers": [],
+            "name": "sites",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 31
+            },
+            "modifiers": [],
+            "name": "pathPrefix",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 40,
+                "line": 38
+            },
+            "modifiers": [],
+            "name": "s",
+            "references": [],
+            "type": "SurveySiteInfo"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 39,
+                "line": 62
+            },
+            "modifiers": [],
+            "name": "i",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 72
+            },
+            "modifiers": [],
+            "name": "surveys",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 80
+            },
+            "modifiers": [],
+            "name": "s",
+            "references": [],
+            "type": "Survey__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 107
+            },
+            "modifiers": [],
+            "name": "urlPrefix",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 108
+            },
+            "modifiers": [],
+            "name": "domain",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 109
+            },
+            "modifiers": [],
+            "name": "urlToSave",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 15,
+                "line": 115
+            },
+            "modifiers": [],
+            "name": "s",
+            "references": [],
+            "type": "Survey__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 46,
+                "line": 141
+            },
+            "modifiers": [],
+            "name": "pod",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 41,
+                "line": 156
+            },
+            "modifiers": [],
+            "name": "subdomain",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 40,
+                "line": 165
+            },
+            "modifiers": [],
+            "name": "site",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 86
+            },
+            "modifiers": [],
+            "name": "tu",
+            "references": [],
+            "type": "SurveyTestingUtil"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 34,
+                "line": 88
+            },
+            "modifiers": [],
+            "name": "stc",
+            "references": [],
+            "type": "StandardController"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 89
+            },
+            "modifiers": [],
+            "name": "sc",
+            "references": [],
+            "type": "GSurveysController"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 52,
+                "line": 130
+            },
+            "modifiers": [],
+            "name": "surveyId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 131
+            },
+            "modifiers": [],
+            "name": "sTakers",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 134
+            },
+            "modifiers": [],
+            "name": "st",
+            "references": [],
+            "type": "SurveyTaker__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 178
+            },
+            "modifiers": [],
+            "name": "tu",
+            "references": [],
+            "type": "SurveyTestingUtil"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 34,
+                "line": 180
+            },
+            "modifiers": [],
+            "name": "stc",
+            "references": [],
+            "type": "StandardController"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 181
+            },
+            "modifiers": [],
+            "name": "sc",
+            "references": [],
+            "type": "GSurveysController"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 55,
+                "line": 191
+            },
+            "modifiers": [],
+            "name": "deleteId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 15,
+                "line": 192
+            },
+            "modifiers": [],
+            "name": "s",
+            "references": [],
+            "type": "Survey__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 199
+            },
+            "modifiers": [],
+            "name": "tu",
+            "references": [],
+            "type": "SurveyTestingUtil"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 34,
+                "line": 201
+            },
+            "modifiers": [],
+            "name": "stc",
+            "references": [],
+            "type": "StandardController"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 202
+            },
+            "modifiers": [],
+            "name": "sc",
+            "references": [],
+            "type": "GSurveysController"
+        }
+    ]
+}

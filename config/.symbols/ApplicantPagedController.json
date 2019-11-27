@@ -1,0 +1,81 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRT3AAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRT3AAN",
+    "methods": [],
+    "name": "ApplicantPagedController",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 3
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "pageSize",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 6
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "page",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 9
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "total",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 34,
+                "line": 12
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "applicants",
+            "references": [],
+            "type": "LIST"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 27,
+            "line": 1
+        },
+        "modifiers": [
+            "public",
+            "with sharing"
+        ],
+        "name": "ApplicantPagedController",
+        "references": [],
+        "type": "ApplicantPagedController"
+    },
+    "variables": []
+}

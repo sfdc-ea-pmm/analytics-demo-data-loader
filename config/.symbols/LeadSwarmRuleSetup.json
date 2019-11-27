@@ -1,0 +1,891 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRUuAAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRUuAAN",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 43
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getStep1",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 47
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "setStep1",
+            "parameters": [
+                {
+                    "name": "step1",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 51
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getWithRating",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 55
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "setWithRating",
+            "parameters": [
+                {
+                    "name": "withRating",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 59
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getRatingOptions",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 71
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getWithStatus",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 75
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "setWithStatus",
+            "parameters": [
+                {
+                    "name": "withStatus",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 79
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getStatusOptions",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 88
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getWithSource",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 92
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "setWithSource",
+            "parameters": [
+                {
+                    "name": "withSource",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 96
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getSourceOptions",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 108
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getWithIndustry",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 112
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "setWithIndustry",
+            "parameters": [
+                {
+                    "name": "withIndustry",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 116
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getIndustryOptions",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 128
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getUserOptions",
+            "parameters": [],
+            "references": [],
+            "returnType": "PaginatedSelectList",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 139
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getUsersSelected",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 143
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "setUsersSelected",
+            "parameters": [
+                {
+                    "name": "usersSelected",
+                    "type": "LIST"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 147
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getNotify",
+            "parameters": [],
+            "references": [],
+            "returnType": "Boolean",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 151
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "setNotify",
+            "parameters": [
+                {
+                    "name": "notify",
+                    "type": "Boolean"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 155
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "saveLeadSwarmRule",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "Future"
+                }
+            ],
+            "location": {
+                "column": 24,
+                "line": 166
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "addRules",
+            "parameters": [
+                {
+                    "name": "usersSelected",
+                    "type": "LIST"
+                },
+                {
+                    "name": "step1",
+                    "type": "String"
+                },
+                {
+                    "name": "withRating",
+                    "type": "String"
+                },
+                {
+                    "name": "withStatus",
+                    "type": "String"
+                },
+                {
+                    "name": "withSource",
+                    "type": "String"
+                },
+                {
+                    "name": "withIndustry",
+                    "type": "String"
+                },
+                {
+                    "name": "notify",
+                    "type": "Boolean"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "LeadSwarmRuleSetup",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 35
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "step1",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 36
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "withRating",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 37
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "withStatus",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 38
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "withSource",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 39
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "withIndustry",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 40
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "usersSelected",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 13,
+                "line": 41
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "notify",
+            "references": [],
+            "type": "Boolean"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 27,
+            "line": 33
+        },
+        "modifiers": [
+            "public",
+            "with sharing"
+        ],
+        "name": "LeadSwarmRuleSetup",
+        "references": [],
+        "type": "LeadSwarmRuleSetup"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 47
+            },
+            "modifiers": [],
+            "name": "step1",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 38,
+                "line": 55
+            },
+            "modifiers": [],
+            "name": "withRating",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 60
+            },
+            "modifiers": [],
+            "name": "options",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 36,
+                "line": 62
+            },
+            "modifiers": [],
+            "name": "fieldResult",
+            "references": [],
+            "type": "DescribeFieldResult"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 36,
+                "line": 63
+            },
+            "modifiers": [],
+            "name": "ple",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 35,
+                "line": 65
+            },
+            "modifiers": [],
+            "name": "f",
+            "references": [],
+            "type": "PicklistEntry"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 38,
+                "line": 75
+            },
+            "modifiers": [],
+            "name": "withStatus",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 80
+            },
+            "modifiers": [],
+            "name": "options",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 82
+            },
+            "modifiers": [],
+            "name": "leadStatus",
+            "references": [],
+            "type": "LeadStatus"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 38,
+                "line": 92
+            },
+            "modifiers": [],
+            "name": "withSource",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 97
+            },
+            "modifiers": [],
+            "name": "options",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 36,
+                "line": 99
+            },
+            "modifiers": [],
+            "name": "fieldResult",
+            "references": [],
+            "type": "DescribeFieldResult"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 36,
+                "line": 100
+            },
+            "modifiers": [],
+            "name": "ple",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 35,
+                "line": 102
+            },
+            "modifiers": [],
+            "name": "f",
+            "references": [],
+            "type": "PicklistEntry"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 40,
+                "line": 112
+            },
+            "modifiers": [],
+            "name": "withIndustry",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 117
+            },
+            "modifiers": [],
+            "name": "options",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 36,
+                "line": 119
+            },
+            "modifiers": [],
+            "name": "fieldResult",
+            "references": [],
+            "type": "DescribeFieldResult"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 36,
+                "line": 120
+            },
+            "modifiers": [],
+            "name": "ple",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 35,
+                "line": 122
+            },
+            "modifiers": [],
+            "name": "f",
+            "references": [],
+            "type": "PicklistEntry"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 129
+            },
+            "modifiers": [],
+            "name": "options",
+            "references": [],
+            "type": "PaginatedSelectList"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 131
+            },
+            "modifiers": [],
+            "name": "thisUser",
+            "references": [],
+            "type": "User"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 43,
+                "line": 143
+            },
+            "modifiers": [],
+            "name": "usersSelected",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 35,
+                "line": 151
+            },
+            "modifiers": [],
+            "name": "notify",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 160
+            },
+            "modifiers": [],
+            "name": "pageRef",
+            "references": [],
+            "type": "PageReference"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 42,
+                "line": 166
+            },
+            "modifiers": [],
+            "name": "usersSelected",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 64,
+                "line": 166
+            },
+            "modifiers": [],
+            "name": "step1",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 78,
+                "line": 166
+            },
+            "modifiers": [],
+            "name": "withRating",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 97,
+                "line": 166
+            },
+            "modifiers": [],
+            "name": "withStatus",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 167
+            },
+            "modifiers": [],
+            "name": "withSource",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 35,
+                "line": 167
+            },
+            "modifiers": [],
+            "name": "withIndustry",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 57,
+                "line": 167
+            },
+            "modifiers": [],
+            "name": "notify",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 34,
+                "line": 169
+            },
+            "modifiers": [],
+            "name": "newRules",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 171
+            },
+            "modifiers": [],
+            "name": "userId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 173
+            },
+            "modifiers": [],
+            "name": "ruleName",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 175
+            },
+            "modifiers": [],
+            "name": "rule",
+            "references": [],
+            "type": "Lead_Swarm_Rule__c"
+        }
+    ]
+}

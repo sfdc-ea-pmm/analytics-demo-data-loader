@@ -1,0 +1,121 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRZjAAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRZjAAN",
+    "methods": [
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 35,
+                "line": 11
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "testMethod"
+            ],
+            "name": "testController",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "asb_TestAppActionsController",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [
+            {
+                "name": "IsTest"
+            }
+        ],
+        "location": {
+            "column": 15,
+            "line": 9
+        },
+        "modifiers": [
+            "private",
+            "testMethod"
+        ],
+        "name": "asb_TestAppActionsController",
+        "references": [],
+        "type": "asb_TestAppActionsController"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 13
+            },
+            "modifiers": [],
+            "name": "store",
+            "references": [],
+            "type": "asb_Store__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 15,
+                "line": 14
+            },
+            "modifiers": [],
+            "name": "appObj",
+            "references": [],
+            "type": "asb_App__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 35,
+                "line": 18
+            },
+            "modifiers": [],
+            "name": "controller",
+            "references": [],
+            "type": "asb_AppActionsController"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 19
+            },
+            "modifiers": [],
+            "name": "p",
+            "references": [],
+            "type": "PageReference"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 22
+            },
+            "modifiers": [],
+            "name": "app",
+            "references": [],
+            "type": "asb_AppDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 23
+            },
+            "modifiers": [],
+            "name": "listing",
+            "references": [],
+            "type": "asb_ListingDO"
+        }
+    ]
+}

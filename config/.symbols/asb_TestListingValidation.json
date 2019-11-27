@@ -1,0 +1,88 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRaCAAV",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRaCAAV",
+    "methods": [
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 32,
+                "line": 11
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "testMethod"
+            ],
+            "name": "UpdateListingStatus",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "asb_TestListingValidation",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [
+            {
+                "name": "IsTest"
+            }
+        ],
+        "location": {
+            "column": 15,
+            "line": 8
+        },
+        "modifiers": [
+            "private",
+            "testMethod"
+        ],
+        "name": "asb_TestListingValidation",
+        "references": [],
+        "type": "asb_TestListingValidation"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 12
+            },
+            "modifiers": [],
+            "name": "testStore",
+            "references": [],
+            "type": "asb_Store__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 13
+            },
+            "modifiers": [],
+            "name": "testApp",
+            "references": [],
+            "type": "asb_AppDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 14
+            },
+            "modifiers": [],
+            "name": "testListing",
+            "references": [],
+            "type": "asb_Listing__c"
+        }
+    ]
+}

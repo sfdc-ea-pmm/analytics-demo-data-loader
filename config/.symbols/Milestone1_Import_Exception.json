@@ -1,0 +1,89 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRUdAAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRUdAAN",
+    "methods": [],
+    "name": "Milestone1_Import_Exception",
+    "namespace": null,
+    "parentClass": "Exception",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 31
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "final"
+            ],
+            "name": "ERROR_NO_FILE_SELECTED",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 32
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "final"
+            ],
+            "name": "ERROR_EMPTY_XML",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 33
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "final"
+            ],
+            "name": "ERROR_INVALID_XML",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 34
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "final"
+            ],
+            "name": "ERROR_FILESIZE_TOO_LARGE",
+            "references": [],
+            "type": "String"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 27,
+            "line": 29
+        },
+        "modifiers": [
+            "public",
+            "with sharing"
+        ],
+        "name": "Milestone1_Import_Exception",
+        "references": [],
+        "type": "Milestone1_Import_Exception"
+    },
+    "variables": []
+}

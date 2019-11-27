@@ -1,0 +1,571 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 25
+            },
+            "modifiers": [
+                "protected"
+            ],
+            "name": "asb_BaseData",
+            "parameters": [],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000GcRWxAAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRWxAAN",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 35
+            },
+            "modifiers": [
+                "protected"
+            ],
+            "name": "setCustomObject",
+            "parameters": [
+                {
+                    "name": "obj",
+                    "type": "SObject"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 42
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getSObject",
+            "parameters": [],
+            "references": [],
+            "returnType": "SObject",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 46
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getSobjectName",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 55
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getId",
+            "parameters": [],
+            "references": [],
+            "returnType": "Id",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 59
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "refresh",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 67
+            },
+            "modifiers": [
+                "virtual",
+                "public"
+            ],
+            "name": "getName",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 71
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getIsNew",
+            "parameters": [],
+            "references": [],
+            "returnType": "Boolean",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 78
+            },
+            "modifiers": [
+                "protected"
+            ],
+            "name": "setId",
+            "parameters": [
+                {
+                    "name": "val",
+                    "type": "Id"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 85
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "setName",
+            "parameters": [
+                {
+                    "name": "name",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 93
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "setCreatedById",
+            "parameters": [
+                {
+                    "name": "uId",
+                    "type": "Id"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 103
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getDmlErrorMessage",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 120
+            },
+            "modifiers": [
+                "protected"
+            ],
+            "name": "saveSObject",
+            "parameters": [],
+            "references": [],
+            "returnType": "Boolean",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 155
+            },
+            "modifiers": [
+                "protected"
+            ],
+            "name": "deleteSObject",
+            "parameters": [],
+            "references": [],
+            "returnType": "Boolean",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 171
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "setErrors",
+            "parameters": [
+                {
+                    "name": "errors",
+                    "type": "LIST"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 178
+            },
+            "modifiers": [
+                "virtual",
+                "public"
+            ],
+            "name": "save",
+            "parameters": [],
+            "references": [],
+            "returnType": "Boolean",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 182
+            },
+            "modifiers": [
+                "virtual",
+                "public"
+            ],
+            "name": "cloneObject",
+            "parameters": [],
+            "references": [],
+            "returnType": "asb_BaseData",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 190
+            },
+            "modifiers": [
+                "public",
+                "abstract"
+            ],
+            "name": "remove",
+            "parameters": [],
+            "references": [],
+            "returnType": "Boolean",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 192
+            },
+            "modifiers": [
+                "public",
+                "abstract"
+            ],
+            "name": "getCreatedById",
+            "parameters": [],
+            "references": [],
+            "returnType": "Id",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 193
+            },
+            "modifiers": [
+                "public",
+                "abstract"
+            ],
+            "name": "getLastModifiedById",
+            "parameters": [],
+            "references": [],
+            "returnType": "Id",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 194
+            },
+            "modifiers": [
+                "public",
+                "abstract"
+            ],
+            "name": "getCreatedDate",
+            "parameters": [],
+            "references": [],
+            "returnType": "Datetime",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 195
+            },
+            "modifiers": [
+                "public",
+                "abstract"
+            ],
+            "name": "getLastModifiedDate",
+            "parameters": [],
+            "references": [],
+            "returnType": "Datetime",
+            "type": null
+        }
+    ],
+    "name": "asb_BaseData",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 12
+            },
+            "modifiers": [
+                "protected"
+            ],
+            "name": "dmlErrors",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 13
+            },
+            "modifiers": [
+                "protected"
+            ],
+            "name": "securityDmlError",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 15,
+                "line": 18
+            },
+            "modifiers": [
+                "protected"
+            ],
+            "name": "objectId",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 23
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "customObject",
+            "references": [],
+            "type": "SObject"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 7
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "final"
+            ],
+            "name": "NAME_FIELD",
+            "references": [],
+            "type": "String"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 23,
+            "line": 5
+        },
+        "modifiers": [
+            "public",
+            "abstract"
+        ],
+        "name": "asb_BaseData",
+        "references": [],
+        "type": "asb_BaseData"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 42,
+                "line": 35
+            },
+            "modifiers": [],
+            "name": "obj",
+            "references": [],
+            "type": "SObject"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 78
+            },
+            "modifiers": [],
+            "name": "val",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 85
+            },
+            "modifiers": [],
+            "name": "name",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 93
+            },
+            "modifiers": [],
+            "name": "uId",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 104
+            },
+            "modifiers": [],
+            "name": "err",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 107
+            },
+            "modifiers": [],
+            "name": "er",
+            "references": [],
+            "type": "Error"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 11,
+                "line": 121
+            },
+            "modifiers": [],
+            "name": "retVal",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 140
+            },
+            "modifiers": [],
+            "name": "er",
+            "references": [],
+            "type": "Error"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 11,
+                "line": 156
+            },
+            "modifiers": [],
+            "name": "retVal",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 45,
+                "line": 171
+            },
+            "modifiers": [],
+            "name": "errors",
+            "references": [],
+            "type": "LIST"
+        }
+    ]
+}

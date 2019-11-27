@@ -1,0 +1,950 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 9,
+                "line": 24
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "asb_StorePreferencesController",
+            "parameters": [],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000GcRWzAAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRWzAAN",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 27
+            },
+            "modifiers": [
+                "public",
+                "override"
+            ],
+            "name": "init",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 46
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getStoreCategories",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 50
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getStoreStatus",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 60
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "takeStoreOffline",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 69
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "takeStoreOnline",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 74
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "saveBasic",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 104
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "saveAdvanced",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 114
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "uploadBanner",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 138
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "updateBanner",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 161
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "deleteBanner",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 185
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "updateBannerOrder",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 193
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "updateBannerOrder",
+            "parameters": [
+                {
+                    "name": "bannerIds",
+                    "type": "LIST"
+                }
+            ],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 40,
+                "line": 218
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getController",
+            "parameters": [],
+            "references": [],
+            "returnType": "asb_StorePreferencesController",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 15,
+                "line": 222
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "reset",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 232
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "saveStore",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 243
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "updateStoreLogo",
+            "parameters": [
+                {
+                    "name": "store",
+                    "type": "asb_StoreDO"
+                },
+                {
+                    "name": "logoBlob",
+                    "type": "Blob"
+                },
+                {
+                    "name": "logoFilename",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 282
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "uploadBannerImage",
+            "parameters": [
+                {
+                    "name": "banner",
+                    "type": "asb_BannerDO"
+                },
+                {
+                    "name": "bannerBlob",
+                    "type": "Blob"
+                },
+                {
+                    "name": "bannerFilename",
+                    "type": "String"
+                },
+                {
+                    "name": "linkUrl",
+                    "type": "String"
+                },
+                {
+                    "name": "openInNewWindow",
+                    "type": "Boolean"
+                },
+                {
+                    "name": "bannerOrder",
+                    "type": "Integer"
+                }
+            ],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 303
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "updateBannerImage",
+            "parameters": [
+                {
+                    "name": "bido",
+                    "type": "asb_BannerImageDO"
+                },
+                {
+                    "name": "bannerBlob",
+                    "type": "Blob"
+                },
+                {
+                    "name": "bannerFilename",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        }
+    ],
+    "name": "asb_StorePreferencesController",
+    "namespace": null,
+    "parentClass": "asb_StoreAdminPageController",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 9
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "storeName",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 10
+            },
+            "modifiers": [
+                "public",
+                "transient"
+            ],
+            "name": "imageBlob",
+            "references": [],
+            "type": "Blob"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 11
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "imageFname",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 13
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "actionParamValue",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 14
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "bannerImageLink",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 15
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "openInNewWindow",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 16
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "bannerOrder",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 18
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "appTypeSelectOptions",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 37,
+                "line": 20
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "bannerImageMap",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 22
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "hasSaveError",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 7
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "final"
+            ],
+            "name": "STORE_STATUS_OFFLINE_NEEDS_INFO",
+            "references": [],
+            "type": "String"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 5
+        },
+        "modifiers": [
+            "public"
+        ],
+        "name": "asb_StorePreferencesController",
+        "references": [],
+        "type": "asb_StorePreferencesController"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 37
+            },
+            "modifiers": [],
+            "name": "bido",
+            "references": [],
+            "type": "asb_BannerImageDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 11,
+                "line": 89
+            },
+            "modifiers": [],
+            "name": "errorMessage",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 116
+            },
+            "modifiers": [],
+            "name": "banner",
+            "references": [],
+            "type": "asb_BannerDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 11,
+                "line": 126
+            },
+            "modifiers": [],
+            "name": "errorMessage",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 139
+            },
+            "modifiers": [],
+            "name": "bido",
+            "references": [],
+            "type": "asb_BannerImageDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 142
+            },
+            "modifiers": [],
+            "name": "errorMessage",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 162
+            },
+            "modifiers": [],
+            "name": "bido",
+            "references": [],
+            "type": "asb_BannerImageDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 13,
+                "line": 165
+            },
+            "modifiers": [],
+            "name": "imagesToReorder",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 166
+            },
+            "modifiers": [],
+            "name": "i",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 167
+            },
+            "modifiers": [],
+            "name": "bi",
+            "references": [],
+            "type": "asb_BannerImageDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 55,
+                "line": 193
+            },
+            "modifiers": [],
+            "name": "bannerIds",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 196
+            },
+            "modifiers": [],
+            "name": "imagesToUpdate",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 197
+            },
+            "modifiers": [],
+            "name": "i",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 198
+            },
+            "modifiers": [],
+            "name": "bido",
+            "references": [],
+            "type": "asb_BannerImageDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 206
+            },
+            "modifiers": [],
+            "name": "error",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 52,
+                "line": 243
+            },
+            "modifiers": [],
+            "name": "store",
+            "references": [],
+            "type": "asb_StoreDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 64,
+                "line": 243
+            },
+            "modifiers": [],
+            "name": "logoBlob",
+            "references": [],
+            "type": "Blob"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 81,
+                "line": 243
+            },
+            "modifiers": [],
+            "name": "logoFilename",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 244
+            },
+            "modifiers": [],
+            "name": "errorMessage",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 248
+            },
+            "modifiers": [],
+            "name": "contentType",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 249
+            },
+            "modifiers": [],
+            "name": "existingLogoDoc",
+            "references": [],
+            "type": "asb_DocumentDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 251
+            },
+            "modifiers": [],
+            "name": "newLogoDoc",
+            "references": [],
+            "type": "asb_DocumentDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 253
+            },
+            "modifiers": [],
+            "name": "logoFolder",
+            "references": [],
+            "type": "Folder"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 55,
+                "line": 282
+            },
+            "modifiers": [],
+            "name": "banner",
+            "references": [],
+            "type": "asb_BannerDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 68,
+                "line": 282
+            },
+            "modifiers": [],
+            "name": "bannerBlob",
+            "references": [],
+            "type": "Blob"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 87,
+                "line": 282
+            },
+            "modifiers": [],
+            "name": "bannerFilename",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 110,
+                "line": 282
+            },
+            "modifiers": [],
+            "name": "linkUrl",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 127,
+                "line": 282
+            },
+            "modifiers": [],
+            "name": "openInNewWindow",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 152,
+                "line": 282
+            },
+            "modifiers": [],
+            "name": "bannerOrder",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 283
+            },
+            "modifiers": [],
+            "name": "errorMessage",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 286
+            },
+            "modifiers": [],
+            "name": "contentType",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 287
+            },
+            "modifiers": [],
+            "name": "bannerAttachment",
+            "references": [],
+            "type": "Attachment"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 289
+            },
+            "modifiers": [],
+            "name": "bido",
+            "references": [],
+            "type": "asb_BannerImageDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 60,
+                "line": 303
+            },
+            "modifiers": [],
+            "name": "bido",
+            "references": [],
+            "type": "asb_BannerImageDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 71,
+                "line": 303
+            },
+            "modifiers": [],
+            "name": "bannerBlob",
+            "references": [],
+            "type": "Blob"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 90,
+                "line": 303
+            },
+            "modifiers": [],
+            "name": "bannerFilename",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 304
+            },
+            "modifiers": [],
+            "name": "errorMessage",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 307
+            },
+            "modifiers": [],
+            "name": "contentType",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 308
+            },
+            "modifiers": [],
+            "name": "newAttachment",
+            "references": [],
+            "type": "Attachment"
+        }
+    ]
+}

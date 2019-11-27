@@ -1,0 +1,121 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRa9AAF",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRa9AAF",
+    "methods": [
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 32,
+                "line": 10
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "testMethod"
+            ],
+            "name": "testPopularity",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "asb_TestListingPopularity",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [
+            {
+                "name": "IsTest"
+            }
+        ],
+        "location": {
+            "column": 15,
+            "line": 8
+        },
+        "modifiers": [
+            "private",
+            "testMethod"
+        ],
+        "name": "asb_TestListingPopularity",
+        "references": [],
+        "type": "asb_TestListingPopularity"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 11
+            },
+            "modifiers": [],
+            "name": "listing",
+            "references": [],
+            "type": "asb_ListingDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 11,
+                "line": 12
+            },
+            "modifiers": [],
+            "name": "u",
+            "references": [],
+            "type": "User"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 14
+            },
+            "modifiers": [],
+            "name": "app",
+            "references": [],
+            "type": "asb_AppDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 18
+            },
+            "modifiers": [],
+            "name": "lpdo",
+            "references": [],
+            "type": "asb_ListingPopularityDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 23
+            },
+            "modifiers": [],
+            "name": "la",
+            "references": [],
+            "type": "asb_ListingActivityDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 39
+            },
+            "modifiers": [],
+            "name": "lpObj",
+            "references": [],
+            "type": "asb_ListingPopularity__c"
+        }
+    ]
+}

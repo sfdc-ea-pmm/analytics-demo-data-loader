@@ -1,0 +1,202 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 6
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "SSEPortalConfigurationMenu",
+            "parameters": [],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000GcRVuAAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRVuAAN",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 12
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "updateEmptyUsers",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "RemoteAction"
+                }
+            ],
+            "location": {
+                "column": 24,
+                "line": 29
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "updateUser",
+            "parameters": [
+                {
+                    "name": "userId",
+                    "type": "String"
+                },
+                {
+                    "name": "userTemplate",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 35,
+                "line": 36
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "testMethod"
+            ],
+            "name": "testSSEPortalConfigurationMenu",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "SSEPortalConfigurationMenu",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 3
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "allUsers",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 34,
+                "line": 4
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "allTemplates",
+            "references": [],
+            "type": "LIST"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 1
+        },
+        "modifiers": [
+            "public"
+        ],
+        "name": "SSEPortalConfigurationMenu",
+        "references": [],
+        "type": "SSEPortalConfigurationMenu"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 14
+            },
+            "modifiers": [],
+            "name": "updatedUsers",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 15
+            },
+            "modifiers": [],
+            "name": "u",
+            "references": [],
+            "type": "User"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 42,
+                "line": 29
+            },
+            "modifiers": [],
+            "name": "userId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 57,
+                "line": 29
+            },
+            "modifiers": [],
+            "name": "userTemplate",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 30
+            },
+            "modifiers": [],
+            "name": "theUser",
+            "references": [],
+            "type": "User"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 36,
+                "line": 37
+            },
+            "modifiers": [],
+            "name": "controller",
+            "references": [],
+            "type": "SSEPortalConfigurationMenu"
+        }
+    ]
+}

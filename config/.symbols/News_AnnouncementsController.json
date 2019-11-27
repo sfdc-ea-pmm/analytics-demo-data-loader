@@ -1,0 +1,320 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRSlAAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRSlAAN",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 5
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getNewsChannelNames",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 40,
+                "line": 18
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getnumDocsByChannel",
+            "parameters": [],
+            "references": [],
+            "returnType": "Map",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 47,
+                "line": 37
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getFirstNewsChannelRecords",
+            "parameters": [
+                {
+                    "name": "numDocs",
+                    "type": "Integer"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 48,
+                "line": 45
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getNewsChannelRecordsByChannel",
+            "parameters": [
+                {
+                    "name": "newsChannel",
+                    "type": "String"
+                },
+                {
+                    "name": "numDocs",
+                    "type": "Integer"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        }
+    ],
+    "name": "News_AnnouncementsController",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 2
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "firstNewsChannel",
+            "references": [],
+            "type": "String"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 1
+        },
+        "modifiers": [
+            "public"
+        ],
+        "name": "News_AnnouncementsController",
+        "references": [],
+        "type": "News_AnnouncementsController"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 36,
+                "line": 6
+            },
+            "modifiers": [],
+            "name": "fieldResult",
+            "references": [],
+            "type": "DescribeFieldResult"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 36,
+                "line": 7
+            },
+            "modifiers": [],
+            "name": "ple",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 8
+            },
+            "modifiers": [],
+            "name": "newsChannelNames",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 35,
+                "line": 9
+            },
+            "modifiers": [],
+            "name": "f",
+            "references": [],
+            "type": "PicklistEntry"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 19
+            },
+            "modifiers": [],
+            "name": "numDocsByChannel",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 20
+            },
+            "modifiers": [],
+            "name": "newsChannelNames",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 37,
+                "line": 22
+            },
+            "modifiers": [],
+            "name": "newsChannelRecords",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 23
+            },
+            "modifiers": [],
+            "name": "QueryString",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 25
+            },
+            "modifiers": [],
+            "name": "nChannel",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 26
+            },
+            "modifiers": [],
+            "name": "channelCount",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 39,
+                "line": 27
+            },
+            "modifiers": [],
+            "name": "n",
+            "references": [],
+            "type": "News_Announcements__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 82,
+                "line": 37
+            },
+            "modifiers": [],
+            "name": "numDocs",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 37,
+                "line": 39
+            },
+            "modifiers": [],
+            "name": "firstNewsChannelRecords",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 40
+            },
+            "modifiers": [],
+            "name": "QueryString",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 86,
+                "line": 45
+            },
+            "modifiers": [],
+            "name": "newsChannel",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 107,
+                "line": 45
+            },
+            "modifiers": [],
+            "name": "numDocs",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 37,
+                "line": 47
+            },
+            "modifiers": [],
+            "name": "newsChannelRecords",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 48
+            },
+            "modifiers": [],
+            "name": "QueryString",
+            "references": [],
+            "type": "String"
+        }
+    ]
+}

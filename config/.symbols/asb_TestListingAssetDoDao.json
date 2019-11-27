@@ -1,0 +1,121 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRa5AAF",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRa5AAF",
+    "methods": [
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 32,
+                "line": 9
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "testMethod"
+            ],
+            "name": "testListingAssets",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "asb_TestListingAssetDoDao",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [
+            {
+                "name": "IsTest"
+            }
+        ],
+        "location": {
+            "column": 14,
+            "line": 7
+        },
+        "modifiers": [
+            "public",
+            "testMethod"
+        ],
+        "name": "asb_TestListingAssetDoDao",
+        "references": [],
+        "type": "asb_TestListingAssetDoDao"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 11,
+                "line": 10
+            },
+            "modifiers": [],
+            "name": "u",
+            "references": [],
+            "type": "User"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 12
+            },
+            "modifiers": [],
+            "name": "app",
+            "references": [],
+            "type": "asb_AppDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 13
+            },
+            "modifiers": [],
+            "name": "listing",
+            "references": [],
+            "type": "asb_ListingDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 15
+            },
+            "modifiers": [],
+            "name": "doc",
+            "references": [],
+            "type": "asb_ListingAssetDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 26
+            },
+            "modifiers": [],
+            "name": "video",
+            "references": [],
+            "type": "Video"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 34
+            },
+            "modifiers": [],
+            "name": "screenshot",
+            "references": [],
+            "type": "asb_ListingAssetDO"
+        }
+    ]
+}

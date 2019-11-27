@@ -1,0 +1,54 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRWiAAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRWiAAN",
+    "methods": [],
+    "name": "TopicWithFollower",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 3
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "followers",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 5
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "myTopic",
+            "references": [],
+            "type": "Topic"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 1
+        },
+        "modifiers": [
+            "public"
+        ],
+        "name": "TopicWithFollower",
+        "references": [],
+        "type": "TopicWithFollower"
+    },
+    "variables": []
+}

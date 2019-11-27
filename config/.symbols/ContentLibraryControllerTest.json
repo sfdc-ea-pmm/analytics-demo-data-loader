@@ -1,0 +1,94 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRZiAAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRZiAAN",
+    "methods": [
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 28,
+                "line": 6
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "testMethod"
+            ],
+            "name": "test",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "ContentLibraryControllerTest",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 3
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "ws",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 4
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "firstLibraryID",
+            "references": [],
+            "type": "Id"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [
+            {
+                "name": "IsTest"
+            }
+        ],
+        "location": {
+            "column": 14,
+            "line": 2
+        },
+        "modifiers": [
+            "public",
+            "testMethod"
+        ],
+        "name": "ContentLibraryControllerTest",
+        "references": [],
+        "type": "ContentLibraryControllerTest"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 7
+            },
+            "modifiers": [],
+            "name": "wsCon",
+            "references": [],
+            "type": "ContentLibraryController"
+        }
+    ]
+}

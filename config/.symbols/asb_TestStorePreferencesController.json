@@ -1,0 +1,132 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRaIAAV",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRaIAAV",
+    "methods": [
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 35,
+                "line": 9
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "testMethod"
+            ],
+            "name": "testController",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "asb_TestStorePreferencesController",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [
+            {
+                "name": "IsTest"
+            }
+        ],
+        "location": {
+            "column": 14,
+            "line": 7
+        },
+        "modifiers": [
+            "public",
+            "testMethod"
+        ],
+        "name": "asb_TestStorePreferencesController",
+        "references": [],
+        "type": "asb_TestStorePreferencesController"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 11
+            },
+            "modifiers": [],
+            "name": "p",
+            "references": [],
+            "type": "PageReference"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 35,
+                "line": 14
+            },
+            "modifiers": [],
+            "name": "controller",
+            "references": [],
+            "type": "asb_StorePreferencesController"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 34
+            },
+            "modifiers": [],
+            "name": "store",
+            "references": [],
+            "type": "asb_StoreDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 79
+            },
+            "modifiers": [],
+            "name": "appTypes",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 121
+            },
+            "modifiers": [],
+            "name": "banner",
+            "references": [],
+            "type": "asb_BannerDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 127
+            },
+            "modifiers": [],
+            "name": "bido",
+            "references": [],
+            "type": "asb_BannerImageDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 172
+            },
+            "modifiers": [],
+            "name": "b",
+            "references": [],
+            "type": "asb_BannerImageDO"
+        }
+    ]
+}

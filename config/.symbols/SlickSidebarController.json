@@ -1,0 +1,488 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 25
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "SlickSidebarController",
+            "parameters": [],
+            "references": [],
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 29
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "SlickSidebarController",
+            "parameters": [
+                {
+                    "name": "controller",
+                    "type": "StandardController"
+                }
+            ],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000GcRTEAA3",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRTEAA3",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 15,
+                "line": 34
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "init",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 104
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "isPersonAccountRecord",
+            "parameters": [
+                {
+                    "name": "recordId",
+                    "type": "Id"
+                }
+            ],
+            "references": [],
+            "returnType": "Boolean",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 15,
+                "line": 187
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "UnitTestCompliance",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 116
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "getContactRecord",
+            "parameters": [
+                {
+                    "name": "contactId",
+                    "type": "Id"
+                }
+            ],
+            "references": [],
+            "returnType": "Contact",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 129
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "getPersonAccountContactRecord",
+            "parameters": [
+                {
+                    "name": "accountId",
+                    "type": "Id"
+                }
+            ],
+            "references": [],
+            "returnType": "Contact",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 141
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "getAccountRecord",
+            "parameters": [
+                {
+                    "name": "accountId",
+                    "type": "Id"
+                }
+            ],
+            "references": [],
+            "returnType": "Account",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 154
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "getCaseRecord",
+            "parameters": [
+                {
+                    "name": "caseId",
+                    "type": "Id"
+                }
+            ],
+            "references": [],
+            "returnType": "Case",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 173
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "getLeadRecord",
+            "parameters": [
+                {
+                    "name": "leadId",
+                    "type": "Id"
+                }
+            ],
+            "references": [],
+            "returnType": "Lead",
+            "type": null
+        }
+    ],
+    "name": "SlickSidebarController",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 13
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "currAccount",
+            "references": [],
+            "type": "Account"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 14
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "currContact",
+            "references": [],
+            "type": "Contact"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 15
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "currCase",
+            "references": [],
+            "type": "Case"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 16
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "currRecordId",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 17
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "currRecordType",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 18
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "primaryTabRecordId",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 19
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "primaryTabObjectType",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 20
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "config",
+            "references": [],
+            "type": "SlickSidebar__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 23
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "currLead",
+            "references": [],
+            "type": "Lead"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 12
+        },
+        "modifiers": [
+            "global"
+        ],
+        "name": "SlickSidebarController",
+        "references": [],
+        "type": "SlickSidebarController"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 62,
+                "line": 29
+            },
+            "modifiers": [],
+            "name": "controller",
+            "references": [],
+            "type": "StandardController"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 44,
+                "line": 104
+            },
+            "modifiers": [],
+            "name": "recordId",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 13,
+                "line": 105
+            },
+            "modifiers": [],
+            "name": "accountRec",
+            "references": [],
+            "type": "Account"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 106
+            },
+            "modifiers": [],
+            "name": "query",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 13,
+                "line": 188
+            },
+            "modifiers": [],
+            "name": "i",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 46,
+                "line": 116
+            },
+            "modifiers": [],
+            "name": "contactId",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 59,
+                "line": 129
+            },
+            "modifiers": [],
+            "name": "accountId",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 130
+            },
+            "modifiers": [],
+            "name": "queryString",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 46,
+                "line": 141
+            },
+            "modifiers": [],
+            "name": "accountId",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 40,
+                "line": 154
+            },
+            "modifiers": [],
+            "name": "caseId",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 155
+            },
+            "modifiers": [],
+            "name": "theCase",
+            "references": [],
+            "type": "Case"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 40,
+                "line": 173
+            },
+            "modifiers": [],
+            "name": "leadId",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 174
+            },
+            "modifiers": [],
+            "name": "theLead",
+            "references": [],
+            "type": "Lead"
+        }
+    ]
+}

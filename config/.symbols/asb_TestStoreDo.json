@@ -1,0 +1,121 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRaHAAV",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRaHAAV",
+    "methods": [
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 32,
+                "line": 9
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "testMethod"
+            ],
+            "name": "testGetStore",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "asb_TestStoreDo",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [
+            {
+                "name": "IsTest"
+            }
+        ],
+        "location": {
+            "column": 14,
+            "line": 7
+        },
+        "modifiers": [
+            "public",
+            "testMethod"
+        ],
+        "name": "asb_TestStoreDo",
+        "references": [],
+        "type": "asb_TestStoreDo"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 11
+            },
+            "modifiers": [],
+            "name": "storeObj",
+            "references": [],
+            "type": "asb_Store__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 9,
+                "line": 14
+            },
+            "modifiers": [],
+            "name": "u",
+            "references": [],
+            "type": "User"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 18
+            },
+            "modifiers": [],
+            "name": "sdo",
+            "references": [],
+            "type": "asb_StoreDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 22
+            },
+            "modifiers": [],
+            "name": "newStoreName",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 26
+            },
+            "modifiers": [],
+            "name": "values",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 43
+            },
+            "modifiers": [],
+            "name": "logo",
+            "references": [],
+            "type": "asb_DocumentDO"
+        }
+    ]
+}

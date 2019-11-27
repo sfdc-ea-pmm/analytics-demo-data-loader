@@ -1,0 +1,106 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRX0AAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRX0AAN",
+    "methods": [],
+    "name": "asb_SelectListOverlayConfig",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 12
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "title",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 13
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "description",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 14
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "selectListValues",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 15
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "valueSelected",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 16
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "errorMessage",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 17
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "saveAction",
+            "references": [],
+            "type": "String"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 10
+        },
+        "modifiers": [
+            "public"
+        ],
+        "name": "asb_SelectListOverlayConfig",
+        "references": [],
+        "type": "asb_SelectListOverlayConfig"
+    },
+    "variables": []
+}

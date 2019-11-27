@@ -1,0 +1,126 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 23
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "PKBLiveAgentChatController",
+            "parameters": [],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000GcRVbAAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRVbAAN",
+    "methods": [],
+    "name": "PKBLiveAgentChatController",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 19
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "liveChatBtnId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 21
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "liveChatDepId",
+            "references": [],
+            "type": "String"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 27,
+            "line": 17
+        },
+        "modifiers": [
+            "public",
+            "with sharing"
+        ],
+        "name": "PKBLiveAgentChatController",
+        "references": [],
+        "type": "PKBLiveAgentChatController"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 25
+            },
+            "modifiers": [],
+            "name": "lCBId",
+            "references": [],
+            "type": "LiveChatButton"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 27
+            },
+            "modifiers": [],
+            "name": "tempDate",
+            "references": [],
+            "type": "Datetime"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 28
+            },
+            "modifiers": [],
+            "name": "latestId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 34,
+                "line": 30
+            },
+            "modifiers": [],
+            "name": "lDIds",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 32
+            },
+            "modifiers": [],
+            "name": "d",
+            "references": [],
+            "type": "LiveChatDeployment"
+        }
+    ]
+}

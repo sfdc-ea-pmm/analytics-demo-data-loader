@@ -1,0 +1,182 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 16
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "asb_EditListingDetailsController",
+            "parameters": [],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000GcRXmAAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRXmAAN",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 35,
+                "line": 20
+            },
+            "modifiers": [
+                "public",
+                "override"
+            ],
+            "name": "init",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 32
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "save",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 41
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "saveNext",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 52
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "saveForPreview",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 60
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "validateForSave",
+            "parameters": [],
+            "references": [],
+            "returnType": "Boolean",
+            "type": null
+        }
+    ],
+    "name": "asb_EditListingDetailsController",
+    "namespace": null,
+    "parentClass": "asb_EditListingController",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 12
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "languages",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 13
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "selectedLang",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 14
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "hasSaveError",
+            "references": [],
+            "type": "Boolean"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 10
+        },
+        "modifiers": [
+            "public"
+        ],
+        "name": "asb_EditListingDetailsController",
+        "references": [],
+        "type": "asb_EditListingDetailsController"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 21
+            },
+            "modifiers": [],
+            "name": "ret",
+            "references": [],
+            "type": "PageReference"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 48
+            },
+            "modifiers": [],
+            "name": "pr",
+            "references": [],
+            "type": "PageReference"
+        }
+    ]
+}

@@ -1,0 +1,413 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 15
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "mobileconfig_manager",
+            "parameters": [],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000GcRWBAA3",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRWBAA3",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 20
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "init_mobileconfigs_list",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 31
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "send_mobileconfig",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 59
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "closePopup",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 65
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "showPopup",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 76
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "save_mobileconfig",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 90
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "remove_mobileconfig",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 99
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "send_all_mobileconfigs",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        }
+    ],
+    "name": "mobileconfig_manager",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 34,
+                "line": 3
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "mobileconfigs",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 4
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "email_addresses",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 5
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "displayPopup",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 6
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "current_mobileconfig",
+            "references": [],
+            "type": "Mobileconfig__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 7
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "app_icon",
+            "references": [],
+            "type": "Document"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 1
+        },
+        "modifiers": [
+            "public"
+        ],
+        "name": "mobileconfig_manager",
+        "references": [],
+        "type": "mobileconfig_manager"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 22
+            },
+            "modifiers": [],
+            "name": "mobileconfigs_id",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 24
+            },
+            "modifiers": [],
+            "name": "m",
+            "references": [],
+            "type": "Mobileconfig__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 32
+            },
+            "modifiers": [],
+            "name": "current_mobileconfig_id",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 38,
+                "line": 35
+            },
+            "modifiers": [],
+            "name": "email",
+            "references": [],
+            "type": "SingleEmailMessage"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 36
+            },
+            "modifiers": [],
+            "name": "mobileconfig_installer",
+            "references": [],
+            "type": "PageReference"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 39
+            },
+            "modifiers": [],
+            "name": "b",
+            "references": [],
+            "type": "Blob"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 39,
+                "line": 45
+            },
+            "modifiers": [],
+            "name": "efa",
+            "references": [],
+            "type": "EmailFileAttachment"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 38,
+                "line": 52
+            },
+            "modifiers": [],
+            "name": "r",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 67
+            },
+            "modifiers": [],
+            "name": "current_mobileconfig_id",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 68
+            },
+            "modifiers": [],
+            "name": "m",
+            "references": [],
+            "type": "Mobileconfig__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 100
+            },
+            "modifiers": [],
+            "name": "mobileconfigs",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 45,
+                "line": 101
+            },
+            "modifiers": [],
+            "name": "efas",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 38,
+                "line": 103
+            },
+            "modifiers": [],
+            "name": "email",
+            "references": [],
+            "type": "SingleEmailMessage"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 105
+            },
+            "modifiers": [],
+            "name": "m",
+            "references": [],
+            "type": "Mobileconfig__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 106
+            },
+            "modifiers": [],
+            "name": "mobileconfig_installer",
+            "references": [],
+            "type": "PageReference"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 109
+            },
+            "modifiers": [],
+            "name": "b",
+            "references": [],
+            "type": "Blob"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 43,
+                "line": 115
+            },
+            "modifiers": [],
+            "name": "efa",
+            "references": [],
+            "type": "EmailFileAttachment"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 38,
+                "line": 125
+            },
+            "modifiers": [],
+            "name": "r",
+            "references": [],
+            "type": "LIST"
+        }
+    ]
+}

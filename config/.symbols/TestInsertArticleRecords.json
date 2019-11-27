@@ -1,0 +1,176 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRZ8AAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRZ8AAN",
+    "methods": [
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 28,
+                "line": 3
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "testMethod"
+            ],
+            "name": "getFields",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "TestInsertArticleRecords",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [
+            {
+                "name": "IsTest"
+            }
+        ],
+        "location": {
+            "column": 15,
+            "line": 2
+        },
+        "modifiers": [
+            "private",
+            "testMethod"
+        ],
+        "name": "TestInsertArticleRecords",
+        "references": [],
+        "type": "TestInsertArticleRecords"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 5
+            },
+            "modifiers": [],
+            "name": "selectedArticleObject",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 41,
+                "line": 6
+            },
+            "modifiers": [],
+            "name": "gd",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 7
+            },
+            "modifiers": [],
+            "name": "keySet",
+            "references": [],
+            "type": "Set"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 8
+            },
+            "modifiers": [],
+            "name": "key",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 9
+            },
+            "modifiers": [],
+            "name": "objectType",
+            "references": [],
+            "type": "SObjectType"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 14
+            },
+            "modifiers": [],
+            "name": "fieldProperties",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 16
+            },
+            "modifiers": [],
+            "name": "articleData",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 17
+            },
+            "modifiers": [],
+            "name": "tableData",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 18
+            },
+            "modifiers": [],
+            "name": "f",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 24
+            },
+            "modifiers": [],
+            "name": "pageRef",
+            "references": [],
+            "type": "PageReference"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 25
+            },
+            "modifiers": [],
+            "name": "controller",
+            "references": [],
+            "type": "InsertArticleRecords"
+        }
+    ]
+}

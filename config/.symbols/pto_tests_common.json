@@ -1,0 +1,1394 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRWIAA3",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRWIAA3",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 34,
+                "line": 5
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "get_test_payroll_system",
+            "parameters": [
+                {
+                    "name": "payroll_system_name",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "Payroll_System__c",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 16
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "clear_test_payroll_system",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 20
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "clean_data",
+            "parameters": [
+                {
+                    "name": "payroll_system_name",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 60
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "create_core_test_objects",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 34,
+                "line": 106
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "get_test_user_ids",
+            "parameters": [],
+            "references": [],
+            "returnType": "Map",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 36,
+                "line": 156
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "build_unsubmitted_request",
+            "parameters": [
+                {
+                    "name": "owner_id",
+                    "type": "Id"
+                },
+                {
+                    "name": "start_date",
+                    "type": "Date"
+                },
+                {
+                    "name": "end_date",
+                    "type": "Date"
+                },
+                {
+                    "name": "balance_correction",
+                    "type": "Boolean"
+                }
+            ],
+            "references": [],
+            "returnType": "Time_Off_Request__c",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 36,
+                "line": 169
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "insert_request",
+            "parameters": [
+                {
+                    "name": "owner_id",
+                    "type": "Id"
+                },
+                {
+                    "name": "status",
+                    "type": "String"
+                },
+                {
+                    "name": "start_date",
+                    "type": "Date"
+                },
+                {
+                    "name": "end_date",
+                    "type": "Date"
+                },
+                {
+                    "name": "balance_correction",
+                    "type": "Boolean"
+                }
+            ],
+            "references": [],
+            "returnType": "Time_Off_Request__c",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 175
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "insert_requests",
+            "parameters": [
+                {
+                    "name": "tors",
+                    "type": "LIST"
+                },
+                {
+                    "name": "owner_ids",
+                    "type": "LIST"
+                },
+                {
+                    "name": "status",
+                    "type": "LIST"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 207
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "set_pto_balance",
+            "parameters": [
+                {
+                    "name": "user_id",
+                    "type": "Id"
+                },
+                {
+                    "name": "pto_hours",
+                    "type": "Double"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 211
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "set_pto_balance",
+            "parameters": [
+                {
+                    "name": "user_ids",
+                    "type": "LIST"
+                },
+                {
+                    "name": "pto_hours",
+                    "type": "LIST"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 226
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "validate_requested_day",
+            "parameters": [
+                {
+                    "name": "day",
+                    "type": "Requested_Day__c"
+                },
+                {
+                    "name": "requested_day",
+                    "type": "Date"
+                },
+                {
+                    "name": "time_off_request",
+                    "type": "Id"
+                },
+                {
+                    "name": "month",
+                    "type": "String"
+                },
+                {
+                    "name": "hours",
+                    "type": "Double"
+                },
+                {
+                    "name": "employee_number",
+                    "type": "String"
+                },
+                {
+                    "name": "status",
+                    "type": "String"
+                },
+                {
+                    "name": "pay_cycle_processed",
+                    "type": "Boolean"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 240
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "validate_balances",
+            "parameters": [
+                {
+                    "name": "user_id",
+                    "type": "Id"
+                },
+                {
+                    "name": "pto_hours_from_payroll",
+                    "type": "Double"
+                },
+                {
+                    "name": "pending_pto_hours",
+                    "type": "Double"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 249
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "shares_contain_user_or_group",
+            "parameters": [
+                {
+                    "name": "shares",
+                    "type": "LIST"
+                },
+                {
+                    "name": "user_or_group_id",
+                    "type": "Id"
+                },
+                {
+                    "name": "access_level",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "Boolean",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 36,
+                "line": 263
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "validate_time_off_request_status",
+            "parameters": [
+                {
+                    "name": "tor_id",
+                    "type": "Id"
+                },
+                {
+                    "name": "expected_requestor",
+                    "type": "Id"
+                },
+                {
+                    "name": "expected_status",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "Time_Off_Request__c",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 38,
+                "line": 269
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "validate_time_off_requests_status",
+            "parameters": [
+                {
+                    "name": "tor_ids",
+                    "type": "LIST"
+                },
+                {
+                    "name": "expected_requestor",
+                    "type": "LIST"
+                },
+                {
+                    "name": "expected_status",
+                    "type": "LIST"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 392
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "insert_pay_cycle",
+            "parameters": [
+                {
+                    "name": "name",
+                    "type": "String"
+                },
+                {
+                    "name": "end_date",
+                    "type": "Date"
+                },
+                {
+                    "name": "year",
+                    "type": "String"
+                },
+                {
+                    "name": "payroll_system_name",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "Pay_Cycle__c",
+            "type": null
+        }
+    ],
+    "name": "pto_tests_common",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 3
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "test_payroll_system",
+            "references": [],
+            "type": "Payroll_System__c"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 1
+        },
+        "modifiers": [
+            "public"
+        ],
+        "name": "pto_tests_common",
+        "references": [],
+        "type": "pto_tests_common"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 65,
+                "line": 5
+            },
+            "modifiers": [],
+            "name": "payroll_system_name",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 7
+            },
+            "modifiers": [],
+            "name": "payroll_system",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 39,
+                "line": 20
+            },
+            "modifiers": [],
+            "name": "payroll_system_name",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 28
+            },
+            "modifiers": [],
+            "name": "payroll_system",
+            "references": [],
+            "type": "Payroll_System__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 37
+            },
+            "modifiers": [],
+            "name": "tors",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 40
+            },
+            "modifiers": [],
+            "name": "cycles",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 43
+            },
+            "modifiers": [],
+            "name": "tois",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 45
+            },
+            "modifiers": [],
+            "name": "toi",
+            "references": [],
+            "type": "Time_Off_Info__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 51
+            },
+            "modifiers": [],
+            "name": "test_holidays",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 71
+            },
+            "modifiers": [],
+            "name": "test_holiday",
+            "references": [],
+            "type": "Holiday_Calendar__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 107
+            },
+            "modifiers": [],
+            "name": "result",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 109
+            },
+            "modifiers": [],
+            "name": "users",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 11,
+                "line": 128
+            },
+            "modifiers": [],
+            "name": "user_ids",
+            "references": [],
+            "type": "Set"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 13,
+                "line": 129
+            },
+            "modifiers": [],
+            "name": "user",
+            "references": [],
+            "type": "User"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 133
+            },
+            "modifiers": [],
+            "name": "old_tois",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 138
+            },
+            "modifiers": [],
+            "name": "new_tois",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 13,
+                "line": 140
+            },
+            "modifiers": [],
+            "name": "user",
+            "references": [],
+            "type": "User"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 141
+            },
+            "modifiers": [],
+            "name": "new_toi",
+            "references": [],
+            "type": "Time_Off_Info__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 65,
+                "line": 156
+            },
+            "modifiers": [],
+            "name": "owner_id",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 80,
+                "line": 156
+            },
+            "modifiers": [],
+            "name": "start_date",
+            "references": [],
+            "type": "Date"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 97,
+                "line": 156
+            },
+            "modifiers": [],
+            "name": "end_date",
+            "references": [],
+            "type": "Date"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 115,
+                "line": 156
+            },
+            "modifiers": [],
+            "name": "balance_correction",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 157
+            },
+            "modifiers": [],
+            "name": "tor",
+            "references": [],
+            "type": "Time_Off_Request__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 54,
+                "line": 169
+            },
+            "modifiers": [],
+            "name": "owner_id",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 71,
+                "line": 169
+            },
+            "modifiers": [],
+            "name": "status",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 84,
+                "line": 169
+            },
+            "modifiers": [],
+            "name": "start_date",
+            "references": [],
+            "type": "Date"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 101,
+                "line": 169
+            },
+            "modifiers": [],
+            "name": "end_date",
+            "references": [],
+            "type": "Date"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 119,
+                "line": 169
+            },
+            "modifiers": [],
+            "name": "balance_correction",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 170
+            },
+            "modifiers": [],
+            "name": "tor",
+            "references": [],
+            "type": "Time_Off_Request__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 59,
+                "line": 175
+            },
+            "modifiers": [],
+            "name": "tors",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 70,
+                "line": 175
+            },
+            "modifiers": [],
+            "name": "owner_ids",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 90,
+                "line": 175
+            },
+            "modifiers": [],
+            "name": "status",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 183
+            },
+            "modifiers": [],
+            "name": "tors_to_update",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 184
+            },
+            "modifiers": [],
+            "name": "i",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 8,
+                "line": 199
+            },
+            "modifiers": [],
+            "name": "ids",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 200
+            },
+            "modifiers": [],
+            "name": "i",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 40,
+                "line": 207
+            },
+            "modifiers": [],
+            "name": "user_id",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 56,
+                "line": 207
+            },
+            "modifiers": [],
+            "name": "pto_hours",
+            "references": [],
+            "type": "Double"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 42,
+                "line": 211
+            },
+            "modifiers": [],
+            "name": "user_ids",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 61,
+                "line": 211
+            },
+            "modifiers": [],
+            "name": "pto_hours",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 216
+            },
+            "modifiers": [],
+            "name": "tois",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 217
+            },
+            "modifiers": [],
+            "name": "i",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 218
+            },
+            "modifiers": [],
+            "name": "toi",
+            "references": [],
+            "type": "Time_Off_Info__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 61,
+                "line": 226
+            },
+            "modifiers": [],
+            "name": "day",
+            "references": [],
+            "type": "Requested_Day__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 71,
+                "line": 226
+            },
+            "modifiers": [],
+            "name": "requested_day",
+            "references": [],
+            "type": "Date"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 89,
+                "line": 226
+            },
+            "modifiers": [],
+            "name": "time_off_request",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 114,
+                "line": 226
+            },
+            "modifiers": [],
+            "name": "month",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 128,
+                "line": 226
+            },
+            "modifiers": [],
+            "name": "hours",
+            "references": [],
+            "type": "Double"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 142,
+                "line": 226
+            },
+            "modifiers": [],
+            "name": "employee_number",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 166,
+                "line": 226
+            },
+            "modifiers": [],
+            "name": "status",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 182,
+                "line": 226
+            },
+            "modifiers": [],
+            "name": "pay_cycle_processed",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 42,
+                "line": 240
+            },
+            "modifiers": [],
+            "name": "user_id",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 58,
+                "line": 240
+            },
+            "modifiers": [],
+            "name": "pto_hours_from_payroll",
+            "references": [],
+            "type": "Double"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 89,
+                "line": 240
+            },
+            "modifiers": [],
+            "name": "pending_pto_hours",
+            "references": [],
+            "type": "Double"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 242
+            },
+            "modifiers": [],
+            "name": "toi",
+            "references": [],
+            "type": "Time_Off_Info__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 80,
+                "line": 249
+            },
+            "modifiers": [],
+            "name": "shares",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 91,
+                "line": 249
+            },
+            "modifiers": [],
+            "name": "user_or_group_id",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 116,
+                "line": 249
+            },
+            "modifiers": [],
+            "name": "access_level",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 11,
+                "line": 250
+            },
+            "modifiers": [],
+            "name": "result",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 252
+            },
+            "modifiers": [],
+            "name": "share",
+            "references": [],
+            "type": "Time_Off_Request__Share"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 72,
+                "line": 263
+            },
+            "modifiers": [],
+            "name": "tor_id",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 83,
+                "line": 263
+            },
+            "modifiers": [],
+            "name": "expected_requestor",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 110,
+                "line": 263
+            },
+            "modifiers": [],
+            "name": "expected_status",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 264
+            },
+            "modifiers": [],
+            "name": "tors",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 77,
+                "line": 269
+            },
+            "modifiers": [],
+            "name": "tor_ids",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 91,
+                "line": 269
+            },
+            "modifiers": [],
+            "name": "expected_requestor",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 120,
+                "line": 269
+            },
+            "modifiers": [],
+            "name": "expected_status",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 276
+            },
+            "modifiers": [],
+            "name": "i",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 282
+            },
+            "modifiers": [],
+            "name": "tors",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 42,
+                "line": 287
+            },
+            "modifiers": [],
+            "name": "tor_share_map",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 288
+            },
+            "modifiers": [],
+            "name": "share",
+            "references": [],
+            "type": "Time_Off_Request__Share"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 35,
+                "line": 291
+            },
+            "modifiers": [],
+            "name": "shares",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 35,
+                "line": 294
+            },
+            "modifiers": [],
+            "name": "shares",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 300
+            },
+            "modifiers": [],
+            "name": "i",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 9,
+                "line": 310
+            },
+            "modifiers": [],
+            "name": "requestor",
+            "references": [],
+            "type": "User"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 314
+            },
+            "modifiers": [],
+            "name": "toi",
+            "references": [],
+            "type": "Time_Off_Info__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 325
+            },
+            "modifiers": [],
+            "name": "payroll_queue",
+            "references": [],
+            "type": "Group"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 53,
+                "line": 392
+            },
+            "modifiers": [],
+            "name": "name",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 64,
+                "line": 392
+            },
+            "modifiers": [],
+            "name": "end_date",
+            "references": [],
+            "type": "Date"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 81,
+                "line": 392
+            },
+            "modifiers": [],
+            "name": "year",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 94,
+                "line": 392
+            },
+            "modifiers": [],
+            "name": "payroll_system_name",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 393
+            },
+            "modifiers": [],
+            "name": "c1",
+            "references": [],
+            "type": "Pay_Cycle__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 397
+            },
+            "modifiers": [],
+            "name": "payroll_system",
+            "references": [],
+            "type": "Payroll_System__c"
+        }
+    ]
+}

@@ -1,0 +1,89 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 9,
+                "line": 9
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "asb_ListingEditActionController",
+            "parameters": [
+                {
+                    "name": "controller",
+                    "type": "StandardController"
+                }
+            ],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000GcRXpAAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRXpAAN",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 13
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "init",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        }
+    ],
+    "name": "asb_ListingEditActionController",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 7
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "listingEditActionController",
+            "references": [],
+            "type": "StandardController"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 6
+        },
+        "modifiers": [
+            "public"
+        ],
+        "name": "asb_ListingEditActionController",
+        "references": [],
+        "type": "asb_ListingEditActionController"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 71,
+                "line": 9
+            },
+            "modifiers": [],
+            "name": "controller",
+            "references": [],
+            "type": "StandardController"
+        }
+    ]
+}

@@ -1,0 +1,217 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 33
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "Milestone1_One_Line_Controller",
+            "parameters": [],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000GcRTkAAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRTkAAN",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 38
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "executeLine",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 37,
+                "line": 82
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "getMilestoneByAlias",
+            "parameters": [
+                {
+                    "name": "alias",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "Milestone1_Milestone__c",
+            "type": null
+        }
+    ],
+    "name": "Milestone1_One_Line_Controller",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 31
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "line",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 32
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "task",
+            "references": [],
+            "type": "Milestone1_Task__c"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 27,
+            "line": 29
+        },
+        "modifiers": [
+            "public",
+            "with sharing"
+        ],
+        "name": "Milestone1_One_Line_Controller",
+        "references": [],
+        "type": "Milestone1_One_Line_Controller"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 41
+            },
+            "modifiers": [],
+            "name": "stringTokens",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 44
+            },
+            "modifiers": [],
+            "name": "milestoneAlias",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 37,
+                "line": 45
+            },
+            "modifiers": [],
+            "name": "milestone",
+            "references": [],
+            "type": "Milestone1_Milestone__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 51
+            },
+            "modifiers": [],
+            "name": "descriptionString",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 52
+            },
+            "modifiers": [],
+            "name": "nameString",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 39,
+                "line": 65
+            },
+            "modifiers": [],
+            "name": "errorMsg",
+            "references": [],
+            "type": "Message"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 35,
+                "line": 70
+            },
+            "modifiers": [],
+            "name": "errorMsg",
+            "references": [],
+            "type": "Message"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 75
+            },
+            "modifiers": [],
+            "name": "errorMsg",
+            "references": [],
+            "type": "Message"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 64,
+                "line": 82
+            },
+            "modifiers": [],
+            "name": "alias",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 39,
+                "line": 84
+            },
+            "modifiers": [],
+            "name": "milestones",
+            "references": [],
+            "type": "LIST"
+        }
+    ]
+}

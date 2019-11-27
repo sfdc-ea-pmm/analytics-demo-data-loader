@@ -1,0 +1,116 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRWOAA3",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRWOAA3",
+    "methods": [
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 25,
+                "line": 3
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "testMethod"
+            ],
+            "name": "test_pay_cycle_management",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "tom_test_pay_cycle_boundaries",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 1
+        },
+        "modifiers": [
+            "public"
+        ],
+        "name": "tom_test_pay_cycle_boundaries",
+        "references": [],
+        "type": "tom_test_pay_cycle_boundaries"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 9
+            },
+            "modifiers": [],
+            "name": "c1",
+            "references": [],
+            "type": "Pay_Cycle__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 12
+            },
+            "modifiers": [],
+            "name": "num_processed",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 19
+            },
+            "modifiers": [],
+            "name": "test_users",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 8,
+                "line": 21
+            },
+            "modifiers": [],
+            "name": "subordinate",
+            "references": [],
+            "type": "User"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 35
+            },
+            "modifiers": [],
+            "name": "tor",
+            "references": [],
+            "type": "Time_Off_Request__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 47
+            },
+            "modifiers": [],
+            "name": "tor2",
+            "references": [],
+            "type": "Time_Off_Request__c"
+        }
+    ]
+}

@@ -1,0 +1,72 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000IQFpsAAH",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000IQFpsAAH",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 5
+            },
+            "modifiers": [
+                "public",
+                "override"
+            ],
+            "name": "getAssetType",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        }
+    ],
+    "name": "WaveFolderAsset",
+    "namespace": null,
+    "parentClass": "WaveAsset",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 2
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "applicationStatus",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 3
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "templateSourceId",
+            "references": [],
+            "type": "String"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 22,
+            "line": 1
+        },
+        "modifiers": [
+            "virtual",
+            "public"
+        ],
+        "name": "WaveFolderAsset",
+        "references": [],
+        "type": "WaveFolderAsset"
+    },
+    "variables": []
+}

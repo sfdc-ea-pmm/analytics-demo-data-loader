@@ -1,0 +1,279 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRXyAAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRXyAAN",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 35,
+                "line": 8
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getListingAssetById",
+            "parameters": [
+                {
+                    "name": "listingAssetId",
+                    "type": "Id"
+                }
+            ],
+            "references": [],
+            "returnType": "asb_ListingAssetDO",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 41,
+                "line": 30
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getListingAssetsForListing",
+            "parameters": [
+                {
+                    "name": "listingId",
+                    "type": "Id"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 40,
+                "line": 59
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "getListingAssetAttachments",
+            "parameters": [
+                {
+                    "name": "assetIds",
+                    "type": "LIST"
+                }
+            ],
+            "references": [],
+            "returnType": "Map",
+            "type": null
+        }
+    ],
+    "name": "asb_ListingAssetDAO",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 6
+        },
+        "modifiers": [
+            "public"
+        ],
+        "name": "asb_ListingAssetDAO",
+        "references": [],
+        "type": "asb_ListingAssetDAO"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 58,
+                "line": 8
+            },
+            "modifiers": [],
+            "name": "listingAssetId",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 9
+            },
+            "modifiers": [],
+            "name": "assetIds",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 11
+            },
+            "modifiers": [],
+            "name": "la",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 17
+            },
+            "modifiers": [],
+            "name": "lado",
+            "references": [],
+            "type": "asb_ListingAssetDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 21
+            },
+            "modifiers": [],
+            "name": "assetAttachmentMap",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 71,
+                "line": 30
+            },
+            "modifiers": [],
+            "name": "listingId",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 34,
+                "line": 31
+            },
+            "modifiers": [],
+            "name": "assetData",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 32
+            },
+            "modifiers": [],
+            "name": "assetIds",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 35,
+                "line": 34
+            },
+            "modifiers": [],
+            "name": "assets",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 34,
+                "line": 40
+            },
+            "modifiers": [],
+            "name": "asset",
+            "references": [],
+            "type": "asb_ListingAsset__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 46
+            },
+            "modifiers": [],
+            "name": "assetAttachmentMap",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 37,
+                "line": 49
+            },
+            "modifiers": [],
+            "name": "lado",
+            "references": [],
+            "type": "asb_ListingAssetDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 76,
+                "line": 59
+            },
+            "modifiers": [],
+            "name": "assetIds",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 60
+            },
+            "modifiers": [],
+            "name": "assetAttachmentMap",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 62
+            },
+            "modifiers": [],
+            "name": "query",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 64
+            },
+            "modifiers": [],
+            "name": "attachments",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 67
+            },
+            "modifiers": [],
+            "name": "attachment",
+            "references": [],
+            "type": "Attachment"
+        }
+    ]
+}

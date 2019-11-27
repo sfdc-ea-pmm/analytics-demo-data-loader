@@ -1,0 +1,163 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 9
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "ConsoleDBLookup",
+            "parameters": [],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000GcRVkAAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRVkAAN",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 15
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getDashboards",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 27
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "setSelectedId",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 36
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "edit",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        }
+    ],
+    "name": "ConsoleDBLookup",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 3
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "dbStorage",
+            "references": [],
+            "type": "Console_Dashboard__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 5
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "currentDBId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 7
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "dbs",
+            "references": [],
+            "type": "LIST"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 27,
+            "line": 1
+        },
+        "modifiers": [
+            "public",
+            "with sharing"
+        ],
+        "name": "ConsoleDBLookup",
+        "references": [],
+        "type": "ConsoleDBLookup"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 16
+            },
+            "modifiers": [],
+            "name": "options",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 21
+            },
+            "modifiers": [],
+            "name": "db",
+            "references": [],
+            "type": "Dashboard"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 40
+            },
+            "modifiers": [],
+            "name": "thisPage",
+            "references": [],
+            "type": "PageReference"
+        }
+    ]
+}

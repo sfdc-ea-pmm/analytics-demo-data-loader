@@ -1,0 +1,143 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000Hqr8gAAB",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000Hqr8gAAB",
+    "methods": [
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 22,
+                "line": 4
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "testMethod"
+            ],
+            "name": "test_method",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "WW_CopyOpportunityHistory_test",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [
+            {
+                "name": "IsTest"
+            }
+        ],
+        "location": {
+            "column": 15,
+            "line": 2
+        },
+        "modifiers": [
+            "private",
+            "testMethod"
+        ],
+        "name": "WW_CopyOpportunityHistory_test",
+        "references": [],
+        "type": "WW_CopyOpportunityHistory_test"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 11,
+                "line": 7
+            },
+            "modifiers": [],
+            "name": "p",
+            "references": [],
+            "type": "Profile"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 9
+            },
+            "modifiers": [],
+            "name": "u",
+            "references": [],
+            "type": "User"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 25
+            },
+            "modifiers": [],
+            "name": "op",
+            "references": [],
+            "type": "Opportunity"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 35
+            },
+            "modifiers": [],
+            "name": "chToDelete",
+            "references": [],
+            "type": "WW_OppHistory__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 50
+            },
+            "modifiers": [],
+            "name": "batchObj",
+            "references": [],
+            "type": "WW_CopyOpportunityHistory"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 51
+            },
+            "modifiers": [],
+            "name": "batchId",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 53
+            },
+            "modifiers": [],
+            "name": "cant1",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 54
+            },
+            "modifiers": [],
+            "name": "cant2",
+            "references": [],
+            "type": "Integer"
+        }
+    ]
+}

@@ -1,0 +1,620 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRWoAAN",
+    "innerClasses": [],
+    "interfaces": [
+        "Auth.RegistrationHandler"
+    ],
+    "key": "01p3600000GcRWoAAN",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 3
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "createUser",
+            "parameters": [
+                {
+                    "name": "portalId",
+                    "type": "Id"
+                },
+                {
+                    "name": "data",
+                    "type": "UserData"
+                }
+            ],
+            "references": [],
+            "returnType": "User",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 79
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "updateUser",
+            "parameters": [
+                {
+                    "name": "userId",
+                    "type": "Id"
+                },
+                {
+                    "name": "portalId",
+                    "type": "Id"
+                },
+                {
+                    "name": "data",
+                    "type": "UserData"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 98
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "updateContactInfo",
+            "parameters": [
+                {
+                    "name": "user",
+                    "type": "User"
+                },
+                {
+                    "name": "data",
+                    "type": "UserData"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 119
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "setImage",
+            "parameters": [
+                {
+                    "name": "userId",
+                    "type": "String"
+                },
+                {
+                    "name": "imageUrl",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 128
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "extractImageUrl",
+            "parameters": [
+                {
+                    "name": "imageUrl",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 139
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "extractFriendCount",
+            "parameters": [
+                {
+                    "name": "friends",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "Integer",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 153
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getImage",
+            "parameters": [
+                {
+                    "name": "imageUrl",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "Blob",
+            "type": null
+        }
+    ],
+    "name": "FacebookHandler",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 1
+        },
+        "modifiers": [
+            "public"
+        ],
+        "name": "FacebookHandler",
+        "references": [],
+        "type": "FacebookHandler"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 3
+            },
+            "modifiers": [],
+            "name": "portalId",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 55,
+                "line": 3
+            },
+            "modifiers": [],
+            "name": "data",
+            "references": [],
+            "type": "UserData"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 5
+            },
+            "modifiers": [],
+            "name": "url",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 6
+            },
+            "modifiers": [],
+            "name": "userFbId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 7
+            },
+            "modifiers": [],
+            "name": "email",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 8
+            },
+            "modifiers": [],
+            "name": "friendCount",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 11
+            },
+            "modifiers": [],
+            "name": "users",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 17
+            },
+            "modifiers": [],
+            "name": "b",
+            "references": [],
+            "type": "Blob"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 19
+            },
+            "modifiers": [],
+            "name": "newPersonAccount",
+            "references": [],
+            "type": "Account"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 21
+            },
+            "modifiers": [],
+            "name": "personAccountRecordType",
+            "references": [],
+            "type": "RecordType"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 31
+            },
+            "modifiers": [],
+            "name": "a",
+            "references": [],
+            "type": "Account"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 33
+            },
+            "modifiers": [],
+            "name": "c",
+            "references": [],
+            "type": "Contact"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 45
+            },
+            "modifiers": [],
+            "name": "p",
+            "references": [],
+            "type": "Profile"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 48
+            },
+            "modifiers": [],
+            "name": "u",
+            "references": [],
+            "type": "User"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 66
+            },
+            "modifiers": [],
+            "name": "u",
+            "references": [],
+            "type": "User"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 79
+            },
+            "modifiers": [],
+            "name": "userId",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 42,
+                "line": 79
+            },
+            "modifiers": [],
+            "name": "portalId",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 66,
+                "line": 79
+            },
+            "modifiers": [],
+            "name": "data",
+            "references": [],
+            "type": "UserData"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 83
+            },
+            "modifiers": [],
+            "name": "users",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 87
+            },
+            "modifiers": [],
+            "name": "u",
+            "references": [],
+            "type": "User"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 40,
+                "line": 98
+            },
+            "modifiers": [],
+            "name": "user",
+            "references": [],
+            "type": "User"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 60,
+                "line": 98
+            },
+            "modifiers": [],
+            "name": "data",
+            "references": [],
+            "type": "UserData"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 100
+            },
+            "modifiers": [],
+            "name": "url",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 101
+            },
+            "modifiers": [],
+            "name": "userFbId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 102
+            },
+            "modifiers": [],
+            "name": "email",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 103
+            },
+            "modifiers": [],
+            "name": "friendCount",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 105
+            },
+            "modifiers": [],
+            "name": "c",
+            "references": [],
+            "type": "Contact"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 119
+            },
+            "modifiers": [],
+            "name": "userId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 48,
+                "line": 119
+            },
+            "modifiers": [],
+            "name": "imageUrl",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 121
+            },
+            "modifiers": [],
+            "name": "b",
+            "references": [],
+            "type": "Blob"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 42,
+                "line": 128
+            },
+            "modifiers": [],
+            "name": "imageUrl",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 130
+            },
+            "modifiers": [],
+            "name": "url",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 132
+            },
+            "modifiers": [],
+            "name": "dataArray",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 46,
+                "line": 139
+            },
+            "modifiers": [],
+            "name": "friends",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 143
+            },
+            "modifiers": [],
+            "name": "countString",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 145
+            },
+            "modifiers": [],
+            "name": "dataArray",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 153
+            },
+            "modifiers": [],
+            "name": "imageUrl",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 158
+            },
+            "modifiers": [],
+            "name": "req",
+            "references": [],
+            "type": "HttpRequest"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 161
+            },
+            "modifiers": [],
+            "name": "res",
+            "references": [],
+            "type": "HttpResponse"
+        }
+    ]
+}

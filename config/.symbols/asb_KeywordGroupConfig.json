@@ -1,0 +1,106 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 9,
+                "line": 11
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "asb_KeywordGroupConfig",
+            "parameters": [
+                {
+                    "name": "weight",
+                    "type": "Double"
+                }
+            ],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000GcRXPAA3",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRXPAA3",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 15
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getWeight",
+            "parameters": [],
+            "references": [],
+            "returnType": "Double",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 22
+            },
+            "modifiers": [
+                "public",
+                "abstract"
+            ],
+            "name": "getSearchQuery",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        }
+    ],
+    "name": "asb_KeywordGroupConfig",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 8
+            },
+            "modifiers": [
+                "protected"
+            ],
+            "name": "weight",
+            "references": [],
+            "type": "Double"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 23,
+            "line": 7
+        },
+        "modifiers": [
+            "public",
+            "abstract"
+        ],
+        "name": "asb_KeywordGroupConfig",
+        "references": [],
+        "type": "asb_KeywordGroupConfig"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 39,
+                "line": 11
+            },
+            "modifiers": [],
+            "name": "weight",
+            "references": [],
+            "type": "Double"
+        }
+    ]
+}

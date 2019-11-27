@@ -1,0 +1,140 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000HrQCIAA3",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000HrQCIAA3",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 2
+            },
+            "modifiers": [
+                "public",
+                "abstract"
+            ],
+            "name": "getData",
+            "parameters": [
+                {
+                    "name": "dataUrl",
+                    "type": "String"
+                },
+                {
+                    "name": "skipHeaders",
+                    "type": "Boolean"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 9,
+                "line": 3
+            },
+            "modifiers": [
+                "public",
+                "abstract"
+            ],
+            "name": "validateDataURL",
+            "parameters": [
+                {
+                    "name": "dataUrl",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 15,
+                "line": 4
+            },
+            "modifiers": [
+                "public",
+                "abstract"
+            ],
+            "name": "getSchemaFieldNames",
+            "parameters": [
+                {
+                    "name": "dataUrl",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        }
+    ],
+    "name": "IMockarooHelper",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 18,
+            "line": 1
+        },
+        "modifiers": [
+            "public"
+        ],
+        "name": "IMockarooHelper",
+        "references": [],
+        "type": "IMockarooHelper"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 36,
+                "line": 2
+            },
+            "modifiers": [],
+            "name": "dataUrl",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 53,
+                "line": 2
+            },
+            "modifiers": [],
+            "name": "skipHeaders",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 3
+            },
+            "modifiers": [],
+            "name": "dataUrl",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 42,
+                "line": 4
+            },
+            "modifiers": [],
+            "name": "dataUrl",
+            "references": [],
+            "type": "String"
+        }
+    ]
+}

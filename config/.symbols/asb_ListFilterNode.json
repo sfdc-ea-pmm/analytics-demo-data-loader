@@ -1,0 +1,854 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 18
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "asb_ListFilterNode",
+            "parameters": [
+                {
+                    "name": "idVal",
+                    "type": "String"
+                },
+                {
+                    "name": "label",
+                    "type": "String"
+                },
+                {
+                    "name": "labelIfNoneSelected",
+                    "type": "String"
+                },
+                {
+                    "name": "fieldName",
+                    "type": "String"
+                },
+                {
+                    "name": "parentNode",
+                    "type": "asb_FilterNode"
+                },
+                {
+                    "name": "values",
+                    "type": "LIST"
+                }
+            ],
+            "references": [],
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 23
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "asb_ListFilterNode",
+            "parameters": [
+                {
+                    "name": "idVal",
+                    "type": "String"
+                },
+                {
+                    "name": "label",
+                    "type": "String"
+                },
+                {
+                    "name": "labelIfNoneSelected",
+                    "type": "String"
+                },
+                {
+                    "name": "fieldName",
+                    "type": "String"
+                },
+                {
+                    "name": "parentNode",
+                    "type": "asb_FilterNode"
+                },
+                {
+                    "name": "values",
+                    "type": "LIST"
+                },
+                {
+                    "name": "showAs",
+                    "type": "ShowAsType"
+                },
+                {
+                    "name": "isMultiSelectDataType",
+                    "type": "Boolean"
+                }
+            ],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000GcRXTAA3",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRXTAA3",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 28
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "init",
+            "parameters": [
+                {
+                    "name": "idVal",
+                    "type": "String"
+                },
+                {
+                    "name": "label",
+                    "type": "String"
+                },
+                {
+                    "name": "labelIfNoneSelected",
+                    "type": "String"
+                },
+                {
+                    "name": "fieldName",
+                    "type": "String"
+                },
+                {
+                    "name": "parentNode",
+                    "type": "asb_FilterNode"
+                },
+                {
+                    "name": "values",
+                    "type": "LIST"
+                },
+                {
+                    "name": "showAs",
+                    "type": "ShowAsType"
+                },
+                {
+                    "name": "isMultiSelectDataType",
+                    "type": "Boolean"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 56
+            },
+            "modifiers": [
+                "public",
+                "override"
+            ],
+            "name": "setSelectedValue",
+            "parameters": [
+                {
+                    "name": "val",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 40,
+                "line": 84
+            },
+            "modifiers": [
+                "virtual",
+                "public",
+                "override"
+            ],
+            "name": "getSummaryLabel",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 93
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "addDependent",
+            "parameters": [
+                {
+                    "name": "n",
+                    "type": "asb_FilterNode"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 41,
+                "line": 98
+            },
+            "modifiers": [
+                "virtual",
+                "public",
+                "override"
+            ],
+            "name": "getIsSelectable",
+            "parameters": [],
+            "references": [],
+            "returnType": "Boolean",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 102
+            },
+            "modifiers": [
+                "public",
+                "override"
+            ],
+            "name": "getShowListAsLinks",
+            "parameters": [],
+            "references": [],
+            "returnType": "Boolean",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 106
+            },
+            "modifiers": [
+                "public",
+                "override"
+            ],
+            "name": "getFilterString",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 113
+            },
+            "modifiers": [
+                "public",
+                "override"
+            ],
+            "name": "cleanUpURL",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 40,
+                "line": 129
+            },
+            "modifiers": [
+                "virtual",
+                "public",
+                "override"
+            ],
+            "name": "getResetURL",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 135
+            },
+            "modifiers": [
+                "public",
+                "override"
+            ],
+            "name": "addMySelfToURL",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 40,
+                "line": 139
+            },
+            "modifiers": [
+                "virtual",
+                "public",
+                "override"
+            ],
+            "name": "getThisFilterOnlyURL",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 40,
+                "line": 143
+            },
+            "modifiers": [
+                "virtual",
+                "public",
+                "override"
+            ],
+            "name": "getWhereClause",
+            "parameters": [
+                {
+                    "name": "objRef",
+                    "type": "String"
+                },
+                {
+                    "name": "bWithCategoryClause",
+                    "type": "Boolean"
+                }
+            ],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        }
+    ],
+    "name": "asb_ListFilterNode",
+    "namespace": null,
+    "parentClass": "asb_FilterNode",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 10
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "fieldName",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 11
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "selectedLabel",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 35,
+                "line": 13
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "values",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 38,
+                "line": 14
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "dependents",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 15
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "labelIfNoneSelected",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 16
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "isMultiSelectDataType",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 36,
+                "line": 8
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "final"
+            ],
+            "name": "INCLUDE_ALL_TOKEN",
+            "references": [],
+            "type": "String"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 22,
+            "line": 6
+        },
+        "modifiers": [
+            "virtual",
+            "public"
+        ],
+        "name": "asb_ListFilterNode",
+        "references": [],
+        "type": "asb_ListFilterNode"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 42,
+                "line": 18
+            },
+            "modifiers": [],
+            "name": "idVal",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 56,
+                "line": 18
+            },
+            "modifiers": [],
+            "name": "label",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 69,
+                "line": 18
+            },
+            "modifiers": [],
+            "name": "labelIfNoneSelected",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 96,
+                "line": 18
+            },
+            "modifiers": [],
+            "name": "fieldName",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 121,
+                "line": 18
+            },
+            "modifiers": [],
+            "name": "parentNode",
+            "references": [],
+            "type": "asb_FilterNode"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 151,
+                "line": 18
+            },
+            "modifiers": [],
+            "name": "values",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 42,
+                "line": 23
+            },
+            "modifiers": [],
+            "name": "idVal",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 56,
+                "line": 23
+            },
+            "modifiers": [],
+            "name": "label",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 69,
+                "line": 23
+            },
+            "modifiers": [],
+            "name": "labelIfNoneSelected",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 96,
+                "line": 23
+            },
+            "modifiers": [],
+            "name": "fieldName",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 121,
+                "line": 23
+            },
+            "modifiers": [],
+            "name": "parentNode",
+            "references": [],
+            "type": "asb_FilterNode"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 151,
+                "line": 23
+            },
+            "modifiers": [],
+            "name": "values",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 169,
+                "line": 23
+            },
+            "modifiers": [],
+            "name": "showAs",
+            "references": [],
+            "type": "ShowAsType"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 184,
+                "line": 23
+            },
+            "modifiers": [],
+            "name": "isMultiSelectDataType",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 34,
+                "line": 28
+            },
+            "modifiers": [],
+            "name": "idVal",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 48,
+                "line": 28
+            },
+            "modifiers": [],
+            "name": "label",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 61,
+                "line": 28
+            },
+            "modifiers": [],
+            "name": "labelIfNoneSelected",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 88,
+                "line": 28
+            },
+            "modifiers": [],
+            "name": "fieldName",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 113,
+                "line": 28
+            },
+            "modifiers": [],
+            "name": "parentNode",
+            "references": [],
+            "type": "asb_FilterNode"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 143,
+                "line": 28
+            },
+            "modifiers": [],
+            "name": "values",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 161,
+                "line": 28
+            },
+            "modifiers": [],
+            "name": "showAs",
+            "references": [],
+            "type": "ShowAsType"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 176,
+                "line": 28
+            },
+            "modifiers": [],
+            "name": "isMultiSelectDataType",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 34,
+                "line": 45
+            },
+            "modifiers": [],
+            "name": "so",
+            "references": [],
+            "type": "SelectOption"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 54,
+                "line": 56
+            },
+            "modifiers": [],
+            "name": "val",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 59
+            },
+            "modifiers": [],
+            "name": "lo",
+            "references": [],
+            "type": "ListOption"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 36,
+                "line": 78
+            },
+            "modifiers": [],
+            "name": "n",
+            "references": [],
+            "type": "asb_FilterNode"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 36,
+                "line": 86
+            },
+            "modifiers": [],
+            "name": "n",
+            "references": [],
+            "type": "asb_FilterNode"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 49,
+                "line": 93
+            },
+            "modifiers": [],
+            "name": "n",
+            "references": [],
+            "type": "asb_FilterNode"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 36,
+                "line": 116
+            },
+            "modifiers": [],
+            "name": "n",
+            "references": [],
+            "type": "asb_FilterNode"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 117
+            },
+            "modifiers": [],
+            "name": "index",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 118
+            },
+            "modifiers": [],
+            "name": "s",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 62,
+                "line": 143
+            },
+            "modifiers": [],
+            "name": "objRef",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 77,
+                "line": 143
+            },
+            "modifiers": [],
+            "name": "bWithCategoryClause",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 144
+            },
+            "modifiers": [],
+            "name": "clause",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 153
+            },
+            "modifiers": [],
+            "name": "valuesString",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 39,
+                "line": 154
+            },
+            "modifiers": [],
+            "name": "opt",
+            "references": [],
+            "type": "SelectOption"
+        }
+    ]
+}

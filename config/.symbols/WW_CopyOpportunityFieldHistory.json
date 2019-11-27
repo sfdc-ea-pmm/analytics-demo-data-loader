@@ -1,0 +1,256 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 9,
+                "line": 5
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "WW_CopyOpportunityFieldHistory",
+            "parameters": [],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000Hqr6uAAB",
+    "innerClasses": [],
+    "interfaces": [
+        "Database.Batchable"
+    ],
+    "key": "01p3600000Hqr6uAAB",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 9
+            },
+            "modifiers": [
+                "global"
+            ],
+            "name": "start",
+            "parameters": [
+                {
+                    "name": "BC",
+                    "type": "BatchableContext"
+                }
+            ],
+            "references": [],
+            "returnType": "QueryLocator",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 13
+            },
+            "modifiers": [
+                "global"
+            ],
+            "name": "execute",
+            "parameters": [
+                {
+                    "name": "BC",
+                    "type": "BatchableContext"
+                },
+                {
+                    "name": "scope",
+                    "type": "LIST"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 36
+            },
+            "modifiers": [
+                "global"
+            ],
+            "name": "finish",
+            "parameters": [
+                {
+                    "name": "BC",
+                    "type": "BatchableContext"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "WW_CopyOpportunityFieldHistory",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 9,
+                "line": 3
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "query",
+            "references": [],
+            "type": "String"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 1
+        },
+        "modifiers": [
+            "global"
+        ],
+        "name": "WW_CopyOpportunityFieldHistory",
+        "references": [],
+        "type": "WW_CopyOpportunityFieldHistory"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 63,
+                "line": 9
+            },
+            "modifiers": [],
+            "name": "BC",
+            "references": [],
+            "type": "BatchableContext"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 51,
+                "line": 13
+            },
+            "modifiers": [],
+            "name": "BC",
+            "references": [],
+            "type": "BatchableContext"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 85,
+                "line": 13
+            },
+            "modifiers": [],
+            "name": "scope",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 15
+            },
+            "modifiers": [],
+            "name": "lstCopies",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 17
+            },
+            "modifiers": [],
+            "name": "ofhObj",
+            "references": [],
+            "type": "OpportunityFieldHistory"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 11,
+                "line": 19
+            },
+            "modifiers": [],
+            "name": "oldValue",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 11,
+                "line": 20
+            },
+            "modifiers": [],
+            "name": "newValue",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 21
+            },
+            "modifiers": [],
+            "name": "daysToSubstract",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 47,
+                "line": 36
+            },
+            "modifiers": [],
+            "name": "BC",
+            "references": [],
+            "type": "BatchableContext"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 37
+            },
+            "modifiers": [],
+            "name": "oppFieldHistoriesIds",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 39
+            },
+            "modifiers": [],
+            "name": "ch",
+            "references": [],
+            "type": "OpportunityFieldHistory"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 43
+            },
+            "modifiers": [],
+            "name": "lstToDelete",
+            "references": [],
+            "type": "LIST"
+        }
+    ]
+}

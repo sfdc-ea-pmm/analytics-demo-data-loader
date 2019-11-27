@@ -1,0 +1,507 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 9,
+                "line": 14
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "ManageQuotaDatasetsController",
+            "parameters": [],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000I2OzyAAF",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000I2OzyAAF",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 63
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getSalesApplications",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 87
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getDataflows",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 99
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getRoles",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 112
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getProfiles",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 124
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "handleAffected",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 148
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "save",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "ManageQuotaDatasetsController",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 3
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "salesApp",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 4
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "dataflowId",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 5
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "selectedRoleId",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 6
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "selectedProfilesIds",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 7
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "quotaAmount",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 8
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "affectedCount",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 9
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "alsoRoleSubordinates",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 10
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "useOpportunityOwners",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 11
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "firstLoad",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 12
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "salesWaveFolders",
+            "references": [],
+            "type": "LIST"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 1
+        },
+        "modifiers": [
+            "public"
+        ],
+        "name": "ManageQuotaDatasetsController",
+        "references": [],
+        "type": "ManageQuotaDatasetsController"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 64
+            },
+            "modifiers": [],
+            "name": "options",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 68
+            },
+            "modifiers": [],
+            "name": "folders",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 69
+            },
+            "modifiers": [],
+            "name": "f",
+            "references": [],
+            "type": "Folder"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 70
+            },
+            "modifiers": [],
+            "name": "wf",
+            "references": [],
+            "type": "WaveFolder"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 80
+            },
+            "modifiers": [],
+            "name": "folder",
+            "references": [],
+            "type": "WaveFolder"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 89
+            },
+            "modifiers": [],
+            "name": "options",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 90
+            },
+            "modifiers": [],
+            "name": "dataflows",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 92
+            },
+            "modifiers": [],
+            "name": "df",
+            "references": [],
+            "type": "Dataflow"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 101
+            },
+            "modifiers": [],
+            "name": "options",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 102
+            },
+            "modifiers": [],
+            "name": "roles",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 105
+            },
+            "modifiers": [],
+            "name": "role",
+            "references": [],
+            "type": "UserRole"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 114
+            },
+            "modifiers": [],
+            "name": "options",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 115
+            },
+            "modifiers": [],
+            "name": "profiles",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 117
+            },
+            "modifiers": [],
+            "name": "prof",
+            "references": [],
+            "type": "Profile"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 149
+            },
+            "modifiers": [],
+            "name": "messages",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 159
+            },
+            "modifiers": [],
+            "name": "userIds",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 165
+            },
+            "modifiers": [],
+            "name": "setIds",
+            "references": [],
+            "type": "Set"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 184
+            },
+            "modifiers": [],
+            "name": "dfSel",
+            "references": [],
+            "type": "Dataflow"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 185
+            },
+            "modifiers": [],
+            "name": "dfVer",
+            "references": [],
+            "type": "DataflowVersion"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 187
+            },
+            "modifiers": [],
+            "name": "datasetAccesses",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 190
+            },
+            "modifiers": [],
+            "name": "dsAcc",
+            "references": [],
+            "type": "DatasetAccess"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 200
+            },
+            "modifiers": [],
+            "name": "msg",
+            "references": [],
+            "type": "Message"
+        }
+    ]
+}

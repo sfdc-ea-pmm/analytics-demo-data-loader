@@ -1,0 +1,88 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRYyAAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRYyAAN",
+    "methods": [
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 25,
+                "line": 4
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "testMethod"
+            ],
+            "name": "testArticleCase",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "TestSSEArticleList",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [
+            {
+                "name": "IsTest"
+            }
+        ],
+        "location": {
+            "column": 14,
+            "line": 2
+        },
+        "modifiers": [
+            "public",
+            "testMethod"
+        ],
+        "name": "TestSSEArticleList",
+        "references": [],
+        "type": "TestSSEArticleList"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 8,
+                "line": 6
+            },
+            "modifiers": [],
+            "name": "c",
+            "references": [],
+            "type": "Case"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 8
+            },
+            "modifiers": [],
+            "name": "art",
+            "references": [],
+            "type": "KnowledgeArticle"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 20
+            },
+            "modifiers": [],
+            "name": "idList",
+            "references": [],
+            "type": "LIST"
+        }
+    ]
+}

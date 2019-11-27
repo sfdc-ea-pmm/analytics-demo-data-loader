@@ -1,0 +1,426 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRa1AAF",
+    "innerClasses": [
+        {
+            "constructors": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 13,
+                        "line": 58
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "TestObject",
+                    "parameters": [],
+                    "references": [],
+                    "type": null
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 13,
+                        "line": 59
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "TestObject",
+                    "parameters": [
+                        {
+                            "name": "obj",
+                            "type": "SObject"
+                        }
+                    ],
+                    "references": [],
+                    "type": null
+                }
+            ],
+            "externalReferences": [],
+            "id": null,
+            "innerClasses": [],
+            "interfaces": [],
+            "key": null,
+            "methods": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 27,
+                        "line": 63
+                    },
+                    "modifiers": [
+                        "public",
+                        "override"
+                    ],
+                    "name": "remove",
+                    "parameters": [],
+                    "references": [],
+                    "returnType": "Boolean",
+                    "type": null
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 22,
+                        "line": 64
+                    },
+                    "modifiers": [
+                        "public",
+                        "override"
+                    ],
+                    "name": "getCreatedById",
+                    "parameters": [],
+                    "references": [],
+                    "returnType": "Id",
+                    "type": null
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 22,
+                        "line": 65
+                    },
+                    "modifiers": [
+                        "public",
+                        "override"
+                    ],
+                    "name": "getLastModifiedById",
+                    "parameters": [],
+                    "references": [],
+                    "returnType": "Id",
+                    "type": null
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 28,
+                        "line": 66
+                    },
+                    "modifiers": [
+                        "public",
+                        "override"
+                    ],
+                    "name": "getCreatedDate",
+                    "parameters": [],
+                    "references": [],
+                    "returnType": "Datetime",
+                    "type": null
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 28,
+                        "line": 67
+                    },
+                    "modifiers": [
+                        "public",
+                        "override"
+                    ],
+                    "name": "getLastModifiedDate",
+                    "parameters": [],
+                    "references": [],
+                    "returnType": "Datetime",
+                    "type": null
+                }
+            ],
+            "name": "TestObject",
+            "namespace": null,
+            "parentClass": "asb_BaseData",
+            "properties": [],
+            "tableDeclaration": {
+                "annotations": [],
+                "location": {
+                    "column": 19,
+                    "line": 57
+                },
+                "modifiers": [
+                    "private"
+                ],
+                "name": "TestObject",
+                "references": [],
+                "type": "TestObject"
+            },
+            "variables": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 32,
+                        "line": 59
+                    },
+                    "modifiers": [],
+                    "name": "obj",
+                    "references": [],
+                    "type": "SObject"
+                }
+            ]
+        }
+    ],
+    "interfaces": [],
+    "key": "01p3600000GcRa1AAF",
+    "methods": [
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 35,
+                "line": 7
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "testMethod"
+            ],
+            "name": "testRemoveElement",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 35,
+                "line": 70
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "testMethod"
+            ],
+            "name": "testContainsMethods",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 35,
+                "line": 85
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "testMethod"
+            ],
+            "name": "testPicklistMethods",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 35,
+                "line": 113
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "testMethod"
+            ],
+            "name": "testGetQueryParamsMap",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 35,
+                "line": 131
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "testMethod"
+            ],
+            "name": "testGetIdMap",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "asb_TestListUtils",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [
+            {
+                "name": "IsTest"
+            }
+        ],
+        "location": {
+            "column": 15,
+            "line": 6
+        },
+        "modifiers": [
+            "private",
+            "testMethod"
+        ],
+        "name": "asb_TestListUtils",
+        "references": [],
+        "type": "asb_TestListUtils"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 10
+            },
+            "modifiers": [],
+            "name": "lst",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 15,
+                "line": 75
+            },
+            "modifiers": [],
+            "name": "idList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 9,
+                "line": 76
+            },
+            "modifiers": [],
+            "name": "userId",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 86
+            },
+            "modifiers": [],
+            "name": "emailEncodingPicklist",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 87
+            },
+            "modifiers": [],
+            "name": "emailEncodingSelectList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 93
+            },
+            "modifiers": [],
+            "name": "injectedLabels",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 94
+            },
+            "modifiers": [],
+            "name": "i",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 98
+            },
+            "modifiers": [],
+            "name": "labelLookup",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 13,
+                "line": 115
+            },
+            "modifiers": [],
+            "name": "params",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 116
+            },
+            "modifiers": [],
+            "name": "paramsMap",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 11,
+                "line": 132
+            },
+            "modifiers": [],
+            "name": "u",
+            "references": [],
+            "type": "User"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 134
+            },
+            "modifiers": [],
+            "name": "idMap",
+            "references": [],
+            "type": "Map"
+        }
+    ]
+}

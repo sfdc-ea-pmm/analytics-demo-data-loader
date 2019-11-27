@@ -1,0 +1,643 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRYdAAN",
+    "innerClasses": [
+        {
+            "constructors": [],
+            "externalReferences": [],
+            "id": null,
+            "innerClasses": [],
+            "interfaces": [],
+            "key": null,
+            "methods": [],
+            "name": "TestException",
+            "namespace": null,
+            "parentClass": "Exception",
+            "properties": [],
+            "tableDeclaration": {
+                "annotations": [],
+                "location": {
+                    "column": 9,
+                    "line": 13
+                },
+                "modifiers": [],
+                "name": "TestException",
+                "references": [],
+                "type": "TestException"
+            },
+            "variables": []
+        }
+    ],
+    "interfaces": [],
+    "key": "01p3600000GcRYdAAN",
+    "methods": [
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 26,
+                "line": 15
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "testMethod"
+            ],
+            "name": "testController",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 26,
+                "line": 220
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "testMethod"
+            ],
+            "name": "testSettingsController",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 24,
+                "line": 254
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "testMethod"
+            ],
+            "name": "testSettings_CTI_keywords",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 24,
+                "line": 312
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "testMethod"
+            ],
+            "name": "test_searchString",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 15,
+                "line": 348
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "setupSettingsData",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 15,
+                "line": 368
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "setupData",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 418
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "isBlank",
+            "parameters": [
+                {
+                    "name": "s",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "Boolean",
+            "type": null
+        }
+    ],
+    "name": "pkb_Test",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 4
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "siteName",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 5
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "publishStatus",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 6
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "lang",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 7
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "pkb",
+            "references": [],
+            "type": "PKB__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 8
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "kavObj",
+            "references": [],
+            "type": "SObject"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 9
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "objType",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 10
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "featured",
+            "references": [],
+            "type": "PKB_Featured__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 11
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "keyword",
+            "references": [],
+            "type": "PKB_Featured__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 51,
+                "line": 12
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "pafds",
+            "references": [],
+            "type": "LIST"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [
+            {
+                "name": "IsTest"
+            }
+        ],
+        "location": {
+            "column": 15,
+            "line": 2
+        },
+        "modifiers": [
+            "private",
+            "testMethod"
+        ],
+        "name": "pkb_Test",
+        "references": [],
+        "type": "pkb_Test"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 8,
+                "line": 19
+            },
+            "modifiers": [],
+            "name": "kaId",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 8,
+                "line": 20
+            },
+            "modifiers": [],
+            "name": "kavId",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 21
+            },
+            "modifiers": [],
+            "name": "articleNumber",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 30
+            },
+            "modifiers": [],
+            "name": "catString",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 39
+            },
+            "modifiers": [],
+            "name": "searchResults",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 50
+            },
+            "modifiers": [],
+            "name": "refCon",
+            "references": [],
+            "type": "pkb_Controller"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 51
+            },
+            "modifiers": [],
+            "name": "pkbCon",
+            "references": [],
+            "type": "pkb_Controller"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 52
+            },
+            "modifiers": [],
+            "name": "p",
+            "references": [],
+            "type": "PageReference"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 134
+            },
+            "modifiers": [],
+            "name": "validType",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 136
+            },
+            "modifiers": [],
+            "name": "so",
+            "references": [],
+            "type": "SelectOption"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 200
+            },
+            "modifiers": [],
+            "name": "e",
+            "references": [],
+            "type": "TestException"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 217
+            },
+            "modifiers": [],
+            "name": "u",
+            "references": [],
+            "type": "User"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 223
+            },
+            "modifiers": [],
+            "name": "refCon",
+            "references": [],
+            "type": "pkb_SettingsController"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 224
+            },
+            "modifiers": [],
+            "name": "pkbsc",
+            "references": [],
+            "type": "pkb_SettingsController"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 225
+            },
+            "modifiers": [],
+            "name": "p",
+            "references": [],
+            "type": "PageReference"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 257
+            },
+            "modifiers": [],
+            "name": "refCon",
+            "references": [],
+            "type": "pkb_SettingsController"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 258
+            },
+            "modifiers": [],
+            "name": "pkbsc",
+            "references": [],
+            "type": "pkb_SettingsController"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 259
+            },
+            "modifiers": [],
+            "name": "p",
+            "references": [],
+            "type": "PageReference"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 9,
+                "line": 272
+            },
+            "modifiers": [],
+            "name": "updatedElm",
+            "references": [],
+            "type": "PKB__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 273
+            },
+            "modifiers": [],
+            "name": "settingsMap",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 8,
+                "line": 316
+            },
+            "modifiers": [],
+            "name": "kaId",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 8,
+                "line": 317
+            },
+            "modifiers": [],
+            "name": "kavId",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 9,
+                "line": 318
+            },
+            "modifiers": [],
+            "name": "catString",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 321
+            },
+            "modifiers": [],
+            "name": "refCon",
+            "references": [],
+            "type": "pkb_Controller"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 322
+            },
+            "modifiers": [],
+            "name": "pkbCon",
+            "references": [],
+            "type": "pkb_Controller"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 323
+            },
+            "modifiers": [],
+            "name": "p",
+            "references": [],
+            "type": "PageReference"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 370
+            },
+            "modifiers": [],
+            "name": "kavNames",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 389
+            },
+            "modifiers": [],
+            "name": "q",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 418
+            },
+            "modifiers": [],
+            "name": "s",
+            "references": [],
+            "type": "String"
+        }
+    ]
+}

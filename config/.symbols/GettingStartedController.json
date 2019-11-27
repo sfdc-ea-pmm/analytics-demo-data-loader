@@ -1,0 +1,406 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 8,
+                "line": 7
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "GettingStartedController",
+            "parameters": [],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000GcRUjAAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRUjAAN",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 13,
+                "line": 23
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "makeTestSurvey",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 43
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "viewSurvey",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 48
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "takeSurvey",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 53
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "viewResults",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 64
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "createQuestion",
+            "parameters": [
+                {
+                    "name": "i",
+                    "type": "Integer"
+                }
+            ],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 77
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "getType",
+            "parameters": [
+                {
+                    "name": "i",
+                    "type": "Integer"
+                }
+            ],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 87
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "getChoices",
+            "parameters": [
+                {
+                    "name": "i",
+                    "type": "Integer"
+                }
+            ],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 99
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "createResponses",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 34,
+                "line": 139
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "testMethod"
+            ],
+            "name": "testGettingStarted",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "GettingStartedController",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 3
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "testSurvey",
+            "references": [],
+            "type": "Survey__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 4
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "testSurveyAvailable",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 5
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "questionIds",
+            "references": [],
+            "type": "LIST"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 27,
+            "line": 1
+        },
+        "modifiers": [
+            "public",
+            "with sharing"
+        ],
+        "name": "GettingStartedController",
+        "references": [],
+        "type": "GettingStartedController"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 55
+            },
+            "modifiers": [],
+            "name": "rfu",
+            "references": [],
+            "type": "ReportFinderUtil"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 56
+            },
+            "modifiers": [],
+            "name": "reportId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 58
+            },
+            "modifiers": [],
+            "name": "surveyId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 41,
+                "line": 64
+            },
+            "modifiers": [],
+            "name": "i",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 65
+            },
+            "modifiers": [],
+            "name": "q",
+            "references": [],
+            "type": "Survey_Question__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 34,
+                "line": 77
+            },
+            "modifiers": [],
+            "name": "i",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 37,
+                "line": 87
+            },
+            "modifiers": [],
+            "name": "i",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 13,
+                "line": 101
+            },
+            "modifiers": [],
+            "name": "c",
+            "references": [],
+            "type": "Contact"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 113
+            },
+            "modifiers": [],
+            "name": "st",
+            "references": [],
+            "type": "SurveyTaker__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 119
+            },
+            "modifiers": [],
+            "name": "i",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 35,
+                "line": 121
+            },
+            "modifiers": [],
+            "name": "r",
+            "references": [],
+            "type": "SurveyQuestionResponse__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 131
+            },
+            "modifiers": [],
+            "name": "sq",
+            "references": [],
+            "type": "Survey_Question__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 141
+            },
+            "modifiers": [],
+            "name": "surveys",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 142
+            },
+            "modifiers": [],
+            "name": "gsc",
+            "references": [],
+            "type": "GettingStartedController"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 157
+            },
+            "modifiers": [],
+            "name": "surveys2",
+            "references": [],
+            "type": "LIST"
+        }
+    ]
+}

@@ -1,0 +1,867 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 9,
+                "line": 10
+            },
+            "modifiers": [
+                "global"
+            ],
+            "name": "CsvDataImportBatch",
+            "parameters": [
+                {
+                    "name": "objectType",
+                    "type": "SObjectType"
+                },
+                {
+                    "name": "csvData",
+                    "type": "LIST"
+                },
+                {
+                    "name": "fieldPositions",
+                    "type": "Map"
+                }
+            ],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000HrUr1AAF",
+    "innerClasses": [],
+    "interfaces": [
+        "Database.Stateful",
+        "Database.Batchable"
+    ],
+    "key": "01p3600000HrUr1AAF",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 19
+            },
+            "modifiers": [
+                "global"
+            ],
+            "name": "start",
+            "parameters": [
+                {
+                    "name": "BC",
+                    "type": "BatchableContext"
+                }
+            ],
+            "references": [],
+            "returnType": "Iterable",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 27
+            },
+            "modifiers": [
+                "global"
+            ],
+            "name": "execute",
+            "parameters": [
+                {
+                    "name": "BC",
+                    "type": "BatchableContext"
+                },
+                {
+                    "name": "scope",
+                    "type": "LIST"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 117
+            },
+            "modifiers": [
+                "global"
+            ],
+            "name": "finish",
+            "parameters": [
+                {
+                    "name": "BC",
+                    "type": "BatchableContext"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 15,
+                "line": 122
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "prepareNameSmartLookups",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 15,
+                "line": 146
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "smartLookupNameToId",
+            "parameters": [
+                {
+                    "name": "scope",
+                    "type": "LIST"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 15,
+                "line": 192
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "prepareExternalIdSmartLookups",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 15,
+                "line": 214
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "smartLookupExternalId",
+            "parameters": [
+                {
+                    "name": "scope",
+                    "type": "LIST"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "CsvDataImportBatch",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 3
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "csvData",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 4
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "fieldPositions",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 5
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "objectType",
+            "references": [],
+            "type": "SObjectType"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 6
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "nameSmartLookups",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 7
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "externalIdSmartLookups",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 8
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "debugMessages",
+            "references": [],
+            "type": "LIST"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 1
+        },
+        "modifiers": [
+            "global"
+        ],
+        "name": "CsvDataImportBatch",
+        "references": [],
+        "type": "CsvDataImportBatch"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 40,
+                "line": 10
+            },
+            "modifiers": [],
+            "name": "objectType",
+            "references": [],
+            "type": "SObjectType"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 71,
+                "line": 10
+            },
+            "modifiers": [],
+            "name": "csvData",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 101,
+                "line": 10
+            },
+            "modifiers": [],
+            "name": "fieldPositions",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 64,
+                "line": 19
+            },
+            "modifiers": [],
+            "name": "BC",
+            "references": [],
+            "type": "BatchableContext"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 51,
+                "line": 27
+            },
+            "modifiers": [],
+            "name": "BC",
+            "references": [],
+            "type": "BatchableContext"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 74,
+                "line": 27
+            },
+            "modifiers": [],
+            "name": "scope",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 35
+            },
+            "modifiers": [],
+            "name": "objectsBatch",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 36
+            },
+            "modifiers": [],
+            "name": "lstExternalIds",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 39,
+                "line": 37
+            },
+            "modifiers": [],
+            "name": "objectFields",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 39
+            },
+            "modifiers": [],
+            "name": "sObjRow",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 41
+            },
+            "modifiers": [],
+            "name": "objToCreate",
+            "references": [],
+            "type": "SObject"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 43
+            },
+            "modifiers": [],
+            "name": "i",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 45
+            },
+            "modifiers": [],
+            "name": "fieldName",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 46
+            },
+            "modifiers": [],
+            "name": "fieldValue",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 51
+            },
+            "modifiers": [],
+            "name": "fieldType",
+            "references": [],
+            "type": "DisplayType"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 11,
+                "line": 87
+            },
+            "modifiers": [],
+            "name": "genQuery",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 88
+            },
+            "modifiers": [],
+            "name": "alreadyThere",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 89
+            },
+            "modifiers": [],
+            "name": "sfIdsByExternalId",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 91
+            },
+            "modifiers": [],
+            "name": "sObj",
+            "references": [],
+            "type": "SObject"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 95
+            },
+            "modifiers": [],
+            "name": "lstToInsert",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 96
+            },
+            "modifiers": [],
+            "name": "lstToUpdate",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 98
+            },
+            "modifiers": [],
+            "name": "sObj",
+            "references": [],
+            "type": "SObject"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 47,
+                "line": 117
+            },
+            "modifiers": [],
+            "name": "BC",
+            "references": [],
+            "type": "BatchableContext"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 126
+            },
+            "modifiers": [],
+            "name": "columnNumber",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 127
+            },
+            "modifiers": [],
+            "name": "headerValue",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 133
+            },
+            "modifiers": [],
+            "name": "columnNumber",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 135
+            },
+            "modifiers": [],
+            "name": "headerValue",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 54,
+                "line": 146
+            },
+            "modifiers": [],
+            "name": "scope",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 151
+            },
+            "modifiers": [],
+            "name": "smLookUp",
+            "references": [],
+            "type": "SmartLookup"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 152
+            },
+            "modifiers": [],
+            "name": "row",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 158
+            },
+            "modifiers": [],
+            "name": "s",
+            "references": [],
+            "type": "SmartLookup"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 162
+            },
+            "modifiers": [],
+            "name": "relevantValues",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 163
+            },
+            "modifiers": [],
+            "name": "generatedQuery",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 164
+            },
+            "modifiers": [],
+            "name": "temp",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 166
+            },
+            "modifiers": [],
+            "name": "t",
+            "references": [],
+            "type": "SObject"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 171
+            },
+            "modifiers": [],
+            "name": "relVal",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 183
+            },
+            "modifiers": [],
+            "name": "row",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 184
+            },
+            "modifiers": [],
+            "name": "s",
+            "references": [],
+            "type": "SmartLookup"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 196
+            },
+            "modifiers": [],
+            "name": "columnNumber",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 197
+            },
+            "modifiers": [],
+            "name": "headerValue",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 203
+            },
+            "modifiers": [],
+            "name": "columnNumber",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 205
+            },
+            "modifiers": [],
+            "name": "headerValue",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 56,
+                "line": 214
+            },
+            "modifiers": [],
+            "name": "scope",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 219
+            },
+            "modifiers": [],
+            "name": "smLookUp",
+            "references": [],
+            "type": "SmartLookup"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 220
+            },
+            "modifiers": [],
+            "name": "row",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 226
+            },
+            "modifiers": [],
+            "name": "s",
+            "references": [],
+            "type": "SmartLookup"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 228
+            },
+            "modifiers": [],
+            "name": "relevantValues",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 229
+            },
+            "modifiers": [],
+            "name": "sObjToQuery",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 236
+            },
+            "modifiers": [],
+            "name": "generatedQuery",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 237
+            },
+            "modifiers": [],
+            "name": "temp",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 239
+            },
+            "modifiers": [],
+            "name": "t",
+            "references": [],
+            "type": "SObject"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 244
+            },
+            "modifiers": [],
+            "name": "relVal",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 256
+            },
+            "modifiers": [],
+            "name": "row",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 257
+            },
+            "modifiers": [],
+            "name": "s",
+            "references": [],
+            "type": "SmartLookup"
+        }
+    ]
+}

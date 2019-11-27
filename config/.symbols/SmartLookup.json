@@ -1,0 +1,127 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 8
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "SmartLookup",
+            "parameters": [
+                {
+                    "name": "colNum",
+                    "type": "Integer"
+                },
+                {
+                    "name": "objType",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000I2DnxAAF",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000I2DnxAAF",
+    "methods": [],
+    "name": "SmartLookup",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 3
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "columnNumber",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 4
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "SObjectType",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 5
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "plainTextValues",
+            "references": [],
+            "type": "Set"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 6
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "replaceValues",
+            "references": [],
+            "type": "Map"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 1
+        },
+        "modifiers": [
+            "public"
+        ],
+        "name": "SmartLookup",
+        "references": [],
+        "type": "SmartLookup"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 8
+            },
+            "modifiers": [],
+            "name": "colNum",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 48,
+                "line": 8
+            },
+            "modifiers": [],
+            "name": "objType",
+            "references": [],
+            "type": "String"
+        }
+    ]
+}

@@ -1,0 +1,57 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 5
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "Community_User_Profile_Controller",
+            "parameters": [],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000GcRVSAA3",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRVSAA3",
+    "methods": [],
+    "name": "Community_User_Profile_Controller",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 3
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "u",
+            "references": [],
+            "type": "User"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 27,
+            "line": 1
+        },
+        "modifiers": [
+            "public",
+            "with sharing"
+        ],
+        "name": "Community_User_Profile_Controller",
+        "references": [],
+        "type": "Community_User_Profile_Controller"
+    },
+    "variables": []
+}

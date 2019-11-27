@@ -1,0 +1,155 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 9,
+                "line": 36
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "Milestone1_Charts_Gantt_Helper",
+            "parameters": [
+                {
+                    "name": "stc",
+                    "type": "StandardController"
+                }
+            ],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000GcRU4AAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRU4AAN",
+    "methods": [
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 25,
+                "line": 41
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "testMethod"
+            ],
+            "name": "testController",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "Milestone1_Charts_Gantt_Helper",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 31
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "myId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 32
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "allowView",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 34
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "stdCont",
+            "references": [],
+            "type": "StandardController"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 27,
+            "line": 29
+        },
+        "modifiers": [
+            "public",
+            "with sharing"
+        ],
+        "name": "Milestone1_Charts_Gantt_Helper",
+        "references": [],
+        "type": "Milestone1_Charts_Gantt_Helper"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 69,
+                "line": 36
+            },
+            "modifiers": [],
+            "name": "stc",
+            "references": [],
+            "type": "StandardController"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 43
+            },
+            "modifiers": [],
+            "name": "proj",
+            "references": [],
+            "type": "Milestone1_Project__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 46
+            },
+            "modifiers": [],
+            "name": "stc",
+            "references": [],
+            "type": "StandardController"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 40,
+                "line": 47
+            },
+            "modifiers": [],
+            "name": "cont",
+            "references": [],
+            "type": "Milestone1_Charts_Gantt_Helper"
+        }
+    ]
+}

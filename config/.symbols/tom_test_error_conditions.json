@@ -1,0 +1,248 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRWVAA3",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRWVAA3",
+    "methods": [
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 25,
+                "line": 3
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "testMethod"
+            ],
+            "name": "test_package_error_conditions",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "tom_test_error_conditions",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 1
+        },
+        "modifiers": [
+            "public"
+        ],
+        "name": "tom_test_error_conditions",
+        "references": [],
+        "type": "tom_test_error_conditions"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 9,
+                "line": 10
+            },
+            "modifiers": [],
+            "name": "payroll_queue",
+            "references": [],
+            "type": "Group"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 24
+            },
+            "modifiers": [],
+            "name": "toi",
+            "references": [],
+            "type": "Time_Off_Info__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 38
+            },
+            "modifiers": [],
+            "name": "test_users",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 8,
+                "line": 39
+            },
+            "modifiers": [],
+            "name": "user",
+            "references": [],
+            "type": "User"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 48
+            },
+            "modifiers": [],
+            "name": "tor",
+            "references": [],
+            "type": "Time_Off_Request__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 56
+            },
+            "modifiers": [],
+            "name": "tor",
+            "references": [],
+            "type": "Time_Off_Request__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 66
+            },
+            "modifiers": [],
+            "name": "tor2",
+            "references": [],
+            "type": "Time_Off_Request__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 76
+            },
+            "modifiers": [],
+            "name": "tor2",
+            "references": [],
+            "type": "Time_Off_Request__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 8,
+                "line": 92
+            },
+            "modifiers": [],
+            "name": "old_start_date",
+            "references": [],
+            "type": "Date"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 8,
+                "line": 93
+            },
+            "modifiers": [],
+            "name": "old_end_date",
+            "references": [],
+            "type": "Date"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 158
+            },
+            "modifiers": [],
+            "name": "toi",
+            "references": [],
+            "type": "Time_Off_Info__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 168
+            },
+            "modifiers": [],
+            "name": "tor3",
+            "references": [],
+            "type": "Time_Off_Request__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 176
+            },
+            "modifiers": [],
+            "name": "tor3",
+            "references": [],
+            "type": "Time_Off_Request__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 186
+            },
+            "modifiers": [],
+            "name": "tor3",
+            "references": [],
+            "type": "Time_Off_Request__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 195
+            },
+            "modifiers": [],
+            "name": "toi",
+            "references": [],
+            "type": "Time_Off_Info__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 207
+            },
+            "modifiers": [],
+            "name": "tor3",
+            "references": [],
+            "type": "Time_Off_Request__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 219
+            },
+            "modifiers": [],
+            "name": "tor3",
+            "references": [],
+            "type": "Time_Off_Request__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 229
+            },
+            "modifiers": [],
+            "name": "tor4",
+            "references": [],
+            "type": "Time_Off_Request__c"
+        }
+    ]
+}

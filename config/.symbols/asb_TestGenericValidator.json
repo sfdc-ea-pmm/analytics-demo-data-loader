@@ -1,0 +1,147 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRZzAAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRZzAAN",
+    "methods": [
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 33,
+                "line": 21
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "testMethod"
+            ],
+            "name": "testValidateFile",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 65
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "getBlob",
+            "parameters": [
+                {
+                    "name": "size",
+                    "type": "Integer"
+                }
+            ],
+            "references": [],
+            "returnType": "Blob",
+            "type": null
+        }
+    ],
+    "name": "asb_TestGenericValidator",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 46,
+                "line": 11
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "final"
+            ],
+            "name": "CONTENT_TYPE_MAP",
+            "references": [],
+            "type": "Map"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [
+            {
+                "name": "IsTest"
+            }
+        ],
+        "location": {
+            "column": 15,
+            "line": 6
+        },
+        "modifiers": [
+            "private",
+            "testMethod"
+        ],
+        "name": "asb_TestGenericValidator",
+        "references": [],
+        "type": "asb_TestGenericValidator"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 23
+            },
+            "modifiers": [],
+            "name": "allowedExts",
+            "references": [],
+            "type": "Set"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 24
+            },
+            "modifiers": [],
+            "name": "customErrors",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 9,
+                "line": 26
+            },
+            "modifiers": [],
+            "name": "b",
+            "references": [],
+            "type": "Blob"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 11,
+                "line": 27
+            },
+            "modifiers": [],
+            "name": "result",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 41,
+                "line": 65
+            },
+            "modifiers": [],
+            "name": "size",
+            "references": [],
+            "type": "Integer"
+        }
+    ]
+}

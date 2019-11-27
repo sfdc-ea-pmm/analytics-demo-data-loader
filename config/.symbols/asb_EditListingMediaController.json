@@ -1,0 +1,984 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 25
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "asb_EditListingMediaController",
+            "parameters": [],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000GcRXvAAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRXvAAN",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 35,
+                "line": 29
+            },
+            "modifiers": [
+                "public",
+                "override"
+            ],
+            "name": "init",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 56
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "uploadScreenshot",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 64
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "editScreenshot",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 105
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "uploadVideoLink",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 133
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "editVideoLink",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 158
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "uploadResourceFile",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 166
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "uploadResourceLink",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 193
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "deleteAsset",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 216
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "reorderAssets",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 222
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "reorderAssets",
+            "parameters": [
+                {
+                    "name": "assetIdsToUpdate",
+                    "type": "LIST"
+                }
+            ],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 247
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "uploadBanner",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 265
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "editBanner",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 292
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "deleteBanner",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 15,
+                "line": 300
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "reset",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 308
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "saveListing",
+            "parameters": [
+                {
+                    "name": "anchor",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 316
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "referenceToCurrentPage",
+            "parameters": [
+                {
+                    "name": "anchor",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 324
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "validateBanner",
+            "parameters": [],
+            "references": [],
+            "returnType": "Boolean",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 328
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "validateScreenshot",
+            "parameters": [],
+            "references": [],
+            "returnType": "Boolean",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 332
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "validateResource",
+            "parameters": [],
+            "references": [],
+            "returnType": "Boolean",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 336
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "validateFile",
+            "parameters": [
+                {
+                    "name": "validFileTypes",
+                    "type": "Set"
+                },
+                {
+                    "name": "maxMbFilesize",
+                    "type": "Integer"
+                }
+            ],
+            "references": [],
+            "returnType": "Boolean",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 347
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "uploadFile",
+            "parameters": [
+                {
+                    "name": "assetType",
+                    "type": "String"
+                },
+                {
+                    "name": "assetOrder",
+                    "type": "Integer"
+                }
+            ],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 386
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getResourcesDescription",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 394
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getShowResourcesButtons",
+            "parameters": [],
+            "references": [],
+            "returnType": "Boolean",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 398
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getImageAndVideosDescription",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 406
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getShowImageAndVideosButtons",
+            "parameters": [],
+            "references": [],
+            "returnType": "Boolean",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 410
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getScreenshotFileRequiredMsg",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 414
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getScreenshotFileTypeMsg",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 418
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getResourceFileRequiredMsg",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 422
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getBannerFileRequiredMsg",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 426
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getBannerFileTypeMsg",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        }
+    ],
+    "name": "asb_EditListingMediaController",
+    "namespace": null,
+    "parentClass": "asb_EditListingController",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 14
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "actionParamValue",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 15
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "mediaLink",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 16
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "mediaType",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 17
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "mediaCaption",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 18
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "mediaCompanyId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 19
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "attachmentObj",
+            "references": [],
+            "type": "Attachment"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 41,
+                "line": 21
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "listingAssetMap",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 37,
+                "line": 22
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "imageAndVideoAssets",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 37,
+                "line": 23
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "documentAssets",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 11
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "final"
+            ],
+            "name": "MAX_ASSETS_SIZE",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 12
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "final"
+            ],
+            "name": "BANNER_SECTION_ANCHOR",
+            "references": [],
+            "type": "String"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 9
+        },
+        "modifiers": [
+            "public"
+        ],
+        "name": "asb_EditListingMediaController",
+        "references": [],
+        "type": "asb_EditListingMediaController"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 30
+            },
+            "modifiers": [],
+            "name": "ret",
+            "references": [],
+            "type": "PageReference"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 37
+            },
+            "modifiers": [],
+            "name": "allListingAssets",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 40
+            },
+            "modifiers": [],
+            "name": "lad",
+            "references": [],
+            "type": "asb_ListingAssetDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 65
+            },
+            "modifiers": [],
+            "name": "lad",
+            "references": [],
+            "type": "asb_ListingAssetDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 82
+            },
+            "modifiers": [],
+            "name": "attachmentsToDelete",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 106
+            },
+            "modifiers": [],
+            "name": "lad",
+            "references": [],
+            "type": "Video"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 134
+            },
+            "modifiers": [],
+            "name": "lad",
+            "references": [],
+            "type": "asb_ListingAssetDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 138
+            },
+            "modifiers": [],
+            "name": "v",
+            "references": [],
+            "type": "Video"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 34,
+                "line": 167
+            },
+            "modifiers": [],
+            "name": "d",
+            "references": [],
+            "type": "Document"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 194
+            },
+            "modifiers": [],
+            "name": "lad",
+            "references": [],
+            "type": "asb_ListingAssetDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 198
+            },
+            "modifiers": [],
+            "name": "assetIdsToUpdate",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 199
+            },
+            "modifiers": [],
+            "name": "assetTypeGroupList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 200
+            },
+            "modifiers": [],
+            "name": "l",
+            "references": [],
+            "type": "asb_ListingAssetDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 54,
+                "line": 222
+            },
+            "modifiers": [],
+            "name": "assetIdsToUpdate",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 225
+            },
+            "modifiers": [],
+            "name": "assetsToUpdate",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 226
+            },
+            "modifiers": [],
+            "name": "i",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 227
+            },
+            "modifiers": [],
+            "name": "lado",
+            "references": [],
+            "type": "asb_ListingAssetDO"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 235
+            },
+            "modifiers": [],
+            "name": "error",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 272
+            },
+            "modifiers": [],
+            "name": "currentBanner",
+            "references": [],
+            "type": "Attachment"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 43,
+                "line": 308
+            },
+            "modifiers": [],
+            "name": "anchor",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 54,
+                "line": 316
+            },
+            "modifiers": [],
+            "name": "anchor",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 318
+            },
+            "modifiers": [],
+            "name": "p",
+            "references": [],
+            "type": "PageReference"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 43,
+                "line": 336
+            },
+            "modifiers": [],
+            "name": "validFileTypes",
+            "references": [],
+            "type": "Set"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 67,
+                "line": 336
+            },
+            "modifiers": [],
+            "name": "maxMbFilesize",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 337
+            },
+            "modifiers": [],
+            "name": "errorMessage",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 45,
+                "line": 347
+            },
+            "modifiers": [],
+            "name": "assetType",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 64,
+                "line": 347
+            },
+            "modifiers": [],
+            "name": "assetOrder",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 348
+            },
+            "modifiers": [],
+            "name": "lad",
+            "references": [],
+            "type": "asb_ListingAssetDO"
+        }
+    ]
+}

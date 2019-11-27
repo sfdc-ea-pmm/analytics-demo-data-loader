@@ -1,0 +1,286 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 4
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "SlickSidebarActivityHistory",
+            "parameters": [],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000GcRSzAAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRSzAAN",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 15
+            },
+            "modifiers": [
+                "public",
+                "override"
+            ],
+            "name": "loadWidget",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 38,
+                "line": 81
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getFieldSetMembers",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 85
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getObjectName",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 88
+            },
+            "modifiers": [
+                "public",
+                "override"
+            ],
+            "name": "UnitTestCompliance",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "SlickSidebarActivityHistory",
+    "namespace": null,
+    "parentClass": "SlickSidebarAbstractController",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 2
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "activities",
+            "references": [],
+            "type": "LIST"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 27,
+            "line": 1
+        },
+        "modifiers": [
+            "public",
+            "with sharing"
+        ],
+        "name": "SlickSidebarActivityHistory",
+        "references": [],
+        "type": "SlickSidebarActivityHistory"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 17
+            },
+            "modifiers": [],
+            "name": "actQueryString",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 18
+            },
+            "modifiers": [],
+            "name": "contactHistory",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 19
+            },
+            "modifiers": [],
+            "name": "caseHistory",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 20
+            },
+            "modifiers": [],
+            "name": "accountHistory",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 23
+            },
+            "modifiers": [],
+            "name": "leadHistory",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 34
+            },
+            "modifiers": [],
+            "name": "queryString",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 39
+            },
+            "modifiers": [],
+            "name": "curContact",
+            "references": [],
+            "type": "Contact"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 40
+            },
+            "modifiers": [],
+            "name": "act",
+            "references": [],
+            "type": "ActivityHistory"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 48
+            },
+            "modifiers": [],
+            "name": "curCase",
+            "references": [],
+            "type": "Case"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 49
+            },
+            "modifiers": [],
+            "name": "act",
+            "references": [],
+            "type": "ActivityHistory"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 59
+            },
+            "modifiers": [],
+            "name": "curLead",
+            "references": [],
+            "type": "Lead"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 60
+            },
+            "modifiers": [],
+            "name": "act",
+            "references": [],
+            "type": "ActivityHistory"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 71
+            },
+            "modifiers": [],
+            "name": "curAccount",
+            "references": [],
+            "type": "Account"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 72
+            },
+            "modifiers": [],
+            "name": "act",
+            "references": [],
+            "type": "ActivityHistory"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 13,
+                "line": 89
+            },
+            "modifiers": [],
+            "name": "i",
+            "references": [],
+            "type": "Integer"
+        }
+    ]
+}

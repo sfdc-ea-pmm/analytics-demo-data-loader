@@ -1,0 +1,105 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRWMAA3",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRWMAA3",
+    "methods": [
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 32,
+                "line": 3
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "testMethod"
+            ],
+            "name": "test_time_off_request_status_changes",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "tom_test_status_changes",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 1
+        },
+        "modifiers": [
+            "public"
+        ],
+        "name": "tom_test_status_changes",
+        "references": [],
+        "type": "tom_test_status_changes"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 9
+            },
+            "modifiers": [],
+            "name": "test_users",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 8,
+                "line": 10
+            },
+            "modifiers": [],
+            "name": "user",
+            "references": [],
+            "type": "User"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 18
+            },
+            "modifiers": [],
+            "name": "tor",
+            "references": [],
+            "type": "Time_Off_Request__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 23
+            },
+            "modifiers": [],
+            "name": "days",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 61
+            },
+            "modifiers": [],
+            "name": "tor2",
+            "references": [],
+            "type": "Time_Off_Request__c"
+        }
+    ]
+}

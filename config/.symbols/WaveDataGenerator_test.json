@@ -1,0 +1,271 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000I2PEyAAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000I2PEyAAN",
+    "methods": [
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 22,
+                "line": 4
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "testMethod"
+            ],
+            "name": "basicControllerTest",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 22,
+                "line": 27
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "testMethod"
+            ],
+            "name": "basicMockarooHelperTest",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 22,
+                "line": 40
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "testMethod"
+            ],
+            "name": "schemaValidationTest",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 22,
+                "line": 69
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "testMethod"
+            ],
+            "name": "saveTest",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 22,
+                "line": 92
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "testMethod"
+            ],
+            "name": "defaultUrlsTest",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "WaveDataGenerator_test",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [
+            {
+                "name": "IsTest"
+            }
+        ],
+        "location": {
+            "column": 15,
+            "line": 2
+        },
+        "modifiers": [
+            "private",
+            "testMethod"
+        ],
+        "name": "WaveDataGenerator_test",
+        "references": [],
+        "type": "WaveDataGenerator_test"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 5
+            },
+            "modifiers": [],
+            "name": "cnt",
+            "references": [],
+            "type": "WaveDataGeneratorController"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 8
+            },
+            "modifiers": [],
+            "name": "waveApps",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 12
+            },
+            "modifiers": [],
+            "name": "objects",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 28
+            },
+            "modifiers": [],
+            "name": "url",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 29
+            },
+            "modifiers": [],
+            "name": "badUrl",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 30
+            },
+            "modifiers": [],
+            "name": "iMockHelper",
+            "references": [],
+            "type": "IMockarooHelper"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 41
+            },
+            "modifiers": [],
+            "name": "url",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 42
+            },
+            "modifiers": [],
+            "name": "badUrl",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 43
+            },
+            "modifiers": [],
+            "name": "cnt",
+            "references": [],
+            "type": "WaveDataGeneratorController"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 70
+            },
+            "modifiers": [],
+            "name": "url",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 71
+            },
+            "modifiers": [],
+            "name": "cnt",
+            "references": [],
+            "type": "WaveDataGeneratorController"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 94
+            },
+            "modifiers": [],
+            "name": "cnt",
+            "references": [],
+            "type": "WaveDataGeneratorController"
+        }
+    ]
+}

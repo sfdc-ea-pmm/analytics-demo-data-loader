@@ -1,0 +1,960 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000HqwZNAAZ",
+    "innerClasses": [
+        {
+            "constructors": [],
+            "externalReferences": [],
+            "id": null,
+            "innerClasses": [],
+            "interfaces": [],
+            "key": null,
+            "methods": [],
+            "name": "ResponseBody",
+            "namespace": null,
+            "parentClass": "",
+            "properties": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 17,
+                        "line": 72
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "id",
+                    "references": [],
+                    "type": "String"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 18,
+                        "line": 73
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "success",
+                    "references": [],
+                    "type": "Boolean"
+                }
+            ],
+            "tableDeclaration": {
+                "annotations": [],
+                "location": {
+                    "column": 15,
+                    "line": 71
+                },
+                "modifiers": [
+                    "public"
+                ],
+                "name": "ResponseBody",
+                "references": [],
+                "type": "ResponseBody"
+            },
+            "variables": []
+        }
+    ],
+    "interfaces": [
+        "System.Schedulable"
+    ],
+    "key": "01p3600000HqwZNAAZ",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 7
+            },
+            "modifiers": [
+                "global"
+            ],
+            "name": "execute",
+            "parameters": [
+                {
+                    "name": "sc",
+                    "type": "SchedulableContext"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 13
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "editServiceWaveDataflow",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 76
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "postVersion",
+            "parameters": [
+                {
+                    "name": "json",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 96
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "postFlow",
+            "parameters": [
+                {
+                    "name": "json",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 118
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "editExtractNode",
+            "parameters": [
+                {
+                    "name": "nodeName",
+                    "type": "String"
+                },
+                {
+                    "name": "srcObject",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 149
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "editComputeRelative",
+            "parameters": [
+                {
+                    "name": "nodeName",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 177
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "appendComputeExpression",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 191
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "editAugment",
+            "parameters": [
+                {
+                    "name": "nodeName",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 206
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "zipJSON",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 212
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "dataflowByName",
+            "parameters": [
+                {
+                    "name": "dataflowList",
+                    "type": "LIST"
+                },
+                {
+                    "name": "dataflowName",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "Dataflow",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 219
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "dataflowByDesc",
+            "parameters": [
+                {
+                    "name": "dataflowList",
+                    "type": "LIST"
+                },
+                {
+                    "name": "dataflowDesc",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "Dataflow",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 36,
+                "line": 226
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "dataflowContentsAsJSON",
+            "parameters": [
+                {
+                    "name": "dfId",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "Map",
+            "type": null
+        }
+    ],
+    "name": "DFJSON_old",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 3
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "allDataflows",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 4
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "relevantDataflowId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 5
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "dataflowObject",
+            "references": [],
+            "type": "Map"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 1
+        },
+        "modifiers": [
+            "global"
+        ],
+        "name": "DFJSON_old",
+        "references": [],
+        "type": "DFJSON_old"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 42,
+                "line": 7
+            },
+            "modifiers": [],
+            "name": "sc",
+            "references": [],
+            "type": "SchedulableContext"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 17
+            },
+            "modifiers": [],
+            "name": "dataflowName",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 18
+            },
+            "modifiers": [],
+            "name": "newDataflowName",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 19
+            },
+            "modifiers": [],
+            "name": "objectName",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 23
+            },
+            "modifiers": [],
+            "name": "relevantDataflow",
+            "references": [],
+            "type": "Dataflow"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 37
+            },
+            "modifiers": [],
+            "name": "newDataflowDefinition",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 39
+            },
+            "modifiers": [],
+            "name": "newDataflowVersion",
+            "references": [],
+            "type": "DataflowVersion"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 43
+            },
+            "modifiers": [],
+            "name": "resultBody",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 45
+            },
+            "modifiers": [],
+            "name": "resultMap",
+            "references": [],
+            "type": "ResponseBody"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 49
+            },
+            "modifiers": [],
+            "name": "ndf",
+            "references": [],
+            "type": "Dataflow"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 11,
+                "line": 57
+            },
+            "modifiers": [],
+            "name": "proceed",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 58
+            },
+            "modifiers": [],
+            "name": "d",
+            "references": [],
+            "type": "Dataflow"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 11,
+                "line": 64
+            },
+            "modifiers": [],
+            "name": "finalResult",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 36,
+                "line": 76
+            },
+            "modifiers": [],
+            "name": "json",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 8,
+                "line": 78
+            },
+            "modifiers": [],
+            "name": "http",
+            "references": [],
+            "type": "Http"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 15,
+                "line": 79
+            },
+            "modifiers": [],
+            "name": "req",
+            "references": [],
+            "type": "HttpRequest"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 81
+            },
+            "modifiers": [],
+            "name": "salesforceHost",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 82
+            },
+            "modifiers": [],
+            "name": "url",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 90
+            },
+            "modifiers": [],
+            "name": "res",
+            "references": [],
+            "type": "HttpResponse"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 96
+            },
+            "modifiers": [],
+            "name": "json",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 8,
+                "line": 98
+            },
+            "modifiers": [],
+            "name": "http",
+            "references": [],
+            "type": "Http"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 15,
+                "line": 99
+            },
+            "modifiers": [],
+            "name": "req",
+            "references": [],
+            "type": "HttpRequest"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 101
+            },
+            "modifiers": [],
+            "name": "salesforceHost",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 102
+            },
+            "modifiers": [],
+            "name": "url",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 110
+            },
+            "modifiers": [],
+            "name": "res",
+            "references": [],
+            "type": "HttpResponse"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 38,
+                "line": 118
+            },
+            "modifiers": [],
+            "name": "nodeName",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 55,
+                "line": 118
+            },
+            "modifiers": [],
+            "name": "srcObject",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 120
+            },
+            "modifiers": [],
+            "name": "node",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 121
+            },
+            "modifiers": [],
+            "name": "nodeParams",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 123
+            },
+            "modifiers": [],
+            "name": "sourceObject",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 124
+            },
+            "modifiers": [],
+            "name": "complexFilterConditions",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 126
+            },
+            "modifiers": [],
+            "name": "fieldDefn",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 127
+            },
+            "modifiers": [],
+            "name": "o",
+            "references": [],
+            "type": "Object"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 42,
+                "line": 149
+            },
+            "modifiers": [],
+            "name": "nodeName",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 151
+            },
+            "modifiers": [],
+            "name": "node",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 152
+            },
+            "modifiers": [],
+            "name": "nodeParams",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 154
+            },
+            "modifiers": [],
+            "name": "customExpression",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 155
+            },
+            "modifiers": [],
+            "name": "a",
+            "references": [],
+            "type": "Object"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 157
+            },
+            "modifiers": [],
+            "name": "orderBy",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 158
+            },
+            "modifiers": [],
+            "name": "b",
+            "references": [],
+            "type": "Object"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 160
+            },
+            "modifiers": [],
+            "name": "partitionBy",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 161
+            },
+            "modifiers": [],
+            "name": "c",
+            "references": [],
+            "type": "Object"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 179
+            },
+            "modifiers": [],
+            "name": "relabelJSON",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 180
+            },
+            "modifiers": [],
+            "name": "o",
+            "references": [],
+            "type": "Object"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 34,
+                "line": 191
+            },
+            "modifiers": [],
+            "name": "nodeName",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 193
+            },
+            "modifiers": [],
+            "name": "node",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 194
+            },
+            "modifiers": [],
+            "name": "nodeParams",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 56,
+                "line": 212
+            },
+            "modifiers": [],
+            "name": "dataflowList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 77,
+                "line": 212
+            },
+            "modifiers": [],
+            "name": "dataflowName",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 213
+            },
+            "modifiers": [],
+            "name": "d",
+            "references": [],
+            "type": "Dataflow"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 56,
+                "line": 219
+            },
+            "modifiers": [],
+            "name": "dataflowList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 77,
+                "line": 219
+            },
+            "modifiers": [],
+            "name": "dataflowDesc",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 220
+            },
+            "modifiers": [],
+            "name": "d",
+            "references": [],
+            "type": "Dataflow"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 67,
+                "line": 226
+            },
+            "modifiers": [],
+            "name": "dfId",
+            "references": [],
+            "type": "String"
+        }
+    ]
+}

@@ -1,0 +1,634 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 9,
+                "line": 18
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "WaveDataGeneratorController",
+            "parameters": [],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000HrLtGAAV",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000HrLtGAAV",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 30
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getWaveApplications",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 40
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getOrgObjects",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 63
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "help",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 73
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "updateWaveApp",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 80
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "updateSelectedObj",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 119
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "validateSchema",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 208
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "save",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 266
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "monitor",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "WaveDataGeneratorController",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 3
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "waveApp",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 4
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "testExceptionCatchBlock",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 5
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "selectedObject",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 6
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "dataUrl",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 7
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "showHelp",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 8
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "helpText",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 9
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "validSchema",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 10
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "validationMessage",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 11
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "batchProcessId",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 12
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "monitorJobExecution",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 13
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "showJobStatistics",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 14
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "batchesProcessed",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 15
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "totalBatches",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 16
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "jobStatusDsc",
+            "references": [],
+            "type": "String"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 27,
+            "line": 1
+        },
+        "modifiers": [
+            "public",
+            "with sharing"
+        ],
+        "name": "WaveDataGeneratorController",
+        "references": [],
+        "type": "WaveDataGeneratorController"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 32
+            },
+            "modifiers": [],
+            "name": "options",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 42
+            },
+            "modifiers": [],
+            "name": "options",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 86
+            },
+            "modifiers": [],
+            "name": "changed",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 128
+            },
+            "modifiers": [],
+            "name": "iMockHelper",
+            "references": [],
+            "type": "IMockarooHelper"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 133
+            },
+            "modifiers": [],
+            "name": "dataFields",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 41,
+                "line": 138
+            },
+            "modifiers": [],
+            "name": "schemaMapping",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 139
+            },
+            "modifiers": [],
+            "name": "objectType",
+            "references": [],
+            "type": "SObjectType"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 42,
+                "line": 140
+            },
+            "modifiers": [],
+            "name": "objectFields",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 142
+            },
+            "modifiers": [],
+            "name": "requiredFields",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 143
+            },
+            "modifiers": [],
+            "name": "s",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 34,
+                "line": 145
+            },
+            "modifiers": [],
+            "name": "dfr",
+            "references": [],
+            "type": "DescribeFieldResult"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 153
+            },
+            "modifiers": [],
+            "name": "fieldTable",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 154
+            },
+            "modifiers": [],
+            "name": "mockarooField",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 180
+            },
+            "modifiers": [],
+            "name": "missingFields",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 181
+            },
+            "modifiers": [],
+            "name": "reqField",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 211
+            },
+            "modifiers": [],
+            "name": "messages",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 15,
+                "line": 214
+            },
+            "modifiers": [],
+            "name": "dFail",
+            "references": [],
+            "type": "Double"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 226
+            },
+            "modifiers": [],
+            "name": "iMockHelper",
+            "references": [],
+            "type": "IMockarooHelper"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 227
+            },
+            "modifiers": [],
+            "name": "csvData",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 231
+            },
+            "modifiers": [],
+            "name": "headers",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 232
+            },
+            "modifiers": [],
+            "name": "fieldPositions",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 234
+            },
+            "modifiers": [],
+            "name": "i",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 239
+            },
+            "modifiers": [],
+            "name": "batchProcess",
+            "references": [],
+            "type": "CsvDataImportBatch"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 244
+            },
+            "modifiers": [],
+            "name": "asyncJob",
+            "references": [],
+            "type": "AsyncApexJob"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 255
+            },
+            "modifiers": [],
+            "name": "msg",
+            "references": [],
+            "type": "Message"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 269
+            },
+            "modifiers": [],
+            "name": "asyncJob",
+            "references": [],
+            "type": "AsyncApexJob"
+        }
+    ]
+}

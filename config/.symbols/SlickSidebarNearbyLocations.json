@@ -1,0 +1,217 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 9
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "SlickSidebarNearbyLocations",
+            "parameters": [],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000GcRSyAAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRSyAAN",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 15
+            },
+            "modifiers": [
+                "public",
+                "override"
+            ],
+            "name": "loadWidget",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 38,
+                "line": 39
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getFieldSetMembers",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 43
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getObjectName",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 47
+            },
+            "modifiers": [
+                "public",
+                "override"
+            ],
+            "name": "UnitTestCompliance",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "SlickSidebarNearbyLocations",
+    "namespace": null,
+    "parentClass": "SlickSidebarAbstractController",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 3
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "contact",
+            "references": [],
+            "type": "Contact"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 15,
+                "line": 4
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "leads",
+            "references": [],
+            "type": "Lead"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 5
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "account",
+            "references": [],
+            "type": "Account"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 6
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "address",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 7
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "name",
+            "references": [],
+            "type": "String"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 27,
+            "line": 1
+        },
+        "modifiers": [
+            "public",
+            "with sharing"
+        ],
+        "name": "SlickSidebarNearbyLocations",
+        "references": [],
+        "type": "SlickSidebarNearbyLocations"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 17
+            },
+            "modifiers": [],
+            "name": "query",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 25
+            },
+            "modifiers": [],
+            "name": "query",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 31
+            },
+            "modifiers": [],
+            "name": "query",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 13,
+                "line": 48
+            },
+            "modifiers": [],
+            "name": "i",
+            "references": [],
+            "type": "Integer"
+        }
+    ]
+}

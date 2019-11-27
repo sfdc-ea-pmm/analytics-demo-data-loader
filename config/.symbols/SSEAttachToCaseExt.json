@@ -1,0 +1,290 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 3
+            },
+            "modifiers": [
+                "global"
+            ],
+            "name": "SSEAttachToCaseExt",
+            "parameters": [
+                {
+                    "name": "stdController",
+                    "type": "StandardController"
+                }
+            ],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000GcRW3AAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRW3AAN",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 21
+            },
+            "modifiers": [
+                "global"
+            ],
+            "name": "getCaseId",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "RemoteAction"
+                }
+            ],
+            "location": {
+                "column": 32,
+                "line": 10
+            },
+            "modifiers": [
+                "static",
+                "global"
+            ],
+            "name": "getIds",
+            "parameters": [
+                {
+                    "name": "caseId",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "RemoteAction"
+                }
+            ],
+            "location": {
+                "column": 24,
+                "line": 28
+            },
+            "modifiers": [
+                "static",
+                "global"
+            ],
+            "name": "attachToCase",
+            "parameters": [
+                {
+                    "name": "artId",
+                    "type": "String"
+                },
+                {
+                    "name": "cId",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "RemoteAction"
+                }
+            ],
+            "location": {
+                "column": 24,
+                "line": 34
+            },
+            "modifiers": [
+                "static",
+                "global"
+            ],
+            "name": "unAttachToCase",
+            "parameters": [
+                {
+                    "name": "artId",
+                    "type": "String"
+                },
+                {
+                    "name": "caseId",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "SSEAttachToCaseExt",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 1
+        },
+        "modifiers": [
+            "global"
+        ],
+        "name": "SSEAttachToCaseExt",
+        "references": [],
+        "type": "SSEAttachToCaseExt"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 60,
+                "line": 3
+            },
+            "modifiers": [],
+            "name": "stdController",
+            "references": [],
+            "type": "StandardController"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 22
+            },
+            "modifiers": [],
+            "name": "caseId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 46,
+                "line": 10
+            },
+            "modifiers": [],
+            "name": "caseId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 11
+            },
+            "modifiers": [],
+            "name": "cAList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 12
+            },
+            "modifiers": [],
+            "name": "listIds",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 14
+            },
+            "modifiers": [],
+            "name": "cA",
+            "references": [],
+            "type": "CaseArticle"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 44,
+                "line": 28
+            },
+            "modifiers": [],
+            "name": "artId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 58,
+                "line": 28
+            },
+            "modifiers": [],
+            "name": "cId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 29
+            },
+            "modifiers": [],
+            "name": "cA",
+            "references": [],
+            "type": "CaseArticle"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 46,
+                "line": 34
+            },
+            "modifiers": [],
+            "name": "artId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 60,
+                "line": 34
+            },
+            "modifiers": [],
+            "name": "caseId",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 36
+            },
+            "modifiers": [],
+            "name": "cATmpL",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 38
+            },
+            "modifiers": [],
+            "name": "cA",
+            "references": [],
+            "type": "CaseArticle"
+        }
+    ]
+}

@@ -1,0 +1,281 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRWJAA3",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRWJAA3",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 3
+            },
+            "modifiers": [
+                "static",
+                "webService",
+                "global"
+            ],
+            "name": "reset_pay_cycle",
+            "parameters": [
+                {
+                    "name": "pay_cycle_id",
+                    "type": "Id"
+                }
+            ],
+            "references": [],
+            "returnType": "Integer",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 8
+            },
+            "modifiers": [
+                "static",
+                "webService",
+                "global"
+            ],
+            "name": "cancelRequest",
+            "parameters": [
+                {
+                    "name": "request_id",
+                    "type": "Id"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 12
+            },
+            "modifiers": [
+                "static",
+                "webService",
+                "global"
+            ],
+            "name": "process_pay_cycle",
+            "parameters": [
+                {
+                    "name": "pay_cycle_id",
+                    "type": "Id"
+                }
+            ],
+            "references": [],
+            "returnType": "Integer",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 37,
+                "line": 17
+            },
+            "modifiers": [
+                "static",
+                "webService",
+                "global"
+            ],
+            "name": "get_time_off_info_for_current_user",
+            "parameters": [],
+            "references": [],
+            "returnType": "Time_Off_Info__c",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 42,
+                "line": 29
+            },
+            "modifiers": [
+                "static",
+                "webService",
+                "global"
+            ],
+            "name": "get_holidays_for_users",
+            "parameters": [
+                {
+                    "name": "employee_numbers",
+                    "type": "LIST"
+                },
+                {
+                    "name": "year",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        }
+    ],
+    "name": "pto_web_services",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 1
+        },
+        "modifiers": [
+            "global"
+        ],
+        "name": "pto_web_services",
+        "references": [],
+        "type": "pto_web_services"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 47,
+                "line": 3
+            },
+            "modifiers": [],
+            "name": "pay_cycle_id",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 11,
+                "line": 4
+            },
+            "modifiers": [],
+            "name": "result",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 42,
+                "line": 8
+            },
+            "modifiers": [],
+            "name": "request_id",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 49,
+                "line": 12
+            },
+            "modifiers": [],
+            "name": "pay_cycle_id",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 11,
+                "line": 13
+            },
+            "modifiers": [],
+            "name": "result",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 18
+            },
+            "modifiers": [],
+            "name": "result",
+            "references": [],
+            "type": "Time_Off_Info__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 20
+            },
+            "modifiers": [],
+            "name": "toi",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 74,
+                "line": 29
+            },
+            "modifiers": [],
+            "name": "employee_numbers",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 99,
+                "line": 29
+            },
+            "modifiers": [],
+            "name": "year",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 30
+            },
+            "modifiers": [],
+            "name": "result",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 32
+            },
+            "modifiers": [],
+            "name": "tois",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 11,
+                "line": 33
+            },
+            "modifiers": [],
+            "name": "payroll_system_ids",
+            "references": [],
+            "type": "Set"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 34
+            },
+            "modifiers": [],
+            "name": "toi",
+            "references": [],
+            "type": "Time_Off_Info__c"
+        }
+    ]
+}

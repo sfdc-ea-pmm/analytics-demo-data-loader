@@ -1,0 +1,140 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRWAAA3",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRWAAA3",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 5
+            },
+            "modifiers": [
+                "static",
+                "global"
+            ],
+            "name": "NewGuid",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 34
+            },
+            "modifiers": [
+                "static",
+                "global"
+            ],
+            "name": "getCharAtIndex",
+            "parameters": [
+                {
+                    "name": "str",
+                    "type": "String"
+                },
+                {
+                    "name": "index",
+                    "type": "Integer"
+                }
+            ],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        }
+    ],
+    "name": "GuidUtil",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 3
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "kHexChars",
+            "references": [],
+            "type": "String"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 1
+        },
+        "modifiers": [
+            "global"
+        ],
+        "name": "GuidUtil",
+        "references": [],
+        "type": "GuidUtil"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 7
+            },
+            "modifiers": [],
+            "name": "returnValue",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 8
+            },
+            "modifiers": [],
+            "name": "nextByte",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 10
+            },
+            "modifiers": [],
+            "name": "i",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 48,
+                "line": 34
+            },
+            "modifiers": [],
+            "name": "str",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 61,
+                "line": 34
+            },
+            "modifiers": [],
+            "name": "index",
+            "references": [],
+            "type": "Integer"
+        }
+    ]
+}

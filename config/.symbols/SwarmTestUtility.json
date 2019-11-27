@@ -1,0 +1,400 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRV8AAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRV8AAN",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 40
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "createTestUser",
+            "parameters": [],
+            "references": [],
+            "returnType": "User",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 45
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "createTestUser",
+            "parameters": [
+                {
+                    "name": "p",
+                    "type": "Profile"
+                }
+            ],
+            "references": [],
+            "returnType": "User",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 68
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "createGroup",
+            "parameters": [
+                {
+                    "name": "name",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "Group",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 77
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "joinGroup",
+            "parameters": [
+                {
+                    "name": "u",
+                    "type": "User"
+                },
+                {
+                    "name": "g",
+                    "type": "Group"
+                }
+            ],
+            "references": [],
+            "returnType": "GroupMember",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 93
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "createRandomWord",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 28,
+                "line": 103
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "testMethod"
+            ],
+            "name": "testRandomWord",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 28,
+                "line": 108
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "testMethod"
+            ],
+            "name": "testCreateUser",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 28,
+                "line": 116
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "testMethod"
+            ],
+            "name": "testCreateGroup",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 28,
+                "line": 123
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "testMethod"
+            ],
+            "name": "testJoinGroup",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "SwarmTestUtility",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 27,
+            "line": 33
+        },
+        "modifiers": [
+            "public",
+            "with sharing"
+        ],
+        "name": "SwarmTestUtility",
+        "references": [],
+        "type": "SwarmTestUtility"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 41
+            },
+            "modifiers": [],
+            "name": "p",
+            "references": [],
+            "type": "Profile"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 47,
+                "line": 45
+            },
+            "modifiers": [],
+            "name": "p",
+            "references": [],
+            "type": "Profile"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 47
+            },
+            "modifiers": [],
+            "name": "namePrefix",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 49
+            },
+            "modifiers": [],
+            "name": "userCount",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 51
+            },
+            "modifiers": [],
+            "name": "users",
+            "references": [],
+            "type": "Object"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 53
+            },
+            "modifiers": [],
+            "name": "testUser",
+            "references": [],
+            "type": "User"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 44,
+                "line": 68
+            },
+            "modifiers": [],
+            "name": "name",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 15,
+                "line": 69
+            },
+            "modifiers": [],
+            "name": "testGroup",
+            "references": [],
+            "type": "Group"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 46,
+                "line": 77
+            },
+            "modifiers": [],
+            "name": "u",
+            "references": [],
+            "type": "User"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 55,
+                "line": 77
+            },
+            "modifiers": [],
+            "name": "g",
+            "references": [],
+            "type": "Group"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 79
+            },
+            "modifiers": [],
+            "name": "member1",
+            "references": [],
+            "type": "GroupMember"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 95
+            },
+            "modifiers": [],
+            "name": "ret",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 110
+            },
+            "modifiers": [],
+            "name": "u",
+            "references": [],
+            "type": "User"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 15,
+                "line": 118
+            },
+            "modifiers": [],
+            "name": "g",
+            "references": [],
+            "type": "Group"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 15,
+                "line": 125
+            },
+            "modifiers": [],
+            "name": "g",
+            "references": [],
+            "type": "Group"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 127
+            },
+            "modifiers": [],
+            "name": "u",
+            "references": [],
+            "type": "User"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 129
+            },
+            "modifiers": [],
+            "name": "gm",
+            "references": [],
+            "type": "GroupMember"
+        }
+    ]
+}

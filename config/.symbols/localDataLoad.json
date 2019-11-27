@@ -1,0 +1,1353 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 71
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "localDataLoad",
+            "parameters": [
+                {
+                    "name": "stdController",
+                    "type": "StandardController"
+                }
+            ],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000GcRTPAA3",
+    "innerClasses": [
+        {
+            "constructors": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 16,
+                        "line": 15
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "dataPack",
+                    "parameters": [],
+                    "references": [],
+                    "type": null
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 16,
+                        "line": 19
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "dataPack",
+                    "parameters": [
+                        {
+                            "name": "sr",
+                            "type": "StaticResource"
+                        }
+                    ],
+                    "references": [],
+                    "type": null
+                }
+            ],
+            "externalReferences": [],
+            "id": null,
+            "innerClasses": [],
+            "interfaces": [],
+            "key": null,
+            "methods": [],
+            "name": "dataPack",
+            "namespace": null,
+            "parentClass": "",
+            "properties": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 31,
+                        "line": 9
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "packFile",
+                    "references": [],
+                    "type": "StaticResource"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 24,
+                        "line": 10
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "selected",
+                    "references": [],
+                    "type": "Boolean"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 23,
+                        "line": 11
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "name",
+                    "references": [],
+                    "type": "String"
+                }
+            ],
+            "tableDeclaration": {
+                "annotations": [],
+                "location": {
+                    "column": 18,
+                    "line": 8
+                },
+                "modifiers": [
+                    "public"
+                ],
+                "name": "dataPack",
+                "references": [],
+                "type": "dataPack"
+            },
+            "variables": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 40,
+                        "line": 19
+                    },
+                    "modifiers": [],
+                    "name": "sr",
+                    "references": [],
+                    "type": "StaticResource"
+                }
+            ]
+        },
+        {
+            "constructors": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 16,
+                        "line": 109
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "record",
+                    "parameters": [],
+                    "references": [],
+                    "type": null
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 16,
+                        "line": 116
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "record",
+                    "parameters": [
+                        {
+                            "name": "copy",
+                            "type": "record"
+                        }
+                    ],
+                    "references": [],
+                    "type": null
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 16,
+                        "line": 123
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "record",
+                    "parameters": [
+                        {
+                            "name": "recordRaw",
+                            "type": "String"
+                        }
+                    ],
+                    "references": [],
+                    "type": null
+                }
+            ],
+            "externalReferences": [],
+            "id": null,
+            "innerClasses": [],
+            "interfaces": [],
+            "key": null,
+            "methods": [],
+            "name": "record",
+            "namespace": null,
+            "parentClass": "",
+            "properties": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 29,
+                        "line": 104
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "fields",
+                    "references": [],
+                    "type": "LIST"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 23,
+                        "line": 105
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "recCode",
+                    "references": [],
+                    "type": "String"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 23,
+                        "line": 106
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "objCode",
+                    "references": [],
+                    "type": "String"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 24,
+                        "line": 107
+                    },
+                    "modifiers": [
+                        "public"
+                    ],
+                    "name": "proc",
+                    "references": [],
+                    "type": "Boolean"
+                }
+            ],
+            "tableDeclaration": {
+                "annotations": [],
+                "location": {
+                    "column": 18,
+                    "line": 103
+                },
+                "modifiers": [
+                    "public"
+                ],
+                "name": "record",
+                "references": [],
+                "type": "record"
+            },
+            "variables": [
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 30,
+                        "line": 116
+                    },
+                    "modifiers": [],
+                    "name": "copy",
+                    "references": [],
+                    "type": "record"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 30,
+                        "line": 123
+                    },
+                    "modifiers": [],
+                    "name": "recordRaw",
+                    "references": [],
+                    "type": "String"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 24,
+                        "line": 132
+                    },
+                    "modifiers": [],
+                    "name": "f",
+                    "references": [],
+                    "type": "String"
+                },
+                {
+                    "annotations": [],
+                    "location": {
+                        "column": 24,
+                        "line": 152
+                    },
+                    "modifiers": [],
+                    "name": "f",
+                    "references": [],
+                    "type": "String"
+                }
+            ]
+        }
+    ],
+    "interfaces": [],
+    "key": "01p3600000GcRTPAA3",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 27
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getlPack",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 38
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getvPack",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 49
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getoPack",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 60
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getelangpack",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 87
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getPack",
+            "parameters": [],
+            "references": [],
+            "returnType": "StaticResource",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 214
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "translateThat",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 234
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "extractData",
+            "parameters": [
+                {
+                    "name": "selectedFile",
+                    "type": "StaticResource"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 270
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "enterTheDatapack",
+            "parameters": [
+                {
+                    "name": "data",
+                    "type": "LIST"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 292
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "returnOfTheDatapack",
+            "parameters": [
+                {
+                    "name": "data",
+                    "type": "LIST"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 333
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "cleanList",
+            "parameters": [
+                {
+                    "name": "data",
+                    "type": "LIST"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 347
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "procPAccount",
+            "parameters": [
+                {
+                    "name": "data",
+                    "type": "LIST"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 13,
+                "line": 396
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "buddyComedy",
+            "parameters": [
+                {
+                    "name": "data",
+                    "type": "LIST"
+                },
+                {
+                    "name": "tablename",
+                    "type": "String"
+                },
+                {
+                    "name": "objID",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 161
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "cleanAndSplitRecords",
+            "parameters": [
+                {
+                    "name": "allData",
+                    "type": "String"
+                },
+                {
+                    "name": "delim",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        }
+    ],
+    "name": "localDataLoad",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 3
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "dPack",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 4
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "extractedData",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 5
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "completed",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 6
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "ind",
+            "references": [],
+            "type": "Boolean"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 27,
+            "line": 1
+        },
+        "modifiers": [
+            "public",
+            "with sharing"
+        ],
+        "name": "localDataLoad",
+        "references": [],
+        "type": "localDataLoad"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 28
+            },
+            "modifiers": [],
+            "name": "lPack",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 29
+            },
+            "modifiers": [],
+            "name": "dp",
+            "references": [],
+            "type": "dataPack"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 39
+            },
+            "modifiers": [],
+            "name": "lPack",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 40
+            },
+            "modifiers": [],
+            "name": "dp",
+            "references": [],
+            "type": "dataPack"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 50
+            },
+            "modifiers": [],
+            "name": "lPack",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 51
+            },
+            "modifiers": [],
+            "name": "dp",
+            "references": [],
+            "type": "dataPack"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 61
+            },
+            "modifiers": [],
+            "name": "lPack",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 62
+            },
+            "modifiers": [],
+            "name": "dp",
+            "references": [],
+            "type": "dataPack"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 55,
+                "line": 71
+            },
+            "modifiers": [],
+            "name": "stdController",
+            "references": [],
+            "type": "StandardController"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 74
+            },
+            "modifiers": [],
+            "name": "packList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 75
+            },
+            "modifiers": [],
+            "name": "sr",
+            "references": [],
+            "type": "StaticResource"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 88
+            },
+            "modifiers": [],
+            "name": "selectedFile",
+            "references": [],
+            "type": "StaticResource"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 89
+            },
+            "modifiers": [],
+            "name": "dp",
+            "references": [],
+            "type": "dataPack"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 215
+            },
+            "modifiers": [],
+            "name": "selectedFile",
+            "references": [],
+            "type": "StaticResource"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 52,
+                "line": 234
+            },
+            "modifiers": [],
+            "name": "selectedFile",
+            "references": [],
+            "type": "StaticResource"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 236
+            },
+            "modifiers": [],
+            "name": "recordList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 237
+            },
+            "modifiers": [],
+            "name": "rawData",
+            "references": [],
+            "type": "Blob"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 239
+            },
+            "modifiers": [],
+            "name": "buffer",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 240
+            },
+            "modifiers": [],
+            "name": "flag",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 255
+            },
+            "modifiers": [],
+            "name": "totalDestruction",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 258
+            },
+            "modifiers": [],
+            "name": "recordStrings",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 261
+            },
+            "modifiers": [],
+            "name": "recordRaw",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 47,
+                "line": 270
+            },
+            "modifiers": [],
+            "name": "data",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 274
+            },
+            "modifiers": [],
+            "name": "k",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 275
+            },
+            "modifiers": [],
+            "name": "oldRecCode",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 276
+            },
+            "modifiers": [],
+            "name": "d",
+            "references": [],
+            "type": "record"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 50,
+                "line": 292
+            },
+            "modifiers": [],
+            "name": "data",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 294
+            },
+            "modifiers": [],
+            "name": "oldObjCode",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 295
+            },
+            "modifiers": [],
+            "name": "listofLists",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 296
+            },
+            "modifiers": [],
+            "name": "insertList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 297
+            },
+            "modifiers": [],
+            "name": "i",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 299
+            },
+            "modifiers": [],
+            "name": "d",
+            "references": [],
+            "type": "record"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 322
+            },
+            "modifiers": [],
+            "name": "j",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 323
+            },
+            "modifiers": [],
+            "name": "lr",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 45,
+                "line": 333
+            },
+            "modifiers": [],
+            "name": "data",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 13,
+                "line": 334
+            },
+            "modifiers": [],
+            "name": "i",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 335
+            },
+            "modifiers": [],
+            "name": "newList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 39,
+                "line": 347
+            },
+            "modifiers": [],
+            "name": "data",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 348
+            },
+            "modifiers": [],
+            "name": "sOld",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 349
+            },
+            "modifiers": [],
+            "name": "extID",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 13,
+                "line": 350
+            },
+            "modifiers": [],
+            "name": "i",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 13,
+                "line": 351
+            },
+            "modifiers": [],
+            "name": "metaFound",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 352
+            },
+            "modifiers": [],
+            "name": "MetaData",
+            "references": [],
+            "type": "record"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 13,
+                "line": 353
+            },
+            "modifiers": [],
+            "name": "j",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 355
+            },
+            "modifiers": [],
+            "name": "item",
+            "references": [],
+            "type": "record"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 360
+            },
+            "modifiers": [],
+            "name": "so",
+            "references": [],
+            "type": "SObject"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 367
+            },
+            "modifiers": [],
+            "name": "f",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 38,
+                "line": 396
+            },
+            "modifiers": [],
+            "name": "data",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 51,
+                "line": 396
+            },
+            "modifiers": [],
+            "name": "tablename",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 69,
+                "line": 396
+            },
+            "modifiers": [],
+            "name": "objID",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 397
+            },
+            "modifiers": [],
+            "name": "MetaData",
+            "references": [],
+            "type": "record"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 13,
+                "line": 398
+            },
+            "modifiers": [],
+            "name": "i",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 13,
+                "line": 399
+            },
+            "modifiers": [],
+            "name": "x",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 400
+            },
+            "modifiers": [],
+            "name": "extID",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 401
+            },
+            "modifiers": [],
+            "name": "SOld",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 13,
+                "line": 402
+            },
+            "modifiers": [],
+            "name": "metaFound",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 425
+            },
+            "modifiers": [],
+            "name": "item",
+            "references": [],
+            "type": "record"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 429
+            },
+            "modifiers": [],
+            "name": "so",
+            "references": [],
+            "type": "SObject"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 436
+            },
+            "modifiers": [],
+            "name": "f",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 60,
+                "line": 161
+            },
+            "modifiers": [],
+            "name": "allData",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 76,
+                "line": 161
+            },
+            "modifiers": [],
+            "name": "delim",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 167
+            },
+            "modifiers": [],
+            "name": "records",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 168
+            },
+            "modifiers": [],
+            "name": "currentRecord",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 169
+            },
+            "modifiers": [],
+            "name": "inQuotes",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 170
+            },
+            "modifiers": [],
+            "name": "i",
+            "references": [],
+            "type": "Integer"
+        }
+    ]
+}

@@ -1,0 +1,522 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRTUAA3",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRTUAA3",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 24
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getisExportLinkDisabled",
+            "parameters": [],
+            "references": [],
+            "returnType": "Boolean",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 35
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getPlELF",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 38
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "setPlELF",
+            "parameters": [
+                {
+                    "name": "plELF",
+                    "type": "String"
+                }
+            ],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 41
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getElfs",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 59
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "Go",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 101
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "Convert",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 165
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getGoResults",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 256
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getLogFileInfo",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 38,
+                "line": 200
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "parseCSV",
+            "parameters": [
+                {
+                    "name": "contents",
+                    "type": "String"
+                },
+                {
+                    "name": "skipHeaders",
+                    "type": "Boolean"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        }
+    ],
+    "name": "quickViewController",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 11
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "rowCount",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 12
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "colCount",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 15
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "queryELF",
+            "references": [],
+            "type": "Blob"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 21
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "isExportLinkDisabled",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 32
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "plELF",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 56
+            },
+            "modifiers": [
+                "private"
+            ],
+            "name": "csvELF",
+            "references": [],
+            "type": "LIST"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 1
+        },
+        "modifiers": [
+            "public"
+        ],
+        "name": "quickViewController",
+        "references": [],
+        "type": "quickViewController"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 33,
+                "line": 38
+            },
+            "modifiers": [],
+            "name": "plELF",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 42
+            },
+            "modifiers": [],
+            "name": "optionList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 49
+            },
+            "modifiers": [],
+            "name": "elf",
+            "references": [],
+            "type": "EventLogFile"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 64
+            },
+            "modifiers": [],
+            "name": "queryELF",
+            "references": [],
+            "type": "Blob"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 86
+            },
+            "modifiers": [],
+            "name": "csvString",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 90
+            },
+            "modifiers": [],
+            "name": "row",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 106
+            },
+            "modifiers": [],
+            "name": "queryELF",
+            "references": [],
+            "type": "Blob"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 128
+            },
+            "modifiers": [],
+            "name": "csvString",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 132
+            },
+            "modifiers": [],
+            "name": "row",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 136
+            },
+            "modifiers": [],
+            "name": "i",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 137
+            },
+            "modifiers": [],
+            "name": "col",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 37,
+                "line": 142
+            },
+            "modifiers": [],
+            "name": "users",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 39,
+                "line": 150
+            },
+            "modifiers": [],
+            "name": "reports",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 54,
+                "line": 200
+            },
+            "modifiers": [],
+            "name": "contents",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 71,
+                "line": 200
+            },
+            "modifiers": [],
+            "name": "skipHeaders",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 201
+            },
+            "modifiers": [],
+            "name": "allFields",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 215
+            },
+            "modifiers": [],
+            "name": "lines",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 223
+            },
+            "modifiers": [],
+            "name": "num",
+            "references": [],
+            "type": "Integer"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 224
+            },
+            "modifiers": [],
+            "name": "line",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 228
+            },
+            "modifiers": [],
+            "name": "fields",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 229
+            },
+            "modifiers": [],
+            "name": "cleanFields",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 230
+            },
+            "modifiers": [],
+            "name": "compositeField",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 231
+            },
+            "modifiers": [],
+            "name": "makeCompositeField",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 232
+            },
+            "modifiers": [],
+            "name": "field",
+            "references": [],
+            "type": "String"
+        }
+    ]
+}

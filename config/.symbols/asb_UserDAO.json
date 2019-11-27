@@ -1,0 +1,72 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRXbAAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRXbAAN",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 9
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "getUserDOById",
+            "parameters": [
+                {
+                    "name": "id",
+                    "type": "Id"
+                }
+            ],
+            "references": [],
+            "returnType": "asb_UserDO",
+            "type": null
+        }
+    ],
+    "name": "asb_UserDAO",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 7
+        },
+        "modifiers": [
+            "public"
+        ],
+        "name": "asb_UserDAO",
+        "references": [],
+        "type": "asb_UserDAO"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 44,
+                "line": 9
+            },
+            "modifiers": [],
+            "name": "id",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 10,
+                "line": 10
+            },
+            "modifiers": [],
+            "name": "users",
+            "references": [],
+            "type": "LIST"
+        }
+    ]
+}

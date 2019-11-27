@@ -1,0 +1,44 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000IQBnxAAH",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000IQBnxAAH",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 2
+            },
+            "modifiers": [
+                "public",
+                "override"
+            ],
+            "name": "getAssetType",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        }
+    ],
+    "name": "WaveDataset",
+    "namespace": null,
+    "parentClass": "WaveAsset",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 1
+        },
+        "modifiers": [
+            "public"
+        ],
+        "name": "WaveDataset",
+        "references": [],
+        "type": "WaveDataset"
+    },
+    "variables": []
+}

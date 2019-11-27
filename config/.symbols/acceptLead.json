@@ -1,0 +1,77 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p3600000GcRVrAAN",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRVrAAN",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 3
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "doMagic",
+            "parameters": [],
+            "references": [],
+            "returnType": "PageReference",
+            "type": null
+        }
+    ],
+    "name": "acceptLead",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 14,
+            "line": 1
+        },
+        "modifiers": [
+            "public"
+        ],
+        "name": "acceptLead",
+        "references": [],
+        "type": "acceptLead"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 4
+            },
+            "modifiers": [],
+            "name": "prefix",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 20,
+                "line": 6
+            },
+            "modifiers": [],
+            "name": "leadID",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 18,
+                "line": 7
+            },
+            "modifiers": [],
+            "name": "theLead",
+            "references": [],
+            "type": "Lead"
+        }
+    ]
+}

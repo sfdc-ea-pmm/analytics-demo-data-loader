@@ -1,0 +1,104 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 12,
+                "line": 8
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "DE_CasePinnedList",
+            "parameters": [
+                {
+                    "name": "controller",
+                    "type": "StandardSetController"
+                }
+            ],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p3600000GcRTCAA3",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p3600000GcRTCAA3",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 32
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getDE_CasePinnedList",
+            "parameters": [],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        }
+    ],
+    "name": "DE_CasePinnedList",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 24,
+                "line": 2
+            },
+            "modifiers": [
+                "private",
+                "final"
+            ],
+            "name": "oCase",
+            "references": [],
+            "type": "Case"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 44,
+                "line": 12
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "caseRecords",
+            "references": [],
+            "type": "StandardSetController"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 27,
+            "line": 1
+        },
+        "modifiers": [
+            "public",
+            "with sharing"
+        ],
+        "name": "DE_CasePinnedList",
+        "references": [],
+        "type": "DE_CasePinnedList"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 62,
+                "line": 8
+            },
+            "modifiers": [],
+            "name": "controller",
+            "references": [],
+            "type": "StandardSetController"
+        }
+    ]
+}
