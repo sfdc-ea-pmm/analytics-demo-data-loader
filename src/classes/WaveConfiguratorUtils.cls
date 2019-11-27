@@ -21,7 +21,6 @@ public with sharing class WaveConfiguratorUtils {
 		}
 	}
 
-
 	public static List<WaveApplicationRow> getWaveApplications(String csvUrl){
 		
 		IMockarooHelper helper = MockarooHelperFactory.getIMockarooHelper();
@@ -87,15 +86,15 @@ public with sharing class WaveConfiguratorUtils {
 
 		if(sfdcApi){
 			String salesforceHost = System.Url.getSalesforceBaseURL().toExternalForm();
-			totalUrl = salesforceHost + url;
+			totalUrl = salesforceHost + url;			
+		}
 
-			if(method.toUpperCase() == 'DELETE'){
-				totalUrl += '/' + parameter;
-			}
+		if(method.toUpperCase() == 'DELETE'){
+			totalUrl += '/' + parameter;
+		}
 
-			if(method.toUpperCase() == 'POST' || method.toUpperCase() == 'PUT'){
-				req.setBody(parameter);
-			}
+		if(method.toUpperCase() == 'POST' || method.toUpperCase() == 'PUT'){
+			req.setBody(parameter);
 		}
 
 		req.setMethod(method);
@@ -183,6 +182,21 @@ public with sharing class WaveConfiguratorUtils {
         return res.getBodyAsBlob();
 	}
 
+	public Blob getUrlContentsAsBlob(String fileUrl){
+		Http http = new Http();
+		HttpRequest req = new HttpRequest();
+		req.setEndpoint(fileUrl);
+        req.setMethod('GET');
+
+        HTTPResponse res = http.send(req);
+        
+        if(!WaveConfiguratorUtils.checkStatus(res)){
+			throw new WaveConfiguratorException('Error ' + res.getStatusCode() + ' - ' + res.getStatus() + ' in getUrlContentsAsBlob().');
+		}
+
+        return res.getBodyAsBlob();
+	}
+
 	public void uploadUsersPhotos(String zipFileUrl){
 
 		Map<String,Blob> photosToQuery = new Map<String,Blob>();
@@ -234,4 +248,137 @@ public with sharing class WaveConfiguratorUtils {
 		Http http = new Http();
         HTTPResponse res = http.send(req);
 	}
+
+	public boolean folderExists(String folderName){
+        Folder[] lstFolders = [SELECT Id FROM Folder WHERE DeveloperName = :folderName AND Type = 'Insights'];
+        return lstFolders.size() > 0;
+    }
+
+	public String getFolderIdByDevName(String folderName){
+        List<Folder> lstFolders = [SELECT Id FROM Folder WHERE DeveloperName = :folderName AND Type = 'Insights'];
+        return lstFolders.size() > 0 ? lstFolders.get(0).Id : '';
+    }
+
+	public Map<String, String> getDatasetIdByDevNameMapping(List<String> lstDatasetNames){
+        
+		Map<String, String> mapping = new Map<String, String>();
+
+		for (EdgeMart edg : [SELECT Id, DeveloperName FROM EdgeMart WHERE DeveloperName IN :lstDatasetNames]) {
+			mapping.put(edg.DeveloperName, edg.Id);
+		}
+
+		return mapping;
+    }
+
+	public String getAnalyticsAppIdByDevName(String devName){
+		InsightsApplication anApp = [SELECT Id FROM InsightsApplication WHERE DeveloperName = :devName];
+		return anApp.Id;
+	}
+
+	public String getAnalyticsAppIdByFolderId(String folderId){
+		InsightsApplication anApp = [SELECT Id FROM InsightsApplication WHERE FolderId = :folderId];
+		return anApp.Id;
+	}	
+
+	public String insertFolder(String appLabel, String folderName) {
+        String jsonToPost = '{"label":"' + appLabel + '","name":"' + folderName + '"}';
+        HTTPResponse res = WaveConfiguratorUtils.httpCallout('/services/data/v' + this.apiVersion + '/wave/folders', 'POST', true, jsonToPost);
+        
+		if(!WaveConfiguratorUtils.checkStatus(res)){
+            if(res.getBody().containsIgnoreCase('errorCode')){
+                List<RestApiFolderErrorResponse> r = (List<RestApiFolderErrorResponse>)JSON.deserialize(res.getBody(), List<RestApiFolderErrorResponse>.class);
+                throw new WaveConfiguratorException('There was an error in the attempt to create the: ' + folderName + ' folder. Cause: ' + r.get(0).message + '.');
+            }
+            throw new WaveConfiguratorException('There was an error in the attempt to create the: ' + folderName + ' folder.');
+        }
+        else {
+            RestApiResponseBody responseBody = (RestApiResponseBody)JSON.deserialize(res.getBody(), RestApiResponseBody.class);
+            return responseBody.id;
+        }
+    }
+
+	public static void setXmdForDataset(String datasetDevName, String xmdUrl, Double apiVersion){
+		Edgemart edgObj = [SELECT Id, CurrentId FROM EdgeMart WHERE DeveloperName = :datasetDevName];
+		HttpResponse resGetJsonXmd = WaveConfiguratorUtils.httpGetCallout(xmdUrl);
+		String xmdData = resGetJsonXmd.getBody();
+		String datasetId = edgObj.Id;
+		String currentVersionId = edgObj.CurrentId;
+		String urlToAttach = '/services/data/v' + apiVersion+ '/wave/datasets/' + datasetId + '/versions/' + currentVersionId + '/xmds/user';
+		HttpResponse resAttachXmd = WaveConfiguratorUtils.httpCallout(urlToAttach, 'PUT', true, xmdData);
+		if(!WaveConfiguratorUtils.checkStatus(resAttachXmd) || resAttachXmd.getBody().containsIgnoreCase('errorCode')){
+			List<RestApiErrorResponse> r = (List<RestApiErrorResponse>)JSON.deserialize(resAttachXmd.getBody(), List<RestApiErrorResponse>.class);
+			throw new WaveConfiguratorException('The xmd file could not be attached to the ' + datasetDevName + ' dataset. Cause: ' + r.get(0).message);
+		}
+	}
+
+	@future(callout=true)
+	public static void setXmdForDatasetFuture(String datasetDevName, String xmdUrl, Double apiVersion){
+		WaveConfiguratorUtils.setXmdForDataset(datasetDevName, xmdUrl, apiVersion);
+	}
+
+	public static Boolean containsDoubleByteCharacters(String input)
+	{
+    	Matcher m = Pattern.compile('[\\u0000-\\u007F]*').matcher(input);
+    	return !m.matches();
+	}
+
+	public static String getDatasetUploadStatus(String datasetDevName){
+        try {
+            InsightsExternalData iedObj = [SELECT Status FROM InsightsExternalData WHERE EdgemartAlias = :datasetDevName ORDER BY CreatedDate DESC LIMIT 1];
+            return iedObj.Status;
+        } 
+        catch (Exception ex) {
+            return '';
+        }
+    }
+
+	public String insertDashboard(String dashboardJson){
+        HTTPResponse res = WaveConfiguratorUtils.httpCallout('/services/data/v' + this.apiVersion + '/wave/dashboards', 'POST', true, dashboardJson);
+        if(!WaveConfiguratorUtils.checkStatus(res)){
+            if(res.getBody().containsIgnoreCase('errorCode')){
+                List<RestApiErrorResponse> r = (List<RestApiErrorResponse>)JSON.deserialize(res.getBody(), List<RestApiErrorResponse>.class);
+                throw new WaveConfiguratorException('Dashboard could not be created. Cause: ' + r.get(0).message + '.');
+            }
+            throw new WaveConfiguratorException('Dashboard could not be created. Check debug logs.');
+        }
+        else {
+            RestApiResponseBody responseBody = (RestApiResponseBody)JSON.deserialize(res.getBody(), RestApiResponseBody.class);
+              return responseBody.id;
+        }
+    }
+
+	public Map<String, String> insertAnalyticsImages(WaveApplicationImage imgObject){
+        Blob file = this.getUrlContentsAsBlob(imgObject.zipUrl);
+		Zippex zip = new Zippex(file);
+		List<ContentVersion> lContentVersions = new List<ContentVersion>();		
+
+		for(String fileName: zip.getFileNames()){
+			System.debug(fileName);
+			Blob image = zip.getFile(fileName);
+			
+			if(!fileName.contains('/')){
+				ContentVersion cv = new ContentVersion();
+				cv.IsAssetEnabled = true;
+				cv.Title = fileName;
+				cv.PathOnClient = fileName;
+				cv.VersionData = EncodingUtil.base64Decode(EncodingUtil.base64Encode(image));
+				lContentVersions.add(cv);	
+			}
+		}
+		
+		// DML
+		insert lContentVersions;
+		List<String> lstIdsCv = new List<String>();
+		for (ContentVersion c: lContentVersions) {
+			lstIdsCv.add(c.Id);
+		}
+
+		Map<String, String> mapping = new Map<String, String>();
+		List<ContentVersion> lSavedContentVersions = [SELECT PathOnClient, ContentDocumentId FROM ContentVersion WHERE Id IN :lstIdsCv];
+		for (ContentVersion newCv : lSavedContentVersions) {
+			mapping.put(newCv.PathOnClient, newCv.ContentDocumentId);
+		}
+
+		return mapping;
+    }
 }

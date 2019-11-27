@@ -11,10 +11,15 @@ global class TimeShiftingBatch implements Database.Batchable<sObject>, Database.
 			this.objectType = Schema.getGlobalDescribe().get(objectTypeName);
 			this.dateFieldNames = dateFieldNames;
 			
-			String whereClause = ' WHERE External_Id__c != null';
+			String whereClause = '';
 
-			if(String.isNotBlank(externalIdPrefix)){
-				whereClause = ' WHERE External_ID__c LIKE \'' + externalIdPrefix + '%\'';
+			Map<String, Schema.SObjectField> objectFields = this.objectType.getDescribe().fields.getMap();
+        	
+			if (objectFields.containsKey('External_Id__c') || objectFields.containsKey('External_ID__c')) {
+				//whereClause = ' WHERE External_Id__c != null';
+				if(String.isNotBlank(externalIdPrefix)){
+					whereClause = ' WHERE External_ID__c LIKE \'' + externalIdPrefix + '%\'';
+				}
 			}
 			           
 			this.query = 'SELECT ' + String.join(dateFieldNames, ',') + ' FROM ' + objectTypeName + whereClause;			

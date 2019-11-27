@@ -2,5 +2,5 @@
 <StaticResource xmlns="http://soap.sforce.com/2006/04/metadata">
     <cacheControl>Private</cacheControl>
     <contentType>application/octet-stream</contentType>
-    <description>SEA Demo Data Loader Config</description>
+    <description>SEA Demo Data Loader Config - PROD Version</description>
 </StaticResource>

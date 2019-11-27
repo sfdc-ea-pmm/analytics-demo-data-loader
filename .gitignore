@@ -1,5 +1,4 @@
-config
-debug/logs
-*.sublime-project
-/*.sublime-workspace
-\.DS_Store
+.forceCode/*
+.vscode/*
+.sfdx
+sfdx-project.json

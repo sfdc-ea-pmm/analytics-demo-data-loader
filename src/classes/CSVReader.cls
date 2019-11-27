@@ -39,8 +39,7 @@ public class CSVReader {
 			nlAt = this.csvString.indexOf( NL, position );
 			foundAt = Math.min( cAt, nlAt );
 			if( foundAt == -1 )
-					foundAt = Math.max( cAt, nlAt );
-
+				foundAt = Math.max( cAt, nlAt );
 
 			if (foundAt == -1)
 			{
@@ -52,7 +51,6 @@ public class CSVReader {
 				currentValue = this.csvString.substring(startPos, foundAt );
 				position = foundAt + 1;
 			}
-
 
 			if( !currentValue.startsWith( QUOTE ) )
 			{

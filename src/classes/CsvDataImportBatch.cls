@@ -6,44 +6,48 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
 	private List<WaveApplicationObjectRelation> relations;
 	private SObjectType objectType;
 	private List<SmartLookup> smartLookups;
+	private List<CompositeSmartLookup> compositeSmartLookups;
 	private List<String> errorMessages;
 	private Double apiVersion;
-	private String sessionId;	
+	private String sessionId;
 
 	global CsvDataImportBatch(SObjectType objectType, String csvData, Map<Integer, String> fieldPositions, List<WaveApplicationObjectRelation> relations, Double apiVersion) {
-		try {
-			this.objectType = objectType;
-			this.csvData = csvData;
-			this.fieldPositions = fieldPositions;
-			this.relations = relations;
-			this.errorMessages = new List<String>();
-			this.apiVersion = apiVersion;
-			this.sessionId = UserInfo.getSessionId();
+		this.objectType = objectType;
+		this.csvData = csvData;
+		this.fieldPositions = fieldPositions;
+		this.relations = relations;
+		this.errorMessages = new List<String>();
+		this.apiVersion = apiVersion;
+		this.sessionId = UserInfo.getSessionId();
 
-			// Then we get the table of <fieldName, columnIndexInCSV
-			this.fieldIndexes = new Map<String, Integer>();
+		// Then we get the table of <fieldName, columnIndexInCSV
+		this.fieldIndexes = new Map<String, Integer>();
 
-			for(Integer columnNumber: this.fieldPositions.keySet()) {
-	    		
-	    		// Gets the column name
-	    		String headerValue = this.fieldPositions.get(columnNumber).replace('"','');
+		for(Integer columnNumber: this.fieldPositions.keySet()) {
+    		
+    		// Gets the column name
+    		String headerValue = this.fieldPositions.get(columnNumber).replace('"','');
 
-	    		this.fieldIndexes.put(headerValue, columnNumber);
-	    	}
+    		this.fieldIndexes.put(headerValue, columnNumber);
+    	}
 
-	    	for(WaveApplicationObjectRelation wAppObjectRelation: relations){
-	    		String columnName = wAppObjectRelation.csvColumnName;
-	    		if(!this.fieldIndexes.containsKey(columnName)){
-	    			throw new WaveConfiguratorException('Error with relation. The CSV dataset is required to contain a column named ' + columnName + '.');
-	    		}
-	    	}	
-		} 
-		catch(Exception e) {
-			System.debug('Exception in CsvDataImportBatch constructor!');
-			System.debug(e.getMessage());
-			System.debug(e.getStackTraceString());
-			WaveConfiguratorUtils.sendEmail(UserInfo.getUserEmail(), 'Exception in CsvDataImportBatch constructor!', e.getMessage());
-		}
+    	for(WaveApplicationObjectRelation wAppObjectRelation: relations){
+    		
+			if (wAppObjectRelation.compositeForeignKey == null) {
+				String columnName = wAppObjectRelation.csvColumnName;
+				if(!this.fieldIndexes.containsKey(columnName)){
+					throw new WaveConfiguratorException('Error with relation. The CSV dataset is required to contain a column named ' + columnName + '.');
+				}
+			}
+			else {
+				for (WaveApplicationCompositeForeignKeyPart fkPart: wAppObjectRelation.compositeForeignKey) {
+				   	String columnName = fkPart.csvColumnName;
+					if(!this.fieldIndexes.containsKey(columnName)){
+						throw new WaveConfiguratorException('Error with composite foreign key relation. The CSV dataset is required to contain a column named ' + columnName + '.');
+					}
+				}
+			}
+    	}
 	}
 	
 	global Iterable<String> start(Database.BatchableContext BC) {
@@ -52,19 +56,15 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
 			// Prepare headers and return all data
 			this.prepareSmartLookups();
 
-			return new Utility_RowIterator(this.csvData);
+			return new CSV_RowIterator(this.csvData);
 		}
 		catch(Exception ex){
 			System.debug('Exception in start');
 			System.debug(ex.getMessage());
 			System.debug(ex.getStackTraceString());
 
-			WaveConfiguratorUtils.sendEmail(UserInfo.getUserEmail(), 'Exception in CsvDataImportBatch start!', ex.getMessage());
-
-			return new List<String>();
+			throw ex;
 		}
-
-		return new List<String>();
 	}
 
    	global void execute(Database.BatchableContext BC, List<String> scope) {
@@ -80,8 +80,8 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
 
 	        String joinedContents = String.join(lines, '\n');
 	        String csvContentsToParse = joinedContents + '\n';
-	        List<List<String>> rowsBatch = CSVReader.Parse(csvContentsToParse);	        
-	        		        
+	        List<List<String>> rowsBatch = CSVReader.Parse(csvContentsToParse);
+
 	        System.debug('About to process ' + rowsBatch.size() + ' objects of type ' + this.objectType.getDescribe().getName());
 
 	   		// First handle smart lookups
@@ -91,20 +91,22 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
 	   		List<String> lstExternalIds = new List<String>();
 	   		Map<String, Schema.SObjectField> objectFields = this.objectType.getDescribe().fields.getMap();
             
-	   		// For each row of data in the CSV
+	   		
+	   		Integer rowIndex = 0;
+                
+            // For each row of data in the CSV    
 			for(List<String> sObjRow: rowsBatch) {
 
 				// Will create an object
 				SObject objToCreate = this.objectType.newSObject();
 
 				// For each column in the CSV row
-
 				for(Integer i = 0; i < sObjRow.size(); i++) {
 					
 					// We get the name using the position and then its value
 					String fieldName = this.fieldPositions.get(i);
                     
-					if(String.isNotBlank(sObjRow[i]) && objectFields.containsKey(fieldName)){
+                    if(String.isNotBlank(sObjRow[i]) && objectFields.containsKey(fieldName)){
 
 						String fieldValue = sObjRow[i].trim();
 						
@@ -131,10 +133,11 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
 							// Datetime
 							objToCreate.put(fieldName, DateTime.valueOf(fieldValue));
 						}
-						else if (fieldType == Schema.DisplayType.Time) {
-							// Datetime
-							objToCreate.put(fieldName, DateTime.valueOf(fieldValue).time());
-						}
+                        else if (fieldType == Schema.DisplayType.Time) {
+                            // Time
+                            DateTime dt = DateTime.valueOf(fieldValue);
+                            objToCreate.put(fieldName, dt.time());
+                        }
 						else {
 							// String
 							if(!(this.objectType.getDescribe().getName() == 'User' && (fieldName.equalsIgnoreCase('Name') || fieldName.equalsIgnoreCase('Username') || fieldName.equalsIgnoreCase('CommunityNickname')))){
@@ -144,7 +147,7 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
 							if(this.objectType.getDescribe().getName() == 'User' && fieldName.equalsIgnoreCase('Alias')){
 								String nick = fieldValue + DateTime.now().getTime();
 								objToCreate.put('CommunityNickname', nick);
-								objToCreate.put('Username', nick + '@demo.user');
+								objToCreate.put('Username', nick + '@demo.user');	
 							}
 						}
 
@@ -153,8 +156,16 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
 						}
 					}
 				}
+                
+                // Composite Ids for the object
+                for (CompositeSmartLookup csmLookUp : this.compositeSmartLookups) {
+                    if(String.isNotBlank(csmLookup.RetrievedIds.get(rowIndex))){
+                   		objToCreate.put(csmLookup.LookupFieldName, csmLookup.RetrievedIds.get(rowIndex));
+                    }
+                }
 
 				objectsBatch.add(objToCreate);
+                rowIndex++;
 			}
 
 			if(objectsBatch.size() > 0) {
@@ -465,13 +476,14 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
 			        }
 
 			        System.debug(lstToInsert.size() + ' objects to insert.');
-			        System.debug(lstToUpdate.size() + ' objects to update.');			        
+			        System.debug(lstToUpdate.size() + ' objects to update.');
 
 			        // DML
 			        update lstToUpdate; // For now, only inserts
 					insert lstToInsert;
 				}				
 			}
+
 		} 
 		catch(Exception ex){
 			
@@ -494,19 +506,35 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
 	private void prepareSmartLookups(){
 		
     	this.smartLookups = new List<SmartLookup>();
+		this.compositeSmartLookups = new List<CompositeSmartLookup>();
 
     	// Now we traverse relations of the object
     	for(WaveApplicationObjectRelation relObj: this.relations) {
     		
-    		SmartLookup smLookUp = new SmartLookup();
+    		// SmartLookup or CompositeSmartLookup
+			if (relObj.compositeForeignKey != null) {
+				// CompositeSmartLookup
+				CompositeSmartLookup compSmLookUp = new CompositeSmartLookup();
+				compSmLookUp.SObjectType = relObj.targetSObject;
+				compSmLookUp.LookupFieldName = relObj.foreignKeyField;				
 
-    		String csvColumnName = relObj.csvColumnName;
-    		smLookUp.columnNumber = this.fieldIndexes.get(csvColumnName);
-    		smLookUp.SObjectType = relObj.targetSObject;
-    		smLookUp.targetField = relObj.targetSObjectLookupField;
+				for (WaveApplicationCompositeForeignKeyPart fkPart : relObj.compositeForeignKey) {
+					compSmLookUp.TargetFields.add(fkPart.targetSObjectLookupField);
+					compSmLookUp.TargetFieldsIndexes.add(this.fieldIndexes.get(fkPart.csvColumnName));
+				}
 
-    		this.fieldPositions.put(smLookUp.columnNumber, relObj.foreignKeyField);
-    		this.smartLookups.add(smLookUp);
+				this.compositeSmartLookups.add(compSmLookUp);
+			}
+			else {
+				SmartLookup smLookUp = new SmartLookup();
+				String csvColumnName = relObj.csvColumnName;
+				smLookUp.columnNumber = this.fieldIndexes.get(csvColumnName);
+				smLookUp.SObjectType = relObj.targetSObject;
+				smLookUp.targetField = relObj.targetSObjectLookupField;
+
+				this.fieldPositions.put(smLookUp.columnNumber, relObj.foreignKeyField);
+				this.smartLookups.add(smLookUp);
+			}
     	}
 	}
 
@@ -562,6 +590,90 @@ global class CsvDataImportBatch implements Database.Batchable<String>, Database.
                     if(String.isNotBlank(row[s.ColumnNumber])){
 	            		row[s.ColumnNumber] = s.replaceValues.get(row[s.ColumnNumber].trim());
 	            	}
+	            }
+	        }
+
+			// Now is time for Composite Smart Lookups
+			
+			// Get all values of each field that make the composite foreign key
+	        for (CompositeSmartLookup csmLookUp : this.compositeSmartLookups) {
+
+	        	// For each row we collect the values in the set
+	            for (List<String> row : scope) {
+	            	
+					for (Integer i = 0; i < csmLookUp.TargetFields.size(); i++) {
+						String fieldName = csmLookUp.TargetFields.get(i);
+						Integer fieldIndexInCSV = csmLookUp.TargetFieldsIndexes.get(i);
+						
+						if (!csmLookUp.TargetFieldsValues.containsKey(fieldName)) {
+							csmLookUp.TargetFieldsValues.put(fieldName, new Set<String>());
+						}
+
+						Set<String> fieldValues = csmLookUp.TargetFieldsValues.get(fieldName);
+						
+						String val = row.get(fieldIndexInCSV);
+						if(String.isNotBlank(val)){
+							fieldValues.add(val.trim());
+						}						
+					}				
+	            }
+
+				// Build table to get Id for each composite foreign key
+				String sObjToQuery = csmLookUp.SObjectType;
+	            String sFieldsToQuery = String.join(csmLookUp.TargetFields, ',');
+				List<String> compositeWhereConds = new List<String>();
+				for (String f : csmLookUp.TargetFields) {
+					Set<String> fieldValues = csmLookUp.TargetFieldsValues.get(f);
+					if (fieldValues.size() > 0) {
+						List<String> lstFieldValues = new List<String>();                       
+                        for(String fv : fieldValues){
+                            lstFieldValues.add('\'' + fv + '\'');
+                        }
+                        
+						String whereCond = f + ' IN (' + String.join(lstFieldValues, ',') + ')';
+						compositeWhereConds.add(whereCond);                        
+					}
+				}
+				
+				String generatedQuery = 'SELECT Id, ' + sFieldsToQuery + ' FROM ' + sObjToQuery + ' WHERE ' + String.join(compositeWhereConds, ' AND ');
+
+	            // RecordType special hadling
+				if(sObjToQuery == 'RecordType'){
+					generatedQuery += ' AND SobjectType = \'' + this.objectType.getDescribe().getName() + '\'';
+				}
+				
+	            List<SObject> temp = Database.query(generatedQuery);
+                
+                Map<String, String> IdsByKeys = new Map<String, String>();
+	            
+	            for (SObject t: temp) {
+	                List<String> compositeKeysForMap = new List<String>();
+                    for(String tf: csmLookUp.TargetFields){
+                        compositeKeysForMap.add(String.valueOf(t.get(tf)));
+                    }
+					IdsByKeys.put(String.join(compositeKeysForMap, '-'), String.valueOf(t.get('Id')));
+	            }
+                
+                // Now we have all Ids for each composite key in the target object
+                // Now is time to process batch and get for each for the Id
+                
+                for (List<String> row : scope) {
+	            	
+                    List<String> compositeKeysToRetrieve = new List<String>();
+                    for(Integer tfIndex: csmLookUp.TargetFieldsIndexes){
+                        String val = row.get(tfIndex);
+						if(String.isNotBlank(val)){
+							compositeKeysToRetrieve.add(val);
+						}                        
+                    }
+                    
+                    String key = String.join(compositeKeysToRetrieve, '-');
+                    if(IdsByKeys.ContainsKey(key)){
+                        csmLookUp.RetrievedIds.add(IdsByKeys.get(key));
+                    }
+                    else {
+                        csmLookUp.RetrievedIds.add('');
+                    }
 	            }
 	        }
 		}

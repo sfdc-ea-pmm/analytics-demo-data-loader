@@ -18,6 +18,7 @@ public with sharing class WaveDataManagerController {
 	public Integer currentTimeShiftingNodeIndex { get; set; }
 	public String currentObjectProcessing { get; set; }
 	public List<WaveApplicationObject> objectsNodes { get; set; }
+	public List<WaveApplicationEdgemart> edgemartsNodes { get; set; }
 	public boolean disabledButton { get; set; }
 	private WaveMetadata metadata;
 	private Map<String, String> appDescriptions; // <appName, appDesc>
@@ -36,7 +37,9 @@ public with sharing class WaveDataManagerController {
 	public List<List<SF_MetadataUtils.CustomFieldSpecification>> objectsAndFieldsMatrix;
 	public Integer currentObjectIndex;
 	public Integer currentFieldIndex;
+	public Integer currentEdgemartIndex;
 	public Boolean processingObjectsAndFieldsMetadata { get; set; }
+	public Boolean processingEdgemartsLoad { get; set;}
 	public List<List<SF_MetadataUtils.RecordTypeSpecification>> objectsRecordTypesMatrix;
 	public Integer currentRecordTypeIndex;
 	public Boolean processingRecordTypes { get; set; }
@@ -55,6 +58,31 @@ public with sharing class WaveDataManagerController {
 	public Map<String, Boolean> selectedObjectsToTimeShift { get; set; }
 	public CustomModalConfirmation modalMessage { get; set; }
 	public Boolean shiftOnlyOfApp { get; set; }
+	public String selectedDataflow { get; set; }
+	public String selectedDataflowForActionFields { get; set; }
+	public String selectedAnalyticsApp { get; set; }
+	public Map<String, Map<String, WaveApplicationActionField>> actionInputFields { get; set; }
+	public String createCompleteAppId { get; set; }
+	public String createCompleteAppLabel { get; set; }
+	public String createCompleteAppName { get; set; }
+	private Map<String, String> folderIdByDatasetDevName; // <dataset developer name in org, folder id where it is stored>
+	private Map<String, String> idsByDatasetDevName; // <dataset developer name in org, dataset id with which it is stored>
+	private Map<String, WaveApplicationDataset> datasetsMap; // <dataset name as it comes from JSON, Dataset object as processed>
+	private Map<String, WaveApplicationDashboard> dashboardsMap; // <dashboard name as it comes from JSON, Dashboard object as processed>
+    private Map<String, String> dashboardImagesMapping;
+	private Map<String, String> dashboardsIdsByName;
+	private WaveApplicationImage referencedImages;
+    public String insightsAppName { get; set; }
+    public String insightsAppLabel { get; set; }
+    public String insightsAppId { get; set; }
+	public String handleCompleteAppFolderId { get; set; }
+	public List<WaveApplicationDataset> datasetsNodes { get; set; }
+	public Boolean processingLoadDatasets { get; set; }
+	public Boolean processingLoadDashboards { get; set; }
+	public List<WaveApplicationDashboard> dashboardsNodes { get; set; }
+	public Integer currentDatasetIndex { get; set; }
+	public Integer currentDashboardIndex { get; set; }
+	//public WaveApplicationDataflow dataflowConfig { get; set; }
 
 	// Secuence control
 	public String installationStep { get; set; }
@@ -67,6 +95,9 @@ public with sharing class WaveDataManagerController {
 
 	public WaveDataManagerController() {
 		this.objectsNodes = new List<WaveApplicationObject>();
+		this.edgemartsNodes = new List<WaveApplicationEdgemart>();
+		this.datasetsNodes = new List<WaveApplicationDataset>();
+		this.dashboardsNodes = new List<WaveApplicationDashboard>();
 		this.timeShiftingItems = new List<WaveTimeShiftingItem>();
 		this.processingLog = new List<String>();
 		this.processingLogWithoutTime = new Set<String>();
@@ -81,7 +112,7 @@ public with sharing class WaveDataManagerController {
 		this.enableTimeShiftingCheck = false;
 		this.enableObjectProcessingCheck = false;
 		this.processingObjectsAndFieldsMetadata = false;
-		this.selectedInstallationProcess = 'timeShifting';
+		this.selectedInstallationProcess = '';
 		this.userPhotoNodes = new List<UserPhotoInfo>();
 		this.advancedOption = false;
 		this.advancedTimeShifting = false;
@@ -156,6 +187,16 @@ public with sharing class WaveDataManagerController {
 		return null;
 	}
 
+	private void logMessage(String msg){
+
+		if(!this.processingLogWithoutTime.contains(msg)){
+			DateTime dtNow = DateTime.now();
+			this.processingLog.add(String.format('[{0}] {1}', new String[]{ dtNow.format('yyyyMMdd HH:mm:ss') , msg }));
+		}
+
+		this.processingLogWithoutTime.add(msg);
+	}
+
 	public void getFaqJson(){
 		try{
 			if(String.isNotBlank(genericAppConfiguration.faqJsonUrl)){
@@ -224,12 +265,133 @@ public with sharing class WaveDataManagerController {
         return options;
     }
 
-    public void saveSetting(){
-    	this.overrideDefaultSettingTS = true;
-    	this.selectedApp();
+	public List<SelectOption> getAvailableProcesses() {
+        
+        List<SelectOption> options = new List<SelectOption>();
+
+		/*
+		<apex:selectOption itemValue="loadObjects" itemLabel="Load Data into Core"/>
+		<apex:selectOption itemValue="createMetadata" itemLabel="Create Objects and Fields"/>
+		<apex:selectOption itemValue="timeShifting" itemLabel="Time shifting"/>
+		<apex:selectOption itemValue="loadEdgemarts" itemLabel="Load Datasets"/>
+		<apex:selectOption itemValue="setActionFields" itemLabel="Set Action Fields"/>
+		*/		
+
+		if (this.selectedAppMetadata != null) {
+			// Options to work with ORG Objects
+			if (this.selectedAppMetadata.objects != null && this.selectedAppMetadata.objects.size() > 0) {
+				// UX depends on availability of configuration
+				Boolean addLoadObjects = false;
+				Boolean addCreateMetadata = false;
+				Boolean addTimeshifting = false;
+
+				for (WaveMetadataApplicationObject wmaObj : this.selectedAppMetadata.objects) {
+					// If there is some piece of config for metadata
+					if (String.isNotBlank(wmaObj.metadataUrl)) {
+						addCreateMetadata = true;
+					}
+
+					// URL with data to load
+					if (String.isNotBlank(wmaObj.url)) {
+						addLoadObjects = true;
+					}
+
+					// Timeshifting fields
+					if (wmaObj.dateFieldsToShift != null && wmaObj.dateFieldsToShift.size() > 0) {
+						addTimeshifting = true;
+					}
+				}
+
+				if (addLoadObjects) {
+					options.add(new SelectOption('loadObjects', 'Load Data into Core'));	
+				}
+				
+				if (addCreateMetadata) {
+					options.add(new SelectOption('createMetadata', 'Create Objects and Fields'));	
+				}
+				
+				if (addTimeshifting) {
+					options.add(new SelectOption('timeShifting', 'Time shifting'));	
+				}
+			}
+
+			// Options to work with datasets
+			if (this.selectedAppMetadata.edgemarts != null && this.selectedAppMetadata.edgemarts.size() > 0) {
+				options.add(new SelectOption('loadEdgemarts', 'Load Datasets'));
+			}
+
+			if (this.selectedAppMetadata.actionFieldOverrides != null && this.selectedAppMetadata.actionFieldOverrides.size() > 0) {
+				options.add(new SelectOption('setActionFields', 'Set Action Fields'));
+			}
+
+			if ((this.selectedAppMetadata.datasets != null && this.selectedAppMetadata.datasets.size() > 0) || (this.selectedAppMetadata.dashboards != null && this.selectedAppMetadata.dashboards.size() > 0)) {
+				options.add(new SelectOption('createCompleteApp', 'Create App, Datasets and Dashboards'));
+			}
+
+			if ((this.selectedAppMetadata.datasets != null && this.selectedAppMetadata.datasets.size() > 0)) {
+				options.add(new SelectOption('loadDatasetsToExistingApp', 'Load Datasets into existing app'));
+			}
+
+			if (options.size() > 0) {
+				options.add(0, new SelectOption('', 'None'));
+			}
+		}
+
+        return options;
     }
 
-    public void selectedApp(){
+	public List<SelectOption> getOrgDataflows() {
+        
+        List<SelectOption> options = new List<SelectOption>();
+		options.add(new SelectOption('', 'None')); // Empty item
+
+        List<Dataflow> lstDataflows = [SELECT Id, MasterLabel FROM Dataflow WHERE DataflowType = 'User' AND State = 'Active'];
+		for(Dataflow dataflowItem: lstDataflows) {
+			options.add(new SelectOption(dataflowItem.Id, dataflowItem.MasterLabel));
+		}
+
+        return options;
+    }
+
+	public List<SelectOption> getOrgAnalyticsApps() {
+        
+        List<SelectOption> options = new List<SelectOption>();
+		options.add(new SelectOption('', 'None')); // Empty item
+
+        List<InsightsApplication> lstApps = [SELECT Id, MasterLabel FROM InsightsApplication WHERE DeveloperName NOT IN ('WAVE_PUBLIC_DATAFLOWS', 'SharedApp')];
+		for(InsightsApplication apptem: lstApps) {
+			options.add(new SelectOption(apptem.Id, apptem.MasterLabel));
+		}
+
+        return options;
+    }
+
+	public List<SelectOption> getOrgAnalyticsFolders() {
+        
+        List<SelectOption> options = new List<SelectOption>();
+		options.add(new SelectOption('', 'None')); // Empty item
+
+        List<Folder> lstApps = [SELECT Id, Name FROM Folder WHERE Type = 'Insights' AND Name NOT IN ('WavePublicDataflowsLabel', 'Einstein Bots', 'Einstein Forecasting')];
+		for(Folder apptem: lstApps) {
+			options.add(new SelectOption(apptem.Id, apptem.Name));
+		}
+
+        return options;
+    }
+
+    public void saveSetting(){
+    	this.overrideDefaultSettingTS = true;
+    	this.selectedProcess();
+    }
+
+	public void selectedApp(){
+		this.selectedInstallationProcess = '';
+		if (String.isNotBlank(this.selectedWaveApp)) {
+			this.selectAppMetadata();
+		}
+	}
+
+    public void selectedProcess(){
     	
     	this.resetMessages();
 
@@ -262,6 +424,39 @@ public with sharing class WaveDataManagerController {
 					}
 
 					this.checkForTriggersAndRules(objNames, false);
+				}
+			}
+			else if(this.selectedInstallationProcess == 'setActionFields'){
+				
+				this.actionInputFields = new Map<String, Map<String, WaveApplicationActionField>>();
+
+				if(String.isNotBlank(this.selectedWaveApp)){
+					this.selectAppMetadata();
+					
+					if(this.selectedAppMetadata.actionFieldOverrides != null){
+						
+						for(WaveMetadataApplicationActionField wmaAF: this.selectedAppMetadata.actionFieldOverrides) {
+							
+							WaveApplicationActionField waAF = new WaveApplicationActionField();
+							waAF.datasetName = wmaAF.datasetName;
+							waAF.actionFieldName = wmaAF.actionFieldName;
+							waAF.actionFieldLabel = wmaAF.actionFieldLabel;
+							waAF.computeExpressionName = wmaAF.computeExpressionName;
+
+							// Build action fields inputText list
+							Map<String, WaveApplicationActionField> mapWaf;
+							
+							if (this.actionInputFields.containsKey(waAF.datasetName)) {
+								mapWaf = this.actionInputFields.get(waAF.datasetName);
+							}
+							else {
+								mapWaf = new Map<String, WaveApplicationActionField>();
+								this.actionInputFields.put(waAF.datasetName, mapWaf);
+							}
+
+							mapWaf.put(waAF.actionFieldName, waAF);
+						}
+					}
 				}
 			}
 		}
@@ -299,6 +494,12 @@ public with sharing class WaveDataManagerController {
     	this.buildConfirmationModal(objWithRulesOrWorkflows, objectsToWarn, timeShifting);
     }
 
+	public void checkCreateCompleteAppExistence(){
+		this.clearModal();
+		if (this.utils.folderExists(this.createCompleteAppName)) {
+			this.buildConfirmationModalGeneric('Process confirmation', 'The analytics application that you entered already exists. This action will overwrite all its dashboards and datasets. You may loose any customization made on it. Are you sure you want to continue?');
+		}
+	}
 
     public void buildConfirmationModal(List<String> objNames, Set<String> objToDisplay, Boolean timeShifting){
     	
@@ -340,11 +541,17 @@ public with sharing class WaveDataManagerController {
     	}
         
         modalMessage.body += ' Are you sure you want to continue?';
-    }
+    }	
 
     public void clearModal(){
     	modalMessage.header = '';
     	modalMessage.body = '';
+    }
+
+	public void buildConfirmationModalGeneric(String modalHeader, String modalBody){
+    	this.clearModal();
+		modalMessage.header = modalHeader;
+		modalMessage.body = modalBody;
     }
 
     public void getObjectsToTimeShift(){
@@ -459,85 +666,104 @@ public with sharing class WaveDataManagerController {
 
 	public List<WaveApplicationObject> getObjectsToProcess(WaveMetadataApplicationObject wmaObj){
 		List<WaveApplicationObject> listToProcess = new List<WaveApplicationObject>();
-		WaveApplicationObject rootObj = new WaveApplicationObject();
-		rootObj.name = wmaObj.name;
-		rootObj.url = this.baseUrl + wmaObj.url;
-		rootObj.additionalDataFiles = wmaObj.additionalDataFiles;
-		rootObj.stdFieldsForPermissionSet = wmaObj.stdFieldsForPermissionSet;
-
-		listToProcess.add(rootObj);
-
-		// We process the fields metadata
-		IMockarooHelper iMockHelper = MockarooHelperFactory.getIMockarooHelper();
 		
-		String metadataUrl = this.baseUrl + wmaObj.metadataUrl;
-
-		List<List<String>> csvMetadata = iMockHelper.getData(metadataUrl, false);
-    	if(csvMetadata.size() > 0){
-			// Will extract headers
-			List<String> headers = csvMetadata.remove(0);
-			Map<String, Integer> fieldPositions = new Map<String, Integer>();
-			
-			for(Integer i = 0; i < headers.size(); i++) {
-				fieldPositions.put(headers.get(i), i);
-			}
-
-			// For each row of data in the CSV
-			rootObj.fields = new List<WaveApplicationObjectField>();
-
-			try{
-				for(List<String> metadataRow: csvMetadata) {
-
-					WaveApplicationObjectField fieldMetadata = new WaveApplicationObjectField();
-					fieldMetadata.Label = metadataRow.get(fieldPositions.get('Label')).trim();
-					fieldMetadata.Name = metadataRow.get(fieldPositions.get('Name')).trim();
-					fieldMetadata.Type = metadataRow.get(fieldPositions.get('Type')).trim();
-					fieldMetadata.PickListValues = metadataRow.get(fieldPositions.get('PickListValues')).trim();
-					fieldMetadata.ReferenceTo = metadataRow.get(fieldPositions.get('ReferenceTo')).trim();
-					fieldMetadata.Length = Integer.valueOf(metadataRow.get(fieldPositions.get('Length')));
-					fieldMetadata.Precision = Integer.valueOf(metadataRow.get(fieldPositions.get('Precision')));
-					fieldMetadata.Scale = Integer.valueOf(metadataRow.get(fieldPositions.get('Scale')));
-					fieldMetadata.IsExternalId = Boolean.valueOf(metadataRow.get(fieldPositions.get('IsExternalId')));
-					fieldMetadata.IsRequired = Boolean.valueOf(metadataRow.get(fieldPositions.get('IsRequired')));
-					fieldMetadata.DefaultValue = metadataRow.get(fieldPositions.get('DefaultValue')).trim();
-					fieldMetadata.Formula = metadataRow.get(fieldPositions.get('Formula')).trim();
-
-					rootObj.fields.add(fieldMetadata);
-				}	
-			} 
-			catch(Exception ex){				
-				throw new WaveConfiguratorException('There is a configuration error. Missing csv columns at ' + metadataUrl);
-			}
-			
-		}
-		else {
-			throw new WaveConfiguratorException('There is a configuration error. No metadata csv found at ' + metadataUrl + ' URL.');
-		}
-
-		// We process the relations
-		rootObj.relations = new List<WaveApplicationObjectRelation>();
-		if(wmaObj.relations != null){			
-			for(WaveMetadataApplicationObjectRelation relObj: wmaObj.relations) {
-				WaveApplicationObjectRelation rel = new WaveApplicationObjectRelation();
-				rel.csvColumnName = relObj.csvColumnName;
-				rel.targetSObject = relObj.targetSObject;
-				rel.targetSObjectLookupField = relObj.targetSObjectLookupField;
-				rel.foreignKeyField = relObj.foreignKeyField;
-
-				rootObj.relations.add(rel);
-			}
-		}
-
-		// Replicate for each adittional data CSV file
-
-		// We process the children
-		if(wmaObj.children != null) {
-			// Now the children objects
-			for(WaveMetadataApplicationObject chObj: wmaObj.children) {
-				List<WaveApplicationObject> childrenObjs = getObjectsToProcess(chObj);
-				listToProcess.addAll(childrenObjs);
-			}
-		}
+        if(String.isNotBlank(wmaObj.url) && String.isNotBlank(wmaObj.metadataUrl)){
+            
+            WaveApplicationObject rootObj = new WaveApplicationObject();
+            rootObj.name = wmaObj.name;
+            rootObj.url = this.baseUrl + wmaObj.url;
+            rootObj.additionalDataFiles = wmaObj.additionalDataFiles;
+            rootObj.stdFieldsForPermissionSet = wmaObj.stdFieldsForPermissionSet;
+    
+            listToProcess.add(rootObj);
+    
+            // We process the fields metadata
+            IMockarooHelper iMockHelper = MockarooHelperFactory.getIMockarooHelper();
+            
+            String metadataUrl = this.baseUrl + wmaObj.metadataUrl;
+    
+            List<List<String>> csvMetadata = iMockHelper.getData(metadataUrl, false);
+            if(csvMetadata.size() > 0){
+                // Will extract headers
+                List<String> headers = csvMetadata.remove(0);
+                Map<String, Integer> fieldPositions = new Map<String, Integer>();
+                
+                for(Integer i = 0; i < headers.size(); i++) {
+                    String fieldName = headers.get(i);
+                    fieldName = fieldName.replace('"', '');
+                    fieldPositions.put(fieldName, i);
+                }
+    
+                // For each row of data in the CSV
+                rootObj.fields = new List<WaveApplicationObjectField>();
+    
+                try{
+                    for(List<String> metadataRow: csvMetadata) {
+    
+                        WaveApplicationObjectField fieldMetadata = new WaveApplicationObjectField();
+                        fieldMetadata.Label = metadataRow.get(fieldPositions.get('Label')).trim();
+                        fieldMetadata.Name = metadataRow.get(fieldPositions.get('Name')).trim();
+                        fieldMetadata.Type = metadataRow.get(fieldPositions.get('Type')).trim();
+                        fieldMetadata.PickListValues = metadataRow.get(fieldPositions.get('PickListValues')).trim();
+                        fieldMetadata.ReferenceTo = metadataRow.get(fieldPositions.get('ReferenceTo')).trim();
+                        fieldMetadata.Length = Integer.valueOf(metadataRow.get(fieldPositions.get('Length')));
+                        fieldMetadata.Precision = Integer.valueOf(metadataRow.get(fieldPositions.get('Precision')));
+                        fieldMetadata.Scale = Integer.valueOf(metadataRow.get(fieldPositions.get('Scale')));
+                        fieldMetadata.IsExternalId = Boolean.valueOf(metadataRow.get(fieldPositions.get('IsExternalId')));
+                        fieldMetadata.IsRequired = Boolean.valueOf(metadataRow.get(fieldPositions.get('IsRequired')));
+                        fieldMetadata.DefaultValue = metadataRow.get(fieldPositions.get('DefaultValue')).trim();
+                        fieldMetadata.Formula = metadataRow.get(fieldPositions.get('Formula')).trim();
+    
+                        rootObj.fields.add(fieldMetadata);
+                    }	
+                } 
+                catch(Exception ex){				
+                    throw new WaveConfiguratorException('There is a configuration error. Missing csv columns at ' + metadataUrl);
+                }
+                
+            }
+            else {
+                throw new WaveConfiguratorException('There is a configuration error. No metadata csv found at ' + metadataUrl + ' URL.');
+            }
+    
+            // We process the relations
+            rootObj.relations = new List<WaveApplicationObjectRelation>();
+            if(wmaObj.relations != null){
+                for(WaveMetadataApplicationObjectRelation relObj: wmaObj.relations) {
+                    WaveApplicationObjectRelation rel = new WaveApplicationObjectRelation();
+                    
+                    rel.csvColumnName = relObj.csvColumnName;
+                    rel.targetSObject = relObj.targetSObject;
+                    rel.targetSObjectLookupField = relObj.targetSObjectLookupField;
+                    rel.foreignKeyField = relObj.foreignKeyField;
+    
+                    if (relObj.compositeForeignKey != null) {
+                        // We have a composite foreign key
+                        rel.compositeForeignKey = new List<WaveApplicationCompositeForeignKeyPart>();
+    
+                        for (WaveMetadataCompositeForeignKeyPart wmcFKP : relObj.compositeForeignKey) {
+                           WaveApplicationCompositeForeignKeyPart wacFKP = new WaveApplicationCompositeForeignKeyPart();
+                           wacFKP.csvColumnName = wmcFKP.csvColumnName;
+                           wacFKP.targetSObjectLookupField = wmcFKP.targetSObjectLookupField;
+                           rel.compositeForeignKey.add(wacFKP);
+                        }
+                    }
+    
+                    rootObj.relations.add(rel);
+                }
+            }
+    
+            // Replicate for each adittional data CSV file
+    
+            // We process the children
+            if(wmaObj.children != null) {
+                // Now the children objects
+                for(WaveMetadataApplicationObject chObj: wmaObj.children) {
+                    List<WaveApplicationObject> childrenObjs = getObjectsToProcess(chObj);
+                    listToProcess.addAll(childrenObjs);
+                }
+            }
+        }
 
 		return listToProcess;
 	}
@@ -581,8 +807,9 @@ public with sharing class WaveDataManagerController {
 					headersLine = headersLine.replace('\r', '');
 				}
 
+				headersLine = headersLine.replace('"', '');
 				List<String> headers = headersLine.split(',');
-
+				
 				currentNode.fieldPositions = new Map<Integer, String>();
 					
 				for(Integer i = 0; i < headers.size(); i++) {
@@ -644,7 +871,7 @@ public with sharing class WaveDataManagerController {
 
 		if(this.selectedInstallationProcess == 'timeShifting'){
 			this.successMessage = 'The Time Shifting process has finished successfully.';
-			WaveConfiguratorUtils.sendEmail(this.emailAddress, 'Time Shifting completed successfully', 'The Time Shifting process of your SDO data has finished successfully.');
+			WaveConfiguratorUtils.sendEmail(this.emailAddress, 'Time Shifting completed successfully', 'The Time Shifting process of your ORG data has finished successfully.');
 		}
 	}
 
@@ -654,7 +881,7 @@ public with sharing class WaveDataManagerController {
 			if(!String.isBlank(this.batchProcessId)){
 
 				WaveApplicationObject currentNode = this.objectsNodes.get(this.currentNodeIndex);
-				List<AsyncApexJob> lstJobs = [SELECT CompletedDate, JobItemsProcessed, NumberOfErrors, Status, TotalJobItems FROM AsyncApexJob WHERE Id = :this.batchProcessId];
+				List<AsyncApexJob> lstJobs = [SELECT CompletedDate, JobItemsProcessed, NumberOfErrors, Status, ExtendedStatus, TotalJobItems FROM AsyncApexJob WHERE Id = :this.batchProcessId];
 				
 				if(lstJobs.size() > 0){
 
@@ -662,7 +889,10 @@ public with sharing class WaveDataManagerController {
 
 					if(asyncJob.Status == 'Completed'){
 						if(asyncJob.NumberOfErrors > 0) {
-							this.errorMessage = 'The process was interrupted due to errors while loading data for the ' + this.objectsNodes.get(this.currentNodeIndex).name + ' object. See logs for details.';
+							this.errorMessage = 'The process was interrupted due to errors while loading data for the ' + this.objectsNodes.get(this.currentNodeIndex).name + ' object. ';
+							if (string.isNotBlank(asyncJob.ExtendedStatus)) {
+								this.errorMessage = this.errorMessage + 'Detail: ' +  asyncJob.ExtendedStatus;
+							}
 							this.currentNodeIndex = 0;
 							currentNode.currentDataIndex = 0;
 							this.objectsNodes.clear();
@@ -748,7 +978,10 @@ public with sharing class WaveDataManagerController {
 						this.rollbackProcess(this.errorMessage, '');
 					}
 					else if(asyncJob.Status == 'Failed'){
-						this.errorMessage = 'The process failed while loading data for the ' + this.objectsNodes.get(this.currentNodeIndex).name + ' object.';
+						this.errorMessage = 'The process failed while loading data for the ' + this.objectsNodes.get(this.currentNodeIndex).name + ' object. ';
+						if (string.isNotBlank(asyncJob.ExtendedStatus)) {
+							this.errorMessage = this.errorMessage + 'Detail: ' +  asyncJob.ExtendedStatus;
+						}
 						this.currentNodeIndex = 0;
 						this.disabledButton = false;
 						this.objectsNodes.clear();
@@ -787,7 +1020,7 @@ public with sharing class WaveDataManagerController {
 		try {
 			if(!String.isBlank(this.queueProcessId)){
 				UserPhotoInfo currentNode = this.userPhotoNodes.get(this.currentUserPhotoNodeIndex);
-				List<AsyncApexJob> lstJobs = [SELECT CompletedDate, JobItemsProcessed, NumberOfErrors, Status, TotalJobItems FROM AsyncApexJob WHERE Id = :this.queueProcessId];
+				List<AsyncApexJob> lstJobs = [SELECT CompletedDate, JobItemsProcessed, NumberOfErrors, Status, ExtendedStatus, TotalJobItems FROM AsyncApexJob WHERE Id = :this.queueProcessId];
 				
 				if(lstJobs.size() > 0){
 
@@ -795,7 +1028,10 @@ public with sharing class WaveDataManagerController {
 
 					if(asyncJob.Status == 'Completed'){
 						if(asyncJob.NumberOfErrors > 0) {
-							this.errorMessage = 'The process was interrupted due to errors while uploading ' + this.userPhotoNodes.get(this.currentUserPhotoNodeIndex).fileBaseName + ' photo. See logs for details.';
+							this.errorMessage = 'The process was interrupted due to errors while uploading ' + this.userPhotoNodes.get(this.currentUserPhotoNodeIndex).fileBaseName + ' photo. ';
+							if (string.isNotBlank(asyncJob.ExtendedStatus)) {
+								this.errorMessage = this.errorMessage + 'Detail: ' +  asyncJob.ExtendedStatus;
+							}
 							this.currentUserPhotoNodeIndex = 0;
 							this.userPhotoNodes.clear();
 							this.disabledButton = false;
@@ -814,14 +1050,17 @@ public with sharing class WaveDataManagerController {
 						}		
 					}
 					else if(asyncJob.Status == 'Aborted'){
-						this.errorMessage = 'The process was aborted while uploading ' + this.userPhotoNodes.get(this.currentUserPhotoNodeIndex).fileBaseName + ' photo. See logs for details.';
+						this.errorMessage = 'The process was aborted while uploading ' + this.userPhotoNodes.get(this.currentUserPhotoNodeIndex).fileBaseName + ' photo.';
 						this.currentUserPhotoNodeIndex = 0;
 						this.userPhotoNodes.clear();
 						this.disabledButton = false;
 						this.uploadingUserPhotos = false;
 					}
 					else if(asyncJob.Status == 'Failed'){
-						this.errorMessage = 'The process failed while uploading ' + this.userPhotoNodes.get(this.currentUserPhotoNodeIndex).fileBaseName + ' photo. See logs for details.';
+						this.errorMessage = 'The process failed while uploading ' + this.userPhotoNodes.get(this.currentUserPhotoNodeIndex).fileBaseName + ' photo. ';
+						if (string.isNotBlank(asyncJob.ExtendedStatus)) {
+							this.errorMessage = this.errorMessage + 'Error: ' +  asyncJob.ExtendedStatus;
+						}
 						this.currentUserPhotoNodeIndex = 0;
 						this.userPhotoNodes.clear();
 						this.disabledButton = false;
@@ -859,7 +1098,7 @@ public with sharing class WaveDataManagerController {
 		try {
 			if(!String.isBlank(this.batchProcessId)){
 				WaveTimeShiftingItem currentNode = this.timeShiftingItems.get(this.currentTimeShiftingNodeIndex);
-				List<AsyncApexJob> lstJobs = [SELECT CompletedDate, JobItemsProcessed, NumberOfErrors, Status, TotalJobItems FROM AsyncApexJob WHERE Id = :this.batchProcessId];
+				List<AsyncApexJob> lstJobs = [SELECT CompletedDate, JobItemsProcessed, NumberOfErrors, Status, ExtendedStatus, TotalJobItems FROM AsyncApexJob WHERE Id = :this.batchProcessId];
 				
 				if(lstJobs.size() > 0){
 
@@ -867,7 +1106,10 @@ public with sharing class WaveDataManagerController {
 
 					if(asyncJob.Status == 'Completed'){
 						if(asyncJob.NumberOfErrors > 0) {
-							this.errorMessage = 'The process was interrupted due to errors while time shifting data for the ' + this.timeShiftingItems.get(this.currentTimeShiftingNodeIndex).objectTypeName + ' object. See logs for details.';
+							this.errorMessage = 'The process was interrupted due to errors while time shifting data for the ' + this.timeShiftingItems.get(this.currentTimeShiftingNodeIndex).objectTypeName + ' object. ';
+							if (string.isNotBlank(asyncJob.ExtendedStatus)) {
+								this.errorMessage = this.errorMessage + 'Detail: ' +  asyncJob.ExtendedStatus;
+							}
 							this.currentTimeShiftingNodeIndex = 0;
 							this.timeShiftingItems.clear();
 							this.disabledButton = false;
@@ -898,7 +1140,10 @@ public with sharing class WaveDataManagerController {
 						this.rollbackProcess(this.errorMessage, '');
 					}
 					else if(asyncJob.Status == 'Failed'){
-						this.errorMessage = 'The process failed while time shifting data for the ' + this.timeShiftingItems.get(this.currentTimeShiftingNodeIndex).objectTypeName + ' object.';
+						this.errorMessage = 'The process failed while time shifting data for the ' + this.timeShiftingItems.get(this.currentTimeShiftingNodeIndex).objectTypeName + ' object. ';
+						if (string.isNotBlank(asyncJob.ExtendedStatus)) {
+							this.errorMessage = this.errorMessage + 'Detail: ' +  asyncJob.ExtendedStatus;
+						}
 						this.currentTimeShiftingNodeIndex = 0;
 						this.timeShiftingItems.clear();
 						this.disabledButton = false;
@@ -993,9 +1238,7 @@ public with sharing class WaveDataManagerController {
 			// page will recall this method.
 			this.installationStep = '';
 		}
-
 	}
-
 
 	public void executeSelectedProcess(){
 
@@ -1070,8 +1313,131 @@ public with sharing class WaveDataManagerController {
 					//createObjectsAndFields(this.objectsNodes); UNCOMMENT
 					this.launchObjectsLoading(); // COMMENT
 				}
+			} 
+			else if(this.selectedInstallationProcess == 'loadEdgemarts'){
+				this.disabledButton = true;
+				this.selectAppMetadata();
+				this.edgemartsNodes.clear();
+
+				if(this.selectedAppMetadata.edgemarts != null){
+					
+					for(WaveMetadataApplicationEdgemart wmaEdg: this.selectedAppMetadata.edgemarts) {
+						
+						WaveApplicationEdgemart waEdg = new WaveApplicationEdgemart();
+						waEdg.edgemartDeveloperName = wmaEdg.edgemartDeveloperName;
+						waEdg.edgemartLabel = wmaEdg.edgemartLabel;
+						waEdg.edgemartCsvDataUrl = wmaEdg.edgemartCsvDataUrl;
+						waEdg.edgemartJsonSchemaUrl = wmaEdg.edgemartJsonSchemaUrl;
+						waEdg.edgemartNodeNameInDataflow = wmaEdg.edgemartNodeNameInDataflow;
+						waEdg.edgemartNodeNameToReplaceInDataflow = wmaEdg.edgemartNodeNameToReplaceInDataflow;
+						waEdg.objectName = wmaEdg.objectName;
+						waEdg.replaceData = wmaEdg.replaceData;
+
+						this.edgemartsNodes.add(waEdg);
+					}
+					
+					loadEdgemarts();
+				}
 			}
-		} 
+			else if(this.selectedInstallationProcess == 'setActionFields'){
+				setActionFields();				
+			}
+			else if (this.selectedInstallationProcess == 'createCompleteApp') {
+				// Process specific pre validation
+
+				this.resetMessages();
+				// Start with validations
+				if(String.isBlank(this.createCompleteAppName)){
+					passedValidation = false;
+					this.warningMessage = 'Analytics application name must be specified.';
+				}
+				
+				if(String.isBlank(this.createCompleteAppLabel)){
+					passedValidation = false;
+					this.warningMessage = 'Analytics application label name must be specified.';
+				}				
+
+				if (passedValidation) {
+					this.disabledButton = true;
+					this.selectAppMetadata();
+					this.datasetsNodes.clear();
+					this.dashboardsNodes.clear();
+
+					if(this.selectedAppMetadata.datasets != null){
+						
+						for(WaveMetadataApplicationDataset wmaEdg: this.selectedAppMetadata.datasets) {
+							
+							WaveApplicationDataset waDataset = new WaveApplicationDataset();
+							waDataset.name = wmaEdg.name;
+							waDataset.label = wmaEdg.label;
+							waDataset.jsonSchemaUrl = wmaEdg.jsonSchemaUrl;
+							waDataset.csvDataUrl = wmaEdg.csvDataUrl;
+							waDataset.xmdUrl = wmaEdg.xmdUrl;
+							waDataset.dataParts = wmaEdg.dataParts;
+
+							this.datasetsNodes.add(waDataset);
+						}
+					}
+
+					if(this.selectedAppMetadata.dashboards != null){
+						
+						for(WaveMetadataApplicationDashboard wmaDash: this.selectedAppMetadata.dashboards) {
+							
+							WaveApplicationDashboard waDashboard = new WaveApplicationDashboard();
+							waDashboard.name = wmaDash.name;
+							waDashboard.referencedDatasets = wmaDash.referencedDatasets;
+							waDashboard.referencedDashboards = wmaDash.referencedDashboards;
+							waDashboard.referencedImages = wmaDash.referencedImages;
+							waDashboard.jsonUrl = wmaDash.jsonUrl;
+
+							this.dashboardsNodes.add(waDashboard);
+						}
+					}
+
+					/*if(this.selectedAppMetadata.dataflow != null){
+						this.dataflowConfig = new WaveApplicationDataflow();
+						this.dataflowConfig.referencedDatasets = this.selectedAppMetadata.dataflow.referencedDatasets;
+						this.dataflowConfig.jsonUrl = this.selectedAppMetadata.dataflow.jsonUrl;
+					}*/
+
+					handleCompleteApp(true);
+				}
+			}
+			else if(this.selectedInstallationProcess == 'loadDatasetsToExistingApp'){
+				this.resetMessages();
+				
+				// Start with validations
+				if(String.isBlank(this.handleCompleteAppFolderId)){
+					passedValidation = false;
+					this.warningMessage = 'An Analytics Application name must be selected.';
+				}
+
+				if (passedValidation) {
+					this.disabledButton = true;
+					this.selectAppMetadata();
+					this.datasetsNodes.clear();
+					this.dashboardsNodes.clear();
+
+					if(this.selectedAppMetadata.datasets != null){
+						
+						for(WaveMetadataApplicationDataset wmaEdg: this.selectedAppMetadata.datasets) {
+							
+							WaveApplicationDataset waDataset = new WaveApplicationDataset();
+							waDataset.name = wmaEdg.name;
+							waDataset.label = wmaEdg.label;
+							waDataset.jsonSchemaUrl = wmaEdg.jsonSchemaUrl;
+							waDataset.csvDataUrl = wmaEdg.csvDataUrl;
+							waDataset.xmdUrl = wmaEdg.xmdUrl;
+							waDataset.dataParts = wmaEdg.dataParts;
+
+							this.datasetsNodes.add(waDataset);
+						}
+					}
+
+					handleCompleteApp(false);
+				}
+			}
+		}
 		catch(Exception e) {
 			System.debug(e.getMessage());
 			System.debug(e.getStackTraceString());
@@ -1081,6 +1447,137 @@ public with sharing class WaveDataManagerController {
 			this.rollbackProcess(e.getMessage(), e.getStackTraceString());
 		}
 	}
+
+	public void setActionFields(){
+		if(String.isBlank(this.selectedDataflowForActionFields)){
+			throw new WaveConfiguratorException('You are required to select dataflow for this operation.');
+		}
+
+		List<WaveApplicationActionField> fieldsToSet = new List<WaveApplicationActionField>();
+		
+		for (String dsName: this.actionInputFields.keySet()) {
+			for (WaveApplicationActionField v: this.actionInputFields.get(dsName).values()) {
+				if (!String.isBlank(v.actionFieldValue)) {
+					fieldsToSet.add(v); // Value was set by the user
+					this.logMessage('Setting ' + v.actionFieldValue + ' value for ' + v.actionFieldLabel + ' field in ' + v.datasetName + ' dataset.');
+				}
+			}
+		}
+
+		AnalyticsDemoDataflowHelper dataflowHelper = new AnalyticsDemoDataflowHelper('v' + this.genericAppConfiguration.apiVersion);
+		dataflowHelper.setComputeExpressionsForActionFields(this.selectedDataflowForActionFields, fieldsToSet);
+		this.successMessage = 'The Set Action Fields process has finished successfully.';
+	}
+
+	public void loadEdgemarts(){
+		// Check if there are edgemarts to load
+		if(this.edgemartsNodes.size() > 0){
+
+			this.currentEdgemartIndex = 0;
+			this.processCurrentEdgemartLoad();
+			this.processingEdgemartsLoad = true;
+			
+		}
+		else {
+			// We DON'T have metadata to process
+			this.logMessage('No edgemarts to load.');
+			this.disabledButton = false;
+			this.processingEdgemartsLoad = false;
+		}
+	}
+
+	public void processCurrentEdgemartLoad(){
+		WaveApplicationEdgemart edg = this.edgemartsNodes.get(this.currentEdgemartIndex);
+		LoadEdgemartQueueable edgCreationQueue = new LoadEdgemartQueueable(edg, this.selectedAnalyticsApp, UserInfo.getSessionId());
+		this.queueProcessId = System.enqueueJob(edgCreationQueue);
+		this.logMessage('Loading ' + edg.edgemartLabel + ' dataset.');
+	}
+
+	public PageReference checkEdgemartLoadStatus(){
+		try {
+			if(!String.isBlank(this.queueProcessId) && this.processingEdgemartsLoad){
+				List<AsyncApexJob> lstJobs = [SELECT CompletedDate, JobItemsProcessed, NumberOfErrors, Status, ExtendedStatus, TotalJobItems FROM AsyncApexJob WHERE Id = :this.queueProcessId];
+				WaveApplicationEdgemart currentEdg = this.edgemartsNodes.get(this.currentEdgemartIndex);
+
+				if(lstJobs.size() > 0){
+					AsyncApexJob asyncJob = lstJobs.get(0);
+
+					if(asyncJob.Status == 'Completed'){
+						if(asyncJob.NumberOfErrors > 0) {
+							this.errorMessage = 'Error while loading edgemart for the ' + currentEdg.objectName + ' object.';
+							if (string.isNotBlank(asyncJob.ExtendedStatus)) {
+								this.errorMessage = this.errorMessage + 'Detail: ' +  asyncJob.ExtendedStatus;
+							}
+							this.currentEdgemartIndex = 0;
+							this.processingEdgemartsLoad = false;
+							this.disabledButton = false;
+						}
+						else {
+							if(this.currentEdgemartIndex == this.edgemartsNodes.size() - 1){
+								
+								AnalyticsDemoDataflowHelper dataflowHelper = new AnalyticsDemoDataflowHelper('v' + this.genericAppConfiguration.apiVersion);
+								
+								// Dataflow will be edited?
+								if (String.isNotBlank(this.selectedDataflow)) {									
+									dataflowHelper.replaceSfdcDigestByEdgemarts(this.selectedDataflow, this.edgemartsNodes);
+								}
+
+								// App will be edited?
+								if (String.isNotBlank(this.selectedAnalyticsApp)) {
+									dataflowHelper.remapNamesInAssets(this.selectedAnalyticsApp);
+								}
+
+								// We are finished loading edgemarts
+								this.finishEdgemartLoadProcess();
+							}
+							else {
+								this.currentEdgemartIndex = this.currentEdgemartIndex + 1;
+								this.processCurrentEdgemartLoad();
+							}
+						}		
+					}
+					else if(asyncJob.Status == 'Aborted'){
+						this.errorMessage = 'The process was aborted while loading edgemart for the ' + currentEdg.objectName + ' object.';
+						this.currentEdgemartIndex = 0;
+						this.processingEdgemartsLoad = false;
+						this.disabledButton = false;
+					}
+					else if(asyncJob.Status == 'Failed'){
+						this.errorMessage = 'The process failed while loading edgemart for the ' + currentEdg.objectName + ' object.';
+						if (string.isNotBlank(asyncJob.ExtendedStatus)) {
+							this.errorMessage = this.errorMessage + 'Detail: ' +  asyncJob.ExtendedStatus;
+						}
+						this.currentEdgemartIndex = 0;
+						this.processingEdgemartsLoad = false;
+						this.disabledButton = false;
+					}
+				}
+			}
+		}
+		catch(Exception e) {
+			this.errorMessage = e.getMessage();
+			System.debug(e.getMessage());
+			System.debug(e.getStackTraceString());
+			this.currentEdgemartIndex = 0;
+			this.processingEdgemartsLoad = false;
+			this.disabledButton = false;
+		}
+
+		return null;
+	}
+
+	private void finishEdgemartLoadProcess(){
+		this.disabledButton = false;
+		this.currentEdgemartIndex = 0;
+		this.edgemartsNodes.clear();
+		this.logMessage('Done.');
+		this.processingEdgemartsLoad = false;
+
+		if(this.selectedInstallationProcess == 'loadEdgemarts'){
+			this.successMessage = 'The Load Datasets process has finished successfully.';
+			WaveConfiguratorUtils.sendEmail(this.emailAddress, 'Load Datasets completed successfully', 'The Load Datasets process of your ORG data has finished successfully.');
+		}
+	}	
 
 	public void addRecordTypeNodes(WaveMetadataApplicationObject wmaObj){
 		
@@ -1121,6 +1618,7 @@ public with sharing class WaveDataManagerController {
 	public void selectAppMetadata(){
 		Integer appIndex = this.appIndexes.get(this.selectedWaveApp);
 		WaveApplicationRow appRow = this.applicationRows.get(appIndex);
+		
 		// Retrieve and parse metadata
 		HttpRequest req = new HttpRequest();
 		req.setEndpoint(appRow.MetadataUrl);
@@ -1135,12 +1633,16 @@ public with sharing class WaveDataManagerController {
 		String jsonMetadata = res.getBody();
 		this.selectedAppMetadata = (WaveMetadataApplication)JSON.deserialize(jsonMetadata, WaveMetadataApplication.class);
 		
-		for(WaveMetadataApplicationObject wmaObj: this.selectedAppMetadata.objects) {
-			Map<String,String> operationMap = new Map<String,String>();
-			operationMap.put('CreateObjectsAndFields','N/A');
-			operationMap.put('LoadData','N/A');
-			operationMap.put('TimeShifting','N/A');
-			this.operationsStatusTable.put(wmaObj.Name, operationMap);
+		if (this.selectedAppMetadata != null && this.selectedAppMetadata.objects != null) {
+			for(WaveMetadataApplicationObject wmaObj: this.selectedAppMetadata.objects) {
+				Map<String,String> operationMap = new Map<String,String>();
+				operationMap.put('CreateObjectsAndFields','N/A');
+				operationMap.put('LoadData','N/A');
+				operationMap.put('TimeShifting','N/A');
+				operationMap.put('LoadEdgemarts','N/A');
+				operationMap.put('SetActionFields', 'N/A');
+				this.operationsStatusTable.put(wmaObj.Name, operationMap);
+			}
 		}
 	}
 
@@ -1212,7 +1714,14 @@ public with sharing class WaveDataManagerController {
 					}
 				}
 			}
-		} 
+		}
+		else {
+			this.currentObjectIndex = 0;
+			this.currentFieldIndex = 0;
+			this.processingObjectsAndFieldsMetadata = false;
+			this.disabledButton = false;
+			this.logMessage('There are no objects and fields to create.');
+		}
 	}
 
 	private void processCurrentRecordType(Boolean startingWithObject){
@@ -1230,7 +1739,7 @@ public with sharing class WaveDataManagerController {
 		
 		try {
 			if(!String.isBlank(this.queueProcessId) && this.processingRecordTypes){
-				List<AsyncApexJob> lstJobs = [SELECT CompletedDate, JobItemsProcessed, NumberOfErrors, Status, TotalJobItems FROM AsyncApexJob WHERE Id = :this.queueProcessId];
+				List<AsyncApexJob> lstJobs = [SELECT CompletedDate, JobItemsProcessed, NumberOfErrors, Status, ExtendedStatus, TotalJobItems FROM AsyncApexJob WHERE Id = :this.queueProcessId];
 				SF_MetadataUtils.RecordTypeSpecification currentRecordType = this.objectsRecordTypesMatrix.get(this.currentObjectIndex).get(this.currentRecordTypeIndex);
 
 				if(lstJobs.size() > 0){
@@ -1238,7 +1747,10 @@ public with sharing class WaveDataManagerController {
 
 					if(asyncJob.Status == 'Completed'){
 						if(asyncJob.NumberOfErrors > 0) {
-							this.errorMessage = 'Error while processing ' + currentRecordType.Name + ' record type for the ' + currentRecordType.ObjectName + ' object. See logs for details.';
+							this.errorMessage = 'Error while processing ' + currentRecordType.Name + ' record type for the ' + currentRecordType.ObjectName + ' object. ';
+							if (string.isNotBlank(asyncJob.ExtendedStatus)) {
+								this.errorMessage = this.errorMessage + 'Detail: ' +  asyncJob.ExtendedStatus;
+							}
 							this.currentObjectIndex = 0;
 							this.currentRecordTypeIndex = 0;
 							this.processingRecordTypes = false;
@@ -1281,14 +1793,17 @@ public with sharing class WaveDataManagerController {
 						}		
 					}
 					else if(asyncJob.Status == 'Aborted'){
-						this.errorMessage = 'The process was aborted while processing ' + currentRecordType.Name + ' record type for the ' + currentRecordType.ObjectName + ' object. See logs for details.';
+						this.errorMessage = 'The process was aborted while processing ' + currentRecordType.Name + ' record type for the ' + currentRecordType.ObjectName + ' object.';
 						this.currentObjectIndex = 0;
 						this.currentRecordTypeIndex = 0;
 						this.processingRecordTypes = false;
 						this.disabledButton = false;
 					}
 					else if(asyncJob.Status == 'Failed'){
-						this.errorMessage = 'The process failed while processing ' + currentRecordType.Name + ' record type for the ' + currentRecordType.ObjectName + ' object. See logs for details.';
+						this.errorMessage = 'The process failed while processing ' + currentRecordType.Name + ' record type for the ' + currentRecordType.ObjectName + ' object. ';
+						if (string.isNotBlank(asyncJob.ExtendedStatus)) {
+							this.errorMessage = this.errorMessage + 'Detail: ' +  asyncJob.ExtendedStatus;
+						}
 						this.currentObjectIndex = 0;
 						this.currentRecordTypeIndex = 0;
 						this.processingRecordTypes = false;
@@ -1332,7 +1847,7 @@ public with sharing class WaveDataManagerController {
 		
 		try {
 			if(!String.isBlank(this.queueProcessId) && this.processingObjectsAndFieldsMetadata){
-				List<AsyncApexJob> lstJobs = [SELECT CompletedDate, JobItemsProcessed, NumberOfErrors, Status, TotalJobItems FROM AsyncApexJob WHERE Id = :this.queueProcessId];
+				List<AsyncApexJob> lstJobs = [SELECT CompletedDate, JobItemsProcessed, NumberOfErrors, Status, ExtendedStatus, TotalJobItems FROM AsyncApexJob WHERE Id = :this.queueProcessId];
 				SF_MetadataUtils.CustomFieldSpecification currentField = this.objectsAndFieldsMatrix.get(this.currentObjectIndex).get(this.currentFieldIndex);
 
 				if(lstJobs.size() > 0){
@@ -1340,7 +1855,10 @@ public with sharing class WaveDataManagerController {
 
 					if(asyncJob.Status == 'Completed'){
 						if(asyncJob.NumberOfErrors > 0) {
-							this.errorMessage = 'Error while processing metadata for the ' + currentField.ObjectName + ' object. Field: ' + currentField.Name + ' .See logs for details.';
+							this.errorMessage = 'Error while processing metadata for the ' + currentField.ObjectName + ' object. Field: ' + currentField.Name + '. ';
+							if (string.isNotBlank(asyncJob.ExtendedStatus)) {
+								this.errorMessage = this.errorMessage + 'Detail: ' +  asyncJob.ExtendedStatus;
+							}
 							this.currentObjectIndex = 0;
 							this.currentFieldIndex = 0;
 							this.processingObjectsAndFieldsMetadata = false;
@@ -1368,6 +1886,7 @@ public with sharing class WaveDataManagerController {
 										}
 									}
 									else if(this.selectedInstallationProcess == 'createMetadata'){
+										this.successMessage = 'Done';
 										this.logMessage('All needed metadata was created successfully.');
 										this.disabledButton = false;
 									}
@@ -1397,14 +1916,17 @@ public with sharing class WaveDataManagerController {
 						}		
 					}
 					else if(asyncJob.Status == 'Aborted'){
-						this.errorMessage = 'The process was aborted while processing metadata for the ' + currentField.ObjectName + ' object. Field: ' + currentField.Name + ' .See logs for details.';
+						this.errorMessage = 'The process was aborted while processing metadata for the ' + currentField.ObjectName + ' object. Field: ' + currentField.Name + '.';
 						this.currentObjectIndex = 0;
 						this.currentFieldIndex = 0;
 						this.processingObjectsAndFieldsMetadata = false;
 						this.disabledButton = false;
 					}
 					else if(asyncJob.Status == 'Failed'){
-						this.errorMessage = 'The process failed while processing metadata for the ' + currentField.ObjectName + ' object. Field: ' + currentField.Name + ' .See logs for details.';
+						this.errorMessage = 'The process failed while processing metadata for the ' + currentField.ObjectName + ' object. Field: ' + currentField.Name + '. ';
+						if (string.isNotBlank(asyncJob.ExtendedStatus)) {
+							this.errorMessage = this.errorMessage + 'Detail: ' +  asyncJob.ExtendedStatus;
+						}
 						this.currentObjectIndex = 0;
 						this.currentFieldIndex = 0;
 						this.processingObjectsAndFieldsMetadata = false;
@@ -1541,14 +2063,397 @@ public with sharing class WaveDataManagerController {
 		}
 	}
 
-	private void logMessage(String msg){
-
-		if(!this.processingLogWithoutTime.contains(msg)){
-			DateTime dtNow = DateTime.now();
-			this.processingLog.add(String.format('[{0}] {1}', new String[]{ dtNow.format('yyyyMMdd HH:mm:ss') , msg }));
+	private void getDatasetMappingToFolderId(){
+		this.folderIdByDatasetDevName = new Map<String, String>();
+		for (EdgeMart edg: [SELECT DeveloperName, FolderId FROM EdgeMart WHERE IsDeleted = false]) {
+			this.folderIdByDatasetDevName.put(edg.DeveloperName, edg.FolderId);
 		}
-
-		this.processingLogWithoutTime.add(msg);
 	}
 
+	public void handleCompleteApp(Boolean createApp){
+		// Check if there are datasets to load
+		if (this.datasetsNodes.size() == 0 && this.dashboardsNodes.size() == 0) {
+			// We DON'T have datasets or dashboards to process
+			this.warningMessage = 'There are no datasets or dashboards to load to application.';
+			this.disabledButton = false;
+			this.processingLoadDatasets = false;
+			this.processingLoadDashboards = false;
+		}
+		else {
+			if (createApp) {
+				// 1st, create app
+				if(!this.utils.folderExists(this.createCompleteAppName)){
+					this.handleCompleteAppFolderId = this.utils.insertFolder(this.createCompleteAppLabel, this.createCompleteAppName);
+				}
+				else {
+					this.handleCompleteAppFolderId = this.utils.getFolderIdByDevName(this.createCompleteAppName);
+				}
+
+				// At this point we should have an InsightsApplication object created in the org with FolderId = this.handleCompleteAppFolderId
+				this.insightsAppId = this.utils.getAnalyticsAppIdByDevName(this.createCompleteAppName);
+			}
+			else {
+				this.insightsAppId = this.utils.getAnalyticsAppIdByFolderId(this.handleCompleteAppFolderId);
+			}
+
+			this.getDatasetMappingToFolderId();
+			
+			// Need to define dataset developer names
+			for (WaveApplicationDataset ds : this.datasetsNodes) {
+				// As default, we try to use it as it comes from config
+				ds.nameToSave = ds.name;
+				
+				if (this.folderIdByDatasetDevName.containsKey(ds.name) && !this.folderIdByDatasetDevName.get(ds.name).equalsIgnoreCase(this.handleCompleteAppFolderId)) {
+					// The dataset already exists in the org but it is contained in another app, need to generate new name
+					Integer iSuffix = 0;
+                    String edgNameCandidate = ds.Name;
+					while(this.folderIdByDatasetDevName.containsKey(edgNameCandidate)){
+						iSuffix++;
+						edgNameCandidate = ds.Name + iSuffix;
+					}
+					
+					ds.nameToSave = edgNameCandidate;
+				}
+			}			
+
+			if(this.datasetsNodes.size() > 0){
+				this.currentDatasetIndex = 0;
+				this.processingLoadDatasets = true;
+				this.processingLoadDashboards = false;
+				this.processCurrentDatasetLoad();				
+			}
+			else if(this.dashboardsNodes.size() > 0){
+				this.currentDashboardIndex = 0;
+				this.processingLoadDatasets = false;
+				this.processingLoadDashboards = true;
+				this.processCurrentDashboardLoad();				
+			}
+		}
+	}
+
+	public void processCurrentDatasetLoad(){
+		WaveApplicationDataset edg = this.datasetsNodes.get(this.currentDatasetIndex);
+		LoadDatasetBatch dsBatch = new LoadDatasetBatch(edg, this.insightsAppId);
+		this.batchProcessId = Database.executeBatch(dsBatch, 1);
+		this.logMessage('Loading ' + edg.label + ' dataset.');
+	}
+
+	public void suggestAnalyticsAppName(){
+		if (String.isBlank(this.createCompleteAppName) && String.isNotBlank(this.createCompleteAppLabel)) {
+			
+			String nameToSuggest = this.createCompleteAppLabel.trim();
+			while (nameToSuggest.substring(0 ,1).isNumeric()) {
+				nameToSuggest = nameToSuggest.substring(1);
+			}
+			
+			this.createCompleteAppName = nameToSuggest.replaceAll('[^a-zA-Z0-9]', '_');
+			this.checkCreateCompleteAppExistence();
+		}
+	}
+
+	public PageReference checkDatasetLoadStatus(){
+		try {
+			if(!String.isBlank(this.batchProcessId) && this.processingLoadDatasets){
+				List<AsyncApexJob> lstJobs = [SELECT CompletedDate, JobItemsProcessed, NumberOfErrors, Status, ExtendedStatus, TotalJobItems FROM AsyncApexJob WHERE Id = :this.batchProcessId];
+				WaveApplicationDataset currentEdg = this.datasetsNodes.get(this.currentDatasetIndex);
+
+				if(lstJobs.size() > 0){
+					AsyncApexJob asyncJob = lstJobs.get(0);
+
+					if(asyncJob.Status == 'Completed'){
+						if(asyncJob.NumberOfErrors > 0) {
+							this.errorMessage = 'Error while loading dataset: ' + currentEdg.label;
+							if (string.isNotBlank(asyncJob.ExtendedStatus)) {
+								this.errorMessage = this.errorMessage + 'Detail: ' +  asyncJob.ExtendedStatus;
+							}
+							this.currentDatasetIndex = 0;
+							this.processingLoadDatasets = false;
+							this.disabledButton = false;
+							this.createCompleteAppName = '';
+							this.handleCompleteAppFolderId = '';
+							this.insightsAppId = '';
+						}
+						else {
+							String datasetLoadStatus = WaveConfiguratorUtils.getDatasetUploadStatus(currentEdg.nameToSave);
+							if (datasetLoadStatus.equalsIgnoreCase('Completed') || datasetLoadStatus.equalsIgnoreCase('CompletedWithWarnings')) {
+								if (datasetLoadStatus.equalsIgnoreCase('CompletedWithWarnings')) {
+									this.logMessage('Load completed with warnings. Please go to Analytics Studio / Data Manager for details.');
+								}
+								// Dataset upload completed
+								//Load XMD ?
+								// XMD
+								if (String.isNotBlank(currentEdg.xmdUrl)) {
+									WaveConfiguratorUtils.setXmdForDataset(currentEdg.nameToSave, currentEdg.xmdUrl, this.genericAppConfiguration.apiVersion);
+								}
+								
+								//Now we have to finish or move to next dataset upload
+								if(this.currentDatasetIndex == this.datasetsNodes.size() - 1){
+									
+									// We are finished loading app datasets
+									this.processingLoadDatasets = false;
+
+									// DATAFLOW?
+									/*
+									if (this.dataflowConfig != null) {
+										// Download dataflow JSON template
+										HttpResponse resDfJson = WaveConfiguratorUtils.httpGetCallout(this.dataflowConfig.jsonUrl);
+										String dataflowJsonToSend = resDfJson.getBody();
+										//dataflowJsonToSend = dataflowJsonToSend.replace('{#FolderId}', this.folderId);
+										//dataflowJsonToSend = dataflowJsonToSend.replace('{#DashboardName}', this.dashboardToLoad.nameToSave);
+										
+										if (this.dataflowConfig.referencedDatasets != null) {
+											for (String datasetName : this.dataflowConfig.referencedDatasets) {
+												if (this.datasetsMap.containsKey(datasetName)) {
+													WaveApplicationDataset ds = this.datasetsMap.get(datasetName);
+													dataflowJsonToSend = dataflowJsonToSend.replace('{#' + datasetName + '}', ds.nameToSave);
+												}
+											}   
+										}
+									}*/
+
+									if (this.selectedInstallationProcess.equals('createCompleteApp')) {
+										// Creating complete app, now launch dashboards load
+										this.currentDashboardIndex = 0;
+										this.processingLoadDatasets = false;
+										this.processingLoadDashboards = true;
+										this.processCurrentDashboardLoad();	
+									}
+									else if(this.selectedInstallationProcess.equals('loadDatasetsToExistingApp')){
+										// Only loading datasets into existing app, finish
+										this.finishHandleCompleteAppProcess();
+									}
+								}
+								else {
+									// Not finished yet, move to next dataset upload
+									this.currentDatasetIndex = this.currentDatasetIndex + 1;
+									this.processCurrentDatasetLoad();
+								}
+							}
+							else if (datasetLoadStatus.equalsIgnoreCase('Failed')) {
+								this.errorMessage = 'The dataset: ' + currentEdg.label + ' failed to load. Please go to Analytics Studio / Data Manager for details.';
+								this.currentDatasetIndex = 0;
+								this.processingLoadDatasets = false;
+								this.disabledButton = false;
+								this.createCompleteAppName = '';
+								this.handleCompleteAppFolderId = '';
+								this.insightsAppId = '';
+							}
+						}
+					}
+					else if(asyncJob.Status == 'Aborted'){
+						this.errorMessage = 'The process was aborted while loading dataset: ' + currentEdg.label;
+						this.currentDatasetIndex = 0;
+						this.processingLoadDatasets = false;
+						this.disabledButton = false;
+						this.createCompleteAppName = '';
+						this.handleCompleteAppFolderId = '';
+						this.insightsAppId = '';
+					}
+					else if(asyncJob.Status == 'Failed'){
+						this.errorMessage = 'The process failed while loading dataset: ' + currentEdg.label;
+						if (string.isNotBlank(asyncJob.ExtendedStatus)) {
+							this.errorMessage = this.errorMessage + 'Detail: ' +  asyncJob.ExtendedStatus;
+						}
+						this.currentDatasetIndex = 0;
+						this.processingLoadDatasets = false;
+						this.disabledButton = false;
+						this.createCompleteAppName = '';
+						this.handleCompleteAppFolderId = '';
+						this.insightsAppId = '';
+					}
+				}
+			}
+		}
+		catch(Exception e) {
+			this.errorMessage = e.getMessage();
+			System.debug(e.getMessage());
+			System.debug(e.getStackTraceString());
+			this.currentDatasetIndex = 0;
+			this.processingLoadDatasets = false;
+			this.processingLoadDashboards = false;
+			this.disabledButton = false;
+			this.createCompleteAppName = '';
+			this.handleCompleteAppFolderId = '';
+			this.insightsAppId = '';
+		}
+
+		return null;
+	}
+
+	public void processCurrentDashboardLoad(){
+		if(this.dashboardsNodes != null && this.dashboardsNodes.size() > 0){
+			if (this.currentDashboardIndex == 0) {
+				// Get Dataset Name, Id mapping
+				List<String> lstDatasetDevNames = new List<String>();
+				for (WaveApplicationDataset ds : this.datasetsNodes) {
+					lstDatasetDevNames.add(ds.nameToSave);
+				}
+				this.idsByDatasetDevName = this.utils.getDatasetIdByDevNameMapping(lstDatasetDevNames);
+				this.datasetsMap = new Map<String, WaveApplicationDataset>();
+				for (WaveApplicationDataset ds : this.datasetsNodes) {
+					ds.Id = this.idsByDatasetDevName.get(ds.nameToSave);
+					this.datasetsMap.put(ds.name, ds);
+				}
+				
+				// Load all dashboards so we can get the api names
+				List<StaticResource> srList = [SELECT Body FROM StaticResource WHERE Name = 'BlankDashboardTemplate'];
+				if(srList.size() == 0){
+					throw new WaveConfiguratorException('BlankDashboardTemplate Static Resource not found.');
+				}
+				// We create the dummy dashboards and the Map for storing resulting IDs
+				this.dashboardsIdsByName = new Map<String, String>();
+				String dummyDashboardJson = srList.get(0).Body.toString();
+				dummyDashboardJson = dummyDashboardJson.replace('{#FolderId}', this.handleCompleteAppFolderId);
+
+				// Find if there exists dashboard
+				Map<String, String> dashboardFoldersByName = new Map<String, String>();			
+				for (Lens l: [SELECT DeveloperName, FolderId FROM Lens WHERE Type = 'dashboard' AND IsDeleted = false]) {
+					dashboardFoldersByName.put(l.DeveloperName, l.FolderId);
+				}
+
+				Set<String> dashboardNames = dashboardFoldersByName.keySet();
+				this.dashboardsMap = new Map<String, WaveApplicationDashboard>();
+
+				for (WaveApplicationDashboard dash : this.dashboardsNodes) {
+					
+					dash.nameToSave = dash.name;
+
+					if (!dashboardFoldersByName.containsKey(dash.name) || (dashboardFoldersByName.containsKey(dash.name) && !dashboardFoldersByName.get(dash.name).equals(this.handleCompleteAppFolderId))) {
+						
+						// Have to create new dashboard
+						
+						if (dashboardFoldersByName.containsKey(dash.name) && !dashboardFoldersByName.get(dash.name).equals(this.handleCompleteAppFolderId)) {
+							// Dashboard already exists in the org but contained in another app. Need to find new name for it
+							String dashNameCandidate = dash.name;
+							Integer iSuffix = 0;                
+							while(dashboardNames.contains(dashNameCandidate)){
+								iSuffix++;
+								dashNameCandidate = dash.name + iSuffix;
+							}
+
+							dash.nameToSave = dashNameCandidate;
+						}
+
+						String currDashJson = dummyDashboardJson.replace('{#DashboardName}', dash.nameToSave);
+						this.utils.insertDashboard(currDashJson);
+					}
+
+					this.dashboardsMap.put(dash.name, dash);
+				}
+
+				// If there are images to load for dashboards
+				this.dashboardImagesMapping = new Map<String, String>();
+				if(this.selectedAppMetadata.referencedImages != null){
+					this.referencedImages = new WaveApplicationImage();
+					this.referencedImages.type = this.selectedAppMetadata.referencedImages.type;
+					this.referencedImages.names = this.selectedAppMetadata.referencedImages.names;
+					this.referencedImages.zipUrl = this.selectedAppMetadata.referencedImages.zipUrl;
+					
+					this.dashboardImagesMapping = this.utils.insertAnalyticsImages(this.referencedImages);
+				}
+			}
+
+			WaveApplicationDashboard d = this.dashboardsNodes.get(this.currentDashboardIndex);
+			LoadDashboardQueueable dashQueueable = new LoadDashboardQueueable(d, this.datasetsMap, this.dashboardsMap, this.referencedImages, this.dashboardImagesMapping, this.handleCompleteAppFolderId, genericAppConfiguration.apiVersion, UserInfo.getSessionId());
+			this.queueProcessId = System.enqueueJob(dashQueueable);
+			this.logMessage('Loading ' + d.name + ' dashboard.');
+		}
+	}
+
+	public PageReference checkDashboardLoadStatus(){
+		try {
+			if(!String.isBlank(this.queueProcessId) && this.processingLoadDashboards){
+				List<AsyncApexJob> lstJobs = [SELECT CompletedDate, JobItemsProcessed, NumberOfErrors, Status, ExtendedStatus, TotalJobItems FROM AsyncApexJob WHERE Id = :this.queueProcessId];
+				WaveApplicationDashboard currentDashboard = this.dashboardsNodes.get(this.currentDashboardIndex);
+
+				if(lstJobs.size() > 0){
+					AsyncApexJob asyncJob = lstJobs.get(0);
+
+					if(asyncJob.Status == 'Completed'){
+						if(asyncJob.NumberOfErrors > 0) {
+							this.errorMessage = 'Error while loading ' + currentDashboard.name + ' dashboard.';
+							if (string.isNotBlank(asyncJob.ExtendedStatus)) {
+								this.errorMessage = this.errorMessage + 'Detail: ' +  asyncJob.ExtendedStatus;
+							}
+							this.currentDashboardIndex = 0;
+							this.processingLoadDashboards = false;
+							this.disabledButton = false;
+							this.createCompleteAppName = '';
+							this.handleCompleteAppFolderId = '';
+							this.insightsAppId = '';
+						}
+						else {
+							if(this.currentDashboardIndex == this.dashboardsNodes.size() - 1){
+								
+								// We are finished loading dashboards, finish process
+								this.finishHandleCompleteAppProcess();
+							}
+							else {
+								this.currentDashboardIndex = this.currentDashboardIndex + 1;
+								this.processCurrentDashboardLoad();
+							}
+						}
+					}
+					else if(asyncJob.Status == 'Aborted'){
+						this.errorMessage = 'The process was aborted while loading ' + currentDashboard.name + ' dashboard.';
+						this.currentDashboardIndex = 0;
+						this.processingLoadDashboards = false;
+						this.disabledButton = false;
+						this.createCompleteAppName = '';
+						this.handleCompleteAppFolderId = '';
+						this.insightsAppId = '';
+					}
+					else if(asyncJob.Status == 'Failed'){
+						this.errorMessage = 'The process failed while loading ' + currentDashboard.name + ' dasboard.';
+						if (string.isNotBlank(asyncJob.ExtendedStatus)) {
+							this.errorMessage = this.errorMessage + 'Detail: ' +  asyncJob.ExtendedStatus;
+						}
+						this.currentDashboardIndex = 0;
+						this.processingLoadDashboards = false;
+						this.disabledButton = false;
+						this.createCompleteAppName = '';
+						this.handleCompleteAppFolderId = '';
+						this.insightsAppId = '';
+					}
+				}
+			}
+		}
+		catch(Exception e) {
+			this.errorMessage = e.getMessage();
+			System.debug(e.getMessage());
+			System.debug(e.getStackTraceString());
+			this.currentDashboardIndex = 0;
+			this.processingLoadDashboards = false;
+			this.disabledButton = false;
+			this.createCompleteAppName = '';
+			this.handleCompleteAppFolderId = '';
+			this.insightsAppId = '';
+		}
+
+		return null;
+	}
+
+	private void finishHandleCompleteAppProcess(){
+		
+		this.disabledButton = false;
+		this.currentDatasetIndex = 0;
+		this.currentDashboardIndex = 0;
+		this.datasetsNodes.clear();
+		this.dashboardsNodes.clear();
+		this.logMessage('Done.');
+		this.processingLoadDatasets = false;
+		this.processingLoadDashboards = false;
+		this.createCompleteAppName = '';
+		this.handleCompleteAppFolderId = '';
+		this.insightsAppId = '';
+
+		if(this.selectedInstallationProcess == 'createCompleteApp'){
+			this.successMessage = 'The Create App, Datasets and Dashboards process has finished successfully.';
+			WaveConfiguratorUtils.sendEmail(this.emailAddress, 'Create App, Datasets and Dashboards completed successfully', 'The Create App, Datasets and Dashboards process of your ORG data has finished successfully.');
+		}
+		else if(this.selectedInstallationProcess == 'loadDatasetsToExistingApp'){
+			this.successMessage = 'The Load Datasets Into Existing App process has finished successfully.';
+			WaveConfiguratorUtils.sendEmail(this.emailAddress, 'Load Datasets Into Existing App completed successfully', 'The Load Datasets Into Existing App process of your ORG data has finished successfully.');
+		}
+	}
 }
