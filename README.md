@@ -7,8 +7,3 @@ Changelog:
 
 - Added Load Datasets process
 - Added Set Action Fields process
-
-<a href="https://githubsfdeploy.herokuapp.com">
-  <img alt="Deploy to Salesforce"
-       src="https://raw.githubusercontent.com/afawcett/githubsfdeploy/master/deploy.png">
-</a>
