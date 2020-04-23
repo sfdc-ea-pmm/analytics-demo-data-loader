@@ -44,8 +44,10 @@
     <members>WaveApplicationActionField</members>
     <members>WaveApplicationCompositeForeignKeyPart</members>
     <members>WaveApplicationDashboard</members>
+    <members>WaveApplicationDataflow</members>
     <members>WaveApplicationDataset</members>
     <members>WaveApplicationEdgemart</members>
+    <members>WaveApplicationImage</members>
     <members>WaveApplicationObject</members>
     <members>WaveApplicationObjectField</members>
     <members>WaveApplicationObjectRelation</members>
