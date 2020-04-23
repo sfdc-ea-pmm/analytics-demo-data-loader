@@ -1,5 +1,5 @@
 {
-	"apiVersion": 46.0,
+	"apiVersion": 48.0,
 	"baseUrl": "https://s3-us-west-2.amazonaws.com/ac-sdo-repo/",
 	"baseDevUrl": "https://s3-us-west-2.amazonaws.com/ac-sdo-repo-dev/",
 	"waveApplicationsUrl": "WaveApplications.csv",
