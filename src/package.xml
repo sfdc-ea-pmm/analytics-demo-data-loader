@@ -97,13 +97,11 @@
   <types>
     <name>Document</name>
     <members>App_Logos</members>
-    <members>App_Logos/applications</members>
     <members>App_Logos/Analytics_Demo_Data_Tool_Logo.png</members>
   </types>
   <types>
     <name>CustomApplication</name>
     <members>AnalyticsDemoDataTool_Lightning</members>
-    <members>AnalyticsDemoDataTool</members>
   </types>
   <types>
     <name>RemoteSiteSetting</name>
@@ -116,7 +114,6 @@
   <types>
     <name>ContentAsset</name>
     <members>AnalyticsDemoDataTool_Lightning_Logo</members>
-    <members>AnalyticsDemoDataTool_Logo</members>
   </types>
   <version>48.0</version>
 </Package>
