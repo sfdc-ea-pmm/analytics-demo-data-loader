@@ -114,7 +114,6 @@
   </types>
   <types>
     <name>ContentAsset</name>
-    <members>AnalyticsDemoDataTool_Logo</members>
     <members>AnalyticsDemoDataTool_Lightning_Logo</members>
   </types>
   <version>48.0</version>
