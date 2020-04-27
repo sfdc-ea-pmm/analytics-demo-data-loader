@@ -95,6 +95,10 @@
     <members>ScheduledTSDetails__c</members>
   </types>
   <types>
+    <name>Folder</name>
+    <members>App_Logos</members>
+  </types>
+  <types>
     <name>Document</name>
     <members>App_Logos/Analytics_Demo_Data_Tool_Logo.png</members>
   </types>
