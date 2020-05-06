@@ -106,6 +106,27 @@ public with sharing class WaveConfiguratorUtils {
 		return response;
 	}
 
+	public static HttpResponse httpCallout(String url, String method, String parameter, String contentType, Map<String, String> httpHeaders){
+		Http http = new Http();
+		HttpRequest req = new HttpRequest();
+		String totalUrl = url;
+		
+		if(method.toUpperCase() == 'POST' || method.toUpperCase() == 'PUT'){
+			req.setBody(parameter);
+		}
+
+		req.setMethod(method);
+		req.setEndpoint(totalUrl);
+		req.setHeader('Content-type', contentType);
+
+		for (String headerKey : httpHeaders.keyset()) {
+			req.setHeader(headerKey, httpHeaders.get(headerKey));
+		}
+
+		HttpResponse response = http.send(req);
+		return response;
+	}
+
 	public static HttpResponse httpGetCallout(String url){
 		Http http = new Http();
 		HttpRequest req = new HttpRequest();
