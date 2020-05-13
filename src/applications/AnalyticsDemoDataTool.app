@@ -5,7 +5,7 @@
     <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
     <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
     <label>Analytics Demo Data Tool</label>
-    <logo>App_Logos/Analytics_Demo_Data_Tool_Logo.png</logo>
+    <logo>Analytics_Demo_Data_Tool_Logo.png</logo>
     <tabs>AnalyticsDemoDataTool</tabs>
     <tabs>standard-Account</tabs>
     <tabs>standard-Case</tabs>
