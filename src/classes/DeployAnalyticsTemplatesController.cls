@@ -314,23 +314,28 @@ public with sharing class DeployAnalyticsTemplatesController {
 
                 if (m.containsKey('folder_id')) {
                     String folderId = (String)m.get('folder_id');
+					if (String.isNotBlank(folderId)) {
+						Map<String, String> headersMap = new Map<String, String>();
+						headersMap.put('server_url', System.Url.getSalesforceBaseURL().toExternalForm());
+						headersMap.put('session_id', UserInfo.getSessionId());
+						headersMap.put('source', 'internal');
 
-                    Map<String, String> headersMap = new Map<String, String>();
-                    headersMap.put('server_url', System.Url.getSalesforceBaseURL().toExternalForm());
-                    headersMap.put('session_id', UserInfo.getSessionId());
-                    headersMap.put('source', 'internal');
+						res = WaveConfiguratorUtils.httpCallout(
+							'https://lowtide.herokuapp.com/api/template/deploy/' + folderId,
+							'GET',
+							'',
+							'application/json',
+							headersMap
+						);
 
-                    res = WaveConfiguratorUtils.httpCallout(
-                        'https://lowtide.herokuapp.com/api/template/deploy/' + folderId,
-                        'GET',
-                        '',
-                        'application/json',
-                        headersMap
-                    );
-
-                    System.debug(res.getBody());
-                    this.successMessage = 'Template deployment started successfully. Check Analytics Studio in a few moments.';
-                    this.disabledButton = false;
+						System.debug(res.getBody());
+						this.successMessage = 'Template deployment started successfully. Check Analytics Studio in a few moments.';
+						this.disabledButton = false;	
+					}
+					else {
+						this.successMessage = 'Couldn\'t get Folder Id.';
+						this.disabledButton = true;
+					}
                 }
             }
 		}
