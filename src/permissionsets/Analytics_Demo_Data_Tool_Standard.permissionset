@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <applicationVisibilities>
+        <application>AnalyticsDemoDataTool</application>
+        <visible>true</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>AnalyticsDemoDataTool_Lightning</application>
+        <visible>true</visible>
+    </applicationVisibilities>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Analytics Demo Data Tool Standard</label>
+    <pageAccesses>
+        <apexPage>WaveDataManagerSLDS</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <tabSettings>
+        <tab>AnalyticsDemoDataTool</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+</PermissionSet>
