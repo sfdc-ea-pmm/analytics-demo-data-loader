@@ -83,6 +83,8 @@ public with sharing class WaveDataManagerController {
 	public Integer currentDatasetIndex { get; set; }
 	public Integer currentDashboardIndex { get; set; }
 	//public WaveApplicationDataflow dataflowConfig { get; set; }
+	public String selectedTemplate { get; set; }
+	public String cookieString { get; set; }
 
 	// Secuence control
 	public String installationStep { get; set; }
@@ -123,6 +125,8 @@ public with sharing class WaveDataManagerController {
 		this.analyticsDemoFAQ = new List<AnalyticsDemoFAQ>();
 		this.selectedObjectsToTimeShift = new Map<String, Boolean>();
 		this.modalMessage = new CustomModalConfirmation();
+		this.selectedTemplate = '';
+		this.cookieString = '';  // RM NEW
 	}
 
 	public PageReference pageLoad()
@@ -2454,6 +2458,100 @@ public with sharing class WaveDataManagerController {
 		else if(this.selectedInstallationProcess == 'loadDatasetsToExistingApp'){
 			this.successMessage = 'The Load Datasets Into Existing App process has finished successfully.';
 			WaveConfiguratorUtils.sendEmail(this.emailAddress, 'Load Datasets Into Existing App completed successfully', 'The Load Datasets Into Existing App process of your ORG data has finished successfully.');
+		}
+	}
+
+	class TemplateList {
+		List<String> templates {get; set;}
+	}
+
+	private void setTemplateServiceCookie(){
+		String serverUrl = URL.getOrgDomainUrl().toExternalForm();
+		String sessionId = UserInfo.getSessionId();
+		//string sourceType = 'session';
+
+		String requestBody = '{"source": "session", "credentials": {"session_id": "' + sessionId + '",	"server_url" : "' + serverUrl + '"}}';
+		
+		HttpRequest deployReq = new HttpRequest();
+		deployReq.setEndpoint('https://lowtide.herokuapp.com/api/auth');
+		deployReq.setMethod('POST');
+		deployReq.setHeader('Content-Type', 'application/json');
+		deployReq.setBody(requestBody);
+
+		Http http = new Http();
+		HTTPResponse res = http.send(deployReq);
+
+		String responseHeaderSetCookie = res.getHeader('Set-Cookie');
+		String[] sParts = responseHeaderSetCookie.split(';');
+		this.cookieString = sParts[0];
+	}
+
+	public List<SelectOption> getAvailableTemplates() {
+        
+        List<SelectOption> options = new List<SelectOption>();
+		Map<String, String> headersMap = new Map<String, String>();
+		if (String.isBlank(this.cookieString)) {
+			this.setTemplateServiceCookie();
+		}
+		headersMap.put('Cookie', this.cookieString);
+        HTTPResponse res = WaveConfiguratorUtils.httpCallout(
+            'https://lowtide.herokuapp.com/api/repo/template',
+            'GET',
+            '',
+            'application/json',
+            headersMap
+        );
+	
+        List<Object> l = (List<Object>)JSON.deserializeUntyped(res.getBody());
+        
+        for (Object key : l) {
+			options.add(new SelectOption((String)key, (String)key));
+		}
+
+        return options;
+	}
+
+	public void executeDeployTemplate(){
+
+		Boolean passedValidation = true;
+		this.resetMessages();
+
+		try{
+			
+			if(String.isBlank(this.selectedTemplate)){
+                this.errorMessage = 'Please select an App Template to deploy.';
+                this.disabledButton = false;
+            }
+            else {
+                TemplateList temp = new TemplateList();
+				temp.templates = new List<String>(); 
+				temp.templates.add(this.selectedTemplate);
+				String jsonBody = JSON.serialize(temp);
+				Map<String, String> headersMap = new Map<String, String>();
+				if (String.isBlank(this.cookieString)) {
+					this.setTemplateServiceCookie();
+				}
+				headersMap.put('Cookie', this.cookieString);
+                
+                HTTPResponse res = WaveConfiguratorUtils.httpCallout(
+                    'https://lowtide.herokuapp.com/api/repo/template/deploy',
+                    'POST',
+                    jsonBody,
+                    'application/json',
+                    headersMap
+				);
+				
+				this.successMessage = 'Template deployment started successfully. Check Analytics Studio in a few moments.';
+				this.disabledButton = false;
+            }
+		}
+		catch(Exception e) {
+			System.debug(e.getMessage());
+			System.debug(e.getStackTraceString());
+			this.errorMessage = e.getMessage();
+			this.disabledButton = false;
+			this.installationStep = '';
+			this.rollbackProcess(e.getMessage(), e.getStackTraceString());
 		}
 	}
 }
