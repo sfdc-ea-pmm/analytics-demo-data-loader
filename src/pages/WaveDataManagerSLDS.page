@@ -48,7 +48,7 @@
 					</span>
 		        </div>
 		        <div class="slds-media__body">
-		            <h1 class="slds-page-header__title slds-truncate slds-align-middle" title="Rohde Corp - 80,000 Widgets">Analytics Demo Data Tool - v1.64</h1>
+		            <h1 class="slds-page-header__title slds-truncate slds-align-middle" title="Rohde Corp - 80,000 Widgets">Analytics Demo Data Tool - v2020.25</h1>
 		            <p class="slds-text-body_small slds-line-height_reset">Einstein Analytics Demo Data Loader</p>
 		        </div>
 		    </div>
@@ -59,6 +59,9 @@
 	            <li class="slds-tabs_default__item slds-is-active slds-has-focus" title="Home" role="presentation">
 	           		<a class="slds-tabs_default__link" href="javascript:void(0);" role="tab" tabindex="0" aria-selected="true" aria-controls="tab-default-home" id="tab-default-home__item">Home</a>
 				</li>
+				<li class="slds-tabs_default__item" title="Template Deploy" role="presentation">
+					<a class="slds-tabs_default__link" href="javascript:void(0);" role="tab" tabindex="1" aria-selected="false" aria-controls="tab-default-home" id="tab-default-home__item">Template Deploy</a>
+			 	</li>
 				<li title="Guide" role="presentation" class="false-tab-li">
 					<a class="slds-tabs_default__link" target="_blank" href="https://salesforce.quip.com/MBs7Ag8nXdFh" aria-selected="false" aria-controls="tab-default-home" role="tab" tabindex="-1" id="tab-default-guide__item">Guide</a>
 				 </li>

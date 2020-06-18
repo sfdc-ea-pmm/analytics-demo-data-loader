@@ -82,6 +82,7 @@ public with sharing class DeployAnalyticsTemplatesController {
 	public Integer currentDatasetIndex { get; set; }
 	public Integer currentDashboardIndex { get; set; }
 	//public WaveApplicationDataflow dataflowConfig { get; set; }
+	public String cookieString { get; set; } // RM NEW
 
 	// Secuence control
 	public String installationStep { get; set; }
@@ -122,6 +123,7 @@ public with sharing class DeployAnalyticsTemplatesController {
 		this.analyticsDemoFAQ = new List<AnalyticsDemoFAQ>();
 		this.selectedObjectsToTimeShift = new Map<String, Boolean>();
 		this.modalMessage = new CustomModalConfirmation();
+		this.cookieString = '';  // RM NEW
 	}
 
 	public PageReference pageLoad()
@@ -178,6 +180,11 @@ public with sharing class DeployAnalyticsTemplatesController {
 					}
 		        }
 			}
+			// RM NEW
+			if (String.isBlank(this.cookieString)) {
+				this.setTemplateServiceCookie();
+			}
+			// RM NEW END
 		} 
 		catch(WaveConfiguratorException ex){
 			this.errorMessage = ex.getMessage();			
@@ -185,6 +192,104 @@ public with sharing class DeployAnalyticsTemplatesController {
 
 		return null;
 	}
+
+	// RM NEW
+
+	private void setTemplateServiceCookie(){
+		String serverUrl = URL.getOrgDomainUrl().toExternalForm();
+		String sessionId = UserInfo.getSessionId();
+		//string sourceType = 'session';
+
+		String requestBody = '{"source": "session", "credentials": {"session_id": "' + sessionId + '",	"server_url" : "' + serverUrl + '"}}';
+		
+		HttpRequest deployReq = new HttpRequest();
+		deployReq.setEndpoint('https://lowtide.herokuapp.com/api/auth');
+		deployReq.setMethod('POST');
+		deployReq.setHeader('Content-Type', 'application/json');
+		deployReq.setBody(requestBody);
+
+		Http http = new Http();
+		HTTPResponse res = http.send(deployReq);
+
+		String responseHeaderSetCookie = res.getHeader('Set-Cookie');
+		String[] sParts = responseHeaderSetCookie.split(';');
+		this.cookieString = sParts[0];
+	}
+
+	public List<SelectOption> getAvailableProcesses() {
+        
+        List<SelectOption> options = new List<SelectOption>();
+		Map<String, String> headersMap = new Map<String, String>();
+		if (String.isBlank(this.cookieString)) {
+			this.setTemplateServiceCookie();
+		}
+		headersMap.put('Cookie', this.cookieString);
+        HTTPResponse res = WaveConfiguratorUtils.httpCallout(
+            'https://lowtide.herokuapp.com/api/repo/template',
+            'GET',
+            '',
+            'application/json',
+            headersMap
+        );
+	
+        List<Object> l = (List<Object>)JSON.deserializeUntyped(res.getBody());
+        
+        for (Object key : l) {
+			options.add(new SelectOption((String)key, (String)key));
+		}
+
+        return options;
+	}
+
+	class TemplateList {
+		List<String> templates {get; set;}
+	}
+	
+	public void executeSelectedProcess(){
+
+		Boolean passedValidation = true;
+		this.resetMessages();
+
+		try{
+			
+			if(String.isBlank(this.selectedTemplate)){
+                this.errorMessage = 'Please select an App Template to deploy.';
+                this.disabledButton = false;
+            }
+            else {
+                TemplateList temp = new TemplateList();
+				temp.templates = new List<String>(); 
+				temp.templates.add(this.selectedTemplate);
+				String jsonBody = JSON.serialize(temp);
+				Map<String, String> headersMap = new Map<String, String>();
+				if (String.isBlank(this.cookieString)) {
+					this.setTemplateServiceCookie();
+				}
+				headersMap.put('Cookie', this.cookieString);
+                
+                HTTPResponse res = WaveConfiguratorUtils.httpCallout(
+                    'https://lowtide.herokuapp.com/api/repo/template/deploy',
+                    'POST',
+                    jsonBody,
+                    'application/json',
+                    headersMap
+				);
+				
+				this.successMessage = 'Template deployment started successfully. Check Analytics Studio in a few moments.';
+				this.disabledButton = false;
+            }
+		}
+		catch(Exception e) {
+			System.debug(e.getMessage());
+			System.debug(e.getStackTraceString());
+			this.errorMessage = e.getMessage();
+			this.disabledButton = false;
+			this.installationStep = '';
+			this.rollbackProcess(e.getMessage(), e.getStackTraceString());
+		}
+	}
+
+	// RM NEW END
 
 	private void logMessage(String msg){
 
@@ -263,91 +368,6 @@ public with sharing class DeployAnalyticsTemplatesController {
 
         return options;
     }
-
-	public List<SelectOption> getAvailableProcesses() {
-        
-        List<SelectOption> options = new List<SelectOption>();
-        Map<String, String> headersMap = new Map<String, String>();
-        HTTPResponse res = WaveConfiguratorUtils.httpCallout(
-            'https://lowtide.herokuapp.com/api/repository/list',
-            'GET',
-            '',
-            'application/json',
-            headersMap
-        );
-    
-        List<Object> l = (List<Object>)JSON.deserializeUntyped(res.getBody());
-        
-        for (Object key : l) {
-			options.add(new SelectOption((String)key, (String)key));
-		}
-
-        return options;
-    }
-
-    public void executeSelectedProcess(){
-
-		Boolean passedValidation = true;
-		this.resetMessages();
-
-		try{
-			
-			if(String.isBlank(this.selectedTemplate)){
-                this.errorMessage = 'Please select an App Template to deploy.';
-                this.disabledButton = false;
-            }
-            else {
-                /*
-                {
-                    "folder_id": "GP7MBXRfc"
-                }*/ 
-                
-                HTTPResponse res = WaveConfiguratorUtils.httpCallout(
-                    'https://lowtide.herokuapp.com/api/staging/create/' + this.selectedTemplate,
-                    'GET',
-                    '',
-                    'application/json',
-                    new Map<String, String>()
-                );
-            
-                Map<String, Object> m = (Map<String, Object>)JSON.deserializeUntyped(res.getBody());
-
-                if (m.containsKey('folder_id')) {
-                    String folderId = (String)m.get('folder_id');
-					if (String.isNotBlank(folderId)) {
-						Map<String, String> headersMap = new Map<String, String>();
-						headersMap.put('server_url', System.Url.getSalesforceBaseURL().toExternalForm());
-						headersMap.put('session_id', UserInfo.getSessionId());
-						headersMap.put('source', 'internal');
-
-						res = WaveConfiguratorUtils.httpCallout(
-							'https://lowtide.herokuapp.com/api/template/deploy/' + folderId,
-							'GET',
-							'',
-							'application/json',
-							headersMap
-						);
-
-						System.debug(res.getBody());
-						this.successMessage = 'Template deployment started successfully. Check Analytics Studio in a few moments.';
-						this.disabledButton = false;	
-					}
-					else {
-						this.successMessage = 'Couldn\'t get Folder Id.';
-						this.disabledButton = true;
-					}
-                }
-            }
-		}
-		catch(Exception e) {
-			System.debug(e.getMessage());
-			System.debug(e.getStackTraceString());
-			this.errorMessage = e.getMessage();
-			this.disabledButton = false;
-			this.installationStep = '';
-			this.rollbackProcess(e.getMessage(), e.getStackTraceString());
-		}
-	}
 
 	public List<SelectOption> getOrgDataflows() {
         
