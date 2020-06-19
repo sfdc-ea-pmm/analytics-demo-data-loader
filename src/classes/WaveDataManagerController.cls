@@ -85,6 +85,11 @@ public with sharing class WaveDataManagerController {
 	//public WaveApplicationDataflow dataflowConfig { get; set; }
 	public String selectedTemplate { get; set; }
 	public String cookieString { get; set; }
+	public Boolean processingTemplateDeployment { get; set; }
+	public String dplErrorMessage { get; set; }
+	public String dplWarningMessage { get; set; }
+	public String dplSuccessMessage { get; set; }
+	public String dplJobId { get; set; }
 
 	// Secuence control
 	public String installationStep { get; set; }
@@ -126,7 +131,7 @@ public with sharing class WaveDataManagerController {
 		this.selectedObjectsToTimeShift = new Map<String, Boolean>();
 		this.modalMessage = new CustomModalConfirmation();
 		this.selectedTemplate = '';
-		this.cookieString = '';  // RM NEW
+		this.cookieString = '';
 	}
 
 	public PageReference pageLoad()
@@ -666,6 +671,10 @@ public with sharing class WaveDataManagerController {
 		this.warningMessage = '';
 		this.processingLog.clear();
 		this.processingLogWithoutTime.clear();
+
+		this.dplErrorMessage = '';
+		this.dplSuccessMessage = '';
+		this.dplWarningMessage = '';
 	}
 
 	public List<WaveApplicationObject> getObjectsToProcess(WaveMetadataApplicationObject wmaObj){
@@ -2465,6 +2474,12 @@ public with sharing class WaveDataManagerController {
 		List<String> templates {get; set;}
 	}
 
+	class TemplateDeploymentResponse {
+		Boolean done { get; set; }
+		String id { get; set; }
+		String state { get; set; }
+	}
+
 	private void setTemplateServiceCookie(){
 		String serverUrl = URL.getOrgDomainUrl().toExternalForm();
 		String sessionId = UserInfo.getSessionId();
@@ -2514,12 +2529,13 @@ public with sharing class WaveDataManagerController {
 	public void executeDeployTemplate(){
 
 		Boolean passedValidation = true;
+		this.processingTemplateDeployment = false;
 		this.resetMessages();
 
 		try{
 			
 			if(String.isBlank(this.selectedTemplate)){
-                this.errorMessage = 'Please select an App Template to deploy.';
+                this.dplErrorMessage = 'Please select an App Template to deploy.';
                 this.disabledButton = false;
             }
             else {
@@ -2540,18 +2556,63 @@ public with sharing class WaveDataManagerController {
                     'application/json',
                     headersMap
 				);
-				
-				this.successMessage = 'Template deployment started successfully. Check Analytics Studio in a few moments.';
-				this.disabledButton = false;
+
+				TemplateDeploymentResponse dplResult = (TemplateDeploymentResponse)JSON.deserialize(res.getBody(), TemplateDeploymentResponse.class);
+
+				System.debug(dplResult);
+
+				if (dplResult != null) {
+					
+					if (String.isNotBlank(dplResult.state)) {
+						if (dplResult.state.equalsIgnoreCase('Completed')) {
+							this.dplSuccessMessage = 'Template deployment completed successfully.';
+							this.disabledButton = false;
+						}
+						else if(String.isNotBlank(dplResult.id)){
+							this.processingTemplateDeployment = true;
+							this.dplJobId = dplResult.id;
+							this.disabledButton = true;
+						}
+					}
+				}
             }
 		}
 		catch(Exception e) {
 			System.debug(e.getMessage());
 			System.debug(e.getStackTraceString());
-			this.errorMessage = e.getMessage();
+			this.dplErrorMessage = e.getMessage();
 			this.disabledButton = false;
-			this.installationStep = '';
 			this.rollbackProcess(e.getMessage(), e.getStackTraceString());
+		}
+	}
+
+	public void checkTemplateDeploymentStatus(){
+		if (String.isNotBlank(this.dplJobId)) {
+			Map<String, String> headersMap = new Map<String, String>();
+			if (String.isBlank(this.cookieString)) {
+				this.setTemplateServiceCookie();
+			}
+			headersMap.put('Cookie', this.cookieString);
+			HTTPResponse res = WaveConfiguratorUtils.httpCallout(
+				'https://lowtide.herokuapp.com/api/repo/template/deploy/' + this.dplJobId,
+				'GET',
+				'',
+				'application/json',
+				headersMap
+			);
+
+			TemplateDeploymentResponse dplResult = (TemplateDeploymentResponse)JSON.deserialize(res.getBody(), TemplateDeploymentResponse.class);
+
+			System.debug(dplResult);
+
+			if (dplResult != null) {
+				
+				if (dplResult.done || String.isBlank(dplResult.state)) {
+					this.dplSuccessMessage = 'Template deployment completed successfully.';
+					this.disabledButton = false;
+					this.processingTemplateDeployment = false;
+				}
+			}
 		}
 	}
 }

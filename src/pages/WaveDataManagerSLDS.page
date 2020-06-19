@@ -60,7 +60,7 @@
 	           		<a class="slds-tabs_default__link" href="javascript:void(0);" role="tab" tabindex="0" aria-selected="true" aria-controls="tab-default-home" id="tab-default-home__item">Home</a>
 				</li>
 				<li class="slds-tabs_default__item" title="Deploy Template (beta)" role="presentation">
-					<a class="slds-tabs_default__link" href="javascript:void(0);" role="tab" tabindex="1" aria-selected="false" aria-controls="tab-default-template-deploy" id="tab-default-deploy__item">Deploy Template (beta)</a>
+					<a class="slds-tabs_default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-template-deploy" id="tab-default-deploy__item">Deploy Template (beta)</a>
 			 	</li>
 				<li title="Guide" role="presentation" class="false-tab-li">
 					<a class="slds-tabs_default__link" target="_blank" href="https://salesforce.quip.com/MBs7Ag8nXdFh" aria-selected="false" aria-controls="tab-default-home" role="tab" tabindex="-1" id="tab-default-guide__item">Guide</a>
@@ -463,31 +463,19 @@
 								</apex:panelGrid>
 							</apex:outputPanel>
 
-							<!--<apex:outputPanel id="operationStatus">
-								<apex:repeat value="{!operationsStatusTable}" var="objectKey">
-				                	<apex:outputText value="{!objectKey}"/>
-									<br/>
-				                	<apex:repeat value="{!operationsStatusTable[objectKey]}" var="operationKey">
-					                	<apex:outputText value="{!operationKey}"/>:
-					                	<apex:outputText value="{!operationsStatusTable[objectKey][operationKey]}"/><br/>
-				                	</apex:repeat>
-				                	<br/>
-			            		</apex:repeat>
-							</apex:outputPanel>-->
-
 						</apex:form>
 					</div> <!-- End Right column -->
 				</div> <!-- End Main grid -->
 			</div> <!-- End Tab 1 -->
 			
 			<!--Tab 2-->
-	        <div id="tab-default-template-deploy" class="slds-tabs_default__content slds-show" role="tabpanel" aria-labelledby="tab-default-deploy__item">
+	        <div id="tab-default-template-deploy" class="slds-tabs_default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-deploy__item">
 	        	<!-- Main grid -->
 	        	<div class="slds-grid slds-wrap slds-m-left_large" style="max-width: 1440px">
 	        		<!--Message Panel -->
 	        		<div class="slds-col slds-size_1-of-1 slds-m-right_large">
 						<apex:form id="formDeployMessages">
-							<apex:outputPanel rendered="{!errorMessage != ''}">
+							<apex:outputPanel rendered="{!dplErrorMessage != ''}">
 								<div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_error" role="alert" style="margin:0;">
 								    <span class="slds-assistive-text">error</span>
 								    <span class="slds-icon_container slds-icon-utility-error slds-m-right_small slds-no-flex slds-align-top">
@@ -495,11 +483,11 @@
 								        	<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#error')}"></use>
 								        </svg>
 								    </span>
-								    <h2 class="slds-text-heading_small ">{!errorMessage}</h2>
+								    <h2 class="slds-text-heading_small ">{!dplErrorMessage}</h2>
 								</div>
 							</apex:outputPanel>
 
-							<apex:outputPanel rendered="{!successMessage != ''}">
+							<apex:outputPanel rendered="{!dplSuccessMessage != ''}">
 								<div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_success" role="alert" style="margin:0;">
 								    <span class="slds-assistive-text">success</span>
 								    <span class="slds-icon_container slds-icon-utility-success slds-m-right_small slds-no-flex slds-align-top">
@@ -507,11 +495,11 @@
 								        	<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#success')}"></use>
 								        </svg>
 								    </span>
-								    <h2 class="slds-text-heading_small ">{!successMessage}</h2>
+								    <h2 class="slds-text-heading_small ">{!dplSuccessMessage}</h2>
 								</div>
 							</apex:outputPanel>
 
-							<apex:outputPanel rendered="{!warningMessage != ''}">
+							<apex:outputPanel rendered="{!dplwarningMessage != ''}">
 								<div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_warning" role="alert" style="margin:0;">
 								    <span class="slds-assistive-text">warning</span>
 								    <span class="slds-icon_container slds-icon-utility-warning slds-m-right_small slds-no-flex slds-align-top">
@@ -519,7 +507,7 @@
 								        	<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#warning')}"></use>
 								        </svg>
 								    </span>
-								    <h2 class="slds-text-heading_small ">{!warningMessage}</h2>
+								    <h2 class="slds-text-heading_small ">{!dplwarningMessage}</h2>
 								</div>
 							</apex:outputPanel>
 
@@ -531,7 +519,7 @@
 								        	<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#info')}"></use>
 								        </svg>
 								    </span>
-								    <h2 class="slds-text-heading_small ">Do not close or navigate away from the page. Otherwise, the process that is currently running will be stopped.</h2>
+								    <h2 class="slds-text-heading_small ">Do not close or navigate away from the page. Template deployment results will be informed in a few moments.</h2>
 								</div>
 							</apex:outputPanel>
 
@@ -575,7 +563,7 @@
 
 									<div class="slds-m-vertical_medium">
 							   			<apex:outputPanel id="DeployTemplateButton">
-								   			<apex:commandButton value="Deploy" disabled="{!disabledButton}" styleClass="slds-button slds-button_brand btnInstallApp" action="{!executeDeployTemplate}" />
+								   			<apex:commandButton value="Deploy" rerender="formDeployMessages,frmTemplateDeploy" disabled="{!disabledButton}" styleClass="slds-button slds-button_brand btnInstallApp" action="{!executeDeployTemplate}" />
 
 								   			<apex:outputPanel style="margin-left: 15px;" rendered="{!disabledButton}">
 								   				<apex:image value="{!$Resource.LoadingGif}"/>
@@ -585,7 +573,9 @@
 
 								</div>
 							</div>
-						</apex:form>
+
+							<apex:actionPoller action="{!checkTemplateDeploymentStatus}" reRender="frmTemplateDeploy,DeployTemplateButton,formDeployMessages" enabled="{!processingTemplateDeployment}" interval="5" id="checkTemplateDeploymentFunction"/>
+						</apex:form> <!-- frmTemplateDeploy -->
 
 					</div> <!-- End Left column -->
 				</div> <!-- End Main grid -->
