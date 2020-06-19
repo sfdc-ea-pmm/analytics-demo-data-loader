@@ -528,42 +528,68 @@
 
 	        		<!--Intro section -->
 	        		<div class="slds-col slds-size_1-of-1 slds-m-top_medium slds-m-bottom_large slds-m-right_large">
-						<apex:outputText value="{!genericAppConfiguration.homeHeaderDescription}" escape="false"/>
+						<apex:outputText value="Einstein Analytics application Templates ready to be deployed" escape="false"/>
 					</div>
 	        		<!-- Left column -->
 					<div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-right_large">
 						
 		  				<apex:form id="frmTemplateDeploy" styleClass="slds-m-vertical_medium slds-form-element">
-				
+
 							<div class="slds-grid slds-m-vertical_medium">
-								<div class="slds-col slds-size_1-of-2 slds-m-right_large">
-									<label class="slds-form-element__label" for="appTemplate">Select App Template to Deploy:</label>
+								<div class="slds-col slds-size_1-of-2">
+									<label class="slds-form-element__label" for="availableTemplates">Available Analytics Templates to Deploy:</label>
 						   			<div class="slds-form-element__control ">
-						   				<div class="slds-select_container">
-								   			<apex:selectList styleClass="slds-select appTemplate" value="{!selectedTemplate}" size="1" id="appTemplate">
-												<apex:selectOptions value="{!availableTemplates}"/>
-								   			</apex:selectList>
-							   			</div>
+										<apex:selectList styleClass="slds-select" value="{!templatesToDrag}" id="availableTemplates" multiselect="true" size="5">
+											<apex:selectOptions value="{!availableTemplates}"/>
+										</apex:selectList>
 						   			</div>
 								</div>
 
-								<div class="slds-col">
-									<apex:outputPanel id="emailNotification2" >
-										<apex:outputPanel>
+								<div class="slds-dueling-list__column">
+									<apex:commandLink action="{!dragSelectedTemplates}" reRender="availableTemplates,selTemplates" styleClass="slds-button slds-button_icon slds-button_icon-container" title="Move Selection to Second List">
+									  	<svg class="slds-button__icon" aria-hidden="true">
+											<use xlink:href="/apexpages/slds/latest/assets/icons/utility-sprite/svg/symbols.svg#right"></use>
+									  	</svg>
+									  	<span class="slds-assistive-text">Move Selection to Second List</span>
+									</apex:commandLink>
+									<apex:commandLink action="{!returnSelectedTemplates}" reRender="availableTemplates,selTemplates" styleClass="slds-button slds-button_icon slds-button_icon-container" title="Move Selection to First List">
+									  <svg class="slds-button__icon" aria-hidden="true">
+										<use xlink:href="/apexpages/slds/latest/assets/icons/utility-sprite/svg/symbols.svg#left"></use>
+									  </svg>
+									  <span class="slds-assistive-text">Move Selection to First List</span>
+									</apex:commandLink>
+								</div>
+
+								<div class="slds-col slds-size_1-of-2 slds-m-right_large">
+									<label class="slds-form-element__label" for="selTemplates">Selected Analytics Templates:</label>
+						   			<div class="slds-form-element__control ">
+						   				<apex:selectList styleClass="slds-select" value="{!templatesToReturn}" id="selTemplates" multiselect="true" size="5">
+											<apex:selectOptions value="{!draggedTemplates}"/>
+										</apex:selectList>
+						   			</div>
+								</div>
+
+							</div>
+
+							<div class="slds-grid slds-m-vertical_medium">
+								<div class="slds-col slds-size_1-of-1">
+									<div class="slds-m-vertical_medium">
+										<apex:outputPanel id="emailNotification2">
 											<label class="slds-form-element__label">Notify this email when complete:</label>
 											<div class="slds-form-element__control">
-								   				<apex:inputText styleClass="slds-input" value="{!emailAddress}"/>
-								   			</div>
-							   			</apex:outputPanel>
-						   			</apex:outputPanel>
+												<apex:inputText styleClass="slds-input" value="{!emailAddress}"/>
+											</div>
+										</apex:outputPanel>
+							   		</div>
 								</div>
 							</div>
+
 							<div class="slds-grid slds-m-vertical_medium">
 								<div class="slds-col slds-size_1-of-1">
 
 									<div class="slds-m-vertical_medium">
 							   			<apex:outputPanel id="DeployTemplateButton">
-								   			<apex:commandButton value="Deploy" rerender="formDeployMessages,frmTemplateDeploy" disabled="{!disabledButton}" styleClass="slds-button slds-button_brand btnInstallApp" action="{!executeDeployTemplate}" />
+								   			<apex:commandButton value="Deploy" reRender="formDeployMessages,frmTemplateDeploy" disabled="{!disabledButton}" styleClass="slds-button slds-button_brand btnInstallApp" action="{!executeDeployTemplate}" />
 
 								   			<apex:outputPanel style="margin-left: 15px;" rendered="{!disabledButton}">
 								   				<apex:image value="{!$Resource.LoadingGif}"/>

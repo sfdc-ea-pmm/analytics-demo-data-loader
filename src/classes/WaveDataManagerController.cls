@@ -83,7 +83,11 @@ public with sharing class WaveDataManagerController {
 	public Integer currentDatasetIndex { get; set; }
 	public Integer currentDashboardIndex { get; set; }
 	//public WaveApplicationDataflow dataflowConfig { get; set; }
-	public String selectedTemplate { get; set; }
+	private Boolean retrievedTemplates;
+	private List<String> undraggedTemplates;
+	public String[] templatesToDrag { get; set; }
+	public String[] templatesToReturn { get; set; }
+	public String[] selectedTemplates { get; set; }
 	public String cookieString { get; set; }
 	public Boolean processingTemplateDeployment { get; set; }
 	public String dplErrorMessage { get; set; }
@@ -130,7 +134,11 @@ public with sharing class WaveDataManagerController {
 		this.analyticsDemoFAQ = new List<AnalyticsDemoFAQ>();
 		this.selectedObjectsToTimeShift = new Map<String, Boolean>();
 		this.modalMessage = new CustomModalConfirmation();
-		this.selectedTemplate = '';
+		this.retrievedTemplates = false;
+		this.undraggedTemplates = new List<String>();
+		this.templatesToDrag = new String[]{};
+		this.templatesToReturn = new String[]{};
+		this.selectedTemplates = new String[]{};
 		this.cookieString = '';
 	}
 
@@ -2504,26 +2512,35 @@ public with sharing class WaveDataManagerController {
 	public List<SelectOption> getAvailableTemplates() {
         
         List<SelectOption> options = new List<SelectOption>();
-		Map<String, String> headersMap = new Map<String, String>();
-		if (String.isBlank(this.cookieString)) {
-			this.setTemplateServiceCookie();
+		
+		if (!this.retrievedTemplates) {
+			Map<String, String> headersMap = new Map<String, String>();
+			if (String.isBlank(this.cookieString)) {
+				this.setTemplateServiceCookie();
+			}
+			headersMap.put('Cookie', this.cookieString);
+			HTTPResponse res = WaveConfiguratorUtils.httpCallout(
+				'https://lowtide.herokuapp.com/api/repo/template',
+				'GET',
+				'',
+				'application/json',
+				headersMap
+			);
+		
+			List<Object> l = (List<Object>)JSON.deserializeUntyped(res.getBody());
+			
+			for (Object key : l) {
+				this.undraggedTemplates.add((String)key);
+			}
+			
+			this.retrievedTemplates = true;
+		} 
+		
+		for (String t : this.undraggedTemplates) {
+			options.add(new SelectOption(t, t));
 		}
-		headersMap.put('Cookie', this.cookieString);
-        HTTPResponse res = WaveConfiguratorUtils.httpCallout(
-            'https://lowtide.herokuapp.com/api/repo/template',
-            'GET',
-            '',
-            'application/json',
-            headersMap
-        );
-	
-        List<Object> l = (List<Object>)JSON.deserializeUntyped(res.getBody());
-        
-        for (Object key : l) {
-			options.add(new SelectOption((String)key, (String)key));
-		}
-
-        return options;
+		
+		return options;
 	}
 
 	public void executeDeployTemplate(){
@@ -2534,15 +2551,16 @@ public with sharing class WaveDataManagerController {
 
 		try{
 			
-			if(String.isBlank(this.selectedTemplate)){
+			if(this.selectedTemplates.size() == 0){
                 this.dplErrorMessage = 'Please select an App Template to deploy.';
                 this.disabledButton = false;
             }
             else {
                 TemplateList temp = new TemplateList();
 				temp.templates = new List<String>(); 
-				temp.templates.add(this.selectedTemplate);
+				temp.templates.addAll(this.selectedTemplates);
 				String jsonBody = JSON.serialize(temp);
+				System.debug(jsonBody);
 				Map<String, String> headersMap = new Map<String, String>();
 				if (String.isBlank(this.cookieString)) {
 					this.setTemplateServiceCookie();
@@ -2559,9 +2577,9 @@ public with sharing class WaveDataManagerController {
 
 				TemplateDeploymentResponse dplResult = (TemplateDeploymentResponse)JSON.deserialize(res.getBody(), TemplateDeploymentResponse.class);
 
-				System.debug(dplResult);
-
 				if (dplResult != null) {
+
+					System.debug(dplResult);
 					
 					if (String.isNotBlank(dplResult.state)) {
 						if (dplResult.state.equalsIgnoreCase('Completed')) {
@@ -2603,16 +2621,54 @@ public with sharing class WaveDataManagerController {
 
 			TemplateDeploymentResponse dplResult = (TemplateDeploymentResponse)JSON.deserialize(res.getBody(), TemplateDeploymentResponse.class);
 
-			System.debug(dplResult);
-
 			if (dplResult != null) {
-				
-				if (dplResult.done || String.isBlank(dplResult.state)) {
+
+				if (dplResult.done && String.isBlank(dplResult.state)) {
 					this.dplSuccessMessage = 'Template deployment completed successfully.';
+					this.disabledButton = false;
+					this.processingTemplateDeployment = false;
+				}
+				else if(String.isNotBlank(dplResult.state) && dplResult.state.containsIgnoreCase('Fail')){
+					this.dplErrorMessage = 'Template deployment failed.';
 					this.disabledButton = false;
 					this.processingTemplateDeployment = false;
 				}
 			}
 		}
+	}
+
+	public void dragSelectedTemplates(){
+		if (this.templatesToDrag.size() > 0) {
+			this.selectedTemplates.addAll(this.templatesToDrag);
+			for (String tpl: this.templatesToDrag) {
+				Integer i = this.undraggedTemplates.indexOf(tpl);
+				if (i != -1) {
+					this.undraggedTemplates.remove(i);
+				}
+			}
+		}
+	}
+
+	public void returnSelectedTemplates(){
+		if (this.templatesToReturn.size() > 0) {
+			this.undraggedTemplates.addAll(this.templatesToReturn);
+			for (String tpl: this.templatesToReturn) {
+				Integer i = this.selectedTemplates.indexOf(tpl);
+				if (i != -1) {
+					this.selectedTemplates.remove(i);
+				}
+			}
+		}
+	}
+
+	public List<SelectOption> getDraggedTemplates() {
+        
+        List<SelectOption> options = new List<SelectOption>();
+		
+		for (String t : this.selectedTemplates) {
+			options.add(new SelectOption(t, t));
+		}
+		
+		return options;
 	}
 }
