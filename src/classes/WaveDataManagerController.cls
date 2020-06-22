@@ -2585,6 +2585,7 @@ public with sharing class WaveDataManagerController {
 						if (dplResult.state.equalsIgnoreCase('Completed')) {
 							this.dplSuccessMessage = 'Template deployment completed successfully.';
 							this.disabledButton = false;
+							this.sendTemplateDeploymentSuccessEmail();
 						}
 						else if(String.isNotBlank(dplResult.id)){
 							this.processingTemplateDeployment = true;
@@ -2627,6 +2628,8 @@ public with sharing class WaveDataManagerController {
 					this.dplSuccessMessage = 'Template deployment completed successfully.';
 					this.disabledButton = false;
 					this.processingTemplateDeployment = false;
+
+					this.sendTemplateDeploymentSuccessEmail();
 				}
 				else if(String.isNotBlank(dplResult.state) && dplResult.state.containsIgnoreCase('Fail')){
 					this.dplErrorMessage = 'Template deployment failed.';
@@ -2670,5 +2673,9 @@ public with sharing class WaveDataManagerController {
 		}
 		
 		return options;
+	}
+
+	private void sendTemplateDeploymentSuccessEmail(){
+		WaveConfiguratorUtils.sendEmail(this.emailAddress, 'Template deployment completed successfully', 'The Template Deployment process of your ORG has finished successfully. The following templates were deployed:\n\n' + String.join(this.selectedTemplates, '\n'));
 	}
 }

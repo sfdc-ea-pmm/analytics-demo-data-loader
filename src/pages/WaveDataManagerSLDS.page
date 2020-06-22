@@ -474,7 +474,7 @@
 	        	<div class="slds-grid slds-wrap slds-m-left_large" style="max-width: 1440px">
 	        		<!--Message Panel -->
 	        		<div class="slds-col slds-size_1-of-1 slds-m-right_large">
-						<apex:form id="formDeployMessages">
+						<apex:outputPanel id="formDeployMessages">
 							<apex:outputPanel rendered="{!dplErrorMessage != ''}">
 								<div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_error" role="alert" style="margin:0;">
 								    <span class="slds-assistive-text">error</span>
@@ -523,7 +523,7 @@
 								</div>
 							</apex:outputPanel>
 
-						</apex:form>
+						</apex:outputPanel>
 					</div>
 
 	        		<!--Intro section -->
@@ -533,9 +533,9 @@
 	        		<!-- Left column -->
 					<div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-right_large">
 						
-		  				<apex:form id="frmTemplateDeploy" styleClass="slds-m-vertical_medium slds-form-element">
-
+						<apex:form id="frmTemplateSelector">
 							<div class="slds-grid slds-m-vertical_medium">
+								
 								<div class="slds-col slds-size_1-of-2">
 									<label class="slds-form-element__label" for="availableTemplates">Available Analytics Templates to Deploy:</label>
 						   			<div class="slds-form-element__control ">
@@ -547,16 +547,16 @@
 
 								<div class="slds-dueling-list__column">
 									<apex:commandLink action="{!dragSelectedTemplates}" reRender="availableTemplates,selTemplates" styleClass="slds-button slds-button_icon slds-button_icon-container" title="Move Selection to Second List">
-									  	<svg class="slds-button__icon" aria-hidden="true">
+										<svg class="slds-button__icon" aria-hidden="true">
 											<use xlink:href="/apexpages/slds/latest/assets/icons/utility-sprite/svg/symbols.svg#right"></use>
-									  	</svg>
-									  	<span class="slds-assistive-text">Move Selection to Second List</span>
+										</svg>
+										<span class="slds-assistive-text">Move Selection to Second List</span>
 									</apex:commandLink>
 									<apex:commandLink action="{!returnSelectedTemplates}" reRender="availableTemplates,selTemplates" styleClass="slds-button slds-button_icon slds-button_icon-container" title="Move Selection to First List">
-									  <svg class="slds-button__icon" aria-hidden="true">
-										<use xlink:href="/apexpages/slds/latest/assets/icons/utility-sprite/svg/symbols.svg#left"></use>
-									  </svg>
-									  <span class="slds-assistive-text">Move Selection to First List</span>
+										<svg class="slds-button__icon" aria-hidden="true">
+											<use xlink:href="/apexpages/slds/latest/assets/icons/utility-sprite/svg/symbols.svg#left"></use>
+										</svg>
+										<span class="slds-assistive-text">Move Selection to First List</span>
 									</apex:commandLink>
 								</div>
 
@@ -570,7 +570,11 @@
 								</div>
 
 							</div>
+						
+						</apex:form>
 
+		  				<apex:form id="frmTemplateDeploy" styleClass="slds-m-vertical_medium slds-form-element">
+							
 							<div class="slds-grid slds-m-vertical_medium">
 								<div class="slds-col slds-size_1-of-1">
 									<div class="slds-m-vertical_medium">
@@ -583,7 +587,7 @@
 							   		</div>
 								</div>
 							</div>
-
+						
 							<div class="slds-grid slds-m-vertical_medium">
 								<div class="slds-col slds-size_1-of-1">
 
@@ -599,9 +603,9 @@
 
 								</div>
 							</div>
-
-							<apex:actionPoller action="{!checkTemplateDeploymentStatus}" reRender="frmTemplateDeploy,DeployTemplateButton,formDeployMessages" enabled="{!processingTemplateDeployment}" interval="5" id="checkTemplateDeploymentFunction"/>
-						</apex:form> <!-- frmTemplateDeploy -->
+							<apex:actionPoller action="{!checkTemplateDeploymentStatus}" reRender="frmTemplateDeploy,DeployTemplateButton,formDeployMessages,frmCheckTemplateDeploymentStatus" enabled="{!processingTemplateDeployment}" interval="5" id="checkTemplateDeploymentFunction"/>
+						
+						</apex:form> <!-- frmTemplateDeploy -->	
 
 					</div> <!-- End Left column -->
 				</div> <!-- End Main grid -->
