@@ -2496,7 +2496,6 @@ public with sharing class WaveDataManagerController {
 		if(String.isNotBlank(this.tplDeployUrl)){
 			String serverUrl = URL.getOrgDomainUrl().toExternalForm();
 			String sessionId = UserInfo.getSessionId();
-			//string sourceType = 'session';
 
 			String requestBody = '{"source": "session", "credentials": {"session_id": "' + sessionId + '",	"server_url" : "' + serverUrl + '"}}';
 			
@@ -2566,7 +2565,7 @@ public with sharing class WaveDataManagerController {
 				temp.templates = new List<String>(); 
 				temp.templates.addAll(this.selectedTemplates);
 				String jsonBody = JSON.serialize(temp);
-				System.debug(jsonBody);
+				
 				Map<String, String> headersMap = new Map<String, String>();
 				if (String.isBlank(this.cookieString)) {
 					this.setTemplateServiceCookie();
@@ -2584,8 +2583,6 @@ public with sharing class WaveDataManagerController {
 				TemplateDeploymentResponse dplResult = (TemplateDeploymentResponse)JSON.deserialize(res.getBody(), TemplateDeploymentResponse.class);
 
 				if (dplResult != null) {
-
-					System.debug(dplResult);
 					
 					if (String.isNotBlank(dplResult.state)) {
 						if (dplResult.state.equalsIgnoreCase('Completed')) {
@@ -2682,7 +2679,9 @@ public with sharing class WaveDataManagerController {
 	}
 
 	private void sendTemplateDeploymentSuccessEmail(){
-		WaveConfiguratorUtils.sendEmail(this.emailAddress, 'Template deployment completed successfully', 'The Template Deployment process of your ORG has finished successfully. The following templates were deployed:\n\n' + String.join(this.selectedTemplates, '\n'));
+		String username = UserInfo.getUserName();
+		String orgId = UserInfo.getOrganizationId();
+		WaveConfiguratorUtils.sendEmail(this.emailAddress, 'Template deployment completed successfully', 'The Template Deployment process has finished successfully. \n\nUsername: ' + username + '\nOrganization ID: ' + orgId + '\n\nThe following templates were deployed:\n\n' + String.join(this.selectedTemplates, '\n'));
 	}
 
 	public void handleAdvancedTemplateDeploy(){
