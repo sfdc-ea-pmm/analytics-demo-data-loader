@@ -106,6 +106,7 @@
   <types>
     <name>RemoteSiteSetting</name>
     <members>AmazonS3</members>
+    <members>LowTide</members>
   </types>
   <types>
     <name>CustomTab</name>

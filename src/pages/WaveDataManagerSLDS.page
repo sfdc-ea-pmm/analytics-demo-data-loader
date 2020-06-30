@@ -48,7 +48,7 @@
 					</span>
 		        </div>
 		        <div class="slds-media__body">
-		            <h1 class="slds-page-header__title slds-truncate slds-align-middle" title="Rohde Corp - 80,000 Widgets">Analytics Demo Data Tool - v2020.25</h1>
+		            <h1 class="slds-page-header__title slds-truncate slds-align-middle" title="Rohde Corp - 80,000 Widgets">Analytics Demo Data Tool - v2020.27</h1>
 		            <p class="slds-text-body_small slds-line-height_reset">Einstein Analytics Demo Data Loader</p>
 		        </div>
 		    </div>
@@ -603,11 +603,29 @@
 
 								</div>
 							</div>
+
+							<div class="slds-grid slds-m-vertical_medium">
+								<div class="slds-col slds-size_1-of-1">									
+									<apex:commandLink value="{!IF(advancedTemplateDeploy, 'Hide Advanced Process Options', 'Show Advanced Process Options')}" action="{!handleAdvancedTemplateDeploy}" reRender="frmTemplateDeploy,advancedDeployLink" id="advancedDeployLink" />
+									<apex:outputPanel id="tplDeployValue" rendered="{!advancedTemplateDeploy}">
+										<div class="slds-m-top_small">
+											<label class="slds-form-element__label" for="tplDeployUrlInput">Base Endpoint URL for deployment services:</label>
+											<div class="slds-form-element__control">
+												<apex:inputText styleClass="slds-input" value="{!tplDeployUrl}" id="tplDeployUrlInput">
+													<apex:actionSupport action="{!tplDeployUrlChanged}" event="onchange" reRender="formDeployMessages,frmTemplateDeploy" />
+												</apex:inputText>
+											</div>
+										</div>
+									</apex:outputPanel>
+								</div>
+							</div>
+
 							<apex:actionPoller action="{!checkTemplateDeploymentStatus}" reRender="frmTemplateDeploy,DeployTemplateButton,formDeployMessages,frmCheckTemplateDeploymentStatus" enabled="{!processingTemplateDeployment}" interval="5" id="checkTemplateDeploymentFunction"/>
 						
 						</apex:form> <!-- frmTemplateDeploy -->	
 
-					</div> <!-- End Left column -->
+					</div> <!-- End Left column -->					
+
 				</div> <!-- End Main grid -->
 	        </div> <!-- End Tab 2 -->	
 	    

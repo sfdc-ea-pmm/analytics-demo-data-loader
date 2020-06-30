@@ -7,4 +7,5 @@ public class GenericAppConfiguration {
 	public Integer timeShiftingBatchSize { get; set; }
 	public String faqJsonUrl { get; set; }
 	public String homeHeaderDescription { get; set; }
+	public String tplDeployBaseUrl { get; set; }
 }

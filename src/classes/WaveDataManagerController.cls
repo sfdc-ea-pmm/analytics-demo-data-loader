@@ -94,6 +94,8 @@ public with sharing class WaveDataManagerController {
 	public String dplWarningMessage { get; set; }
 	public String dplSuccessMessage { get; set; }
 	public String dplJobId { get; set; }
+	public Boolean advancedTemplateDeploy { get; set; }
+	public String tplDeployUrl { get; set; }
 
 	// Secuence control
 	public String installationStep { get; set; }
@@ -140,6 +142,7 @@ public with sharing class WaveDataManagerController {
 		this.templatesToReturn = new String[]{};
 		this.selectedTemplates = new String[]{};
 		this.cookieString = '';
+		this.advancedTemplateDeploy = false;
 	}
 
 	public PageReference pageLoad()
@@ -167,6 +170,7 @@ public with sharing class WaveDataManagerController {
 			this.genericAppConfiguration = utils.getAppConfiguration(genericAppConfigurationFileName);
 			this.pageRendered = true;
 			this.baseUrl = this.genericAppConfiguration.baseUrl;
+			this.tplDeployUrl = this.genericAppConfiguration.tplDeployBaseUrl;
 
 			if(Test.isRunningTest()){
 				this.baseUrl = this.genericAppConfiguration.baseDevUrl;
@@ -2489,24 +2493,26 @@ public with sharing class WaveDataManagerController {
 	}
 
 	private void setTemplateServiceCookie(){
-		String serverUrl = URL.getOrgDomainUrl().toExternalForm();
-		String sessionId = UserInfo.getSessionId();
-		//string sourceType = 'session';
+		if(String.isNotBlank(this.tplDeployUrl)){
+			String serverUrl = URL.getOrgDomainUrl().toExternalForm();
+			String sessionId = UserInfo.getSessionId();
+			//string sourceType = 'session';
 
-		String requestBody = '{"source": "session", "credentials": {"session_id": "' + sessionId + '",	"server_url" : "' + serverUrl + '"}}';
-		
-		HttpRequest deployReq = new HttpRequest();
-		deployReq.setEndpoint('https://lowtide.herokuapp.com/api/auth');
-		deployReq.setMethod('POST');
-		deployReq.setHeader('Content-Type', 'application/json');
-		deployReq.setBody(requestBody);
+			String requestBody = '{"source": "session", "credentials": {"session_id": "' + sessionId + '",	"server_url" : "' + serverUrl + '"}}';
+			
+			HttpRequest deployReq = new HttpRequest();
+			deployReq.setEndpoint(this.tplDeployUrl + '/api/auth');
+			deployReq.setMethod('POST');
+			deployReq.setHeader('Content-Type', 'application/json');
+			deployReq.setBody(requestBody);
 
-		Http http = new Http();
-		HTTPResponse res = http.send(deployReq);
+			Http http = new Http();
+			HTTPResponse res = http.send(deployReq);
 
-		String responseHeaderSetCookie = res.getHeader('Set-Cookie');
-		String[] sParts = responseHeaderSetCookie.split(';');
-		this.cookieString = sParts[0];
+			String responseHeaderSetCookie = res.getHeader('Set-Cookie');
+			String[] sParts = responseHeaderSetCookie.split(';');
+			this.cookieString = sParts[0];
+		}
 	}
 
 	public List<SelectOption> getAvailableTemplates() {
@@ -2520,7 +2526,7 @@ public with sharing class WaveDataManagerController {
 			}
 			headersMap.put('Cookie', this.cookieString);
 			HTTPResponse res = WaveConfiguratorUtils.httpCallout(
-				'https://lowtide.herokuapp.com/api/repo/template',
+				this.tplDeployUrl + '/api/repo/template',
 				'GET',
 				'',
 				'application/json',
@@ -2568,7 +2574,7 @@ public with sharing class WaveDataManagerController {
 				headersMap.put('Cookie', this.cookieString);
                 
                 HTTPResponse res = WaveConfiguratorUtils.httpCallout(
-                    'https://lowtide.herokuapp.com/api/repo/template/deploy',
+                    this.tplDeployUrl + '/api/repo/template/deploy',
                     'POST',
                     jsonBody,
                     'application/json',
@@ -2613,7 +2619,7 @@ public with sharing class WaveDataManagerController {
 			}
 			headersMap.put('Cookie', this.cookieString);
 			HTTPResponse res = WaveConfiguratorUtils.httpCallout(
-				'https://lowtide.herokuapp.com/api/repo/template/deploy/' + this.dplJobId,
+				this.tplDeployUrl + '/api/repo/template/deploy/' + this.dplJobId,
 				'GET',
 				'',
 				'application/json',
@@ -2677,5 +2683,26 @@ public with sharing class WaveDataManagerController {
 
 	private void sendTemplateDeploymentSuccessEmail(){
 		WaveConfiguratorUtils.sendEmail(this.emailAddress, 'Template deployment completed successfully', 'The Template Deployment process of your ORG has finished successfully. The following templates were deployed:\n\n' + String.join(this.selectedTemplates, '\n'));
+	}
+
+	public void handleAdvancedTemplateDeploy(){
+		this.advancedTemplateDeploy = !this.advancedTemplateDeploy;
+	}
+
+	public void tplDeployUrlChanged(){
+		try{
+			this.resetMessages();
+			if (String.isNotBlank(this.tplDeployUrl)) {
+				this.setTemplateServiceCookie();
+			}
+			else {
+				this.dplWarningMessage = 'Base Endpoint URL for deployment services must not be blank.';
+			}
+		}
+		catch(Exception e) {
+			System.debug(e.getMessage());
+			System.debug(e.getStackTraceString());
+			this.dplErrorMessage = e.getMessage();
+		}
 	}
 }
