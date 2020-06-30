@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ApexPage xmlns="urn:metadata.tooling.soap.sforce.com" fqn="DeployAnalyticsTemplatesTool">
-    <apiVersion>45.0</apiVersion>
-    <label>DeployAnalyticsTemplatesTool</label>
-</ApexPage>
