@@ -83,12 +83,17 @@ public with sharing class WaveDataManagerController {
 	public Integer currentDatasetIndex { get; set; }
 	public Integer currentDashboardIndex { get; set; }
 	//public WaveApplicationDataflow dataflowConfig { get; set; }
+	
+	// Cookie String for the following tools
+	public String cookieString { get; set; }
+	
+	// *** Template Deploy Tool ***
 	private Boolean retrievedTemplates;
 	private List<String> undraggedTemplates;
 	public String[] templatesToDrag { get; set; }
 	public String[] templatesToReturn { get; set; }
 	public String[] selectedTemplates { get; set; }
-	public String cookieString { get; set; }
+	
 	public Boolean processingTemplateDeployment { get; set; }
 	public String dplErrorMessage { get; set; }
 	public String dplWarningMessage { get; set; }
@@ -96,6 +101,19 @@ public with sharing class WaveDataManagerController {
 	public String dplJobId { get; set; }
 	public Boolean advancedTemplateDeploy { get; set; }
 	public String tplDeployUrl { get; set; }
+
+	// *** Timeshifting Dataflow Tool ***
+	private Boolean retrievedTsDatasets;
+	public Boolean processingTimeshiftingDataflow { get; set; }
+	public String tsdfErrorMessage { get; set; }
+	public String tsdfWarningMessage { get; set; }
+	public String tsdfSuccessMessage { get; set; }
+	public String tsdfJobId { get; set; }
+	public Boolean advancedTimeshiftingDataflow { get; set; }
+	public String tsdfUrl { get; set; }
+	public Map<String, FolderDatasetResponse> mapOfDatasetsByFolder { get; set; }
+	public String selectedAppForTimeshiftingDataflow { get; set; }
+	public List<DatasetItemResponse> selectedDatasetsForTimeshiftingDataflow { get; set; }
 
 	// Secuence control
 	public String installationStep { get; set; }
@@ -143,6 +161,9 @@ public with sharing class WaveDataManagerController {
 		this.selectedTemplates = new String[]{};
 		this.cookieString = '';
 		this.advancedTemplateDeploy = false;
+
+		this.retrievedTsDatasets = false;
+		this.selectedDatasetsForTimeshiftingDataflow = new List<DatasetItemResponse>();
 	}
 
 	public PageReference pageLoad()
@@ -171,6 +192,7 @@ public with sharing class WaveDataManagerController {
 			this.pageRendered = true;
 			this.baseUrl = this.genericAppConfiguration.baseUrl;
 			this.tplDeployUrl = this.genericAppConfiguration.tplDeployBaseUrl;
+			this.tsdfUrl = this.genericAppConfiguration.tplDeployBaseUrl;
 
 			if(Test.isRunningTest()){
 				this.baseUrl = this.genericAppConfiguration.baseDevUrl;
@@ -2703,5 +2725,87 @@ public with sharing class WaveDataManagerController {
 			System.debug(e.getStackTraceString());
 			this.dplErrorMessage = e.getMessage();
 		}
+	}
+
+	// **************************** TIMESHIFTING DATAFLOW TOOL ******************************
+
+	public class FolderDatasetResponse {
+		String id { get; set; }
+		String label { get; set; }
+		List<DatasetItemResponse> datasets { get; set; }
+	}
+
+	public class DatasetItemResponse {
+		public String id { get; set; }
+		public String label { get; set; }
+		public String name { get; set; }
+		public Boolean selected { get; set; }
+	}
+
+	public List<SelectOption> getAppsForTimeshiftingDataflow(){
+		List<SelectOption> options = new List<SelectOption>();
+		options.add(new SelectOption('', ''));
+		
+		if (this.retrievedTsDatasets) {
+			
+			for (String appId : this.mapOfDatasetsByFolder.keySet()) {
+				if(String.isNotBlank(this.mapOfDatasetsByFolder.get(appId).label)){
+					options.add(new SelectOption(appId, this.mapOfDatasetsByFolder.get(appId).label));
+				}
+			}
+		}
+
+		return options;
+	}	
+
+	public void loadTimeshiftingDataflowTab(){
+		if (!this.retrievedTsDatasets) {					
+			this.mapOfDatasetsByFolder = new Map<String, FolderDatasetResponse>();
+			
+			List<EdgeMart> lstDatasets = [
+				SELECT DeveloperName, FolderId, Id, MasterLabel, Folder.Name 
+				FROM EdgeMart
+				ORDER BY MasterLabel
+			];
+
+			for (EdgeMart e : lstDatasets) {
+
+				if (!this.mapOfDatasetsByFolder.containsKey(e.FolderId)) {
+					FolderDatasetResponse fdr = new FolderDatasetResponse();
+					fdr.id = e.FolderId;
+					fdr.label = e.Folder.Name;
+					fdr.datasets = new List<DatasetItemResponse>();
+					this.mapOfDatasetsByFolder.put(e.FolderId, fdr);
+				}
+				
+				DatasetItemResponse d = new DatasetItemResponse();
+				d.id = e.Id;
+				d.label = e.MasterLabel;
+				d.name = e.DeveloperName;
+				d.selected = true;
+
+				FolderDatasetResponse fdrAux = this.mapOfDatasetsByFolder.get(e.FolderId);
+				fdrAux.datasets.add(d);
+			}
+
+			this.retrievedTsDatasets = true;
+		}
+	}
+
+	public void appsForTimeshiftingDataflowChanged(){
+		if (String.isNotBlank(this.selectedAppForTimeshiftingDataflow)) {
+			this.selectedDatasetsForTimeshiftingDataflow = new List<DatasetItemResponse>();
+			List<DatasetItemResponse> dsList = this.mapOfDatasetsByFolder.get(this.selectedAppForTimeshiftingDataflow).datasets;
+			if (dsList != null && dsList.size() > 0) {
+				this.selectedDatasetsForTimeshiftingDataflow.addAll(dsList);	
+			}
+		}
+		else {
+			this.selectedDatasetsForTimeshiftingDataflow.clear();
+		}
+	}
+
+	public void executeTsDataflowGeneration(){
+
 	}
 }

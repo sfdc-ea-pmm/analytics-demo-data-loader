@@ -1,4 +1,4 @@
-<apex:page showHeader="true" standardStylesheets="false" sidebar="false" applyHtmlTag="true" applyBodyTag="false" controller="WaveDataManagerController" action="{!pageLoad}" docType="html-5.0">
+<apex:page showHeader="true" standardStylesheets="false" sidebar="false" applyHtmlTag="true" applyBodyTag="false" controller="WaveDataManagerController" action="{!pageLoad}" docType="html-5.0" lightningStyleSheets="true">
 	<html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
 	<head>
 		<meta charset="utf-8" />
@@ -52,7 +52,7 @@
 		            <p class="slds-text-body_small slds-line-height_reset">Einstein Analytics Demo Data Loader</p>
 		        </div>
 		    </div>
-		</div>
+		</div>		
 		
 	    <div class="slds-tabs_default">
 	        <ul class="slds-tabs_default__nav" role="tablist">
@@ -61,7 +61,10 @@
 				</li>
 				<li class="slds-tabs_default__item" title="Deploy Template (beta)" role="presentation">
 					<a class="slds-tabs_default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-template-deploy" id="tab-default-deploy__item">Deploy Template (beta)</a>
-			 	</li>
+				</li>
+				<li class="slds-tabs_default__item" title="Timeshifting Dataflow (beta)" role="presentation">
+					<a class="slds-tabs_default__link" href="javascript:loadTimeshiftingDataflowTab();" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-timeshifting-dataflow" id="tab-default-tsdataflow__item">Timeshifting Dataflow (beta)</a>
+				</li>
 				<li title="Guide" role="presentation" class="false-tab-li">
 					<a class="slds-tabs_default__link" target="_blank" href="https://salesforce.quip.com/MBs7Ag8nXdFh" aria-selected="false" aria-controls="tab-default-home" role="tab" tabindex="-1" id="tab-default-guide__item">Guide</a>
 				 </li>
@@ -533,7 +536,7 @@
 	        		<!-- Left column -->
 					<div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-right_large">
 						
-						<apex:form id="frmTemplateSelector">
+						<apex:form id="frmTemplateDeploySelector">
 							<div class="slds-grid slds-m-vertical_medium">
 								
 								<div class="slds-col slds-size_1-of-2">
@@ -627,7 +630,163 @@
 					</div> <!-- End Left column -->					
 
 				</div> <!-- End Main grid -->
-	        </div> <!-- End Tab 2 -->	
+			</div> <!-- End Tab 2 -->
+			
+			<!--Tab 3-->
+	        <div id="tab-default-timeshifting-dataflow" class="slds-tabs_default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-tsdataflow__item">
+	        	<!-- Main grid -->
+	        	<div class="slds-grid slds-wrap slds-m-left_large" style="max-width: 1440px">
+	        		<!--Message Panel -->
+	        		<div class="slds-col slds-size_1-of-1 slds-m-right_large">
+						<apex:outputPanel id="formTimeshiftingDataflowMessages">
+							<apex:outputPanel rendered="{!tsdfErrorMessage != ''}">
+								<div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_error" role="alert" style="margin:0;">
+								    <span class="slds-assistive-text">error</span>
+								    <span class="slds-icon_container slds-icon-utility-error slds-m-right_small slds-no-flex slds-align-top">
+								    	<svg class="slds-icon slds-icon_small" aria-hidden="true">
+								        	<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#error')}"></use>
+								        </svg>
+								    </span>
+								    <h2 class="slds-text-heading_small ">{!tsdfErrorMessage}</h2>
+								</div>
+							</apex:outputPanel>
+
+							<apex:outputPanel rendered="{!tsdfSuccessMessage != ''}">
+								<div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_success" role="alert" style="margin:0;">
+								    <span class="slds-assistive-text">success</span>
+								    <span class="slds-icon_container slds-icon-utility-success slds-m-right_small slds-no-flex slds-align-top">
+								    	<svg class="slds-icon slds-icon_small" aria-hidden="true">
+								        	<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#success')}"></use>
+								        </svg>
+								    </span>
+								    <h2 class="slds-text-heading_small ">{!tsdfSuccessMessage}</h2>
+								</div>
+							</apex:outputPanel>
+
+							<apex:outputPanel rendered="{!tsdfwarningMessage != ''}">
+								<div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_warning" role="alert" style="margin:0;">
+								    <span class="slds-assistive-text">warning</span>
+								    <span class="slds-icon_container slds-icon-utility-warning slds-m-right_small slds-no-flex slds-align-top">
+								    	<svg class="slds-icon slds-icon_small" aria-hidden="true">
+								        	<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#warning')}"></use>
+								        </svg>
+								    </span>
+								    <h2 class="slds-text-heading_small ">{!tsdfwarningMessage}</h2>
+								</div>
+							</apex:outputPanel>
+
+							<apex:outputPanel rendered="{!disabledButton}">
+								<div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_info" role="alert" style="margin:0;">
+								    <span class="slds-assistive-text">info</span>
+								    <span class="slds-icon_container slds-icon-utility-info slds-m-right_small slds-no-flex slds-align-top">
+								    	<svg class="slds-icon slds-icon_small" aria-hidden="true">
+								        	<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#info')}"></use>
+								        </svg>
+								    </span>
+								    <h2 class="slds-text-heading_small ">Do not close or navigate away from the page. Template deployment results will be informed in a few moments.</h2>
+								</div>
+							</apex:outputPanel>
+
+						</apex:outputPanel>
+					</div>
+
+	        		<!--Intro section -->
+	        		<div class="slds-col slds-size_1-of-1 slds-m-top_medium slds-m-bottom_large slds-m-right_large">
+						<apex:outputText value="Einstein Analytics Datasets to build Timeshifting Dataflow" escape="false"/>
+					</div>
+
+					<!-- Left column -->
+					<div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-right_large">
+
+						<apex:form id="frmTsDataflowSelector">
+
+							<apex:actionFunction name="loadTimeshiftingDataflowTab" action="{!loadTimeshiftingDataflowTab}" reRender="availableAppsForTimeshiftingDataflow" />							
+							
+							<div class="slds-grid">
+								<div class="slds-col slds-size_1-of-1">
+									<div class="slds-m-vertical_medium">
+										<label class="slds-form-element__label" for="availableAppsForTimeshiftingDataflow">Available Analytics Apps:</label>
+										<div class="slds-form-element__control ">
+											<apex:selectList styleClass="slds-select" multiselect="false" size="1" value="{!selectedAppForTimeshiftingDataflow}" id="availableAppsForTimeshiftingDataflow">
+												<apex:selectOptions value="{!appsForTimeshiftingDataflow}"/>
+												<apex:actionSupport action="{!appsForTimeshiftingDataflowChanged}" event="onchange" reRender="frmTsDataflowSelector" />
+											</apex:selectList>
+										</div>
+									</div>
+								</div>								
+							</div>
+
+							<div class="slds-grid">
+								<div class="slds-col slds-size_1-of-1">
+									<apex:outputPanel id="tsdfDatasetsPanel" styleClass="slds-m-vertical_medium" layout="block" rendered="{!selectedDatasetsForTimeshiftingDataflow.size > 0}">
+										<label class="slds-form-element__label slds-show">Select the datasets that you want to include in timeshifting dataflow:</label>
+										<apex:repeat value="{!selectedDatasetsForTimeshiftingDataflow}" var="tsdfDataset">
+											<div class="slds-form-element__control">
+												<label class="slds-checkbox" style="display: inline;">
+													<apex:inputCheckbox value="{!tsdfDataset.selected}" styleClass="objToSelect">
+													</apex:inputCheckbox>
+													<span class="slds-checkbox_faux"></span>
+													<span class="slds-form-element__label">{!tsdfDataset.label} - ({!tsdfDataset.name})</span>
+												</label>
+											</div>
+										</apex:repeat>
+									</apex:outputPanel>	
+								</div>
+							</div>
+
+							<div class="slds-grid">
+								<div class="slds-col slds-size_1-of-1">
+									<div class="slds-m-vertical_medium">
+										<apex:outputPanel id="emailNotification3">
+											<label class="slds-form-element__label">Notify this email when complete:</label>
+											<div class="slds-form-element__control">
+												<apex:inputText styleClass="slds-input" value="{!emailAddress}"/>
+											</div>
+										</apex:outputPanel>
+									</div>
+								</div>
+							</div>
+							
+							<div class="slds-grid">
+								<div class="slds-col slds-size_1-of-1">
+
+									<div class="slds-m-vertical_medium">
+										<apex:outputPanel id="TsDataflowButton">
+											<apex:commandButton value="Start" reRender="formTimeshiftingDataflowMessages,frmTsDataflowSelector" disabled="{!disabledButton}" styleClass="slds-button slds-button_brand btnInstallApp" action="{!executeTsDataflowGeneration}" />
+
+											<apex:outputPanel style="margin-left: 15px;" rendered="{!disabledButton}">
+												<apex:image value="{!$Resource.LoadingGif}"/>
+											</apex:outputPanel>
+										</apex:outputPanel>
+									</div>
+
+								</div>
+							</div>
+
+							<!--<div class="slds-grid slds-m-vertical_medium">
+								<div class="slds-col slds-size_1-of-1">									
+									<apex:commandLink value="{!IF(advancedTemplateDeploy, 'Hide Advanced Process Options', 'Show Advanced Process Options')}" action="{!handleAdvancedTemplateDeploy}" reRender="frmTemplateDeploy,advancedDeployLink" id="advancedDeployLink" />
+									<apex:outputPanel id="tplDeployValue" rendered="{!advancedTemplateDeploy}">
+										<div class="slds-m-top_small">
+											<label class="slds-form-element__label" for="tplDeployUrlInput">Base Endpoint URL for deployment services:</label>
+											<div class="slds-form-element__control">
+												<apex:inputText styleClass="slds-input" value="{!tplDeployUrl}" id="tplDeployUrlInput">
+													<apex:actionSupport action="{!tplDeployUrlChanged}" event="onchange" reRender="formTimeshiftingDataflowMessages,frmTemplateDeploy" />
+												</apex:inputText>
+											</div>
+										</div>
+									</apex:outputPanel>
+								</div>
+							</div>-->
+
+							<!--<apex:actionPoller action="{!checkTemplateDeploymentStatus}" reRender="frmTemplateDeploy,DeployTemplateButton,formTimeshiftingDataflowMessages,frmCheckTemplateDeploymentStatus" enabled="{!processingTemplateDeployment}" interval="5" id="checkTemplateDeploymentFunction"/>-->
+
+						</apex:form> <!-- frmTsDataflowSelector -->	
+
+					</div> <!-- End Left column -->					
+
+				</div> <!-- End Main grid -->
+	        </div> <!-- End Tab 3 -->
 	    
 	    </div>		
 		<apex:form >
