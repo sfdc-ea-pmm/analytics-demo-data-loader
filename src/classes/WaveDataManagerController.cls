@@ -114,6 +114,8 @@ public with sharing class WaveDataManagerController {
 	public Map<String, FolderDatasetResponse> mapOfDatasetsByFolder { get; set; }
 	public String selectedAppForTimeshiftingDataflow { get; set; }
 	public List<DatasetItemResponse> selectedDatasetsForTimeshiftingDataflow { get; set; }
+	public String tsdfJSON { get; set; }
+	public String tsdfName { get; set; }
 
 	// Secuence control
 	public String installationStep { get; set; }
@@ -2806,6 +2808,32 @@ public with sharing class WaveDataManagerController {
 	}
 
 	public void executeTsDataflowGeneration(){
+		
+		List<String> datasetsJsonToSend = new List<String>();
+		String jsonBody = '{"dataflow_name": "' + this.tsdfName + '", "dataset_array" : [';
+		
+		for (DatasetItemResponse variable : this.selectedDatasetsForTimeshiftingDataflow) {
+			if (variable.selected) {				
+				datasetsJsonToSend.add('{"id": "' + variable.id + '"}');
+			}
+		}
 
+		jsonBody += String.join(datasetsJsonToSend, ',') + ']}';
+
+		Map<String, String> headersMap = new Map<String, String>();
+		if (String.isBlank(this.cookieString)) {
+			this.setTemplateServiceCookie();
+		}
+		headersMap.put('Cookie', this.cookieString);
+		
+		HTTPResponse res = WaveConfiguratorUtils.httpCallout(
+			this.tsdfUrl + '/api/dataflow',
+			'POST',
+			jsonBody,
+			'application/json',
+			headersMap
+		);
+
+		this.tsdfJSON = res.getBody();
 	}
 }

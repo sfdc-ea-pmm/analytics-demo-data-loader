@@ -737,6 +737,17 @@
 							<div class="slds-grid">
 								<div class="slds-col slds-size_1-of-1">
 									<div class="slds-m-vertical_medium">
+										<label class="slds-form-element__label">Provide Dataflow Name:</label>
+										<div class="slds-form-element__control">
+											<apex:inputText styleClass="slds-input" value="{!tsdfName}"/>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="slds-grid">
+								<div class="slds-col slds-size_1-of-1">
+									<div class="slds-m-vertical_medium">
 										<apex:outputPanel id="emailNotification3">
 											<label class="slds-form-element__label">Notify this email when complete:</label>
 											<div class="slds-form-element__control">
@@ -752,7 +763,7 @@
 
 									<div class="slds-m-vertical_medium">
 										<apex:outputPanel id="TsDataflowButton">
-											<apex:commandButton value="Start" reRender="formTimeshiftingDataflowMessages,frmTsDataflowSelector" disabled="{!disabledButton}" styleClass="slds-button slds-button_brand btnInstallApp" action="{!executeTsDataflowGeneration}" />
+											<apex:commandButton value="Start" reRender="formTimeshiftingDataflowMessages,frmTsDataflowSelector,generatedDataflowPanel" disabled="{!disabledButton}" styleClass="slds-button slds-button_brand btnInstallApp" action="{!executeTsDataflowGeneration}" />
 
 											<apex:outputPanel style="margin-left: 15px;" rendered="{!disabledButton}">
 												<apex:image value="{!$Resource.LoadingGif}"/>
@@ -760,6 +771,19 @@
 										</apex:outputPanel>
 									</div>
 
+								</div>
+							</div>
+
+							<div class="slds-grid">
+								<div class="slds-col slds-size_1-of-1">
+									<div class="slds-m-vertical_medium">
+										<apex:outputPanel id="generatedDataflowPanel">
+											<label class="slds-form-element__label">Generated Dataflow JSON:</label>
+											<div class="slds-form-element__control">
+												<apex:inputTextarea styleClass="slds-input" value="{!tsdfJSON}" id="generatedDataflowJSON" />
+											</div>
+										</apex:outputPanel>
+									</div>
 								</div>
 							</div>
 
