@@ -619,6 +619,15 @@
 												</apex:inputText>
 											</div>
 										</div>
+										<div class="slds-m-top_small">
+											<label class="slds-form-element__label" for="tplDeployRepoBranch">Choose Repository Branch:</label>
+											<div class="slds-form-element__control">
+												<apex:selectRadio value="{!tplDeployRepoBranch}" id="tplDeployRepoBranch" layout="pageDirection">
+													<apex:selectOptions value="{!branches}" />
+													<apex:actionSupport action="{!tplDeployRepoBranchChanged}" event="onchange" reRender="formDeployMessages,frmTemplateDeploy,frmTemplateDeploySelector" />
+												</apex:selectRadio>												
+											</div>
+										</div>
 									</apex:outputPanel>
 								</div>
 							</div>

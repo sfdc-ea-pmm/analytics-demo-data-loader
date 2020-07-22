@@ -89,6 +89,7 @@ public with sharing class WaveDataManagerController {
 	
 	// *** Template Deploy Tool ***
 	private Boolean retrievedTemplates;
+	private Map<String, RepositoryTemplate> repositoryTemplatesMap;
 	private List<String> undraggedTemplates;
 	public String[] templatesToDrag { get; set; }
 	public String[] templatesToReturn { get; set; }
@@ -101,6 +102,7 @@ public with sharing class WaveDataManagerController {
 	public String dplJobId { get; set; }
 	public Boolean advancedTemplateDeploy { get; set; }
 	public String tplDeployUrl { get; set; }
+	public String tplDeployRepoBranch { get; set; }
 
 	// *** Timeshifting Dataflow Tool ***
 	private Boolean retrievedTsDatasets;
@@ -157,12 +159,14 @@ public with sharing class WaveDataManagerController {
 		this.selectedObjectsToTimeShift = new Map<String, Boolean>();
 		this.modalMessage = new CustomModalConfirmation();
 		this.retrievedTemplates = false;
+		this.repositoryTemplatesMap = new Map<String, RepositoryTemplate>();
 		this.undraggedTemplates = new List<String>();
 		this.templatesToDrag = new String[]{};
 		this.templatesToReturn = new String[]{};
 		this.selectedTemplates = new String[]{};
 		this.cookieString = '';
 		this.advancedTemplateDeploy = false;
+		this.tplDeployRepoBranch = 'master';
 
 		this.retrievedTsDatasets = false;
 		this.selectedDatasetsForTimeshiftingDataflow = new List<DatasetItemResponse>();
@@ -2506,6 +2510,15 @@ public with sharing class WaveDataManagerController {
 		}
 	}
 
+	// **************************** TEMPLATE DEPLOYMENT TOOL ******************************
+
+	class RepositoryTemplate {
+		Integer api_version { get; set; }
+		Boolean deployable { get; set; }
+		String api_name { get; set; }
+		String label { get; set; }
+	}
+
 	class TemplateList {
 		List<String> templates {get; set;}
 	}
@@ -2540,7 +2553,7 @@ public with sharing class WaveDataManagerController {
 
 	public List<SelectOption> getAvailableTemplates() {
         
-        List<SelectOption> options = new List<SelectOption>();
+		List<SelectOption> options = new List<SelectOption>();
 		
 		if (!this.retrievedTemplates) {
 			Map<String, String> headersMap = new Map<String, String>();
@@ -2549,24 +2562,26 @@ public with sharing class WaveDataManagerController {
 			}
 			headersMap.put('Cookie', this.cookieString);
 			HTTPResponse res = WaveConfiguratorUtils.httpCallout(
-				this.tplDeployUrl + '/api/repo/template',
+				this.tplDeployUrl + '/api/repository/template/' + this.tplDeployRepoBranch,
 				'GET',
 				'',
 				'application/json',
 				headersMap
 			);
 		
-			List<Object> l = (List<Object>)JSON.deserializeUntyped(res.getBody());
+			List<RepositoryTemplate> repositoryTemplates = (List<RepositoryTemplate>)JSON.deserialize(res.getBody(), List<RepositoryTemplate>.class);
 			
-			for (Object key : l) {
-				this.undraggedTemplates.add((String)key);
+			for (RepositoryTemplate repoTpl : repositoryTemplates) {
+				this.repositoryTemplatesMap.put(repoTpl.api_name, repoTpl);
+				this.undraggedTemplates.add(repoTpl.api_name);
 			}
 			
 			this.retrievedTemplates = true;
 		} 
 		
 		for (String t : this.undraggedTemplates) {
-			options.add(new SelectOption(t, t));
+			RepositoryTemplate repoTplHashed = this.repositoryTemplatesMap.get(t);
+			options.add(new SelectOption(repoTplHashed.api_name, repoTplHashed.label, !repoTplHashed.deployable));
 		}
 		
 		return options;
@@ -2589,6 +2604,8 @@ public with sharing class WaveDataManagerController {
 				temp.templates = new List<String>(); 
 				temp.templates.addAll(this.selectedTemplates);
 				String jsonBody = JSON.serialize(temp);
+
+				System.debug(jsonBody);
 				
 				Map<String, String> headersMap = new Map<String, String>();
 				if (String.isBlank(this.cookieString)) {
@@ -2597,7 +2614,7 @@ public with sharing class WaveDataManagerController {
 				headersMap.put('Cookie', this.cookieString);
                 
                 HTTPResponse res = WaveConfiguratorUtils.httpCallout(
-                    this.tplDeployUrl + '/api/repo/template/deploy',
+                    this.tplDeployUrl + '/api/repository/template/' + this.tplDeployRepoBranch,
                     'POST',
                     jsonBody,
                     'application/json',
@@ -2640,7 +2657,7 @@ public with sharing class WaveDataManagerController {
 			}
 			headersMap.put('Cookie', this.cookieString);
 			HTTPResponse res = WaveConfiguratorUtils.httpCallout(
-				this.tplDeployUrl + '/api/repo/template/deploy/' + this.dplJobId,
+				this.tplDeployUrl + '/api/repository/template/deploy/status/' + this.dplJobId,
 				'GET',
 				'',
 				'application/json',
@@ -2696,7 +2713,8 @@ public with sharing class WaveDataManagerController {
         List<SelectOption> options = new List<SelectOption>();
 		
 		for (String t : this.selectedTemplates) {
-			options.add(new SelectOption(t, t));
+			RepositoryTemplate repoTplHashed = this.repositoryTemplatesMap.get(t);
+			options.add(new SelectOption(repoTplHashed.api_name, repoTplHashed.label));
 		}
 		
 		return options;
@@ -2727,6 +2745,21 @@ public with sharing class WaveDataManagerController {
 			System.debug(e.getStackTraceString());
 			this.dplErrorMessage = e.getMessage();
 		}
+	}
+
+	public void tplDeployRepoBranchChanged(){
+		this.resetMessages();
+		this.retrievedTemplates = false;
+	}
+
+	public List<SelectOption> getBranches() {
+        
+        List<SelectOption> options = new List<SelectOption>();
+		
+		options.add(new SelectOption('master', 'Master'));
+		options.add(new SelectOption('beta', 'Beta'));
+		
+		return options;
 	}
 
 	// **************************** TIMESHIFTING DATAFLOW TOOL ******************************
