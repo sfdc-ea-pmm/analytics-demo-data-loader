@@ -625,7 +625,7 @@
 												<apex:selectRadio value="{!tplDeployRepoBranch}" id="tplDeployRepoBranch" layout="pageDirection">
 													<apex:selectOptions value="{!branches}" />
 													<apex:actionSupport action="{!tplDeployRepoBranchChanged}" event="onchange" reRender="formDeployMessages,frmTemplateDeploy,frmTemplateDeploySelector" />
-												</apex:selectRadio>												
+												</apex:selectRadio>
 											</div>
 										</div>
 									</apex:outputPanel>
@@ -714,15 +714,59 @@
 							<div class="slds-grid">
 								<div class="slds-col slds-size_1-of-1">
 									<div class="slds-m-vertical_medium">
+										<label class="slds-form-element__label" for="tsdfCreateOrReplace">Choose the appropiate option:</label>
+										<div class="slds-form-element__control ">
+											<apex:selectRadio value="{!tsdfCreateOrReplace}" id="tsdfCreateOrReplace">
+												<apex:selectOptions value="{!tsdfCreateOrReplaceOptions}" />
+												<apex:actionSupport event="onchange" status="tsdfStatus" reRender="formTimeshiftingDataflowMessages,frmTsDataflowSelector" />
+											</apex:selectRadio>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<apex:actionStatus id="tsdfStatus">
+								<apex:facet name="start">
+									<apex:image value="{!$Resource.LoadingGif}"/>
+								</apex:facet>
+							</apex:actionStatus>
+
+							<apex:outputPanel styleClass="slds-grid" layout="block" rendered="{!tsdfCreateOrReplace = 'create'}">
+								<div class="slds-col slds-size_1-of-1">
+									<div class="slds-m-vertical_medium">
+										<label class="slds-form-element__label">Provide Dataflow Name:</label>
+										<div class="slds-form-element__control">
+											<apex:inputText styleClass="slds-input" value="{!tsdfName}"/>
+										</div>
+									</div>
+								</div>
+							</apex:outputPanel>
+
+							<apex:outputPanel styleClass="slds-grid" layout="block" rendered="{!tsdfCreateOrReplace = 'replace'}">
+								<div class="slds-col slds-size_1-of-1">
+									<div class="slds-m-vertical_medium">
+										<label class="slds-form-element__label" for="availableDataflowsForTimeshiftingDataflow">Select existing dataflow:</label>
+										<div class="slds-form-element__control">
+											<apex:selectList styleClass="slds-select" multiselect="false" size="1" value="{!selectedDataflowForTimeshiftingDataflow}" id="availableDataflowsForTimeshiftingDataflow">
+												<apex:selectOptions value="{!dataflowsForTimeshiftingDataflow}"/>
+											</apex:selectList>
+										</div>
+									</div>
+								</div>
+							</apex:outputPanel>
+
+							<div class="slds-grid">
+								<div class="slds-col slds-size_1-of-1">
+									<div class="slds-m-vertical_medium">
 										<label class="slds-form-element__label" for="availableAppsForTimeshiftingDataflow">Available Analytics Apps:</label>
 										<div class="slds-form-element__control ">
 											<apex:selectList styleClass="slds-select" multiselect="false" size="1" value="{!selectedAppForTimeshiftingDataflow}" id="availableAppsForTimeshiftingDataflow">
 												<apex:selectOptions value="{!appsForTimeshiftingDataflow}"/>
-												<apex:actionSupport action="{!appsForTimeshiftingDataflowChanged}" event="onchange" reRender="frmTsDataflowSelector" />
+												<apex:actionSupport action="{!appsForTimeshiftingDataflowChanged}" status="tsdfStatus" event="onchange" reRender="frmTsDataflowSelector" />
 											</apex:selectList>
 										</div>
 									</div>
-								</div>								
+								</div>
 							</div>
 
 							<div class="slds-grid">
@@ -741,18 +785,7 @@
 										</apex:repeat>
 									</apex:outputPanel>	
 								</div>
-							</div>
-
-							<div class="slds-grid">
-								<div class="slds-col slds-size_1-of-1">
-									<div class="slds-m-vertical_medium">
-										<label class="slds-form-element__label">Provide Dataflow Name:</label>
-										<div class="slds-form-element__control">
-											<apex:inputText styleClass="slds-input" value="{!tsdfName}"/>
-										</div>
-									</div>
-								</div>
-							</div>
+							</div>							
 
 							<div class="slds-grid">
 								<div class="slds-col slds-size_1-of-1">

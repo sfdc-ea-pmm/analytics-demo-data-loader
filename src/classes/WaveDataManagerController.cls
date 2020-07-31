@@ -118,6 +118,8 @@ public with sharing class WaveDataManagerController {
 	public List<DatasetItemResponse> selectedDatasetsForTimeshiftingDataflow { get; set; }
 	public String tsdfJSON { get; set; }
 	public String tsdfName { get; set; }
+	public String tsdfCreateOrReplace { get; set; }
+	public String selectedDataflowForTimeshiftingDataflow { get; set; }
 
 	// Secuence control
 	public String installationStep { get; set; }
@@ -2858,9 +2860,11 @@ public with sharing class WaveDataManagerController {
 			this.setTemplateServiceCookie();
 		}
 		headersMap.put('Cookie', this.cookieString);
+
+		System.debug(jsonBody);
 		
 		HTTPResponse res = WaveConfiguratorUtils.httpCallout(
-			this.tsdfUrl + '/api/dataflow',
+			this.tsdfUrl + '/api/org/dataflow',
 			'POST',
 			jsonBody,
 			'application/json',
@@ -2868,5 +2872,21 @@ public with sharing class WaveDataManagerController {
 		);
 
 		this.tsdfJSON = res.getBody();
+	}
+
+	public List<SelectOption> getTsdfCreateOrReplaceOptions() {
+        
+        List<SelectOption> options = new List<SelectOption>();
+		
+		options.add(new SelectOption('create', 'Create a new Dataflow'));
+		options.add(new SelectOption('replace', 'Overwrite an existing Dataflow'));
+		
+		return options;
+	}
+
+	public List<SelectOption> getDataflowsForTimeshiftingDataflow(){
+		List<SelectOption> options = this.getOrgDataflows();
+		options.remove(0);
+		return options;
 	}
 }
