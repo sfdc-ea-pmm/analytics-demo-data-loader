@@ -760,7 +760,7 @@
 							<apex:outputPanel styleClass="slds-grid" layout="block" rendered="{!tsdfCreateOrReplace = 'replace'}">
 								<div class="slds-col slds-size_1-of-1">
 									<div class="slds-m-vertical_medium">
-										<label class="slds-form-element__label" for="availableDataflowsForTimeshiftingDataflow">Select existing dataflow:</label>
+										<label class="slds-form-element__label" for="availableDataflowsForTimeshiftingDataflow">Select existing dataflow (WARNING: This will overwrite the dataflow):</label>
 										<div class="slds-form-element__control">
 											<apex:selectList styleClass="slds-select" multiselect="false" size="1" value="{!selectedDataflowForTimeshiftingDataflow}" id="availableDataflowsForTimeshiftingDataflow">
 												<apex:selectOptions value="{!dataflowsForTimeshiftingDataflow}"/>
@@ -886,7 +886,6 @@
 				<div class="slds-backdrop" id="backdrop"></div>
 			</div>
 		</apex:form>
-		
 
 		<script type="text/javascript">
 			
