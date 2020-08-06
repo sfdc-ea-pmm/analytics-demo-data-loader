@@ -831,19 +831,6 @@
 								</div>
 							</div>
 
-							<div class="slds-grid">
-								<div class="slds-col slds-size_1-of-1">
-									<div class="slds-m-vertical_medium">
-										<apex:outputPanel id="generatedDataflowPanel">
-											<label class="slds-form-element__label">Generated Dataflow JSON:</label>
-											<div class="slds-form-element__control">
-												<apex:inputTextarea styleClass="slds-input" value="{!tsdfJSON}" id="generatedDataflowJSON" />
-											</div>
-										</apex:outputPanel>
-									</div>
-								</div>
-							</div>
-
 							<!--<div class="slds-grid slds-m-vertical_medium">
 								<div class="slds-col slds-size_1-of-1">									
 									<apex:commandLink value="{!IF(advancedTemplateDeploy, 'Hide Advanced Process Options', 'Show Advanced Process Options')}" action="{!handleAdvancedTemplateDeploy}" reRender="frmTemplateDeploy,advancedDeployLink" id="advancedDeployLink" />
