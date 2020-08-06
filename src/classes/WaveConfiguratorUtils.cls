@@ -401,5 +401,14 @@ public with sharing class WaveConfiguratorUtils {
 		}
 
 		return mapping;
-    }
+	}
+	
+	public static String generateApiName(String label){
+		String nameToSuggest = label.trim();
+		while (nameToSuggest.substring(0 ,1).isNumeric()) {
+			nameToSuggest = nameToSuggest.substring(1);
+		}
+		
+		return nameToSuggest.replaceAll('[^a-zA-Z0-9]', '_');
+	}
 }

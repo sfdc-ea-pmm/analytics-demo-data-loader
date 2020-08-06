@@ -117,6 +117,7 @@ public with sharing class WaveDataManagerController {
 	public String selectedAppForTimeshiftingDataflow { get; set; }
 	public List<DatasetItemResponse> selectedDatasetsForTimeshiftingDataflow { get; set; }
 	public String tsdfJSON { get; set; }
+	public String tsdfLabel { get; set; }
 	public String tsdfName { get; set; }
 	public String tsdfCreateOrReplace { get; set; }
 	public String selectedDataflowForTimeshiftingDataflow { get; set; }
@@ -2194,14 +2195,8 @@ public with sharing class WaveDataManagerController {
 	}
 
 	public void suggestAnalyticsAppName(){
-		if (String.isBlank(this.createCompleteAppName) && String.isNotBlank(this.createCompleteAppLabel)) {
-			
-			String nameToSuggest = this.createCompleteAppLabel.trim();
-			while (nameToSuggest.substring(0 ,1).isNumeric()) {
-				nameToSuggest = nameToSuggest.substring(1);
-			}
-			
-			this.createCompleteAppName = nameToSuggest.replaceAll('[^a-zA-Z0-9]', '_');
+		if (String.isBlank(this.createCompleteAppName) && String.isNotBlank(this.createCompleteAppLabel)) {			
+			this.createCompleteAppName = WaveConfiguratorUtils.generateApiName(this.createCompleteAppLabel);
 			this.checkCreateCompleteAppExistence();
 		}
 	}
@@ -2766,6 +2761,12 @@ public with sharing class WaveDataManagerController {
 
 	// **************************** TIMESHIFTING DATAFLOW TOOL ******************************
 
+	public class TimeshiftingDataflowResponse {
+		String id { get; set; }
+		Boolean success { get; set; }
+		List<String> errors { get; set; }
+	}
+
 	public class FolderDatasetResponse {
 		String id { get; set; }
 		String label { get; set; }
@@ -2844,34 +2845,139 @@ public with sharing class WaveDataManagerController {
 
 	public void executeTsDataflowGeneration(){
 		
-		List<String> datasetsJsonToSend = new List<String>();
-		String jsonBody = '{"dataflow_name": "' + this.tsdfName + '", "dataset_array" : [';
+		if (this.tsdfCreateOrReplace == 'create') {
+			// Create
+			this.createNewTsDataflow();
+		}
+		else if(this.tsdfCreateOrReplace == 'replace'){
+			// Replace
+			this.replaceTsDataflow();
+		}
+		else {
+			this.tsdfWarningMessage = 'Please select between Create a new Dataflow or Overwrite an existing Dataflow options.';
+		}
+	}
+
+	private void createNewTsDataflow(){
+		List<String> validations = new List<String>();
+
+		if (String.isBlank(this.tsdfName)) {
+			validations.add('Please enter the dataflow name.');
+		}
+
+		if (AnalyticsDemoDataflowHelper.dataflowExistsByApiName(this.tsdfName)) {
+			validations.add('Please select another dataflow name. The one that you entered is already in use.');
+		}
+
+		if (this.selectedDatasetsForTimeshiftingDataflow.size() == 0) {
+			validations.add('Please select any dataset to include in the dataflow.');
+		}
+
+		if(validations.size() > 0){
+			this.tsdfWarningMessage = String.join(validations, '\n');
+		}
+		else {
+			try {
+				List<String> datasetsJsonToSend = new List<String>();
+				String jsonBody = '{"dataflow_name": "' + this.tsdfName + '", "dataset_array" : [';
+				
+				for (DatasetItemResponse variable : this.selectedDatasetsForTimeshiftingDataflow) {
+					if (variable.selected) {				
+						datasetsJsonToSend.add('{"id": "' + variable.id + '"}');
+					}
+				}
 		
-		for (DatasetItemResponse variable : this.selectedDatasetsForTimeshiftingDataflow) {
-			if (variable.selected) {				
-				datasetsJsonToSend.add('{"id": "' + variable.id + '"}');
+				jsonBody += String.join(datasetsJsonToSend, ',') + ']}';
+		
+				Map<String, String> headersMap = new Map<String, String>();
+				if (String.isBlank(this.cookieString)) {
+					this.setTemplateServiceCookie();
+				}
+				headersMap.put('Cookie', this.cookieString);
+				
+				HTTPResponse res = WaveConfiguratorUtils.httpCallout(
+					this.tsdfUrl + '/api/org/dataflow',
+					'POST',
+					jsonBody,
+					'application/json',
+					headersMap
+				);
+		
+				TimeshiftingDataflowResponse tsdfr = (TimeshiftingDataflowResponse) JSON.deserialize(res.getBody(), TimeshiftingDataflowResponse.class);	
+				if (tsdfr.success) {
+					this.tsdfSuccessMessage = 'The Timeshifting Dataflow was generated successfully.';
+				}
+				else {
+					this.tsdfWarningMessage = 'The Timeshifting Dataflow couldn\'t be generated: ' + String.join(tsdfr.errors, '\n');
+				}
+			} 
+			catch (Exception ex) {
+				System.debug(ex.getMessage());
+				System.debug(ex.getStackTraceString());
+				this.tsdfErrorMessage = ex.getMessage();
 			}
 		}
+	}
 
-		jsonBody += String.join(datasetsJsonToSend, ',') + ']}';
-
-		Map<String, String> headersMap = new Map<String, String>();
-		if (String.isBlank(this.cookieString)) {
-			this.setTemplateServiceCookie();
-		}
-		headersMap.put('Cookie', this.cookieString);
-
-		System.debug(jsonBody);
+	private void replaceTsDataflow(){
 		
-		HTTPResponse res = WaveConfiguratorUtils.httpCallout(
-			this.tsdfUrl + '/api/org/dataflow',
-			'POST',
-			jsonBody,
-			'application/json',
-			headersMap
-		);
+		List<String> validations = new List<String>();
 
-		this.tsdfJSON = res.getBody();
+		if (String.isBlank(this.selectedDataflowForTimeshiftingDataflow)) {
+			validations.add('Please select the dataflow to overwrite.');
+		}
+
+		if (this.selectedDatasetsForTimeshiftingDataflow.size() == 0) {
+			validations.add('Please select any dataset to include in the dataflow.');
+		}
+
+		if(validations.size() > 0){
+			this.tsdfWarningMessage = String.join(validations, '\n');
+		}
+		else {
+			try {
+				List<String> datasetsJsonToSend = new List<String>();
+				String jsonBody = '{"dataflow_id": "' + this.selectedDataflowForTimeshiftingDataflow + '", "dataset_array" : [';
+				
+				for (DatasetItemResponse variable : this.selectedDatasetsForTimeshiftingDataflow) {
+					if (variable.selected) {				
+						datasetsJsonToSend.add('{"id": "' + variable.id + '"}');
+					}
+				}
+
+				jsonBody += String.join(datasetsJsonToSend, ',') + ']}';
+
+				Map<String, String> headersMap = new Map<String, String>();
+				if (String.isBlank(this.cookieString)) {
+					this.setTemplateServiceCookie();
+				}
+				headersMap.put('Cookie', this.cookieString);
+				
+				HTTPResponse res = WaveConfiguratorUtils.httpCallout(
+					this.tsdfUrl + '/api/org/dataflow/overwrite',
+					'POST',
+					jsonBody,
+					'application/json',
+					headersMap
+				);
+
+				//System.debug(jsonBody);
+				//System.debug(res.getBody());
+
+				TimeshiftingDataflowResponse tsdfr = (TimeshiftingDataflowResponse) JSON.deserialize(res.getBody(), TimeshiftingDataflowResponse.class);	
+				if (tsdfr.success) {
+					this.tsdfSuccessMessage = 'The Timeshifting Dataflow was modified successfully.';
+				}
+				else {
+					this.tsdfWarningMessage = 'The Timeshifting Dataflow couldn\'t be modified: ' + String.join(tsdfr.errors, '\n');
+				}
+			} 
+			catch (Exception ex) {
+				System.debug(ex.getMessage());
+				System.debug(ex.getStackTraceString());
+				this.tsdfErrorMessage = ex.getMessage();
+			}
+		}		
 	}
 
 	public List<SelectOption> getTsdfCreateOrReplaceOptions() {
@@ -2889,4 +2995,16 @@ public with sharing class WaveDataManagerController {
 		options.remove(0);
 		return options;
 	}
+
+	public void suggestTsDataflowName(){
+		if (String.isBlank(this.tsdfName) && String.isNotBlank(this.tsdfLabel)) {			
+			this.tsdfName = WaveConfiguratorUtils.generateApiName(this.tsdfLabel);
+		}
+	}
+
+	// TO-DoS:
+	// 1) 
+	// 2) Generate api name
+	// 3) Confirmation on overwrite
+	// 4) Develop for async
 }

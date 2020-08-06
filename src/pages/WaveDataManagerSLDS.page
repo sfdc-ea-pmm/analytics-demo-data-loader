@@ -732,14 +732,29 @@
 							</apex:actionStatus>
 
 							<apex:outputPanel styleClass="slds-grid" layout="block" rendered="{!tsdfCreateOrReplace = 'create'}">
+								
 								<div class="slds-col slds-size_1-of-1">
 									<div class="slds-m-vertical_medium">
-										<label class="slds-form-element__label">Provide Dataflow Name:</label>
+										<label class="slds-form-element__label" for="tsdfLabel">Enter Dataflow Label:</label>
 										<div class="slds-form-element__control">
-											<apex:inputText styleClass="slds-input" value="{!tsdfName}"/>
+											<apex:inputText styleClass="slds-input" id="tsdfLabel" value="{!tsdfLabel}">
+												<apex:actionSupport event="onchange" rerender="tsdfName,frmTsDataflowSelector" action="{!suggestTsDataflowName}" />
+											</apex:inputText>
+										</div>
+									</div>
+
+									<div class="slds-m-vertical_medium">
+										<label class="slds-form-element__label" for="tsdfName">Enter Dataflow Name:</label>
+										<div class="slds-form-element__control">
+											<apex:inputText styleClass="slds-input" value="{!tsdfName}" id="tsdfName" />
 										</div>
 									</div>
 								</div>
+
+								<div class="slds-col slds-size_1-of-1">
+									
+								</div>
+
 							</apex:outputPanel>
 
 							<apex:outputPanel styleClass="slds-grid" layout="block" rendered="{!tsdfCreateOrReplace = 'replace'}">

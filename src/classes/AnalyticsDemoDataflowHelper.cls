@@ -218,4 +218,9 @@ public with sharing class AnalyticsDemoDataflowHelper {
         req.setBody(jsonToPost);
         HTTPResponse res = http.send(req);
     }
+
+    public static Boolean dataflowExistsByApiName(String dataflowName){
+        List<Dataflow> dfL = [SELECT Id FROM Dataflow WHERE DeveloperName = :dataflowName];
+        return dfL.size() > 0;
+    }
 }
