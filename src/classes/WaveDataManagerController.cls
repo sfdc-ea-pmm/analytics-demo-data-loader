@@ -718,6 +718,10 @@ public with sharing class WaveDataManagerController {
 		this.dplErrorMessage = '';
 		this.dplSuccessMessage = '';
 		this.dplWarningMessage = '';
+
+		this.tsdfErrorMessage = '';
+		this.tsdfSuccessMessage = '';
+		this.tsdfWarningMessage = '';
 	}
 
 	public List<WaveApplicationObject> getObjectsToProcess(WaveMetadataApplicationObject wmaObj){
@@ -2601,8 +2605,6 @@ public with sharing class WaveDataManagerController {
 				temp.templates = new List<String>(); 
 				temp.templates.addAll(this.selectedTemplates);
 				String jsonBody = JSON.serialize(temp);
-
-				System.debug(jsonBody);
 				
 				Map<String, String> headersMap = new Map<String, String>();
 				if (String.isBlank(this.cookieString)) {
@@ -2642,7 +2644,6 @@ public with sharing class WaveDataManagerController {
 			System.debug(e.getStackTraceString());
 			this.dplErrorMessage = e.getMessage();
 			this.disabledButton = false;
-			this.rollbackProcess(e.getMessage(), e.getStackTraceString());
 		}
 	}
 
@@ -2761,10 +2762,40 @@ public with sharing class WaveDataManagerController {
 
 	// **************************** TIMESHIFTING DATAFLOW TOOL ******************************
 
-	public class TimeshiftingDataflowResponse {
-		String id { get; set; }
+	public class TimeShiftingDataflowParameters {
+		String id { get; set; } // Id of the dataflow for an overwrite operation
+		String name { get; set; } // API name for dataflow in create operation
+		String label { get; set; } // Label for dataflow in create operation
+		String operation { get; set; } // create | overwrite
+	}
+
+	public class TimeShiftingDataflowDataset {
+		String id { get; set; } // Dataset ID
+	}
+
+	public class TimeShiftingDataflowRequest {
+		TimeShiftingDataflowParameters dataflow_parameters { get;set; }
+		List<TimeShiftingDataflowDataset> dataset_array { get;set; }
+	}
+
+	public class ApiJobResponseResult {
+		String id { get; set; } // Dataflow ID
 		Boolean success { get; set; }
 		List<String> errors { get; set; }
+	}
+
+	public class ApiJobStartResponse {
+		String job_id { get; set; }
+		String run_at { get; set; }
+	}
+
+	public class ApiJobResponse {
+		String name { get; set; } // Name of the job
+		String org { get; set; } // ORG Instance URL
+		String run_at { get; set; } // Job Started Timestamp, for example: 2020-08-10T18:34:50.312Z
+		String done_at { get; set; } // Job Finished Timestamp, for example: 2020-08-10T18:34:55.023Z
+		Boolean success { get; set; }
+		ApiJobResponseResult result { get; set; }
 	}
 
 	public class FolderDatasetResponse {
@@ -2860,6 +2891,8 @@ public with sharing class WaveDataManagerController {
 
 	private void createNewTsDataflow(){
 		List<String> validations = new List<String>();
+		this.processingTimeshiftingDataflow = false;
+		this.resetMessages();
 
 		if (String.isBlank(this.tsdfName)) {
 			validations.add('Please enter the dataflow name.');
@@ -2878,16 +2911,29 @@ public with sharing class WaveDataManagerController {
 		}
 		else {
 			try {
-				List<String> datasetsJsonToSend = new List<String>();
-				String jsonBody = '{"dataflow_name": "' + this.tsdfName + '", "dataset_array" : [';
+
+				TimeShiftingDataflowParameters tsdfParams = new TimeShiftingDataflowParameters();
+				tsdfParams.name = this.tsdfName;
+				tsdfParams.label = String.isNotBlank(this.tsdfLabel) ? this.tsdfLabel : this.tsdfName;
+				tsdfParams.operation = 'create';
+
+				List<TimeShiftingDataflowDataset> datasetsJsonToSend = new List<TimeShiftingDataflowDataset>();
+				
 				
 				for (DatasetItemResponse variable : this.selectedDatasetsForTimeshiftingDataflow) {
-					if (variable.selected) {				
-						datasetsJsonToSend.add('{"id": "' + variable.id + '"}');
+					if (variable.selected) {
+						TimeShiftingDataflowDataset tsdd = new TimeShiftingDataflowDataset();
+						tsdd.id = variable.id;
+						datasetsJsonToSend.add(tsdd);
 					}
 				}
-		
-				jsonBody += String.join(datasetsJsonToSend, ',') + ']}';
+
+				TimeShiftingDataflowRequest tsdfRequest = new TimeShiftingDataflowRequest();
+				tsdfRequest.dataflow_parameters = tsdfParams;
+				tsdfRequest.dataset_array = datasetsJsonToSend;
+
+				String jsonBody = JSON.serialize(tsdfRequest, true);
+				//System.debug(jsonBody);
 		
 				Map<String, String> headersMap = new Map<String, String>();
 				if (String.isBlank(this.cookieString)) {
@@ -2903,23 +2949,28 @@ public with sharing class WaveDataManagerController {
 					headersMap
 				);
 		
-				TimeshiftingDataflowResponse tsdfr = (TimeshiftingDataflowResponse) JSON.deserialize(res.getBody(), TimeshiftingDataflowResponse.class);	
-				if (tsdfr.success) {
-					this.tsdfSuccessMessage = 'The Timeshifting Dataflow was generated successfully.';
+				ApiJobStartResponse jobInfo = (ApiJobStartResponse) JSON.deserialize(res.getBody(), ApiJobStartResponse.class);	
+				if (jobInfo != null) {
+					if (String.isNotBlank(jobInfo.job_id)) {
+						this.processingTimeshiftingDataflow = true;
+						this.tsdfJobId = jobInfo.job_id;
+						this.disabledButton = true;
+					}
 				}
-				else {
-					this.tsdfWarningMessage = 'The Timeshifting Dataflow couldn\'t be generated: ' + String.join(tsdfr.errors, '\n');
-				}
-			} 
+			}
 			catch (Exception ex) {
 				System.debug(ex.getMessage());
 				System.debug(ex.getStackTraceString());
 				this.tsdfErrorMessage = ex.getMessage();
+				this.disabledButton = false;
 			}
 		}
 	}
 
 	private void replaceTsDataflow(){
+
+		this.processingTimeshiftingDataflow = false;
+		this.resetMessages();
 		
 		List<String> validations = new List<String>();
 
@@ -2936,16 +2987,26 @@ public with sharing class WaveDataManagerController {
 		}
 		else {
 			try {
-				List<String> datasetsJsonToSend = new List<String>();
-				String jsonBody = '{"dataflow_id": "' + this.selectedDataflowForTimeshiftingDataflow + '", "dataset_array" : [';
-				
+				TimeShiftingDataflowParameters tsdfParams = new TimeShiftingDataflowParameters();
+				tsdfParams.id = this.selectedDataflowForTimeshiftingDataflow;
+				tsdfParams.operation = 'overwrite';
+
+				List<TimeShiftingDataflowDataset> datasetsJsonToSend = new List<TimeShiftingDataflowDataset>();
+								
 				for (DatasetItemResponse variable : this.selectedDatasetsForTimeshiftingDataflow) {
-					if (variable.selected) {				
-						datasetsJsonToSend.add('{"id": "' + variable.id + '"}');
+					if (variable.selected) {
+						TimeShiftingDataflowDataset tsdd = new TimeShiftingDataflowDataset();
+						tsdd.id = variable.id;
+						datasetsJsonToSend.add(tsdd);
 					}
 				}
 
-				jsonBody += String.join(datasetsJsonToSend, ',') + ']}';
+				TimeShiftingDataflowRequest tsdfRequest = new TimeShiftingDataflowRequest();
+				tsdfRequest.dataflow_parameters = tsdfParams;
+				tsdfRequest.dataset_array = datasetsJsonToSend;
+
+				String jsonBody = JSON.serialize(tsdfRequest, true);
+				//System.debug(jsonBody);
 
 				Map<String, String> headersMap = new Map<String, String>();
 				if (String.isBlank(this.cookieString)) {
@@ -2954,28 +3015,29 @@ public with sharing class WaveDataManagerController {
 				headersMap.put('Cookie', this.cookieString);
 				
 				HTTPResponse res = WaveConfiguratorUtils.httpCallout(
-					this.tsdfUrl + '/api/org/dataflow/overwrite',
+					this.tsdfUrl + '/api/org/dataflow',
 					'POST',
 					jsonBody,
 					'application/json',
 					headersMap
 				);
 
-				//System.debug(jsonBody);
 				//System.debug(res.getBody());
 
-				TimeshiftingDataflowResponse tsdfr = (TimeshiftingDataflowResponse) JSON.deserialize(res.getBody(), TimeshiftingDataflowResponse.class);	
-				if (tsdfr.success) {
-					this.tsdfSuccessMessage = 'The Timeshifting Dataflow was modified successfully.';
-				}
-				else {
-					this.tsdfWarningMessage = 'The Timeshifting Dataflow couldn\'t be modified: ' + String.join(tsdfr.errors, '\n');
+				ApiJobStartResponse jobInfo = (ApiJobStartResponse) JSON.deserialize(res.getBody(), ApiJobStartResponse.class);	
+				if (jobInfo != null) {
+					if (String.isNotBlank(jobInfo.job_id)) {
+						this.processingTimeshiftingDataflow = true;
+						this.tsdfJobId = jobInfo.job_id;
+						this.disabledButton = true;
+					}
 				}
 			} 
 			catch (Exception ex) {
 				System.debug(ex.getMessage());
 				System.debug(ex.getStackTraceString());
 				this.tsdfErrorMessage = ex.getMessage();
+				this.disabledButton = false;
 			}
 		}		
 	}
@@ -3002,9 +3064,72 @@ public with sharing class WaveDataManagerController {
 		}
 	}
 
+	public void checkTimeshiftingDataflowStatus(){
+		try {
+			if (String.isNotBlank(this.tsdfJobId)) {
+				Map<String, String> headersMap = new Map<String, String>();
+				if (String.isBlank(this.cookieString)) {
+					this.setTemplateServiceCookie();
+				}
+				headersMap.put('Cookie', this.cookieString);
+				HTTPResponse res = WaveConfiguratorUtils.httpCallout(
+					this.tplDeployUrl + '/api/jobs/' + this.tsdfJobId,
+					'GET',
+					'',
+					'application/json',
+					headersMap
+				);
+
+				//System.debug(res.getBody());
+
+				ApiJobResponse jobResult = (ApiJobResponse)JSON.deserialize(res.getBody(), ApiJobResponse.class);
+
+				if (jobResult != null) {
+
+					if (String.isNotBlank(jobResult.done_at)) {
+						// Job finished
+						this.processingTimeshiftingDataflow = false;
+						this.disabledButton = false;
+
+						if (jobResult.result.success) {
+							this.tsdfSuccessMessage = 'The Timeshifting Dataflow generation completed successfully.';
+							
+							if (String.isNotBlank(this.emailAddress)) {
+								this.sendTimeshiftingDataflowSuccessEmail(jobResult.result.id);	
+							}
+						}
+						else {
+							String errorMsg = String.join(jobResult.result.errors, '\n');
+							this.tsdfErrorMessage = 'The Timeshifting Dataflow generation failed.';
+						}
+					}
+				}
+			}
+		}
+		catch (Exception ex) {
+			System.debug(ex.getMessage());
+			System.debug(ex.getStackTraceString());
+			this.tsdfErrorMessage = ex.getMessage();
+			this.disabledButton = false;
+		}
+	}
+
+	public void sendTimeshiftingDataflowSuccessEmail(String dataflowId){
+		String username = UserInfo.getUserName();
+		String orgId = UserInfo.getOrganizationId();
+		Dataflow dfInfo = AnalyticsDemoDataflowHelper.dataflowById(dataflowId);
+
+		if (dfInfo != null) {
+			WaveConfiguratorUtils.sendEmail(
+				this.emailAddress, 
+				'Timeshifting Dataflow generation successfully', 
+				'The Timeshifting Dataflow generation process has finished successfully. \n\nUsername: ' + username + '\nOrganization ID: ' + orgId + '\n\nDataflow Label: ' + dfInfo.MasterLabel + '\nDataflow Id: ' + dfInfo.Id);	
+		}
+	}
+
 	// TO-DoS:
-	// 1) Develop for async
-	// 2) Send Email when complete
+	// 1) 
+	// 2) 
 	// 3) 
 	// 4) 
 }

@@ -632,7 +632,7 @@
 								</div>
 							</div>
 
-							<apex:actionPoller action="{!checkTemplateDeploymentStatus}" reRender="frmTemplateDeploy,DeployTemplateButton,formDeployMessages,frmCheckTemplateDeploymentStatus" enabled="{!processingTemplateDeployment}" interval="5" id="checkTemplateDeploymentFunction"/>
+							<apex:actionPoller action="{!checkTemplateDeploymentStatus}" reRender="frmTemplateDeploy,DeployTemplateButton,formDeployMessages" enabled="{!processingTemplateDeployment}" interval="5" id="checkTemplateDeploymentFunction"/>
 						
 						</apex:form> <!-- frmTemplateDeploy -->	
 
@@ -692,7 +692,7 @@
 								        	<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#info')}"></use>
 								        </svg>
 								    </span>
-								    <h2 class="slds-text-heading_small ">Do not close or navigate away from the page. Template deployment results will be informed in a few moments.</h2>
+								    <h2 class="slds-text-heading_small ">Do not close or navigate away from the page. Timeshifting Dataflow results will be informed in a few moments.</h2>
 								</div>
 							</apex:outputPanel>
 
@@ -847,7 +847,7 @@
 								</div>
 							</div>-->
 
-							<!--<apex:actionPoller action="{!checkTemplateDeploymentStatus}" reRender="frmTemplateDeploy,DeployTemplateButton,formTimeshiftingDataflowMessages,frmCheckTemplateDeploymentStatus" enabled="{!processingTemplateDeployment}" interval="5" id="checkTemplateDeploymentFunction"/>-->
+							<apex:actionPoller action="{!checkTimeshiftingDataflowStatus}" reRender="frmTsDataflowSelector,TsDataflowButton,formTimeshiftingDataflowMessages" enabled="{!processingTimeshiftingDataflow}" interval="5" id="checkTimeshiftingDataflowFunction"/>
 
 						</apex:form> <!-- frmTsDataflowSelector -->	
 
