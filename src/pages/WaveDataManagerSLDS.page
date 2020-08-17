@@ -656,7 +656,7 @@
 								        	<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#error')}"></use>
 								        </svg>
 								    </span>
-								    <h2 class="slds-text-heading_small ">{!tsdfErrorMessage}</h2>
+								    <h2 class="slds-text-heading_small"><apex:outputText escape="false" value="{!SUBSTITUTE(JSENCODE(tsdfErrorMessage), '\\n', '<br/>')}"></apex:outputText></h2>
 								</div>
 							</apex:outputPanel>
 
@@ -680,7 +680,7 @@
 								        	<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#warning')}"></use>
 								        </svg>
 								    </span>
-								    <h2 class="slds-text-heading_small ">{!tsdfwarningMessage}</h2>
+								    <h2 class="slds-text-heading_small"><apex:outputText escape="false" value="{!SUBSTITUTE(JSENCODE(tsdfwarningMessage), '\\n', '<br/>')}"></apex:outputText></h2>
 								</div>
 							</apex:outputPanel>
 
@@ -830,22 +830,6 @@
 
 								</div>
 							</div>
-
-							<!--<div class="slds-grid slds-m-vertical_medium">
-								<div class="slds-col slds-size_1-of-1">									
-									<apex:commandLink value="{!IF(advancedTemplateDeploy, 'Hide Advanced Process Options', 'Show Advanced Process Options')}" action="{!handleAdvancedTemplateDeploy}" reRender="frmTemplateDeploy,advancedDeployLink" id="advancedDeployLink" />
-									<apex:outputPanel id="tplDeployValue" rendered="{!advancedTemplateDeploy}">
-										<div class="slds-m-top_small">
-											<label class="slds-form-element__label" for="tplDeployUrlInput">Base Endpoint URL for deployment services:</label>
-											<div class="slds-form-element__control">
-												<apex:inputText styleClass="slds-input" value="{!tplDeployUrl}" id="tplDeployUrlInput">
-													<apex:actionSupport action="{!tplDeployUrlChanged}" event="onchange" reRender="formTimeshiftingDataflowMessages,frmTemplateDeploy" />
-												</apex:inputText>
-											</div>
-										</div>
-									</apex:outputPanel>
-								</div>
-							</div>-->
 
 							<apex:actionPoller action="{!checkTimeshiftingDataflowStatus}" reRender="frmTsDataflowSelector,TsDataflowButton,formTimeshiftingDataflowMessages" enabled="{!processingTimeshiftingDataflow}" interval="5" id="checkTimeshiftingDataflowFunction"/>
 

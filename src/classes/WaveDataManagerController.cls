@@ -116,6 +116,7 @@ public with sharing class WaveDataManagerController {
 	public Map<String, FolderDatasetResponse> mapOfDatasetsByFolder { get; set; }
 	public String selectedAppForTimeshiftingDataflow { get; set; }
 	public List<DatasetItemResponse> selectedDatasetsForTimeshiftingDataflow { get; set; }
+	public Map<String, DatasetItemResponse> mapOfDatasetsForTimeshiftingDataflow { get; set; }
 	public String tsdfJSON { get; set; }
 	public String tsdfLabel { get; set; }
 	public String tsdfName { get; set; }
@@ -173,6 +174,7 @@ public with sharing class WaveDataManagerController {
 
 		this.retrievedTsDatasets = false;
 		this.selectedDatasetsForTimeshiftingDataflow = new List<DatasetItemResponse>();
+		this.mapOfDatasetsForTimeshiftingDataflow = new Map<String, DatasetItemResponse>();
 	}
 
 	public PageReference pageLoad()
@@ -397,7 +399,7 @@ public with sharing class WaveDataManagerController {
         List<SelectOption> options = new List<SelectOption>();
 		options.add(new SelectOption('', 'None')); // Empty item
 
-        List<Dataflow> lstDataflows = [SELECT Id, MasterLabel FROM Dataflow WHERE DataflowType = 'User' AND State = 'Active'];
+        List<Dataflow> lstDataflows = [SELECT Id, MasterLabel FROM Dataflow WHERE DataflowType = 'User' AND State = 'Active' ORDER BY MasterLabel];
 		for(Dataflow dataflowItem: lstDataflows) {
 			options.add(new SelectOption(dataflowItem.Id, dataflowItem.MasterLabel));
 		}
@@ -2779,14 +2781,22 @@ public with sharing class WaveDataManagerController {
 	}
 
 	public class ApiJobResponseResult {
-		String id { get; set; } // Dataflow ID
 		Boolean success { get; set; }
-		List<String> errors { get; set; }
+		String dataflow_id { get; set; } // Dataflow ID
+		String dataflow_version_id { get; set; } // Dataflow Version ID
+		List<ApiJobResultDataset> branches { get; set; } // Datasets that succeeded and were added to dataflow
+		List<ApiJobResultDataset> errors { get; set; } // Datasets that weren't added to dataflow
+		String message { get; set; } // Error message when success = false
 	}
 
 	public class ApiJobStartResponse {
 		String job_id { get; set; }
 		String run_at { get; set; }
+	}
+
+	public class ApiJobResultDataset {
+		String dataset_id { get; set; }
+		String error { get; set; }
 	}
 
 	public class ApiJobResponse {
@@ -2834,7 +2844,7 @@ public with sharing class WaveDataManagerController {
 			List<EdgeMart> lstDatasets = [
 				SELECT DeveloperName, FolderId, Id, MasterLabel, Folder.Name 
 				FROM EdgeMart
-				ORDER BY MasterLabel
+				ORDER BY Folder.Name, MasterLabel
 			];
 
 			for (EdgeMart e : lstDatasets) {
@@ -2855,6 +2865,8 @@ public with sharing class WaveDataManagerController {
 
 				FolderDatasetResponse fdrAux = this.mapOfDatasetsByFolder.get(e.FolderId);
 				fdrAux.datasets.add(d);
+
+				this.mapOfDatasetsForTimeshiftingDataflow.put(e.Id, d);
 			}
 
 			this.retrievedTsDatasets = true;
@@ -3080,7 +3092,7 @@ public with sharing class WaveDataManagerController {
 					headersMap
 				);
 
-				//System.debug(res.getBody());
+				System.debug(res.getBody());
 
 				ApiJobResponse jobResult = (ApiJobResponse)JSON.deserialize(res.getBody(), ApiJobResponse.class);
 
@@ -3092,15 +3104,28 @@ public with sharing class WaveDataManagerController {
 						this.disabledButton = false;
 
 						if (jobResult.result.success) {
-							this.tsdfSuccessMessage = 'The Timeshifting Dataflow generation completed successfully.';
+							// Search for errors 
+							if (jobResult.result.errors != null && jobResult.result.errors.size() > 0) {
+								this.tsdfWarningMessage = res.getBody();
+								List<String> lstFailedDatasets = new List<String>();
+								for (ApiJobResultDataset dsError : jobResult.result.errors) {
+									String datasetLabel = this.mapOfDatasetsForTimeshiftingDataflow.get(dsError.dataset_id).label;
+									lstFailedDatasets.add(datasetLabel + ' was not included: ' + dsError.error);
+								}
+								
+								String errorMsg = String.join(lstFailedDatasets, '\n');
+								this.tsdfWarningMessage = 'The Timeshifting Dataflow generation completed successfully. However, some datasets could not be included: \n' + errorMsg;
+							}
+							else {
+								this.tsdfSuccessMessage = 'The Timeshifting Dataflow generation completed successfully.';
+							}
 							
 							if (String.isNotBlank(this.emailAddress)) {
-								this.sendTimeshiftingDataflowSuccessEmail(jobResult.result.id);	
+								this.sendTimeshiftingDataflowSuccessEmail(jobResult.result.dataflow_id);	
 							}
 						}
 						else {
-							String errorMsg = String.join(jobResult.result.errors, '\n');
-							this.tsdfErrorMessage = 'The Timeshifting Dataflow generation failed.';
+							this.tsdfErrorMessage = 'The Timeshifting Dataflow generation failed: ' + jobResult.result.message;
 						}
 					}
 				}
@@ -3109,7 +3134,7 @@ public with sharing class WaveDataManagerController {
 		catch (Exception ex) {
 			System.debug(ex.getMessage());
 			System.debug(ex.getStackTraceString());
-			this.tsdfErrorMessage = ex.getMessage();
+			this.tsdfErrorMessage += ex.getMessage();
 			this.disabledButton = false;
 		}
 	}
