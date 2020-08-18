@@ -2527,9 +2527,21 @@ public with sharing class WaveDataManagerController {
 	}
 
 	class TemplateDeploymentResponse {
+		String name { get; set; }
+		String run_at { get; set; }
+		String done_at { get; set; }
+		TemplateDeploymentResponseResult result { get; set; }
+	}
+
+	class TemplateDeploymentResponseResult {
+		String completedDate { get; set; }
 		Boolean done { get; set; }
 		String id { get; set; }
-		String state { get; set; }
+		Integer numberComponentErrors { get; set; }
+		Integer numberComponentsDeployed { get; set; }
+		Integer numberComponentsTotal { get; set; }
+		String status { get; set; }
+		Boolean success { get; set; }
 	}
 
 	private void setTemplateServiceCookie(){
@@ -2613,31 +2625,31 @@ public with sharing class WaveDataManagerController {
 					this.setTemplateServiceCookie();
 				}
 				headersMap.put('Cookie', this.cookieString);
+
+				System.debug('Executing Template Deployment...');
+				System.debug(jsonBody);
                 
                 HTTPResponse res = WaveConfiguratorUtils.httpCallout(
-                    this.tplDeployUrl + '/api/repository/template/' + this.tplDeployRepoBranch,
+                    this.tplDeployUrl + '/api/repository/template/' + this.tplDeployRepoBranch + '/deploy',
                     'POST',
                     jsonBody,
                     'application/json',
                     headersMap
 				);
 
-				TemplateDeploymentResponse dplResult = (TemplateDeploymentResponse)JSON.deserialize(res.getBody(), TemplateDeploymentResponse.class);
+				System.debug(res.getBody());
 
-				if (dplResult != null) {
+				ApiJobStartResponse dplResult = (ApiJobStartResponse)JSON.deserialize(res.getBody(), ApiJobStartResponse.class);
+
+				if (dplResult != null && String.isNotBlank(dplResult.job_id)) {
 					
-					if (String.isNotBlank(dplResult.state)) {
-						if (dplResult.state.equalsIgnoreCase('Completed')) {
-							this.dplSuccessMessage = 'Template deployment completed successfully.';
-							this.disabledButton = false;
-							this.sendTemplateDeploymentSuccessEmail();
-						}
-						else if(String.isNotBlank(dplResult.id)){
-							this.processingTemplateDeployment = true;
-							this.dplJobId = dplResult.id;
-							this.disabledButton = true;
-						}
-					}
+					this.processingTemplateDeployment = true;
+					this.dplJobId = dplResult.job_id;
+					this.disabledButton = true;
+				}
+				else {
+					this.dplErrorMessage = 'The template deployment process could not start.';
+					this.disabledButton = false;
 				}
             }
 		}
@@ -2657,29 +2669,35 @@ public with sharing class WaveDataManagerController {
 			}
 			headersMap.put('Cookie', this.cookieString);
 			HTTPResponse res = WaveConfiguratorUtils.httpCallout(
-				this.tplDeployUrl + '/api/repository/template/deploy/status/' + this.dplJobId,
+				this.tplDeployUrl + '/api/jobs/' + this.dplJobId,
 				'GET',
 				'',
 				'application/json',
 				headersMap
 			);
 
-			TemplateDeploymentResponse dplResult = (TemplateDeploymentResponse)JSON.deserialize(res.getBody(), TemplateDeploymentResponse.class);
+			System.debug(res.getBody());
 
-			if (dplResult != null) {
+			TemplateDeploymentResponse jobResult = (TemplateDeploymentResponse)JSON.deserialize(res.getBody(), TemplateDeploymentResponse.class);
 
-				if (dplResult.done && String.isBlank(dplResult.state)) {
-					this.dplSuccessMessage = 'Template deployment completed successfully.';
+			if (jobResult != null) {
+				if (String.isNotBlank(jobResult.done_at)) {
+					if (jobResult.result.success) {
+						this.dplSuccessMessage = 'Template deployment completed successfully.';
+						this.sendTemplateDeploymentSuccessEmail();
+					} 
+					else {
+						this.dplErrorMessage = 'Template deployment failed. See debug logs for more details. ' + res.getBody();
+					}
+					
 					this.disabledButton = false;
 					this.processingTemplateDeployment = false;
-
-					this.sendTemplateDeploymentSuccessEmail();
 				}
-				else if(String.isNotBlank(dplResult.state) && dplResult.state.containsIgnoreCase('Fail')){
-					this.dplErrorMessage = 'Template deployment failed.';
-					this.disabledButton = false;
-					this.processingTemplateDeployment = false;
-				}
+			}
+			else {
+				this.dplErrorMessage = 'Template deployment failed. Lost connection with the job process at server side.';
+				this.disabledButton = false;
+				this.processingTemplateDeployment = false;
 			}
 		}
 	}
@@ -3018,7 +3036,8 @@ public with sharing class WaveDataManagerController {
 				tsdfRequest.dataset_array = datasetsJsonToSend;
 
 				String jsonBody = JSON.serialize(tsdfRequest, true);
-				//System.debug(jsonBody);
+				System.debug('Overwritting TimeShifting Dataflow...');
+				System.debug(jsonBody);
 
 				Map<String, String> headersMap = new Map<String, String>();
 				if (String.isBlank(this.cookieString)) {
@@ -3034,7 +3053,7 @@ public with sharing class WaveDataManagerController {
 					headersMap
 				);
 
-				//System.debug(res.getBody());
+				System.debug(res.getBody());
 
 				ApiJobStartResponse jobInfo = (ApiJobStartResponse) JSON.deserialize(res.getBody(), ApiJobStartResponse.class);	
 				if (jobInfo != null) {
@@ -3128,6 +3147,12 @@ public with sharing class WaveDataManagerController {
 							this.tsdfErrorMessage = 'The Timeshifting Dataflow generation failed: ' + jobResult.result.message;
 						}
 					}
+				}
+				else {
+					// Job disconnected
+					this.processingTimeshiftingDataflow = false;
+					this.disabledButton = false;
+					this.tsdfErrorMessage = 'The Timeshifting Dataflow generation failed. Lost connection with the job process at server side.';
 				}
 			}
 		}
