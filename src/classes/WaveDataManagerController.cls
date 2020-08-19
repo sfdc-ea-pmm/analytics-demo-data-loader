@@ -2687,7 +2687,7 @@ public with sharing class WaveDataManagerController {
 						this.sendTemplateDeploymentSuccessEmail();
 					} 
 					else {
-						this.dplErrorMessage = 'Template deployment failed. See debug logs for more details. ' + res.getBody();
+						this.dplErrorMessage = 'Template deployment failed. See debug logs for more details.';
 					}
 					
 					this.disabledButton = false;
