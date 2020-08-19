@@ -117,5 +117,9 @@
     <name>ContentAsset</name>
     <members>AnalyticsDemoDataTool_Lightning_Logo</members>
   </types>
+  <types>
+    <members>Analytics_Demo_Data_Tool_Standard</members>
+    <name>PermissionSet</name>
+  </types>
   <version>48.0</version>
 </Package>
