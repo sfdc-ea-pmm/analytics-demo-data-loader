@@ -96,6 +96,7 @@
   </types>
   <types>
     <name>Document</name>
+    <members>App_Logos</members>
     <members>App_Logos/Analytics_Demo_Data_Tool_Logo.png</members>
   </types>
   <types>
