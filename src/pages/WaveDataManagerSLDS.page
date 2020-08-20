@@ -481,12 +481,23 @@
 							<apex:outputPanel rendered="{!dplErrorMessage != ''}">
 								<div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_error" role="alert" style="margin:0;">
 								    <span class="slds-assistive-text">error</span>
-								    <span class="slds-icon_container slds-icon-utility-error slds-m-right_small slds-no-flex slds-align-top">
-								    	<svg class="slds-icon slds-icon_small" aria-hidden="true">
-								        	<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#error')}"></use>
-								        </svg>
-								    </span>
-								    <h2 class="slds-text-heading_small ">{!dplErrorMessage}</h2>
+								    <table>
+										<tr>
+											<td style="text-align:center">
+												<span class="slds-icon_container slds-icon-utility-error slds-m-right_small slds-no-flex slds-align-top">
+													<svg class="slds-icon slds-icon_small" aria-hidden="true">
+														<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#error')}"></use>
+													</svg>
+												</span>
+												<apex:outputText escape="false" value="{!SUBSTITUTE(JSENCODE(dplErrorMessage), '\\n', '<br/>')}" styleClass="slds-text-heading_small" />
+											</td>
+										</tr>
+										<tr>
+											<td style="text-align:center">
+												<apex:outputLink onclick="showDetailsPanel();" value="#">Click here for more details.</apex:outputLink>	
+											</td>
+										</tr>
+									</table>
 								</div>
 							</apex:outputPanel>
 
@@ -632,7 +643,7 @@
 								</div>
 							</div>
 
-							<apex:actionPoller action="{!checkTemplateDeploymentStatus}" reRender="frmTemplateDeploy,DeployTemplateButton,formDeployMessages" enabled="{!processingTemplateDeployment}" interval="5" id="checkTemplateDeploymentFunction"/>
+							<apex:actionPoller action="{!checkTemplateDeploymentStatus}" reRender="frmTemplateDeploy,DeployTemplateButton,formDeployMessages,modalDetailsBody,modalDetailsHeader" enabled="{!processingTemplateDeployment}" interval="5" id="checkTemplateDeploymentFunction"/>
 						
 						</apex:form> <!-- frmTemplateDeploy -->	
 
@@ -846,11 +857,11 @@
 				<section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-describedby="modal-content-id-1" class="slds-modal" id="modal">
 				    <div class="slds-modal__container">
 				        <header class="slds-modal__header">
-				            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+				            <button onclick="return closeModal()" class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
 				                <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
 				                    <use xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#close')}"></use>
 				                </svg>
-				                <span class="slds-assistive-text" onclick="return closeModal()">Close</span>
+				                <span class="slds-assistive-text">Close</span>
 				            </button>
 				            <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">
 				            	<!--Time Shifting Confirmation-->
@@ -868,6 +879,30 @@
 				    </div>
 				</section>
 				<div class="slds-backdrop" id="backdrop"></div>
+			</div>
+
+			<div data-reactroot="" class="demo-only" style="height: 640px;">
+				<section role="dialog" tabindex="-1" aria-labelledby="modal-details-heading" aria-describedby="modal-details-content" class="slds-modal" id="modalDetails">
+				    <div class="slds-modal__container">
+				        <header class="slds-modal__header">
+				            <button onclick="return closeDetailsPanel()" class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+				                <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+				                    <use xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#close')}"></use>
+				                </svg>
+				                <span class="slds-assistive-text">Close</span>
+				            </button>
+				            <h2 id="modal-details-heading" class="slds-text-heading_medium slds-hyphenate">
+				            	<!--Time Shifting Confirmation-->
+				            	<apex:outputText id="modalDetailsHeader" value="{!modalDetailsMessage.header}" />
+				            </h2>
+				        </header>
+				        <div class="slds-modal__content slds-p-around_medium slds-text-align_center" id="modal-details-content">
+				            <!--<p>All records will be time-shifted. Are you sure you want to continue?</p>-->
+				            <apex:outputText id="modalDetailsBody" value="{!modalDetailsMessage.body}" />
+				        </div>
+				    </div>
+				</section>
+				<div class="slds-backdrop" id="modalDetailsBackdrop"></div>
 			</div>
 		</apex:form>
 
@@ -908,6 +943,18 @@
 				backdrop.classList.remove("slds-backdrop--open");
 
 				return false;
+			}
+
+			function closeDetailsPanel(){
+				document.getElementById('modalDetails').classList.remove('slds-fade-in-open');
+				document.getElementById('modalDetailsBackdrop').classList.remove("slds-backdrop--open");
+
+				return false;
+			}
+
+			function showDetailsPanel(){
+				document.getElementById('modalDetails').classList.add('slds-fade-in-open');
+				document.getElementById('modalDetailsBackdrop').classList.add("slds-backdrop--open");
 			}
 
 			var tabLinks = document.getElementsByClassName('slds-tabs_default__link');

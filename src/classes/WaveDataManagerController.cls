@@ -57,6 +57,7 @@ public with sharing class WaveDataManagerController {
 	public String baseUrl { get; set; } 
 	public Map<String, Boolean> selectedObjectsToTimeShift { get; set; }
 	public CustomModalConfirmation modalMessage { get; set; }
+	public CustomModalConfirmation modalDetailsMessage { get; set; }
 	public Boolean shiftOnlyOfApp { get; set; }
 	public String selectedDataflow { get; set; }
 	public String selectedDataflowForActionFields { get; set; }
@@ -162,6 +163,7 @@ public with sharing class WaveDataManagerController {
 		this.analyticsDemoFAQ = new List<AnalyticsDemoFAQ>();
 		this.selectedObjectsToTimeShift = new Map<String, Boolean>();
 		this.modalMessage = new CustomModalConfirmation();
+		this.modalDetailsMessage = new CustomModalConfirmation();
 		this.retrievedTemplates = false;
 		this.repositoryTemplatesMap = new Map<String, RepositoryTemplate>();
 		this.undraggedTemplates = new List<String>();
@@ -724,6 +726,9 @@ public with sharing class WaveDataManagerController {
 		this.tsdfErrorMessage = '';
 		this.tsdfSuccessMessage = '';
 		this.tsdfWarningMessage = '';
+
+		this.modalDetailsMessage.body = '';
+		this.modalDetailsMessage.header = '';
 	}
 
 	public List<WaveApplicationObject> getObjectsToProcess(WaveMetadataApplicationObject wmaObj){
@@ -2542,6 +2547,20 @@ public with sharing class WaveDataManagerController {
 		Integer numberComponentsTotal { get; set; }
 		String status { get; set; }
 		Boolean success { get; set; }
+		TemplateDeploymentResponseResultDetail details { get;set; }
+	}
+
+	class TemplateDeploymentResponseResultDetail {
+		// List<TemplateDeploymentResponseResultComponent> componentFailures { get;set; } this will be used at the end
+		TemplateDeploymentResponseResultComponent componentFailures { get;set; }
+		List<TemplateDeploymentResponseResultComponent> componentSuccesses { get;set; }
+	}
+
+	class TemplateDeploymentResponseResultComponent {
+		String componentType { get; set; }
+		String problem { get; set; }
+		String fullName { get; set; }
+		String fileName { get; set; }
 	}
 
 	private void setTemplateServiceCookie(){
@@ -2687,7 +2706,43 @@ public with sharing class WaveDataManagerController {
 						this.sendTemplateDeploymentSuccessEmail();
 					} 
 					else {
-						this.dplErrorMessage = 'Template deployment failed. See debug logs for more details.';
+						List<String> lstFailedTemplates = new List<String>();
+
+						/*
+						if (jobResult.result.details != null && jobResult.result.details.componentFailures.size() > 0) {
+							for (TemplateDeploymentResponseResultComponent compFailed : jobResult.result.details.componentFailures) {
+								if (compFailed.componentType.equalsIgnoreCase('WaveTemplateBundle')) {
+									// It's a template
+									String compName = compFailed.fullName;
+									if (this.repositoryTemplatesMap.containsKey(compName)) {
+										// We get the template label
+										String tplLabel = this.repositoryTemplatesMap.get(compName).label;
+										lstFailedTemplates.add(tplLabel);
+									}
+								}
+							}
+						}*/
+
+						if (jobResult.result.details != null && jobResult.result.details.componentFailures != null) {
+							
+							TemplateDeploymentResponseResultComponent compFailed = jobResult.result.details.componentFailures;
+							if (compFailed.componentType.equalsIgnoreCase('WaveTemplateBundle')) {
+								// It's a template
+								String compName = compFailed.fullName;
+								if (this.repositoryTemplatesMap.containsKey(compName)) {
+									// We get the template label
+									String tplLabel = this.repositoryTemplatesMap.get(compName).label;
+									lstFailedTemplates.add(tplLabel);
+								}
+							}
+													
+						}
+						
+						String errorMsg = String.join(lstFailedTemplates, '\n');
+
+						this.dplErrorMessage = 'One or more templates failed to deploy: \n' + errorMsg;
+						this.modalDetailsMessage.body = res.getBody();
+						this.modalDetailsMessage.header = 'Template deployment failed: More information';
 					}
 					
 					this.disabledButton = false;
