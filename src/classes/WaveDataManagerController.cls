@@ -90,7 +90,7 @@ public with sharing class WaveDataManagerController {
 	
 	// *** Template Deploy Tool ***
 	private Boolean retrievedTemplates;
-	private Map<String, RepositoryTemplate> repositoryTemplatesMap;
+	private Map<String, RepositoryTemplateResponse> repositoryTemplatesMap;
 	private List<String> undraggedTemplates;
 	public String[] templatesToDrag { get; set; }
 	public String[] templatesToReturn { get; set; }
@@ -165,7 +165,7 @@ public with sharing class WaveDataManagerController {
 		this.modalMessage = new CustomModalConfirmation();
 		this.modalDetailsMessage = new CustomModalConfirmation();
 		this.retrievedTemplates = false;
-		this.repositoryTemplatesMap = new Map<String, RepositoryTemplate>();
+		this.repositoryTemplatesMap = new Map<String, RepositoryTemplateResponse>();
 		this.undraggedTemplates = new List<String>();
 		this.templatesToDrag = new String[]{};
 		this.templatesToReturn = new String[]{};
@@ -2520,11 +2520,16 @@ public with sharing class WaveDataManagerController {
 
 	// **************************** TEMPLATE DEPLOYMENT TOOL ******************************
 
+	class RepositoryTemplateResponse {
+		RepositoryTemplate template;
+	}
+
 	class RepositoryTemplate {
-		Integer api_version { get; set; }
+		String api_version { get; set; }
 		Boolean deployable { get; set; }
 		String api_name { get; set; }
 		String label { get; set; }
+		String template_key { get; set; }
 	}
 
 	class TemplateList {
@@ -2535,10 +2540,15 @@ public with sharing class WaveDataManagerController {
 		String name { get; set; }
 		String run_at { get; set; }
 		String done_at { get; set; }
-		TemplateDeploymentResponseResult result { get; set; }
+		List<TemplateDeploymentResponseResult> result { get; set; }
 	}
 
 	class TemplateDeploymentResponseResult {
+		String status { get; set; }
+		TemplateDeploymentResponseResultValue value { get; set; }
+	}
+
+	class TemplateDeploymentResponseResultValue {
 		String completedDate { get; set; }
 		Boolean done { get; set; }
 		String id { get; set; }
@@ -2586,38 +2596,51 @@ public with sharing class WaveDataManagerController {
 	}
 
 	public List<SelectOption> getAvailableTemplates() {
-        
+		
+		String msgBody = '';
 		List<SelectOption> options = new List<SelectOption>();
-		
-		if (!this.retrievedTemplates) {
-			Map<String, String> headersMap = new Map<String, String>();
-			if (String.isBlank(this.cookieString)) {
-				this.setTemplateServiceCookie();
-			}
-			headersMap.put('Cookie', this.cookieString);
-			HTTPResponse res = WaveConfiguratorUtils.httpCallout(
-				this.tplDeployUrl + '/api/repository/template/' + this.tplDeployRepoBranch,
-				'GET',
-				'',
-				'application/json',
-				headersMap
-			);
-		
-			List<RepositoryTemplate> repositoryTemplates = (List<RepositoryTemplate>)JSON.deserialize(res.getBody(), List<RepositoryTemplate>.class);
+
+		try {
+			if (!this.retrievedTemplates) {
+				Map<String, String> headersMap = new Map<String, String>();
+				if (String.isBlank(this.cookieString)) {
+					this.setTemplateServiceCookie();
+				}
+
+				headersMap.put('Cookie', this.cookieString);
+				HTTPResponse res = WaveConfiguratorUtils.httpCallout(
+					this.tplDeployUrl + '/api/repository/template/' + this.tplDeployRepoBranch,
+					'GET',
+					'',
+					'application/json',
+					headersMap
+				);
 			
-			for (RepositoryTemplate repoTpl : repositoryTemplates) {
-				this.repositoryTemplatesMap.put(repoTpl.api_name, repoTpl);
-				this.undraggedTemplates.add(repoTpl.api_name);
-			}
+				System.debug(res.getBody());
+				msgBody = res.getBody();
+
+				List<RepositoryTemplateResponse> repositoryTemplates = (List<RepositoryTemplateResponse>)JSON.deserialize(res.getBody(), List<RepositoryTemplateResponse>.class);
+				
+				for (RepositoryTemplateResponse repoTpl : repositoryTemplates) {
+					this.repositoryTemplatesMap.put(repoTpl.template.api_name, repoTpl);
+					this.undraggedTemplates.add(repoTpl.template.api_name);
+				}
+				
+				this.retrievedTemplates = true;
+			} 
 			
-			this.retrievedTemplates = true;
+			for (String t : this.undraggedTemplates) {
+				RepositoryTemplateResponse repoTplHashed = this.repositoryTemplatesMap.get(t);
+				options.add(new SelectOption(repoTplHashed.template.api_name, repoTplHashed.template.label, !repoTplHashed.template.deployable));
+			}
 		} 
-		
-		for (String t : this.undraggedTemplates) {
-			RepositoryTemplate repoTplHashed = this.repositoryTemplatesMap.get(t);
-			options.add(new SelectOption(repoTplHashed.api_name, repoTplHashed.label, !repoTplHashed.deployable));
+		catch (Exception ex) {
+			System.debug(ex.getMessage());
+			this.dplErrorMessage = 'Could not retrieve templates: \n' + ex.getMessage();
+			this.modalDetailsMessage.body = msgBody;
+			this.modalDetailsMessage.header = 'Template retrievement failed: More information';
 		}
-		
+
 		return options;
 	}
 
@@ -2636,7 +2659,12 @@ public with sharing class WaveDataManagerController {
             else {
                 TemplateList temp = new TemplateList();
 				temp.templates = new List<String>(); 
-				temp.templates.addAll(this.selectedTemplates);
+				
+				for (String selTplApiName : this.selectedTemplates) {
+					RepositoryTemplateResponse repoTplHashed = this.repositoryTemplatesMap.get(selTplApiName);
+					temp.templates.add(repoTplHashed.template.template_key);
+				}
+
 				String jsonBody = JSON.serialize(temp);
 				
 				Map<String, String> headersMap = new Map<String, String>();
@@ -2681,6 +2709,7 @@ public with sharing class WaveDataManagerController {
 	}
 
 	public void checkTemplateDeploymentStatus(){
+		
 		if (String.isNotBlank(this.dplJobId)) {
 			Map<String, String> headersMap = new Map<String, String>();
 			if (String.isBlank(this.cookieString)) {
@@ -2701,45 +2730,34 @@ public with sharing class WaveDataManagerController {
 
 			if (jobResult != null) {
 				if (String.isNotBlank(jobResult.done_at)) {
-					if (jobResult.result.success) {
-						this.dplSuccessMessage = 'Template deployment completed successfully.';
-						this.sendTemplateDeploymentSuccessEmail();
-					} 
-					else {
-						List<String> lstFailedTemplates = new List<String>();
+					
+					List<String> lstFailedTemplates = new List<String>();
 
-						/*
-						if (jobResult.result.details != null && jobResult.result.details.componentFailures.size() > 0) {
-							for (TemplateDeploymentResponseResultComponent compFailed : jobResult.result.details.componentFailures) {
+					for (TemplateDeploymentResponseResult result : jobResult.result) {
+						if (!result.value.success) {
+							// This particular deployment failed
+							if (result.value.details != null && result.value.details.componentFailures != null) {
+							
+								TemplateDeploymentResponseResultComponent compFailed = result.value.details.componentFailures;
 								if (compFailed.componentType.equalsIgnoreCase('WaveTemplateBundle')) {
 									// It's a template
 									String compName = compFailed.fullName;
 									if (this.repositoryTemplatesMap.containsKey(compName)) {
 										// We get the template label
-										String tplLabel = this.repositoryTemplatesMap.get(compName).label;
+										String tplLabel = this.repositoryTemplatesMap.get(compName).template.label;
 										lstFailedTemplates.add(tplLabel);
 									}
-								}
+								}				
 							}
-						}*/
-
-						if (jobResult.result.details != null && jobResult.result.details.componentFailures != null) {
-							
-							TemplateDeploymentResponseResultComponent compFailed = jobResult.result.details.componentFailures;
-							if (compFailed.componentType.equalsIgnoreCase('WaveTemplateBundle')) {
-								// It's a template
-								String compName = compFailed.fullName;
-								if (this.repositoryTemplatesMap.containsKey(compName)) {
-									// We get the template label
-									String tplLabel = this.repositoryTemplatesMap.get(compName).label;
-									lstFailedTemplates.add(tplLabel);
-								}
-							}
-													
 						}
-						
-						String errorMsg = String.join(lstFailedTemplates, '\n');
+					}
 
+					if (lstFailedTemplates.size() == 0) {
+						this.dplSuccessMessage = 'Template deployment completed successfully.';
+						this.sendTemplateDeploymentSuccessEmail();
+					}
+					else {										
+						String errorMsg = String.join(lstFailedTemplates, '\n');
 						this.dplErrorMessage = 'One or more templates failed to deploy: \n' + errorMsg;
 						this.modalDetailsMessage.body = res.getBody();
 						this.modalDetailsMessage.header = 'Template deployment failed: More information';
@@ -2786,8 +2804,8 @@ public with sharing class WaveDataManagerController {
         List<SelectOption> options = new List<SelectOption>();
 		
 		for (String t : this.selectedTemplates) {
-			RepositoryTemplate repoTplHashed = this.repositoryTemplatesMap.get(t);
-			options.add(new SelectOption(repoTplHashed.api_name, repoTplHashed.label));
+			RepositoryTemplateResponse repoTplHashed = this.repositoryTemplatesMap.get(t);
+			options.add(new SelectOption(repoTplHashed.template.api_name, repoTplHashed.template.label));
 		}
 		
 		return options;
@@ -2912,6 +2930,20 @@ public with sharing class WaveDataManagerController {
 
 	public void loadTimeshiftingDataflowTab(){
 		if (!this.retrievedTsDatasets) {					
+			
+			Map<String, String> headersMap = new Map<String, String>();
+			if (String.isBlank(this.cookieString)) {
+				this.setTemplateServiceCookie();
+			}
+			headersMap.put('Cookie', this.cookieString);
+			HTTPResponse res = WaveConfiguratorUtils.httpCallout(
+				this.tsdfUrl + '/api/org/refresh',
+				'GET',
+				'',
+				'application/json',
+				headersMap
+			);
+
 			this.mapOfDatasetsByFolder = new Map<String, FolderDatasetResponse>();
 			
 			List<EdgeMart> lstDatasets = [
