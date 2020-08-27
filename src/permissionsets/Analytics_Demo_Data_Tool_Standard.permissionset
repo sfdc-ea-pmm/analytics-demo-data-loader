@@ -8,56 +8,6 @@
         <application>AnalyticsDemoDataTool_Lightning</application>
         <visible>true</visible>
     </applicationVisibilities>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>ScheduledTSDetails__c.CurrentBatchProcessId__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>ScheduledTSDetails__c.CurrentNodeIndex__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>ScheduledTSDetails__c.DaysToShift__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>ScheduledTSDetails__c.DetailJson__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>ScheduledTSDetails__c.End_Date__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>ScheduledTSDetails__c.Errors__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>ScheduledTSDetails__c.JobStatus__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>ScheduledTSDetails__c.QueueProcessId__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>ScheduledTSDetails__c.Started_Date__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>ScheduledTSDetails__c.Status__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Analytics Demo Data Tool Standard</label>
     <pageAccesses>
