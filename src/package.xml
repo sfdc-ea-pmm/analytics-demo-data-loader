@@ -107,6 +107,7 @@
   <types>
     <name>RemoteSiteSetting</name>
     <members>AmazonS3</members>
+    <members>LowTide</members>
   </types>
   <types>
     <name>CustomTab</name>
@@ -119,6 +120,6 @@
   <types>
     <members>Analytics_Demo_Data_Tool_Standard</members>
     <name>PermissionSet</name>
-  </types>  
+  </types>
   <version>48.0</version>
 </Package>

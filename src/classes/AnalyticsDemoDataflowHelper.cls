@@ -218,4 +218,18 @@ public with sharing class AnalyticsDemoDataflowHelper {
         req.setBody(jsonToPost);
         HTTPResponse res = http.send(req);
     }
+
+    public static Boolean dataflowExistsByApiName(String dataflowName){
+        List<Dataflow> dfL = [SELECT Id FROM Dataflow WHERE DeveloperName = :dataflowName];
+        return dfL.size() > 0;
+    }
+
+    public static Dataflow dataflowById(String dataflowId){
+        List<Dataflow> dfL = [SELECT Id, MasterLabel, DeveloperName, State, DataflowType, CreatedDate, LastModifiedDate FROM Dataflow WHERE Id = :dataflowId];
+        if (dfL.size() > 0) {
+            return dfL.get(0);
+        }
+        
+        return null;
+    }
 }

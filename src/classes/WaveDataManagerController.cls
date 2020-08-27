@@ -57,6 +57,7 @@ public with sharing class WaveDataManagerController {
 	public String baseUrl { get; set; } 
 	public Map<String, Boolean> selectedObjectsToTimeShift { get; set; }
 	public CustomModalConfirmation modalMessage { get; set; }
+	public CustomModalConfirmation modalDetailsMessage { get; set; }
 	public Boolean shiftOnlyOfApp { get; set; }
 	public String selectedDataflow { get; set; }
 	public String selectedDataflowForActionFields { get; set; }
@@ -83,6 +84,45 @@ public with sharing class WaveDataManagerController {
 	public Integer currentDatasetIndex { get; set; }
 	public Integer currentDashboardIndex { get; set; }
 	//public WaveApplicationDataflow dataflowConfig { get; set; }
+	
+	// Cookie String for the following tools
+	public String cookieString { get; set; }
+	
+	// *** Template Deploy Tool ***
+	private Boolean retrievedTemplates;
+	private Map<String, RepositoryTemplateResponse> repositoryTemplatesMap;
+	private List<String> undraggedTemplates;
+	public String[] templatesToDrag { get; set; }
+	public String[] templatesToReturn { get; set; }
+	public String[] selectedTemplates { get; set; }
+	
+	public Boolean processingTemplateDeployment { get; set; }
+	public String dplErrorMessage { get; set; }
+	public String dplWarningMessage { get; set; }
+	public String dplSuccessMessage { get; set; }
+	public String dplJobId { get; set; }
+	public Boolean advancedTemplateDeploy { get; set; }
+	public String tplDeployUrl { get; set; }
+	public String tplDeployRepoBranch { get; set; }
+
+	// *** Timeshifting Dataflow Tool ***
+	private Boolean retrievedTsDatasets;
+	public Boolean processingTimeshiftingDataflow { get; set; }
+	public String tsdfErrorMessage { get; set; }
+	public String tsdfWarningMessage { get; set; }
+	public String tsdfSuccessMessage { get; set; }
+	public String tsdfJobId { get; set; }
+	public Boolean advancedTimeshiftingDataflow { get; set; }
+	public String tsdfUrl { get; set; }
+	public Map<String, FolderDatasetResponse> mapOfDatasetsByFolder { get; set; }
+	public String selectedAppForTimeshiftingDataflow { get; set; }
+	public List<DatasetItemResponse> selectedDatasetsForTimeshiftingDataflow { get; set; }
+	public Map<String, DatasetItemResponse> mapOfDatasetsForTimeshiftingDataflow { get; set; }
+	public String tsdfJSON { get; set; }
+	public String tsdfLabel { get; set; }
+	public String tsdfName { get; set; }
+	public String tsdfCreateOrReplace { get; set; }
+	public String selectedDataflowForTimeshiftingDataflow { get; set; }
 
 	// Secuence control
 	public String installationStep { get; set; }
@@ -123,6 +163,20 @@ public with sharing class WaveDataManagerController {
 		this.analyticsDemoFAQ = new List<AnalyticsDemoFAQ>();
 		this.selectedObjectsToTimeShift = new Map<String, Boolean>();
 		this.modalMessage = new CustomModalConfirmation();
+		this.modalDetailsMessage = new CustomModalConfirmation();
+		this.retrievedTemplates = false;
+		this.repositoryTemplatesMap = new Map<String, RepositoryTemplateResponse>();
+		this.undraggedTemplates = new List<String>();
+		this.templatesToDrag = new String[]{};
+		this.templatesToReturn = new String[]{};
+		this.selectedTemplates = new String[]{};
+		this.cookieString = '';
+		this.advancedTemplateDeploy = false;
+		this.tplDeployRepoBranch = 'master';
+
+		this.retrievedTsDatasets = false;
+		this.selectedDatasetsForTimeshiftingDataflow = new List<DatasetItemResponse>();
+		this.mapOfDatasetsForTimeshiftingDataflow = new Map<String, DatasetItemResponse>();
 	}
 
 	public PageReference pageLoad()
@@ -150,6 +204,8 @@ public with sharing class WaveDataManagerController {
 			this.genericAppConfiguration = utils.getAppConfiguration(genericAppConfigurationFileName);
 			this.pageRendered = true;
 			this.baseUrl = this.genericAppConfiguration.baseUrl;
+			this.tplDeployUrl = this.genericAppConfiguration.tplDeployBaseUrl;
+			this.tsdfUrl = this.genericAppConfiguration.tplDeployBaseUrl;
 
 			if(Test.isRunningTest()){
 				this.baseUrl = this.genericAppConfiguration.baseDevUrl;
@@ -345,7 +401,7 @@ public with sharing class WaveDataManagerController {
         List<SelectOption> options = new List<SelectOption>();
 		options.add(new SelectOption('', 'None')); // Empty item
 
-        List<Dataflow> lstDataflows = [SELECT Id, MasterLabel FROM Dataflow WHERE DataflowType = 'User' AND State = 'Active'];
+        List<Dataflow> lstDataflows = [SELECT Id, MasterLabel FROM Dataflow WHERE DataflowType = 'User' AND State = 'Active' ORDER BY MasterLabel];
 		for(Dataflow dataflowItem: lstDataflows) {
 			options.add(new SelectOption(dataflowItem.Id, dataflowItem.MasterLabel));
 		}
@@ -662,6 +718,17 @@ public with sharing class WaveDataManagerController {
 		this.warningMessage = '';
 		this.processingLog.clear();
 		this.processingLogWithoutTime.clear();
+
+		this.dplErrorMessage = '';
+		this.dplSuccessMessage = '';
+		this.dplWarningMessage = '';
+
+		this.tsdfErrorMessage = '';
+		this.tsdfSuccessMessage = '';
+		this.tsdfWarningMessage = '';
+
+		this.modalDetailsMessage.body = '';
+		this.modalDetailsMessage.header = '';
 	}
 
 	public List<WaveApplicationObject> getObjectsToProcess(WaveMetadataApplicationObject wmaObj){
@@ -2139,14 +2206,8 @@ public with sharing class WaveDataManagerController {
 	}
 
 	public void suggestAnalyticsAppName(){
-		if (String.isBlank(this.createCompleteAppName) && String.isNotBlank(this.createCompleteAppLabel)) {
-			
-			String nameToSuggest = this.createCompleteAppLabel.trim();
-			while (nameToSuggest.substring(0 ,1).isNumeric()) {
-				nameToSuggest = nameToSuggest.substring(1);
-			}
-			
-			this.createCompleteAppName = nameToSuggest.replaceAll('[^a-zA-Z0-9]', '_');
+		if (String.isBlank(this.createCompleteAppName) && String.isNotBlank(this.createCompleteAppLabel)) {			
+			this.createCompleteAppName = WaveConfiguratorUtils.generateApiName(this.createCompleteAppLabel);
 			this.checkCreateCompleteAppExistence();
 		}
 	}
@@ -2456,4 +2517,756 @@ public with sharing class WaveDataManagerController {
 			WaveConfiguratorUtils.sendEmail(this.emailAddress, 'Load Datasets Into Existing App completed successfully', 'The Load Datasets Into Existing App process of your ORG data has finished successfully.');
 		}
 	}
+
+	// **************************** TEMPLATE DEPLOYMENT TOOL ******************************
+
+	class RepositoryTemplateResponse {
+		RepositoryTemplate template;
+	}
+
+	class RepositoryTemplate {
+		String api_version { get; set; }
+		Boolean deployable { get; set; }
+		String api_name { get; set; }
+		String label { get; set; }
+		String template_key { get; set; }
+	}
+
+	class TemplateList {
+		List<String> templates {get; set;}
+	}
+
+	class TemplateDeploymentResponse {
+		String name { get; set; }
+		String run_at { get; set; }
+		String done_at { get; set; }
+		List<TemplateDeploymentResponseResult> result { get; set; }
+	}
+
+	class TemplateDeploymentResponseResult {
+		String status { get; set; }
+		TemplateDeploymentResponseResultValue value { get; set; }
+	}
+
+	class TemplateDeploymentResponseResultValue {
+		String completedDate { get; set; }
+		Boolean done { get; set; }
+		String id { get; set; }
+		Integer numberComponentErrors { get; set; }
+		Integer numberComponentsDeployed { get; set; }
+		Integer numberComponentsTotal { get; set; }
+		String status { get; set; }
+		Boolean success { get; set; }
+		TemplateDeploymentResponseResultDetail details { get;set; }
+	}
+
+	class TemplateDeploymentResponseResultDetail {
+		// List<TemplateDeploymentResponseResultComponent> componentFailures { get;set; } this will be used at the end
+		TemplateDeploymentResponseResultComponent componentFailures { get;set; }
+		List<TemplateDeploymentResponseResultComponent> componentSuccesses { get;set; }
+	}
+
+	class TemplateDeploymentResponseResultComponent {
+		String componentType { get; set; }
+		String problem { get; set; }
+		String fullName { get; set; }
+		String fileName { get; set; }
+	}
+
+	private void setTemplateServiceCookie(){
+		if(String.isNotBlank(this.tplDeployUrl)){
+			String serverUrl = URL.getOrgDomainUrl().toExternalForm();
+			String sessionId = UserInfo.getSessionId();
+
+			String requestBody = '{"source": "session", "credentials": {"session_id": "' + sessionId + '",	"server_url" : "' + serverUrl + '"}}';
+			
+			HttpRequest deployReq = new HttpRequest();
+			deployReq.setEndpoint(this.tplDeployUrl + '/api/auth');
+			deployReq.setMethod('POST');
+			deployReq.setHeader('Content-Type', 'application/json');
+			deployReq.setBody(requestBody);
+
+			Http http = new Http();
+			HTTPResponse res = http.send(deployReq);
+
+			String responseHeaderSetCookie = res.getHeader('Set-Cookie');
+			String[] sParts = responseHeaderSetCookie.split(';');
+			this.cookieString = sParts[0];
+		}
+	}
+
+	public List<SelectOption> getAvailableTemplates() {
+		
+		String msgBody = '';
+		List<SelectOption> options = new List<SelectOption>();
+
+		try {
+			if (!this.retrievedTemplates) {
+				Map<String, String> headersMap = new Map<String, String>();
+				if (String.isBlank(this.cookieString)) {
+					this.setTemplateServiceCookie();
+				}
+
+				headersMap.put('Cookie', this.cookieString);
+				HTTPResponse res = WaveConfiguratorUtils.httpCallout(
+					this.tplDeployUrl + '/api/repository/template/' + this.tplDeployRepoBranch,
+					'GET',
+					'',
+					'application/json',
+					headersMap
+				);
+			
+				System.debug(res.getBody());
+				msgBody = res.getBody();
+
+				List<RepositoryTemplateResponse> repositoryTemplates = (List<RepositoryTemplateResponse>)JSON.deserialize(res.getBody(), List<RepositoryTemplateResponse>.class);
+				
+				for (RepositoryTemplateResponse repoTpl : repositoryTemplates) {
+					this.repositoryTemplatesMap.put(repoTpl.template.api_name, repoTpl);
+					this.undraggedTemplates.add(repoTpl.template.api_name);
+				}
+				
+				this.retrievedTemplates = true;
+			} 
+			
+			for (String t : this.undraggedTemplates) {
+				RepositoryTemplateResponse repoTplHashed = this.repositoryTemplatesMap.get(t);
+				options.add(new SelectOption(repoTplHashed.template.api_name, repoTplHashed.template.label, !repoTplHashed.template.deployable));
+			}
+		} 
+		catch (Exception ex) {
+			System.debug(ex.getMessage());
+			this.dplErrorMessage = 'Could not retrieve templates: \n' + ex.getMessage();
+			this.modalDetailsMessage.body = msgBody;
+			this.modalDetailsMessage.header = 'Template retrievement failed: More information';
+		}
+
+		return options;
+	}
+
+	public void executeDeployTemplate(){
+
+		Boolean passedValidation = true;
+		this.processingTemplateDeployment = false;
+		this.resetMessages();
+
+		try{
+			
+			if(this.selectedTemplates.size() == 0){
+                this.dplErrorMessage = 'Please select an App Template to deploy.';
+                this.disabledButton = false;
+            }
+            else {
+                TemplateList temp = new TemplateList();
+				temp.templates = new List<String>(); 
+				
+				for (String selTplApiName : this.selectedTemplates) {
+					RepositoryTemplateResponse repoTplHashed = this.repositoryTemplatesMap.get(selTplApiName);
+					temp.templates.add(repoTplHashed.template.template_key);
+				}
+
+				String jsonBody = JSON.serialize(temp);
+				
+				Map<String, String> headersMap = new Map<String, String>();
+				if (String.isBlank(this.cookieString)) {
+					this.setTemplateServiceCookie();
+				}
+				headersMap.put('Cookie', this.cookieString);
+
+				System.debug('Executing Template Deployment...');
+				System.debug(jsonBody);
+                
+                HTTPResponse res = WaveConfiguratorUtils.httpCallout(
+                    this.tplDeployUrl + '/api/repository/template/' + this.tplDeployRepoBranch + '/deploy',
+                    'POST',
+                    jsonBody,
+                    'application/json',
+                    headersMap
+				);
+
+				System.debug(res.getBody());
+
+				ApiJobStartResponse dplResult = (ApiJobStartResponse)JSON.deserialize(res.getBody(), ApiJobStartResponse.class);
+
+				if (dplResult != null && String.isNotBlank(dplResult.job_id)) {
+					
+					this.processingTemplateDeployment = true;
+					this.dplJobId = dplResult.job_id;
+					this.disabledButton = true;
+				}
+				else {
+					this.dplErrorMessage = 'The template deployment process could not start.';
+					this.disabledButton = false;
+				}
+            }
+		}
+		catch(Exception e) {
+			System.debug(e.getMessage());
+			System.debug(e.getStackTraceString());
+			this.dplErrorMessage = e.getMessage();
+			this.disabledButton = false;
+		}
+	}
+
+	public void checkTemplateDeploymentStatus(){
+		
+		if (String.isNotBlank(this.dplJobId)) {
+			Map<String, String> headersMap = new Map<String, String>();
+			if (String.isBlank(this.cookieString)) {
+				this.setTemplateServiceCookie();
+			}
+			headersMap.put('Cookie', this.cookieString);
+			HTTPResponse res = WaveConfiguratorUtils.httpCallout(
+				this.tplDeployUrl + '/api/jobs/' + this.dplJobId,
+				'GET',
+				'',
+				'application/json',
+				headersMap
+			);
+
+			System.debug(res.getBody());
+
+			TemplateDeploymentResponse jobResult = (TemplateDeploymentResponse)JSON.deserialize(res.getBody(), TemplateDeploymentResponse.class);
+
+			if (jobResult != null) {
+				if (String.isNotBlank(jobResult.done_at)) {
+					
+					List<String> lstFailedTemplates = new List<String>();
+
+					for (TemplateDeploymentResponseResult result : jobResult.result) {
+						if (!result.value.success) {
+							// This particular deployment failed
+							if (result.value.details != null && result.value.details.componentFailures != null) {
+							
+								TemplateDeploymentResponseResultComponent compFailed = result.value.details.componentFailures;
+								if (compFailed.componentType.equalsIgnoreCase('WaveTemplateBundle')) {
+									// It's a template
+									String compName = compFailed.fullName;
+									if (this.repositoryTemplatesMap.containsKey(compName)) {
+										// We get the template label
+										String tplLabel = this.repositoryTemplatesMap.get(compName).template.label;
+										lstFailedTemplates.add(tplLabel);
+									}
+								}				
+							}
+						}
+					}
+
+					if (lstFailedTemplates.size() == 0) {
+						this.dplSuccessMessage = 'Template deployment completed successfully.';
+						this.sendTemplateDeploymentSuccessEmail();
+					}
+					else {										
+						String errorMsg = String.join(lstFailedTemplates, '\n');
+						this.dplErrorMessage = 'One or more templates failed to deploy: \n' + errorMsg;
+						this.modalDetailsMessage.body = res.getBody();
+						this.modalDetailsMessage.header = 'Template deployment failed: More information';
+					}
+					
+					this.disabledButton = false;
+					this.processingTemplateDeployment = false;
+				}
+			}
+			else {
+				this.dplErrorMessage = 'Template deployment failed. Lost connection with the job process at server side.';
+				this.disabledButton = false;
+				this.processingTemplateDeployment = false;
+			}
+		}
+	}
+
+	public void dragSelectedTemplates(){
+		if (this.templatesToDrag.size() > 0) {
+			this.selectedTemplates.addAll(this.templatesToDrag);
+			for (String tpl: this.templatesToDrag) {
+				Integer i = this.undraggedTemplates.indexOf(tpl);
+				if (i != -1) {
+					this.undraggedTemplates.remove(i);
+				}
+			}
+		}
+	}
+
+	public void returnSelectedTemplates(){
+		if (this.templatesToReturn.size() > 0) {
+			this.undraggedTemplates.addAll(this.templatesToReturn);
+			for (String tpl: this.templatesToReturn) {
+				Integer i = this.selectedTemplates.indexOf(tpl);
+				if (i != -1) {
+					this.selectedTemplates.remove(i);
+				}
+			}
+		}
+	}
+
+	public List<SelectOption> getDraggedTemplates() {
+        
+        List<SelectOption> options = new List<SelectOption>();
+		
+		for (String t : this.selectedTemplates) {
+			RepositoryTemplateResponse repoTplHashed = this.repositoryTemplatesMap.get(t);
+			options.add(new SelectOption(repoTplHashed.template.api_name, repoTplHashed.template.label));
+		}
+		
+		return options;
+	}
+
+	private void sendTemplateDeploymentSuccessEmail(){
+		String username = UserInfo.getUserName();
+		String orgId = UserInfo.getOrganizationId();
+		WaveConfiguratorUtils.sendEmail(this.emailAddress, 'Template deployment completed successfully', 'The Template Deployment process has finished successfully. \n\nUsername: ' + username + '\nOrganization ID: ' + orgId + '\n\nThe following templates were deployed:\n\n' + String.join(this.selectedTemplates, '\n'));
+	}
+
+	public void handleAdvancedTemplateDeploy(){
+		this.advancedTemplateDeploy = !this.advancedTemplateDeploy;
+	}
+
+	public void tplDeployUrlChanged(){
+		try{
+			this.resetMessages();
+			if (String.isNotBlank(this.tplDeployUrl)) {
+				this.setTemplateServiceCookie();
+			}
+			else {
+				this.dplWarningMessage = 'Base Endpoint URL for deployment services must not be blank.';
+			}
+		}
+		catch(Exception e) {
+			System.debug(e.getMessage());
+			System.debug(e.getStackTraceString());
+			this.dplErrorMessage = e.getMessage();
+		}
+	}
+
+	public void tplDeployRepoBranchChanged(){
+		this.resetMessages();
+		this.retrievedTemplates = false;
+	}
+
+	public List<SelectOption> getBranches() {
+        
+        List<SelectOption> options = new List<SelectOption>();
+		
+		options.add(new SelectOption('master', 'Master'));
+		options.add(new SelectOption('beta', 'Beta'));
+		
+		return options;
+	}
+
+	// **************************** TIMESHIFTING DATAFLOW TOOL ******************************
+
+	public class TimeShiftingDataflowParameters {
+		String id { get; set; } // Id of the dataflow for an overwrite operation
+		String name { get; set; } // API name for dataflow in create operation
+		String label { get; set; } // Label for dataflow in create operation
+		String operation { get; set; } // create | overwrite
+	}
+
+	public class TimeShiftingDataflowDataset {
+		String id { get; set; } // Dataset ID
+	}
+
+	public class TimeShiftingDataflowRequest {
+		TimeShiftingDataflowParameters dataflow_parameters { get;set; }
+		List<TimeShiftingDataflowDataset> dataset_array { get;set; }
+	}
+
+	public class ApiJobResponseResult {
+		Boolean success { get; set; }
+		String dataflow_id { get; set; } // Dataflow ID
+		String dataflow_version_id { get; set; } // Dataflow Version ID
+		List<ApiJobResultDataset> branches { get; set; } // Datasets that succeeded and were added to dataflow
+		List<ApiJobResultDataset> errors { get; set; } // Datasets that weren't added to dataflow
+		String message { get; set; } // Error message when success = false
+	}
+
+	public class ApiJobStartResponse {
+		String job_id { get; set; }
+		String run_at { get; set; }
+	}
+
+	public class ApiJobResultDataset {
+		String dataset_id { get; set; }
+		String error { get; set; }
+	}
+
+	public class ApiJobResponse {
+		String name { get; set; } // Name of the job
+		String org { get; set; } // ORG Instance URL
+		String run_at { get; set; } // Job Started Timestamp, for example: 2020-08-10T18:34:50.312Z
+		String done_at { get; set; } // Job Finished Timestamp, for example: 2020-08-10T18:34:55.023Z
+		Boolean success { get; set; }
+		ApiJobResponseResult result { get; set; }
+	}
+
+	public class FolderDatasetResponse {
+		String id { get; set; }
+		String label { get; set; }
+		List<DatasetItemResponse> datasets { get; set; }
+	}
+
+	public class DatasetItemResponse {
+		public String id { get; set; }
+		public String label { get; set; }
+		public String name { get; set; }
+		public Boolean selected { get; set; }
+	}
+
+	public List<SelectOption> getAppsForTimeshiftingDataflow(){
+		List<SelectOption> options = new List<SelectOption>();
+		options.add(new SelectOption('', ''));
+		
+		if (this.retrievedTsDatasets) {
+			
+			for (String appId : this.mapOfDatasetsByFolder.keySet()) {
+				if(String.isNotBlank(this.mapOfDatasetsByFolder.get(appId).label)){
+					options.add(new SelectOption(appId, this.mapOfDatasetsByFolder.get(appId).label));
+				}
+			}
+		}
+
+		return options;
+	}	
+
+	public void loadTimeshiftingDataflowTab(){
+		if (!this.retrievedTsDatasets) {					
+			
+			Map<String, String> headersMap = new Map<String, String>();
+			if (String.isBlank(this.cookieString)) {
+				this.setTemplateServiceCookie();
+			}
+			headersMap.put('Cookie', this.cookieString);
+			HTTPResponse res = WaveConfiguratorUtils.httpCallout(
+				this.tsdfUrl + '/api/org/refresh',
+				'GET',
+				'',
+				'application/json',
+				headersMap
+			);
+
+			this.mapOfDatasetsByFolder = new Map<String, FolderDatasetResponse>();
+			
+			List<EdgeMart> lstDatasets = [
+				SELECT DeveloperName, FolderId, Id, MasterLabel, Folder.Name 
+				FROM EdgeMart
+				ORDER BY Folder.Name, MasterLabel
+			];
+
+			for (EdgeMart e : lstDatasets) {
+
+				if (!this.mapOfDatasetsByFolder.containsKey(e.FolderId)) {
+					FolderDatasetResponse fdr = new FolderDatasetResponse();
+					fdr.id = e.FolderId;
+					fdr.label = e.Folder.Name;
+					fdr.datasets = new List<DatasetItemResponse>();
+					this.mapOfDatasetsByFolder.put(e.FolderId, fdr);
+				}
+				
+				DatasetItemResponse d = new DatasetItemResponse();
+				d.id = e.Id;
+				d.label = e.MasterLabel;
+				d.name = e.DeveloperName;
+				d.selected = true;
+
+				FolderDatasetResponse fdrAux = this.mapOfDatasetsByFolder.get(e.FolderId);
+				fdrAux.datasets.add(d);
+
+				this.mapOfDatasetsForTimeshiftingDataflow.put(e.Id, d);
+			}
+
+			this.retrievedTsDatasets = true;
+		}
+	}
+
+	public void appsForTimeshiftingDataflowChanged(){
+		if (String.isNotBlank(this.selectedAppForTimeshiftingDataflow)) {
+			this.selectedDatasetsForTimeshiftingDataflow = new List<DatasetItemResponse>();
+			List<DatasetItemResponse> dsList = this.mapOfDatasetsByFolder.get(this.selectedAppForTimeshiftingDataflow).datasets;
+			if (dsList != null && dsList.size() > 0) {
+				this.selectedDatasetsForTimeshiftingDataflow.addAll(dsList);	
+			}
+		}
+		else {
+			this.selectedDatasetsForTimeshiftingDataflow.clear();
+		}
+	}
+
+	public void executeTsDataflowGeneration(){
+		
+		if (this.tsdfCreateOrReplace == 'create') {
+			// Create
+			this.createNewTsDataflow();
+		}
+		else if(this.tsdfCreateOrReplace == 'replace'){
+			// Replace
+			this.replaceTsDataflow();
+		}
+		else {
+			this.tsdfWarningMessage = 'Please select between Create a new Dataflow or Overwrite an existing Dataflow options.';
+		}
+	}
+
+	private void createNewTsDataflow(){
+		List<String> validations = new List<String>();
+		this.processingTimeshiftingDataflow = false;
+		this.resetMessages();
+
+		if (String.isBlank(this.tsdfName)) {
+			validations.add('Please enter the dataflow name.');
+		}
+
+		if (AnalyticsDemoDataflowHelper.dataflowExistsByApiName(this.tsdfName)) {
+			validations.add('Please select another dataflow name. The one that you entered is already in use.');
+		}
+
+		if (this.selectedDatasetsForTimeshiftingDataflow.size() == 0) {
+			validations.add('Please select any dataset to include in the dataflow.');
+		}
+
+		if(validations.size() > 0){
+			this.tsdfWarningMessage = String.join(validations, '\n');
+		}
+		else {
+			try {
+
+				TimeShiftingDataflowParameters tsdfParams = new TimeShiftingDataflowParameters();
+				tsdfParams.name = this.tsdfName;
+				tsdfParams.label = String.isNotBlank(this.tsdfLabel) ? this.tsdfLabel : this.tsdfName;
+				tsdfParams.operation = 'create';
+
+				List<TimeShiftingDataflowDataset> datasetsJsonToSend = new List<TimeShiftingDataflowDataset>();
+				
+				
+				for (DatasetItemResponse variable : this.selectedDatasetsForTimeshiftingDataflow) {
+					if (variable.selected) {
+						TimeShiftingDataflowDataset tsdd = new TimeShiftingDataflowDataset();
+						tsdd.id = variable.id;
+						datasetsJsonToSend.add(tsdd);
+					}
+				}
+
+				TimeShiftingDataflowRequest tsdfRequest = new TimeShiftingDataflowRequest();
+				tsdfRequest.dataflow_parameters = tsdfParams;
+				tsdfRequest.dataset_array = datasetsJsonToSend;
+
+				String jsonBody = JSON.serialize(tsdfRequest, true);
+				//System.debug(jsonBody);
+		
+				Map<String, String> headersMap = new Map<String, String>();
+				if (String.isBlank(this.cookieString)) {
+					this.setTemplateServiceCookie();
+				}
+				headersMap.put('Cookie', this.cookieString);
+				
+				HTTPResponse res = WaveConfiguratorUtils.httpCallout(
+					this.tsdfUrl + '/api/org/dataflow',
+					'POST',
+					jsonBody,
+					'application/json',
+					headersMap
+				);
+		
+				ApiJobStartResponse jobInfo = (ApiJobStartResponse) JSON.deserialize(res.getBody(), ApiJobStartResponse.class);	
+				if (jobInfo != null) {
+					if (String.isNotBlank(jobInfo.job_id)) {
+						this.processingTimeshiftingDataflow = true;
+						this.tsdfJobId = jobInfo.job_id;
+						this.disabledButton = true;
+					}
+				}
+			}
+			catch (Exception ex) {
+				System.debug(ex.getMessage());
+				System.debug(ex.getStackTraceString());
+				this.tsdfErrorMessage = ex.getMessage();
+				this.disabledButton = false;
+			}
+		}
+	}
+
+	private void replaceTsDataflow(){
+
+		this.processingTimeshiftingDataflow = false;
+		this.resetMessages();
+		
+		List<String> validations = new List<String>();
+
+		if (String.isBlank(this.selectedDataflowForTimeshiftingDataflow)) {
+			validations.add('Please select the dataflow to overwrite.');
+		}
+
+		if (this.selectedDatasetsForTimeshiftingDataflow.size() == 0) {
+			validations.add('Please select any dataset to include in the dataflow.');
+		}
+
+		if(validations.size() > 0){
+			this.tsdfWarningMessage = String.join(validations, '\n');
+		}
+		else {
+			try {
+				TimeShiftingDataflowParameters tsdfParams = new TimeShiftingDataflowParameters();
+				tsdfParams.id = this.selectedDataflowForTimeshiftingDataflow;
+				tsdfParams.operation = 'overwrite';
+
+				List<TimeShiftingDataflowDataset> datasetsJsonToSend = new List<TimeShiftingDataflowDataset>();
+								
+				for (DatasetItemResponse variable : this.selectedDatasetsForTimeshiftingDataflow) {
+					if (variable.selected) {
+						TimeShiftingDataflowDataset tsdd = new TimeShiftingDataflowDataset();
+						tsdd.id = variable.id;
+						datasetsJsonToSend.add(tsdd);
+					}
+				}
+
+				TimeShiftingDataflowRequest tsdfRequest = new TimeShiftingDataflowRequest();
+				tsdfRequest.dataflow_parameters = tsdfParams;
+				tsdfRequest.dataset_array = datasetsJsonToSend;
+
+				String jsonBody = JSON.serialize(tsdfRequest, true);
+				System.debug('Overwritting TimeShifting Dataflow...');
+				System.debug(jsonBody);
+
+				Map<String, String> headersMap = new Map<String, String>();
+				if (String.isBlank(this.cookieString)) {
+					this.setTemplateServiceCookie();
+				}
+				headersMap.put('Cookie', this.cookieString);
+				
+				HTTPResponse res = WaveConfiguratorUtils.httpCallout(
+					this.tsdfUrl + '/api/org/dataflow',
+					'POST',
+					jsonBody,
+					'application/json',
+					headersMap
+				);
+
+				System.debug(res.getBody());
+
+				ApiJobStartResponse jobInfo = (ApiJobStartResponse) JSON.deserialize(res.getBody(), ApiJobStartResponse.class);	
+				if (jobInfo != null) {
+					if (String.isNotBlank(jobInfo.job_id)) {
+						this.processingTimeshiftingDataflow = true;
+						this.tsdfJobId = jobInfo.job_id;
+						this.disabledButton = true;
+					}
+				}
+			} 
+			catch (Exception ex) {
+				System.debug(ex.getMessage());
+				System.debug(ex.getStackTraceString());
+				this.tsdfErrorMessage = ex.getMessage();
+				this.disabledButton = false;
+			}
+		}		
+	}
+
+	public List<SelectOption> getTsdfCreateOrReplaceOptions() {
+        
+        List<SelectOption> options = new List<SelectOption>();
+		
+		options.add(new SelectOption('create', 'Create a new Dataflow'));
+		options.add(new SelectOption('replace', 'Overwrite an existing Dataflow'));
+		
+		return options;
+	}
+
+	public List<SelectOption> getDataflowsForTimeshiftingDataflow(){
+		List<SelectOption> options = this.getOrgDataflows();
+		options.remove(0);
+		return options;
+	}
+
+	public void suggestTsDataflowName(){
+		if (String.isBlank(this.tsdfName) && String.isNotBlank(this.tsdfLabel)) {			
+			this.tsdfName = WaveConfiguratorUtils.generateApiName(this.tsdfLabel);
+		}
+	}
+
+	public void checkTimeshiftingDataflowStatus(){
+		try {
+			if (String.isNotBlank(this.tsdfJobId)) {
+				Map<String, String> headersMap = new Map<String, String>();
+				if (String.isBlank(this.cookieString)) {
+					this.setTemplateServiceCookie();
+				}
+				headersMap.put('Cookie', this.cookieString);
+				HTTPResponse res = WaveConfiguratorUtils.httpCallout(
+					this.tplDeployUrl + '/api/jobs/' + this.tsdfJobId,
+					'GET',
+					'',
+					'application/json',
+					headersMap
+				);
+
+				System.debug(res.getBody());
+
+				ApiJobResponse jobResult = (ApiJobResponse)JSON.deserialize(res.getBody(), ApiJobResponse.class);
+
+				if (jobResult != null) {
+
+					if (String.isNotBlank(jobResult.done_at)) {
+						// Job finished
+						this.processingTimeshiftingDataflow = false;
+						this.disabledButton = false;
+
+						if (jobResult.result.success) {
+							// Search for errors 
+							if (jobResult.result.errors != null && jobResult.result.errors.size() > 0) {
+								this.tsdfWarningMessage = res.getBody();
+								List<String> lstFailedDatasets = new List<String>();
+								for (ApiJobResultDataset dsError : jobResult.result.errors) {
+									String datasetLabel = this.mapOfDatasetsForTimeshiftingDataflow.get(dsError.dataset_id).label;
+									lstFailedDatasets.add(datasetLabel + ' was not included: ' + dsError.error);
+								}
+								
+								String errorMsg = String.join(lstFailedDatasets, '\n');
+								this.tsdfWarningMessage = 'The Timeshifting Dataflow generation completed successfully. However, some datasets could not be included: \n' + errorMsg;
+							}
+							else {
+								this.tsdfSuccessMessage = 'The Timeshifting Dataflow generation completed successfully.';
+							}
+							
+							if (String.isNotBlank(this.emailAddress)) {
+								this.sendTimeshiftingDataflowSuccessEmail(jobResult.result.dataflow_id);	
+							}
+						}
+						else {
+							this.tsdfErrorMessage = 'The Timeshifting Dataflow generation failed: ' + jobResult.result.message;
+						}
+					}
+				}
+				else {
+					// Job disconnected
+					this.processingTimeshiftingDataflow = false;
+					this.disabledButton = false;
+					this.tsdfErrorMessage = 'The Timeshifting Dataflow generation failed. Lost connection with the job process at server side.';
+				}
+			}
+		}
+		catch (Exception ex) {
+			System.debug(ex.getMessage());
+			System.debug(ex.getStackTraceString());
+			this.tsdfErrorMessage += ex.getMessage();
+			this.disabledButton = false;
+		}
+	}
+
+	public void sendTimeshiftingDataflowSuccessEmail(String dataflowId){
+		String username = UserInfo.getUserName();
+		String orgId = UserInfo.getOrganizationId();
+		Dataflow dfInfo = AnalyticsDemoDataflowHelper.dataflowById(dataflowId);
+
+		if (dfInfo != null) {
+			WaveConfiguratorUtils.sendEmail(
+				this.emailAddress, 
+				'Timeshifting Dataflow generation successfully', 
+				'The Timeshifting Dataflow generation process has finished successfully. \n\nUsername: ' + username + '\nOrganization ID: ' + orgId + '\n\nDataflow Label: ' + dfInfo.MasterLabel + '\nDataflow Id: ' + dfInfo.Id);	
+		}
+	}
+
+	// TO-DoS:
+	// 1) 
+	// 2) 
+	// 3) 
+	// 4) 
 }

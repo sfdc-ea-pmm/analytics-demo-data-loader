@@ -106,6 +106,27 @@ public with sharing class WaveConfiguratorUtils {
 		return response;
 	}
 
+	public static HttpResponse httpCallout(String url, String method, String parameter, String contentType, Map<String, String> httpHeaders){
+		Http http = new Http();
+		HttpRequest req = new HttpRequest();
+		String totalUrl = url;
+		
+		if(method.toUpperCase() == 'POST' || method.toUpperCase() == 'PUT'){
+			req.setBody(parameter);
+		}
+
+		req.setMethod(method);
+		req.setEndpoint(totalUrl);
+		req.setHeader('Content-type', contentType);
+
+		for (String headerKey : httpHeaders.keyset()) {
+			req.setHeader(headerKey, httpHeaders.get(headerKey));
+		}
+
+		HttpResponse response = http.send(req);
+		return response;
+	}
+
 	public static HttpResponse httpGetCallout(String url){
 		Http http = new Http();
 		HttpRequest req = new HttpRequest();
@@ -380,5 +401,14 @@ public with sharing class WaveConfiguratorUtils {
 		}
 
 		return mapping;
-    }
+	}
+	
+	public static String generateApiName(String label){
+		String nameToSuggest = label.trim();
+		while (nameToSuggest.substring(0 ,1).isNumeric()) {
+			nameToSuggest = nameToSuggest.substring(1);
+		}
+		
+		return nameToSuggest.replaceAll('[^a-zA-Z0-9]', '_');
+	}
 }
