@@ -2728,7 +2728,7 @@ public with sharing class WaveDataManagerController {
 			String responseBody = res.getBody();
 			System.debug(responseBody);
 
-			emplateDeploymentResponse jobResult = (TemplateDeploymentResponse)JSON.deserialize(responseBody, TemplateDeploymentResponse.class);
+			TemplateDeploymentResponse jobResult = (TemplateDeploymentResponse)JSON.deserialize(responseBody, TemplateDeploymentResponse.class);
 			
 			if (jobResult != null) {
 				if (String.isNotBlank(jobResult.done_at)) {
