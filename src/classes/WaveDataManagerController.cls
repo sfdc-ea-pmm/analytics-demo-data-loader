@@ -2557,12 +2557,13 @@ public with sharing class WaveDataManagerController {
 		Integer numberComponentsTotal { get; set; }
 		String status { get; set; }
 		Boolean success { get; set; }
-		TemplateDeploymentResponseResultDetail details { get;set; }
+		//TemplateDeploymentResponseResultDetail details { get;set; }
+		//Map<String, Object> details { get;set; }
 	}
 
 	class TemplateDeploymentResponseResultDetail {
 		// List<TemplateDeploymentResponseResultComponent> componentFailures { get;set; } this will be used at the end
-		TemplateDeploymentResponseResultComponent componentFailures { get;set; }
+		List<Object> componentFailures { get;set; }
 		List<TemplateDeploymentResponseResultComponent> componentSuccesses { get;set; }
 	}
 
@@ -2724,32 +2725,53 @@ public with sharing class WaveDataManagerController {
 				headersMap
 			);
 
-			System.debug(res.getBody());
+			String responseBody = res.getBody();
+			System.debug(responseBody);
 
-			TemplateDeploymentResponse jobResult = (TemplateDeploymentResponse)JSON.deserialize(res.getBody(), TemplateDeploymentResponse.class);
-
+			//List<StaticResource> srList = [SELECT Body FROM StaticResource WHERE Name = 'TemplateDeployWithErrors'];
+			//String tmplateDeployWithErrorsJson = srList.get(0).Body.toString();
+			//TemplateDeploymentResponse jobResult = (TemplateDeploymentResponse)JSON.deserialize(tmplateDeployWithErrorsJson, TemplateDeploymentResponse.class);
+			TemplateDeploymentResponse jobResult = (TemplateDeploymentResponse)JSON.deserialize(responseBody, TemplateDeploymentResponse.class);
+			
 			if (jobResult != null) {
 				if (String.isNotBlank(jobResult.done_at)) {
 					
 					List<String> lstFailedTemplates = new List<String>();
+					Integer resultIndex = 0;
+					//Map<String, Object> respUntyped = (Map<String, Object>)JSON.deserializeUntyped(tmplateDeployWithErrorsJson);
+					Map<String, Object> respUntyped = (Map<String, Object>)JSON.deserializeUntyped(responseBody);
+					List<Object> lstResults = (List<Object>)respUntyped.get('result');
 
 					for (TemplateDeploymentResponseResult result : jobResult.result) {
 						if (!result.value.success) {
 							// This particular deployment failed
-							if (result.value.details != null && result.value.details.componentFailures != null) {
+							if (result.value.numberComponentErrors > 0) {
 							
-								TemplateDeploymentResponseResultComponent compFailed = result.value.details.componentFailures;
-								if (compFailed.componentType.equalsIgnoreCase('WaveTemplateBundle')) {
-									// It's a template
-									String compName = compFailed.fullName;
-									if (this.repositoryTemplatesMap.containsKey(compName)) {
-										// We get the template label
-										String tplLabel = this.repositoryTemplatesMap.get(compName).template.label;
-										lstFailedTemplates.add(tplLabel);
+								// We have component errors
+								Map<String, Object> resultItemDetails = (Map<String, Object>)((Map<String, Object>)((Map<String, Object>)lstResults.get(resultIndex)).get('value')).get('details');
+								if (result.value.numberComponentErrors == 1) {
+									// Get Object
+									Map<String, Object> failuresObj = (Map<String, Object>)resultItemDetails.get('componentFailures');									
+									TemplateDeploymentResponseResultComponent compFailed = (TemplateDeploymentResponseResultComponent) JSON.deserialize(JSON.serialize(failuresObj), TemplateDeploymentResponseResultComponent.class);
+									
+									if (compFailed.componentType.equalsIgnoreCase('WaveTemplateBundle')) {
+										// It's a template
+										String compName = compFailed.fullName;
+										if (this.repositoryTemplatesMap.containsKey(compName)) {
+											// We get the template label
+											String tplLabel = this.repositoryTemplatesMap.get(compName).template.label;
+											lstFailedTemplates.add(tplLabel);
+										}
 									}
-								}				
+								} 
+								else {
+									// Get Array
+									List<Object> lstFailures = (List<Object>)resultItemDetails.get('componentFailures');
+									lstFailedTemplates.add('Deployment item Nr.: ' + (resultIndex + 1));
+								}
 							}
 						}
+						resultIndex++;
 					}
 
 					if (lstFailedTemplates.size() == 0) {
@@ -2757,8 +2779,8 @@ public with sharing class WaveDataManagerController {
 						this.sendTemplateDeploymentSuccessEmail();
 					}
 					else {										
-						String errorMsg = String.join(lstFailedTemplates, '\n');
-						this.dplErrorMessage = 'One or more templates failed to deploy: \n' + errorMsg;
+						this.dplErrorMessage = 'One or more templates failed to deploy.\n';
+						this.dplErrorMessage = this.dplErrorMessage + String.join(lstFailedTemplates, '\n');
 						this.modalDetailsMessage.body = res.getBody();
 						this.modalDetailsMessage.header = 'Template deployment failed: More information';
 					}
