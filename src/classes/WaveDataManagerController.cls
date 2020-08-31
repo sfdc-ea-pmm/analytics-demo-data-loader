@@ -2728,17 +2728,13 @@ public with sharing class WaveDataManagerController {
 			String responseBody = res.getBody();
 			System.debug(responseBody);
 
-			//List<StaticResource> srList = [SELECT Body FROM StaticResource WHERE Name = 'TemplateDeployWithErrors'];
-			//String tmplateDeployWithErrorsJson = srList.get(0).Body.toString();
-			//TemplateDeploymentResponse jobResult = (TemplateDeploymentResponse)JSON.deserialize(tmplateDeployWithErrorsJson, TemplateDeploymentResponse.class);
-			TemplateDeploymentResponse jobResult = (TemplateDeploymentResponse)JSON.deserialize(responseBody, TemplateDeploymentResponse.class);
+			emplateDeploymentResponse jobResult = (TemplateDeploymentResponse)JSON.deserialize(responseBody, TemplateDeploymentResponse.class);
 			
 			if (jobResult != null) {
 				if (String.isNotBlank(jobResult.done_at)) {
 					
 					List<String> lstFailedTemplates = new List<String>();
 					Integer resultIndex = 0;
-					//Map<String, Object> respUntyped = (Map<String, Object>)JSON.deserializeUntyped(tmplateDeployWithErrorsJson);
 					Map<String, Object> respUntyped = (Map<String, Object>)JSON.deserializeUntyped(responseBody);
 					List<Object> lstResults = (List<Object>)respUntyped.get('result');
 
