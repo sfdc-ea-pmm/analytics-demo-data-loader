@@ -635,7 +635,7 @@
 											<div class="slds-form-element__control">
 												<apex:selectRadio value="{!tplDeployRepoBranch}" id="tplDeployRepoBranch" layout="pageDirection">
 													<apex:selectOptions value="{!branches}" />
-													<apex:actionSupport action="{!tplDeployRepoBranchChanged}" event="onchange" reRender="formDeployMessages,frmTemplateDeploy,frmTemplateDeploySelector" />
+													<apex:actionSupport action="{!tplDeployRepoBranchChanged}" event="onchange" reRender="formDeployMessages,availableTemplates,selTemplates" />
 												</apex:selectRadio>
 											</div>
 										</div>

@@ -2617,11 +2617,14 @@ public with sharing class WaveDataManagerController {
 					headersMap
 				);
 			
-				System.debug(res.getBody());
 				msgBody = res.getBody();
+				System.debug(msgBody);
 
-				List<RepositoryTemplateResponse> repositoryTemplates = (List<RepositoryTemplateResponse>)JSON.deserialize(res.getBody(), List<RepositoryTemplateResponse>.class);
+				List<RepositoryTemplateResponse> repositoryTemplates = (List<RepositoryTemplateResponse>)JSON.deserialize(msgBody, List<RepositoryTemplateResponse>.class);
 				
+				this.repositoryTemplatesMap.clear();
+				this.undraggedTemplates.clear();
+
 				for (RepositoryTemplateResponse repoTpl : repositoryTemplates) {
 					this.repositoryTemplatesMap.put(repoTpl.template.api_name, repoTpl);
 					this.undraggedTemplates.add(repoTpl.template.api_name);
