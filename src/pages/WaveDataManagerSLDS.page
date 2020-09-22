@@ -48,7 +48,7 @@
 					</span>
 		        </div>
 		        <div class="slds-media__body">
-		            <h1 class="slds-page-header__title slds-truncate slds-align-middle" title="Rohde Corp - 80,000 Widgets">Analytics Demo Data Tool - v2020.35</h1>
+		            <h1 class="slds-page-header__title slds-truncate slds-align-middle" title="Rohde Corp - 80,000 Widgets">Analytics Demo Data Tool - v2020.35.1</h1>
 		            <p class="slds-text-body_small slds-line-height_reset">Einstein Analytics Demo Data Loader</p>
 		        </div>
 		    </div>
