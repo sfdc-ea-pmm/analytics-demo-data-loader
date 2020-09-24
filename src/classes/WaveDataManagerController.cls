@@ -207,7 +207,7 @@ public with sharing class WaveDataManagerController {
 			this.tplDeployUrl = this.genericAppConfiguration.tplDeployBaseUrl;
 			this.tsdfUrl = this.genericAppConfiguration.tplDeployBaseUrl;
 
-			if(Test.isRunningTest()){
+			if(System.Test.isRunningTest()){
 				this.baseUrl = this.genericAppConfiguration.baseDevUrl;
 			}
 
@@ -215,7 +215,7 @@ public with sharing class WaveDataManagerController {
 			
 			// Attempt to connect to the Metadata API
 			MetadataConnectionWarning = false;
-			if(!Test.isRunningTest() && !SF_MetadataUtils.checkMetadataAPIConnection())
+			if(!System.Test.isRunningTest() && !SF_MetadataUtils.checkMetadataAPIConnection())
 			{
 				this.warningMessage = 'Current Salesforce Instance URL not found in Remote Sites. See details below:';
 				MetadataConnectionWarning = true;
