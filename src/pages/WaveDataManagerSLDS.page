@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta http-equiv="x-ua-compatible" content="ie=edge" />
-		<title>Analytics Demo Data Tool</title>
+		<title>Analytics Demo Tool</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 		<style type="text/css">
@@ -48,8 +48,8 @@
 					</span>
 		        </div>
 		        <div class="slds-media__body">
-		            <h1 class="slds-page-header__title slds-truncate slds-align-middle" title="Rohde Corp - 80,000 Widgets">Analytics Demo Data Tool - v2020.35.1</h1>
-		            <p class="slds-text-body_small slds-line-height_reset">Einstein Analytics Demo Data Loader</p>
+		            <h1 class="slds-page-header__title slds-truncate slds-align-middle" title="Rohde Corp - 80,000 Widgets">Analytics Demo Tools - v2020.39</h1>
+		            <p class="slds-text-body_small slds-line-height_reset">Einstein Analytics Demo Tools</p>
 		        </div>
 		    </div>
 		</div>		

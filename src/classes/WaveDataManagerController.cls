@@ -1243,7 +1243,7 @@ public with sharing class WaveDataManagerController {
 		if(this.MetadataResponse.length() == 0)
 		{
 			this.warningMessage = '';
-			this.successMessage = 'Remote Site Settings have been created. Now you can continue using Analytics Demo Data Tool.';
+			this.successMessage = 'Remote Site Settings have been created. Now you can continue using Analytics Demo Tool.';
 			MetadataConnectionWarning = false;
 		}
 		else
