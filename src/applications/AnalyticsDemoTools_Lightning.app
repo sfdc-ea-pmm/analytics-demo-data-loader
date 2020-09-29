@@ -2,7 +2,7 @@
 <CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
     <brand>
         <headerColor>#0070D2</headerColor>
-        <logo>AnalyticsDemoDataTool_Lightning_Logo</logo>
+        <logo>AnalyticsDemoTools_Lightning_Logo</logo>
         <logoVersion>1</logoVersion>
         <shouldOverrideOrgTheme>true</shouldOverrideOrgTheme>
     </brand>
@@ -10,9 +10,9 @@
     <formFactors>Large</formFactors>
     <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
     <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
-    <label>Analytics Demo Data Tool</label>
+    <label>Analytics Demo Tools</label>
     <navType>Standard</navType>
-    <tabs>AnalyticsDemoDataTool</tabs>
+    <tabs>AnalyticsDemoTools</tabs>
     <tabs>standard-Account</tabs>
     <tabs>standard-Case</tabs>
     <tabs>standard-Opportunity</tabs>

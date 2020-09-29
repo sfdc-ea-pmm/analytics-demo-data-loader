@@ -4,7 +4,9 @@ This repository will keep all the apex code and configurations for the Analytics
 
 Changelog:
 
-- Compiled with and executing v48.0 (Spring '20 release)
+- Using API version v49.0 (Summer '20 release)
+- Renamed application to Analytics Demo Tools
+- Fixed the Test.isRunningTest() bug
 
 <a href="https://githubsfdeploy.herokuapp.com">
   <img alt="Deploy to Salesforce"

@@ -86,7 +86,7 @@ public with sharing class SF_MetadataUtils {
 
         if(results == null || results.size() == 0 && !results.get(0).success){
             // Return error messages
-            if(!Test.isRunningTest()){
+            if(!System.Test.isRunningTest()){
                 for(MetadataService.Error err : results.get(0).errors){
                     errors.add(err.message);
                 }
@@ -216,7 +216,7 @@ public with sharing class SF_MetadataUtils {
 
             if(results == null || results.size() == 0 || !results.get(0).success){
                 // Return error messages
-                if(!Test.isRunningTest()){
+                if(!System.Test.isRunningTest()){
                     for(MetadataService.Error err : results.get(0).errors){
                         errors.add(err.message);
                     }
@@ -282,7 +282,7 @@ public with sharing class SF_MetadataUtils {
 
         if(results == null || results.size() == 0 || !results.get(0).success){
             // Return error messages
-            if(!Test.isRunningTest()){
+            if(!System.Test.isRunningTest()){
                 for(MetadataService.Error err : results.get(0).errors){
                     errors.add(err.message);
                 }
@@ -313,7 +313,7 @@ public with sharing class SF_MetadataUtils {
 
         if(results == null || results.size() == 0 || !results.get(0).success){
             // Return error messages
-            if(!Test.isRunningTest()){
+            if(!System.Test.isRunningTest()){
                 for(MetadataService.Error err : results.get(0).errors){
                     errors.add(err.message);
                 }

@@ -101,8 +101,8 @@
   </types>
   <types>
     <name>CustomApplication</name>
-    <members>AnalyticsDemoDataTool</members>
-    <members>AnalyticsDemoDataTool_Lightning</members>
+    <members>AnalyticsDemoTools</members>
+    <members>AnalyticsDemoTools_Lightning</members>
   </types>
   <types>
     <name>RemoteSiteSetting</name>
@@ -111,11 +111,11 @@
   </types>
   <types>
     <name>CustomTab</name>
-    <members>AnalyticsDemoDataTool</members>
+    <members>AnalyticsDemoTools</members>
   </types>
   <types>
     <name>ContentAsset</name>
-    <members>AnalyticsDemoDataTool_Lightning_Logo</members>
+    <members>AnalyticsDemoTools_Lightning_Logo</members>
   </types>
   <types>
     <members>Analytics_Demo_Data_Tool_Standard</members>
